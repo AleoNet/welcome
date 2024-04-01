@@ -27,12 +27,12 @@ An index of all pages available in this documentation.
 
 ### Chapter 2: Leo by Example
 
-- [Auction](./leo/08_auction.md)
-- [Basic Bank](https://github.com/AleoNet/workshop/tree/master/basic_bank)
-- [Vote](https://github.com/AleoNet/workshop/tree/master/vote)
-- [Token](https://github.com/AleoNet/workshop/tree/master/token)
-- [TicTacToe](https://github.com/AleoNet/workshop/tree/master/tictactoe)
-- [Battleship](https://github.com/AleoNet/workshop/tree/master/battleship)
+- [Auction](./leo/09_auction.md)
+- [Basic Bank](https://github.com/AleoHQ/workshop/tree/master/basic_bank)
+- [Vote](https://github.com/AleoHQ/workshop/tree/master/vote)
+- [Token](https://github.com/AleoHQ/workshop/tree/master/token)
+- [TicTacToe](https://github.com/AleoHQ/workshop/tree/master/tictactoe)
+- [Battleship](https://github.com/AleoHQ/workshop/tree/master/battleship)
 
 ### Chapter 3: Aleo Instructions
 
