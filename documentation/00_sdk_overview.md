@@ -48,12 +48,21 @@ You can start with a template by running
 npm create leo-app@latest
 ```
 
+<<<<<<< HEAD
 #### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app )
 
 ## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
 
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://www.npmjs.com/package/@provablehq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+=======
+#### Source: [`sdk/create-leo-app`](https://github.com/AleoHQ/sdk/tree/testnet3/create-leo-app)
+
+## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
+
+<a href="https://www.npmjs.com/package/@aleohq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+>>>>>>> c881c28 (Rename create-aleo-app to create-leo-app)
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 Aleo Wasm is a Rust crate which compiles Aleo code responsible for creating and executing zero knowledge programs into
