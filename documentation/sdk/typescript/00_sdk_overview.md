@@ -87,7 +87,11 @@ In your project's `package.json`, ensure that the following line is added above 
 
 ### Create Leo App
 A set of fully functional examples of zero knowledge web apps can be found in
+<<<<<<< HEAD
 [create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app ). Create-leo-app provides several web-app
+=======
+[create-leo-app](https://github.com/AleoHQ/sdk/tree/testnet3/create-leo-app). Create-aleo-app provides several web-app
+>>>>>>> c881c28 (Rename create-aleo-app to create-leo-app)
 templates in common web frameworks such as React that can be used as a starting point for building zero knowledge web apps.
 
 Developers can get started immediately with create-react-app by running:
@@ -673,7 +677,11 @@ Make sure that you included custom types in your `tsconfig` file.
 </details>
 
 
+<<<<<<< HEAD
 A full example of this implementation can be found [here](https://github.com/provablehq/sdk/blob/testnet3/create-leo-app/template-react-leo/src/App.jsx)
+=======
+A full example of this implementation can be found [here](https://github.com/AleoHQ/sdk/blob/testnet3/create-leo-app/template-react-leo/src/App.jsx)
+>>>>>>> c881c28 (Rename create-aleo-app to create-leo-app)
 
 ## 3. Aleo Credit Transfers
 

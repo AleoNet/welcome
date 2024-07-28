@@ -4,7 +4,11 @@ title: Create Leo App - React + JS + Leo Tutorial
 sidebar_label: React + JS + Leo Tutorial
 ---
 
+<<<<<<< HEAD
 <a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-leo-app?label=NPM%20-%20Create-Leo-App&labelColor=green&color=blue" /></a>
+=======
+<a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-leo-app?label=NPM%20-%20Create-Aleo-App&labelColor=green&color=blue" /></a>
+>>>>>>> c881c28 (Rename create-aleo-app to create-leo-app)
 
 
 ## 1. Installation

@@ -5,8 +5,13 @@ sidebar_label: Installation
 ---
 
 <!-- markdown-link-check-disable -->
+<<<<<<< HEAD
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://www.npmjs.com/package/@provablehq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+=======
+<a href="https://www.npmjs.com/package/@aleohq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+>>>>>>> c881c28 (Rename create-aleo-app to create-leo-app)
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 [![github]](https://github.com/provablehq/sdk)&ensp;[![crates-io]](https://crates.io/crates/aleo-wasm)&ensp;[![docs-rs]](https://docs.rs/aleo-wasm/latest/aleo-wasm/)
