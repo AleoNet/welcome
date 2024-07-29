@@ -37,7 +37,11 @@ first zero knowledge web app.
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 
 
+<<<<<<< HEAD
 ## 2. [Create-Leo-App](./sdk/create-leo-app/00_app_installation.md) - Zero Knowledge Web App Examples
+=======
+## 2. [Create-leo-App](./sdk/create-aleo-app/00_app_installation.md) - Zero Knowledge Web App Examples
+>>>>>>> 158c104 (update API and SDK docs)
 
 <a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-leo-app?label=NPM%20-%20Create-Leo-App&labelColor=green&color=blue" /></a>
 
@@ -52,12 +56,21 @@ You can start with a template by running
 npm create leo-app@latest
 ```
 
+<<<<<<< HEAD
 #### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app )
 
 ## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
 
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://www.npmjs.com/package/@provablehq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+=======
+#### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app)
+
+## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
+
+<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Aleo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Aleo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+>>>>>>> 158c104 (update API and SDK docs)
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 Aleo Wasm is a Rust crate which compiles Aleo code responsible for creating and executing zero knowledge programs into
@@ -65,7 +78,11 @@ WebAssembly.
 
 When compiled with `wasm-pack` JavaScript bindings are generated for the WebAssembly allowing Aleo zero
 knowledge programs to be used in the browser and NodeJS. This package is available on NPM (linked above). The 
+<<<<<<< HEAD
 [documentation](./sdk/wasm/00_wasm_installation.md) provides instructions for compiling this [crate](https://github.com/provablehq/sdk/tree/testnet3/wasm) and using it in web projects for those interested in building from
+=======
+[documentation](./sdk/wasm/00_wasm_installation.md) provides instructions for compiling this [crate](https://github.com/ProvableHQ/sdk/tree/testnet3/wasm) and using it in web projects for those interested in building from
+>>>>>>> 158c104 (update API and SDK docs)
 source.
 
 ❗ Currently program execution is only available in web Browsers. However, account, program and data management within
@@ -93,10 +110,18 @@ Source: [`python-sdk`](https://github.com/provablehq/python-sdk)
 API Documentation, tutorials for the Provable SDK, and documentation on how to build Leo and Aleo Instructions programs can
 be found on the [Aleo Developer Docs](https://developer.aleo.org) page.
 
+<<<<<<< HEAD
 #### [SDK Readme](https://github.com/provablehq/sdk/tree/testnet3/sdk#readme)
 The SDK Readme provides concepts core to executing zero knowledge programs in the web and several detailed examples of
 how to use the SDK to build web apps using Aleo.
 
 #### [Aleo Wasm Readme](https://github.com/provablehq/sdk/tree/testnet3/wasm#readme)
+=======
+#### [SDK Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk#readme)
+The SDK Readme provides concepts core to executing zero knowledge programs in the web and several detailed examples of
+how to use the SDK to build web apps using Aleo.
+
+#### [Aleo Wasm Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/wasm#readme)
+>>>>>>> 158c104 (update API and SDK docs)
 The Aleo Wasm Readme provides instructions for compiling the Aleo Wasm crate and using it in web projects. Those who
 want to build from source or create their own WebAssembly bindings should start here
