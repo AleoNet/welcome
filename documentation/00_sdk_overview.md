@@ -13,7 +13,7 @@ several TypeScript & JavaScript libraries which provide the following functional
 4. [Management of program state and data](https://provable.tools/record)
 5. [Communication with the Aleo network](https://provable.tools/rest)
 
-All of this functionality is demonstrated on [Aleo.tools](https://provable.tools).
+All of this functionality is demonstrated on [provable.tools](https://www.provable.tools/).
 
 
 The Provable SDK is divided into three Typescript/Javascript packages

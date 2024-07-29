@@ -31,7 +31,7 @@ cargo install --path .
 ### 2. Run the node in development mode
 
 ```
-snarkos start --nodisplay --dev 0 --beacon ""
+snarkos start --nodisplay --dev <NODE_ID>
 ```
 
 ### 3. Scan the node for spendable records
@@ -44,9 +44,7 @@ snarkos developer scan -v <VIEW_KEY> --start 0 --end 1 --endpoint "http://localh
 
 ### 4. Transfer credits (execute the `credits.aleo` program)
 
-Transfer credits to another account so it can't be spent by the beacon producing blocks.
-
-(The beacon is constantly spending records to generate new blocks, so there is a chance your record is spent before doing this step)
+Transfer credits to another account.
 
 ```
 snarkos developer execute credits.aleo transfer <INPUT_RECORD> <RECIPIENT_ADDRESS> "<AMOUNT_TO_TRANSFER>u64" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet/transaction/broadcast" 
