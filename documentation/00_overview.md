@@ -58,7 +58,7 @@ An index of all pages available in this documentation.
 
 ### Chapter 5: Getting Started
 
-- [Testnet III.](./testnet/getting_started/00_overview.md)
+- [Testnet](./testnet/getting_started/00_overview.md)
 
 ### Chapter 6: API Reference
 
