@@ -186,4 +186,4 @@ snarkos developer execute "${APPNAME}.aleo" "main" "1u32" "2u32" --private-key "
 >>>>>>> 158c104 (update API and SDK docs)
 ```
 
-Awesome! You have successfully deployed and executed a Leo application to Testnet III, how exciting 🎉
+Awesome! You have successfully deployed and executed a Leo application to Testnet, how exciting 🎉
