@@ -52,8 +52,8 @@ Clone the `snarkOS` repository
 git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 
-# Switch to the mainnet-staging branch
-git checkout mainnet-staging
+# Switch to the mainnet branch
+git checkout mainnet 
 
 [For Ubuntu users] A helper script to install dependencies is available. From the snarkOS directory, run:
 
