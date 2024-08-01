@@ -96,7 +96,19 @@ a sequence of field elements and outputs a field element. The output is uniforml
 ### HashToScalar
 
 An instantiation of HashToField that output elements in the scalar field <code>F<sub>scalar</sub></code>.
+<<<<<<< HEAD
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/algorithms/src/poseidon/hash_to_scalar.rs#L24)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/algorithms/src/poseidon/hash_to_scalar.rs#L24)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/algorithms/src/poseidon/hash_to_scalar.rs#L24)
+>>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/algorithms/src/poseidon/hash_to_scalar.rs#L24)
+>>>>>>> 16d016d (Fix explorer link and remove usage of testnet3)
+>>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
 
 ### EncodeToF
 
@@ -153,6 +165,7 @@ Given global instantiated Aleo parameters and subroutines.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
@@ -162,6 +175,8 @@ Given global instantiated Aleo parameters and subroutines.
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 =======
 >>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+>>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/testnet3/console/account/src/private_key/try_from.rs)
@@ -173,6 +188,7 @@ Given global instantiated Aleo parameters and subroutines.
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
 >>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+<<<<<<< HEAD
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
@@ -188,6 +204,14 @@ Given global instantiated Aleo parameters and subroutines.
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
 >>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 >>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
+>>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
+>>>>>>> 16d016d (Fix explorer link and remove usage of testnet3)
+>>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
 
 #### Generate a View Key
 1. `(sk_sig, r_sig)` = `private_key`
