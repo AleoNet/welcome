@@ -88,6 +88,7 @@ This process enables users to securely and privately transfer data and values ac
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/decrypt.rs) pages, respectively.
 =======
 The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/testnet3/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/testnet3/circuit/program/src/data/record/decrypt.rs) pages, respectively.
@@ -95,6 +96,9 @@ The code for encryption and decryption is available in the snarkVM sections, whi
 =======
 The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/circuit/program/src/data/record/decrypt.rs) pages, respectively.
 >>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/decrypt.rs) pages, respectively.
+>>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
 
 Additionally, users can decrypt their encrypted records using their view key via a web interface available at [Provable Tools](https://www.provable.tools/record). This feature allows for the practical application of decryption processes directly through a browser.
 
