@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Testnet.
+title: Testnet
 sidebar_label: Overview
 ---
 
