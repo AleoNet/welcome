@@ -87,11 +87,15 @@ Note down your transaction ID in the back of the URL from the faucet. The succes
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 Transfer successful! for message ID: 1156693507768078496
 https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
 =======
 have fun https://explorer.aleo.org/transaction/...
 >>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
+=======
+have fun https://explorer.provable.com/transaction/...
+>>>>>>> b9cb75a (update explorer and api urls)
 ```
 
 ### Leo & `helloworld`
@@ -152,10 +156,14 @@ at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
 ``` 
 <!-- markdown-link-check-disable -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 Go to “Get Transaction” at [provable.tools/rest](https://provable.tools/rest) and insert your transaction ID to look at the JSON object. You can similarly use https://api.explorer.provable.com/v1/testnet/transaction/[insert-your-transaction-id] to get the same output in your browser. 
 =======
 Go to “Get Transaction” at [provable.tools/rest](https://provable.tools/rest) and insert your transaction ID to look at the JSON object. You can similarly use https://api.explorer.aleo.org/v1/testnet/transaction/[insert-your-transaction-id] to get the same output in your browser. 
 >>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
+=======
+Go to “Get Transaction” at [provable.tools/rest](https://provable.tools/rest) and insert your transaction ID to look at the JSON object. You can similarly use https://api.explorer.provable.com/v1/testnet/transaction/[insert-your-transaction-id] to get the same output in your browser. 
+>>>>>>> b9cb75a (update explorer and api urls)
 <!-- markdown-link-check-enable-->
 
 ![get-transaction](./images/get-transaction.png)
