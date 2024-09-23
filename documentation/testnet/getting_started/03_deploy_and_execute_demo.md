@@ -30,15 +30,21 @@ Make sure you have both Leo and snarkOS installed on your machine.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 * You can find instructions to install Leo on your machine [here](https://github.com/provablehq/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
 =======
 =======
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+* You can find instructions to install Leo on your machine [here](https://github.com/provablehq/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
+=======
+>>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
 <<<<<<< HEAD
 * You can find instructions to install Leo on your machine [here](https://github.com/ProvableHQ/leo) and snarkOS [here](https://github.com/AleoHQ/snarkos)
 =======
 * You can find instructions to install Leo on your machine [here](https://github.com/AleoHQ/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
 >>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
 =======
@@ -52,6 +58,9 @@ Make sure you have both Leo and snarkOS installed on your machine.
 =======
 * You can find instructions to install Leo on your machine [here](https://github.com/provablehq/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
 >>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+>>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
+>>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
 * Make sure to pull the latest versions of `snarkos` and `leo` from GitHub to your local machine
 
 ### 2. Generate your test keys and wallet address

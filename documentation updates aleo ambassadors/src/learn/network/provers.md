@@ -32,6 +32,7 @@ Besides requiring ProverSolutions to be valid, the network also demands that the
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 =======
 <<<<<<< HEAD
@@ -47,8 +48,23 @@ Becoming a Prover node does not require staking or authorization, anyone can [st
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoHQ/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 >>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
 =======
+=======
+>>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoHQ/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 =======
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 >>>>>>> 16d016d (Fix explorer link and remove usage of testnet3)
+<<<<<<< HEAD
 >>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
+=======
+=======
+Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
+=======
+<<<<<<< HEAD
+Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoHQ/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
+=======
+Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
+>>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+>>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
+>>>>>>> 73c6360 (docs: update url AleoHQ -> AleoNet)
+>>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
