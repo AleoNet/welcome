@@ -81,7 +81,7 @@ A set of fully functional examples of zero knowledge web apps can be found in
 templates in common web frameworks such as React that can be used as a starting point for building zero knowledge web apps.
 
 Developers can get started immediately with create-react-app by running:
-`npm create aleo-app@latest`
+`npm create leo-app@latest`
 
 ### Provable Tools
 
@@ -378,7 +378,7 @@ const transaction = await programManager.networkClient.getTransaction(tx_id);
 The above concepts can be tied together in a concrete example of a React web app. This example can be installed in one
 step by running:
 
-`npm create aleo-app@latest`
+`npm create leo-app@latest`
 
 #### Wasm Initialization
 
