@@ -45,7 +45,7 @@ start with working examples should start here.
 
 You can start with a template by running
 ```bash
-npm create aleo-app@latest
+npm create leo-app@latest
 ```
 
 #### Source: [`sdk/create-aleo-app`](https://github.com/AleoHQ/sdk/tree/testnet3/create-aleo-app)
