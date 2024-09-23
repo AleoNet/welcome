@@ -69,7 +69,17 @@ To install Aleo SDK, run the following commands in your project's root:
 
 To build the project from source, clone [the sdk repository](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk) and execute the following command at `/sdk`:
 
-`npm install && npm run build`
+`yarn build:all`
+
+### Ensure compatibility with ES modules
+
+In your project's `package.json`, ensure that the following line is added above `scripts`:
+
+```json
+{
+  "type": "module",
+}
+```
 
 ## Usage
 
