@@ -32,7 +32,7 @@ The Aleo SDK provides the following functionality (Click to see examples):
 * [Installation](#Installation)
 * [Usage](#Usage)
     * [Zero Knowledge Web App Examples](#Zero-Knowledge-Web-App-Examples)
-        * [Create Aleo App](#create-aleo-app)
+        * [Create Leo App](#create-aleo-app)
         * [provable.tools](#provabletools)
     * [Create An Aleo Account](#1-create-an-aleo-account)
     * [Execute Aleo Programs](#2-execute-aleo-programs)
@@ -85,9 +85,9 @@ In your project's `package.json`, ensure that the following line is added above 
 
 ## Zero Knowledge Web App Examples
 
-### Create Aleo App
+### Create Leo App
 A set of fully functional examples of zero knowledge web apps can be found in
-[create-aleo-app](https://github.com/AleoHQ/sdk/tree/testnet3/create-aleo-app). Create-aleo-app provides several web-app
+[create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app ). Create-leo-app provides several web-app
 templates in common web frameworks such as React that can be used as a starting point for building zero knowledge web apps.
 
 Developers can get started immediately with create-react-app by running:
