@@ -15,7 +15,7 @@ You may choose to download any of the examples or programs you've written on you
 <!-- markdown-link-check-disable -->
 - Install [Leo](https://developer.aleo.org/leo/installation)
 - Install [Aleo's transaction cannon](https://github.com/AleoHQ/tx-cannon), which will help you deploy, execute, and stress test your Leo programs.
-- Install [snarkOS](https://github.com/AleoHQ/snarkOS), which will help spin up a live devnet either locally or on AWS.
+- Install [snarkOS](https://github.com/AleoNet/snarkOS), which will help spin up a live devnet either locally or on AWS.
 - Install [tmux](https://formulae.brew.sh/formula/tmux), because the devnet dashboard uses it. 
 <!-- markdown-link-check-enable -->
 
@@ -155,7 +155,7 @@ Congratulations on becoming a Leo contributor! 🎉
 1. You downloaded a project off of [Leo Playground](https://play.leo-lang.org/).
 
 <!-- markdown-link-check-disable -->
-2. You installed [Leo](https://developer.aleo.org/leo/), our statically-typed programming language built for writing private applications, our [transaction cannon](https://github.com/AleoHQ/tx-cannon) for easy deployment and execution, and [snarkOS](https://github.com/AleoHQ/snarkOS), the data availability layer.
+2. You installed [Leo](https://developer.aleo.org/leo/), our statically-typed programming language built for writing private applications, our [transaction cannon](https://github.com/AleoHQ/tx-cannon) for easy deployment and execution, and [snarkOS](https://github.com/AleoNet/snarkOS), the data availability layer.
 <!-- markdown-link-check-enable -->
 
 3. You started a local devnet using the snarkOS repository.

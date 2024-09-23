@@ -49,7 +49,7 @@ Note: After installation, if your `git` and `rustc` command doesn't work, try to
 Clone the `snarkOS` repository
 
 ```bash
-git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 
 # Switch to the testnet3 branch
@@ -77,7 +77,7 @@ You should see something like:
 
 Please ensure ports 4133/tcp and 3033/tcp are open on your router and OS firewall.
 
-For more details about how to use `snarkOS` CLI, check out [this link](https://github.com/AleoHQ/snarkOS).
+For more details about how to use `snarkOS` CLI, check out [this link](https://github.com/AleoNet/snarkOS).
 
 If you would like to run a local devnet, run the command
 
@@ -85,14 +85,14 @@ If you would like to run a local devnet, run the command
 ./devnet.sh
 ```
 
-You would however, first need to install tmux. Instructions can be found on the github [repo](https://github.com/AleoHQ/snarkOS)
+You would however, first need to install tmux. Instructions can be found on the github [repo](https://github.com/AleoNet/snarkOS)
 
 ### Install SnarkVM
-- Install snarkVM from the github [repo](https://github.com/AleoHQ/snarkvm)
+- Install snarkVM from the github [repo](https://github.com/AleoNet/snarkVM)
 
 ```
 # Download the source code
-git clone https://github.com/AleoHQ/snarkvm && cd snarkvm
+git clone https://github.com/AleoNet/snarkVM && cd snarkvm
 
 # Install snarkVM
 $ cargo install --path .
@@ -207,17 +207,17 @@ Rust runs on many platforms, and there are many ways to install Rust. This guide
 Using git bash, clone the `snarkOS` repository
 
 ```bash
-git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 cargo install --locked --path .
 ```
 
 ### Install SnarkVM
-Using git bash, install snarkVM from the github [repo](https://github.com/AleoHQ/snarkvm)
+Using git bash, install snarkVM from the github [repo](https://github.com/AleoNet/snarkVM)
 
 ```
 # Download the source code
-git clone https://github.com/AleoHQ/snarkvm && cd snarkvm
+git clone https://github.com/AleoNet/snarkVM && cd snarkvm
 
 # Install snarkVM
 $ cargo install --path .

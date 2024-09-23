@@ -28,4 +28,4 @@ Besides requiring ProverSolutions to be valid, the network also demands that the
 
 ### Become a Prover Node
 
-Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoHQ/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
+Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
