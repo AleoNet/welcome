@@ -26,7 +26,15 @@ Make sure you have both Leo and snarkOS installed on your machine.
 
 **Note**:
 
+<<<<<<< HEAD
 * You can find instructions to install Leo on your machine [here](https://github.com/provablehq/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
+=======
+<<<<<<< HEAD
+* You can find instructions to install Leo on your machine [here](https://github.com/ProvableHQ/leo) and snarkOS [here](https://github.com/AleoHQ/snarkos)
+=======
+* You can find instructions to install Leo on your machine [here](https://github.com/AleoHQ/leo) and snarkOS [here](https://github.com/AleoNet/snarkOS)
+>>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+>>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
 * Make sure to pull the latest versions of `snarkos` and `leo` from GitHub to your local machine
 
 ### 2. Generate your test keys and wallet address
