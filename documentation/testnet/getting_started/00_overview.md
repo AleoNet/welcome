@@ -20,7 +20,7 @@ enables developers to checkpoint and finalize application state in a publicly-ve
 
 ### Source Code
 
-`snarkOS` is open-source and publicly-hosted on [GitHub](https://github.com/AleoHQ/snarkOS).
+`snarkOS` is open-source and publicly-hosted on [GitHub](https://github.com/AleoNet/snarkOS).
 
 ## Query The Network
 

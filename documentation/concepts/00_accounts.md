@@ -147,7 +147,11 @@ Given global instantiated Aleo parameters and subroutines.
 
 3.`private_key` = (`seed`, (`sk_sig`, `r_sig`))
 
+<<<<<<< HEAD
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/testnet3/console/account/src/private_key/try_from.rs)
+>>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
 
 #### Generate a View Key
 1. `(sk_sig, r_sig)` = `private_key`

@@ -7,7 +7,7 @@ title: Developer Resources
 
 📜 A starter guide to build applications on Aleo 📜
 
-https://github.com/AleoHQ/workshop
+https://github.com/AleoNet/workshop
 
 ## 2. The Awesome Aleo Repository
 
