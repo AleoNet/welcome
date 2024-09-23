@@ -32,9 +32,9 @@ first zero knowledge web app.
 #### Source: [`sdk/sdk`](https://github.com/AleoHQ/sdk/tree/testnet3/sdk)
 
 
-## 2. [Create-leo-App](./sdk/create-leo-app/00_app_installation.md) - Zero-Knowledge Web App Examples
+## 2. [Create-Leo-App](./sdk/create-aleo-app/00_app_installation.md) - Zero Knowledge Web App Examples
 
-<a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-aleo-app?label=NPM%20-%20Create-Leo-App&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-leo-app?label=NPM%20-%20Create-Leo-App&labelColor=green&color=blue" /></a>
 
 Create-leo-app provides zero-knowledge web app examples in common web frameworks such as React. Developers looking to
 start with working examples should start here.
@@ -52,8 +52,8 @@ npm create leo-app@latest
 
 ## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
 
-<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Aleo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
-<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Aleo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 Aleo Wasm is a Rust crate which compiles Aleo code responsible for creating and executing zero knowledge programs into

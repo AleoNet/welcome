@@ -87,7 +87,7 @@ In your project's `package.json`, ensure that the following line is added above 
 
 ### Create Leo App
 A set of fully functional examples of zero knowledge web apps can be found in
-[create-leo-app](https://github.com/AleoHQ/sdk/tree/testnet3/create-leo-app). Create-aleo-app provides several web-app
+[create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app ). Create-leo-app provides several web-app
 templates in common web frameworks such as React that can be used as a starting point for building zero knowledge web apps.
 
 Developers can get started immediately with create-react-app by running:
