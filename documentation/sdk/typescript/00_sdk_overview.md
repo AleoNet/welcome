@@ -59,15 +59,15 @@ The Aleo SDK provides the following functionality (Click to see examples):
 
 ## Installation
 
-### NPM
+### NPM / Yarn
 
-To install the Aleo SDK from NPM run:
+To install Aleo SDK, run the following commands in your project's root:
 
-`npm install @aleohq/sdk` or `yarn add @aleohq/sdk`.
+`npm install @provablehq/sdk` or `yarn add @provablehq/sdk`.
 
-### Build from source
+###  Build from source
 
-To build the project from source, go to this project's root and execute:
+To build the project from source, clone [the sdk repository](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk) and execute the following command at `/sdk`:
 
 `npm install && npm run build`
 
@@ -785,7 +785,7 @@ All four of these functions can be used to transfer credits between users via th
 `ProgramManager` by specifying the transfer type as the third argument.
 
 ```typescript
-import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@aleo/sdk';
+import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@provable/sdk';
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
@@ -919,7 +919,7 @@ The above state chain would be executed in the following way using the SDK:
 #### Step 1 - User 1 sends a private value transfer to User 2
 ```typescript
 // USER 1
-import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@aleo/sdk';
+import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@provable/sdk';
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
@@ -940,7 +940,7 @@ const tx_id = await programManager.transfer(1, USER_2_ADDRESS, "transfer_private
 
 ```typescript
 // USER 2
-import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@aleo/sdk';
+import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@provable/sdk';
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user2PrivateKey"});
@@ -1042,7 +1042,7 @@ that are not owned by the user will fail.
 Record decryption and ownership verification can be done in the SDK using the following code:
 
 ```typescript
-import { Account, RecordCiphertext, RecordPlaintext } from '@aleo/sdk';
+import { Account, RecordCiphertext, RecordPlaintext } from '@provable/sdk';
 
 // Create an account from an existing private key
 const account = Account.from_string({privateKey: "existingPrivateKey"});
@@ -1111,7 +1111,7 @@ class provides the `getMapping` method to read the public mappings within a prog
 read the value of a specific key within a mapping.
 
 ```typescript
-import {  AleoNetworkClient } from '@aleo/sdk';
+import {  AleoNetworkClient } from '@provable/sdk';
 
 const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
 const creditsMappings = networkClient.getMappings("credits.aleo");
@@ -1156,7 +1156,7 @@ consumed. So it is important to ensure that the inputs to a function are valid b
 A simple example of a mapping update can be shown by simply executing the 'transfer_public` as shown below.
 
 ```typescript
-import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@aleo/sdk';
+import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@provable/sdk';
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
