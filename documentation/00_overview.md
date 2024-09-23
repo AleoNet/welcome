@@ -27,7 +27,7 @@ An index of all pages available in this documentation.
 
 ### Chapter 2: Leo by Example
 
-- [Auction](./leo/09_auction.md)
+- [Auction](./leo/08_auction.md)
 - [Basic Bank](https://github.com/AleoNet/workshop/tree/master/basic_bank)
 - [Vote](https://github.com/AleoNet/workshop/tree/master/vote)
 - [Token](https://github.com/AleoNet/workshop/tree/master/token)

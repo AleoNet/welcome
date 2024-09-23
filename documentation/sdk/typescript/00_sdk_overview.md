@@ -213,7 +213,11 @@ graph LR
 ❗WebAssembly must be initialized before calling any SDK functions. The current Provable SDK manages the wasm initialization. Therefore, the workers must be defined properly.
 
 Aleo programs are made zero knowledge through the usage of `ZkSnarks`. The Rust code behind Aleo programs and the ZkSnarks
+<<<<<<< HEAD
 that make them zero knowledge are hosted in the [snarkVM Repository](https://github.com/AleoNet/snarkVM). The Provable SDK
+=======
+that make them zero knowledge are hosted in the [snarkVM Repository](https://github.com/AleoNet/snarkVM). The Aleo SDK
+>>>>>>> f3059f0 (docs: update url AleoHQ -> AleoNet)
 compiles this code to WebAssembly and creates JavaScript bindings, enabling Aleo programs to run directly in the browser.
 
 Before any logic within the SDK is run within the browser however, the WebAssembly module the SDK contains must be

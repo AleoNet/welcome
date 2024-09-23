@@ -151,6 +151,7 @@ Given global instantiated Aleo parameters and subroutines.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
@@ -172,6 +173,12 @@ Given global instantiated Aleo parameters and subroutines.
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
 >>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/testnet3/console/account/src/private_key/try_from.rs)
+>>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+>>>>>>> f3059f0 (docs: update url AleoHQ -> AleoNet)
 
 #### Generate a View Key
 1. `(sk_sig, r_sig)` = `private_key`
