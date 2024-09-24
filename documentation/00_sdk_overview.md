@@ -29,7 +29,7 @@ The official Provable SDK providing Javascript/Typescript tools for creating zer
 Start here with the [documentation](./sdk/typescript/00_sdk_overview.md) and follow the instructions to install the [Provable SDK](https://github.com/provablehq/sdk/tree/testnet3/sdk#readme) to get started building your
 first zero knowledge web app.
 
-#### Source: [`sdk/sdk`](https://github.com/provablehq/sdk/tree//sdk)
+#### Source: [`sdk/sdk`](https://github.com/provablehq/sdk/tree/testnet3/sdk)
 
 
 ## 2. [Create-Leo-App](./sdk/create-leo-app/00_app_installation.md) - Zero Knowledge Web App Examples
