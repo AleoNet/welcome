@@ -175,7 +175,7 @@ Function outputs must be declared at the end of the function definition.
 
 In the Aleo protocol, calling a function creates a transition that can consume and produce records on-chain.
 Use the `aleo run` CLI command to pass inputs to a function and execute the program.  
-In Testnet3, program functions cannot call other internal program functions.
+In Testnet, program functions cannot call other internal program functions.
 If you would like to develop "helper functions" that are called internally within a program, try writing a `closure`.
 
 #### Call an Imported Function
@@ -656,7 +656,7 @@ The `self.caller` command returns the address of the immediate caller of the pro
 The examples in this section will use the following environment.
 
 ```bash title=".env"
-NETWORK=testnet3
+NETWORK=testnet
 PRIVATE_KEY=APrivateKey1zkpE37QxQynZuEGg3XxYrTuvhzWbkVaN5NgzCdEGzS43Ms5 # user private key
 ADDRESS=aleo1p2h0p8mr2pwrvd0llf2rz6gvtunya8alc49xldr8ajmk3p2c0sqs4fl5mm # user address
 ```

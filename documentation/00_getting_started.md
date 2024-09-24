@@ -12,7 +12,7 @@ to compile, execute, and finalize its state autonomously.
 # What's new on Aleo?  
 ### [**🔧 Getting Ready for Testnet Beta**](./leo/17_testnet_beta.md) - A guide on updating your Leo applications for Testnet Beta.
 ### [**🤝 Leo Core Developers Call**](./leo/16_core_devs_call.md) - Collaborate with the Leo development team and ecosystem on the future of Leo.
-### [**⚛️ Create Leo App**](./sdk/create-aleo-app/01_create_aleo_app.md) - A full stack application written in Typescript using Leo and React.
+### [**⚛️ Create Leo App**](./sdk/create-leo-app/01_create_leo_app.md) - A full stack application written in Typescript using Leo and React.
 ### [**🧰 Leo Developer Toolkit**](./testnet/getting_started/04_developer_toolkit.md) - A zero to one tutorial for the Leo programming language.
 :::
 
@@ -70,7 +70,7 @@ If you're interested in learning more about Aleo:
 
 <!-- markdown-link-check-disable -->
 [//]: # (disabling markdown checks for twitter links)
-🐦 | Twitter ~ @AleoHQ ~ **https://twitter.com/AleoHQ**
+🐦 | Twitter ~ @AleoHQ ~ **https://twitter.com/aleohq**
 
 🤝 | Community Twitter ~ @aleocommunity ~ **https://twitter.com/aleocommunity**
 
@@ -84,6 +84,6 @@ If you're interested in learning more about Aleo:
 
 🔎 | Aleo Block Explorer ~ **https://www.aleo.network/**
 
-✍️ | Community Blog ~ **https://medium.com/@AleoHQ**
+✍️ | Community Blog ~ **https://medium.com/@provablehq**
 
 ### Looking for [**Developer Resources?**](./leo/08_resources.md)

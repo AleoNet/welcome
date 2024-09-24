@@ -31,7 +31,7 @@ sidebar_label: Development Client
 It requires an Aleo Development Server to be running remotely or locally.
 If one is not running, this function will throw an error.</p>
 <p>Information on how to run an Aleo Development Server can be found here:
-https://github.com/AleoHQ/sdk/rust/develop/README.md</p>
+https://github.com/provablehq/sdk/rust/develop/README.md</p>
 
 **Kind**: instance method of [<code>DevelopmentClient</code>](#DevelopmentClient)  
 **Returns**: <code>string</code> \| <code>Error</code> - <p>The transaction_id of the deployment transaction if successful</p>  
@@ -57,7 +57,7 @@ const transaction_id = await client.deployProgram(Program, 6000000, privateKeySt
 It requires an Aleo Development Server to be running remotely or locally.
 If one is not running, this function will throw an error.</p>
 <p>Information on how to run an Aleo Development Server can be found here:
-https://github.com/AleoHQ/sdk/rust/develop/README.md</p>
+https://github.com/provablehq/sdk/rust/develop/README.md</p>
 
 **Kind**: instance method of [<code>DevelopmentClient</code>](#DevelopmentClient)  
 **Returns**: <code>string</code> \| <code>Error</code> - <p>The transaction_id of the execution transaction if successful</p>  
@@ -86,7 +86,7 @@ via an Aleo development server. It requires an Aleo Development Server
 to be running remotely or locally. If one is not running, this function
 will throw an error.</p>
 <p>Information on how to run an Aleo Development Server can be found here:
-https://github.com/AleoHQ/sdk/rust/develop/README.md</p>
+https://github.com/provablehq/sdk/rust/develop/README.md</p>
 
 **Kind**: instance method of [<code>DevelopmentClient</code>](#DevelopmentClient)  
 **Returns**: <code>string</code> \| <code>Error</code> - <p>The transaction_id of the execution transaction if successful</p>  

@@ -52,8 +52,8 @@ Clone the `snarkOS` repository
 git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 
-# Switch to the testnet3 branch
-git checkout testnet3
+# Switch to the mainnet-staging branch
+git checkout mainnet-staging
 
 [For Ubuntu users] A helper script to install dependencies is available. From the snarkOS directory, run:
 
@@ -112,7 +112,7 @@ Clone the `leo` repository
 
 ```bash
 # Download the source code
-git clone https://github.com/AleoHQ/leo
+git clone https://github.com/provablehq/leo
 cd leo
 ```
 
@@ -238,7 +238,7 @@ This is similar to the Linux/MacOS instructions.
 Clone the `leo` repository using git bash
 ```bash
 # Download the source code
-git clone https://github.com/AleoHQ/leo
+git clone https://github.com/provablehq/leo
 cd leo
 ```
 
@@ -282,8 +282,8 @@ cargo install --path .
 
 To improve the developer experience, Aleo has provided extensions for syntax highlighting for your popular code editors. 
 - [VSCode](https://code.visualstudio.com/download)
-    - Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=aleohq.leo-extension) from VSCode marketplace.
-    - The correct extension ID is aleohq.leo-extension, and the description should state "the official VSCode extension for Leo".
+    - Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=provablehq.leo-extension) from VSCode marketplace.
+    - The correct extension ID is provablehq.leo-extension, and the description should state "the official VSCode extension for Leo".
 - [IntelliJ](https://www.jetbrains.com/idea/download/?section=mac)
     - [Extension here](https://plugins.jetbrains.com/plugin/19890-aleo-developer)
     - Click on the gear icon in the upper right > Plugins > gear icon up top > Install Plugin from Disk > Select the downloaded zip file
@@ -325,7 +325,7 @@ Although this command is used to run a function, it also builds your program.
 ## Deploy
 
 ```
-snarkos developer deploy {$PROGRAM_NAME} --private-key {$PRIVATE_KEY} --query "https://api.explorer.aleo.org/v1" --path ".build/" --broadcast "https://api.explorer.aleo.org/v1/testnet3/transaction/broadcast" --priority-fee 0
+snarkos developer deploy {$PROGRAM_NAME} --private-key {$PRIVATE_KEY} --query "https://api.explorer.provable.com/v1" --path ".build/" --broadcast "https://api.explorer.provable.com/v1/testnet/transaction/broadcast" --priority-fee 0
 ```
 If successful, it should look something like
 ![Deploy confirmation](./images/deploy-confirmation.png)
@@ -334,7 +334,7 @@ The hash at the bottom of the image represents the transaction hash, which you c
 
 ## Execute
 ```
-snarkos developer execute {$PROGRAM_NAME} {$TRANSITION_NAME} {$INPUT_ARGUMENTS} --private-key {$PRIVATE_KEY} --query "https://api.explorer.aleo.org/v1" --broadcast "https://api.explorer.aleo.org/v1/testnet3/transaction/broadcast"
+snarkos developer execute {$PROGRAM_NAME} {$TRANSITION_NAME} {$INPUT_ARGUMENTS} --private-key {$PRIVATE_KEY} --query "https://api.explorer.provable.com/v1" --broadcast "https://api.explorer.provable.com/v1/testnet/transaction/broadcast"
 ```
 If successful, it should look something like
 ![Execute confirmation](./images/execute-confirmation.png)

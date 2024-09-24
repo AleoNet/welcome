@@ -5,7 +5,7 @@ sidebar_label: Get Beacons
 ---
 
 ```bash title=ENDPOINT
-GET /testnet3/beacons
+GET /testnet/beacons
 ```
 
 Returns the list of current beacon node addresses.

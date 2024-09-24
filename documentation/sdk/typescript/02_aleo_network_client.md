@@ -48,7 +48,7 @@ The methods provided in this class provide information on the Aleo Blockchain</p
 let local_connection = new AleoNetworkClient("http://localhost:3030");
 
 // Connection to a public beacon node
-let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+let public_connection = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 ```
 <a name="AleoNetworkClient+setHost"></a>
 
@@ -62,7 +62,7 @@ let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1"
 **Example**  
 ```js
 // New connection to a public beacon node
-let public_connection = AleoNetworkClient.setHost("https://api.explorer.aleo.org/v1");
+let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable.com/v1");
 ```
 <a name="AleoNetworkClient+setAccount"></a>
 

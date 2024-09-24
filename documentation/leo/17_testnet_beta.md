@@ -342,4 +342,3 @@ This restriction can be mitigated by future improvements to `snarkVM`, however w
 
 
 [^1]: There are some operations that are not purely functional, e.g `add` which can fail on overflow.
-

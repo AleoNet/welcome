@@ -8,7 +8,7 @@ This toolkit works best with a MacOS machine from 2021 or newer. You can check y
 
 ## Leo
 ### Download and install Leo
-- You can find the latest version of Leo [here](https://github.com/AleoHQ/leo/releases/latest).
+- You can find the latest version of Leo [here](https://github.com/provablehq/leo/releases/latest).
 - After downloading the version that works for your machine, double-click the zip file to open it.
 - Then install Leo by moving it to `/usr/local/bin` on your machine, which you can do by dragging it to that location or via terminal (`sudo mv leo /usr/local/bin`); in both cases, you will need to enter your computer password.
 
@@ -45,7 +45,7 @@ Open a new terminal window and type `leo --help` to confirm that Leo is installe
     -V, --version      Print version
    ```
 
-###### 💡Note: If you do not see the output above, you can build Leo from source by following the guide [here](https://github.com/AleoHQ/leo#%EF%B8%8F%EF%B8%8F-build-guide) or download the [latest `.zip`](https://github.com/AleoHQ/leo/releases/latest) file directly and then move the Leo binary to any location; we recommend `/usr/local/bin`.
+###### 💡Note: If you do not see the output above, you can build Leo from source by following the guide [here](https://github.com/provablehq/leo#%EF%B8%8F%EF%B8%8F-build-guide) or download the [latest `.zip`](https://github.com/provablehq/leo/releases/latest) file directly and then move the Leo binary to any location; we recommend `/usr/local/bin`.
 
 ### The `leo account` command
 

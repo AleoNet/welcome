@@ -14,7 +14,7 @@ You may choose to download any of the examples or programs you've written on you
 
 <!-- markdown-link-check-disable -->
 - Install [Leo](https://developer.aleo.org/leo/installation)
-- Install [Aleo's transaction cannon](https://github.com/AleoHQ/tx-cannon), which will help you deploy, execute, and stress test your Leo programs.
+- Install [Aleo's transaction cannon](https://github.com/provablehq/tx-cannon), which will help you deploy, execute, and stress test your Leo programs.
 - Install [snarkOS](https://github.com/AleoNet/snarkOS), which will help spin up a live devnet either locally or on AWS.
 - Install [tmux](https://formulae.brew.sh/formula/tmux), because the devnet dashboard uses it. 
 <!-- markdown-link-check-enable -->
@@ -36,7 +36,7 @@ Right when the node starts, you'll see information for node 0, copy this down!
 - 👋 Welcome to Aleo! We thank you for running a node and supporting privacy.
 - 🔑 Your development private key for node 0 is <private key>
 - 🪪 Your Aleo address is <address>
-- 🧭 Starting a validator node on Aleo Testnet 3 Phase 3 at 0.0.0.0:4130
+- 🧭 Starting a validator node on Aleo Testnet at 0.0.0.0:4130
 - 🌐 Starting the REST server at 0.0.0.0:3030
 - 🔑 Your one-time JWT token is <jwt-token>
 ```
@@ -51,7 +51,7 @@ q  # exit ctrl+b mode
 ```
 
 <!-- markdown-link-check-disable -->
-Check that your network is running by using http://localhost:3030/testnet3/latest/height in your browser. The height should increase as a sign that your network is alive.
+Check that your network is running by using http://localhost:3030/testnet/latest/height in your browser. The height should increase as a sign that your network is alive.
 <!-- markdown-link-check-enable -->
 
 ## 3. Execute Your Playground Project Locally
@@ -67,7 +67,7 @@ Let’s deploy the your program on the local devnet you just spun up.
 <!-- markdown-link-check-disable -->
 Remember you started a clean devnet running at http://localhost:3030. What we want to do now is to deploy your program to that network.
 
-Again, make sure it's running: http://localhost:3030/testnet3/latest/height
+Again, make sure it's running: http://localhost:3030/testnet/latest/height
 
 The height number should be moving up.
 <!-- markdown-link-check-enable -->
@@ -82,7 +82,7 @@ cd <your-project>
 tx-cannon deploy <project>/build/<project>.aleo -k <node-private-key-you-jotted-down-earlier> --fee 3 -e http://localhost:3030
 ```
 
-You can check that your deployment was successful on your network using: http://localhost:3030/testnet3/transaction/`<your-txn-id>`.
+You can check that your deployment was successful on your network using: http://localhost:3030/testnet/transaction/`<your-txn-id>`.
 <!-- markdown-link-check-enable -->
 
 ## 5. Execution On-Chain using the Transaction Cannon 
@@ -107,9 +107,9 @@ The `.toml` file basically orders transactions to be executed. When we call the 
 tx-cannon batch-execute --test helloworld.toml -e http://localhost:3030
 ```
 
-Again, check that the program executed: http://localhost:3030/testnet3/transaction/`<your-txn-id>`.
+Again, check that the program executed: http://localhost:3030/testnet/transaction/`<your-txn-id>`.
 
-There's much more functionality to be explored in the [tx-cannon repository](https://github.com/AleoHQ/tx-cannon). You can batch deploy, execute, and transfer, so take advantage of this tool to run development tests on your application!
+There's much more functionality to be explored in the [tx-cannon repository](https://github.com/provablehq/tx-cannon). You can batch deploy, execute, and transfer, so take advantage of this tool to run development tests on your application!
 
 <!-- markdown-link-check-disable -->
 
@@ -143,10 +143,10 @@ git push -u origin main
 ```
 
 ### Claim your Leo badge
-1. Go to the Leo repo issues tab [here](https://github.com/AleoHQ/leo/issues/new/choose)
+1. Go to the Leo repo issues tab [here](https://github.com/provablehq/leo/issues/new/choose)
 2. Go to 🥇 "Badge" and click "Get Started".
 3. Follow the brief instructions and submit.
-4. Once your issue is approved, we will add you to the [contributors section](https://github.com/AleoHQ/leo#%EF%B8%8F-contributors) of the Leo README.md file.
+4. Once your issue is approved, we will add you to the [contributors section](https://github.com/provablehq/leo#%EF%B8%8F-contributors) of the Leo README.md file.
 
 Congratulations on becoming a Leo contributor! 🎉
 
@@ -155,7 +155,7 @@ Congratulations on becoming a Leo contributor! 🎉
 1. You downloaded a project off of [Leo Playground](https://play.leo-lang.org/).
 
 <!-- markdown-link-check-disable -->
-2. You installed [Leo](https://developer.aleo.org/leo/), our statically-typed programming language built for writing private applications, our [transaction cannon](https://github.com/AleoHQ/tx-cannon) for easy deployment and execution, and [snarkOS](https://github.com/AleoNet/snarkOS), the data availability layer.
+2. You installed [Leo](https://developer.aleo.org/leo/), our statically-typed programming language built for writing private applications, our [transaction cannon](https://github.com/provablehq/tx-cannon) for easy deployment and execution, and [snarkOS](https://github.com/AleoNet/snarkOS), the data availability layer.
 <!-- markdown-link-check-enable -->
 
 3. You started a local devnet using the snarkOS repository.

@@ -13,7 +13,7 @@ These changes support the first iteration of deploying and executing programs on
 
 Deployment and execution of programs is done via four new `developer` CLI commands in `snarkOS` - `decrypt`, `deploy`, `execute`, `scan`, and `transfer`.
 
-These CLI commands currently live in snarkOS, but can also be migrated to the Aleo SDK.
+These CLI commands currently live in snarkOS, but can also be migrated to the Provable SDK.
 
 *Note: All the operations are done client-side and do not require sending private keys or view keys to third parties.*
 
@@ -24,7 +24,7 @@ These CLI commands currently live in snarkOS, but can also be migrated to the Al
 ```
 git clone https://github.com/AleoNet/snarkOS.git
 cd snarkOS
-git checkout testnet3
+git checkout mainnet-staging
 cargo install --path .
 ```
 
@@ -49,13 +49,13 @@ Transfer credits to another account so it can't be spent by the beacon producing
 (The beacon is constantly spending records to generate new blocks, so there is a chance your record is spent before doing this step)
 
 ```
-snarkos developer execute credits.aleo transfer <INPUT_RECORD> <RECIPIENT_ADDRESS> "<AMOUNT_TO_TRANSFER>u64" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet3/transaction/broadcast" 
+snarkos developer execute credits.aleo transfer <INPUT_RECORD> <RECIPIENT_ADDRESS> "<AMOUNT_TO_TRANSFER>u64" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet/transaction/broadcast" 
 ```
 
 or
 
 ```
-snarkos developer transfer <AMOUNT_TO_TRANSFER> --input-record <INPUT_RECORD> --recipient <RECIPIENT_ADDRESS>  --private-key <PRIVATE_KEY> --query "<http://localhost:3030>" --broadcast "<http://localhost:3030/testnet3/transaction/broadcast>"
+snarkos developer transfer <AMOUNT_TO_TRANSFER> --input-record <INPUT_RECORD> --recipient <RECIPIENT_ADDRESS>  --private-key <PRIVATE_KEY> --query "<http://localhost:3030>" --broadcast "<http://localhost:3030/testnet/transaction/broadcast>"
 ```
 
 This step can be replaced with a faucet.
@@ -66,14 +66,14 @@ Deploy a program with an unspent record.
 
 
 ```
-snarkos developer deploy fibonacci.aleo --private-key <PRIVATE_KEY> --query "http://localhost:3030" --path "../leo/examples/fibonacci/build/" --broadcast "http://localhost:3030/testnet3/transaction/broadcast" --fee 600000 --record <INPUT_RECORD>
+snarkos developer deploy fibonacci.aleo --private-key <PRIVATE_KEY> --query "http://localhost:3030" --path "../leo/examples/fibonacci/build/" --broadcast "http://localhost:3030/testnet/transaction/broadcast" --fee 600000 --record <INPUT_RECORD>
 ```
 
 
 ### 6. Execute a function of a deployed program
 
 ```
-snarkos developer execute fibonacci.aleo fibonacci "1u8" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet3/transaction/broadcast" 
+snarkos developer execute fibonacci.aleo fibonacci "1u8" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet/transaction/broadcast" 
 ```
 
 *NOTE: Fees (in microcredits) must be greater than the transaction size in bytes. Fees can be excluded from execution transactions, but if one is specified, it must follow the above rule. *
@@ -122,7 +122,7 @@ Create an Aleo program deployment.
 ##### Example:
 
 ```
-snarkos developer deploy fibonacci.aleo --private-key <PRIVATE_KEY> --query "http://localhost:3030" --path "./leo/examples/fibonacci/build/" --broadcast "http://localhost:3030/testnet3/transaction/broadcast" --fee 550000 --record <INSERT_RECORD_HERE>
+snarkos developer deploy fibonacci.aleo --private-key <PRIVATE_KEY> --query "http://localhost:3030" --path "./leo/examples/fibonacci/build/" --broadcast "http://localhost:3030/testnet/transaction/broadcast" --fee 550000 --record <INSERT_RECORD_HERE>
 ```
 
 ### Execute
@@ -152,7 +152,7 @@ Create an Aleo program execution.
 ##### Example:
 
 ```
-snarkos developer execute fibonacci.aleo fibonacci "1u8" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet3/transaction/broadcast" 
+snarkos developer execute fibonacci.aleo fibonacci "1u8" --private-key <PRIVATE_KEY> --query "http://localhost:3030" --broadcast "http://localhost:3030/testnet/transaction/broadcast" 
 ```
 
 ### Scan
@@ -203,18 +203,18 @@ Transfer credits with a `credits.aleo` program execution.
 ##### Example:
 
 ```
-snarkos developer transfer <AMOUNT_TO_TRANSFER> --input-record <INPUT_RECORD> --recipient <RECIPIENT_ADDRESS>  --private-key <PRIVATE_KEY> --query "<http://localhost:3030>" --broadcast "<http://localhost:3030/testnet3/transaction/broadcast>"
+snarkos developer transfer <AMOUNT_TO_TRANSFER> --input-record <INPUT_RECORD> --recipient <RECIPIENT_ADDRESS>  --private-key <PRIVATE_KEY> --query "<http://localhost:3030>" --broadcast "<http://localhost:3030/testnet/transaction/broadcast>"
 
 ```
 
 
-## Usage on Testnet 3 (Phase 2)
+## Usage on Testnet 
 
-To deploy and execute programs on Testnet3
+To deploy and execute programs on Testnet
 <!-- markdown-link-check-disable -->
 
 1. Replace [step 3](#3-scan-the-node-for-spendable-records) with the Aleo faucet to obtain spendable credits. You can request credits from [the faucet](https://faucet.aleo.org/)
-2. Replace the use of `http://localhost:3030` with `https://api.explorer.aleo.org/v1`
+2. Replace the use of `http://localhost:3030` with `https://api.explorer.provable.com/v1`
 
 <!-- markdown-link-check-enable -->
 
