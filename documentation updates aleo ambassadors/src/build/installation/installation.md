@@ -282,7 +282,7 @@ cargo install --path .
 
 To improve the developer experience, Aleo has provided extensions for syntax highlighting for your popular code editors. 
 - [VSCode](https://code.visualstudio.com/download)
-    - Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=provablehq.leo-extension) from VSCode marketplace.
+    - Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=aleohq.leo-extension) from VSCode marketplace.
     - The correct extension ID is provablehq.leo-extension, and the description should state "the official VSCode extension for Leo".
 - [IntelliJ](https://www.jetbrains.com/idea/download/?section=mac)
     - [Extension here](https://plugins.jetbrains.com/plugin/19890-aleo-developer)
