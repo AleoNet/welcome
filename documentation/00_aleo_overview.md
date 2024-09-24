@@ -36,7 +36,7 @@ Read the full list of supported [AVM opcodes](./aleo/04_opcodes.md).
 
 Check your program or compiler implementation against the [Aleo instructions grammar](./aleo/06_grammar.md).
 
-Study the formal [ABNF grammar specification](https://github.com/AleoNet/grammars) for the full formal syntax of Aleo instructions.
+Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/grammars) for the full formal syntax of Aleo instructions.
 
 ## Command Line Interface Documentation
 

@@ -45,7 +45,7 @@ Open a new terminal window and type `leo --help` to confirm that Leo is installe
     -V, --version      Print version
    ```
 
-###### 💡Note: If you do not see the output above, you can build Leo from source by following the guide [here](https://github.com/AleoHQ/leo#%EF%B8%8F%EF%B8%8F-build-guide) or download the [latest `.zip`](https://github.com/AleoHQ/leo/releases/latest) file directly and then move the Leo binary to any location; we recommend `/usr/local/bin`.
+###### 💡Note: If you do not see the output above, you can build Leo from source by following the guide [here](https://github.com/provablehq/leo#%EF%B8%8F%EF%B8%8F-build-guide) or download the [latest `.zip`](https://github.com/provablehq/leo/releases/latest) file directly and then move the Leo binary to any location; we recommend `/usr/local/bin`.
 
 ### The `leo account` command
 

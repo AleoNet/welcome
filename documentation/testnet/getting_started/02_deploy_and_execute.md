@@ -13,7 +13,7 @@ These changes support the first iteration of deploying and executing programs on
 
 Deployment and execution of programs is done via four new `developer` CLI commands in `snarkOS` - `decrypt`, `deploy`, `execute`, `scan`, and `transfer`.
 
-These CLI commands currently live in snarkOS, but can also be migrated to the Aleo SDK.
+These CLI commands currently live in snarkOS, but can also be migrated to the Provable SDK.
 
 *Note: All the operations are done client-side and do not require sending private keys or view keys to third parties.*
 
@@ -212,7 +212,7 @@ To deploy and execute programs on Testnet Beta
 <!-- markdown-link-check-disable -->
 
 1. Replace [step 3](#3-scan-the-node-for-spendable-records) with the Aleo faucet to obtain spendable credits. You can request credits from [the faucet](https://faucet.aleo.org/)
-2. Replace the use of `http://localhost:3030` with `https://api.explorer.aleo.org/v1`
+2. Replace the use of `http://localhost:3030` with `https://api.explorer.provable.com/v1`
 
 <!-- markdown-link-check-enable -->
 

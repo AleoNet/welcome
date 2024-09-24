@@ -84,6 +84,6 @@ If you're interested in learning more about Aleo:
 
 🔎 | Aleo Block Explorer ~ **https://explorer.aleo.org/**
 
-✍️ | Community Blog ~ **https://medium.com/@AleoHQ**
+✍️ | Community Blog ~ **https://medium.com/@provablehq**
 
 ### Looking for [**Developer Resources?**](./leo/07_resources.md)

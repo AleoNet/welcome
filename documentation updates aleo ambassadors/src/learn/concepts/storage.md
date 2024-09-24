@@ -87,10 +87,14 @@ Record private data is encoded as a list of field elements which is encrypted wi
 This process enables users to securely and privately transfer data and values across the network. A key aspect of this system is that only the sender and receiver, who each possess their respective view keys, can unlock and access the contents of these records. This safeguard ensures that sensitive information is protected from unauthorized access while maintaining transparency and trust in the transaction process, providing a robust foundation for secure communications.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/mainnet/circuit/program/src/data/record/decrypt.rs) pages, respectively.
 =======
 The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/testnet3/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/testnet3/circuit/program/src/data/record/decrypt.rs) pages, respectively.
 >>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+=======
+The code for encryption and decryption is available in the snarkVM sections, which can be accessed at the [encrypt](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/circuit/program/src/data/record/encrypt.rs) and [decrypt](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/circuit/program/src/data/record/decrypt.rs) pages, respectively.
+>>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 
 Additionally, users can decrypt their encrypted records using their view key via a web interface available at [Provable Tools](https://www.provable.tools/record). This feature allows for the practical application of decryption processes directly through a browser.
 
@@ -130,7 +134,7 @@ We must start by defining our `record` named 'token.
         amount: u64,
     }
 
-Then, we will be able to mint 50 tokens to Alice's wallet. Full [token example](https://github.com/AleoHQ/workshop/blob/master/token/src/main.leo) can be found in token workshop. For now, we will cover the record outputs.
+Then, we will be able to mint 50 tokens to Alice's wallet. Full [token example](https://github.com/aleonet/workshop/blob/master/token/src/main.leo) can be found in token workshop. For now, we will cover the record outputs.
 
 First, alice mints 50 tokens with `mint_private` transition and gets the following output:
 ```bash

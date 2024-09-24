@@ -9,7 +9,7 @@ If you have installed a Leo syntax [plugin](../leo/06_tooling.md)
 then you should already be able to see syntax highlighting for `.aleo` Aleo instructions.
 :::
 
-Aleo maintains several syntax highlighting implementations across different platforms. If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/AleoHQ/welcome/issues/new).
+Aleo maintains several syntax highlighting implementations across different platforms. If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/provablehq/welcome/issues/new).
 
 1. [Sublime Text](#sublime-text).
 2. [Visual Studio Code](#vscode).
@@ -41,8 +41,8 @@ Download the editor here: https://code.visualstudio.com/download.
 
 ### Install
 
-1. Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=aleohq.leo-extension) from VSCode marketplace.   
-2. The correct extension ID is `aleohq.leo-extension`, and the description should state "the official VSCode extension for Leo".
+1. Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=provablehq.leo-extension) from VSCode marketplace.   
+2. The correct extension ID is `provablehq.leo-extension`, and the description should state "the official VSCode extension for Leo".
 
 ### Usage
 

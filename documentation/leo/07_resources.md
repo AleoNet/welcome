@@ -183,13 +183,13 @@ This greatly increases the constraint numbers and slows down the circuit.
 
 Thank you for helping make Leo better!
 
-Before contributing, please view the [Contributor Code of Conduct](https://github.com/AleoHQ/leo/blob/master/CONTRIBUTING.md).
+Before contributing, please view the [Contributor Code of Conduct](https://github.com/provablehq/leo/blob/master/CONTRIBUTING.md).
 By participating in this project - In the issues, pull requests, or Gitter channels -
 you agree to abide by the terms.
 
 ## Report an Issue
 
-To report an issue, please use the [GitHub issues tracker](https://github.com/AleoHQ/leo/issues). When reporting issues, please mention the following details:
+To report an issue, please use the [GitHub issues tracker](https://github.com/provablehq/leo/issues). When reporting issues, please mention the following details:
 
 - Which version of Leo you are using.
 - What was the source code (if applicable).
@@ -235,7 +235,7 @@ Then when running the test command, make sure you have the environment variable 
 
 ### Grammar
 
-[The `grammars` repository](https://github.com/AleoHQ/grammars) contains a file [`leo.abnf`](https://github.com/AleoHQ/grammars/blob/master/leo.abnf) that has the Leo grammar rules in the ABNF format.
+[The `grammars` repository](https://github.com/provablehq/grammars) contains a file [`leo.abnf`](https://github.com/provablehq/grammars/blob/master/leo.abnf) that has the Leo grammar rules in the ABNF format.
 If your changes affect a grammar rule, we may ask you to modify it in that `.abnf` file.
 
 We appreciate your hard work!

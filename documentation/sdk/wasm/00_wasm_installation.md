@@ -5,18 +5,18 @@ sidebar_label: Installation
 ---
 
 <!-- markdown-link-check-disable -->
-<a href="https://www.npmjs.com/package/@aleohq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
-<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
-[![github]](https://github.com/AleoHQ/sdk)&ensp;[![crates-io]](https://crates.io/crates/aleo-wasm)&ensp;[![docs-rs]](https://docs.rs/aleo-wasm/latest/aleo-wasm/)
+[![github]](https://github.com/provablehq/sdk)&ensp;[![crates-io]](https://crates.io/crates/aleo-wasm)&ensp;[![docs-rs]](https://docs.rs/aleo-wasm/latest/aleo-wasm/)
 <!-- markdown-link-check-enable -->
 
 [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
-[**@aleohq/wasm**](https://www.npmjs.com/package/@aleohq/wasm)
+[**@provablehq/wasm**](https://www.npmjs.com/package/@provablehq/wasm)
 
 Aleo JavaScript and WebAssembly bindings for building zero-knowledge web applications.
 
@@ -143,4 +143,4 @@ wasm-pack test --[firefox/chrome/safari]
 Further documentation and tutorials as to how to use the modules built from this crate to build web apps  will be built 
 in the future. However - in the meantime, the [provable.tools](https://provable.tools) website is a good
 example of how to use these modules to build a web app. Its source code can be found in the 
-[Aleo SDK](https://github.com/AleoHQ/sdk) repo in the `website` folder.
+[Provable SDK](https://github.com/provablehq/sdk) repo in the `website` folder.

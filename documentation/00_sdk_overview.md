@@ -1,11 +1,11 @@
 ---
 id: sdk
-title: Aleo SDK
+title: Provable SDK
 sidebar_label: Overview
 ---
 
 
-The [Aleo SDK](https://github.com/ProvableHQ/sdk) provides tools for building zero knowledge applications. It consists of
+The [Provable SDK](https://github.com/provablehq/sdk) provides tools for building zero knowledge applications. It consists of
 several TypeScript & JavaScript libraries which provide the following functionality:
 1. [Aleo account management](https://provable.tools/account)
 2. [Web-based program execution and deployment](https://provable.tools/develop)
@@ -15,24 +15,24 @@ several TypeScript & JavaScript libraries which provide the following functional
 
 All of this functionality is demonstrated on [provable.tools](https://www.provable.tools/).
 
-The Aleo SDK is divided into three Typescript/Javascript packages
+The Provable SDK is divided into three Typescript/Javascript packages
 
-## 1. [Aleo SDK](./sdk/typescript/00_sdk_overview.md) - Build Zero Knowledge Web Apps
+## 1. [Provable SDK](./sdk/typescript/00_sdk_overview.md) - Build Zero Knowledge Web Apps
 
-<a href="https://www.npmjs.com/package/@provablehq/sdk"> <img alt="Aleo SDK" src="https://img.shields.io/npm/l/%40aleohq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/sdk"> <img alt="Provable SDK" src="https://img.shields.io/npm/l/%40provablehq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
 
 
-The official Aleo SDK providing Javascript/Typescript tools for creating zero knowledge apps.
+The official Provable SDK providing Javascript/Typescript tools for creating zero knowledge apps.
 
 ### ⚡ Build your own app
 
-Start here with the [documentation](./sdk/typescript/00_sdk_overview.md) and follow the instructions to install the [Aleo SDK](https://github.com/AleoHQ/sdk/tree/testnet3/sdk#readme) to get started building your
+Start here with the [documentation](./sdk/typescript/00_sdk_overview.md) and follow the instructions to install the [Provable SDK](https://github.com/provablehq/sdk/tree/testnet3/sdk#readme) to get started building your
 first zero knowledge web app.
 
-#### Source: [`sdk/sdk`](https://github.com/AleoHQ/sdk/tree/testnet3/sdk)
+#### Source: [`sdk/sdk`](https://github.com/provablehq/sdk/tree//sdk)
 
 
-## 2. [Create-Leo-App](./sdk/create-aleo-app/00_app_installation.md) - Zero Knowledge Web App Examples
+## 2. [Create-Leo-App](./sdk/create-leo-app/00_app_installation.md) - Zero Knowledge Web App Examples
 
 <a href="https://www.npmjs.com/package/create-leo-app"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/create-leo-app?label=NPM%20-%20Create-Leo-App&labelColor=green&color=blue" /></a>
 
@@ -47,13 +47,12 @@ You can start with a template by running
 npm create leo-app@latest
 ```
 
-
-#### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app)
+#### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app )
 
 ## 3. [Aleo-Wasm](./sdk/wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
 
-<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
-<a href="https://www.npmjs.com/package/@aleohq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40aleohq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/nodejs"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fnodejs?label=NPM%20-%20Aleo%20Nodejs&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 Aleo Wasm is a Rust crate which compiles Aleo code responsible for creating and executing zero knowledge programs into
@@ -67,7 +66,7 @@ source.
 ❗ Currently program execution is only available in web Browsers. However, account, program and data management within
 NodeJS is functional.
 
-Source: [`sdk/wasm`](https://github.com/AleoHQ/sdk/tree/testnet3/wasm)
+Source: [`sdk/wasm`](https://github.com/provablehq/sdk/tree/testnet3/wasm)
 
 ## 4. Aleo Python SDK - Zero Knowledge Algorithms in Python and Zero Knowledge Machine Learning
 
@@ -80,13 +79,13 @@ Both libraries are in an early development stage. They can be installed through 
 [documentation on the aleo library](./sdk/python/00_aleo_sdk.md) and the [documentation on the zkml library](./sdk/python/01_zkml_transpiler.md) provide more information on installation and usage.
 
 <!-- markdown-link-check-disable -->
-Source: [`python-sdk`](https://github.com/AleoHQ/python-sdk)
+Source: [`python-sdk`](https://github.com/provablehq/python-sdk)
 <!-- markdown-link-check-enable -->
 
 ## 📚 Documentation
 
 #### [API Documentation](https://developer.aleo.org)
-API Documentation, tutorials for the Aleo SDK, and documentation on how to build Leo and Aleo Instructions programs can
+API Documentation, tutorials for the Provable SDK, and documentation on how to build Leo and Aleo Instructions programs can
 be found on the [Aleo Developer Docs](https://developer.aleo.org) page.
 
 #### [SDK Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk#readme)

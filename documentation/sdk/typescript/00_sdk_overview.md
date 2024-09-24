@@ -5,22 +5,22 @@ sidebar_label: Guide
 ---
 <!-- markdown-link-check-disable -->
 
-<a href="https://www.npmjs.com/package/@aleohq/sdk"> <img alt="Aleo SDK" src="https://img.shields.io/npm/l/%40aleohq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
+<a href="https://www.npmjs.com/package/@provablehq/sdk"> <img alt="Provable SDK" src="https://img.shields.io/npm/l/%40provablehq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
 
 <!-- markdown-link-check-enable -->
 
 
 ## Tools for Building Zero Knowledge Web Apps
 
-The Aleo SDK is a collection of JavaScript libraries for building zero knowledge web applications in both the browser
+The Provable SDK is a collection of JavaScript libraries for building zero knowledge web applications in both the browser
 and node.js.
 
 ## Overview
 
-Aleo provides the ability to run programs in zero knowledge. The Aleo SDK provides the tools to use these programs
+Aleo provides the ability to run programs in zero knowledge. The Provable SDK provides the tools to use these programs
 within the browser and all other levels of the web stack to build privacy preserving applications.
 
-The Aleo SDK provides the following functionality (Click to see examples):
+The Provable SDK provides the following functionality (Click to see examples):
 1. [Aleo account management](https://provable.tools/account)
 2. [Web-based program execution and deployment](https://provable.tools/develop)
 3. [Aleo credit transfers](https://provable.tools/transfer)
@@ -61,7 +61,7 @@ The Aleo SDK provides the following functionality (Click to see examples):
 
 ### NPM / Yarn
 
-To install Aleo SDK, run the following commands in your project's root:
+To install Provable SDK, run the following commands in your project's root:
 
 `npm install @provablehq/sdk` or `yarn add @provablehq/sdk`.
 
@@ -97,7 +97,7 @@ Developers can get started immediately with create-react-app by running:
 
 Additionally, the SDK powers [provable.tools](https://provable.tools) - a React app that provides a graphical interface for most
 of the functionality provided by the SDK and can be used as a reference for usage of the SDK. Source code for provable.tools
-can be found [in the SDK repo here](https://github.com/AleoHQ/sdk/tree/testnet3/website)
+can be found [in the SDK repo here](https://github.com/provablehq/sdk/tree/testnet3/website)
 
 ## 1. Create an Aleo Account
 
@@ -120,7 +120,7 @@ Aleo credits or unique data defined by other zero-knowledge Aleo programs.
 
 All of these keys can be created using the account object:
 ```typescript
-import { Account } from '@aleohq/sdk';
+import { Account } from '@provablehq/sdk';
 
 const account = new Account();
 
@@ -179,7 +179,7 @@ The `ProgramManager` object encapsulates the functionality for executing program
 them. Under the hood it uses cryptographic code compiled from [snarkVM](https://developer.aleo.org/aleo) into WebAssembly.
 JavaScript bindings to this WebAssembly code allows execution of programs in zero knowledge fully within the browser
 without requiring any external communication with the internet. Users interested in lower level details on how this is
-achieved can visit the [aleo-wasm](https://github.com/AleoHQ/sdk/tree/testnet3/wasm) crate.
+achieved can visit the [aleo-wasm](https://github.com/provablehq/sdk/tree/testnet3/wasm) crate.
 
 The basic execution flow of a program is as follows:
 1. A web app is loaded with an instance of the `ProgramManager` object
@@ -210,17 +210,17 @@ graph LR
 
 ### 2.3 WebAssembly Initialization
 
-❗WebAssembly must be initialized before calling any SDK functions. The current Aleo SDK manages the wasm initialization. Therefore, the workers must be defined properly.
+❗WebAssembly must be initialized before calling any SDK functions. The current Provable SDK manages the wasm initialization. Therefore, the workers must be defined properly.
 
 Aleo programs are made zero knowledge through the usage of `ZkSnarks`. The Rust code behind Aleo programs and the ZkSnarks
-that make them zero knowledge are hosted in the [snarkVM Repository](https://github.com/AleoNet/snarkVM). The Aleo SDK
+that make them zero knowledge are hosted in the [snarkVM Repository](https://github.com/AleoNet/snarkVM). The Provable SDK
 compiles this code to WebAssembly and creates JavaScript bindings, enabling Aleo programs to run directly in the browser.
 
 Before any logic within the SDK is run within the browser however, the WebAssembly module the SDK contains must be
 initialized before any SDK functions can be executed. This is done simply by calling the `initializeWasm` function at a
 point in your code before any other SDK functions are called:
 ```typescript
-import { Account, initializeWasm } from '@aleohq/sdk';
+import { Account, initializeWasm } from '@provablehq/sdk';
 
 // Assuming top-level await is enabled. This can also be initialized within a promise.
 await initializeWasm();
@@ -234,7 +234,7 @@ An example of how to initialize WebAssembly in a React app is shown in [Section 
 ### 2.4 Local Program Execution
 A simple example of running the hello world program within the web browser is shown below:
 ```typescript
-import { Account, Program } from '@aleohq/sdk';
+import { Account, Program } from '@provablehq/sdk';
 
 /// Create the source for the "hello world" program
 const program = "program helloworld.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
@@ -269,7 +269,7 @@ program execution. It also provides a global record of any state changes made to
 
 A simple example of running the hello world program on the Aleo network is shown below:
 ```typescript
-import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeySearchParams} from '@aleohq/sdk';
+import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeySearchParams} from '@provablehq/sdk';
 
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs
 const keyProvider = new AleoKeyProvider();
@@ -280,13 +280,13 @@ const account = new Account({ privateKey: private_key });
 const privateKeyObject = PrivateKey.from_string(private_key);
 
 // Create a record provider that will be used to find records and transaction data for Aleo programs
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
 const programName = "hello_hello.aleo";
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
-programManager.setHost("https://api.explorer.aleo.org/v1")
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+programManager.setHost("https://api.explorer.provable.com/v1")
 programManager.setAccount(account);
 
 // For example: "cacheKey": "hello_hello:hello"
@@ -334,7 +334,7 @@ Executing Aleo programs in zero knowledge requires two additional pieces of info
    on Records can be found in the [Records](#41-private-state-data--records) section below.
 
 For this reason, all programs will need proving and verifying keys to operate and many functions in Aleo programs will
-require records as inputs. To simplify the process of managing keys and records, the Aleo SDK provides two abstractions
+require records as inputs. To simplify the process of managing keys and records, the Provable SDK provides two abstractions
 for managing these concepts:
 
 1. **KeyProvider:** When programs execute, by default, they will synthesize the proving and verifying keys needed to
@@ -357,18 +357,18 @@ to the network (as long as it doesn't already currently exist) by paying a deplo
 provides a simple interface for deploying programs to the Aleo network using the program manager.
 
 ```typescript
-import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeySearchParams} from '@aleohq/sdk';
+import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeySearchParams} from '@provablehq/sdk';
 
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache = true;
 
 // Create a record provider that will be used to find records and transaction data for Aleo programs
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 
 // Define an Aleo program to deploy
 const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
@@ -397,7 +397,7 @@ The WASM module can be initialized within the browser. A common way of achieving
 `aleo-wasm-hook.js`
 ```jsx
 import { useEffect, useState } from "react";
-import * as sdk from "@aleohq/sdk";
+import * as sdk from "@provablehq/sdk";
 
 await sdk.initializeWasm();
 export const useAleoWASM = () => {
@@ -436,7 +436,7 @@ import {
   AleoKeyProvider,
   AleoNetworkClient,
   NetworkRecordProvider,
-} from "@aleohq/sdk";
+} from "@provablehq/sdk";
 import { expose, proxy } from "comlink";
 
 await initThreadPool();
@@ -467,7 +467,7 @@ async function deployProgram(program) {
   keyProvider.useCache(true);
 
   // Create a record provider that will be used to find records and transaction data for Aleo programs
-  const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+  const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
   // Use existing account with funds
   const account = new Account({
@@ -478,7 +478,7 @@ async function deployProgram(program) {
 
   // Initialize a program manager to talk to the Aleo network with the configured key and record providers
   const programManager = new ProgramManager(
-    "https://api.explorer.aleo.org/v1",
+    "https://api.explorer.provable.com/v1",
     keyProvider,
     recordProvider,
   );
@@ -566,7 +566,7 @@ function App() {
     try {
       const result = await aleoWorker.deployProgram(helloworld_program);
       console.log("Transaction:")
-      console.log("https://api.explorer.aleo.org/v1/transaction?id=" + result)
+      console.log("https://api.explorer.provable.com/v1/transaction?id=" + result)
       alert("Transaction ID: " + result);
     } catch (e) {
       console.log(e)
@@ -673,7 +673,7 @@ Make sure that you included custom types in your `tsconfig` file.
 </details>
 
 
-A full example of this implementation can be found [here](https://github.com/AleoHQ/sdk/blob/testnet3/create-leo-app/template-react-leo/src/App.jsx)
+A full example of this implementation can be found [here](https://github.com/provablehq/sdk/blob/testnet3/create-leo-app/template-react-leo/src/App.jsx)
 
 ## 3. Aleo Credit Transfers
 
@@ -799,13 +799,13 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const USER_1_ADDRESS = "user1Address";
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Send a private transfer to yourself
@@ -840,7 +840,7 @@ assert(public_balance === 0);
 As shown above, a public balance of any address can be checked with `getMappingValue` function of the `NetworkClient`.
 
 ```typescript
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const USER_1_ADDRESS = "user1Address";
 const public_balance = networkClient.getMappingValue("credits.aleo", USER_1_ADDRESS);
 ```
@@ -933,13 +933,13 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const USER_2_ADDRESS = "user2Address";
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 /// Send private transfer to user 2
@@ -954,12 +954,12 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user2PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
 const recordProvider_User2 = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Fetch the transaction from the network that user 1 sent
@@ -1123,7 +1123,7 @@ read the value of a specific key within a mapping.
 ```typescript
 import {  AleoNetworkClient } from '@provable/sdk';
 
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const creditsMappings = networkClient.getMappings("credits.aleo");
 assert(creditsMappings === ["account"]);
 
@@ -1170,13 +1170,13 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const RECIPIENT_ADDRESS = "user1Address";
-const programManager = new ProgramManager("https://api.explorer.aleo.org/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Update or initialize a public balance

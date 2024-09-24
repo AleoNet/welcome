@@ -17,12 +17,12 @@ Download the latest Leo release using a pre-built installer for your platform, a
         {label: 'All other platforms', value: 'all_releases'}
     ]}>
     <TabItem value="mac">
-        <a href="https://github.com/AleoHQ/leo/releases/latest/download/leo.zip">
+        <a href="https://github.com/provablehq/leo/releases/latest/download/leo.zip">
             <b>Install Leo for MacOS M1</b>
         </a>
     </TabItem>
     <TabItem value="all_releases">
-        <a href="https://github.com/AleoHQ/leo/releases">
+        <a href="https://github.com/provablehq/leo/releases">
             <b>Browse all Leo releases here</b>
         </a>
     </TabItem>
@@ -57,7 +57,7 @@ You can build and install Leo from the source code as follows:
 
 ```
 # Download the source code
-git clone https://github.com/AleoHQ/leo
+git clone https://github.com/provablehq/leo
 cd leo
 
 # Build and install
@@ -75,7 +75,7 @@ leo
 ## 3. IDE Syntax Highlighting
 
 Aleo maintains syntax highlighting implementations across different platforms.   
-If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/AleoHQ/welcome/issues/new).
+If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/provablehq/welcome/issues/new).
 
 1. [Visual Studio Code](06_tooling.md#vs-code)
 2. [Sublime Text](06_tooling.md#sublime-text)

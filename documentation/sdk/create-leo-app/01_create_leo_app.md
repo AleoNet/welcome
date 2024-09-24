@@ -82,7 +82,8 @@ Example:
 Note down your transaction ID in the back of the URL from the faucet. The success message in the Discord thread should look like this:
 
 ```bash
-have fun https://explorer.provable.com/transaction/...
+Transfer successful! for message ID: 1156693507768078496
+https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
 ```
 
 ### Leo & `helloworld`
