@@ -33,6 +33,7 @@ Besides requiring ProverSolutions to be valid, the network also demands that the
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 =======
 <<<<<<< HEAD
@@ -50,6 +51,8 @@ Becoming a Prover node does not require staking or authorization, anyone can [st
 =======
 =======
 >>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
+=======
+>>>>>>> 521485c (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoHQ/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 =======
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
@@ -58,6 +61,8 @@ Becoming a Prover node does not require staking or authorization, anyone can [st
 >>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
 =======
 =======
+=======
+>>>>>>> 7481292 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 =======
 <<<<<<< HEAD
@@ -66,5 +71,14 @@ Becoming a Prover node does not require staking or authorization, anyone can [st
 Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
 >>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
 >>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
+<<<<<<< HEAD
 >>>>>>> 73c6360 (docs: update url AleoHQ -> AleoNet)
+<<<<<<< HEAD
 >>>>>>> e45966b (docs: update url AleoHQ -> AleoNet)
+=======
+=======
+=======
+Becoming a Prover node does not require staking or authorization, anyone can [start a Prover node](https://github.com/AleoNet/snarkOS?tab=readme-ov-file#32-run-an-aleo-prover).
+>>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+>>>>>>> 7481292 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+>>>>>>> 521485c (docs: update API endpoint, links to sdk and rename testnet3 to testnet)

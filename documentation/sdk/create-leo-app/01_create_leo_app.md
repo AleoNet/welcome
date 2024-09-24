@@ -90,10 +90,13 @@ Note down your transaction ID in the back of the URL from the faucet. The succes
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
 =======
 >>>>>>> 21d9a55 (update explorer and api urls)
+=======
+>>>>>>> 521485c (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 Transfer successful! for message ID: 1156693507768078496
 https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
 =======
@@ -117,6 +120,7 @@ have fun https://explorer.provable.com/transaction/...
 =======
 Transfer successful! for message ID: 1156693507768078496
 https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
+<<<<<<< HEAD
 >>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 =======
 >>>>>>> 5ab53f8 (Fix explorer link and remove usage of testnet3)
@@ -125,6 +129,9 @@ https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nw
 have fun https://explorer.provable.com/transaction/...
 >>>>>>> b9cb75a (update explorer and api urls)
 >>>>>>> 21d9a55 (update explorer and api urls)
+=======
+>>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+>>>>>>> 521485c (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 ```
 
 ### Leo & `helloworld`
