@@ -42,10 +42,14 @@ Download the editor here: https://code.visualstudio.com/download.
 ### Install
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=aleohq.leo-extension) from VSCode marketplace.   
 =======
 1. Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=provablehq.leo-extension) from VSCode marketplace.   
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+1. Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=provablehq.leo-extension) from VSCode marketplace.   
+>>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 2. The correct extension ID is `provablehq.leo-extension`, and the description should state "the official VSCode extension for Leo".
 
 ### Usage

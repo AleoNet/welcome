@@ -152,6 +152,7 @@ Given global instantiated Aleo parameters and subroutines.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
@@ -159,10 +160,13 @@ Given global instantiated Aleo parameters and subroutines.
 =======
 =======
 >>>>>>> ebee403 (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+=======
+>>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 [source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/account/src/private_key/try_from.rs)
 =======
 [source code](https://github.com/AleoNet/snarkVM/blob/testnet3/console/account/src/private_key/try_from.rs)
 >>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 3439f50 (docs: update url AleoHQ -> AleoNet)
 =======
@@ -179,6 +183,11 @@ Given global instantiated Aleo parameters and subroutines.
 [source code](https://github.com/AleoNet/snarkVM/blob/testnet3/console/account/src/private_key/try_from.rs)
 >>>>>>> a5c06be (docs: update url AleoHQ -> AleoNet)
 >>>>>>> f3059f0 (docs: update url AleoHQ -> AleoNet)
+=======
+=======
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet-staging/console/account/src/private_key/try_from.rs)
+>>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+>>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 
 #### Generate a View Key
 1. `(sk_sig, r_sig)` = `private_key`

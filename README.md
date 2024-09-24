@@ -18,6 +18,7 @@ This repository serves as a guide for getting started with building on Aleo. Her
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - [🧰 Provable SDK](https://provable.tools/) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
 - [🔭 Aleo Explorer](https://aleo.network) - Validate and broadcast on Aleo Testnet III
 =======
@@ -32,6 +33,14 @@ This repository serves as a guide for getting started with building on Aleo. Her
 - [🧰 Aleo SDK](https://provable.tools/) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
 - [🔭 Aleo Explorer](https://explorer.aleo.org) - Validate and broadcast on Aleo Testnet Beta
 >>>>>>> be2a7dd (Fix explorer link and remove usage of testnet3)
+=======
+- [🧰 Aleo SDK](https://provable.tools/) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
+- [🔭 Aleo Explorer](https://explorer.aleo.org) - Validate and broadcast on Aleo Testnet Beta
+=======
+- [🧰 Provable SDK](https://provable.tools/) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
+- [🔭 Aleo Explorer](https://aleo.network) - Validate and broadcast on Aleo Testnet III
+>>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
+>>>>>>> 88fc9fe (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 
 For help setting up, join us on [Discord](https://discord.com/invite/aleo) to ask questions and help others answer their questions.
 

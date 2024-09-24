@@ -5,7 +5,11 @@ sidebar_label: Grammar
 ---
 
 This chapter contains a high-level grammar of Aleo instructions.
+<<<<<<< HEAD
 A more detailed ABNF grammar can be found [here](https://github.com/ProvableHQ/grammars).
+=======
+A more detailed ABNF grammar can be found [here](https://github.com/provablehq/grammars).
+>>>>>>> ee9c63b (docs: update API endpoint, links to sdk and rename testnet3 to testnet)
 
 ```
 program = *import
