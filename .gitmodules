@@ -3,7 +3,7 @@
 	url = https://github.com/AleoNet/snarkOS.git
 [submodule "leo"]
 	path = leo
-	url = https://github.com/provablehq/leo
+	url = https://github.com/ProvableHQ/leo
 [submodule "aleo-setup"]
 	path = aleo-setup
 	url = https://github.com/AleoNet/aleo-setup
@@ -12,4 +12,4 @@
 	url = https://github.com/AleoNet/snarkVM.git
 [submodule "sdk"]
 	path = sdk
-	url = https://github.com/provablehq/sdk.git
+	url = https://github.com/ProvableHQ/sdk.git
