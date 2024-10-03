@@ -1,15 +1,20 @@
 [submodule "snarkOS"]
 	path = snarkOS
 	url = https://github.com/AleoNet/snarkOS.git
+	branch = mainnet-staging
 [submodule "leo"]
 	path = leo
 	url = https://github.com/ProvableHQ/leo
+	branch = mainnet
 [submodule "aleo-setup"]
 	path = aleo-setup
 	url = https://github.com/AleoNet/aleo-setup
+	branch = master
 [submodule "snarkVM"]
 	path = snarkVM
 	url = https://github.com/AleoNet/snarkVM.git
+	branch = mainnet-staging
 [submodule "sdk"]
 	path = sdk
 	url = https://github.com/ProvableHQ/sdk.git
+	branch = testnet3
