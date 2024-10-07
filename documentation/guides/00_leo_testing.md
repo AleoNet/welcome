@@ -1,7 +1,7 @@
 ---
 id: testing
 title: Testing Leo Programs
-sidebar_label: Testing Leo Programs
+sidebar_label: Testing 
 ---
 Depending on how thoroughly and quickly developers want to test the Leo programs, there are currently three different options in running tests.  
 
@@ -30,10 +30,10 @@ Here are the steps to start running a local devnet:
 ![TestnetValidator](./images/devnet_validator_zero.png)
 11. The private key will always stay the same for every node that runs with devnet.sh script so it only needs to remember once.
 12. The reason for taking note of validator node 0’s private key is because it is automatically funded with test Aleo Tokens (AT) with both public mapping balance and private records.
-13. To interact with the local devnet, just replace all API calls URL to http://localhost:3030.
+13. To interact with the local devnet, just replace all API calls URL to `http://localhost:3030`.
 Refer here for all the default available REST API endpoints from a validator node.
 
-Once you have a local devnet running in the background, you can start deploying a program to the devnet using leo deploy and execute transactions using leo execute to start testing any logic in the async functions and correctness of the state transitions of your programs.
+Once you have a local devnet running in the background, you can start deploying a program to the devnet using `leo deploy` and execute transactions using `leo execute` to start testing any logic in the async functions and correctness of the state transitions of your programs.
 
 ## Testing with Aleo Testnet
 The Aleo Testnet closely mimics the environment of the mainnet, providing a realistic testing scenario for developers. One important note to keep in mind is that since the Testnet is continuously running and the network identifies each program with its unique ID, developers cannot redeploy a program with the exact same ID once it has been deployed to the Testnet.  

@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Javascript/Typescript
-sidebar_label: Guide
+sidebar_label: Javascript/Typescript
 ---
 <!-- markdown-link-check-disable -->
 

@@ -1,7 +1,7 @@
 ---
 id: provable-sdk
-title: Provable SDK
-sidebar_label: Provable SDK
+title: Provable Python SDK
+sidebar_label: Provable Python SDK
 ---
 
 <!-- markdown-link-check-disable -->
