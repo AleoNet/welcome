@@ -20,6 +20,3 @@ Every stack that forms Aleo is open-sourced and welcomes contributions of all ki
 - [Aleo Instruction](https://developer.aleo.org/aleo) - IR that Leo language compiles into  
 - [SnarkOS](./snarkos_contribute) - The operating system or blockchain node client of Aleo  
 - [SnarkVM](./snarkvm_contribute) - The virtual machine that performs verifiable computation  
-
-## How to get help
-Discord is our primary communication channel with the community. If you have a question that is not covered in this developer documentation, join our [Discord](https://discord.com/invite/aleo) and visit the engineering support channels for help. You can also join the weekly Core Devs Meeting, which is open to everyone and hosted on Discord.

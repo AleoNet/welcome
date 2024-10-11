@@ -1,7 +1,7 @@
 ---
 id: snarkos_contribute
-title: SnarkOS Contribution (WIP)
-sidebar_label: SnarkOS Contribution (WIP)
+title: SnarkOS Contribution
+sidebar_label: SnarkOS Contribution
 ---
 This checklist provides a step-by-step guide for restarting the Aleo network with new features merged. Follow these steps to ensure a smooth process.  
 
@@ -64,3 +64,36 @@ git switch mainnet-staging
 ```sh
 git checkout -b feat/my-branch
 ```
+
+4.  Develop Your Feature/Fix and Test
+- Develop your feature or fix in your forked repository.
+- Run `./snarkOS/devnet.sh` 
+- Make sure to approve the option to re-install the snarkOS binary so you test with your current local snarkOS code.
+- See that the network progresses blocks normally and send some transactions for further confirmation of network stability.
+- Run any specific tests to your feature/fix.
+
+5. Push your code to Fix branch 
+- Commit changes with meaningful commit messages that clearly describe the changes and their purpose.
+- Push changes to your fork.
+```sh
+git add .
+git commit -m "Add detailed description of the changes"
+git push
+```
+
+6. Submit a PR to Your Fork's Main Branch
+- Submit a pull request (PR) from your feature branch to your fork's main branch.
+- This triggers the CI pipeline in your fork to run automated tests.
+
+7. Internal Code Review
+- Request an internal code review from your team within your forked repository.
+- Team members review the code, suggest changes, and approve the PR if it meets the quality standards.
+- The CI pipeline is run again to ensure no new issues have been introduced during the review process.
+
+8. Submit a PR to the Main AleoNet/snarkOS Repository
+- After internal approval, submit a PR from your fork’s main branch to the main AleoNet/snarkOS repository's mainnet-staging branch.
+- This triggers the main CI pipeline to run all relevant tests and checks again to ensure the code’s stability and compatibility.
+
+9. Review by Core Team
+- Core team members review the PR in the main AleoNet/snarkOS repository.
+- If the CI pipeline passes and the review is successful, the PR is approved.
