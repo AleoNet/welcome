@@ -20,21 +20,21 @@ snarkVM is currently in active development. Please monitor the repository on [**
 
 ## Installing snarkVM
 
-Proceed to [**Installation**](./aleo/01_installation.md) for information on how to install snarkVM.
+Proceed to [**Installation**](./01_installation.md) for information on how to install snarkVM.
 
 ## Hello Aleo Instructions
 
-Develop your first [**Hello Aleo**](./aleo/02_hello.md) Aleo instructions program.
+Develop your first [**Hello Aleo**](./02_hello.md) Aleo instructions program.
 
 ## Aleo Instructions Guide
 
-Learn the core concepts and syntax of [Aleo instructions](./aleo/03_language.md).
+Learn the core concepts and syntax of [Aleo instructions](./03_language.md).
 
-Read the full list of supported [AVM opcodes](./aleo/04_opcodes.md).
+Read the full list of supported [AVM opcodes](./04_opcodes.md).
 
 ## Formal Language Documentation
 
-Check your program or compiler implementation against the [Aleo instructions grammar](./aleo/06_grammar.md).
+Check your program or compiler implementation against the [Aleo instructions grammar](./06_grammar.md).
 
 Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/grammars) for the full formal syntax of Aleo instructions.
 
@@ -42,15 +42,15 @@ Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/gram
 
 The snarkVM CLI provides a suite of commands to make programming in Aleo instructions easy.
 
-* [snarkvm new](./aleo/05_commands.md#snarkvm-new)
-* [snarkvm build (deprecated)](./aleo/05_commands.md#snarkvm-build)
-* [snarkvm run](./aleo/05_commands.md#snarkvm-run)
-* [snarkvm clean](./aleo/05_commands.md#snarkvm-clean)
-* [snarkvm update](./aleo/05_commands.md#snarkvm-update)
+* [snarkvm new](./05_commands.md#snarkvm-new)
+* [snarkvm build (deprecated)](./05_commands.md#snarkvm-build)
+* [snarkvm run](./05_commands.md#snarkvm-run)
+* [snarkvm clean](./05_commands.md#snarkvm-clean)
+* [snarkvm update](./05_commands.md#snarkvm-update)
 
-[//]: # (5. [aleo node]&#40;./aleo/05_commands.md#5-aleo-node&#41;)
-[//]: # (6. [aleo deploy]&#40;./aleo/05_commands.md#6-aleo-deploy&#41;)
+[//]: # (5. [aleo node]&#40;./05_commands.md#5-aleo-node&#41;)
+[//]: # (6. [aleo deploy]&#40;./05_commands.md#6-aleo-deploy&#41;)
 
 ## Additional Material
 
-Install Aleo instructions for your favorite code [**editor**](./aleo/07_tooling.md).
+Install Aleo instructions for your favorite code [**editor**](./07_tooling.md).

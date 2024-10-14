@@ -6,8 +6,9 @@ sidebar_label: DevDocs Contribution
 Welcome to the Aleo DevDocs contribution guide! We invite you to help improve our documentation, making it more comprehensive and up-to-date. Your contributions, big or small, are valuable in enhancing the Aleo ecosystem for developers. This guide will walk you through the process of contributing effectively to our documentation.
 
 ## Getting Started
-
+<!-- markdown-link-check-disable -->
 1. Fork the [aleo-docs repository](https://github.com/AleoNet/aleo-docs) on GitHub.
+<!-- markdown-link-check-enable -->
 2. Clone your forked repository locally:
    ```
    git clone https://github.com/YOUR-USERNAME/aleo-docs.git
@@ -47,7 +48,9 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
    ```
    git push origin your-feature-branch
    ```
+<!-- markdown-link-check-disable -->
 2. Go to the [aleo-docs](https://github.com/AleoNet/aleo-docs) and its submodule [welcome](https://github.com/AleoNet/welcome) on GitHub and create a new pull request from `your-feature-branch`.
+<!-- markdown-link-check-enable -->
 3. Provide a clear title and description for your pull request, explaining the changes you've made.
 4. Submit the pull request for review.
 

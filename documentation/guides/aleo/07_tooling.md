@@ -5,7 +5,7 @@ sidebar_label: Tooling
 ---
 
 :::info
-If you have installed a Leo syntax [plugin](../leo/06_tooling.md) 
+If you have installed a Leo syntax [plugin](https://docs.leo-lang.org/leo/tooling).
 then you should already be able to see syntax highlighting for `.aleo` Aleo instructions.
 :::
 
