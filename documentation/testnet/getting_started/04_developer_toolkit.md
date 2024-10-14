@@ -145,7 +145,7 @@ Check out the following resources:
 - Learn Leo syntax, functions, and best practices with the [Leo's language guide](https://developer.aleo.org/leo/language)
 - Deploy and Execute Leo applications on-chain with our [Deploy and Execute Demo](https://developer.aleo.org/testnet/getting_started/deploy_execute_demo)
 <!-- markdown-link-check-disable -->
-- See Aleo's testnet live and other Leo developer's applications via an explorer such as [Haruka's Program Registry](https://explorer.hamp.app/programs) or [aleo.network](https://www.aleo.network/).
+- See Aleo's testnet live and other Leo developer's applications via an explorer such as [Aleoscan](https://testnet.aleoscan.io/) or [Provable Explorer](https://explorer.provable.com/).
 <!-- markdown-link-check-enable -->
 
 ## FAQ

@@ -4,86 +4,91 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
-Welcome to the Aleo community. Together we are working to build a platform for web applications that are
-performant, secure, and private. Aleo introduces an application runtime environment that allows your software
-to compile, execute, and finalize its state autonomously.
+To get started with developing on Aleo, there are a few prerequisites you'll need to install. The two main components are **Leo**, Aleo's domain-specific language for writing zero-knowledge applications, and **snarkOS**, the decentralized operating system for zero-knowledge applications.  
 
-:::tip
-# What's new on Aleo?  
-### [**🔧 Getting Ready for Testnet Beta**](./leo/16_testnet_beta.md) - A guide on updating your Leo applications for Testnet Beta.
-### [**🤝 Leo Core Developers Call**](./leo/15_core_devs_call.md) - Collaborate with the Leo development team and ecosystem on the future of Leo.
-### [**⚛️ Create Aleo App**](./sdk/create-leo-app/01_create_leo_app.md) - A full stack application written in Typescript using Leo and React.
-### [**🧰 Leo Developer Toolkit**](./testnet/getting_started/04_developer_toolkit.md) - A zero to one tutorial for the Leo programming language.
-:::
+**Leo** allows you to write and compile programs, while **snarkOS** enables you to interact with the Aleo network, deploy programs, and execute transactions. Installing these tools will provide you with the necessary foundation to begin building privacy-preserving applications on the Aleo platform.  
 
----
+Optionally, you may also want to install **snarkVM**. If you wish to write more optimized code, **snarkVM** provides a lower-level representation in Aleo Instructions (AI) for that purpose. It's worth noting that Leo programs are compiled into AI as well.
 
-# Develop on Aleo with Leo
+In the following sections, we'll guide you through the installation process for these essential tools.
 
-## 1. Build Guide
 
-### 1.1 Install Git:
+## 1. Installing Leo 🦁 
+
+### 1.1 Install Git
 
 **[bit.ly/start-git](https://bit.ly/start-git)**
 
-### 1.2 Install Rust:
+### 1.2 Install Rust
 
 **[bit.ly/start-rust](https://bit.ly/start-rust)**
 
 ### 1.3 Install Leo
 
+Installing Leo by building from the source code as follows:
 ```bash
-curl -L https://raw.githubusercontent.com/AleoNet/workshop/master/install.sh | sh 
+# Download the source code and initialize the submodules
+git clone --recurse-submodules https://github.com/ProvableHQ/leo
+cd leo
+
+# Install 'leo'
+cargo install --path .
 ```
 
-Learning Leo is the fastest way to develop private applications on Aleo. 
+### 1.4 Verify Installation
+
+To verify if you have Leo, open your terminal and type `leo`. You should be able to see the following:
+
+![Leo](./images/leo-cli.png)
+
+### 1.5 Check Version and Update Leo
+
+To check the version of leo, in your terminal, run:
+```bash
+leo --version
+```
+
+You can update Leo to the latest version using the following command:
+```bash
+leo update
+```
+
+## 2. Installing snarkOS 
+
+### 2.1 Prerequisites
+
+Before beginning, please ensure your machine has Rust v1.79+ installed. Instructions to install Rust can be found [here](https://www.rust-lang.org/tools/install).
+
+### 2.2 Clone the snarkOS repository
+
+```bash
+git clone --branch mainnet --single-branch https://github.com/AleoNet/snarkOS.git
+```
+
+**[For Ubuntu users]** A helper script to install dependencies is available. From the snarkOS directory, run:
+```bash
+./build_ubuntu.sh
+```
+
+### 2.3 Install snarkOS
+
+```bash
+cd snarkOS
+cargo install --locked --path .
+```
+
+### 2.4 Verify Installation
+
+To verify if you have snarkOS, open your terminal and type `snarkos`. You should be able to see the following:
+![snarkOS](./images/snarkos-cli.png)
+
 
 <!-- markdown-link-check-disable -->
 
-* [**Hello Leo**](./leo/02_hello.md) - Run your first Leo program.
-* [**Leo Docs**](./00_leo_overview.md) - Learn how to use the latest Leo language features.
-* [**Leo Examples**](https://developer.aleo.org/leo/examples) - Jumpstart your application development with an official Aleo example.
+## 3. Next Steps
 
-## Read the Protocol
+Once you have successfully completed the installation of both Leo and snarkOS, you are ready to begin your journey with Aleo.  
 
-* [**Aleo Concepts**](https://developer.aleo.org/concepts) - Aleo is a new layer 1 blockchain. Read about the similarities and differences between Aleo and other blockchains.
+To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](./quick_start). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
 
 <!-- markdown-link-check-enable -->
-
-## Talks and Videos
-Talks and videos from the Aleo community.
-* Coinbase BUIDL - [**Learning LEO | Coding Private Application with ZK Cryptography**](https://youtu.be/LJXjtthDl6I)
-* DEVCON - [**Aleo Developer Workshop: Leo Coding & Examples**](https://youtu.be/ABPCr2TwrgE)
-* DEVCON - [**What are ZK Proofs Good For? Applications to Anonymous Identity, Sybil Prevention and Moderation**](https://youtu.be/d2n0Al0P2Jc)
-* DEVCON - [**Efficient Private Delegation of zkSNARK Provers**](https://youtu.be/mFzwp8gGn-E)
-* ICC - [**Web 3.0 for developers in TLV Howard Wu Aleo**](https://youtu.be/-FrrylHITvg)
-* ZK8 - [**Demystifying Zero-Knowledge Programming – Howard Wu - Aleo**](https://youtu.be/e-1mPNEINRI)
-* ETHCC - [**The Hitchhiker's Guide to ZK: An Aleo Developer Workshop**](https://youtu.be/fjfj5kFcQe4)
-* CoinGecko - [**Importance of Zero-knowledge Proofs w/ Alex Pruden**](https://youtu.be/NvYddvVBjXY)
-* Thinking Crypto - [**Alex Pruden Interview - Aleo's Privacy Solutions - Zero Knowledge Proofs - a16z - Bitcoin & Crypto**](https://youtu.be/1y4jvyy8Nsk)
-* The Interop - [**Zero-Knowledge Smart Contracts with Alex Pruden of Aleo**](https://youtu.be/6BwefrwgN3w)
-* Axelar - [**Tech Talks with Aleo**](https://youtu.be/P7G2DKWZbVM)
-
-
-## More Aleo Resources
-If you're interested in learning more about Aleo:
-
-<!-- markdown-link-check-disable -->
-[//]: # (disabling markdown checks for twitter links)
-🐦 | X (Twitter) ~ @AleoHQ ~ **https://twitter.com/AleoHQ**
-
-🤝 | Community X (Twitter) ~ @aleocommunity ~ **https://twitter.com/aleocommunity**
-
-<!-- markdown-link-check-enable -->
-
-🐙 | GitHub ~ **https://github.com/AleoNet**
-
-📄 | Developer Documentation ~ **https://developer.aleo.org/**
-
-🎮 | Leo Playground ~ **https://play.leo-lang.org/**
-
-🔎 | Aleo Block Explorer ~ **https://explorer.aleo.org/**
-
-✍️ | Community Blog ~ **https://medium.com/@provablehq**
-
-### Looking for [**Developer Resources?**](./leo/07_resources.md)

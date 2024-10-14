@@ -1,8 +1,9 @@
 ---
 id: contribution_guidelines
-title: Contribution Guidelines
+title: Welcome
 sidebar_label: Contribution Guidelines
 ---
+## Contribution Guidelines
 Welcome to Aleo’s Developer Documentation. Committed to open-source principles and decentralization, Aleo actively welcomes and values contributions from the community. All forms of contributions are encouraged, including suggesting new topics and contents, or providing examples to improve clarity and usefulness.
 
 ## Introduction
@@ -18,5 +19,5 @@ Every stack that forms Aleo is open-sourced and welcomes contributions of all ki
 - [Provable SDK](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk) - Javascript/Typescript tools for creating zero knowledge apps  
 - [Create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app) - Scaffolding your first Aleo project  
 - [Aleo Instruction](https://developer.aleo.org/aleo) - IR that Leo language compiles into  
-- [SnarkOS](./snarkos_contribute) - The operating system or blockchain node client of Aleo  
-- [SnarkVM](./snarkvm_contribute) - The virtual machine that performs verifiable computation  
+- [SnarkOS](./01_snarkos_contribute.md) - The operating system or blockchain node client of Aleo  
+- [SnarkVM](./02_snarkvm_contribute.md) - The virtual machine that performs verifiable computation  
