@@ -49,7 +49,7 @@ Note: After installation, if your `git` and `rustc` command doesn't work, try to
 Clone the `snarkOS` repository
 
 ```bash
-git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 
 # Switch to the mainnet branch
@@ -77,7 +77,7 @@ You should see something like:
 
 Please ensure ports 4133/tcp and 3033/tcp are open on your router and OS firewall.
 
-For more details about how to use `snarkOS` CLI, check out [this link](https://github.com/AleoHQ/snarkOS).
+For more details about how to use `snarkOS` CLI, check out [this link](https://github.com/AleoNet/snarkOS).
 
 If you would like to run a local devnet, run the command
 
@@ -85,14 +85,14 @@ If you would like to run a local devnet, run the command
 ./devnet.sh
 ```
 
-You would however, first need to install tmux. Instructions can be found on the github [repo](https://github.com/AleoHQ/snarkOS)
+You would however, first need to install tmux. Instructions can be found on the github [repo](https://github.com/AleoNet/snarkOS)
 
 ### Install SnarkVM
-- Install snarkVM from the github [repo](https://github.com/AleoHQ/snarkvm)
+- Install snarkVM from the github [repo](https://github.com/AleoNet/snarkVM)
 
 ```
 # Download the source code
-git clone https://github.com/AleoHQ/snarkvm && cd snarkvm
+git clone https://github.com/AleoNet/snarkVM && cd snarkvm
 
 # Install snarkVM
 $ cargo install --path .
@@ -112,7 +112,7 @@ Clone the `leo` repository
 
 ```bash
 # Download the source code
-git clone https://github.com/AleoHQ/leo
+git clone https://github.com/provablehq/leo
 cd leo
 ```
 
@@ -207,17 +207,17 @@ Rust runs on many platforms, and there are many ways to install Rust. This guide
 Using git bash, clone the `snarkOS` repository
 
 ```bash
-git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+git clone https://github.com/AleoNet/snarkOS.git --depth 1
 cd snarkOS
 cargo install --locked --path .
 ```
 
 ### Install SnarkVM
-Using git bash, install snarkVM from the github [repo](https://github.com/AleoHQ/snarkvm)
+Using git bash, install snarkVM from the github [repo](https://github.com/AleoNet/snarkVM)
 
 ```
 # Download the source code
-git clone https://github.com/AleoHQ/snarkvm && cd snarkvm
+git clone https://github.com/AleoNet/snarkVM && cd snarkvm
 
 # Install snarkVM
 $ cargo install --path .
@@ -238,7 +238,7 @@ This is similar to the Linux/MacOS instructions.
 Clone the `leo` repository using git bash
 ```bash
 # Download the source code
-git clone https://github.com/AleoHQ/leo
+git clone https://github.com/provablehq/leo
 cd leo
 ```
 
@@ -283,7 +283,7 @@ cargo install --path .
 To improve the developer experience, Aleo has provided extensions for syntax highlighting for your popular code editors. 
 - [VSCode](https://code.visualstudio.com/download)
     - Install [Leo for VSCode](https://marketplace.visualstudio.com/items?itemName=aleohq.leo-extension) from VSCode marketplace.
-    - The correct extension ID is aleohq.leo-extension, and the description should state "the official VSCode extension for Leo".
+    - The correct extension ID is provablehq.leo-extension, and the description should state "the official VSCode extension for Leo".
 - [IntelliJ](https://www.jetbrains.com/idea/download/?section=mac)
     - [Extension here](https://plugins.jetbrains.com/plugin/19890-aleo-developer)
     - Click on the gear icon in the upper right > Plugins > gear icon up top > Install Plugin from Disk > Select the downloaded zip file
@@ -325,7 +325,7 @@ Although this command is used to run a function, it also builds your program.
 ## Deploy
 
 ```
-snarkos developer deploy {$PROGRAM_NAME} --private-key {$PRIVATE_KEY} --query "https://api.explorer.aleo.org/v1" --path ".build/" --broadcast "https://api.explorer.aleo.org/v1/testnet/transaction/broadcast" --priority-fee 0
+snarkos developer deploy {$PROGRAM_NAME} --private-key {$PRIVATE_KEY} --query "https://api.explorer.provable.com/v1" --path ".build/" --broadcast "https://api.explorer.provable.com/v1/testnet/transaction/broadcast" --priority-fee 0
 ```
 If successful, it should look something like
 ![Deploy confirmation](./images/deploy-confirmation.png)
@@ -334,7 +334,7 @@ The hash at the bottom of the image represents the transaction hash, which you c
 
 ## Execute
 ```
-snarkos developer execute {$PROGRAM_NAME} {$TRANSITION_NAME} {$INPUT_ARGUMENTS} --private-key {$PRIVATE_KEY} --query "https://api.explorer.aleo.org/v1" --broadcast "https://api.explorer.aleo.org/v1/testnet/transaction/broadcast"
+snarkos developer execute {$PROGRAM_NAME} {$TRANSITION_NAME} {$INPUT_ARGUMENTS} --private-key {$PRIVATE_KEY} --query "https://api.explorer.provable.com/v1" --broadcast "https://api.explorer.provable.com/v1/testnet/transaction/broadcast"
 ```
 If successful, it should look something like
 ![Execute confirmation](./images/execute-confirmation.png)

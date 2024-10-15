@@ -1,66 +1,26 @@
-# How To set up SnarkVM
+---
+id: commands
+title: The snarkVM Command Line Interface
+sidebar_label: Commands
+---
 
-### 1 Install Rust
+# List of Commands
+:::tip
+You can print the list of commands by running `snarkvm --help`
+:::
 
-We recommend installing Rust using [rustup](https://www.rustup.rs/). You can install `rustup` as follows:
-
-- macOS or Linux:
-  ```bash
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ```
-
-- Windows (64-bit):
-
-  Download the [Windows 64-bit executable](https://win.rustup.rs/x86_64) or
-  [Windows 32-bit executable](https://win.rustup.rs/i686) and follow the on-screen instructions.
-
-### 1.1 Build from Crates.io
-
-We recommend installing `snarkvm` this way. In your terminal, run:
-
-```bash
-cargo install snarkvm
-```
-
-Now to use `snarkvm`, in your terminal, run:
-```bash
-snarkvm
-```
-
-### 1.2 Build from Source Code
-
-Alternatively, you can install `snarkvm` by building from the source code as follows:
-
-```bash
-# Download the source code
-git clone https://github.com/AleoNet/snarkVM && cd snarkvm
-
-# Install snarkVM
-$ cargo install --path .
-```
-
-Now to use `snarkvm`, in your terminal, run:
-```bash
-snarkvm
-```
-
-## 2. Command Line Usage Guide
-
->You can print the list of commands by running `snarkvm --help`
-
-
-* [snarkvm new](#snarkvm-new)
-* [snarkvm build](#snarkvm-build)
-* [snarkvm run](#snarkvm-run)
-* [snarkvm execute](#snarkvm-execute)
-* [snarkvm clean](#snarkvm-clean)
-* [snarkvm update](#snarkvm-update)
+* [snarkvm new](#aleo-new)
+* [snarkvm build](#aleo-build)
+* [snarkvm run](#aleo-run)
+* [snarkvm execute](#aleo-execute)
+* [snarkvm clean](#aleo-clean)
+* [snarkvm update](#aleo-update)
 
 [//]: # (5. [aleo node]&#40;#5-aleo-node&#41;)
 [//]: # (5. [aleo deploy]&#40;#6-aleo-deploy&#41;)
 
 The Aleo private key, view key, and address will be printed to console.
-See [`concepts/accounts`](../concepts/accounts.md) for more information.
+See [`concepts/accounts`](../../concepts/beginner/00_accounts.md) for more information.
 
 ## `snarkvm new`
 
@@ -77,15 +37,24 @@ The new package will have a directory structure as follows:
 package-name/
 ├── program.json # Your program manifest
 ├── README.md # Your program description
-└── main.aleo # Your program file
+└── main.leo # Your program file
+```
+
+## `snarkvm build`
+:::info
+This command is deprecated as of snarkVM `v0.14.5`. It will be removed in a future release.
+:::
+To compile your program and verify that it builds properly, run:
+```bash
+snarkvm build
+```
+
+To compile your program in offline mode run:
+```bash
+snarkvm build --offline
 ```
 
 ## `snarkvm run`
-First make sure you have created a `.env` file with the following variables:
-```bash
-NETWORK={$NETWORK}
-PRIVATE_KEY={${PASTE_YOUR_PRIVATE_KEY_HERE}}
-```
 
 To run your Aleo program function run:
 ```bash
@@ -148,4 +117,3 @@ To update snarkVM and suppress outputs to terminal run:
 ```
 snarkvm update --quiet
 ```
-
