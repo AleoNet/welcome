@@ -8,19 +8,15 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
 
 ## Getting Started
 
-1. Fork the [aleo-docs repository](https://github.com/AleoNet/aleo-docs) on GitHub.
+1. Fork the [welcome](https://github.com/AleoNet/welcome) repository on GitHub.
 
 2. Clone your forked repository locally:
    ```
-   git clone https://github.com/YOUR-USERNAME/aleo-docs.git
+   git clone https://github.com/YOUR-USERNAME/welcome.git
    ```
 3. Navigate to the project directory:
    ```
-   cd aleo-docs
-   ```
-4. Initialize and update the submodule:
-   ```
-   git submodule update --init --recursive
+   cd welcome
    ```
 
 ## Making Changes
@@ -29,16 +25,8 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
    ```
    git checkout -b your-feature-branch
    ```
-2. Navigate to the `welcome` submodule directory:
-   ```
-   cd welcome
-   ```
-3. Make your changes to the documentation files. Most content is in Markdown format.
-4. Test your changes locally by running the Docusaurus development server at root of `aleo-docs` repository:
-   ```
-   yarn start
-   ```
-5. Commit your changes with a descriptive commit message:
+2. Make your changes to the documentation files. Most content is in Markdown format.
+3. Commit your changes with a descriptive commit message:
    ```
    git commit -am "Add description of your changes"
    ```
@@ -49,7 +37,7 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
    ```
    git push origin your-feature-branch
    ```
-2. Go to the [aleo-docs](https://github.com/AleoNet/aleo-docs) and its submodule [welcome](https://github.com/AleoNet/welcome) on GitHub and create a new pull request from `your-feature-branch`.
+2. Go to the [welcome](https://github.com/AleoNet/welcome) repository on GitHub and create a new pull request from `your-feature-branch`.
 3. Provide a clear title and description for your pull request, explaining the changes you've made.
 4. Submit the pull request for review.
 
@@ -63,7 +51,7 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
 
 ## Need Help?
 
-If you have any questions or need assistance, please don't hesitate to open an issue in the [aleo-docs](https://github.com/AleoNet/aleo-docs) or [welcome](https://github.com/AleoNet/welcome) repository or reach out to the maintainers.
+If you have any questions or need assistance, please don't hesitate to open an issue in the [welcome](https://github.com/AleoNet/welcome) repository or reach out to the maintainers.
 
 Thank you for contributing to the Aleo documentation!
 <!-- markdown-link-check-enable -->
