@@ -19,6 +19,12 @@ Welcome to the Aleo DevDocs contribution guide! We invite you to help improve ou
    cd welcome
    ```
 
+4. Make changes in the documentation directory:
+   ```
+   cd documentation
+   ```
+   This is where you'll find the content files to edit.
+
 ## Making Changes
 
 1. Create a new branch for your changes:
