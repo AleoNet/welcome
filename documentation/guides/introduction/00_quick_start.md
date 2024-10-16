@@ -73,7 +73,7 @@ APPNAME=helloworld_$RANDOM
 ```
 
 :::note
-The reason of having a random application name is because Aleo network stores each program with its unique Program ID in program registry.
+The reason for using a random application name is that the Aleo network identifies each program with its unique Program ID, and no two programs can have the same ID in the program registry. By generating a random name, we ensure that our application's Program ID will be unique when deployed.
 :::
 
 * Create a new test Leo application

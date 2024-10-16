@@ -84,5 +84,5 @@ Once you have a local devnet running in the background, you can start deploying 
 The Aleo Testnet closely mimics the environment of the mainnet, providing a realistic testing scenario for developers. One important note to keep in mind is that since the Testnet is continuously running and the network identifies each program with its unique ID, developers cannot redeploy a program with the exact same ID once it has been deployed to the Testnet.  
 
 <!-- markdown-link-check-disable -->
-To start testing with the Aleo Testnet, simply make a REST API request to either the public endpoint at https://api.explorer.provable.com/v1/testnet or use a private endpoint provided by infrastructure providers. For further information, refer to the [default REST API endpoints](../testnet/public_endpoints/00_latest_height.md) available from a validator node.
+To start testing with the Aleo Testnet, simply make a REST API request to either the public endpoint at https://api.explorer.provable.com/v1/testnet or use a private endpoint provided by infrastructure providers. For further information, refer to the [default REST API endpoints](../../references/apis/00_latest_height.md) available from a validator node.
 <!-- markdown-link-check-enable -->

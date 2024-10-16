@@ -6,14 +6,14 @@ sidebar_label: SnarkVM Contribution
 This guide details the steps required to update snarkVM and propagate these changes to the Aleo network.
 
 ## Branches Overview
-[**mainnet-staging branch**](https://github.com/AleoNet/snarkVM)
+[**staging branch**](https://github.com/AleoNet/snarkVM)
 - This branch acts as a staging environment for integrating and initially testing changes before they are promoted to the mainnet branch.
 
 [**mainnet branch**](https://github.com/AleoNet/snarkVM/tree/mainnet)
-- This is the production branch where only stable and thoroughly tested changes are merged. It directly mirrors the mainnet-staging branch after changes are validated. It is used to create production releases.
+- This is the production branch where only stable and thoroughly tested changes are merged. It directly mirrors the staging branch after changes are validated. It is used to create production releases.
 
 ## Implications of a snarkVM Pull Request (PR)
-- When a new PR is merged into mainnet-staging for snarkVM, snarkOS must also be updated to reflect the updated snarkVM dependency. This requires a separate PR for snarkOS, ensuring all checks are passed as specified in the snarkOS contribution guide.
+- When a new PR is merged into staging for snarkVM, snarkOS must also be updated to reflect the updated snarkVM dependency. This requires a separate PR for snarkOS, ensuring all checks are passed as specified in the snarkOS contribution guide.
 - In some cases, a snarkVM PR may have a corresponding "sister PR" in snarkOS, necessary for the successful compilation of snarkOS. Always check for the term "sister PR" in the PR README.
 
 ## Review and Merge Process for snarkVM PRs

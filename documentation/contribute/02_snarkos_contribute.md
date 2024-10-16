@@ -6,18 +6,18 @@ sidebar_label: SnarkOS Contribution
 This checklist provides a step-by-step guide for restarting the Aleo network with new features merged. Follow these steps to ensure a smooth process.  
 
 ## Branches Overview
-[**mainnet-staging branch**](https://github.com/AleoNet/snarkOS)  
+[**staging branch**](https://github.com/AleoNet/snarkOS)  
 - This branch serves as a staging area for the integration and initial testing of changes before they are promoted to the mainnet branch. 
 
 [**mainnet branch**](https://github.com/AleoNet/snarkOS/tree/mainnet)  
-- The production branch where only stable and thoroughly tested changes are merged. It is used for creating production releases. It is always a direct mirror of a mainnet-staging commit.
+- The production branch where only stable and thoroughly tested changes are merged. It is used for creating production releases. It is always a direct mirror of a staging commit.
 
 ## Networks Overview
 ### DevNet(s)
 - Initial proposed changes are implemented and tested on DevNets.
 - Snarkops - aims to provide guides and scripts for managing SnarkOS and participating in ANF's CanaryNet. 
 
-### CanaryNet (running mainnet-staging branch)
+### CanaryNet (running staging branch)
 - Changes are merged into CanaryNet from DevNet for testing and validation.
 - CanaryNet is used to onboard additional validators before potentially bonding them to Testnet Beta/Mainnet.
 - Validators are bonded by the ANF.
@@ -46,7 +46,7 @@ This checklist provides a step-by-step guide for restarting the Aleo network wit
 </p>
 
 **1. Fork the Repository**
-    - Fork the repository from the mainnet-staging branch to your own GitHub account.
+    - Fork the repository from the staging branch to your own GitHub account.
     - Clone your fork locally.
 
 ```sh
@@ -56,7 +56,7 @@ git remote add upstream git@github.com:AleoNet/snarkOS.git
 
 **2. Switch to the base branch**
 ```sh
-git switch mainnet-staging
+git switch staging
 ```
 
 **3. Create a Feature Branch**
@@ -91,7 +91,7 @@ git push
 - The CI pipeline is run again to ensure no new issues have been introduced during the review process.
 
 **8. Submit a PR to the Main AleoNet/snarkOS Repository**
-- After internal approval, submit a PR from your fork's main branch to the main AleoNet/snarkOS repository's mainnet-staging branch.
+- After internal approval, submit a PR from your fork's main branch to the main AleoNet/snarkOS repository's staging branch.
 - This triggers the main CI pipeline to run all relevant tests and checks again to ensure the code's stability and compatibility.
 
 **9. Review by Core Team**
