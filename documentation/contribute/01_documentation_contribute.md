@@ -6,6 +6,23 @@ sidebar_label: DevDocs Contribution
 <!-- markdown-link-check-disable -->
 Welcome to the Aleo DevDocs contribution guide! We invite you to help improve our documentation, making it more comprehensive and up-to-date. Your contributions, big or small, are valuable in enhancing the Aleo ecosystem for developers. This guide will walk you through the process of contributing effectively to our documentation.
 
+## Providing Feedback
+
+If you've found an issue or have a suggestion for improvement but don't have time to make the changes yourself, you can still contribute by providing feedback through GitHub Issues:
+
+1. Go to the [Issues](https://github.com/AleoNet/welcome/issues) page of the welcome repository.
+2. Click on "New Issue".
+3. Choose the appropriate issue template if available, or start with a blank issue.
+4. Provide a clear and concise title that summarizes the issue or suggestion.
+5. In the description:
+   - For bugs or errors: Describe what you expected to see and what you actually saw. Include steps to reproduce if applicable.
+   - For improvement suggestions: Explain your idea and how it would enhance the documentation.
+   - If relevant, include screenshots or code snippets to illustrate your point.
+6. Add appropriate labels to your issue (e.g., "documentation", "enhancement", "bug").
+7. Submit the issue.
+
+Your feedback helps us identify areas for improvement and ensures the documentation remains accurate and helpful for all users.
+
 ## Getting Started
 
 1. Fork the [welcome](https://github.com/AleoNet/welcome) repository on GitHub.
