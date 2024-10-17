@@ -4,7 +4,7 @@ title: Core Architecture
 sidebar_label: Core Architecture
 ---
 :::note
-To read detailed specifications of AleoBFT and AleoVM, please go to the References/Specifications section.
+To read detailed specifications of AleoBFT and AleoVM, please go to the **References/Specifications** section.
 :::
 
 Aleo is focused on permissionless private programmability, which means the ability for anyone to codify any logic onto the Aleo blockchain without asking for anyone's permission. This is achieved through two key components:

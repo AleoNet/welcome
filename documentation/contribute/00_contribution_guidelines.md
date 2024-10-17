@@ -9,7 +9,7 @@ Welcome to Aleo’s Developer Documentation. Committed to open-source principles
 ## Introduction
 Aleo is a fully open-source, decentralized, privacy-preserving Layer 1 blockchain that allows developers to create applications with built-in privacy features. Using zero-knowledge proofs, Aleo enables programmable privacy, ensuring that sensitive data remains confidential while still allowing verification. The platform offers high scalability, making it capable of supporting large-scale applications, and provides an unrestricted runtime environment that removes typical blockchain limitations. This unique combination of privacy, scalability, and flexibility makes Aleo an ideal platform for building the next generation of privacy-focused decentralized applications.   
 
-For more details, visit the [Concepts](../concepts) section to explore Aleo’s architecture and features.
+For more details, visit the **Concepts** section to explore Aleo’s architecture and features.
 
 ## Help improve our ecosystem
 ### Proposing an ARC
@@ -37,7 +37,7 @@ Every stack that forms Aleo is open-sourced and welcomes contributions of all ki
 - [Leo](https://docs.leo-lang.org/leo/resources#contributing) - Rust-based DSL to write programs on Aleo  
 - [Provable SDK](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk) - Javascript/Typescript tools for creating zero knowledge apps  
 - [Create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app) - Scaffolding your first Aleo project  
-- [Aleo Instruction](../aleo) - IR that Leo language compiles into  
+- [Aleo Instruction](../guides/aleo/00_aleo_overview.md) - IR that Leo language compiles into  
 - [SnarkOS](./snarkos_contribute) - The operating system or blockchain node client of Aleo  
 - [SnarkVM](./snarkvm_contribute) - The virtual machine that performs verifiable computation  
 <!-- markdown-link-check-enable -->
