@@ -12,10 +12,27 @@ Aleo is a fully open-source, decentralized, privacy-preserving Layer 1 blockchai
 For more details, visit the [Concepts](../concepts) section to explore Aleo’s architecture and features.
 
 ## Help improve our ecosystem
-Have ideas on development standards or protocol improvements? Share them in the `#loose-thoughts` channel on our [Discord](https://discord.gg/aleo) to start a discussion. When you're ready to propose a new idea, head to [ARCs discussions on GitHub](https://github.com/AleoNet/ARCs/discussions) to create a proposal and gather community feedback before proceeding to vote for acceptance.  
+### Proposing an ARC
+Have ideas on development standards or protocol improvements? Follow these steps to propose an Aleo Request for Comments (ARC):
+
+1. Share your idea in the `#loose-thoughts` channel on our [Discord](https://discord.gg/aleo) as a new thread.
+2. The governance bot will add thumbs up and down emoji reactions to your thread to gather community feedbacks.
+3. If your idea receives more than 20 thumbs up reactions:
+   - Create a new discussion in the [ARCs GitHub Discussions](https://github.com/AleoNet/ARCs/discussions) to formalize your proposal.
+   - Run the `/propose` command in the Discord thread to initiate the governance bot, which will:
+     - Create an official proposal on the Aleo Governance website
+     - Create a post in the `#proposals` channel with details of your proposal to continue discussion and a link to the governance website
+4. As the author, you can edit your proposal through the Aleo Governance Interface and update the GitHub discussion accordingly.
+5. The community will then discuss your proposal in the `#proposals` channel and in the GitHub discussion.
+6. Finally, the community will vote on your proposal for approval.
+
+This process ensures that ideas are thoroughly discussed and vetted by the community before becoming official ARCs.
+
+For more details and a visual guide of this process, please refer to [here](https://hackmd.io/@edsammy2/ByTN2Rqk0#/).
 
 <!-- markdown-link-check-disable -->
-Every stack that forms Aleo is open-sourced and welcomes contributions of all kinds including [this documentation](./documentation_contribute). Each stack has specific contribution guidelines, which are provided below for easy reference:  
+### Contributing to the Aleo stacks
+Every stack that forms Aleo is open-sourced and welcomes contributions of all kinds including [this documentation](./documentation_contribute). Each stack has its own specific contribution guidelines, which are provided below for easy reference:  
 - [DevDocs](./documentation_contribute) - This developer documentation  
 - [Leo](https://docs.leo-lang.org/leo/resources#contributing) - Rust-based DSL to write programs on Aleo  
 - [Provable SDK](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk) - Javascript/Typescript tools for creating zero knowledge apps  
