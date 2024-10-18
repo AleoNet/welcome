@@ -95,6 +95,12 @@ Once you have a local devnet running in the background, you can start deploying 
 
 The `--broadcast` flag is crucial as it instructs the Leo CLI to send the deployment or execution transaction to the network, ensuring that your actions are actually performed on the devnet rather than just simulated locally, allowing you to test the full lifecycle of your program in a realistic environment.
 
+## Querying the Local Devnet
+
+Once your local devnet is running, you can use various `leo query` commands to interact with and retrieve information from the network. To query the local devnet, ensure you're using the correct endpoint by either including the `--endpoint http://localhost:3030` flag with your commands or setting `ENDPOINT=http://localhost:3030` in your `.env` file.  
+
+The `leo query` command supports querying different types of data from your local network, including block information, transaction details, program data, and mapping values. These queries allow you to inspect the current state of your local network, verify transactions, and debug your Aleo programs effectively, providing valuable insights into the behavior and performance of your applications on the devnet.
+
 ## Testing with Aleo Testnet
 The Aleo Testnet closely mimics the environment of the mainnet, providing a realistic testing scenario for developers. One important note to keep in mind is that since the Testnet is continuously running and the network identifies each program with its unique ID, developers cannot redeploy a program with the exact same ID once it has been deployed to the Testnet.  
 
