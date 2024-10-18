@@ -74,11 +74,26 @@ Ctrl+b [
 10. Look for the validator node 0 and take note of its private key that is shown during startup of the node. It should look something like below:
 ![TestnetValidator](./images/devnet_validator_zero.png)
 11. The private key will always stay the same for every node that runs with devnet.sh script so it only needs to remember once.  
-12. The reason for taking note of validator node 0’s private key is because it is automatically funded with test Aleo Tokens (AT) with both public mapping balance and private records.  
-13. To interact with the local devnet, just replace all API calls URL to `http://localhost:3030`.  
-Refer here for all the default available REST API endpoints from a validator node.  
+12. The reason for taking note of validator node 0's private key is because it is automatically funded with test Aleo Tokens (AT) with both public mapping balance and private records.  
+13. To interact with the local devnet:
+    - Replace all API calls URL with `http://localhost:3030`.
+    - When using Leo CLI commands, you can set the endpoint in two ways:  
+      a. Use the `--endpoint` flag for each command. For example:
+         ```
+         leo deploy --endpoint http://localhost:3030 --broadcast
+         leo execute --endpoint http://localhost:3030 --broadcast
+         ```
+      b. Set the endpoint in the `.env` file at the root of your project:
+         ```
+         ENDPOINT=http://localhost:3030
+         ```
+         This way, you don't need to specify the endpoint for each command.
 
-Once you have a local devnet running in the background, you can start deploying a program to the devnet using `leo deploy` and execute transactions using `leo execute` to start testing any logic in the async functions and correctness of the state transitions of your programs.
+Refer [here](../../references/apis/00_latest_height.md) for all the default available REST API endpoints from a validator node.  
+
+Once you have a local devnet running in the background, you can start deploying a program to the devnet using `leo deploy --broadcast` and execute transactions using `leo execute --broadcast` to start testing any logic in the async functions and correctness of the state transitions of your programs. If you haven't set the endpoint in the `.env` file, remember to include the `--endpoint http://localhost:3030 --broadcast` flags when interacting with your local devnet.  
+
+The `--broadcast` flag is crucial as it instructs the Leo CLI to send the deployment or execution transaction to the network, ensuring that your actions are actually performed on the devnet rather than just simulated locally, allowing you to test the full lifecycle of your program in a realistic environment.
 
 ## Testing with Aleo Testnet
 The Aleo Testnet closely mimics the environment of the mainnet, providing a realistic testing scenario for developers. One important note to keep in mind is that since the Testnet is continuously running and the network identifies each program with its unique ID, developers cannot redeploy a program with the exact same ID once it has been deployed to the Testnet.  
