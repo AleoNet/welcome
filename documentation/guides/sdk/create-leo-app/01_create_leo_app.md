@@ -59,32 +59,12 @@ Write down your private key, view key, and public address in a safe place. Treat
 
 ### Faucet
 
-Once you have your account, use our faucet to get some Aleo credits! We have a faucet by text and one via Discord.
+Once you have your account, use our faucet to get some Aleo credits! Our ecosystem wallets have faucets that you can use to get credits.
 <!-- markdown-link-check-disable -->
-Head to our [faucet page](https://faucet.aleo.org/) and follow the instructions there. 
+* [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
+* [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
+* [Soter Wallet Faucet](https://faucetbeta.sotertech.io/)
 <!-- markdown-link-check-enable -->
-
-After the credits have been disbursed to your address, note your transaction ID down.
-
-You can also join our [Discord server](https://discord.gg/aleo) and use the `#faucet` channel if texting isn't working. You can send only one request every 20 minutes and can only request 50 credits per hour. Once you send a faucet request, Discord will start a thread under the faucet channel with your request.
-
-Format:
-
-```bash
-/sendcredits aleo1address amt
-```
-
-Example:
-```bash
-/sendcredits aleo1k53lck74r93q70ftjvpkmnl5h9uwcna5wqyt80ggmz5w7lck8syskpxj46 20
-```
-
-Note down your transaction ID in the back of the URL from the faucet. The success message in the Discord thread should look like this:
-
-```bash
-Transfer successful! for message ID: 1156693507768078496
-https://api.explorer.provable.com/v1/testnet/transaction/at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
-```
 
 ### Leo & `helloworld`
 
@@ -129,49 +109,9 @@ leo execute main 1u32 2u32
 
 Let's get back to deploying!
 
-When you deploy a program, the record that you requested from the faucet is the one that will be used in order to pay for deployment. Looking in `App.jsx`, the web worker is called in order to start the deployment. Following that to `src/workers/worker.js` we see that the WASM is initalized, which allows for computation to run efficiently in the browser, and that the program manager contains methods for authoring, deploying, and interacting with Aleo programs. 
+When you deploy a program, the fees that you requested from the faucet is the one that will be used in order to pay for deployment. Looking in `App.jsx`, the web worker is called in order to start the deployment. Following that to `src/workers/worker.js` we see that the WASM is initalized, which allows for computation to run efficiently in the browser, and that the program manager contains methods for authoring, deploying, and interacting with Aleo programs. 
 
-Thing is, we can hit deploy right now, but it’ll take some time to scan for transactions on the blockchain, so let’s provide the *exact* record that we’ll be pulling the fee from. This significantly quickens the deployment process, and you’ll learn about decrypting records in the process.
-
-### Decrypting Records
-
-When you requested credits from the faucet, you are now an owner of a private by default record with credits. Let’s find that record within the transaction.
-
-Take your transaction ID from the Discord URL earlier:
-
-```bash
-at12u62xwfew2rq32xee8nwhtlxghfjz7mm3528yj240nuezue625fqy4lhlp
-``` 
-<!-- markdown-link-check-disable -->
-Go to “Get Transaction” at [provable.tools/rest](https://provable.tools/rest) and insert your transaction ID to look at the JSON object. You can similarly use https://api.explorer.provable.com/v1/testnet/transaction/[insert-your-transaction-id] to get the same output in your browser. 
-<!-- markdown-link-check-enable-->
-
-![get-transaction](./images/get-transaction.png)
-
-Look at `object.execution.transitions[0].outputs[0].value` and copy the ciphertext stored there. It should look something like this:
-
-```bash
-record1qyqspk3emhy5wzu4zg59ynhwtcpwg6ez6k4cl9d690hhqcd36pqh3vcpqyxx66trwfhkxun9v35hguerqqpqzqrtc3d8s5qrlufglkk3gkvgj3w2xdul2kl0pxhvt7f85qfxm0dcpt4g5gf6u356sgte9cyzqhj940l6qsdk5uf7u2xcwfv4zrvmeqdpzjrt848
-```
-
-Navigate to [provable.tools/record](https://provable.tools/record) and insert the record value along with your view key that you saved earlier. You are the owner of the record, and therefore, you have the view key in order to decrypt it to show the plaintext.
-
-![decrypt-record](./images/decrypt-record.png)
-
-Once decrypted, copy the plaintext record and paste it into line 67 of `src/workers/worker.js`. We can comment out line 64 since we don’t want the scanning function active, and instead, we want the optional manual option.
-
-The final result in `worker.js` should look something like this:
-
-```javascript
-// // Deploy the program to the Aleo network
-// const tx_id = await programManager.deploy(program, fee);
-
-// Optional: Pass in fee record manually to avoid long scan times
-const feeRecord = "{owner: aleo1qpjvun06n87jne3jwkml4jwdjqalw7n2qms03mcamenzczrj0uysp85fit.private, microcredits: 50000000u64.private, _nonce: 7736650979063383113375091219637426887776503149825722849440478642541635263210group.public}";
-const tx_id = await programManager.deploy(program, fee, undefined, feeRecord);
-```
-
-Now you can hit the deploy button! 
+Hit the deploy button!
 
 ![deployment-console](./images/deployment-console.png)
 

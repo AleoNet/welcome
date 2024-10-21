@@ -39,6 +39,7 @@ Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll
 To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
 * [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 * [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
+* [Soter Wallet Faucet](https://faucetbeta.sotertech.io/)
 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network before converting to private credits.
 
