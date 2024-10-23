@@ -3,7 +3,19 @@ id: core_architecture
 title: Core Architecture
 sidebar_label: Core Architecture
 ---
-Aleo is focused on permissionless private programmability, this means the ability for anyone to codify any logic onto the Aleo blockchain wihtout asking for anyone's permission. By utilising the off chain execution environment [SnarkVM](../zkcloud/snarkvm.md) and encryption then anyone can then execute this logic in a privacy preserving manner and broadcast it to the Aleo network. For detailed information, check the [zkCloud](../zkcloud/README.md) section.
+:::note
+To read detailed specifications of AleoBFT and AleoVM, please go to the **References/Specifications** section.
+:::
+
+Aleo is focused on permissionless private programmability, which means the ability for anyone to codify any logic onto the Aleo blockchain without asking for anyone's permission. This is achieved through two key components:
+
+1. SnarkVM (AleoVM): The off-chain execution environment that serves as the virtual machine for Aleo. SnarkVM is essentially AleoVM, which allows for the execution of Aleo programs and generation of zero-knowledge proofs. By utilizing SnarkVM and encryption, anyone can execute logic in a privacy-preserving manner.
+
+2. SnarkOS: The blockchain node client of Aleo, powered by AleoBFT consensus mechanism. SnarkOS implements the AleoBFT protocol, which ensures secure and efficient consensus among network participants.
+
+Together, these components enable users to execute logic privately and broadcast it to the Aleo network. The combination of AleoVM for execution and AleoBFT for consensus creates a robust ecosystem for permissionless, private, and programmable blockchain applications.
+
+For more detailed information on these components, check the [zkCloud](../zkcloud/README.md) section, which covers SnarkVM and SnarkOS in depth.
 
 ## What makes Aleo permissionless, private and programmable ?
 
@@ -24,8 +36,7 @@ The user can also choose to delegate their proof generation to a third party pro
 ### Third Party Prover
 This is an entitiy that runs a server that allows people to delegate an authorization request to process the zero knowledge proof. This is possible because the authorization/signing is separate from the proving process.
 
-### [More Resources on Network Participants](../network/README.md)
-
+[More Resources on Network Participants](../network/README.md)
 
 ## User flow of executing a Private Transaction
 
