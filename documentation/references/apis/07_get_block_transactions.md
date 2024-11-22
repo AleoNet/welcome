@@ -5,7 +5,7 @@ sidebar_label: Get Block Transactions
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/block/{height}/transactions
+GET /{network}/block/{height_or_hash}/transactions
 ```
 
 Returns the transactions for the given block height.
@@ -14,7 +14,7 @@ Returns the transactions for the given block height.
 
 | Parameter | Type | Required | Description                                     |
 |:----------|:----:|:--------:|:------------------------------------------------|
-| `height`  | u32  |   Yes    | The block height of the requested transactions. |
+| `height` or `hash` | u32 or string |   Yes    | The block height or hash of the requested block |
 
 ### Response
 

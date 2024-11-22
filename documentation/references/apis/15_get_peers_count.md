@@ -5,7 +5,7 @@ sidebar_label: Get Peers Count
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/peers/count
+GET /{network}/peers/count
 ```
 
 Returns the number of peers connected to the node.

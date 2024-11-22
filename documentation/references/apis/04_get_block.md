@@ -5,7 +5,7 @@ sidebar_label: Get Block
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/block/{height_or_hash}
+GET /{network}/block/{height_or_hash}
 ```
 
 Returns the block for the given block height or block hash.

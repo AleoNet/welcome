@@ -5,7 +5,7 @@ sidebar_label: Get Committee
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/latest/committee
+GET /{network}/committee/latest
 ```
 
 Returns the list of current committee members and their stake.
