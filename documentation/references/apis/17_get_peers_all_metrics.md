@@ -5,7 +5,7 @@ sidebar_label: Get Peers All Metrics
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/peers/all/metrics
+GET /{network}/peers/all/metrics
 ```
 
 Returns the peers and their types connected to the node.

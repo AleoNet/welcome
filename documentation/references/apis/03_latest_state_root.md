@@ -5,7 +5,7 @@ sidebar_label: Latest State Root
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/latest/stateRoot
+GET /{network}/stateRoot/latest
 ```
 
 Returns the latest state root.

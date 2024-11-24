@@ -5,7 +5,7 @@ sidebar_label: Latest Hash
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/latest/hash
+GET /{network}/block/hash/latest
 ```
 
 Returns the latest block hash.

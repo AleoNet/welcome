@@ -5,7 +5,7 @@ sidebar_label: Get Program
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/program/{programID}
+GET /{network}/program/{programID}
 ```
 
 Returns the program for the given program ID.
