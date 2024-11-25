@@ -5,7 +5,7 @@ sidebar_label: Latest Block
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/latest/block
+GET /{network}/block/latest
 ```
 
 Returns the latest block.

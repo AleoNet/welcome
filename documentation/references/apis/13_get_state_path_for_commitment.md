@@ -5,7 +5,7 @@ sidebar_label: Get State Path For Commitment
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/statePath/{commitment}
+GET /{network}/statePath/{commitment}
 ```
 
 Returns the state path for the given commitment.

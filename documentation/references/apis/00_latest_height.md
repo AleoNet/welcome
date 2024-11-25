@@ -5,7 +5,7 @@ sidebar_label: Latest Height
 ---
 
 ```bash title=ENDPOINT
-GET /testnet/latest/height
+GET /{network}/block/height/latest
 ```
 
 Returns the latest block height.
