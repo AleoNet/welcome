@@ -5,7 +5,7 @@ sidebar_label: Transaction Broadcast
 ---
 
 ```bash title=ENDPOINT
-POST /{network}/solution/broadcast
+POST /{network}/transaction/broadcast
 ```
 
 Broadcasts the transaction to the ledger.
