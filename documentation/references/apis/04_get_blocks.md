@@ -5,7 +5,7 @@ sidebar_label: Get Blocks
 ---
 
 ```javascript title=ENDPOINT
-GET /{network}/blocks
+GET /{network}/blocks?start={start_height}&end={end_height}
 ```
 
 Returns the blocks for the given block range.
