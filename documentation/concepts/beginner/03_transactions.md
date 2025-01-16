@@ -4,7 +4,7 @@ title: Transactions
 sidebar_label: Transactions
 ---
 
-A **transaction** is a fundamental data structure for publishing a state transition on the ledger.
+A **transaction** is a fundamental data structure for publishing a new program or a set of state transitions on the ledger.
 
 ## Types of Transactions
 
@@ -27,7 +27,7 @@ The deployment transaction publishes an Aleo program to the network.
 |    `transitions`    | array |              The [transitions](./04_transitions.md)               |
 
 ### Execute Transaction
-The execution transaction represents a call to an Aleo program.
+The execution transaction represents a call to an Aleo program function.
 
 |    Parameter     |  Type  |                                   Description                                    |
 |:----------------:|:------:|:--------------------------------------------------------------------------------:|

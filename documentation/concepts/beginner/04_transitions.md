@@ -4,6 +4,8 @@ title: Transitions
 sidebar_label: Transitions
 ---
 
+A **transition** represents a private and optional public state transition, which Aleo validators process to change state (e.g. to transfer private or public tokens to an Aleo address).
+
 ## Components of a Transition
 An Aleo transition is serialized in the following format:
 
