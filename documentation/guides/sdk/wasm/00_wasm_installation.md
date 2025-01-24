@@ -4,12 +4,12 @@ title: Wasm
 sidebar_label: Installation
 ---
 
-<!-- markdown-link-check-disable -->
+
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
 [![github]](https://github.com/provablehq/sdk)&ensp;[![crates-io]](https://crates.io/crates/aleo-wasm)&ensp;[![docs-rs]](https://docs.rs/aleo-wasm/latest/aleo-wasm/)
-<!-- markdown-link-check-enable -->
+
 
 [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
@@ -33,7 +33,7 @@ Functionality exposed by this crate includes:
 
 More information on these concepts can be found at the [Aleo Developer Hub](../../../concepts/beginner/00_accounts.md).
 
-<!-- markdown-link-check-disable -->
+
 ## Usage
 The [wasm-pack](https://crates.io/crates/wasm-pack) tool is used to compile the Rust code in this crate into JavaScript
 modules which can be imported into other JavaScript projects.
@@ -55,7 +55,7 @@ be changed as necessary using the `--out-dir` flag). This folder can then be imp
 by other JavaScript modules.
 
 There are 3 possible JavaScript modules that [wasm-pack](https://crates.io/crates/wasm-pack) can be used to generate 
-<!-- markdown-link-check-enable -->
+
 when run within this crate:
 1. **NodeJS module:** Used to build NodeJS applications.
 2. **Single-Threaded browser module:** Used to build browser-based web applications.

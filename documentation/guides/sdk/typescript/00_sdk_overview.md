@@ -3,11 +3,11 @@ id: overview
 title: Javascript/Typescript
 sidebar_label: Javascript/Typescript
 ---
-<!-- markdown-link-check-disable -->
+
 
 <a href="https://www.npmjs.com/package/@provablehq/sdk"> <img alt="Provable SDK" src="https://img.shields.io/npm/l/%40provablehq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
 
-<!-- markdown-link-check-enable -->
+
 
 
 ## Tools for Building Zero Knowledge Web Apps
@@ -682,12 +682,12 @@ A full example of this implementation can be found [here](https://github.com/pro
 The official token of operation of the Aleo Network are Aleo credits. Aleo credits are used to pay all fees for program
 execution on the Aleo network.
 
-<!-- markdown-link-check-disable -->
+
 
 Aleo credits are defined in the [credits.aleo](https://explorer.aleo.org/program/credits.aleo) program. This program is
 deployed to the Aleo Network and defines data structures representing Aleo credits and the functions used to manage them.
 
-<!-- markdown-link-check-enable -->
+
 
 There are two ways to hold Aleo credits.
 
@@ -859,13 +859,13 @@ representing a user.
 A straightforward example of a usage of records in a program can be demonstrated by explaining the process of private
 value transfers of official Aleo credits on the Aleo network.
 
-<!-- markdown-link-check-disable -->
+
 
 Aleo credits are the official token in which all on-chain execution and deployment fees are paid. Credits can be public
 or private. Private credits are represented by the `credits` record in the [credits.aleo](https://explorer.aleo.org/programs/credits.aleo)
 program.
 
-<!-- markdown-link-check-enable -->
+
 
 ```
 record credits:

@@ -4,9 +4,9 @@ title: zkml transpiler
 sidebar_label: zkml Transpiler
 ---
 
-<!-- markdown-link-check-disable -->
+
 [![github]](https://github.com/provablehq/python-sdk/tree/master/zkml)
-<!-- markdown-link-check-enable -->
+
 
 [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 
@@ -50,17 +50,17 @@ You can install the `zkml` Python library from PyPI using the following command:
 pip3 install zkml
 ```
 
-<!-- markdown-link-check-disable -->
+
 Note: On some systems, you may need to use `pip` instead of `pip3`.
 Alternatively, you can also install through the `.whl` file or in editable mode from the [GitHub repository](https://github.com/provablehq/python-sdk/tree/master/zkml).
-<!-- markdown-link-check-enable -->
+
 
 ### Usage
 
-<!-- markdown-link-check-disable -->
+
 Below is a brief description of the classes and functions provided by the library. Detailed documentation is in progress and will be available soon.
 We encourage you to also check out the [examples on GitHub](https://github.com/provablehq/python-sdk/tree/master/zkml/examples).
-<!-- markdown-link-check-enable -->
+
 
 * In a first step, you can receive an object of the class `zkml.LeoTranspiler(model, validation_data)`
     * For the `model` parameter, pass the trained scikit-learn model
@@ -78,7 +78,7 @@ We encourage you to also check out the [examples on GitHub](https://github.com/p
 
 ## Building Python Apps
 
-<!-- markdown-link-check-disable -->
+
 Please check out the [examples on GitHub](https://github.com/provablehq/python-sdk/tree/master/zkml/examples).
 Further documentation and tutorials as to how to use the `zkml` Python library will follow soon.
-<!-- markdown-link-check-enable -->
+

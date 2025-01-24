@@ -93,7 +93,7 @@ To verify if you have snarkOS, open your terminal and type `snarkos`. You should
 ![snarkOS](./images/snarkos-cli.png)
 
 
-<!-- markdown-link-check-disable -->
+
 
 ## 3. Next Steps
 
@@ -101,4 +101,4 @@ Once you have successfully completed the installation of both Leo and snarkOS, y
 
 To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](./quick_start). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
 
-<!-- markdown-link-check-enable -->
+

@@ -4,9 +4,9 @@ title: Provable Python SDK
 sidebar_label: Provable Python SDK
 ---
 
-<!-- markdown-link-check-disable -->
+
 [![github]](https://github.com/provablehq/python-sdk/tree/master/sdk)
-<!-- markdown-link-check-enable -->
+
 
 [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 
@@ -29,9 +29,9 @@ Ensure you have Python 3.11 or newer installed. If your operating system is supp
 pip3 install aleo
 ```
 
-<!-- markdown-link-check-disable -->
+
 Alternatively, you can also install from a `.whl` file, either from the [GitHub repository](https://github.com/provablehq/python-sdk/tree/master/sdk/target/wheels), or by building it yourself. For the installation, use a command like this:
-<!-- markdown-link-check-enable -->
+
 
 ```bash
 pip3 install aleo-0.0.3-cp311-cp311-macosx_11_0_arm64.whl
@@ -47,13 +47,13 @@ private_key = aleo.PrivateKey()
 print(private_key.to_string())
 ```
 
-<!-- markdown-link-check-disable -->
+
 ### Build Instructions
 To build it, first clone the [GitHub repository](https://github.com/provablehq/python-sdk/tree/master/sdk). Then, run the following command:
 ```bash
 bash build.sh
 ```
-<!-- markdown-link-check-enable -->
+
 
 After successful building, you will find a new `.whl` file in the `target/wheels` directory that you can install using the command from above.
 

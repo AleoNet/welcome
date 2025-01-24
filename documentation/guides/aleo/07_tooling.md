@@ -23,10 +23,10 @@ Aleo instructions support for Sublime's LSP plugin is provided through a languag
 
 ### Install
 
-<!-- markdown-link-check-disable -->
+
 1. Install [LSP](https://packagecontrol.io/packages/LSP) and [LSP-leo](https://packagecontrol.io/packages/LSP-leo) from Package Control.
 2. Restart Sublime.
-<!-- markdown-link-check-enable -->
+
 
 ### Usage
 

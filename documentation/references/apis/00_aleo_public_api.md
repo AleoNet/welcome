@@ -8,7 +8,7 @@ sidebar_label: Aleo Public API
 The Aleo public API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer).
 
 To query the network, make a request to Aleo public API by Provable.
-<!-- markdown-link-check-disable -->
+
 
 | URL              |
 |------------------|
