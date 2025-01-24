@@ -14,9 +14,9 @@ An Aleo node can be run in three modes.
 <!-- ### [Client](../network/) -->
 
 
-- [Client](../network/client)
-- [Prover](../network/provers)
-- [Validator](../network/validators)
+- [Client](../network/client.md)
+- [Prover](../network/provers.md)
+- [Validator](../network/validators.md)
 
 
 

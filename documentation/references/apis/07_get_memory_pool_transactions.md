@@ -18,4 +18,4 @@ None
 
 | Parameter |                    Type                    |        Description        |
 |:---------:|:------------------------------------------:|:-------------------------:|
-| `result`  | [array](../../concepts/beginner/03_transactions.md) | The array of transactions |
+| `result`  | [array](../../concepts/fundamentals/03_transactions.md) | The array of transactions |

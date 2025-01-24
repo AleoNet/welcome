@@ -22,5 +22,5 @@ Returns the blocks for the given block range.
 
 | Parameter |                 Type                 |     Description      |
 |:---------:|:------------------------------------:|:--------------------:|
-| `result`  | [array](../../concepts/beginner/05_blocks.md) | The requested blocks |
+| `result`  | [array](../../concepts/fundamentals/05_blocks.md) | The requested blocks |
 

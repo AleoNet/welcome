@@ -32,11 +32,11 @@ Once a proposal is up:
 
 
 ### Contributing to Aleo
-Every component that forms Aleo is open-sourced and welcomes contributions of all kinds including [this documentation](./documentation_contribute). Each component has its own specific contribution guidelines, which are provided below for easy reference:  
-- [DevDocs](./documentation_contribute) - This developer documentation  
+Every component that forms Aleo is open-sourced and welcomes contributions of all kinds including [this documentation](./01_documentation_contribute.md). Each component has its own specific contribution guidelines, which are provided below for easy reference:  
+- [DevDocs](./01_documentation_contribute.md) - This developer documentation  
 - [Leo](https://docs.leo-lang.org/leo/resources#contributing) - Rust-based DSL to write programs on Aleo  
 - [Provable SDK](https://github.com/ProvableHQ/sdk/tree/mainnet/sdk) - Javascript/Typescript tools for creating zero knowledge apps  
 - [Create-leo-app](https://github.com/ProvableHQ/sdk/tree/mainnet/create-leo-app) - Scaffolding your first Aleo project  
 - [Aleo Instruction](../guides/aleo/00_aleo_overview.md) - IR that Leo language compiles into  
-- [SnarkOS](./snarkos_contribute) - The operating system or blockchain node client of Aleo  
-- [SnarkVM](./snarkvm_contribute) - The virtual machine that performs verifiable computation  
+- [SnarkOS](./02_snarkos_contribute.md) - The operating system or blockchain node client of Aleo  
+- [SnarkVM](./03_snarkvm_contribute.md) - The virtual machine that performs verifiable computation  

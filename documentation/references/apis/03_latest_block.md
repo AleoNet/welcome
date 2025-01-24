@@ -17,5 +17,5 @@ None
 ### Response
 | Parameter |                 Type                  |   Description    |
 |:---------:|:-------------------------------------:|:----------------:|
-| `result`  | [object](../../concepts/beginner/05_blocks.md) | The latest block |
+| `result`  | [object](../../concepts/fundamentals/05_blocks.md) | The latest block |
 

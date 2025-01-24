@@ -22,9 +22,9 @@ npm run install-leo
 npm run dev
 ```
 
-
+<!-- markdown-link-check-disable -->
 This installs all the required modules and also Leo, our statically-typed programming language built for writing private applications. Lastly, we've initialized a local instance of your React application at http://localhost:5173.
-
+<!-- markdown-link-check-enable -->
 `src/App.jsx` contains the main body of your React application.
 
 The `helloworld` folder is your Leo program. This is where you’ll use Leo.
@@ -33,8 +33,9 @@ The `helloworld` folder is your Leo program. This is where you’ll use Leo.
 
 ## 3. Execute `helloworld.aleo`
 
+<!-- markdown-link-check-disable -->
 Navigate to http://localhost:5173 and open up the developer console in your browser
-
+<!-- markdown-link-check-enable -->
 
 
 Hit “execute helloworld.aleo”. 

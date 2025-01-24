@@ -9,7 +9,7 @@ Learn how to deploy and execute a basic "hello world!" program on Aleo's network
 
 ## 1. Prerequisites
 
-Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](./getting_started).
+Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](../00_getting_started.md).
 
 
 
@@ -105,7 +105,9 @@ leo deploy
 You should have seen a confirmation that your Aleo application was deployed in the form of a transaction ID that looks like the following `at1rkkpqu5k4rt86zzccczw6cxeyvrl7hxydvvv7dhl7zr7p9w40c8s70kwm8`. Copy your transaction ID to view the details of your deployment transaction on the Aleo block explorers:
 
 - [Provable Explorer](https://testnet.explorer.provable.com/)
+<!-- markdown-link-check-disable -->
 - [Aleoscan](https://testnet.aleoscan.io/)
+<!-- markdown-link-check-enable -->
 - [Aleo123](https://testnet.aleo123.io/)
 - [Aleo.Info](https://testnet.aleo.info/)
 

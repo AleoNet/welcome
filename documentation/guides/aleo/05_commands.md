@@ -20,7 +20,7 @@ You can print the list of commands by running `snarkvm --help`
 [//]: # (5. [aleo deploy]&#40;#6-aleo-deploy&#41;)
 
 The Aleo private key, view key, and address will be printed to console.
-See [`concepts/accounts`](../../concepts/beginner/00_accounts.md) for more information.
+See [`concepts/accounts`](../../concepts/fundamentals/00_accounts.md) for more information.
 
 ## `snarkvm new`
 

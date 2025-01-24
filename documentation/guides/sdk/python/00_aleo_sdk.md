@@ -29,8 +29,7 @@ Ensure you have Python 3.11 or newer installed. If your operating system is supp
 pip3 install aleo
 ```
 
-
-Alternatively, you can also install from a `.whl` file, either from the [GitHub repository](https://github.com/provablehq/python-sdk/tree/master/sdk/target/wheels), or by building it yourself. For the installation, use a command like this:
+For the installation, use a command like this:
 
 
 ```bash
