@@ -4,10 +4,11 @@ title: Wasm
 sidebar_label: Installation
 ---
 
-<!-- markdown-link-check-disable -->
+
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
 
+<!-- markdown-link-check-disable -->
 [![github]](https://github.com/provablehq/sdk)&ensp;[![crates-io]](https://crates.io/crates/aleo-wasm)&ensp;[![docs-rs]](https://docs.rs/aleo-wasm/latest/aleo-wasm/)
 <!-- markdown-link-check-enable -->
 
@@ -31,7 +32,7 @@ Functionality exposed by this crate includes:
 * Aleo primitives such as `Records`, `Programs`, and `Transactions` and their associated helper methods
 * A `ProgramManager` object that contains methods for authoring, deploying, and interacting with Aleo programs
 
-More information on these concepts can be found at the [Aleo Developer Hub](../../../concepts/beginner/00_accounts.md).
+More information on these concepts can be found at the [Aleo Developer Hub](../../../concepts/fundamentals/00_accounts.md).
 
 <!-- markdown-link-check-disable -->
 ## Usage

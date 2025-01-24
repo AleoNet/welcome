@@ -1,5 +1,5 @@
 ---
-id: sdk
+id: overview
 title: Provable SDK
 sidebar_label: Overview
 ---
@@ -77,9 +77,9 @@ The official Aleo Python SDK providing tools for creating zero knowledge apps. I
 Both libraries are in an early development stage. They can be installed through `pip install aleo` respectively `pip install zkml`. The 
 [documentation on the aleo library](./python/00_aleo_sdk.md) and the [documentation on the zkml library](./python/01_zkml_transpiler.md) provide more information on installation and usage.
 
-<!-- markdown-link-check-disable -->
+
 Source: [`python-sdk`](https://github.com/provablehq/python-sdk)
-<!-- markdown-link-check-enable -->
+
 
 ## 📚 Documentation
 

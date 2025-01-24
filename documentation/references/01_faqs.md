@@ -120,7 +120,7 @@ Ethereum introduced programmability but still didn’t offer privacy.
 Some projects like ZCast offered privacy but didn’t provide programmability.  
 Aleo provides both privacy and programmability.  
 
-<!-- markdown-link-check-enable -->
+
 
 ## Where can I watch talks and videos?
 * Coinbase BUIDL - [**Learning LEO | Coding Private Application with ZK Cryptography**](https://youtu.be/LJXjtthDl6I)
@@ -137,7 +137,7 @@ Aleo provides both privacy and programmability.
 
 
 ## What are the Aleo's social accounts?
-<!-- markdown-link-check-disable -->
+
 [//]: # (disabling markdown checks for twitter links)
 
 👾 | Discord ~ **https://discord.gg/aleo**
@@ -146,7 +146,7 @@ Aleo provides both privacy and programmability.
 
 🤝 | Community X (Twitter) ~ @aleocommunity ~ **https://twitter.com/aleocommunity**
 
-<!-- markdown-link-check-enable -->
+
 
 🐙 | GitHub ~ **https://github.com/AleoNet**
 

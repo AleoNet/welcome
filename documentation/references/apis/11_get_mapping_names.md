@@ -20,4 +20,4 @@ Returns the names of the mappings in a program for the given program ID.
 
 | Parameter |                  Type                   |         Description         |
 |:---------:|:---------------------------------------:|:---------------------------:|
-|  `array`  | [object](../../concepts/beginner/01_programs.md) | The requested mapping names |
+|  `array`  | [object](../../concepts/fundamentals/01_programs.md) | The requested mapping names |

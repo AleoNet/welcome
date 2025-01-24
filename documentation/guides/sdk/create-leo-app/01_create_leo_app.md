@@ -21,10 +21,10 @@ npm install
 npm run install-leo
 npm run dev
 ```
+
 <!-- markdown-link-check-disable -->
-
 This installs all the required modules and also Leo, our statically-typed programming language built for writing private applications. Lastly, we've initialized a local instance of your React application at http://localhost:5173.
-
+<!-- markdown-link-check-enable -->
 `src/App.jsx` contains the main body of your React application.
 
 The `helloworld` folder is your Leo program. This is where you’ll use Leo.
@@ -33,9 +33,10 @@ The `helloworld` folder is your Leo program. This is where you’ll use Leo.
 
 ## 3. Execute `helloworld.aleo`
 
+<!-- markdown-link-check-disable -->
 Navigate to http://localhost:5173 and open up the developer console in your browser
-
 <!-- markdown-link-check-enable -->
+
 
 Hit “execute helloworld.aleo”. 
 
@@ -60,11 +61,11 @@ Write down your private key, view key, and public address in a safe place. Treat
 ### Faucet
 
 Once you have your account, use our faucet to get some Aleo credits! Our ecosystem wallets have faucets that you can use to get credits.
-<!-- markdown-link-check-disable -->
+
 * [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 * [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
 * [Soter Wallet Faucet](https://faucetbeta.sotertech.io/)
-<!-- markdown-link-check-enable -->
+
 
 ### Leo & `helloworld`
 

@@ -3,7 +3,7 @@ id: documentation_contribute
 title: DevDocs Contribution
 sidebar_label: DevDocs Contribution
 ---
-<!-- markdown-link-check-disable -->
+
 Welcome to the Aleo DevDocs contribution guide! We invite you to help improve our documentation, making it more comprehensive and up-to-date. Your contributions, big or small, are valuable in enhancing the Aleo ecosystem for developers. This guide will walk you through the process of contributing effectively to our documentation.
 
 ## Providing Feedback
@@ -77,4 +77,3 @@ Your feedback helps us identify areas for improvement and ensures the documentat
 If you have any questions or need assistance, please don't hesitate to open an issue in the [welcome](https://github.com/AleoNet/welcome) repository or reach out to the maintainers.
 
 Thank you for contributing to the Aleo documentation!
-<!-- markdown-link-check-enable -->

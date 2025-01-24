@@ -297,7 +297,7 @@ Aleo instructions currently only support fixed-length static arrays.
 
 ### Record
 
-A [record](../../concepts/beginner/02_records.md) type is declared as `record {name}:`.  
+A [record](../../concepts/fundamentals/02_records.md) type is declared as `record {name}:`.  
 Records contain component declarations `{name} as {type}.{visibility};`.  
 Record data structures must contain the `owner` declaration as shown below.  
 When passing a record as input to a program function the `_nonce as group.{visibility}` declaration is also required.

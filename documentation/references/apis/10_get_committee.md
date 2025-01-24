@@ -18,4 +18,4 @@ None
 
 | Parameter |                  Type                  |         Description          |
 |:---------:|:--------------------------------------:|:----------------------------:|
-| `result`  | [array](../../concepts/beginner/00_accounts.md) | The latest committee members |
+| `result`  | [array](../../concepts/fundamentals/00_accounts.md) | The latest committee members |

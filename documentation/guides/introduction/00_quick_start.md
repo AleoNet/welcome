@@ -5,13 +5,13 @@ sidebar_label: Quick Start
 ---
 Learn how to deploy and execute a basic "hello world!" program on Aleo's network using Leo and snarkOS. 
 
-<!-- markdown-link-check-disable -->
+
 
 ## 1. Prerequisites
 
-Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](./getting_started).
+Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](./00_getting_started.md).
 
-<!-- markdown-link-check-enable -->
+
 
 ## 2. Generate your test keys and wallet address
 
@@ -34,7 +34,7 @@ Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll
 :::
 
 ## 3. Seeding your wallet with credits
-<!-- markdown-link-check-disable -->
+
 
 To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
 * [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
@@ -43,7 +43,7 @@ To seed your wallet, you'll need to request credits from faucet provided by the 
 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network before converting to private credits.
 
-<!-- markdown-link-check-enable -->
+
 
 :::tip
 While waiting for the credits to be sent to your wallet, you can proceed to the next step of creating a Leo application.
@@ -103,9 +103,11 @@ leo deploy
 ```
 
 You should have seen a confirmation that your Aleo application was deployed in the form of a transaction ID that looks like the following `at1rkkpqu5k4rt86zzccczw6cxeyvrl7hxydvvv7dhl7zr7p9w40c8s70kwm8`. Copy your transaction ID to view the details of your deployment transaction on the Aleo block explorers:
-<!-- markdown-link-check-disable -->
+
 - [Provable Explorer](https://testnet.explorer.provable.com/)
+<!-- markdown-link-check-disable -->
 - [Aleoscan](https://testnet.aleoscan.io/)
+<!-- markdown-link-check-enable -->
 - [Aleo123](https://testnet.aleo123.io/)
 - [Aleo.Info](https://testnet.aleo.info/)
 
@@ -113,7 +115,7 @@ You should have seen a confirmation that your Aleo application was deployed in t
 
 Finally, it is time to execute the application you just deployed!
 
-<!-- markdown-link-check-enable -->
+
 
 Make sure you are in the root of your Leo application and paste the following command in your terminal
 

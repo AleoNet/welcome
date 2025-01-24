@@ -13,12 +13,12 @@ An Aleo node can be run in three modes.
 
 <!-- ### [Client](../network/) -->
 
-<!-- markdown-link-check-disable -->
-- [Client](../network/client)
-- [Prover](../network/provers)
-- [Validator](../network/validators)
 
-<!-- markdown-link-check-enable -->
+- [Client](../network/client.md)
+- [Prover](../network/provers.md)
+- [Validator](../network/validators.md)
+
+
 
 ## Who uses snarkOS ?
 Everyone involved in Aleo uses snarkOS both to submit transactions and to fetch their data.

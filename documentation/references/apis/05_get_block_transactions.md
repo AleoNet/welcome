@@ -20,4 +20,4 @@ Returns the transactions for the given block height.
 
 | Parameter |                    Type                    |              Description               |
 |:---------:|:------------------------------------------:|:--------------------------------------:|
-| `result`  | [array](../../concepts/beginner/03_transactions.md) | The array of transactions in the block |
+| `result`  | [array](../../concepts/fundamentals/03_transactions.md) | The array of transactions in the block |

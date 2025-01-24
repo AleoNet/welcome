@@ -17,5 +17,5 @@ None
 ### Response
 | Parameter |                 Type                  |      Description      |
 |:---------:|:-------------------------------------:|:---------------------:|
-| `result`  | [string](../../concepts/beginner/05_blocks.md) | The latest state root |
+| `result`  | [string](../../concepts/fundamentals/05_blocks.md) | The latest state root |
 

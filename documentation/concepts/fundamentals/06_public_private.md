@@ -9,6 +9,7 @@ sidebar_label: Public vs. Private State
 The concept of Zero Knowledge proofs was first introduced in 1985 in the paper [The Knowledge Complexity of Interactive Proof Systems](https://epubs.siam.org/doi/10.1137/0218012?utm_source=the+new+stack&utm_medium=referral&utm_content=inline-mention&utm_campaign=tns+platform). However, it is only in recent years that the groundbreaking technology has been feasible to be applicable to blockchains. 
 <!-- markdown-link-check-enable -->
 
+
 Zcash was one of the earliest chains to utilize the power of zero knowledge proofs to provide privacy to an account's balance. Unlike traditional cryptocurrencies like Bitcoin, where transaction details are publicly visible on the blockchain, Zcash enables users to shield their transactions, rendering them completely opaque to outside observers. It utilizes zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge), a type of zero-knowledge proof system that allows parties to verify the validity of a computation without revealing the underlying data. 
 
 In even more recent times, we have seen several Ethereum virtual machine-compatible Layer-2 chains that have employed zero-knowledge cryptography techniques to solve Ethereum's scalability issues. They use zk-rollups, which compute multiple state changes off-chain, followed by posting the summary of those transactions and proofs on-chain. This helps to reduce transaction fees significantly. However, all of them utilize zero-knowledge technology mainly for scalability reasons.
