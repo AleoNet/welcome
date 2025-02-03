@@ -15,7 +15,7 @@ For more details, visit the **Concepts** section to explore Aleo’s architectur
 ### Proposing an ARC
 Have ideas on development standards or protocol improvements? Follow these steps to propose an Aleo Request for Comments (ARC):
 To create a new ARC proposal:
-1. Open a [Github Discussion](https://github.com/AleoHQ/ARCs/discussions/categories/arcs) with your proposal using template [ARC-0000](./arc-0000) and an available ARC number.
+1. Open a [Github Discussion](https://github.com/AleoHQ/ARCs/discussions/categories/arcs) with your proposal using template [ARC-0000](https://github.com/ProvableHQ/ARCs/tree/master/arc-0000) and an available ARC number.
 2. File a [Pull Request](https://github.com/AleoHQ/ARCs/pulls) with your proposal in a new subdirectory.
 
 To update an existing ARC:
@@ -41,7 +41,7 @@ A proposal can be "Deprecated" if it is replaced by a new proposal.
 
 #### Statuses
 
-See [ARC-0001](./arc-0001) for a detailed explanation of the statuses.
+See [ARC-0001](https://github.com/ProvableHQ/ARCs/tree/master/arc-0001) for a detailed explanation of the statuses.
 
 ### Contributing to Aleo
 Every component that forms Aleo is open-sourced and welcomes contributions of all kinds including [this documentation](./01_documentation_contribute.md). Each component has its own specific contribution guidelines, which are provided below for easy reference:  
