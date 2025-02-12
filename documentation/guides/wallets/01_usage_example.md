@@ -6,7 +6,7 @@ sidebar_label: Usage Example
 
 ## Overview
 
-This guide demonstrates how to use the [Universal Wallet Adapter](./00_universal_wallet_adapter.md) with `create-leo-app` and interact with the Token Registry Program.
+This guide demonstrates how to use the [Universal Wallet Adapter](./00_universal_wallet_adapter.md) with `create-leo-app` and interact with the [Token Registry Program](../standards/00_token_registry.md).
 
 ## Setup
 
