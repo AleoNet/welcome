@@ -16,7 +16,7 @@ Create a new application using `create-leo-app`:
 npm create leo-app@latest
 ```
 
-More information about `create-leo-app` can be found in the [here](../sdk/create-leo-app/00_app_installation.md) and [here](../sdk/create-leo-app/01_create_leo_app.md).
+More information about `create-leo-app` can be found in [here](../sdk/create-leo-app/01_create_leo_app.md).
 
 ### Installation
 
@@ -209,6 +209,166 @@ async function requestRecord() {
     }
   }
 ```
+
+## Full Example Code
+
+The full example code for App.tsx is provided below:
+
+```tsx
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import aleoLogo from "./assets/aleo.svg";
+import "./App.css";
+
+import { WalletMultiButton } from "@demox-labs/aleo-wallet-adapter-reactui";
+import "@demox-labs/aleo-wallet-adapter-reactui/dist/styles.css";
+import { useWallet } from "@demox-labs/aleo-wallet-adapter-react";
+
+function App() {
+  const [receivingAddress, setReceivingAddress] = useState("");
+  const [executing, setExecuting] = useState(false);
+
+  const { publicKey, requestTransaction, requestRecordPlaintexts } = useWallet();
+
+  async function execute() {
+    setExecuting(true);
+    if (!requestTransaction) {
+      alert("No wallet connected");
+      return;
+    }
+    const result = await requestTransaction(
+      {
+        address: publicKey || "",
+        chainId: "testnetbeta",
+        transitions: [{
+          program: "token_registry.aleo",
+          functionName: "register_token",
+          inputs: [
+            "12736872field", // token_name
+            "1273687u128", // token_symbol
+            "1273687u128", // token_decimals
+            "6u8", // token_type
+            "1000000000u128", // token_supply
+            "false", // external_authorization_required
+            "aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc" // external_authorization_party
+          ]
+        }],
+        fee: 100000, // fees in microcredits
+        feePrivate: false,
+      }
+    );
+    setExecuting(false);
+
+    console.log(result);
+  }
+
+  async function mintPrivate() {
+    if (!requestTransaction) {
+      alert("No wallet connected");
+      return;
+    }
+    const result = await requestTransaction(
+      {
+        address: publicKey || "",
+        chainId: "testnetbeta",
+        transitions: [{
+          program: "token_registry.aleo",
+          functionName: "mint_private",
+          inputs: [
+              "12736872field", // token_name
+              receivingAddress, // receiving_address
+              "1000000u128", // token_amount
+              "false", // external_authorization_required
+              "0u32" // authorized_until / doesn't matter if external_authorization_required is false
+            ]
+        }],
+        fee: 100000, // fees in microcredits
+        feePrivate: false,
+      }
+    );
+    console.log(result);
+  }
+
+  async function requestRecord() {
+    if (!requestRecordPlaintexts) {
+      alert("No wallet connected");
+      return;
+    }
+    const records = await requestRecordPlaintexts('token_registry.aleo');
+    const unspentRecords = records.filter(record => !record.spent);
+
+    if (unspentRecords.length > 0) {
+      console.log("Unspent Records:");
+      unspentRecords.forEach((record, index) => {
+        console.log(`Record ${index + 1}:`, record.plaintext);
+      });
+    } else {
+      console.log("No unspent records found");
+    }
+  }
+
+  return (
+    <>
+      <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
+        <WalletMultiButton />
+      </div>
+      <div>
+        <a href="https://provable.com" target="_blank">
+          <img src={aleoLogo} className="logo" alt="Aleo logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Aleo + React</h1>
+      <div className="card">
+        <p>
+          <button disabled={executing} onClick={execute}>
+            {executing
+              ? `Executing...check console for details...`
+              : `Register token on token_registry.aleo`}
+          </button>
+        </p>
+        <input 
+          type="text" 
+          placeholder="Enter receiving address"
+          value={receivingAddress}
+          onChange={(e) => setReceivingAddress(e.target.value)}
+          className="card"
+          style={{
+            padding: '0.6em 1.2em',
+            borderRadius: '8px',
+            border: '1px solid transparent',
+            fontSize: '1em',
+            fontWeight: '500',
+            fontFamily: 'inherit',
+            backgroundColor: '#1a1a1a',
+            cursor: 'text',
+            transition: 'border-color 0.25s'
+          }}
+        />
+        <p>
+          <button onClick={mintPrivate}>
+            {`Click to mint private token`}
+          </button>
+        </p>
+        <p>
+          <button onClick={requestRecord}>
+            {`Request record`}
+          </button>
+        </p>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+    </>
+  );
+}
+
+export default App;
+```
+
+## Conclusion
 
 This guide demonstrates how to integrate the Universal Wallet Adapter with the token_registry.aleo program to perform common token operations. We covered:
 
