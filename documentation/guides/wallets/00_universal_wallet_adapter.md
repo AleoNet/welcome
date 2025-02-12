@@ -4,7 +4,7 @@ title: Universal Wallet Adapter
 sidebar_label: Universal Wallet Adapter
 ---
 
-While different wallets provide their own adapter SDKs, applications typically want to support multiple wallets to give users flexibility in choosing their preferred wallet. The Aleo community has developed a universal wallet adapter hosted [here](https://github.com/arcane-finance-defi/aleo-wallet-adapters), which is largely based on [Demox Labs' Leo Wallet Adapter](https://docs.leo.app/aleo-wallet-adapter).
+While different wallets provide their own adapter SDKs, applications typically want to support multiple wallets to give users flexibility in choosing their preferred wallet. The Aleo community has developed an universal wallet adapter that is hosted [here](https://github.com/arcane-finance-defi/aleo-wallet-adapters), which is largely based on [Demox Labs' Leo Wallet Adapter](https://docs.leo.app/aleo-wallet-adapter).
 
 This guide demonstrates how to implement the universal wallet adapter in React applications.
 
@@ -128,7 +128,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
 ## Using the Wallet Hook
 
-After setup, you can use the `useWallet` hook from `@demox-labs/aleo-wallet-adapter-react`. The hook provides the following interface:
+After setup, you can use the `useWallet` hook from `@demox-labs/aleo-wallet-adapter-react` to access available functions that helps connect to and interact with the Aleo network. The hook provides the following interface:
 
 ```tsx
 export interface WalletContextState {
