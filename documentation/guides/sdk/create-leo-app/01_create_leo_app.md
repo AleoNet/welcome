@@ -31,6 +31,21 @@ The `helloworld` folder is your Leo program. This is where you’ll use Leo.
 
 `src/workers/worker.js` is the WebAssembly (WASM) module that we'll be initializing for deployment and execution of Leo programs.
 
+:::info
+There are some issues with the current version of `core-js` used in `@provablehq/sdk`. The SDK developers are working on a solution but the current workaround is to add the following to the `defineConfig()` in your `vite.config.ts` file:
+
+```ts
+defineConfig({
+    ...,
+    resolve: {
+        alias: {
+            'core-js': 'core-js'
+        }
+    },
+});
+```
+:::
+
 ## 3. Execute `helloworld.aleo`
 
 <!-- markdown-link-check-disable -->
@@ -60,7 +75,7 @@ Write down your private key, view key, and public address in a safe place. Treat
 
 ### Faucet
 
-Once you have your account, use our faucet to get some Aleo credits! Our ecosystem wallets have faucets that you can use to get credits.
+Once you have your account, use our faucet to get some Aleo credits. Our ecosystem wallets have faucets that you can use to get credits.
 
 * [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 * [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
