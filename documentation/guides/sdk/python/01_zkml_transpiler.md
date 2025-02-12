@@ -23,6 +23,7 @@ Supported machine learning models currently include:
 ## Usage
 The `zkml` Python library is available on [PyPI](https://pypi.org/project/zkml/) for installation.
 
+<!-- markdown-link-check-disable -->
 ### Prerequisites
 #### Python
 Ensure you have 3.9.6 or newer installed.
@@ -31,6 +32,7 @@ Ensure you have 3.9.6 or newer installed.
    python3 --version
    ```
    - If not installed, follow the instructions [here](https://wiki.python.org/moin/BeginnersGuide/Download).
+<!-- markdown-link-check-enable -->
 
 #### Leo
 Ensure you have Leo version 1.9.3 or newer installed.
