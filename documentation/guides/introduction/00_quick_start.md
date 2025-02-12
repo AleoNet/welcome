@@ -72,8 +72,11 @@ WALLETADDRESS=""
 ```
 APPNAME=helloworld_$RANDOM
 ```
+:::tip
+The length of the application name should be at least 10 characters to optimize deployment costs. This is because deployment fees increase exponentially (base^10) for each character in the program name, so longer names result in higher fees. Using a name with 10 or more characters helps keep deployment costs reasonable.
+:::
 
-:::note
+:::info
 The reason for using a random application name is that the Aleo network identifies each program with its unique Program ID, and no two programs can have the same ID in the program registry. By generating a random name, we ensure that our application's Program ID will be unique when deployed.
 :::
 
