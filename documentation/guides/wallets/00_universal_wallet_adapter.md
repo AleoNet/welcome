@@ -126,9 +126,22 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 } 
 ```
 
+## Using the Wallet Button
+
+Demox Labs provides a pre-built wallet button component that you can easily add to your application. To use it, import the `WalletMultiButton` component from `@demox-labs/aleo-wallet-adapter-reactui` along with its CSS styles.
+
+```tsx
+import { WalletMultiButton } from "@demox-labs/aleo-wallet-adapter-reactui";
+import "@demox-labs/aleo-wallet-adapter-reactui/dist/styles.css";
+
+export default function WalletButton() {
+  return <WalletMultiButton />;
+}
+```
+
 ## Using the Wallet Hook
 
-After setup, you can use the `useWallet` hook from `@demox-labs/aleo-wallet-adapter-react` to access available functions that helps connect to and interact with the Aleo network. The hook provides the following interface:
+Once user connected through the wallet button, you can use `useWallet` hook from `@demox-labs/aleo-wallet-adapter-react` to enable access to functions that helps connect and interact with the Aleo network. The hook provides the following interface:
 
 ```tsx
 export interface WalletContextState {
