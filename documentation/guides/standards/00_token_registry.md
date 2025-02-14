@@ -10,6 +10,16 @@ The Token Registry Program is a standard program designed for issuing and managi
 
 This documentation outlines the functions of the Token Registry Program and provides guidance on how to use it. The original source code can be found [here](https://github.com/demox-labs/aleo-standard-programs/blob/main/token_registry/src/main.leo).
 
+## How to use the Token Registry Program
+
+Anyone can create a new token on Aleo using the `token_registry.aleo` program by calling the `register_token` transition with a unique token ID and specifying any name, symbol, decimals, and maximum supply. An optional `external_authorization_required` boolean grants extra control over token available to spend by requiring extra approval from an `external_authorization_party`, the `external_authorization_party` can unlocks certain amount of balances for spending with expiration over a specific owner's token using `prehook_public` or `prehook_private`. The admin can also set `external_authorization_party` to another address with `update_token_management` later if needed.
+
+Once a token is registered, the tokens can be minted either publicly using `mint_public` or privately to a specific recipient using `mint_private` with roles `MINTER_ROLE` or `SUPPLY_MANAGER_ROLE` if not admin. The tokens can also be burned either publicly with `burn_public` or privately with `burn_private` with roles `BURNER_ROLE` or `SUPPLY_MANAGER_ROLE` if not admin.
+
+The token owner then can transfer the token either publicly using `transfer_public` or privately to a specific recipient using `transfer_private`. The token can also be converted from public to private using `transfer_public_to_private` or from private to public using `transfer_private_to_public`.
+
+For an example of how the flow works, please refer to the [Usage Example with Token Registry Program](../wallets/01_usage_example.md).
+
 ## Token Registry Program Data Structures
 
 ### Token Record
