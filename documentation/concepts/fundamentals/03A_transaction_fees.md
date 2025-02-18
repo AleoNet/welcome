@@ -35,4 +35,41 @@ This is what you pay for executing program functions on the Aleo network.
 Priority fees are optional fees which can help speed up the processing of your transaction during high traffic. They are not yet supported, but will soon be.
 
 ### Estimating fees
-The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs#L26). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support.
+The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs#L26). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use `leo cli` to estimate the fees for your transaction. Example as below:
+
+First, generate a example program using `leo example`.
+```bash
+leo example lottery
+cd lottery
+```
+
+Then use `leo deploy` to estimate the deployment fees for your transaction.
+```bash
+leo deploy --network testnet --endpoint "https://api.explorer.provable.com/v1" --path .
+```
+
+Or use `leo run` to estimate the execution fees for your transaction.
+```bash
+leo execute play --program lottery_test.aleo --endpoint https://api.explorer.provable.com/v1 --dry-run --broadcast
+```
+
+This method works without needing to fund the private key in `.env` and it will look something like this:
+```bash
+Base execution cost for 'lottery_test' is 0.041048 credits.
+
++---------------------+----------------+
+| lottery_test        | Cost (credits) |
++---------------------+----------------+
+| Transaction Storage | 0.001338       |
++---------------------+----------------+
+| On-chain Execution  | 0.039710       |
++---------------------+----------------+
+| Priority Fee        | 0.000000       |
++---------------------+----------------+
+| Total               | 0.041048       |
++---------------------+----------------+
+
+Your current public balance is 7.401737 credits.
+
+✅ Successful dry run execution for 'lottery_test.aleo'
+```
