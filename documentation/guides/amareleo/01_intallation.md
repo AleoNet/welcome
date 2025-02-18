@@ -3,8 +3,10 @@ id: install
 title: Installing Amareleo-Chain
 sidebar_label: Installation
 ---
+<!-- markdown-link-check-disable -->
 Amareleo-Chain may be installed from source or from [crates.io](https://crates.io/) using cargo. 
 On a fresh machine, installing from source is recommanded as this will also help getting all dependencies installed.
+<!-- markdown-link-check-enable -->
 
 ## Requirements
 
