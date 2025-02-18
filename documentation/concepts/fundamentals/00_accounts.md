@@ -83,8 +83,9 @@ In this document, we will use two prime fields:
 
 ### Prime Order Elliptic Curve Groups
 
-In this document, we will consider the order-`p` subgroup of points on an elliptic curve defined over the base field
-<code>F<sub>base</sub></code>. Elements of this subgroup consist of a coordinate pair `(x, y)`. The group has two
+In this document, we will consider the order-`p` subgroup of points on an elliptic curve defined over the base field <code>F<sub>base</sub></code>.  
+
+Elements of this subgroup consist of a coordinate pair `(x, y)`. The group has two
 associated operations: point addition, and point doubling. The group also has a distinguished point, the **generator** `G`,
 which is a fixed point of the group.
 
