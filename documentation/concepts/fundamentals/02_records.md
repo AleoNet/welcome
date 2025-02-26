@@ -58,7 +58,7 @@ The core idea behind Aleo is ZEXE or zero-knowledge execution initially written 
 ### Privacy
 There are generally four different types of privacy that relate to blockchains.
 
-Aleo fulfils the 3 of them:
+Aleo fulfils three of them:
 - [x] Private inputs (messages)
 - [x] Private outputs (state changes)
 - [x] Private user
