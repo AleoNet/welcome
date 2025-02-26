@@ -82,7 +82,7 @@ Source: <a href="https://www.galaxy.com/insights/research/mev-how-flashboys-beca
 <br></br>
 
 ### Account Model
-In the account model as used in Ethereum, the application state can be found by referencing to a particular address.
+In the account model as used in Ethereum, the application state can be found by referencing a particular address.
 
 As such, anyone would be able to view the activities of any account, simply with the knowledge of the address.
 
