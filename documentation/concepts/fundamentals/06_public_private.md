@@ -18,7 +18,7 @@ Aleo is a new layer-1 blockchain that combines general-purpose programmability w
 
 
 ## Privacy
-There are generally four different types of privacy that relate to blockchains, of which Aleo fulfils the 3 of them:
+There are generally four different types of privacy that relate to blockchains, of which Aleo fulfils three:
 - [x] Private inputs (messages)
 - [x] Private outputs (state changes)
 - [x] Private user
