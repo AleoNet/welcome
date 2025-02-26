@@ -90,7 +90,7 @@ The choice to store an application state as public or private should depend on t
 
 Aleo's model is more suitable for real-world applications, which often rely on a combination of public and private information.
 
-A practical example for this are elections. As stated by the Aleo founder, Howard Wu, "In elections, people want to vote, but they don’t want to show other people how they voted. The tally of the votes needs to be public to understand the outcome. Having private votes and public tallies ends up being a capable functionality in applications here."
+A practical example for this is voting. As stated by the Aleo founder, Howard Wu, "In elections, people want to vote, but they don’t want to show other people how they voted. The tally of the votes needs to be public to understand the outcome. Having private votes and public tallies ends up being a capable functionality in applications here."
 
 
 ## Conclusion
