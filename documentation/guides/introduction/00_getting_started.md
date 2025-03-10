@@ -61,7 +61,7 @@ Aleo maintains syntax highlighting implementations for various popular code edit
 2. Sublime Text
 3. Intellij
 
-For detailed instructions on how to set up syntax highlighting for these editors, please refer to the [Tooling for Leo](https://docs.leo-lang.org/leo/tooling) guide.
+For detailed instructions on how to set up syntax highlighting for these editors, please refer to the [Tooling for Leo](https://docs.leo-lang.org/getting_started/ide#plugins) guide.
 
 ## 2. Installing snarkOS 
 

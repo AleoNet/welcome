@@ -140,7 +140,7 @@ Aleo programs provide the ability for users to make any input or output of a pro
 was run correctly. Keeping program inputs and outputs private allows developers to build privacy into their applications.
 
 Zero-Knowledge programs are written in one of two languages:
-1. [Leo](https://docs.leo-lang.org/leo): A high level, developer friendly language for developing
+1. [Leo](https://docs.leo-lang.org): A high level, developer friendly language for developing
    zero knowledge programs.
 2. [Aleo Instructions](../../aleo/00_aleo_overview.md): A low level language that provides developers fine
    grained control over the execution flow of zero knowledge programs. Leo programs are compiled into Aleo Instructions
