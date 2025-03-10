@@ -73,7 +73,7 @@ WALLETADDRESS=""
 APPNAME=helloworld_$RANDOM
 ```
 :::tip
-The length of the application name should be at least 10 characters to optimize deployment costs. This is because deployment fees increase exponentially (base^10) for each character in the program name, so longer names result in higher fees. Using a name with 10 or more characters helps keep deployment costs reasonable.
+The length of the application name should be at least 10 characters to optimize deployment costs. This is because deployment fees increase exponentially (base^10) for each character less in the program name starting from 10 characters, so shorter names result in higher fees. Using a name with 10 or more characters helps keep deployment costs reasonable.
 :::
 
 :::info
