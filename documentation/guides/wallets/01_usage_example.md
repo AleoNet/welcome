@@ -380,5 +380,5 @@ This guide demonstrates how to integrate the Universal Wallet Adapter with the t
 
 The Universal Wallet Adapter provides a consistent interface for interacting with Aleo wallets, making it easy to add wallet functionality to your dApp. The adapter handles all the complexities of wallet connections, transaction signing, and record management, allowing developers to focus on building their application logic.
 
-For detailed API documentation, check out the [Universal Wallet Adapter documentation](https://github.com/demox-labs/aleo-wallet-adapter).
+For detailed API documentation, check out the [Universal Wallet Adapter documentation](./00_universal_wallet_adapter.md).
 
