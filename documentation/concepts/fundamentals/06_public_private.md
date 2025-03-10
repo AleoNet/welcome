@@ -18,7 +18,7 @@ Aleo is a new layer-1 blockchain that combines general-purpose programmability w
 
 
 ## Privacy
-There are generally four different types of privacy that relate to blockchains, of which Aleo fulfils the 3 of them:
+There are generally four different types of privacy that relate to blockchains, of which Aleo fulfils three:
 - [x] Private inputs (messages)
 - [x] Private outputs (state changes)
 - [x] Private user
@@ -86,13 +86,12 @@ program sum.aleo {
 ```
 ## Public vs. Private States
 
-The choice to store an application state as public or private should depend on the particular use case of the program. Instead of simply being a completely privacy or a public chain, Aleo believes in a two pronged approach by offering developers a choice. 
+The choice to store an application state as public or private should depend on the particular use case of the program. Instead of being a chain that is completely private or completely public, Aleo believes in a hybrid approach that offers developers a choice. 
 
-Moreover, real-world applications often rely on a combination of public and private information.
+Aleo's model is more suitable for real-world applications, which often rely on a combination of public and private information.
 
-A practical example would be in voting. As stated by the Aleo founder, Howard Wu, "In elections, people want to vote, but they don’t want to show other people how they voted. The tally of the votes needs to be public to understand the outcome. Having private votes and public tallies ends up being a capable functionality in applications here."
+A practical example for this is voting. As stated by the Aleo founder, Howard Wu, "In elections, people want to vote, but they don’t want to show other people how they voted. The tally of the votes needs to be public to understand the outcome. Having private votes and public tallies ends up being a capable functionality in applications here."
 
 
 ## Conclusion
-Aleo is one of the very first few layer-1 blockchains that emphasizes on programmable privacy. Developers are able to choose if they wish to make certain states of their program public or private. This opens up a whole new set of interesting applications that cannot be built easily with other blockchains. This is certainly an exciting chain to keep an eye out for.
-
+Aleo is one of the very first few layer-1 blockchains that emphasizes programmable privacy. Developers are able to choose if they wish to make certain states of their program public or private. This opens up a whole new set of interesting applications that cannot be built easily with other blockchains. This is certainly an exciting chain to keep an eye out for.
