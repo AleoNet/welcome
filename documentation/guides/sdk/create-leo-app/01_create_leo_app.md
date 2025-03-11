@@ -162,7 +162,7 @@ git push -u origin main
 
 1. We packaged a React template for you with Leo.
 
-2. You also installed [Leo](https://docs.leo-lang.org/getting_started), our statically-typed programming language built for writing private applications. Using Leo, you can write, build, compile, and execute Leo programs locally.
+2. You also installed [Leo](https://docs.leo-lang.org/getting_started/installation), our statically-typed programming language built for writing private applications. Using Leo, you can write, build, compile, and execute Leo programs locally.
 
 3. We provided the `helloworld` Leo program already pre-compiled into Aleo instructions and then executed it locally using WASM + web workers, which was an abstraction on snarkVM’s capabilities. [snarkVM](https://developer.aleo.org/concepts/network/zkcloud/snarkvm) is the data execution layer. It is used to compile Leo programs and execute them locally off-chain. All Leo programs eventually become Aleo instructions via Aleo’s compiler during the execution phase of snarkVM. 
 

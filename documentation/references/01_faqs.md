@@ -140,13 +140,15 @@ Aleo provides both privacy and programmability.
 
 [//]: # (disabling markdown checks for twitter links)
 
+<!-- markdown-link-check-disable -->
+
 👾 | Discord ~ **https://discord.gg/aleo**
 
 🐦 | X (Twitter) ~ @AleoHQ ~ **https://twitter.com/AleoHQ**
 
 🤝 | Community X (Twitter) ~ @aleocommunity ~ **https://twitter.com/aleocommunity**
 
-
+<!-- markdown-link-check-enable -->
 
 🐙 | GitHub ~ **https://github.com/AleoNet**
 
