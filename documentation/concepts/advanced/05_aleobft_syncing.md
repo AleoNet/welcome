@@ -4,11 +4,12 @@ title: AleoBFT Syncing
 sidebar_label: AleoBFT Syncing
 ---
 
-# AleoBFT Syncing
+# Overview
+AleoBFT is the consensus mechanism powering the Aleo blockchain, designed to ensure secure and reliable agreement among validators. It builds on concepts from Narwhal and Bullshark, optimizing for dynamic validator committees and staking participation. In AleoBFT, validators collect transactions and submit proposals, which are then endorsed by others to form cryptographic certificates. These certificates are structured into a Directed Acyclic Graph (DAG), enabling efficient ordering of transactions and preventing forks, thus ensuring a robust and scalable consensus process.
 
-AleoBFT is the consensus protocol of the [Aleo blockchain](https://aleo.org/). The protocol is run by a dynamically changing set of validators: starting with a known genesis committee (the initial set of validators), validators may join and leave the committee via bonding and unbonding transactions.
+AleoBFT is run by a dynamically changing set of validators: starting with a known genesis committee (the initial set of validators), validators may join and leave the committee through bonding and unbonding transactions.
 
-When a new validator joins, before it can actively participate in consensus, it needs to bring its internal state up to date with that of the other validators: this is the syncing aspect of AleoBFT, which this document describes.
+When a new validator joins, before it can actively participate in consensus, it needs to bring its internal state up to date with that of the other validators. This is the syncing aspect of AleoBFT, which this document describes.
 
 ## Persistent Validator State
 
