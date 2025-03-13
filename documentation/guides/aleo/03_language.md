@@ -321,6 +321,51 @@ function new_token:
     output r3;
 ```
 
+### Special Operands
+
+#### self.signer
+
+The `self.signer` operand returns the user address that originated the transition.  
+This is particularly useful in intermediate programs that need to modify the state of the original caller rather than their own state.  
+In the example below, the `transfer_public_as_signer` function uses `self.signer` to decrement the balance from the original user's account rather than from the intermediate program's account.  
+
+```aleo showLineNumbers
+// The `transfer_public_as_signer` function sends the specified amount
+// from the signer's `account` to the receiver's `account`.
+function transfer_public_as_signer:
+    // Input the receiver.
+    input r0 as address.public;
+    // Input the amount.
+    input r1 as u64.public;
+    // Transfer the credits publicly.
+    async transfer_public_as_signer self.signer r0 r1 into r2;
+    // Output the finalize future.
+    output r2 as credits.aleo/transfer_public_as_signer.future;
+
+finalize transfer_public_as_signer:
+    // Input the signer.
+    input r0 as address.public;
+    // Input the receiver.
+    input r1 as address.public;
+    // Input the amount.
+    input r2 as u64.public;
+    // Decrements `account[r0]` by `r2`.
+    // If `account[r0] - r2` underflows, `transfer_public_as_signer` is reverted.
+    get account[r0] into r3;
+    sub r3 r2 into r4;
+    set r4 into account[r0];
+    // Increments `account[r1]` by `r2`.
+    // If `account[r1]` does not exist, 0u64 is used.
+    // If `account[r1] + r2` overflows, `transfer_public_as_signer` is reverted.
+    get.or_use account[r1] 0u64 into r5;
+    add r5 r2 into r6;
+    set r6 into account[r1];
+```
+
+#### self.caller
+
+The `self.caller` operand returns the address of the immediate caller of the program.
+
 ### Mapping
 
 A mapping is declared as `mapping {name}:`.  
@@ -391,40 +436,32 @@ A finalize must immediately follow a [function](#function), and must have the sa
 // The `transfer_public_to_private` function turns a specified amount
 // from the mapping `account` into a record for the specified receiver.
 //
-// This function preserves privacy for the receiver's record, however
-// it publicly reveals the sender and the specified amount.
+// This function publicly reveals the sender, the receiver, and the specified amount.
+// However, subsequent methods using the receiver's record can preserve the receiver's privacy.
 function transfer_public_to_private:
     // Input the receiver.
-    input r0 as address.public;
+    input r0 as address.private;
     // Input the amount.
     input r1 as u64.public;
-
     // Construct a record for the receiver.
     cast r0 r1 into r2 as credits.record;
-
     // Decrement the balance of the sender publicly.
     async transfer_public_to_private self.caller r1 into r3;
-    
     // Output the record of the receiver.
     output r2 as credits.record;
-    
-    // Output the future of the decrement operation.
-    output r3 as token.aleo/transfer_public_to_private.future;
-    
+    // Output the finalize future.
+    output r3 as credits.aleo/transfer_public_to_private.future;
+
 finalize transfer_public_to_private:
     // Input the sender.
     input r0 as address.public;
     // Input the amount.
     input r1 as u64.public;
-
     // Retrieve the balance of the sender.
-    // If `account[r0]` does not exist, 0u64 is used.
-    get.or_use account[r0] 0u64 into r2;
-
+    get account[r0] into r2;
     // Decrements `account[r0]` by `r1`.
-    // If `r2 - r1` underflows, `trasfer_public_to_private` is reverted.
+    // If `r2 - r1` underflows, `transfer_public_to_private` is reverted.
     sub r2 r1 into r3;
-
     // Updates the balance of the sender.
     set r3 into account[r0];
 ```
@@ -544,16 +581,26 @@ There are a number of rules associated with using these components.
 
 The following commands are supported in Aleo Instructions to provide additional program functionality.
 
-
 #### block.height
 
-The `block.height` command returns the height of the block in which the program is executed (latest block height + 1).
-This can be useful for managing time-based access control to a program.
-The `block.height` command must be called within a finalize block.
+The `block.height` command returns the height of the block in which the program is executed (latest block height + 1).  
+This can be useful for managing time-based access control to a program.  
+The `block.height` command must be called within a finalize block. 
 
 ```aleo
 assert.eq block.height 100u64;
 ```
+
+#### network.id
+
+The `network.id` command returns the ID of the network on which the program is executed.  
+This can be useful for managing network-specific program behavior.  
+The `network.id` command must be called within a finalize block.
+
+Currently supported network IDs are:
+- 0: Mainnet
+- 1: Testnet 
+- 2: Canarynet
 
 #### rand.chacha
 
@@ -639,17 +686,6 @@ finalize run_test:
     assert.eq true false;
     position exit;
 ```
-
-
-#### self.signer
-
-The `self.signer` command returns the user address that originated the transition.
-This can be useful for managing access control to a program.
-In the above [example](#finalize), the `transfer_public_to_private` function decrements the balance of the sender publicly using `self.signer`.
-
-#### self.caller
-
-The `self.caller` command returns the address of the immediate caller of the program.
 
 ### Program Interoperability
 
