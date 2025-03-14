@@ -16,7 +16,6 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [and](#and)                  | AND operation                                         |
 | [assert.eq](#asserteq)       | Assert equality                                       |
 | [assert.neq](#assertneq)     | Assert non-equality                                   |
-| [block.height](#blockheight) | Returns height of the block within the finalize scope |
 | [branch.eq](#brancheq)       | Branches to a position if the arguments are equal     |
 | [branch.neq](#branchneq)     | Branches to a position if the arguments are not equal |
 | [cast](#cast)                | Cast between literals                                 |
@@ -273,23 +272,6 @@ Checks whether `first` and `second` are not equal, halting if they are equal.
 | `Signature` | `Signature` |
 | `Struct`    | `Struct`    |
 | `Record`    | `Record`    |
-
-***
-
-### `block.height`
-
-[Back to Top](#table-of-standard-opcodes)
-
-#### Description
-
-Returns the height of the block within the finalize scope.
-Currently, block height is the only supported property.
-
-#### Example Usage
-
-```aleo
-assert.eq block.height 1337;
-```
 
 ***
 

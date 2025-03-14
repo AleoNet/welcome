@@ -34,7 +34,7 @@ Read the full list of supported [AVM opcodes](./04_opcodes.md).
 
 ## Formal Language Documentation
 
-Check your program or compiler implementation against the [Aleo instructions grammar](./06_grammar.md).
+Check your program or compiler implementation against the [Aleo instructions grammar](./07_grammar.md).
 
 Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/grammars) for the full formal syntax of Aleo instructions.
 
@@ -42,15 +42,15 @@ Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/gram
 
 The snarkVM CLI provides a suite of commands to make programming in Aleo instructions easy.
 
-* [snarkvm new](./05_commands.md#snarkvm-new)
-* [snarkvm build (deprecated)](./05_commands.md#snarkvm-build)
-* [snarkvm run](./05_commands.md#snarkvm-run)
-* [snarkvm clean](./05_commands.md#snarkvm-clean)
-* [snarkvm update](./05_commands.md#snarkvm-update)
+* [snarkvm new](./06_commands.md#snarkvm-new)
+* [snarkvm build (deprecated)](./06_commands.md#snarkvm-build)
+* [snarkvm run](./06_commands.md#snarkvm-run)
+* [snarkvm clean](./06_commands.md#snarkvm-clean)
+* [snarkvm update](./06_commands.md#snarkvm-update)
 
 [//]: # (5. [aleo node]&#40;./05_commands.md#5-aleo-node&#41;)
 [//]: # (6. [aleo deploy]&#40;./05_commands.md#6-aleo-deploy&#41;)
 
 ## Additional Material
 
-Install Aleo instructions for your favorite code [**editor**](./07_tooling.md).
+Install Aleo instructions for your favorite code [**editor**](./08_tooling.md).
