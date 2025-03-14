@@ -327,6 +327,7 @@ function new_token:
 
 The `self.signer` operand returns the user address that originated the transition.  
 This is particularly useful in intermediate programs that need to modify the state of the original caller rather than their own state.  
+
 In the example below, the `transfer_public_as_signer` function uses `self.signer` to decrement the balance from the original user's account rather than from the intermediate program's account.  
 
 ```aleo showLineNumbers
@@ -368,9 +369,7 @@ The `self.caller` operand returns the address of the immediate caller of the pro
 
 ### Mapping
 
-A mapping is declared as `mapping {name}:`.  
-Mappings contain key-value pairs.
-Mappings must be defined within a program.
+A mapping is declared as `mapping {name}:`. Mappings contain key-value pairs and must be defined within a program.  
 Mappings are stored publicly on-chain. It is not possible to store data privately in a mapping.
 
 ```aleo showLineNumbers
