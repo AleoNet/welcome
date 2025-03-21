@@ -3,19 +3,19 @@ id: core_architecture
 title: Core Architecture
 sidebar_label: Core Architecture
 ---
-:::note
-To read detailed specifications of AleoBFT and AleoVM, please go to the **References/Specifications** section.
-:::
-
 Aleo is focused on permissionless private programmability, which means the ability for anyone to codify any logic onto the Aleo blockchain without asking for anyone's permission. This is achieved through two key components:
 
-1. SnarkVM (AleoVM): The off-chain execution environment that serves as the virtual machine for Aleo. SnarkVM is essentially AleoVM, which allows for the execution of Aleo programs and generation of zero-knowledge proofs. By utilizing SnarkVM and encryption, anyone can execute logic in a privacy-preserving manner.
+1. [SnarkVM (AleoVM)](../zkcloud/snarkvm.md): The off-chain execution environment that serves as the virtual machine for Aleo. SnarkVM is essentially AleoVM, which allows for the execution of Aleo programs and generation of zero-knowledge proofs. By utilizing SnarkVM and encryption, anyone can execute logic in a privacy-preserving manner.
 
-2. SnarkOS: The blockchain node client of Aleo, powered by AleoBFT consensus mechanism. SnarkOS implements the AleoBFT protocol, which ensures secure and efficient consensus among network participants.
+2. [SnarkOS](../zkcloud/snarkos.md): The blockchain node client of Aleo, powered by AleoBFT consensus mechanism. SnarkOS implements the AleoBFT protocol, which ensures secure and efficient consensus among network participants.
 
-Together, these components enable users to execute logic privately and broadcast it to the Aleo network. The combination of AleoVM for execution and AleoBFT for consensus creates a robust ecosystem for permissionless, private, and programmable blockchain applications.
+Together, these components form a complementary system where SnarkVM handles zero-knowledge off-chain execution, while SnarkOS serves as the network client that verifies the correctness of these off-chain computations by validating the submitted zero-knowledge proofs (zk-SNARKs).
 
-For more detailed information on these components, check the [zkCloud](../zkcloud/README.md) section, which covers SnarkVM and SnarkOS in depth.
+This architecture enables two key capabilities:
+- For users: The ability to maintain data privacy while interacting with decentralized applications (programs) on Aleo through off-chain computation and zero-knowledge proofs
+- For developers: The ability to create privacy-preserving decentralized applications using Leo programming language or Aleo instructions and deploy them to the network
+
+For more detailed information on these components, check out [specification](../../../references/03_specifications.md) section in reference, which covers SnarkVM and SnarkOS in depth.
 
 ## What makes Aleo permissionless, private and programmable ?
 

@@ -36,6 +36,10 @@ AleoBFT guarantees instant finality once validators achieve consensus for each b
 
 AleoBFT provers are computing core components of ZK proofs and receive shares of coinbase rewards by solving and producing these coinbase proofs, which is called Proof of Succint Work (PoSW). This incentivise provers to also become a validator themselves by accumulate and stake 10 million ACs. By having broader rewards distribution, it helps Aleo Network to achieve greater proving capacity, further decentralise and scaling Aleo network and fortifies censorship-resistence guarantee.
 
+:::info
+For detailed technical specifications of AleoBFT, please refer to the [AleoBFT specification](https://developer.aleo.org/specs/aleobft.pdf).
+:::
+
 ## Bullshark and Narwhal
 
 ### Bullshark
