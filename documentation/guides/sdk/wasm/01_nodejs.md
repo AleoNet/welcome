@@ -11,7 +11,8 @@ sidebar_label: NodeJS + Browser
 <dt><a href="#Address">Address</a></dt>
 <dd></dd>
 <dt><a href="#ExecutionResponse">ExecutionResponse</a></dt>
-<dd><p>Webassembly Representation of an Aleo function execution response</p>
+<dd>
+<p>Webassembly Representation of an Aleo function execution response</p>
 <p>This object is returned by the execution of an Aleo function off-chain. It provides methods for
 retrieving the outputs of the function execution.</p>
 </dd>
@@ -20,10 +21,12 @@ retrieving the outputs of the function execution.</p>
 <dt><a href="#PrivateKey">PrivateKey</a></dt>
 <dd></dd>
 <dt><a href="#PrivateKeyCiphertext">PrivateKeyCiphertext</a></dt>
-<dd><p>Private Key in ciphertext form</p>
+<dd>
+<p>Private Key in ciphertext form</p>
 </dd>
 <dt><a href="#Program">Program</a></dt>
-<dd><p>Webassembly Representation of an Aleo program</p>
+<dd>
+<p>Webassembly Representation of an Aleo program</p>
 <p>This object is required to create an Execution or Deployment transaction. It includes several
 convenience methods for enumerating available functions and each functions&#39; inputs in a
 javascript object for usage in creation of web forms for input capture.</p>
@@ -31,15 +34,18 @@ javascript object for usage in creation of web forms for input capture.</p>
 <dt><a href="#ProvingKey">ProvingKey</a></dt>
 <dd></dd>
 <dt><a href="#RecordCiphertext">RecordCiphertext</a></dt>
-<dd><p>Encrypted Aleo record</p>
+<dd>
+<p>Encrypted Aleo record</p>
 </dd>
 <dt><a href="#RecordPlaintext">RecordPlaintext</a></dt>
-<dd><p>Aleo record plaintext</p>
+<dd>
+<p>Aleo record plaintext</p>
 </dd>
 <dt><a href="#Signature">Signature</a></dt>
 <dd></dd>
 <dt><a href="#Transaction">Transaction</a></dt>
-<dd><p>Webassembly Representation of an Aleo transaction</p>
+<dd>
+<p>Webassembly Representation of an Aleo transaction</p>
 <p>This object is created when generating an on-chain function deployment or execution and is the
 object that should be submitted to the Aleo Network in order to deploy or execute a function.</p>
 </dd>

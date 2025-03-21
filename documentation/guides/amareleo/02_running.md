@@ -25,8 +25,6 @@ amareleo-chain help
 amareleo-chain <command> --help
 ```
 
-<BR />
-
 
 ## Keep-State
 
@@ -72,8 +70,6 @@ amareleo-chain clean
 
 At the same time, whenever `--keep-state` is not specified, a fresh chain is created.
 
-
-<BR />
 
 ## Test accounts
 
