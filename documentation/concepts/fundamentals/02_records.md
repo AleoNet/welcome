@@ -18,7 +18,7 @@ An Aleo record is serialized in the following format:
 | Parameter |          Type          |                                                      Description                                                       |
 |:---------:|:----------------------:|:----------------------------------------------------------------------------------------------------------------------:|
 |  `owner`  |        address         |                               The address public key of the owner of the program record                                |
-|  `data`   | Map<Identifier, Entry> | A data payload containing arbitrary application-dependent information. Each entry can either be `public` or `private`. |
+|  `data`   | Map\<Identifier, Entry\> | A data payload containing arbitrary application-dependent information. Each entry can either be `public` or `private`. |
 |  `nonce`  |         group          |                                     The serial number nonce of the program record                                      |
 An example record:
 ```bash

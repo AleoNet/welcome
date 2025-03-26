@@ -107,12 +107,12 @@ leo deploy
 
 You should have seen a confirmation that your Aleo application was deployed in the form of a transaction ID that looks like the following `at1rkkpqu5k4rt86zzccczw6cxeyvrl7hxydvvv7dhl7zr7p9w40c8s70kwm8`. Copy your transaction ID to view the details of your deployment transaction on the Aleo block explorers:
 
-- [Provable Explorer](https://testnet.explorer.provable.com/)
 <!-- markdown-link-check-disable -->
+- [Provable Explorer](https://testnet.explorer.provable.com/)
 - [Aleoscan](https://testnet.aleoscan.io/)
-<!-- markdown-link-check-enable -->
 - [Aleo123](https://testnet.aleo123.io/)
 - [Aleo.Info](https://testnet.aleo.info/)
+<!-- markdown-link-check-enable -->
 
 ## 6. Execute your test application
 
