@@ -4,13 +4,98 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
-To get started with developing on Aleo, there are a few prerequisites you'll need to install. The two main components are **Leo**, Aleo's domain-specific language for writing zero-knowledge applications, and **snarkOS**, the decentralized operating system for zero-knowledge applications.  
+import FeatureCard from '@site/src/components/FeatureCard';
 
-**Leo** allows you to write and compile programs, while **snarkOS** enables you to interact with the Aleo network, deploy programs, and execute transactions. Installing these tools will provide you with the necessary foundation to begin building privacy-preserving applications on the Aleo platform.  
+### Start Developing
 
-Optionally, you may also want to install **snarkVM**. If you wish to write more optimized code, **snarkVM** provides a lower-level representation in Aleo Instructions (AI) for that purpose. It's worth noting that Leo programs are compiled into AI as well.
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  gap: '1.5rem',
+  width: '100%',
+  margin: '2rem 0'
+}}>
 
-In the following sections, we'll guide you through the installation process for these essential tools.
+<FeatureCard
+  title="🚀 Quick Start"
+  description="Build a Leo program and deploy it to Aleo."
+  link="./quick_start"
+/>
+
+<FeatureCard
+  title="🦁 Local Setup"
+  description="Setup a local development environment."
+  link="https://github.com/ProvableHQ/leo"
+/>
+
+</div>
+
+### Deploy a Private Web Application
+
+Follow hands-on tutorials to build and deploy private web apps directly in the browser.
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  gap: '1.5rem',
+  width: '100%',
+  margin: '2rem 0'
+}}>
+
+<FeatureCard
+  title="Make a Private Web App"
+  description="Build a private full stack app."
+  link="./quick_start"
+/>
+
+<FeatureCard
+  title="Try Privacy on the Web"
+  description="Try a live privacy preserving web app."
+  link="https://github.com/ProvableHQ/leo"
+/>
+
+</div>
+
+<div style={{
+  width: '100%',
+  margin: '2rem 0'
+}}>
+  <details style={{
+    background: '#1a1f2e',
+    borderRadius: '8px',
+    border: '1px solid #2d3748',
+    overflow: 'hidden'
+  }}>
+    <summary style={{
+      padding: '1.25rem',
+      color: '#e2e8f0',
+      fontSize: '1.125rem',
+      fontWeight: '600',
+      listStyle: 'none',
+      cursor: 'pointer'
+    }}>
+      Private Application Demo
+    </summary>
+
+    <div style={{ padding: '1.25rem', background: '#151922' }}>
+      <iframe 
+        width="100%" 
+        height="320" 
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+        title="YouTube video player" 
+        frameBorder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowFullScreen
+      ></iframe>
+    </div>
+  </details>
+</div>
+
+
+## Learn Aleo
+
+Learn the key behind preserving programming with Aleo.
+
 
 
 ## 1. Installing Leo 🦁 
@@ -39,7 +124,7 @@ cargo install --path .
 
 To verify if you have Leo, open your terminal and type `leo`. You should be able to see the following:
 
-![Leo](./images/leo-cli.png)
+![Leo](images/leo-cli.png)
 
 ### 1.5 Check Version and Update Leo
 
@@ -90,7 +175,7 @@ cargo install --locked --path .
 ### 2.4 Verify Installation
 
 To verify if you have snarkOS, open your terminal and type `snarkos`. You should be able to see the following:
-![snarkOS](./images/snarkos-cli.png)
+![snarkOS](images/snarkos-cli.png)
 
 
 
@@ -99,6 +184,6 @@ To verify if you have snarkOS, open your terminal and type `snarkos`. You should
 
 Once you have successfully completed the installation of both Leo and snarkOS, you are ready to begin your journey with Aleo.  
 
-To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](./00_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
+To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](00_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
 
 
