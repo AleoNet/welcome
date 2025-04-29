@@ -9,7 +9,7 @@ Learn how to deploy and execute a basic "hello world!" program on Aleo's network
 
 ## 1. Prerequisites
 
-Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](./00_getting_started.md).
+Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](00_getting_started.md).
 
 
 

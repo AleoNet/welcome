@@ -25,7 +25,7 @@ import FeatureCard from '@site/src/components/FeatureCard';
 <FeatureCard
   title="🦁 Local Setup"
   description="Setup a local development environment."
-  link="https://github.com/ProvableHQ/leo"
+  link="./installation"
 />
 
 </div>
@@ -45,13 +45,13 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
 <FeatureCard
   title="Make a Private Web App"
   description="Build a private full stack app."
-  link="./quick_start"
+  link="https://stackblitz.com/github/ProvableHQ/zk-auction-example"
 />
 
 <FeatureCard
   title="Try Privacy on the Web"
   description="Try a live privacy preserving web app."
-  link="https://github.com/ProvableHQ/leo"
+  link="https://provablehq.github.io/zk-auction-example/"
 />
 
 </div>
@@ -72,7 +72,6 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
       fontSize: '1.125rem',
       fontWeight: '600',
       listStyle: 'none',
-      cursor: 'pointer'
     }}>
       Private Application Demo
     </summary>
@@ -80,7 +79,7 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
     <div style={{ padding: '1.25rem', background: '#151922' }}>
       <iframe 
         width="100%" 
-        height="320" 
+        height="240" 
         src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
         title="YouTube video player" 
         frameBorder="0" 
@@ -91,99 +90,53 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
   </details>
 </div>
 
-
 ## Learn Aleo
 
-Learn the key behind preserving programming with Aleo.
+Learn the key concepts behind privacy preserving development with Aleo.
 
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  gap: '1.5rem',
+  width: '100%',
+  margin: '2rem 0'
+}}>
 
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+  <FeatureCard
+    title="Accounts"
+    description="Learn about Aleo accounts and how they work."
+    link="/concepts/fundamentals/accounts"
+  />
+  <FeatureCard
+    title="Transfers"
+    description="Understand how private transfers work in Aleo."
+    link="/concepts/fundamentals/transfers"
+  />
+  <FeatureCard
+    title="Fees"
+    description="Learn about transaction fees and how they're calculated."
+    link="/concepts/fundamentals/transaction_fees"
+  />
+</div>
 
-## 1. Installing Leo 🦁 
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+  <FeatureCard
+    title="Programs"
+    description="Explore how to write and deploy Aleo programs."
+    link="/concepts/fundamentals/programs"
+  />
+  <FeatureCard
+    title="Transactions"
+    description="Understand the structure and lifecycle of Aleo transactions."
+    link="/concepts/fundamentals/transactions"
+  />
+  <FeatureCard
+    title="Program State"
+    description="Learn about managing program state in Aleo."
+    link="/concepts/fundamentals/public_private"
+  />
+</div>
 
-### 1.1 Install Git
-
-**[bit.ly/start-git](https://bit.ly/start-git)**
-
-### 1.2 Install Rust
-
-**[bit.ly/start-rust](https://bit.ly/start-rust)**
-
-### 1.3 Install Leo
-
-Installing Leo by building from the source code as follows:
-```bash
-# Download the source code and initialize the submodules
-git clone --recurse-submodules https://github.com/ProvableHQ/leo
-cd leo
-
-# Install 'leo'
-cargo install --path .
-```
-
-### 1.4 Verify Installation
-
-To verify if you have Leo, open your terminal and type `leo`. You should be able to see the following:
-
-![Leo](images/leo-cli.png)
-
-### 1.5 Check Version and Update Leo
-
-To check the version of leo, in your terminal, run:
-```bash
-leo --version
-```
-
-You can update Leo to the latest version using the following command:
-```bash
-leo update
-```
-
-### 1.6 Optional: IDE Syntax Highlighting
-
-Aleo maintains syntax highlighting implementations for various popular code editors. This can significantly enhance your development experience by providing visual cues and making your Leo code more readable. Here's a brief overview of the supported editors:
-
-1. Visual Studio Code
-2. Sublime Text
-3. Intellij
-
-For detailed instructions on how to set up syntax highlighting for these editors, please refer to the [Tooling for Leo](https://docs.leo-lang.org/getting_started/ide#plugins) guide.
-
-## 2. Installing snarkOS 
-
-### 2.1 Prerequisites
-
-Before beginning, please ensure your machine has Rust v1.79+ installed. Instructions to install Rust can be found [here](https://www.rust-lang.org/tools/install).
-
-### 2.2 Clone the snarkOS repository
-
-```bash
-git clone --branch mainnet --single-branch https://github.com/AleoNet/snarkOS.git
-```
-
-**[For Ubuntu users]** A helper script to install dependencies is available. From the snarkOS directory, run:
-```bash
-./build_ubuntu.sh
-```
-
-### 2.3 Install snarkOS
-
-```bash
-cd snarkOS
-cargo install --locked --path .
-```
-
-### 2.4 Verify Installation
-
-To verify if you have snarkOS, open your terminal and type `snarkos`. You should be able to see the following:
-![snarkOS](images/snarkos-cli.png)
-
-
-
-
-## 3. Next Steps
-
-Once you have successfully completed the installation of both Leo and snarkOS, you are ready to begin your journey with Aleo.  
-
-To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](00_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
-
+</div>
 
