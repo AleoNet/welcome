@@ -117,22 +117,32 @@ An upgrade **cannot**:
 
 ---
 
-
-
 ## 🚀 Upgrade Patterns
 
+Use constructors and metadata declarations to customize how your Aleo programs handle upgrades. Below are common patterns.
+
+---
+
 ### ❌ Not Upgradable
+
+**Goal:** Prevent all future upgrades.
+
 ```leo
-// No constructor present → not upgradeable
+program foo.aleo;
+// A program without a constructor cannot be upgraded.
 ```
+
 ```leo
 constructor:
-  assert.eq foo.aleo/edition 0u16;
+  assert.eq foo.aleo/edition 0u16; // Reject upgrades: edition will never be zero again
 ```
 
 ---
 
 ### 🌐 Anyone Can Upgrade
+
+**Goal:** Allow upgrades by anyone, unconditionally.
+
 ```leo
 constructor:
   assert.eq true true;
@@ -140,7 +150,12 @@ constructor:
 
 ---
 
-### 🔄 Fix Dependency
+### 🔗 Fix Dependency
+
+**Goal:** Ensure a dependent program is on a specific version.
+
+> ℹ️ *Tip: Make your own program upgradable in case the dependency changes and locks your functionality.*
+
 ```leo
 constructor:
   assert.eq bar.aleo/edition 3u16;
@@ -149,6 +164,9 @@ constructor:
 ---
 
 ### 🔐 Remove Upgradability
+
+**Goal:** Allow upgrades until a flag is set, then lock forever.
+
 ```leo
 mapping locked:
     key as boolean;
@@ -161,7 +179,23 @@ constructor:
 
 ---
 
-### 📦 Content-Locked Upgrade
+### 👤 Admin-Driven Upgrades (Static Admin)
+
+**Goal:** Restrict upgrades to a hardcoded admin address.
+
+> ⚠️ *The admin address is immutable, make sure it’s secured!*
+
+```leo
+constructor:
+  assert.eq owner <ADMIN_ADDRESS>;
+```
+
+---
+
+### 📦 Content-Locked Upgrades
+
+**Goal:** Only allow upgrades that match a predetermined checksum.
+
 ```leo
 mapping expected:
     key as boolean;
@@ -175,14 +209,10 @@ constructor:
 
 ---
 
-### 🔑 Admin-Driven Upgrade
-```leo
-constructor:
-    assert.eq owner aleo1...;
-```
----
+### ⚙️ Configurable Admin-Driven Upgrades
 
-### 👤 Configurable Admin-Driven Upgrade
+**Goal:** Allow upgrades by a changeable admin that sets allowed checksums.
+
 ```leo
 mapping admin:
     key as boolean.public;
@@ -216,7 +246,10 @@ finalize set_expected:
 
 ---
 
-### 🗳️ Vote-Driven Upgrade
+### 🗳️ Vote-Driven Upgrades
+
+**Goal:** Require governance approval for upgrades.
+
 ```leo
 import governor.aleo;
 
@@ -228,7 +261,10 @@ constructor:
 
 ---
 
-### ⏳ Time-Locked Upgrade
+### ⏳ Time-Locked Upgrades
+
+**Goal:** Enable upgrades only after a specific block height.
+
 ```leo
 constructor:
     gte block.height 10u32 into r0;
