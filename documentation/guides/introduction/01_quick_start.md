@@ -92,15 +92,35 @@ You should have seen a confirmation that your Aleo application was deployed in t
 
 You can now use your deployed token program!  
 
-* Mint a private token
+When you call a method from your program, the logic is executed locally and is accompanied with a zero-knowledge proof that attests to the correctness of the program execution and corresponding outputs.  This proof does not reveal any information about the input values.  If the proof is verified by the validators, then the blockchain state is updated.  
 
-Run the following command from the Leo Playground command line:
+* Minting a private token
+
+Minting a private token entails creating a Record.  Records are data structures that are stored on-chain as ciphertexts and can only be decrypted using the View Key, which is derived from the Record owner's Private Key.  This ensures that only the owner of a Record has the ability to decrypt it.  
+
+To mint a private token, replace YOUR_ADDRESS_HERE with your Aleo address and YOUR_PROGRAM_NAME with the name of your token program and then run the following command:
 
 ```
-leo execute "mint_private" "10u64" --program YOUR_PROGRAM_NAME.aleo --broadcast
+leo execute mint_private YOUR_ADDRESS_HERE 10u64 --program YOUR_PROGRAM_NAME.aleo --broadcast
 ```
 
-You should see a confirmation that your Aleo application was executed with its transaction ID. Again, you can copy your transaction ID to view the details of your execution transaction on the Aleo block explorers.
+You should see a confirmation that your Aleo application was executed, accompanied with a transaction ID. You can copy your transaction ID in one of the Aleo block explorers to view the details of your transaction.
+
+* Mint a public token
+
+Public tokens are stored in mappings.  Unlike Records, which are encrypted on-chain, mappings will always contain public data.  
+
+Running the following command will mint a public token:
+
+```
+leo execute mint_public YOUR_ADDRESS_HERE 10u64 --program YOUR_PROGRAM_NAME.aleo --broadcast
+```
+
+To view the updated mapping, you can query the state of the program on the Aleo Testnet using the following command:
+
+```
+leo query program YOUR_PROGRAM_NAME.aleo
+```
 
 :::info
 Awesome! You have successfully deployed and executed a Leo application to Testnet 🎉
