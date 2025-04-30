@@ -356,24 +356,41 @@ cast r7 into r8 as [[boolean; 4u32]; 1u32];
 
 #### Supported Types
 
-| First     | Second    |
-|-----------|-----------|
-| `Address` | `Address` |
-| `Array`   | `Array`   |
-| `Boolean` | `Boolean` |
-| `Field`   | `Field`   |
-| `Group`   | `Group`   |
-| `I8`      | `I8`      |
-| `I16`     | `I16`     |
-| `I32`     | `I32`     |
-| `I64`     | `I64`     |
-| `I128`    | `I128`    |
-| `U8`      | `U8`      |
-| `U16`     | `U16`     |
-| `U32`     | `U32`     |
-| `U64`     | `U64`     |
-| `U128`    | `U128`    |
-| `Scalar`  | `Scalar`  |
+| From      | To                                                                                                                   |
+|-----------|----------------------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+| Elements  | To                |
+|-----------|-------------------|
+| `Address` | `Array`, `Struct` |
+| `Boolean` | `Array`, `Struct` |
+| `Field`   | `Array`, `Struct` |
+| `Group`   | `Array`, `Struct` |
+| `I8`      | `Array`, `Struct` |
+| `I16`     | `Array`, `Struct` |
+| `I32`     | `Array`, `Struct` |
+| `I64`     | `Array`, `Struct` |
+| `I128`    | `Array`, `Struct` |
+| `U8`      | `Array`, `Struct` |
+| `U16`     | `Array`, `Struct` |
+| `U32`     | `Array`, `Struct` |
+| `U64`     | `Array`, `Struct` |
+| `U128`    | `Array`, `Struct` |
+| `Scalar`  | `Array`, `Struct` |
 
 ***
 
@@ -396,23 +413,41 @@ cast.lossy r0 into r3 as u8; // The bottom 8 bits of the r0 are extracted into a
 
 #### Supported Types
 
-| First     | Second    |
-|-----------|-----------|
-| `Address` | `Address` |
-| `Boolean` | `Boolean` |
-| `Field`   | `Field`   |
-| `Group`   | `Group`   |
-| `I8`      | `I8`      |
-| `I16`     | `I16`     |
-| `I32`     | `I32`     |
-| `I64`     | `I64`     |
-| `I128`    | `I128`    |
-| `U8`      | `U8`      |
-| `U16`     | `U16`     |
-| `U32`     | `U32`     |
-| `U64`     | `U64`     |
-| `U128`    | `U128`    |
-| `Scalar`  | `Scalar`  |
+| From      | To                                                                                                                   |
+|-----------|:---------------------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Boolean`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+| Elements  | To                |
+|-----------|-------------------|
+| `Address` | `Array`, `Struct` |
+| `Boolean` | `Array`, `Struct` |
+| `Field`   | `Array`, `Struct` |
+| `Group`   | `Array`, `Struct` |
+| `I8`      | `Array`, `Struct` |
+| `I16`     | `Array`, `Struct` |
+| `I32`     | `Array`, `Struct` |
+| `I64`     | `Array`, `Struct` |
+| `I128`    | `Array`, `Struct` |
+| `U8`      | `Array`, `Struct` |
+| `U16`     | `Array`, `Struct` |
+| `U32`     | `Array`, `Struct` |
+| `U64`     | `Array`, `Struct` |
+| `U128`    | `Array`, `Struct` |
+| `Scalar`  | `Array`, `Struct` |
 ***
 
 ### `commit.bhp256`
