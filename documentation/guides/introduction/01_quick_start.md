@@ -3,10 +3,10 @@ id: quick_start
 title: Quick Start
 sidebar_label: Quick Start
 ---
-Deploy and a token program program on the Aleo testnet.
+Deploy a token program program on the Aleo Testnet.
 
 
-## 1. Generate your test keys and wallet address
+## 1. Generate a new Aleo account
 
 ### 1.1 Using Provable Tools (Provable SDK / Aleo SDK)
 
@@ -32,6 +32,13 @@ To seed your wallet, you'll need to request credits from faucet provided by the 
 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network before converting to private credits.
 
+You can check to see if your account received testnet credits using any of the following block explorers:
+<!-- markdown-link-check-disable -->
+- [Provable Explorer](https://testnet.explorer.provable.com/)
+- [Aleoscan](https://testnet.aleoscan.io/)
+- [Aleo123](https://testnet.aleo123.io/)
+- [Aleo.Info](https://testnet.aleo.info/)
+<!-- markdown-link-check-enable -->
 
 :::tip
 While waiting for the credits to be sent to your wallet, you can proceed to the next step of creating a Leo application.
@@ -60,11 +67,14 @@ ENDPOINT=https://api.explorer.provable.com/v1
 
 You are now ready to deploy your first Aleo program to the Testnet!
 
-## 5. Deploy your test application
+## 4. Deploy your token application
 
-:::tip Make sure that your account has sufficient Testnet credits to deploy to the network.
+:::tip Make sure that your account is funded with sufficient Testnet credits to deploy to the network.  
+:::
 
-* Deploy your Leo application to Aleo Testnet using the command below:
+* Deploy your Leo application to Aleo Testnet
+
+Using the command line from Leo Playground, run the following command:
 ```
 leo deploy
 ```
@@ -78,13 +88,13 @@ You should have seen a confirmation that your Aleo application was deployed in t
 - [Aleo.Info](https://testnet.aleo.info/)
 <!-- markdown-link-check-enable -->
 
-## 6. Execute a transaction
+## 5. Execute a transaction
 
 You can now use your deployed token program!  
 
 * Mint a private token
 
-Make sure you are in the root of your Leo application and paste the following command in your terminal
+Run the following command from the Leo Playground command line:
 
 ```
 leo execute "mint_private" "10u64" --program YOUR_PROGRAM_NAME.aleo --broadcast
