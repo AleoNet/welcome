@@ -245,13 +245,13 @@ function new_array3:
 
 ### Array
 
-An array is a data type declared as `[{value}, {value}]`.
+An array literal is written as `[{value}, {value}, ..]`, where all the values are the same type. For example,
 
 ```aleo
 [true, false, true]
 ```
 
-Arrays contain a list of values of the same type `[{type}; {length}]`.
+The type of an array includes the type of the elements and the length of the array `[{type}; {length}]`. The type of this example is
 
 ```aleo
 [boolean; 3u32]
