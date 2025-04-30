@@ -6,7 +6,7 @@ sidebar_label: Getting Started
 
 import FeatureCard from '@site/src/components/FeatureCard';
 
-### Start Developing
+### Start Developing on Aleo
 
 <div style={{
   display: 'grid',
@@ -30,7 +30,7 @@ import FeatureCard from '@site/src/components/FeatureCard';
 
 </div>
 
-### Deploy a Private Web Application
+### Create a Private Web App
 
 Follow hands-on tutorials to build and deploy private web apps directly in the browser.
 
@@ -45,13 +45,13 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
 <FeatureCard
   title="Make a Private Web App"
   description="Build a private full stack app."
-  link="https://stackblitz.com/github/ProvableHQ/zk-auction-example"
+  link="https://github.com/ProvableHQ/zk-auction-example?tab=readme-ov-file#private-auctions-with-aleo"
 />
 
 <FeatureCard
   title="Try Privacy on the Web"
   description="Try a live privacy preserving web app."
-  link="https://provablehq.github.io/zk-auction-example/"
+  link="https://stackblitz.com/github/ProvableHQ/zk-auction-example"
 />
 
 </div>
@@ -72,23 +72,32 @@ Follow hands-on tutorials to build and deploy private web apps directly in the b
       fontSize: '1.125rem',
       fontWeight: '600',
       listStyle: 'none',
+      cursor: 'pointer',
     }}>
       Private Application Demo
     </summary>
 
     <div style={{ padding: '1.25rem', background: '#151922' }}>
-      <iframe 
-        width="100%" 
-        height="240" 
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-        title="YouTube video player" 
-        frameBorder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowFullScreen
-      ></iframe>
+      <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+        <iframe
+          src="https://player.vimeo.com/video/1080014879?h=b4e53cd085&badge=0&autopause=0&player_id=0&app_id=58479"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          title="Zero Knowledge Auctions"
+        />
+      </div>
     </div>
   </details>
 </div>
+
 
 ## Learn Aleo
 
@@ -139,4 +148,28 @@ Learn the key concepts behind privacy preserving development with Aleo.
 </div>
 
 </div>
+
+## Development Tools
+
+### Authoring Aleo Programs
+
+The tools below allow developers to author private programs for the Aleo Network.
+
+| Name                                         | Description                                                                                |
+|----------------------------------------------|--------------------------------------------------------------------------------------------|
+| [Aleo Instructions](/guides/aleo/aleo)     | Low-level assembly language supported by by the Aleo protocol for authoring Aleo programs. |
+| [Leo](https://docs.leo-lang.org/leo)         | Developer friendly programming language for writing private programs on Aleo.              |
+| [Leo Playground](https://play.leo-lang.org/) | A web-based IDE for writing and testing Leo programs.                                      |
+
+### SDKs for Creating Private Applications
+
+The following SDKs exist for building private web and full stack applications on Aleo.
+
+| Language        | SDK                                                                            | Use-Cases                                   |
+|-----------------|--------------------------------------------------------------------------------|---------------------------------------------|
+| TypeScript      | [Puzzle SDK](https://docs.puzzle.online/)                                      | Aleo Browser Dapps                          |
+| TypeScript      | [Leo Wallet Adapter](https://docs.leo.app/aleo-wallet-adapter)                 | Aleo Browser Dapps                          |
+| TypeScript/Wasm | [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) | Node.JS Aleo Apps & Aleo Browser Extensions |
+| Rust            | [snarkVM](https://github.com/ProvableHQ/snarkVM)                               | Rust-Based Aleo Apps                        |
+
 
