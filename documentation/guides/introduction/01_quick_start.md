@@ -3,27 +3,16 @@ id: quick_start
 title: Quick Start
 sidebar_label: Quick Start
 ---
-Learn how to deploy and execute a basic "hello world!" program on Aleo's network using Leo and snarkOS. 
+Deploy and a token program program on the Aleo testnet.
 
 
+## 1. Generate your test keys and wallet address
 
-## 1. Prerequisites
-
-Make sure you have both `Leo` and `snarkOS` installed on your machine. If you have not installed these yet, you can do so by following the instructions [here](00_getting_started.md).
-
-
-
-## 2. Generate your test keys and wallet address
-
-### 2.1 Using Provable Tools (Provable SDK / Aleo SDK)
+### 1.1 Using Provable Tools (Provable SDK / Aleo SDK)
 
 * Go to [provable.tools](https://www.provable.tools/), click **Try now** and click the **Generate** button under **Create a New Account**.
 
-### 2.2 Using Leo CLI
-
-* In your terminal, run `leo account new`.  
-
-### 2.3 Using the Ecosystem Wallets
+### 1.2 Using the Ecosystem Wallets
 
 * [Leo Wallet](https://www.leo.app/)
 * [Puzzle Wallet](https://puzzle.online/)
@@ -33,7 +22,7 @@ Make sure you have both `Leo` and `snarkOS` installed on your machine. If you ha
 Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll need them later.
 :::
 
-## 3. Seeding your wallet with credits
+## 2. Seeding your wallet with credits
 
 
 To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
@@ -44,34 +33,16 @@ To seed your wallet, you'll need to request credits from faucet provided by the 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network before converting to private credits.
 
 
-
 :::tip
 While waiting for the credits to be sent to your wallet, you can proceed to the next step of creating a Leo application.
 :::
 
-## 4. Create a Leo application
+## 3. Deploy a token program from the Leo Playground
 
-We'll need something to deploy, so let's create a simple test Leo application.
+Navigate to the [Leo Playground](https://play.leo-lang.org/) and select the Token example.
 
-Open your terminal and enter the following commands consecutively:
+in `src/main.leo`, change the name of the program from `token.aleo` to include a unique identifier.  Be sure to copy and paste the new program name in the first field of the `program.json` file.
 
-* Create a directory to store your Leo application - feel free to use a different name for this directory or location
-
-```
-cd $HOME/Desktop
-```
-
-* Assign `$WALLETADDRESS` to the wallet address you saved
-
-```
-WALLETADDRESS=""
-```
-
-* Generate a unique application name randomly
-
-```
-APPNAME=helloworld_$RANDOM
-```
 :::tip
 The length of the application name should be at least 10 characters to optimize deployment costs. Deployment fees increase exponentially (base^10) for each character fewer than 10, so shorter names lead to significantly higher costs. Using a name with 10 or more characters helps keep deployment costs reasonable.
 :::
@@ -80,27 +51,20 @@ The length of the application name should be at least 10 characters to optimize 
 The reason for using a random application name is that the Aleo network identifies each program with its unique Program ID, and no two programs can have the same ID in the program registry. By generating a random name, we ensure that our application's Program ID will be unique when deployed.
 :::
 
-* Create a new test Leo application
+* Update your `.env` with your private key and ensure that the endpoint uses the Provable Explorer endpoint:
+```
+NETWORK=testnet
+PRIVATE_KEY=APrivateKey1...
+ENDPOINT=https://api.explorer.provable.com/v1
+```
 
-```
-leo new ${APPNAME}
-```
-
-* Run your Leo application to make sure things are working
-
-```
-cd ${APPNAME} && leo run
-```
+You are now ready to deploy your first Aleo program to the Testnet!
 
 ## 5. Deploy your test application
 
-* Set your private key in `.env` file at root of your Leo application
+:::tip Make sure that your account has sufficient Testnet credits to deploy to the network.
 
-```
-PRIVATEKEY=""
-```
-
-* Deploy your Leo application to Aleo Testnet
+* Deploy your Leo application to Aleo Testnet using the command below:
 ```
 leo deploy
 ```
@@ -114,21 +78,21 @@ You should have seen a confirmation that your Aleo application was deployed in t
 - [Aleo.Info](https://testnet.aleo.info/)
 <!-- markdown-link-check-enable -->
 
-## 6. Execute your test application
+## 6. Execute a transaction
 
-Finally, it is time to execute the application you just deployed!
+You can now use your deployed token program!  
 
-
+* Mint a private token
 
 Make sure you are in the root of your Leo application and paste the following command in your terminal
 
 ```
-leo execute "${APPNAME}.aleo" "main" "1u32" "2u32" --broadcast
+leo execute "mint_private" "10u64" --program YOUR_PROGRAM_NAME.aleo --broadcast
 ```
 
 You should see a confirmation that your Aleo application was executed with its transaction ID. Again, you can copy your transaction ID to view the details of your execution transaction on the Aleo block explorers.
 
 :::info
-Awesome! You have successfully deployed and executed a Leo application to Testnet, how exciting 🎉
+Awesome! You have successfully deployed and executed a Leo application to Testnet 🎉
 :::
 
