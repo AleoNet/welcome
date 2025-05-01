@@ -10,7 +10,7 @@ Deploy a token program on the Aleo Testnet directly from the [Leo Playground](ht
 * In the Leo Playgorund, select `Token` from the `Examples` dropdown menu.
 
 :::info
-This programs enables a user to mint and transfer   private and public tokens.  Prviate tokens are represented in data structures called Records and public tokens are recorded in public ledgers called mappings.  Data within a Record is only visibile to the Record owner while data contained in mappings is publically visible.
+This programs enables a user to mint and transfer private and public tokens.  Prviate tokens are represented in data structures called Records and public tokens are recorded in public ledgers called mappings.  Data within a Record is only visibile to the Record owner while data contained in mappings is publically visible.
 :::
 
 ## 2. Generate a new Aleo account
@@ -19,7 +19,7 @@ This programs enables a user to mint and transfer   private and public tokens.  
 
 * Click on the Account Widget to generate a new Aleo Account.
 
-![Account](imagesa/new_account.png)
+![Account](images/new_account.png)
 
 ### 2.2 Using the Ecosystem Wallets
 
@@ -31,13 +31,6 @@ This programs enables a user to mint and transfer   private and public tokens.  
 Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll need them later.
 :::
 
-* Update your `.env` with your private key and ensure that the endpoint uses the Provable Explorer endpoint:
-```
-NETWORK=testnet
-PRIVATE_KEY=APrivateKey1...
-ENDPOINT=https://api.explorer.provable.com/v1
-```
-
 ## 3. Seeding your wallet with credits
 
 To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
@@ -47,7 +40,7 @@ To seed your wallet, you'll need to request credits from faucet provided by the 
 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network.
 
-You can check to see if your account received testnet credits using any of the following block explorers:
+You can check to see if your account received Testnet credits using any of the following block explorers:
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
 - [Aleoscan](https://testnet.aleoscan.io/)
@@ -56,7 +49,7 @@ You can check to see if your account received testnet credits using any of the f
 <!-- markdown-link-check-enable -->
 
 :::tip
-While waiting for the credits to be sent to your wallet, you can proceed to the next step of creating a Leo application.
+While waiting for the credits to be sent to your wallet, you can proceed to the next step.
 :::
 
 ## 3. Deploy a token program from the Leo Playground
@@ -106,7 +99,7 @@ Copy your transaction ID to view the details of your deployment transaction on t
 <!-- markdown-link-check-enable -->
 
 :::info
-Depending on the size of your program, you may not have sufficient credits to deploy your program if you are using an account funded with only one faucet transaction.  If that's the case, you can still interact with a program already deployed to the testnet.
+Depending on the size of your program, you may not have sufficient credits to deploy your program if you are using an account funded with only one faucet transaction.  If that's the case, you can still interact with a program already deployed to the Testnet.
 :::
 
 ## 5. Execute a transaction
@@ -161,4 +154,4 @@ Notice that this transaction produces a Future instead of a Record.  A Future en
 Awesome! You have successfully deployed a Leo program and executed transactions on the Testnet 🎉
 :::
 
-To get started with local development, navigative to the [installation guide](./02_installation.md) to install the necessary tools to test your Leo programs in a local instance of the Aleo blockchain.
+To get started with local development, navigative to the [installation guide](./02_installation.md) to install the necessary tools to deploy your Leo programs locally.
