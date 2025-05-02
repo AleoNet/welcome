@@ -97,7 +97,7 @@ a sequence of field elements and outputs a field element. The output is uniforml
 ### HashToScalar
 
 An instantiation of HashToField that output elements in the scalar field <code>F<sub>scalar</sub></code>.
-[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/algorithms/src/poseidon/hash_to_scalar.rs)
+[source code](https://github.com/AleoNet/snarkVM/blob/mainnet/console/algorithms/src/poseidon/hash_to_scalar.rs#L24)
 
 ### EncodeToF
 
