@@ -13,6 +13,8 @@ Deploy a token program on the Aleo Testnet directly from the [Leo Playground](ht
 This programs enables a user to mint and transfer private and public tokens.  Prviate tokens are represented in data structures called Records and public tokens are recorded in public ledgers called mappings.  Data within a Record is only visibile to the Record owner while data contained in mappings is publically visible.
 :::
 
+Aleo supports a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
+
 ## 2. Generate a new Aleo account
 
 ### 2.1 Using the Leo Playground widget
