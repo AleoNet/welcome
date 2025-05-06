@@ -28,8 +28,8 @@ These endpoints allow one to fetch the most recent data gathered from the most r
 
 | Endpoint | Description |
 |----------|-------------|
-| `/latest/committee` | Get the latest committee information |
-| `/latest/stateRoot` | Get the latest state root |
+| [`/committee/latest`](/references/apis/10_get_committee), [`/latest/committee`](/references/apis/10_get_committee) | Get the latest committee information |
+| [`/stateRoot/latest`](/references/apis/03_get_latest_state_root), [`/latest/stateRoot`](/references/apis/03_get_latest_state_root) | Get the latest state root |
 | `/latest/totalSupply` | Get the total supply |
 | `/latest/circulatingSupply` | Get the circulating supply |
 
@@ -38,33 +38,32 @@ These endpoints provide block level information based on block height or block h
 
 | Endpoint | Description |
 |----------|-------------|
-| `/latest/block` | Get the latest block information |
-| `/latest/height` | Get the latest block height |
-| `/latest/hash` | Get the latest block hash |
-| `/find/blockHash/{tx_id}` | Find block hash by transaction ID |
-| `/block/height/latest` | Get the latest block by height |
-| `/block/hash/latest` | Get the latest block by hash |
-| `/block/latest` | Get the latest block |
-| `/block/{height_or_hash}` | Get block by height or hash |
+| [`/latest/block`](/references/apis/03_get_latest_block), [`/block/latest`](/references/apis/03_get_latest_block) | Get the latest block information |
+| [`/latest/height`](/references/apis/01_get_latest_height), [`/block/height/latest`](/references/apis/01_get_latest_height) | Get the latest block height |
+| [`/latest/hash`](/references/apis/02_get_latest_hash), [`/block/hash/latest`](/references/apis/02_get_latest_hash) | Get the latest block hash |
+| [`/find/blockHash/{tx_id}`](/references/apis/14_find_block_hash) | Find block hash by transaction ID |
+| [`/block/{height_or_hash}`](/references/apis/04_get_block) | Get block by height or hash |
+| [`/blocks?start={start_height}&end={end_height}`](/references/apis/04_get_blocks) | Get blocks by range |
 
 ### Program Data
 These endpoints provide block level information based on block height or block hash.
 
 | Endpoint | Description |
 |----------|-------------|
-| `/program/{id}` | Get program information by ID |
-| `/program/{id}/mappings` | Get program mappings by ID |
-| `/program/{id}/mapping/{name}/{key}` | Get specific program mapping by name and key |
-| `/find/transactionID/deployment/{program_id}` | Find transaction ID for program deployment |
+| [`/program/{id}`](/references/apis/08_get_program) | Get program information by ID |
+| [`/program/{id}/mappings`](/references/apis/11_get_mapping_names) | Get program mappings by ID |
+| [`/program/{id}/mapping/{name}/{key}`](/references/apis/12_get_mapping_value) | Get specific program mapping by name and key |
+| [`/find/transactionID/deployment/{program_id}`](/references/apis/20_find_transaction_id_from_program_id) | Find transaction ID for program deployment |
 
 ### Transaction Data
 These endpoints provide block level information based on block height or block hash.
 
 | Endpoint | Description |
 |----------|-------------|
-| `/transaction/{id}` | Get transaction information by ID |
-| `/transaction/confirmed/{id}` | Get confirmed transaction by ID |
-| `/transaction/broadcast` | Broadcast a new transaction |
-| `/find/transitionID/{input_or_output_id}` | Find transition ID by input or output ID |
-| `/find/transactionID/{transition_id}` | Find transaction ID by transition ID |
-| `block/{height}/transactions` | Get all transactions in a block by height |
+| [`/transaction/{id}`](/references/apis/06_get_transaction) | Get transaction information by ID |
+| [`/transaction/confirmed/{id}`](/references/apis/18_get_confirmation_status) | Get confirmed transaction by ID |
+| [`/transaction/broadcast`](/references/apis/23_transaction_broadcast) | Broadcast a new transaction |
+| [`/find/transitionID/{input_or_output_id}`](/references/apis/15_find_transition_id) | Find transition ID by input or output ID |
+| [`/find/transactionID/{transition_id}`](/references/apis/21_find_transaction_id_from_transition_id) | Find transaction ID by transition ID |
+| [`/block/{height}/transactions`](/references/apis/05_get_block_transactions) | Get all transactions in a block by height |
+| [`/memoryPool/transactions`](/references/apis/07_get_memory_pool_transactions) | Get all transactions in the memory pool |

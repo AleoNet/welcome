@@ -1,14 +1,14 @@
 ---
-id: get_transaction
-title: Get Transaction
-sidebar_label: Get Transaction
+id: get_confirmation_status
+title: Get Confirmation Status
+sidebar_label: Get Confirmation Status
 ---
 
 ```bash title=ENDPOINT
-GET /{network}/transaction/{ID}
+GET /{network}/transaction/confirmed/{ID}
 ```
 
-Returns the transaction for the given transaction ID.
+Retrieves the confirmation status of a transaction.
 
 ### Arguments
 
@@ -20,4 +20,4 @@ Returns the transaction for the given transaction ID.
 
 | Parameter |                    Type                     |        Description        |
 |:---------:|:-------------------------------------------:|:-------------------------:|
-| `result`  | [object](../../concepts/fundamentals/03_transactions.md) | The requested transaction |
+| `result`  | object | The confirmation status |
