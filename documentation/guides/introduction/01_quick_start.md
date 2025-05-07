@@ -14,7 +14,7 @@ Welcome to the Aleo Quickstart. This quickstart will guide you through the core 
 
 Aleo's unique architecture enables a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
 
-* In the Leo Playgorund, select `Token` from the `Examples` dropdown menu.
+In the Leo Playground, select `Token` from the `Examples` dropdown menu.
 
 ![example_menu](images/examples_menu.png)
 
@@ -89,7 +89,7 @@ Click on the deploy widget to bring up the deployment window.
 
 Enter your program name in the `Program ID` field and then enter your Private Key.
 
-You can view an estimate for the deployment cost by clicking `Estimate Fee`.  Once you're ready to deploy, click `Deploy`.
+You can view an estimate for the deployment cost by clicking `Estimate Fee`.  When you are ready to deploy, click `Deploy`.
 
 You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with an ID that looks like the following `at1ucnyh3rjewyudk484jz4qey5nknfhrs7lnwwzl2h28vdvdryf5ys2wsxh0`. 
 
