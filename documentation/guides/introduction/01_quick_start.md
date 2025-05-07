@@ -48,7 +48,15 @@ To seed your wallet, you'll need to request credits from the faucet provided by 
 
 The credits received from the faucet will be public credits, which means they are publicly visible on the Aleo network.
 
-You can check to see if your account received Testnet credits using any of the following block explorers:
+You can check your account balance by selecting the `Get Account Balance` from the list of options in the query widget.
+
+![account_balance](images/account_balance.png)
+
+Clicking the `Open` button will link to your account balance on the Provable Explorer page.
+
+![provable_explorer](images/provable_explorer.png)
+
+Here is a list of ecosystem explorers:
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
 - [Aleoscan](https://testnet.aleoscan.io/)
