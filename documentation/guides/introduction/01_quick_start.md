@@ -158,7 +158,9 @@ To learn more about Records, click [here](../../concepts/fundamentals/02_records
 
 * Mint a public token
 
-Public tokens are stored in mappings.  Unlike Records, which are encrypted on-chain, mappings will always contain public data.  
+In the Token program, public balances are stored in program mappings. Mappings are public key-value stores on Aleo Network nodes which store long term persistent public state onchain.
+
+Below we will mint a public token using the `mint_public` function. When this function is run, it will update the balance in the `account` mapping corresponding to the specified Aleo `address`. 
 
 Navigate back to the Execute widget and repeat the steps in the previous section for minting a public token.  The transaction summary from the block explorer should resemble the following:
 
