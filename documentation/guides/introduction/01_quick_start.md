@@ -16,7 +16,7 @@ Aleo's unique architecture enables a wide range of programs and applications bey
 
 Navigate to the [Leo Playground](https://play.leo-lang.org) and select `Token` from the `Examples` dropdown menu.
 
-<img src="images/examples_menu.png" width="300"/>
+<img src={require('./images/examples_menu.png').default} width="400" />
 
 :::info
 The Token program simulates a token markeplace and enables a user to mint and transfer private and public tokens.  It is used to showcase how developers manage private and public state on the Aleo Network. Private tokens in this program are represented in encrypted data structures called Records and public tokens are recorded in public on-chain datastores called mappings.
@@ -28,7 +28,7 @@ The Token program simulates a token markeplace and enables a user to mint and tr
 
 * Click on the Account Widget to generate a new Aleo Account.
 
-<img src="images/new_account.png" width="300"/>
+<img src={require('./images/new_account.png').default} width="400"/>
 
 :::note
 Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll need them later.
@@ -50,11 +50,11 @@ The credits received from the faucet will be public credits, which means they ar
 
 You can check your account balance by selecting the `Get Account Balance` from the list of options in the query widget.
 
-<img src="images/account_balance.png" width="300"/>
+<img src={require('./images/account_balance.png').default} width="400"/>
 
 Clicking the `Open` button will link to your account balance on the [Provable Explorer](https://testnet.explorer.provable.com/) page.
 
-<img src="images/provable_explorer.png" width="300"/>
+<img src={require('./images/provable_explorer.png').default} width="400"/>
 
 Here is a list of ecosystem explorers:
 <!-- markdown-link-check-disable -->
@@ -72,9 +72,9 @@ While waiting for the credits to be sent to your wallet, you can proceed to the 
 
 Change the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the `program` field in the `program.json` file to match the new name. 
 
-<img src="images/program_name_.png" width="600"/>
+<img src={require('./images/program_name_.png').default} width="800"/>
 
-<img src="images/program_json_.png" width="600"/>
+<img src={require('./images/program_json_.png').default} width="800"/>
 
 :::tip
 The length of the application name should be at least 10 characters. Deployment costs are higher for names shorter than 10 characters.
@@ -91,15 +91,15 @@ You are now ready to deploy your first Aleo program to the Testnet!
 
 Click on the deploy widget to bring up the deployment window.
 
-<img src="images/deploy.png" width="300"/>
+<img src={require('./images/deploy.png').default} width="400"/>
 
 Enter your program name in the `Program ID` field and then enter your Private Key.
 
 You can view an estimate for the deployment cost by clicking `Estimate Fee`.  When you are ready to deploy, click `Deploy`.
 
-You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with a transaction ID that looks like the following `at1ucnyh3rjewyudk484jz4qey5nknfhrs7lnwwzl2h28vdvdryf5ys2wsxh0`. 
+You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with a transaction ID. 
 
-<img src="images/deployment.png" width="600"/>
+<img src={require('./images/deployment.png').default} width="800"/>
 
 Copy your transaction ID to view the details of your deployment transaction on the Aleo block explorers:
 
@@ -134,7 +134,7 @@ To mint a private token, navigate to the Execute widget in the Leo Playground an
 Click the magnifying glass icon to confirm that the Program ID corresponds to a deployed program.
 :::
 
-<img src="images/execute.png" width="300"/>
+<img src={require('./images/execute.png').default} width="400"/>
 
 Next, enter your Private Key and select the `mint_private` method from the Function drop-down menu.  In the Inputs tab, enter your Account Address and a `u64` integer.
 
@@ -143,11 +143,12 @@ Next, enter your Private Key and select the `mint_private` method from the Funct
 ```
 Click Estimate Fee followed by Execute.  As before with the deploy transaction, you can copy and past your transaction ID in a block explorer.  You should see something resembling the following:
 
-<img src="images/mint_private.png" width="600"/>
+<img src={require('./images/mint_private.png').default} width="1000"/>
 
 :::info
 The output of the transaction is a Record.  In order to decrypt the Record, you need to copy and past the ciphertext, navigate to the Records widget in the Leo Playground, enter the Record ciphertext along with the View Key that corresponds to your Account's Private Key, and click Decrypt.  The decrypted Record should resemble the following:
-```{
+```
+{
   owner: aleo1kypwp5m7qtk9mwazgcpg0tq8aal23mnrvwfvug65qgcg9xvsrqgspyjm6n.private,
   amount: 50u64.private,
   _nonce: 3175255370513411091535466147458245312227668453916963245036391157478647265587group.public
@@ -164,7 +165,7 @@ Below we will mint a public token using the `mint_public` function. When this fu
 
 Navigate back to the Execute widget and repeat the steps in the previous section for minting a public token.  The transaction summary from the block explorer should resemble the following:
 
-<img src="images/mint_public.png" width="600"/>
+<img src={require('./images/mint_public.png').default} width="1000"/>
 
 Unlike the `mint_private` function, the `mint_public` function creates an execution transaction that contains a `Future` instead of a `Record`.  A `Future`  contains a set of instructions for validators to execute on-chain which can read or update mappings.  If the `mint_public` execution transaction is valid, it will be accepted by the validators which will run the instructions in the `mint_public` `Future` that update the `account` mapping.
 
