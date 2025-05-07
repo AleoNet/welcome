@@ -63,7 +63,7 @@ Change the name of the program in line 1 of `src/main.leo` to use a unique ident
 ![program.json](images/program_json.png)
 
 :::tip
-The length of the application name should be at least 10 characters to optimize deployment costs. Deployment fees increase exponentially (base^10) for each character fewer than 10, so shorter names lead to significantly higher costs. Using a name with 10 or more characters helps keep deployment costs reasonable.
+The length of the application name should be at least 10 characters. Deployment costs are higher for names shorter than 10 characters.
 :::
 
 :::info
