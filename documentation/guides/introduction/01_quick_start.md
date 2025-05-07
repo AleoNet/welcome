@@ -10,7 +10,7 @@ Welcome to the Aleo Quickstart. This quickstart will guide you through the core 
 * In the Leo Playgorund, select `Token` from the `Examples` dropdown menu.
 
 :::info
-This programs enables a user to mint and transfer private and public tokens.  Prviate tokens are represented in data structures called Records and public tokens are recorded in public ledgers called mappings.  Data within a Record is only visibile to the Record owner while data contained in mappings is publically visible.
+The Token program simulates a token markeplace and enables a user to mint and transfer private and public tokens.  It is used to showcase how developers manage private and public state on the Aleo Network. Private tokens in this program are represented in encrypted data structures called Records and public tokens are recorded in public on-chain datastores called mappings.
 :::
 
 Aleo's unique architecture enables a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
