@@ -14,7 +14,7 @@ Welcome to the Aleo Quickstart. This quickstart will guide you through the core 
 
 Aleo's unique architecture enables a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
 
-In the Leo Playground, select `Token` from the `Examples` dropdown menu.
+Navigate to the [Leo Playground](https://play.leo-lang.org) and select `Token` from the `Examples` dropdown menu.
 
 ![example_menu](images/examples_menu.png)
 
