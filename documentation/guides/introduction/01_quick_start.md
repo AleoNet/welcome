@@ -122,7 +122,7 @@ You can now use your deployed token program!
 If you did not have enough funds to deploy a program, you can use the [`token_quickstart.aleo`](https://play.leo-lang.org/?gistId=b6730338a24169308348d5e38243665d&revision=3339199a4ac60976dc5ce6c0c35c5eefb0488ee0) program to test the execution of the token program methods.
 :::
 
-When you call a method from your program, the logic is executed locally and is accompanied with a zero-knowledge proof that attests to the correctness of the program execution and its corresponding outputs.  This proof does not reveal any information about the input values.  If the proof is verified by the validators, then the blockchain state is updated.  
+When you call one of your program's functions, the logic is executed locally and a zero-knowledge proof is built. This proof attests to the correctness of the program execution and its corresponding outputs while keeping hidden inputs or outputs encrypted. After a function is executed, an Execution Transaction is submitted to the Aleo Network that contains a summary of the execution and a proof of its correctness. This transaction will be accepted when a network validator validates the proof and that the proper fee was paid. 
 
 * Minting a private token
 
