@@ -70,9 +70,6 @@ Change the name of the program in line 1 of `src/main.leo` to use a unique ident
 The length of the application name should be at least 10 characters. Deployment costs are higher for names shorter than 10 characters.
 :::
 
-:::info
-The reason for using a random application name is that the Aleo network identifies each program with its unique Program ID, and no two programs can have the same ID in the program registry. By generating a random name, we ensure that our application's Program ID will be unique when deployed.
-:::
 
 You are now ready to deploy your first Aleo program to the Testnet!
 
