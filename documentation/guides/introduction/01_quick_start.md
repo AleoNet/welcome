@@ -5,6 +5,10 @@ sidebar_label: Quick Start
 ---
 Welcome to the Aleo Quickstart. This quickstart will guide you through the core concepts of building on Aleo. In this guide, you will be guided through the process of deploying and interacting with your own Aleo program directly on the web via the [Leo Playground](https://play.leo-lang.org). 
 
+## What you'll learn
+1. **Aleo Accounts:** Learn how to create an Aleo account and create private and public data.
+2. **Aleo Programs:** Learn how to interact with the Aleo network by deploying and executing your own program.
+3. **Private and Public State:** Learn how to manage both private and public data on Aleo in order to create privacy preseving apps.
 ## 1.  The Token program
 
 * In the Leo Playgorund, select `Token` from the `Examples` dropdown menu.
