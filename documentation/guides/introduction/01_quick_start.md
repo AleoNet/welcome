@@ -119,7 +119,7 @@ Depending on the size of your program, you may not have sufficient credits to de
 You can now use your deployed token program!  
 
 :::tip
-If you did not have enough funds to deploy a program, you can use the `token_quickstart.aleo` program to test the execution of the token program methods.
+If you did not have enough funds to deploy a program, you can use the [`token_quickstart.aleo`](https://play.leo-lang.org/?gistId=b6730338a24169308348d5e38243665d&revision=3339199a4ac60976dc5ce6c0c35c5eefb0488ee0) program to test the execution of the token program methods.
 :::
 
 When you call a method from your program, the logic is executed locally and is accompanied with a zero-knowledge proof that attests to the correctness of the program execution and its corresponding outputs.  This proof does not reveal any information about the input values.  If the proof is verified by the validators, then the blockchain state is updated.  
