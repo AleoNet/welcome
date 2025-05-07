@@ -166,7 +166,9 @@ Navigate back to the Execute widget and repeat the steps in the previous section
 
 ![mint_public](images/mint_public.png)
 
-Notice that this transaction produces a Future instead of a Record.  A Future encapsulates a set of instructions for validators to execute on-chain, such as updating the values in a mapping.  
+Unlike the `mint_private` function, the `mint_public` function creates an execution transaction that contains a `Future` instead of a `Record`.  A `Future`  contains a set of instructions for validators to execute on-chain which can read or update mappings.  If the `mint_public` execution transaction is valid, it will be accepted by the validators which will run the instructions in the `mint_public` `Future` that update the `account` mapping.
+
+This account mapping can then be queried publicly by anyone.
 
 :::info
 Awesome! You have successfully deployed a Leo program and executed transactions on the Testnet 🎉
