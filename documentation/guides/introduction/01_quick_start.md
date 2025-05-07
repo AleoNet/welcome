@@ -99,7 +99,7 @@ Enter your program name in the `Program ID` field and then enter your Private Ke
 
 You can view an estimate for the deployment cost by clicking `Estimate Fee`.  When you are ready to deploy, click `Deploy`.
 
-You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with an ID that looks like the following `at1ucnyh3rjewyudk484jz4qey5nknfhrs7lnwwzl2h28vdvdryf5ys2wsxh0`. 
+You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with a transaction ID that looks like the following `at1ucnyh3rjewyudk484jz4qey5nknfhrs7lnwwzl2h28vdvdryf5ys2wsxh0`. 
 
 <img src="images/deployment.png" width="500">
 
@@ -121,16 +121,20 @@ Depending on the size of your program, you may not have sufficient credits to de
 You can now use your deployed token program!  
 
 :::tip
-If you did not have enough funds to deploy a program, you can use the `token_quickstart.aleo` program to test the execution of the token program methods.
+If you did not have enough funds to deploy a program, you can use the [`token_quickstart.aleo`](https://play.leo-lang.org/?gistId=b6730338a24169308348d5e38243665d&revision=3339199a4ac60976dc5ce6c0c35c5eefb0488ee0) program to test the execution of the token program methods.
 :::
 
-When you call a method from your program, the logic is executed locally and is accompanied with a zero-knowledge proof that attests to the correctness of the program execution and its corresponding outputs.  This proof does not reveal any information about the input values.  If the proof is verified by the validators, then the blockchain state is updated.  
+When you call one of your program's functions, the logic is executed locally and a zero-knowledge proof is built. This proof attests to the correctness of the program execution and its corresponding outputs while keeping hidden inputs or outputs encrypted. After a function is executed, an Execution Transaction is submitted to the Aleo Network that contains a summary of the execution and a proof of its correctness. This transaction will be accepted when a network validator validates the proof and that the proper fee was paid. 
 
 * Minting a private token
 
-Minting a private token entails creating a Record.  Records are data structures that are stored on-chain as ciphertexts and can only be decrypted using the View Key, which is derived from the Record owner's Private Key.  This ensures that only the owner of a Record has the ability to decrypt it.  
+Below we will mint a private token using the `mint_private` function. This function will create an Aleo `Record` which represents the new token.  Records are encrypted data structures stored on-chain as ciphertexts that can only be decrypted by the owner of the record (using the owner's View key). This ensures that only the owner of the record knows its content, thus keeping the token private.
 
-To mint a private token, navigate to the Execute widget in the Leo Playground and enter the name of your program in the Program ID tab.  Alternatively, you can use the deployed token program 'token_quickstart.aleo`.  Click the magnifying glass icon to confirm that the Program ID corresponds to a deployed program.
+To mint a private token, navigate to the Execute widget in the Leo Playground and enter the name of your program in the Program ID tab.  Alternatively, you can use the deployed token program 'token_quickstart.aleo`.  
+
+:::tip
+Click the magnifying glass icon to confirm that the Program ID corresponds to a deployed program.
+:::
 
 <img src="images/execute.png" width="300">
 
@@ -156,13 +160,17 @@ To learn more about Records, click [here](../../concepts/fundamentals/02_records
 
 * Mint a public token
 
-Public tokens are stored in mappings.  Unlike Records, which are encrypted on-chain, mappings will always contain public data.  
+In the Token program, public balances are stored in program mappings. Mappings are public key-value stores on Aleo Network nodes which store long term persistent public state onchain.
+
+Below we will mint a public token using the `mint_public` function. When this function is run, it will update the balance in the `account` mapping corresponding to the specified Aleo `address`. 
 
 Navigate back to the Execute widget and repeat the steps in the previous section for minting a public token.  The transaction summary from the block explorer should resemble the following:
 
 <img src="images/mint_public.png" width="500">
 
-Notice that this transaction produces a Future instead of a Record.  A Future encapsulates a set of instructions for validators to execute on-chain, such as updating the values in a mapping.  
+Unlike the `mint_private` function, the `mint_public` function creates an execution transaction that contains a `Future` instead of a `Record`.  A `Future`  contains a set of instructions for validators to execute on-chain which can read or update mappings.  If the `mint_public` execution transaction is valid, it will be accepted by the validators which will run the instructions in the `mint_public` `Future` that update the `account` mapping.
+
+This account mapping can then be queried publicly by anyone.
 
 :::info
 Awesome! You have successfully deployed a Leo program and executed transactions on the Testnet 🎉
