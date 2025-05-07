@@ -9,11 +9,13 @@ The Provable API is designed to provide users with access to the Aleo blockchain
 
 ## API Base URLs
 
+<!-- markdown-link-check-disable -->
 | Environment | URL |
 |-------------|-----|
 | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
 | Testnet API | https://api.explorer.provable.com/v1/testnet |
 | Mock Server | https://stoplight.io/mocks/provable1/api-reference/33447 |
+<!-- markdown-link-check-enable -->
 
 ## Rate Limiting
 Rate limiting is setup across all provided endpoints and follows the below limits:
