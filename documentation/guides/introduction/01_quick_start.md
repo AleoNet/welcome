@@ -128,7 +128,11 @@ When you call one of your program's functions, the logic is executed locally and
 
 Below we will mint a private token using the `mint_private` function. This function will create an Aleo `Record` which represents the new token.  Records are encrypted data structures stored on-chain as ciphertexts that can only be decrypted by the owner of the record (using the owner's View key). This ensures that only the owner of the record knows its content, thus keeping the token private.
 
-To mint a private token, navigate to the Execute widget in the Leo Playground and enter the name of your program in the Program ID tab.  Alternatively, you can use the deployed token program 'token_quickstart.aleo`.  Click the magnifying glass icon to confirm that the Program ID corresponds to a deployed program.
+To mint a private token, navigate to the Execute widget in the Leo Playground and enter the name of your program in the Program ID tab.  Alternatively, you can use the deployed token program 'token_quickstart.aleo`.  
+
+:::tip
+Click the magnifying glass icon to confirm that the Program ID corresponds to a deployed program.
+:::
 
 ![execute](images/deploy.png)
 
