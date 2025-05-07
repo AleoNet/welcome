@@ -86,7 +86,7 @@ Click on the deploy widget to bring up the deployment window.
 
 Enter your program name in the `Program ID` field and then enter your Private Key.
 
-You can view an estimate for the deployment cost by clicking `Estimate Fee`.  Once your ready to deploy, click `Deploy`.
+You can view an estimate for the deployment cost by clicking `Estimate Fee`.  Once you're ready to deploy, click `Deploy`.
 
 You should have seen a confirmation that your Aleo application was deployed in the form of a pop-up with an ID that looks like the following `at1ucnyh3rjewyudk484jz4qey5nknfhrs7lnwwzl2h28vdvdryf5ys2wsxh0`. 
 
