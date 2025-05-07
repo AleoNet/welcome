@@ -3,7 +3,7 @@ id: quick_start
 title: Quick Start
 sidebar_label: Quick Start
 ---
-Deploy a token program on the Aleo Testnet directly from the [Leo Playground](https://play.leo-lang.org)
+Welcome to the Aleo Quickstart. This quickstart will guide you through the core concepts of building on Aleo. In this guide, you will be guided through the process of deploying and interacting with your own Aleo program directly on the web via the [Leo Playground](https://play.leo-lang.org). 
 
 ## 1.  The Token program
 
