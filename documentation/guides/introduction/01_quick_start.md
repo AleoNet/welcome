@@ -42,11 +42,11 @@ Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll
 
 ## 3. Seeding your wallet with credits
 
-To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
+To seed your wallet, you'll need to request credits from the faucet provided by the ecosystem wallets at:
 * [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
 * [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 
-The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network.
+The credits received from the faucet will be public credits, which means they are publicly visible on the Aleo network.
 
 You can check to see if your account received Testnet credits using any of the following block explorers:
 <!-- markdown-link-check-disable -->
@@ -71,7 +71,6 @@ Change the name of the program in line 1 of `src/main.leo` to use a unique ident
 :::tip
 The length of the application name should be at least 10 characters. Deployment costs are higher for names shorter than 10 characters.
 :::
-
 
 You are now ready to deploy your first Aleo program to the Testnet!
 
