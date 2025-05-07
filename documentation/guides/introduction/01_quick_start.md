@@ -30,22 +30,21 @@ The Token program simulates a token markeplace and enables a user to mint and tr
 
 ![Account](images/new_account.png)
 
-### 2.2 Using the Ecosystem Wallets
-
-* [Leo Wallet](https://www.leo.app/)
-* [Puzzle Wallet](https://puzzle.online/)
-* [Soter Wallet](https://sotertech.io/)
-
 :::note
 Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll need them later.
 :::
 
+### 2.2 Using the Ecosystem Wallets
+
+* [Puzzle Wallet](https://puzzle.online/wallet)
+* [Leo Wallet](https://www.leo.app/)
+* [Soter Wallet](https://sotertech.io/)
+
 ## 3. Seeding your wallet with credits
 
 To seed your wallet, you'll need to request credits from faucet provided by the ecosystem wallets at:
-* [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 * [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
-* [Soter Wallet Faucet](https://faucetbeta.sotertech.io/)
+* [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
 
 The credits received from faucet will be public credits, which means they are publicly visible on the Aleo network.
 
