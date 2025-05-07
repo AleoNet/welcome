@@ -9,15 +9,18 @@ Welcome to the Aleo Quickstart. This quickstart will guide you through the core 
 1. **Aleo Accounts:** Learn how to create an Aleo account and create private and public data.
 2. **Aleo Programs:** Learn how to interact with the Aleo network by deploying and executing your own program.
 3. **Private and Public State:** Learn how to manage both private and public data on Aleo in order to create privacy preseving apps.
+
 ## 1.  The Token program
 
+Aleo's unique architecture enables a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
+
 * In the Leo Playgorund, select `Token` from the `Examples` dropdown menu.
+
+![example_menu](images/examples_menu.png)
 
 :::info
 The Token program simulates a token markeplace and enables a user to mint and transfer private and public tokens.  It is used to showcase how developers manage private and public state on the Aleo Network. Private tokens in this program are represented in encrypted data structures called Records and public tokens are recorded in public on-chain datastores called mappings.
 :::
-
-Aleo's unique architecture enables a wide range of programs and applications beyond tokens and DeFi.  We use the Token program in this guide to illustrate how developers manage private and public state with an intuitive example.
 
 ## 2. Generate a new Aleo account
 
