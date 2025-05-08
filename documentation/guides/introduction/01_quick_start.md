@@ -57,7 +57,7 @@ When the credits arrive, you should see the following output in the query widget
 
 <img src={require('./images/provable_explorer.png').default} width="400"/>
 
-Alternatively you can for the transaction ID provided by the faucets on any one of the ecosystem's block explorers.
+Alternatively you can search for the transaction ID provided by the faucets on any one of the ecosystem's block explorers.
 
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
@@ -74,7 +74,7 @@ While waiting for the credits to be sent to your wallet, you can proceed to the 
 
 ### 3.1 The Token Program
 
-In this section, you'll learn how to deploy a sample `Token` program to the Aleo Testnet from the Leo Playground. 
+In this section, you'll learn how to deploy a sample `Token` program to Aleo Testnet from the Leo Playground. 
 By the end of this section you'll be familiar with how to deploy your own privacy preserving program to Aleo.
 
 :::info
@@ -114,13 +114,13 @@ ready to deploy, click `Deploy`.
 
 
 
-After this process, the Leo Playground will build a `Deployment Transaction` and submit to the Aleo Network. This process 
-may take a while. When it is finished, you should see a confirmation that your Aleo application was deployed in the form
-of a pop-up with a transaction ID. 
+When you click `Deploy`, the Leo Playground will build a `Deployment Transaction` and submit to the Aleo Network. 
+This process may take a while. When it is finished, you should see a confirmation that your Aleo application was 
+deployed in a pop-up containing the transaction ID. 
 
 <img src={require('./images/deployment.png').default} width="800"/>
 
-Copy your transaction ID to view the details of your deployment transaction on the Aleo block explorers:
+Copy the transaction ID to view the details of your deployment transaction on any of the Aleo block explorers:
 
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
