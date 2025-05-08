@@ -178,7 +178,7 @@ The output of the transaction is a Record.  In order to decrypt the Record, you 
 To learn more about Records, click [here](../../concepts/fundamentals/02_records.md)
 :::
 
-### 4.2 Mint a Token Publicly
+### 4.3 Mint a Token Publicly
 
 In the Token program, public balances are stored in program mappings. Mappings are public key-value stores on Aleo Network nodes which store long term persistent public state onchain.
 
