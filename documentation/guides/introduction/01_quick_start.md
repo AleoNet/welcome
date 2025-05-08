@@ -187,7 +187,7 @@ Navigate back to the Execute widget and repeat the steps in the previous section
 
 Unlike the `mint_private` function, the `mint_public` function creates an execution transaction that contains a `Future` instead of a `Record`.  A `Future`  contains a set of instructions for validators to execute on-chain which can read or update mappings.  If the `mint_public` execution transaction is valid, it will be accepted by the validators which will run the instructions in the `mint_public` `Future` that update the `account` mapping.
 
-Mapping values can be queried by selecting the `Get Mapping Value By Key` option in the query widget. You will need to enter the Program ID, mapping name, and mapping key in their respective fields.  For the Token program, the mapping key is the Aleo address that the public tokens.
+Mapping values can be queried by selecting the `Get Mapping Value By Key` option in the query widget. You will need to enter the Program ID, mapping name, and mapping key in their respective fields.  For the Token program, the mapping key is the Aleo address that owns the public tokens.
 
 <img src={require('./images/quickstart_mapping.png').default} width="400"/>
 
