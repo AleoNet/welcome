@@ -63,8 +63,6 @@ Alternatively you can search for the transaction ID provided by the faucets on a
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
 - [Aleoscan](https://testnet.aleoscan.io/)
-- [Aleo123](https://testnet.aleo123.io/)
-- [Aleo.Info](https://testnet.aleo.info/)
 <!-- markdown-link-check-enable -->
 
 :::tip
@@ -126,8 +124,6 @@ Copy the transaction ID to view the details of your deployment transaction on an
 <!-- markdown-link-check-disable -->
 - [Provable Explorer](https://testnet.explorer.provable.com/)
 - [Aleoscan](https://testnet.aleoscan.io/)
-- [Aleo123](https://testnet.aleo123.io/)
-- [Aleo.Info](https://testnet.aleo.info/)
 <!-- markdown-link-check-enable -->
 
 :::info
