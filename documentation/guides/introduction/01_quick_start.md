@@ -8,7 +8,7 @@ Welcome to the Aleo Quickstart. This quickstart will guide you through the core 
 ## What You'll Learn
 1. **Aleo Accounts:** Learn how to create an Aleo account and create private and public data.
 2. **Aleo Programs:** Learn how to interact with the Aleo network by deploying and executing your own program.
-3. **Private and Public State:** Learn how to manage both private and public data on Aleo in order to create privacy preseving apps.
+3. **Private and Public State:** Learn how to manage both private and public data on Aleo in order to create privacy preserving apps.
 
 ## 1. Generate a New Aleo Account
 
@@ -32,6 +32,7 @@ An account can be created using one of the wallets below. After installing any o
 prompted to create an Aleo account.
 
 * [Puzzle Wallet](https://puzzle.online/wallet)
+* [Fox Wallet](https://foxwallet.com/)
 * [Leo Wallet](https://www.leo.app/)
 * [Soter Wallet](https://sotertech.io/)
 
@@ -196,4 +197,4 @@ This account mapping can then be queried publicly by anyone.
 Awesome! You have successfully deployed a Leo program and executed transactions on the Testnet 🎉
 :::
 
-To get started with local development, navigative to the [installation guide](./02_installation.md) to install the necessary tools to deploy your Leo programs locally.
+To get started with local development, navigate to the [installation guide](./02_installation.md) to install the necessary tools to deploy your Leo programs locally.

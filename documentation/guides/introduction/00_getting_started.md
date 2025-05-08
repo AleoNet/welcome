@@ -167,9 +167,9 @@ The following SDKs exist for building private web and full stack applications on
 
 | Language        | SDK                                                                            | Use-Cases                                   |
 |-----------------|--------------------------------------------------------------------------------|---------------------------------------------|
+| Rust            | [snarkVM](https://github.com/ProvableHQ/snarkVM)                               | Rust-Based Aleo Apps
+| TypeScript/Wasm | [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) | Node.JS Aleo Apps & Aleo Browser Extensions |                      |  
 | TypeScript      | [Puzzle SDK](https://docs.puzzle.online/)                                      | Aleo Browser Dapps                          |
 | TypeScript      | [Leo Wallet Adapter](https://docs.leo.app/aleo-wallet-adapter)                 | Aleo Browser Dapps                          |
-| TypeScript/Wasm | [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) | Node.JS Aleo Apps & Aleo Browser Extensions |
-| Rust            | [snarkVM](https://github.com/ProvableHQ/snarkVM)                               | Rust-Based Aleo Apps                        |
 
 
