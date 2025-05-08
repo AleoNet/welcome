@@ -91,10 +91,10 @@ to a new record owned by the receiver. This function is 100% private and does no
 
 ```mermaid
 graph LR
-    user1--record1 \n owner: user1address \n balance: 10000u64-->t1[transfer_private]
-    user1--amount: 4000u64-->t1
-    t1-.record2 \n owner: user1address \n amount: 6000u64.->user1
-    t1--record3  \n owner: user2address \n balance: 4000u64-->user2
+    user1--record1 owner:user1address balance:10000u64-->t1[transfer_private]
+    user1--amount:4000u64-->t1
+    t1-.record2 owner:user1address amount:6000u64.->user1
+    t1--record3 owner:user2address balance:4000u64-->user2
 
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000;
     linkStyle default stroke:#f229e0,stroke-width:2px;
@@ -109,11 +109,11 @@ as a private input and generates a public balance in the `account` mapping entry
 ```mermaid
 graph LR
     subgraph credits.aleo
-        m1[account mapping \n key: user3address \n value: 3000u64]
+        m1[account mapping key:user3address value:3000u64]
     end
-    user1--record3 \n owner: user2address \n balance: 4000u64-->t1[transfer_private_to_public]
-    t1-.record4 \n owner: user2address \n amount: 1000u64.->user1
-    t1--amount 3000u64-->m1
+    user1--record3 owner:user2address balance:4000u64-->t1[transfer_private_to_public]
+    t1-.record4 owner:user2address amount:1000u64.->user1
+    t1--amount:3000u64-->m1
     
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000;
     linkStyle default stroke:#f229e0,stroke-width:2px;
@@ -127,14 +127,14 @@ any records.
 
 ```mermaid
 graph LR
-    subgraph state2["credits.aleo account mappings - state 2"]
-        m3[account mapping \n key: user4address \n value: 3000u64]
-        m4[account mapping \n key: user3address \n value: 0u64]
+    subgraph state2["account mapping - state 2"]
+        m3[account mapping key:user4address value:3000u64]
+        m4[account mapping key:user3address value:0u64]
     end
 
-    subgraph state1["credits.aleo account mappings - state 1"]
-        m2[account mapping \n key: user3address \n value: 3000u64]--transfer_public \n recipient: user4address \n amount: 3000u64-->m3
-        m1[account mapping \n key: user4address \n value: N/A]
+    subgraph state1["account mapping - state 1"]
+        m2[key:user3address value:3000u64]--transfer_public recipient:user4address amount:3000u64-->m3
+        m1[key:user4address value:None]
     end
 
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000;
@@ -152,16 +152,16 @@ as a private output.
 
 ```mermaid
 graph LR
-    subgraph state2["credits.aleo account mappings - state 2"]
-        m2[account mapping \n key: user5address \n value: 0u64]
+    subgraph state2["account mapping - state 2"]
+        m2[key:user5address value:0u64]
     end
 
-    subgraph state1["credits.aleo account mappings - state 1"]
-        m1[account mapping \n key: user5address \n value: 3000u64]
+    subgraph state1["account mapping - state 1"]
+        m1[key:user5address value:3000u64]
     end
 
-    m1--recipient: user6address \n amount: 3000u64-->transfer_public_to_private
-    transfer_public_to_private--record5 \n owner: user6address \n amount: 3000u64-->user6
+    m1--recipient:user6address amount:3000u64-->transfer_public_to_private
+    transfer_public_to_private--record5 owner:user6address amount:3000u64-->user6
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000;
     style state1 fill:#ffdbf0,stroke:#f229e0,stroke-width:2px,color:#000;
     style state2 fill:#ffdbf0,stroke:#f229e0,stroke-width:2px,color:#000;
