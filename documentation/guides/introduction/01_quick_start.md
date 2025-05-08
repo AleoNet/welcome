@@ -3,7 +3,7 @@ id: quick_start
 title: Quick Start
 sidebar_label: Quick Start
 ---
-Welcome to the Aleo Quickstart. This quickstart will guide you through the core concepts of building on Aleo. In this guide, you will be guided through the process of deploying and interacting with your own Aleo program directly on the web via the [Leo Playground](https://play.leo-lang.org). 
+Welcome to the Aleo Quickstart. This quickstart will guide you through the core concepts of building on Aleo. You will be guided through the process of deploying and interacting with your own Aleo program directly on the web via the [Leo Playground](https://play.leo-lang.org). 
 
 ## What You'll Learn
 1. **Aleo Accounts:** Learn how to create an Aleo account and create private and public data.
@@ -49,7 +49,7 @@ The credits received from the faucet will be public credits, which means they ar
 ### 2.2 Verify Receipt of Your Testnet Credits
 
 After receiving a successful confirmation from one of the faucets above, you can check your account balance by selecting
-the `Get Account Balance` from the list of options in the query widget. Simply paste your wallet address in and press 
+ `Get Account Balance` from the list of options in the query widget. Simply paste your wallet address in and press 
 `Get`. Don't worry if they don't appear right away as your testnet credits may take a few minutes to arrive.
 
 <img src={require('./images/account_balance.png').default} width="400"/>
@@ -75,7 +75,7 @@ While waiting for the credits to be sent to your wallet, you can proceed to the 
 
 ### 3.1 The Token Program
 
-In this section, you'll learn how to deploy a sample `Token` program to Aleo Testnet from the Leo Playground. 
+In this section, you'll learn how to deploy a sample `Token` program to the Aleo Testnet from the Leo Playground. 
 By the end of this section you'll be familiar with how to deploy your own privacy preserving program to Aleo.
 
 :::info
@@ -91,7 +91,7 @@ To begin deploying, select the `Token` program from the Examples dropdown menu o
 
 <img src={require('./images/select_token.png').default} width="800"/>
 
-Next customize the the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
+Next, customize the the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
 `program` field in the `program.json` file to match the new name. 
 
 <img src={require('./images/program_name_.png').default} width="800"/>
