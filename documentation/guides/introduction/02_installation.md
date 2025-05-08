@@ -45,6 +45,10 @@ You can update Leo to the latest version using the following command:
 leo update
 ```
 
+The [Leo CLI guide](https://docs.leo-lang.org/cli/overview) provides descriptions for all of the CLI commands.
+
+The [Leo Language guide](https://docs.leo-lang.org/language/overview) provides an overview of the syntax and semantics of the Leo programming language.
+
 ### 1.6 Optional: IDE Syntax Highlighting
 
 Aleo maintains syntax highlighting implementations for various popular code editors. This can significantly enhance your development experience by providing visual cues and making your Leo code more readable. Here's a brief overview of the supported editors:
@@ -86,9 +90,9 @@ To verify if you have snarkOS, open your terminal and type `snarkos`. You should
 
 ## 3. Next Steps
 
-Once you have successfully completed the installation of both Leo and snarkOS, you are ready to begin your journey with Aleo.
+:::tip
+We recommend starting with the [Quick Start Guide](01_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing program functions. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
+:::
 
-To get started quickly and see Aleo in action, we recommend proceeding to the [Quick Start Guide](01_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing it. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
-
-For local development, use the following [guide](link to Leo docs here) for how to deploy programs to a local network.
+You now have all of the tools to build and test Leo programs locally.  Before deploying to the Testnet, we recommend testing your program using a local network.  The following [guide](../leo/00_leo_testing.md) explains how to initialize and deploy programs to a local network.
 
