@@ -19,13 +19,13 @@ import FeatureCard from '@site/src/components/FeatureCard';
 <FeatureCard
   title="🚀 Quick Start"
   description="Build a Leo program and deploy it to Aleo."
-  link="./quick_start"
+  link="/guides/introduction/quick_start"
 />
 
 <FeatureCard
   title="🦁 Local Setup"
   description="Setup a local development environment."
-  link="./installation"
+  link="/guides/introduction/installation"
 />
 
 </div>
