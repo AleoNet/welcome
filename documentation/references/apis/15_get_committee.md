@@ -8,6 +8,10 @@ sidebar_label: Get Committee
 GET /{network}/committee/latest
 ```
 
+```bash title=ENDPOINT
+GET /{network}/latest/committee
+```
+
 Returns the list of current committee members and their stake.
 
 ### Arguments
