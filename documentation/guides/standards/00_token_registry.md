@@ -12,7 +12,9 @@ In the near-term, support for program upgradability will resolve this but curren
 
 This standard is emerged from extensive discussions and the approval of the [ARC-21 proposal](https://vote.aleo.org/p/21) to enable token interoperability across different applications.
 
+<!-- markdown-link-check-disable -->
 This documentation outlines the functions of the Token Registry Program and provides guidance on how to use it. The original source code can be found [here](https://github.com/demox-labs/aleo-standard-programs/blob/main/token_registry/src/main.leo).
+<!-- markdown-link-check-enable -->
 
 ## How to use the Token Registry Program
 
