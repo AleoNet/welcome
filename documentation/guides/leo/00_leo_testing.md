@@ -56,9 +56,12 @@ sudo apt install tmux
 
 2. Clone [snarkOS repository](https://github.com/AleoNet/snarkOS) to your local machine if you haven't done so.  
 3. Run `./devnet.sh` from the snarkOS repository that you just cloned.  
+
+<!-- markdown-link-check-disable -->
 :::tip
 As an alternative to `./devnet.sh`, you can also use the drop-in replacement [`amareleo-chain`](https://github.com/kaxxa123/amareleo-chain/blob/main/docs/00_introduction.md) which provides similar functionality but lighter and faster for setting up a local devnet. Built by the Aleo community.
 :::
+<!-- markdown-link-check-enable -->
 
 4. When asked for the total number of validators and clients, press enter to use default values.  
 5. Pick a network ID or press enter to use the default network.  

@@ -27,7 +27,7 @@ To run an Aleo client node:
    - **Storage**: 300GB of disk space (PCIe Gen 3 x4 NVME SSD or better)
    - **Network**: 100Mbps of upload and download bandwidth
 
-2. Install [snarkOS](../../../guides/introduction/00_getting_started.md#2-installing-snarkos) following the instructions in the Build Guide.
+2. Install [snarkOS](../../guides/introduction/02_installation.md) following the instructions in the Build Guide.
 
 3. Start the client node by running:
    ```
