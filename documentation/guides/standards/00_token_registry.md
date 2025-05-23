@@ -139,7 +139,7 @@ Mapping of the hash of the token ID and the account address to the role.
 ## Token Registry Program Constants
 
 `const CREDITS_RESERVED_TOKEN_ID: field = 3443843282313283355522573239085696902919850365217539366784739393210722344986field;`  
-Token ID reserved for the ALEO token.
+Token ID reserved for the ALEO credits token.
 
 `const MINTER_ROLE: u8 = 1u8;`  
 Role for the minter.
@@ -156,7 +156,7 @@ The Token Registry Program includes the following functions:
 
 ### `initialize()`
 #### Description
-Initializes the Token Registry Program by registering the ALEO token with predefined metadata. The token is initialized with a specific token ID, name "credits", symbol "credits", 6 decimals, and a max supply of 10 quadrillion. The program sets itself (wrapped_credits.aleo) as the admin and disables external authorization requirements to ensure the token metadata cannot be modified after initialization.
+Initializes the Token Registry Program by registering the ALEO credits token with predefined metadata. The token is initialized with a specific token ID, name "credits", symbol "credits", 6 decimals, and a max supply of 10 quadrillion. The program sets itself (wrapped_credits.aleo) as the admin and disables external authorization requirements to ensure the token metadata cannot be modified after initialization.
 
 #### Parameters
 Parameters are hardcoded in program to safeguard against frontrunning.

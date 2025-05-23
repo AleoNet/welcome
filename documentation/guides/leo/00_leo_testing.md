@@ -56,6 +56,10 @@ sudo apt install tmux
 
 2. Clone [snarkOS repository](https://github.com/AleoNet/snarkOS) to your local machine if you haven't done so.  
 3. Run `./devnet.sh` from the snarkOS repository that you just cloned.  
+:::tip
+As an alternative to `./devnet.sh`, you can also use the drop-in replacement [`amareleo-chain`](https://github.com/kaxxa123/amareleo-chain/blob/main/docs/00_introduction.md) which provides similar functionality but lighter and faster for setting up a local devnet. Built by the Aleo community.
+:::
+
 4. When asked for the total number of validators and clients, press enter to use default values.  
 5. Pick a network ID or press enter to use the default network.  
 6. When asked to run build the binary, enter `y` if this is the first time running, or `n` to skip if this is not the first time and nothing has changed in the snarkOS repo.  
@@ -76,7 +80,7 @@ Ctrl+b [
 10. Look for the validator node 0 and take note of its private key that is shown during startup of the node. It should look something like below:
 ![TestnetValidator](./images/devnet_validator_zero.png)
 11. The private key will always stay the same for every node that runs with devnet.sh script so it only needs to remember once.  
-12. The reason for taking note of validator node 0's private key is because it is automatically funded with test Aleo Tokens (AT) with both public mapping balance and private records.  
+12. The reason for taking note of validator node 0's private key is because it is automatically funded with test Aleo Credits (ACs) with both public mapping balance and private records.  
 13. To interact with the local devnet:
     - Replace all API calls URL with `http://localhost:3030`.
     - When using Leo CLI commands, you can set the endpoint in two ways:  

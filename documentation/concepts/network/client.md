@@ -8,24 +8,24 @@ A client in the Aleo network is a node that serves blockchain data and interacts
 
 Key features of an Aleo client:
 
-1. Data Retrieval: Clients can fetch and serve blockchain data, including blocks, transactions, and state information, to users and applications.
+1. **Data Retrieval**: Clients can fetch and serve blockchain data, including blocks, transactions, and state information, to users and applications.
 
-2. Transaction Submission: Users can submit new transactions to the network through client nodes.
+2. **Transaction Submission**: Users can submit new transactions to the network through client nodes.
 
-3. Network Interaction: Clients maintain connections with other nodes to stay updated with the latest blockchain state.
+3. **Network Interaction**: Clients maintain connections with other nodes to stay updated with the latest blockchain state.
 
-4. Lightweight Operation: Compared to validators and provers, clients have lower hardware requirements, making them more accessible to run.
+4. **Lightweight Operation**: Compared to validators and provers, clients have lower hardware requirements, making them more accessible to run.
 
-5. API Access: Many clients expose REST APIs, allowing developers to build applications that interact with the Aleo network.
+5. **API Access**: Many clients expose REST APIs, allowing developers to build applications that interact with the Aleo network.
 
 To run an Aleo client node:
 
 1. Ensure your system meets the minimum requirements:
-   - OS: Ubuntu 22.04 (LTS), macOS Sonoma or later, Windows 11 or later
-   - CPU: 32-cores
-   - RAM: 32GB of memory
-   - Storage: 300GB of disk space (PCIe Gen 3 x4 NVME SSD or better)
-   - Network: 100Mbps of upload and download bandwidth
+   - **OS**: Ubuntu 22.04 (LTS), macOS Sonoma or later, Windows 11 or later
+   - **CPU**: 32-cores
+   - **RAM**: 32GB of memory
+   - **Storage**: 300GB of disk space (PCIe Gen 3 x4 NVME SSD or better)
+   - **Network**: 100Mbps of upload and download bandwidth
 
 2. Install [snarkOS](../../../guides/introduction/00_getting_started.md#2-installing-snarkos) following the instructions in the Build Guide.
 
