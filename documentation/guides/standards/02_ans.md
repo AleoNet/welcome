@@ -10,6 +10,31 @@ The Aleo Name Service (ANS) is a standard program designed for managing human-re
 
 ANS aims to simplify the interaction with Aleo's resources by allowing memorable and updatable human-readable identifiers. It supports both public and private domain names, each serving distinct use cases and privacy needs. Public domain names provide stable, human-readable identifiers that can be used to specify network resources, while private domain names enable private transfer of Aleo Credits (ACs) without revealing the recipient's real Aleo address.
 
+### Compatibility with ARC-0721
+
+While ANS aims to be compatible with the [ARC-0721 standard](./01_nft_standards.md), it requires some modifications to the NFT structure to support its unique domain name registration functionality. These differences are necessary to enable the dynamic creation of domain name identifiers while maintaining compatibility with the broader Aleo ecosystem.
+
+#### Divergence in NFT Structure
+
+One of the key differences lies in the structure of the NFT used within ANS. While ARC-0721 defines a standard structure for NFTs, ANS requires a dynamic approach to the data field within the NFT record. This is due to the nature of domain name registration, where each NFT must reflect a unique identifier (name_hash) that is only determined at the time of domain registration by the user. Below is the ANS-specific NFT structure:
+
+```leo
+// The ANS NFT structure diverges from ARC-0721 in the `data` field.
+// Here, `data` is not predefined but is dynamically created based on the domain name registered by the user.
+// This `data` serves as the name_hash of the name, uniquely identifying the domain within ANS.
+record NFT {
+    owner: address,
+    data: data, 
+    edition: scalar // The edition number, similar to ARC-0721's structure.
+}
+```
+
+#### Embracing Differences for Enhanced Functionality
+
+The modifications to the NFT structure within ANS are necessary to support the protocol's functionality and objectives. While ANS strives to align with existing standards like ARC-0721, it also recognizes the need to innovate and adapt its NFT representation to serve its unique purpose effectively. This approach ensures that ANS can provide a robust and privacy-centric naming service that complements the broader Aleo ecosystem.
+
+It is important for the community and developers to be aware of these differences for a seamless integration and to leverage the strengths of both standards where they apply.
+
 This documentation outlines the functions of the Aleo Name Service Program and provides guidance on how to use it. The original source code can be found in the [GitHub Repository](https://github.com/S-T-Soft/ans-programs).
 
 ## ANS Components
@@ -207,31 +232,6 @@ transition claim_credits_public(receiver: address, name_hash: field, secret: [u1
 // @param amount: The amount of credits to be claimed.
 transition claim_credits_as_signer(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
 ```
-
-## Compatibility with ARC-0721
-
-The Aleo Name Service (ANS) aims to be as compatible as possible with the [ARC-0721 standard](https://github.com/AleoHQ/ARCs/discussions/79), which establishes a framework for non-fungible tokens on the Aleo platform. However, there are some irreconcilable differences between the two, primarily due to the unique requirements of the ANS.
-
-### Divergence in NFT Structure
-
-One of the key differences lies in the structure of the NFT used within ANS. While ARC-0721 defines a standard structure for NFTs, ANS requires a dynamic approach to the data field within the NFT record. This is due to the nature of domain name registration, where each NFT must reflect a unique identifier (name_hash) that is only determined at the time of domain registration by the user. Below is the ANS-specific NFT structure:
-
-```leo
-// The ANS NFT structure diverges from ARC-0721 in the `data` field.
-// Here, `data` is not predefined but is dynamically created based on the domain name registered by the user.
-// This `data` serves as the name_hash of the name, uniquely identifying the domain within ANS.
-record NFT {
-    owner: address,
-    data: data, 
-    edition: scalar // The edition number, similar to ARC-0721's structure.
-}
-```
-
-### Embracing Differences for Enhanced Functionality
-
-The modifications to the NFT structure within ANS are necessary to support the protocol's functionality and objectives. While ANS strives to align with existing standards like ARC-0721, it also recognizes the need to innovate and adapt its NFT representation to serve its unique purpose effectively. This approach ensures that ANS can provide a robust and privacy-centric naming service that complements the broader Aleo ecosystem.
-
-It is important for the community and developers to be aware of these differences for a seamless integration and to leverage the strengths of both standards where they apply.
 
 ## Usage Example
 
