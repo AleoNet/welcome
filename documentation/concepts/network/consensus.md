@@ -5,7 +5,7 @@ sidebar_label: Consensus
 ---
 
 ## Overview
-Aleo Network employs a unique consensus mechanism known as AleoBFT to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
+Aleo Network employs a unique consensus mechanism known as [AleoBFT](../../references/03_specifications.md#aleobft) to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
 
 Aleo Network is run and maintained by three groups of participants:  
 - **Stakers** - Delegate staked Aleo Credits (AC) to help onboard more validators and participate in consensus on the Network.  
@@ -56,7 +56,7 @@ Image from https://decentralizedthoughts.github.io/2022-06-28-DAG-meets-BFT/
 ### Ordering Logic
 A predefined leader is elected in every even round and the vertex associated with it is referred as anchor. Anchor is a more suitable term to describe here because unlike typical leader-based protocols where the leader has to do all the works at each round and disseminate data to all other nodes, the anchor here only get chosen to commit its casual history once gather enough votes (`2f + 1`) (3 in this example).  
 
-Each vertex in odd round can contribute one vote for the anchor in previous round. The anchor is commited if it has at least `f + 1` (2 in this example) votes. Once anchor is committed, its casual history is ordered by some deterministic rule. Green-outlined vertices shown in Diagram 2 is Anchor 2 (A2) casual history. Diagram 3 shows A2 is committed with 3 votes but A1 is not committed with only 1 vote.
+Each vertex in odd round can contribute one vote for the anchor in previous round. The anchor is commited if it has at least `f + 1` (2 in this example) votes. Once anchor is committed, its casual history is ordered by some deterministic rule. Green-outlined vertices shown in Diagram 2 is Anchor 2 (A2) casual history. Diagram 3 shows A2 is committed with 3 votes but A1 is also committed althought with only 1 vote thanks to the reliability property of the DAG, where transactions broadcast by honest validators are eventually received by all other honest validators.
 
 ![DAG2](./images/DAG2.png)
 Diagram 2: Anchor and casual history  

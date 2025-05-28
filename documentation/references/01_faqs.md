@@ -30,11 +30,11 @@ In the Aleo Network, provers use specialized hardware to generate proofs and sol
 
 > Proof difficulties are set by a version of the algorithm created by the Bitcoin Cash team called ASERT. When a proof exceeds the current difficulty limit, a coinbase reward is shared among all provers who contributed. The computational work done by provers includes Multi-Scalar multiplication and fast-Fourier transforms.
 
-## How do Aleo Tokens work?
+## How do Aleo Credits work?
 
-Aleo Tokens are used in two main ways:
+Aleo Credits are used in two main ways:
 
-1. Secure the network:  Validators stake Aleo Tokens to propose blocks and secure the network, and receive Aleo Tokens as a reward for validation. This is standard for PoS blockchains.
+1. Secure the network:  Validators stake Aleo Credits to propose blocks and secure the network, and receive Aleo Credits as a reward for validation. This is standard for PoS blockchains.
 2. Purchase zero-knowledge compute: Applications that need zkSNARK-proving use Aleo credits to pay provers to generate the proofs.
 
 ## How does Proof of Succint Work (PoSW) operate for provers in Aleo?

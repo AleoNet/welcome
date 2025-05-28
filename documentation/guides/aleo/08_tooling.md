@@ -9,7 +9,7 @@ If you have installed a Leo syntax [plugin](https://docs.leo-lang.org/getting_st
 then you should already be able to see syntax highlighting for `.aleo` Aleo instructions.
 :::
 
-Aleo maintains several syntax highlighting implementations across different platforms. If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/provablehq/welcome/issues/new).
+Aleo maintains several syntax highlighting implementations across different platforms. If you do not see your favorite editor on this list, please reach out on [GitHub](https://github.com/ProvableHQ/leo).
 
 1. [Sublime Text](#sublime-text).
 2. [Visual Studio Code](#vscode).
