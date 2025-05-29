@@ -259,6 +259,57 @@ let result: u16 = (small as u16) + medium;  // Must explicitly cast u8 to u16
 // let invalid: u16 = small + medium;  // This would fail - type mismatch
 ```
 
+### Reference vs Value Types
+
+**Solidity's Type System:**
+Solidity distinguishes between value types and reference types, requiring explicit data location specification:
+
+```solidity
+contract TypeSystem {
+    uint256[] storageArray;  // Permanently stored
+    
+    function processData(uint256[] memory memoryArray) public {
+        uint256[] storage localRef = storageArray;    // Reference to storage
+        uint256[] memory localCopy = storageArray;    // Copy to memory
+        
+        localRef[0] = 100;   // Modifies storage
+        localCopy[0] = 200;  // Modifies memory copy only
+    }
+    
+    function externalCall(uint256[] calldata data) external {
+        // Calldata is read-only, cannot be modified
+    }
+}
+```
+
+**Leo's Simplified Approach:**
+Leo only supports value types - all data is copied when passed around:
+
+```leo
+program value_types.aleo {
+    transition process_data(input_array: [u32; 5]) -> [u32; 5] {
+        // All data is copied by value
+        let local_array: [u32; 5] = input_array;  // Creates a copy
+        
+        // Cannot modify individual elements - must create new array
+        let modified_array: [u32; 5] = [
+            input_array[0] + 1u32,
+            input_array[1],
+            input_array[2],
+            input_array[3],
+            input_array[4]
+        ];
+        
+        return modified_array;
+    }
+}
+```
+
+**Key Differences:**
+- **Leo Limitation**: Only value types, no reference types
+- **Memory Management**: No need to specify data locations in Leo
+- **Modification**: Leo requires creating new data structures rather than modifying existing ones
+
 ## Functions
 
 ### Function Types
@@ -322,7 +373,6 @@ program example.aleo {
 - **Leo's Computation-Only Functions**: Both `function` and `inline` in Leo are similar to Solidity's `pure` functions - they can only perform computations and cannot access state variables or make external calls
 - **No Inheritance in Leo**: Leo does not support inheritance
 - **Visibility in Leo**: Unlike Solidity's visibility modifiers (public, private, internal), Leo's visibility refers to data privacy - whether data is publicly visible on-chain or kept private off-chain
-
 
 ### Async Functions
 
@@ -443,6 +493,160 @@ async function finalize_random() {
     let random_value: u32 = ChaCha::rand_u32();
 }
 ```
+
+### Built-in Properties and Global Variables
+
+**Solidity's Extensive Built-ins:**
+```solidity
+contract GlobalAccess {
+    function getBlockInfo() public view returns (uint256, uint256, address, uint256) {
+        return (
+            block.number,        // Current block number
+            block.timestamp,     // Current block timestamp
+            msg.sender,          // Immediate caller
+            tx.origin           // Transaction originator
+        );
+    }
+    
+    function getNetworkInfo() public view returns (uint256, uint256) {
+        return (
+            block.chainid,       // Current chain ID
+            gasleft()           // Remaining gas
+        );
+    }
+}
+```
+
+**Leo's Limited Built-ins:**
+```leo
+program global_access.aleo {
+    async transition get_block_info() -> Future {
+        return finalize_get_info();
+    }
+    
+    async function finalize_get_info() {
+        // Available within finalize scope only
+        let current_height: u32 = block.height;  // Equivalent to block.number
+        let network: u32 = network.id;           // Equivalent to block.chainid
+    }
+    
+    transition get_caller_info() {
+        let immediate_caller: address = self.caller;  // Equivalent to msg.sender  
+        let origin_caller: address = self.signer;     // Equivalent to tx.origin
+        let program_address: address = self.address;  // Equivalent to address(this)
+    }
+}
+```
+
+**Key Differences:**
+- **Limited Scope**: Leo's block properties only available in async functions (finalize scope)
+- **No Timestamp**: Leo doesn't provide block timestamp at the moment
+- **No Gas Tracking**: Leo doesn't expose gas/fee information to programs
+- **Program Context**: Leo provides `self.address` for the current program address
+
+### Currency Denominations
+
+**Solidity's Ether Units:**
+```solidity
+contract EtherUnits {
+    function demonstrateUnits() public pure returns (uint256, uint256, uint256) {
+        uint256 oneWei = 1;
+        uint256 oneGwei = 1 gwei;       // 1e9 wei
+        uint256 oneEther = 1 ether;     // 1e18 wei
+        
+        return (oneWei, oneGwei, oneEther);
+    }
+}
+```
+
+**Leo's Credit Units:**
+```leo
+program credit_units.aleo {
+    transition demonstrate_units() -> (u64, u64, u64) {
+        let one_microcredit: u64 = 1u64;
+        let one_millicredit: u64 = 1000u64;     // 1e3 microcredits
+        let one_credit: u64 = 1000000u64;       // 1e6 microcredits
+        
+        return (one_microcredit, one_millicredit, one_credit);
+    }
+}
+```
+
+**Key Differences:**
+- **Aleo Credits**: microcredits (base), millicredits (1e3), credits (1e6)
+- **Ethereum**: wei (base), gwei (1e9), ether (1e18) 
+- **No Built-in Units**: Leo doesn't have built-in unit literals like Solidity
+
+### Mathematical Operations and Overflow Handling
+
+**Solidity's Approach:**
+```solidity
+contract MathOperations {
+    function checkedMath(uint256 a, uint256 b) public pure returns (uint256) {
+        return a + b;  // Reverts on overflow by default (since 0.8.0)
+    }
+    
+    function uncheckedMath(uint256 a, uint256 b) public pure returns (uint256) {
+        unchecked {
+            return a + b;  // Wraps on overflow
+        }
+    }
+    
+    function modularMath(uint256 a, uint256 b, uint256 n) public pure returns (uint256, uint256) {
+        return (addmod(a, b, n), mulmod(a, b, n));
+    }
+}
+```
+
+**Leo's Approach:**
+```leo
+program math_operations.aleo {
+    transition checked_math(a: u64, b: u64) -> u64 {
+        return a + b;  // Reverts on overflow by default
+    }
+    
+    transition wrapped_math(a: u64, b: u64) -> u64 {
+        return a.add_wrap(b);  // Wraps on overflow using wrapped arithmetic
+    }
+    
+    transition modular_math(a: u64, b: u64, n: u64) -> (u64, u64) {
+        let add_result: u64 = (a + b) % n;
+        let mul_result: u64 = (a * b) % n;
+        return (add_result, mul_result);
+    }
+}
+```
+
+**Key Differences:**
+- **Wrapped Operations**: Leo uses `.add_wrap()`, `.sub_wrap()`, `.mul_wrap()` instead of `unchecked` blocks
+- **No Built-in Modular Math**: Leo doesn't have `addmod`/`mulmod` built-ins
+- **Explicit Operators**: Leo requires explicit use of wrapped operators
+
+### Time and Temporal Operations
+
+**Solidity's Time Support:**
+```solidity
+contract TimeOperations {
+    function timeUnits() public pure returns (uint256, uint256, uint256) {
+        return (
+            1 seconds,    // 1
+            1 minutes,    // 60 seconds
+            1 hours       // 3600 seconds
+        );
+    }
+    
+    function getCurrentTime() public view returns (uint256) {
+        return block.timestamp;
+    }
+}
+```
+
+**Leo's Limitation:**
+Leo does not support time units and timestamps (at the moment):
+
+- **No Time Units**: No equivalent to `seconds`, `minutes`, `hours`, etc.
+- **No Timestamps**: No access to block timestamps at the moment.
+- **No Time-based Logic**: Developers must implement time logic externally or rely on block height
 
 ## Error Handling
 
@@ -701,3 +905,239 @@ program my_pets.aleo {
     }
 }
 ```
+
+### Abstract Contracts and Interfaces
+
+**Solidity's Abstract Types:**
+```solidity
+// Abstract contract - some functions not implemented
+abstract contract Animal {
+    string public name;
+    
+    constructor(string memory _name) {
+        name = _name;
+    }
+    
+    function speak() public virtual returns (string memory);  // Must be implemented
+    
+    function eat() public pure returns (string memory) {
+        return "Eating...";  // Default implementation
+    }
+}
+
+// Interface - no functions implemented
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+    function transfer(address to, uint256 amount) external returns (bool);
+    // All functions must be external
+}
+
+contract Token is IERC20 {
+    function totalSupply() external pure override returns (uint256) {
+        return 1000000;
+    }
+    
+    function transfer(address to, uint256 amount) external pure override returns (bool) {
+        return true;
+    }
+}
+```
+
+**Leo's Approach:**
+Leo does not support abstract contracts or interfaces since it lacks inheritance:
+
+- **No Abstract Contracts**: Cannot define partially implemented contracts
+- **No Interfaces**: Cannot define contract interfaces for implementation
+- **Alternative**: Use composition and program imports for modularity
+- **Future Consideration**: Interfaces may be supported once dynamic dispatch is implemented
+
+### Libraries
+
+**Solidity's Libraries:**
+```solidity
+library SafeMath {
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
+        return c;
+    }
+}
+
+contract UsingLibrary {
+    using SafeMath for uint256;
+    
+    function calculate(uint256 a, uint256 b) public pure returns (uint256) {
+        return a.add(b);  // Library function attached to type
+    }
+}
+```
+
+**Leo's Alternative:**
+Leo doesn't have dedicated libraries but developers can create stateless programs that function similarly:
+
+```leo
+// math_library.aleo - Stateless program acting as library
+program math_library.aleo {
+    transition safe_add(a: u64, b: u64) -> u64 {
+        let result: u64 = a + b;
+        assert(result >= a);  // Check for overflow
+        return result;
+    }
+}
+```
+
+```leo
+import math_library.aleo;
+
+program using_library.aleo {
+    transition calculate(a: u64, b: u64) -> u64 {
+        return math_library.aleo/safe_add(a, b);
+    }
+}
+```
+
+**Key Differences:**
+- **No DELEGATECALL**: Leo doesn't support executing external code in current context
+- **No Type Attachment**: Cannot attach functions to types like Solidity's `using` directive
+- **Stateless Programs**: Use separate programs instead of libraries
+
+## Events and Logging
+
+**Solidity's Event System:**
+```solidity
+contract EventExample {
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Debug(string message, uint256 value);
+    
+    function transfer(address to, uint256 amount) public {
+        // Emit events for external monitoring
+        emit Transfer(msg.sender, to, amount);
+        emit Debug("Transfer executed", amount);
+    }
+}
+```
+
+**Leo's Limitation:**
+Leo does not support events or logging:
+
+- **No Events**: Cannot emit events for external monitoring
+- **No Logging**: No built-in logging facilities
+- **Alternative**: Use program outputs or external state tracking for monitoring
+- **Best Practice**: Document important state changes in comments
+
+## ABI Encoding and Decoding
+
+**Solidity's ABI Functions:**
+```solidity
+contract ABIExample {
+    function encodeData(uint256 value, string memory text) public pure returns (bytes memory) {
+        return abi.encode(value, text);
+    }
+    
+    function encodePacked(uint256 a, uint256 b) public pure returns (bytes memory) {
+        return abi.encodePacked(a, b);
+    }
+    
+    function decodeData(bytes memory data) public pure returns (uint256, string memory) {
+        return abi.decode(data, (uint256, string));
+    }
+}
+```
+
+**Leo's Limitation:**
+Leo does not have ABI encoding/decoding functionality:
+
+- **No Bytes Type**: Leo doesn't support `bytes` type needed for ABI operations
+- **No Dynamic Encoding**: Cannot dynamically encode/decode complex data structures
+- **Alternative**: Use fixed-size data structures and manual serialization if needed
+- **Static Calls**: All cross-program calls use statically defined interfaces
+
+## Contract Creation and Dynamic Deployment
+
+**Solidity's Contract Creation:**
+```solidity
+contract Factory {
+    function createContract(uint256 initialValue) public returns (address) {
+        // Create new contract with constructor parameters
+        MyContract newContract = new MyContract(initialValue);
+        return address(newContract);
+    }
+    
+    function createWithSalt(uint256 initialValue, bytes32 salt) public returns (address) {
+        // Create deterministic address using CREATE2
+        MyContract newContract = new MyContract{salt: salt}(initialValue);
+        return address(newContract);
+    }
+}
+```
+
+**Leo's Limitation:**
+Leo programs cannot create new programs:
+
+- **No Dynamic Creation**: Programs cannot deploy other programs
+- **Static Deployment**: All programs must be deployed through external tools
+- **No CREATE2**: No deterministic address generation
+- **Fixed Architecture**: Program relationships must be established at deployment time
+
+## Scoping Rules
+
+**Solidity and Leo Similarities:**
+Both languages follow similar scoping rules:
+
+```solidity
+// Solidity
+contract ScopeExample {
+    uint256 globalVar = 100;
+    
+    function scopeDemo() public view returns (uint256) {
+        uint256 localVar = 200;
+        {
+            uint256 blockVar = 300;
+            return globalVar + localVar + blockVar;  // All accessible
+        }
+        // blockVar not accessible here
+        return globalVar + localVar;
+    }
+}
+```
+
+```leo
+// Leo
+program scope_example.aleo {
+    transition scope_demo() -> u32 {
+        let local_var: u32 = 200u32;
+        
+        {
+            let block_var: u32 = 300u32;
+            local_var = local_var + block_var;  // Both accessible
+        }
+        
+        // block_var not accessible here
+        return local_var;
+    }
+}
+```
+
+**Key Similarity:**
+- Variables are visible from declaration until the end of their containing `{}` block
+
+## Inline Assembly
+
+**Solidity's Inline Assembly:**
+```solidity
+contract AssemblyExample {
+    function efficientHash(uint256 a, uint256 b) public pure returns (uint256 result) {
+        assembly {
+            let hash := keccak256(add(a, b), 0x40)
+            result := hash
+        }
+    }
+}
+```
+
+**Leo's Limitation:**
+Leo does not support inline assembly:
+
+- **No Yul-like Integration**: Cannot insert low-level assembly code
+- **Separate IR**: Aleo Instructions exist as a separate language, not embeddable in Leo
+- **High-level Only**: Must use Leo's high-level constructs exclusively
