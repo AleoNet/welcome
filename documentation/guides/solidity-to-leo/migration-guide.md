@@ -1,5 +1,9 @@
-# Solidity to Leo Migration Guide
-
+---
+id: migration-guide
+title: Migration Guide
+description: Guide to migrate from Solidity to Leo
+sidebar_label: Migration Guide
+---
 This guide provides a comprehensive comparison between Solidity (Ethereum's smart contract language) and Leo (Aleo's programming language for zero-knowledge applications). The document covers fundamental differences between these languages and offers practical examples to assist developers transitioning from Ethereum development to Aleo.
 
 ## Execution Models

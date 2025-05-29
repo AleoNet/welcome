@@ -1,8 +1,8 @@
 ---
-id: leo-vs-solidity
-title: Leo vs Solidity
+id: comparison-table
+title: Comparison Table
 description: Side-by-side comparison of Aleo's Leo language and Ethereum's Solidity
-sidebar_label: Leo vs Solidity
+sidebar_label: Comparison Table
 ---
 
 A side-by-side comparison between **Leo** (Aleo) and **Solidity** (Ethereum/EVM).  
