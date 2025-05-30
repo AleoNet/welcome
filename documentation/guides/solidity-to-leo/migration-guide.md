@@ -63,6 +63,77 @@ Both languages support identical comment syntax:
  */
 ```
 
+### Program Structure
+
+**Contract vs Program Declaration:**
+To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`.
+
+```solidity
+// Solidity
+contract MyContract {
+    // Contract implementation
+}
+```
+
+```leo
+// Leo
+program my_program.aleo {
+    // Program implementation
+}
+```
+
+**Constructor Differences:**
+Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) that will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
+
+**Automatic Getter Functions:**
+The compiler of Solidity automatically creates getter functions for all public state variables. Leo does not have similar features and getter functions must be explicitly created by the developers.
+
+```solidity
+// Solidity: automatic getter generated
+contract Example {
+    uint256 public value;  // Automatically creates getValue() function
+}
+```
+
+```leo
+// Leo: must explicitly create getter functions
+program example.aleo {
+    mapping values: address => u64;
+    
+    // Must explicitly create getter function
+    async transition get_value(user: address) -> Future {
+        return finalize_get_value(user);
+    }
+    
+    async function finalize_get_value(user: address) {
+        let value: u64 = values.get_or_use(user, 0u64);
+    }
+}
+```
+
+**State Variable Declarations:**
+State variables can be declared as `constant` or `immutable` in Solidity, where the difference is immutable variables can still be assigned at construction time. Leo only has `const` as constant values that are fixed at compile-time, similar to `constant` in Solidity.
+
+```solidity
+// Solidity: both constant and immutable
+contract Example {
+    uint256 public constant FIXED_VALUE = 100;        // Compile-time constant
+    uint256 public immutable RUNTIME_VALUE;           // Set in constructor
+    
+    constructor(uint256 _value) {
+        RUNTIME_VALUE = _value;  // Can be set at construction
+    }
+}
+```
+
+```leo
+// Leo: only compile-time constants
+program example.aleo {
+    const FIXED_VALUE: u64 = 100u64;  // Compile-time constant only
+    // No equivalent to Solidity's immutable
+}
+```
+
 ## Data & State
 
 ### Storage Models
@@ -187,30 +258,41 @@ const ACTIVE: u8 = 0u8;                       // Use constants instead of enums
 const INACTIVE: u8 = 1u8;
 ```
 
-3. **Array Limitations in Leo:**
+3. **Static Arrays in Leo:**
 ```solidity
-// Solidity: flexible array operations
-uint256[] public dynamicArray;
+// Solidity: supports both dynamic and static arrays
 uint256[5] public staticArray;
 
 function updateArray() public {
     staticArray[0] = 42;  // Direct element modification
-    dynamicArray.push(100); // Dynamic operations
 }
 ```
 
 ```leo
-// Leo: more restrictive
+// Leo: static arrays only with direct element modification
 struct ArrayExample {
-    static_array: [u32; 5],
+    static_array: [u32; 5],  // Fixed-size arrays only
 }
 
 transition update_array(input: ArrayExample) -> ArrayExample {
-    return ArrayExample {
-        static_array: [42u32, 0u32, 0u32, 0u32, 0u32],
-    };
+    // Can modify individual elements directly
+    input.static_array[0u8] = 42u32;
+    input.static_array[1u8] = 100u32;
+    
+    return input;
+    
+    // Alternative: return new array structure
+    // return ArrayExample {
+    //     static_array: [42u32, 100u32, 0u32, 0u32, 0u32],
+    // };
 }
 ```
+
+**Key Static Array Features:**
+- **Fixed Size**: Array size must be known at compile time
+- **Direct Element Access**: Use explicit index types (e.g., `array[0u8]`)
+- **Element Modification**: Individual elements can be modified directly
+- **No Dynamic Operations**: No `push()`, `pop()`, or resizing operations
 
 ### Type Conversions
 
@@ -261,8 +343,7 @@ let result: u16 = (small as u16) + medium;  // Must explicitly cast u8 to u16
 
 ### Reference vs Value Types
 
-**Solidity's Type System:**
-Solidity distinguishes between value types and reference types, requiring explicit data location specification:
+**Solidity** distinguishes between value types and reference types, requiring explicit data location specification:
 
 ```solidity
 contract TypeSystem {
@@ -282,8 +363,7 @@ contract TypeSystem {
 }
 ```
 
-**Leo's Simplified Approach:**
-Leo only supports value types - all data is copied when passed around:
+**Leo** only supports value types - all data is copied when passed around:
 
 ```leo
 program value_types.aleo {
@@ -291,24 +371,18 @@ program value_types.aleo {
         // All data is copied by value
         let local_array: [u32; 5] = input_array;  // Creates a copy
         
-        // Cannot modify individual elements - must create new array
-        let modified_array: [u32; 5] = [
-            input_array[0] + 1u32,
-            input_array[1],
-            input_array[2],
-            input_array[3],
-            input_array[4]
-        ];
+        // Can modify individual elements directly
+        local_array[0u8] = input_array[0u8] + 1u32;
+        local_array[1u8] = input_array[1u8] + 2u32;
         
-        return modified_array;
+        return local_array;
     }
 }
 ```
 
 **Key Differences:**
 - **Leo Limitation**: Only value types, no reference types
-- **Memory Management**: No need to specify data locations in Leo
-- **Modification**: Leo requires creating new data structures rather than modifying existing ones
+- **Memory Management**: Leo handles memory management automatically based on type semantics, eliminating the need for explicit storage location specifications.
 
 ## Functions
 
@@ -374,6 +448,57 @@ program example.aleo {
 - **No Inheritance in Leo**: Leo does not support inheritance
 - **Visibility in Leo**: Unlike Solidity's visibility modifiers (public, private, internal), Leo's visibility refers to data privacy - whether data is publicly visible on-chain or kept private off-chain
 
+### Modifiers
+
+**Solidity's Modifiers:**
+Modifiers in Solidity are usually used to amend the semantics of functions. Similar to inline in Leo, the body is inlined at each call site.
+
+```solidity
+contract ModifierExample {
+    address public owner;
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the owner");
+        _;  // Continue with function execution
+    }
+    
+    modifier validAmount(uint256 amount) {
+        require(amount > 0, "Amount must be positive");
+        _;
+    }
+    
+    function withdraw(uint256 amount) public onlyOwner validAmount(amount) {
+        // Function body executes after modifiers
+        payable(msg.sender).transfer(amount);
+    }
+}
+```
+
+**Leo's Approach:**
+Leo doesn't have modifiers, but similar functionality can be achieved using inline functions:
+
+```leo
+program modifier_example.aleo {
+    // Inline functions provide similar behavior to modifiers
+    inline only_owner(caller: address, owner: address) {
+        assert_eq(caller, owner);
+    }
+    
+    inline valid_amount(amount: u64) {
+        assert(amount > 0u64);
+    }
+    
+    transition withdraw(amount: u64, owner: address) -> u64 {
+        // Inline functions are called explicitly (like modifiers)
+        only_owner(self.caller, owner);
+        valid_amount(amount);
+        
+        // Function logic continues
+        return amount;
+    }
+}
+```
+
 ### Async Functions
 
 Leo introduces async functions for on-chain execution:
@@ -409,6 +534,17 @@ program defi_example.aleo {
 ### Call Restrictions
 
 Leo enforces strict rules about function call hierarchy:
+
+**Call Flow:** `transition` → `function` → `inline` | `transition` → `inline` | `transition` → `external_transition`
+
+**Call Flow Rules:**
+- A transition can only call a function, inline, or external transition.
+- A function can only call an inline.
+- An inline can only call another inline.
+- Direct/indirect recursive calls are not allowed.
+
+**Recursion:**
+While Solidity allows function recursion (functions calling themselves directly or indirectly), Leo prohibits all forms of recursive calls.
 
 ```leo
 program call_hierarchy.aleo {
@@ -540,7 +676,7 @@ program global_access.aleo {
 
 **Key Differences:**
 - **Limited Scope**: Leo's block properties only available in async functions (finalize scope)
-- **No Timestamp**: Leo doesn't provide block timestamp at the moment
+- **No Timestamp**: Leo doesn't provide block timestamp at the moment until [ARC-0040](https://github.com/ProvableHQ/ARCs/discussions/69) is implemented
 - **No Gas Tracking**: Leo doesn't expose gas/fee information to programs
 - **Program Context**: Leo provides `self.address` for the current program address
 
@@ -576,6 +712,77 @@ program credit_units.aleo {
 - **Aleo Credits**: microcredits (base), millicredits (1e3), credits (1e6)
 - **Ethereum**: wei (base), gwei (1e9), ether (1e18) 
 - **No Built-in Units**: Leo doesn't have built-in unit literals like Solidity
+
+### Address Functionality and Native Token Transfers
+
+**Solidity's Address Members:**
+Address in Solidity has members to access its associated states such as:
+
+```solidity
+contract AddressExample {
+    function demonstrateAddressMembers(address payable target) public view returns (uint256, bytes32) {
+        // Access address properties
+        uint256 balance = target.balance;           // Balance in Wei
+        bytes memory code = target.code;            // Code at address (can be empty) 
+        bytes32 codeHash = target.codehash;         // The codehash of the address
+        
+        return (balance, codeHash);
+    }
+    
+    function transferMethods(address payable target, uint256 amount) public {
+        // Different transfer methods
+        target.transfer(amount);                    // Reverts on failure, 2300 gas stipend
+        bool success = target.send(amount);         // Returns false on failure, 2300 gas stipend
+        
+        // Low-level calls with adjustable gas
+        (bool callSuccess, bytes memory data) = target.call{value: amount}("");
+        (bool delegateSuccess, bytes memory delegateData) = target.delegatecall("");
+        (bool staticSuccess, bytes memory staticData) = target.staticcall("");
+    }
+}
+```
+
+**Leo's Approach:**
+Leo address does not have member functions. Aleo credits are defined as a program (`credits.aleo`) on Aleo, therefore to make transfers and access balances, it uses the same method as querying any programs on Aleo, either publicly with mappings or privately by scanning owned records.
+
+```leo
+import credits.aleo;
+
+program address_example.aleo {
+    // Access balance through credits.aleo program mappings (public balance)
+    async transition get_public_balance(user: address) -> Future {
+        return finalize_get_balance(user);
+    }
+    
+    async function finalize_get_balance(user: address) {
+        // Query public balance from credits.aleo account mapping
+        let balance: u64 = credits.aleo/account.get_or_use(user, 0u64);
+    }
+    
+    // Transfer credits using credits.aleo program functions
+    async transition transfer_public_credits(
+        to: address, 
+        amount: u64
+    ) -> Future {
+        return credits.aleo/transfer_public(self.caller, to, amount);
+    }
+    
+    transition transfer_private_credits(
+        input: credits.aleo/credits,
+        to: address,
+        amount: u64
+    ) -> (credits.aleo/credits, credits.aleo/credits) {
+        return credits.aleo/transfer_private(input, to, amount);
+    }
+}
+```
+
+**Key Differences:**
+- **No Address Members**: Leo addresses don't have `.balance`, `.code`, `.codehash` properties
+- **No Built-in Transfer Methods**: No `.transfer()`, `.send()`, `.call()` methods on addresses
+- **Program-Based Transfers**: Native token transfers go through the `credits.aleo` program
+- **Public vs Private**: Balances can be public (mappings) or private (records)
+- **Unified Interface**: All program interactions use the same call syntax, whether for tokens or other functionality
 
 ### Mathematical Operations and Overflow Handling
 
@@ -645,7 +852,7 @@ contract TimeOperations {
 Leo does not support time units and timestamps (at the moment):
 
 - **No Time Units**: No equivalent to `seconds`, `minutes`, `hours`, etc.
-- **No Timestamps**: No access to block timestamps at the moment.
+- **No Timestamps**: No access to block timestamps at the moment until [ARC-0040](https://github.com/ProvableHQ/ARCs/discussions/69) is implemented.
 - **No Time-based Logic**: Developers must implement time logic externally or rely on block height
 
 ## Error Handling
@@ -729,7 +936,7 @@ transition control_flow(items: [u32; 5]) -> u32 {
     
     // For loops only (no while, do-while)
     for i: u32 in 0u32..5u32 {
-        sum += items[i];
+        sum += items[i as u8];
         // No continue and break statement available
     }
     
@@ -838,7 +1045,6 @@ contract Cat is Animal {
     }
 }
 ```
-
 **Leo's Composition Approach:**
 
 Leo does not support inheritance like Solidity does. Instead, Leo uses composition and program imports to achieve similar functionality.
@@ -1076,7 +1282,7 @@ Leo programs cannot create new programs:
 
 - **No Dynamic Creation**: Programs cannot deploy other programs
 - **Static Deployment**: All programs must be deployed through external tools
-- **No CREATE2**: No deterministic address generation
+- **No CREATE2**: No deterministic address generation but programs on Aleo already have developer-defined human-readable names.
 - **Fixed Architecture**: Program relationships must be established at deployment time
 
 ## Scoping Rules
@@ -1141,3 +1347,4 @@ Leo does not support inline assembly:
 - **No Yul-like Integration**: Cannot insert low-level assembly code
 - **Separate IR**: Aleo Instructions exist as a separate language, not embeddable in Leo
 - **High-level Only**: Must use Leo's high-level constructs exclusively
+
