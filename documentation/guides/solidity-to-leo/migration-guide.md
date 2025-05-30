@@ -45,6 +45,40 @@ program my_token.aleo {
 }
 ```
 
+**Important: Leo imports must also be declared in `program.json`:**
+```json
+{
+  "program": "my_token.aleo",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "credits.aleo",
+      "location": "network",
+      "network": "testnet"
+    },
+    // {
+    //   "name": "foo.aleo",        // If importing from Git repository
+    //   "location": "git",
+    //   "url": "https://github.com/alice/foo.git",
+    //   "branch": "bar",
+    //   "rev": "3ab873bd89de"
+    // },
+    // {
+    //   "name": "board.aleo",      // If importing from local
+    //   "location": "local",
+    //   "path": "../board"
+    // }
+  ]
+}
+```
+
+**Dependency Types:**
+- **Network dependencies**: Programs deployed on Aleo networks (mainnet, testnet3)
+- **Git dependencies**: Programs hosted in Git repositories with optional branch/revision
+- **Local dependencies**: Programs in local file system directories
+
 **Key Differences:**
 - Leo does not require license identifiers or pragma statements
 - Import statements in Leo use program IDs rather than file paths
@@ -63,7 +97,7 @@ Both languages support identical comment syntax:
  */
 ```
 
-### Program Structure
+### Contract Structure
 
 **Contract vs Program Declaration:**
 To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`.
@@ -82,68 +116,45 @@ program my_program.aleo {
 }
 ```
 
-**Constructor Differences:**
+#### Constructor
 Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) that will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
 
-**Automatic Getter Functions:**
-The compiler of Solidity automatically creates getter functions for all public state variables. Leo does not have similar features and getter functions must be explicitly created by the developers.
+#### Automatic Getter Functions
+The compiler of Solidity automatically creates getter functions for all public state variables. Leo does not have similar features, but instead provides direct API access to query mapping values from the node without requiring getter functions in the program code.
 
 ```solidity
 // Solidity: automatic getter generated
 contract Example {
-    uint256 public value;  // Automatically creates getValue() function
+    uint256 public value;  // Automatically creates value() function as getter
 }
 ```
 
-```leo
-// Leo: must explicitly create getter functions
-program example.aleo {
-    mapping values: address => u64;
-    
-    // Must explicitly create getter function
-    async transition get_value(user: address) -> Future {
-        return finalize_get_value(user);
-    }
-    
-    async function finalize_get_value(user: address) {
-        let value: u64 = values.get_or_use(user, 0u64);
-    }
-}
-```
+**Key Difference:**
+- **Solidity**: Requires public state variables or explicit getter functions for external access
+- **Leo**: Mapping values are accessible via REST API endpoints without any program code:
+  - Endpoint: `GET /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}`
+  - Example: `GET /testnet3/program/credis.aleo/mapping/account/aleo1abc...`
+  - Reference: [Get Mapping Value API](../../references/apis/12_get_mapping_value.md)
 
-**State Variable Declarations:**
-State variables can be declared as `constant` or `immutable` in Solidity, where the difference is immutable variables can still be assigned at construction time. Leo only has `const` as constant values that are fixed at compile-time, similar to `constant` in Solidity.
+## Data & State
 
+### State Variables and Storage Models
+
+Solidity and Leo differ significantly in how they handle state variables, storage, and data privacy.
+
+**Solidity's Approach:**
 ```solidity
-// Solidity: both constant and immutable
-contract Example {
-    uint256 public constant FIXED_VALUE = 100;        // Compile-time constant
-    uint256 public immutable RUNTIME_VALUE;           // Set in constructor
+contract Storage {
+    // State variables with visibility modifiers (access control only)
+    uint256 public constant FIXED_VALUE = 100;  // Compile-time constant
+    uint256 public immutable RUNTIME_VALUE;     // Set in constructor
+    uint256 public permanentData;               // Auto-generates getter function
+    uint256 private secret = 42;                // Code access only - still visible on-chain
+    uint256 internal shared;                    // Accessible in derived contracts
     
     constructor(uint256 _value) {
         RUNTIME_VALUE = _value;  // Can be set at construction
     }
-}
-```
-
-```leo
-// Leo: only compile-time constants
-program example.aleo {
-    const FIXED_VALUE: u64 = 100u64;  // Compile-time constant only
-    // No equivalent to Solidity's immutable
-}
-```
-
-## Data & State
-
-### Storage Models
-
-Solidity provides three types of data locations. Leo introduces a different approach:
-
-**Solidity's Storage Model:**
-```solidity
-contract Storage {
-    uint256 public permanentData;        // Contract storage
     
     function processData(uint256 tempData) public {
         uint256 memoryVar = tempData * 2; // Memory (temporary)
@@ -152,45 +163,46 @@ contract Storage {
 }
 ```
 
-**Leo's Storage Model:**
+**Leo's Approach:**
 ```leo
 program storage.aleo {
+    // Compile-time constants only
+    const FIXED_VALUE: u64 = 100u64;
+
     // Public state: accessible to everyone
     mapping balances: address => u64;
     
-    // Private state: stored in records
+    // Private state: stored in records (true cryptographic privacy)
     record Token {
         owner: address,
         amount: u64,
     }
     
-    async transition process_data(public temp_data: u64) -> (Token, Future) {
-        let memory_var: u64 = temp_data * 2u64; // Local variable
+    async transition process_data(public amount: u64) -> (Token, Future) {
+        let amount_loc: u64 = amount * 2u64; // Local variable
         
         let token: Token = Token {
             owner: self.caller,
-            amount: memory_var,
+            amount: amount_loc,
         };
         
-        return (token, finalize_process_data(self.caller, memory_var));
+        return (token, finalize_process_data(self.caller, amount_loc));
     }
     
     // Async function to handle on-chain state updates
-    async function finalize_process_data(caller: address, amount: u64) {
-        // Get current balance from public key-value mapping storage
+    async function finalize_process_data(caller: address, amount_loc: u64) {
         let current_balance: u64 = Mapping::get_or_use(balances, caller, 0u64);
-        
-        // Update balance to public key-value mapping storage
-        Mapping::set(balances, caller, current_balance + amount);
+        Mapping::set(balances, caller, current_balance + amount_loc);
     }
 }
 ```
 
 **Key Differences:**
-- **Public State**: Leo uses `mapping` for public key-value storage (similar to Solidity's storage)
-- **Private State**: Leo uses `record` types for private, user-owned data
-- **No Transient Storage**: Leo does not support Solidity's transient storage concept
+- **Solidity Visibility**: `private`, `internal`, `public` control code access but all data is visible on-chain
+- **Leo Privacy**: `public` vs `private` determines actual cryptographic privacy - whether data is stored on-chain or off-chain in [records](../../concepts/fundamentals/02_records.md)
+- **Constants**: Solidity has both `constant` and `immutable`, Leo only has compile-time `const`
 - **Local Variables**: The `let` keyword declares temporary computation variables (similar to Solidity's memory)
+- **No Transient Storage**: Leo does not support Solidity's transient storage concept
 
 ### Data Types
 
