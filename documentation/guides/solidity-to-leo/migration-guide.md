@@ -26,8 +26,6 @@ Programs begin differently in each language:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "./IERC20.sol";
-
 contract MyToken {
     // Contract implementation
 }
@@ -38,12 +36,52 @@ contract MyToken {
 // No license identifier required
 // No pragma needed
 
-import credits.aleo;
-
 program my_token.aleo {
     // Program implementation
 }
 ```
+
+**Key Differences:**
+- Leo does not require license identifiers or pragma statements
+- Import statements in Leo use program IDs rather than file paths
+- Leo programs must have a `.aleo` suffix in their name
+
+### Contract Structure
+
+**Contract vs Program Declaration:**
+To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`.
+
+```solidity
+// Solidity
+contract MyContract {
+    // Contract implementation
+}
+```
+
+```leo
+// Leo
+program my_program.aleo {
+    // Program implementation
+}
+```
+
+### Constructor
+Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) that will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
+
+### Comments
+
+Both languages support identical comment syntax:
+
+```leo
+// Single line comment in both languages
+
+/*
+ * Multi-line comments
+ * work identically too
+ */
+```
+
+### Imports
 
 **Important: Leo imports must also be declared in `program.json`:**
 ```json
@@ -75,52 +113,83 @@ program my_token.aleo {
 ```
 
 **Dependency Types:**
-- **Network dependencies**: Programs deployed on Aleo networks (mainnet, testnet3)
+- **Network dependencies**: Programs deployed on Aleo networks (mainnet, testnet)
 - **Git dependencies**: Programs hosted in Git repositories with optional branch/revision
 - **Local dependencies**: Programs in local file system directories
 
-**Key Differences:**
-- Leo does not require license identifiers or pragma statements
-- Import statements in Leo use program IDs rather than file paths
-- Leo programs must have a `.aleo` suffix in their name
+## Data & State
 
-### Comments
+### State Variables and Storage Models
 
-Both languages support identical comment syntax:
+Solidity and Leo differ significantly in how they handle state variables, storage, and data privacy.
 
-```leo
-// Single line comment in both languages
-
-/*
- * Multi-line comments
- * work identically too
- */
-```
-
-### Contract Structure
-
-**Contract vs Program Declaration:**
-To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`.
-
+**Solidity's Approach:**
 ```solidity
-// Solidity
-contract MyContract {
-    // Contract implementation
+contract Storage {
+    // State variables with visibility modifiers (access control only)
+    uint256 public constant FIXED_VALUE = 100;  // Compile-time constant
+    uint256 public immutable RUNTIME_VALUE;     // Set in constructor
+    uint256 public permanentData;               // Auto-generates getter function 
+    uint256 internal shared;                    // Accessible in derived contracts
+    uint256 private local = 42;                 // Inaccessible in derived contracts - still visible on-chain
+    
+    constructor(uint256 _value) {
+        RUNTIME_VALUE = _value;  // Can be set at construction
+    }
+    
+    function processData(uint256 tempData) public {
+        uint256 memoryVar = tempData * 2;   // Memory (temporary)
+        permanentData = memoryVar;          // Persisted to storage
+    }
 }
 ```
 
+**Leo's Approach:**
 ```leo
-// Leo
-program my_program.aleo {
-    // Program implementation
+program storage.aleo {
+    // Compile-time constants only
+    const FIXED_VALUE: u64 = 100u64;
+
+    // Permanant public state: accessible to everyone
+    mapping balances: address => u64;
+    
+    // Permanant private state: stored in records (with cryptographic privacy)
+    record Token {
+        owner: address,
+        amount: u64,
+    }
+    
+    // Transition parameters and returns are private by default unless marked public
+    async transition process_data(public amount: u64) -> (Token, Future) {
+        let amount_loc: u64 = amount * 2u64; // Local variable
+        
+        let token: Token = Token {
+            owner: self.caller,
+            amount: amount_loc,
+        };
+        
+        return (token, finalize_process_data(self.caller, amount_loc));
+    }
+    
+    // Async function to handle on-chain state updates
+    // Parameters in async functions are automatically public since network nodes execute the computation
+    // Async function cannot return values
+    async function finalize_process_data(caller: address, amount_loc: u64) {
+        let current_balance: u64 = Mapping::get_or_use(balances, caller, 0u64);
+        Mapping::set(balances, caller, current_balance + amount_loc);
+    }
 }
 ```
 
-#### Constructor
-Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) that will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
+**Key Differences:**
+- **Solidity Visibility**: `private`, `internal`, `public` control code access but all data is visible on-chain
+- **Leo Privacy**: `public` vs `private` determines actual cryptographic privacy - whether data is stored on-chain or off-chain in [records](../../concepts/fundamentals/02_records.md)
+- **Constants**: Solidity has both `constant` and `immutable`, Leo only has compile-time `const`
+- **Local Variables**: The `let` keyword declares temporary computation variables (similar to Solidity's memory)
+- **No Transient Storage**: Leo does not support Solidity's transient storage concept
 
-#### Automatic Getter Functions
-The compiler of Solidity automatically creates getter functions for all public state variables. Leo does not have similar features, but instead provides direct API access to query mapping values from the node without requiring getter functions in the program code.
+### Getter Functions
+The compiler of Solidity automatically creates getter functions for all `public` state variables. Leo does not have similar features, but instead provides direct API access to query mapping values from the node without requiring getter functions in the program code.
 
 ```solidity
 // Solidity: automatic getter generated
@@ -136,73 +205,50 @@ contract Example {
   - Example: `GET /testnet3/program/credis.aleo/mapping/account/aleo1abc...`
   - Reference: [Get Mapping Value API](../../references/apis/12_get_mapping_value.md)
 
-## Data & State
+### Deleting state variables
 
-### State Variables and Storage Models
-
-Solidity and Leo differ significantly in how they handle state variables, storage, and data privacy.
-
-**Solidity's Approach:**
+**Solidity's Delete Operation:**
 ```solidity
-contract Storage {
-    // State variables with visibility modifiers (access control only)
-    uint256 public constant FIXED_VALUE = 100;  // Compile-time constant
-    uint256 public immutable RUNTIME_VALUE;     // Set in constructor
-    uint256 public permanentData;               // Auto-generates getter function
-    uint256 private secret = 42;                // Code access only - still visible on-chain
-    uint256 internal shared;                    // Accessible in derived contracts
+contract DeleteExample {
+    uint256 public value = 100;
+    mapping(address => uint256) public balances;
     
-    constructor(uint256 _value) {
-        RUNTIME_VALUE = _value;  // Can be set at construction
+    function resetValue() public {
+        delete value;  // Resets to initial value (0 for uint256)
     }
     
-    function processData(uint256 tempData) public {
-        uint256 memoryVar = tempData * 2; // Memory (temporary)
-        permanentData = memoryVar;         // Persisted to storage
+    function removeBalance(address user) public {
+        delete balances[user];  // Removes mapping entry, resets to initial value (0)
     }
 }
 ```
 
-**Leo's Approach:**
+**Leo's Mapping Operations:**
 ```leo
-program storage.aleo {
-    // Compile-time constants only
-    const FIXED_VALUE: u64 = 100u64;
-
-    // Public state: accessible to everyone
+program delete_example.aleo {
     mapping balances: address => u64;
     
-    // Private state: stored in records (true cryptographic privacy)
-    record Token {
-        owner: address,
-        amount: u64,
+    async transition remove_balance(user: address) -> Future {
+        return finalize_remove_balance(user);
     }
     
-    async transition process_data(public amount: u64) -> (Token, Future) {
-        let amount_loc: u64 = amount * 2u64; // Local variable
-        
-        let token: Token = Token {
-            owner: self.caller,
-            amount: amount_loc,
-        };
-        
-        return (token, finalize_process_data(self.caller, amount_loc));
-    }
-    
-    // Async function to handle on-chain state updates
-    async function finalize_process_data(caller: address, amount_loc: u64) {
-        let current_balance: u64 = Mapping::get_or_use(balances, caller, 0u64);
-        Mapping::set(balances, caller, current_balance + amount_loc);
+    async function finalize_remove_balance(user: address) {
+        // Check if mapping contains the key before removing
+        let exists: bool = Mapping::contains(balances, user);
+        if exists {
+            // Remove mapping entry
+            Mapping::remove(balances, user);
+        }
     }
 }
 ```
 
 **Key Differences:**
-- **Solidity Visibility**: `private`, `internal`, `public` control code access but all data is visible on-chain
-- **Leo Privacy**: `public` vs `private` determines actual cryptographic privacy - whether data is stored on-chain or off-chain in [records](../../concepts/fundamentals/02_records.md)
-- **Constants**: Solidity has both `constant` and `immutable`, Leo only has compile-time `const`
-- **Local Variables**: The `let` keyword declares temporary computation variables (similar to Solidity's memory)
-- **No Transient Storage**: Leo does not support Solidity's transient storage concept
+- **Solidity**: `delete` operator resets variables to their initial values (0 for numbers, false for booleans, empty for arrays)
+- **Leo**: Only supports removing entries from mappings using `Mapping::remove()`
+- **No Direct Delete**: Leo doesn't have a direct equivalent to Solidity's `delete` operator for other variable types
+- **Mapping Focus**: Leo's deletion functionality is focused on mapping entries, which is the primary state storage mechanism
+- **Key Existence Check**: Leo provides `Mapping::contains()` to check if a key exists in a mapping before operations
 
 ### Data Types
 
@@ -219,9 +265,12 @@ address userAddr = 0x742d35...;
 ```leo
 // Leo
 let flag: bool = true;
-let small_number: u32 = 100u32;
+let small_number: u32 = 100u32;  // Must append type suffix (u32)
 let user_addr: address = aleo1abc...;
 ```
+
+**Type Suffix Requirement:**
+In Leo, all literals must explicitly append their type suffix. This is different from Solidity where types are inferenced.
 
 **Leo Special Types:**  
 
@@ -281,29 +330,22 @@ function updateArray() public {
 ```
 
 ```leo
-// Leo: static arrays only with direct element modification
-struct ArrayExample {
-    static_array: [u32; 5],  // Fixed-size arrays only
-}
-
-transition update_array(input: ArrayExample) -> ArrayExample {
-    // Can modify individual elements directly
-    input.static_array[0u8] = 42u32;
-    input.static_array[1u8] = 100u32;
+// Leo: only supports static array 
+transition simple_array() -> [u32; 3] {
+    // Create a fixed-size array of 3 elements
+    let numbers: [u32; 3] = [1u32, 2u32, 3u32];
     
-    return input;
+    // Modify elements using explicit index type (u8)
+    numbers[0u8] = 10u32;
+    numbers[1u8] = 20u32;
     
-    // Alternative: return new array structure
-    // return ArrayExample {
-    //     static_array: [42u32, 100u32, 0u32, 0u32, 0u32],
-    // };
+    return numbers;
 }
 ```
 
 **Key Static Array Features:**
 - **Fixed Size**: Array size must be known at compile time
-- **Direct Element Access**: Use explicit index types (e.g., `array[0u8]`)
-- **Element Modification**: Individual elements can be modified directly
+- **Element Access**: Use explicit index types (e.g., `array[0u8]`)
 - **No Dynamic Operations**: No `push()`, `pop()`, or resizing operations
 
 ### Type Conversions
@@ -434,10 +476,12 @@ contract Child is Example {
 **Leo's Approach:**
 ```leo
 program example.aleo {
-    // Transition: externally callable, off-chain execution and default data privacy (unless public visibility specified like the public return below)
-    transition public_function(input: u32) -> public u32 {
+    // Transition: externally callable, off-chain execution
+    // All inputs and outputs are private by default, requiring explicit 'public' keyword for on-chain visibility
+    transition public_function(input: u32, public pub_input2: u32) -> (public u32, u32) {
         let result: u32 = internal_helper(input);
-        return result;
+        let pub_result: u32 = result + pub_input2;
+        return (pub_result, result);
     }
     
     // Function: helper for transitions (similar to pure functions)
@@ -456,9 +500,19 @@ program example.aleo {
 ```
 
 **Key Differences:**
+- **Externally Callable Functions**: In Leo, only `transition` and `async transition` functions can be called externally. All other functions (`function` and `inline`) are internal and can only be called from within the program
 - **Leo's Computation-Only Functions**: Both `function` and `inline` in Leo are similar to Solidity's `pure` functions - they can only perform computations and cannot access state variables or make external calls
-- **No Inheritance in Leo**: Leo does not support inheritance
 - **Visibility in Leo**: Unlike Solidity's visibility modifiers (public, private, internal), Leo's visibility refers to data privacy - whether data is publicly visible on-chain or kept private off-chain
+- **Function Overloading**: Unlike Solidity which supports function overloading (multiple functions with the same name but different parameter types), Leo does not allow function overloading. Each function name must be unique within a program, requiring developers to use distinct names for functions with different parameter types.
+
+### Returns
+
+In Leo, return types are specified using an arrow (`->`) syntax, similar to Rust, which differs from Solidity's `returns` keyword.
+
+**Key Differences:**
+- **Return Type Syntax**: Leo only requires the type for returns, not identifiers (e.g., `-> u32` vs Solidity's `returns (uint256 value)`)
+- **Return Value Handling**: In Solidity, multiple return values can be selectively ignored using commas (e.g., `(index, , ) = f();`), while Leo requires all return values to be caught with exact types
+- **Parameter Handling**: Similarly, Solidity allows unused parameters to be omitted in function declarations, while Leo requires all parameters to be explicitly declared with their types
 
 ### Modifiers
 
@@ -586,6 +640,52 @@ program call_hierarchy.aleo {
     }
 }
 ```
+
+### Fallback and Receive Functions
+
+**Solidity's Fallback and Receive:**
+```solidity
+contract FallbackExample {
+    // Fallback function - called when no other function matches
+    fallback() external {
+        // Handle unmatched function calls
+    }
+    
+    // Receive function - called when receiving ETH
+    receive() external payable {
+        // Handle incoming ETH
+    }
+    
+    // Regular function
+    function regularFunction() public {
+        // Function implementation
+    }
+}
+```
+
+**Leo's Approach:**
+Leo does not have fallback or receive functions:
+
+```leo
+program fallback_example.aleo {
+    // No fallback function - all calls must match a valid function signature
+    transition regular_function() {
+        // Function implementation
+    }
+    
+    // To receive Aleo Credits, use credits.aleo program
+    async transition receive_credits(public amount: u64) -> Future {
+        return credits.aleo/transfer_public(self.caller, self.address, amount);
+    }
+}
+```
+
+**Key Differences:**
+- **No Fallback**: Leo requires all function calls to match a valid function signature
+- **No Receive**: Programs don't need special functions to receive Aleo Credits
+- **Program Addresses**: Each Leo program has a unique address (same as user-controlled addresses)
+- **Private Records**: Programs cannot spend private records sent to them (records are effectively "burnt")
+- **Credit Transfers**: Use `credits.aleo` program's transfer functions to send/receive credits
 
 ## Cryptography & Built-ins
 
@@ -958,7 +1058,7 @@ transition control_flow(items: [u32; 5]) -> u32 {
 }
 ```
 
-**Important Limitation**: Leo currently executes both branches of conditional statements, using ternary operations to select the correct result. This differs from typical conditional execution where only one branch runs. This behavior can cause unexpected issues, especially with operations that can halt (like division by zero). [ARC-0004](https://github.com/ProvableHQ/ARCs/discussions/89) proposes flagged operations to address this limitation, enabling proper if-then-else semantics. More details can be found in the [Leo limitations documentation](../../guides/leo/02_leo_limitations.md#compiling-conditional-on-chain-code).
+**Important Limitation**: Leo currently executes all branches of conditional statements, then select the correct result. This differs from typical conditional execution where only one branch runs. This behavior can cause unexpected issues, especially with operations that can halt (like division by zero). [ARC-0004](https://github.com/ProvableHQ/ARCs/discussions/89) proposes flagged operations to address this limitation, enabling proper if-then-else semantics. More details can be found in the [Leo limitations documentation](../../guides/leo/02_leo_limitations.md#compiling-conditional-on-chain-code).
 
 ## Cross-Program Calls
 
@@ -1215,7 +1315,7 @@ program using_library.aleo {
 ```
 
 **Key Differences:**
-- **No DELEGATECALL**: Leo doesn't support executing external code in current context
+- **No Delegatecall**: Leo doesn't support executing external code in current context
 - **No Type Attachment**: Cannot attach functions to types like Solidity's `using` directive
 - **Stateless Programs**: Use separate programs instead of libraries
 
@@ -1357,6 +1457,6 @@ contract AssemblyExample {
 Leo does not support inline assembly:
 
 - **No Yul-like Integration**: Cannot insert low-level assembly code
-- **Separate IR**: Aleo Instructions exist as a separate language, not embeddable in Leo
-- **High-level Only**: Must use Leo's high-level constructs exclusively
+- **Separate IR**: Aleo Instructions exist as a separate language, not embeddable in Leo.
+- **Standalone Programs**: Aleo Instructions can be written as standalone programs in `.aleo` files, enabling fine-grained control over program execution and circuit design at a low level. For more details about Aleo Instructions, see the [Aleo Instructions Overview](../../guides/aleo/00_aleo_overview.md).
 
