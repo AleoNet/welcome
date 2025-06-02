@@ -4,43 +4,156 @@ title: NFT Standard Differences
 sidebar_label: NFT Standard Differences
 ---
 
-## Current Implementation: ARC721
+## Introduction
 
-The ARC721 standard emerged from the [ARC-0721 proposal](https://github.com/ProvableHQ/ARCs/discussions/79) and was officially approved through community voting on [Aleo Governance](https://vote.aleo.org/p/721). The standard leverages Aleo's unique privacy features to provide enhanced functionality compared to ERC721.
+ERC-721 is the standard for non-fungible tokens on Ethereum, but every piece of state (owner, metadata, price) is public.  
 
-For more detailed information about the NFT standards and implementation details, please refer to the [NFT Standards documentation](../standards/01_nft_standards.md).
+ARC-721, the Aleo variant implemented in Leo, maintains the same ergonomics while allowing you to choose which parts remain private and which are stored on-chain. The standard originated from the [ARC-721 proposal](https://github.com/ProvableHQ/ARCs/discussions/79) and was officially approved through community voting on [Aleo Governance](https://vote.aleo.org/p/721). The standard leverages Aleo's unique privacy features to provide enhanced functionality compared to ERC-721. For example, every NFT in ARC-721 has two separate privacy controls: one for ownership and one for the NFT data itself, with configurable privacy settings for both. For more detailed information about the NFT standards and implementation details, please refer to the [NFT Standards documentation](../standards/01_nft_standards.md).
+
+To address program composability challenges on Aleo, there is a proposed [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) that would serve as a central hub for NFT collections, similar to how the [Token Registry Program](../standards/00_token_registry.md) works for fungible tokens. This registry would allow multiple implementations with different data structures, identified by the unique pair (registry_program_id, collection_id).
+
+## Quick-glance comparison
+
+| Function                     | **ERC-721 (Ethereum)**             | **ARC-721 & ARC-722 (Aleo)**                                                                                            |
+| ---------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Owner visibility**         | Always public                      | Optional — private record *or* public mapping                                                                 |
+| **Metadata visibility**      | Whatever you publish is visible    | Private, public or hybrid (mixed on-/off-chain)                                                               |
+| **Unique identifier**        | Incremental `tokenId uint256`      | Commitment `field = hash(data) ⊕ edition` (opaque)                                                            |
+| **Transfer functions**       | `transferFrom`, `safeTransferFrom` | `transfer_private`, `transfer_private_to_public`, `transfer_public_as_signer`, `transfer_public_to_private`   |
+| **Approvals**                | `approve`, `setApprovalForAll`     | `approve_public`, `set_for_all_approval`                                                                      |
+| **Burn & re-mint privately** | Not possible without trace         | `update_edition_private` re-obfuscates commit                                                                 |
 
 ## Architectural Differences
 
-### Program Structure
-
-**ERC721**
-- Each NFT collection is deployed as a separate smart contract
-- Requires approval flow for NFT transfers
-- New smart contract deployment needed for each collection
-
-**ARC721**
-- Each NFT collection is a separate program currently (addressing composability issue with [NFT Registry Program (ARC722)](https://github.com/ProvableHQ/ARCs/discussions/80))
-- Optional approval flow for NFT transfers
-- New program deployment needed for each collection
-
 ### State Management
 
-**ERC721**
-- State is stored within each collection contract
-- Uses mappings for token ownership and approvals
-- Direct state access within contract
+**ERC-721**
+```solidity
+contract ERC721 {
+    // Token name
+    string private _name;
 
-**ARC721**
-- State is managed through program mappings
-- Uses mappings for NFT commits, owners, and contents
-- State access through API endpoints or `mappings::get()` calls within async function
+    // Token symbol
+    string private _symbol;
 
-## Functional Differences
+    // Mapping from token ID to owner address
+    mapping(uint256 => address) private _owners;
 
-### NFT Creation
+    // Mapping owner address to token count
+    mapping(address => uint256) private _balances;
 
-**ERC721**
+    // Mapping from token ID to approved address
+    mapping(uint256 => address) private _tokenApprovals;
+}
+```
+
+**ARC-721 & ARC-722**
+
+Below is the example data structure of an ARC-721 NFT program, using record as private storage and mappings as public storage. Name of the structs don't necessarily have to match `data` and `attribute`, allowing to import several NFT collection program without shadowing:
+
+```leo
+record NFT {
+    private owner: address,   // hidden unless revealed
+    private data: data,      // on-chain struct (can mirror off-chain JSON)
+    private edition: scalar,  // as obfuscator to store NFT commitment on-chain
+}
+
+// NFT data is always private and store in NFTView even if ownership is made public
+// is_view is always true, to differentiate NFTView from NFT in plaintext representations of records
+record NFTView {
+    private owner: address,
+    private data: data,
+    private edition: scalar,
+    public is_view: bool
+}
+
+// Example attribute, optional
+struct attribute {
+    trait_type: [field; 4],
+    _value: [field; 4],
+}
+
+struct data {
+    metadata: [field; 4], // URI of offchain metadata JSON
+    // (optional) name: [field; 4],
+    // (optional) image: [field; 16],
+    // (optional) attributes: [attribute; 4],
+    // (optional) ...
+}
+
+// On-chain NFT data storage if made public 
+struct nft_content {
+    data: data,
+    edition: scalar
+}
+mapping nft_contents: field => nft_content; // commit(data, edition) => (data, edition)
+
+// Approval data structure
+struct Approval {
+    collection_id: field,
+    approver: address,
+    spender: address,
+}
+mapping for_all_approvals: field => bool     // approval hash → bool
+mapping nft_approvals:     field => field    // commit → approval hash
+```
+
+### NFT Identifier
+
+**ERC-721**
+
+In ERC-721, NFTs are identified by a simple incremental uint256 tokenId.
+
+**ARC-721**
+
+NFT commit is used to identify each unique NFT in ARC-721:
+
+```leo
+mapping nft_commits: field => bool; // NFT commit => NFT exists or has existed
+
+inline commit_nft(
+    nft_data: data,
+    nft_edition: scalar
+) -> field {
+    let data_hash: field = BHP256::hash_to_field(nft_data);
+    let commitment: field = BHP256::commit_to_field(data_hash, nft_edition);
+    return commitment;
+}
+```
+
+**ARC-722**
+
+NFT Id hash is similar but with extra collection separator in NFT Registry Program ARC-722:
+
+```leo
+struct NFTId {
+    collection_id: field,
+    nft_commit: field
+}
+
+mapping nft_ids: field => NFTId;    // hash(NFTId) => NFTId
+
+inline hash_nft_id(
+    collection_id: field,
+    nft_data: Data,
+    nft_edition: scalar,
+) -> field {
+    let nft_commit: field = commit_nft(nft_data, nft_edition);
+    let nft_id: NFTId = NFTId {
+        collection_id: collection_id,
+        nft_commit: nft_commit
+    };
+    let nft_id_hash: field = BHP256::hash_to_field(nft_id);
+    return nft_id_hash;
+}
+```
+
+### NFT Creation and Structure
+
+**ERC-721**
+
+ERC-721 provides a standard minting function with optional extensions for custom capabilities.
+
 ```solidity
 contract MyNFT is ERC721 {
     constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
@@ -51,269 +164,230 @@ contract MyNFT is ERC721 {
 }
 ```
 
-**ARC721**
-```leo
-// Create NFT record
-record NFT {
-    private owner: address,
-    private data: data,
-    private edition: scalar,
-}
+**ARC-721**  
 
-// Commit NFT to program state
-commit_nft(
-    nft_data: data,
-    nft_edition: scalar
-) -> field
+Similar to ERC-721, ARC-721 provides flexibility in defining custom NFT creation logic as the NFT program is deployed by developers. A standard implementation of NFT minting functions can be found in ARC-722 below.
+
+**ARC-722**
+
+The ARC-722 NFT Registry program provides `mint_private`, `mint_private_as_public`, `mint_public_as_private`, and `mint_public` functions to create new NFTs. All functions preserve the privacy of the NFT data until `publish_nft_content` is called:
+
+```leo
+// Mints a private NFT
+// Returns the NFT record that representing ownership and contains NFT data.
+async transition mint_private(
+    admin_nft: nft_records.aleo/NFT,
+    private recipient: address,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> (nft_records.aleo/NFT, Future) 
+
+// Mints a private NFT, verifying admin rights during finalization publicly.
+// Returns the NFT record that representing ownership and contains NFT data.
+async transition mint_private_as_public(
+    private recipient: address,
+    private collection_id: field,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> (nft_records.aleo/NFT, Future)
+
+// Mints a public NFT, with private admin as authorization.
+// Returns NFTView record that contains private NFT data, ownership is stored publicly on-chain.
+async transition mint_public_as_private(
+    admin_nft: nft_records.aleo/NFT,
+    public recipient: address,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> (nft_records.aleo/NFTView, Future)
+
+// Mints a public NFT
+// Returns NFTView record that contains private NFT data, ownership is stored publicly on-chain.
+async transition mint_public(
+    public recipient: address,
+    public collection_id: field,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> (nft_records.aleo/NFTView, Future)
+
+// Make a NFT data public
+async transition publish_nft_content(
+    public nft_data: Data,
+    public nft_edition: scalar,
+) -> Future
 ```
 
-### NFT Transfer
+### Transfer Mechanisms
 
-**ERC721**
+**ERC-721**
 ```solidity
 function transferFrom(address from, address to, uint256 tokenId) public
 function safeTransferFrom(address from, address to, uint256 tokenId) public
 ```
 
-**ARC721**
+**ARC-721 & ARC-722**
 ```leo
 // Private transfer
-transfer_private(
+transition transfer_private(
     private nft: NFT,
-    private to: address
+    private to: address,
 ) -> NFT
 
-// Public transfer
-transfer_public(
-    public nft_commit: field,
-    public to: address
-)
+// Public transfer from function caller (msg.sender)
+async transition transfer_public(
+    private nft_data: data,
+    private nft_edition: scalar,
+    public to: address,
+) -> (NFTView, Future)
 
-// Transfer from (after approval)
-transfer_from_public(
-    public nft_commit: field,
+// Public transfer from transaction signer (tx.origin)
+async transition transfer_public_as_signer(
+    private collection_id: field,
+    private nft_data: Data,
+    private nft_edition: scalar,
+    public recipient: address,
+) -> (NFTView, Future)
+
+// Public transfer by an approved spender
+async transition transfer_from_public(
     public from: address,
-    public to: address
-)
+    public to: address,
+    private nft_data: data,
+    private nft_edition: scalar,
+) -> (NFTView, Future)
+
+// Convert private NFT ownership to public NFT ownership
+async transition transfer_private_to_public(
+    nft: nft_records.aleo/NFT,
+    public recipient: address,
+) -> (nft_records.aleo/NFTView, Future)
+
+// Convert public NFT ownership to private NFT ownership
+async transition transfer_public_to_private(
+    private nft_data: data,
+    private nft_edition: scalar,
+    private to: address,
+) -> (NFT, Future)
+
+// Convert public NFT ownership to private NFT ownership by an approved sender
+async transition transfer_from_public_to_private(
+    private collection_id: field,
+    public from: address,
+    public recipient: address,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> (NFT, Future)
 ```
 
-### NFT Approval
+#### Transfer flows side by side
 
-**ERC721**
+| **Transfer Flow**       | **ERC-721 (Solidity)**              | **ARC-721 / ARC-722 (Leo)**                                                                | **Privacy Benefit**                                            |
+| ----------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| **Private → Private**   | ❌ Not Supported                     | `transfer_private`                                                                         | Fully private — no public trace                                |
+| **Private → Public**    | ❌ Not Supported                     | `transfer_private_to_public`           | Owner becomes visible; content stay hidden in `NFTView`                 |
+| **Public → Public**     | `transferFrom` / `safeTransferFrom` | `transfer_public` (via `self.caller`) `transfer_public_as_signer` (via `self.signer`)   | Matches ERC-721 behavior with added flexibility                |
+| **Public → Private**    | ❌ Not Supported                     | `transfer_public_to_private`   `transfer_from_public_to_private` (with spender approval)  | Ownership becomes private; asset vanishes from public registry |
+| **Public (by Spender)** | `transferFrom` with `approve()`     | `transfer_from_public`   `transfer_from_public_to_private`  | Approved delegated transfers, public or private                |
+
+### Approval System
+
+**ERC-721**
 ```solidity
 function approve(address to, uint256 tokenId) public
 function setApprovalForAll(address operator, bool approved) public
 ```
 
-**ARC721**
+**ARC-721**
 ```leo
 // Collection-wide approval
-set_for_all_approval(
-    public approver: address,
-    public spender: address
-)
+async transition set_for_all_approval(
+    private spender: address,
+    public new_value: bool,
+) -> Future
 
 // Individual NFT approval
-approve_public(
-    public nft_commit: field,
-    public approver: address,
-    public spender: address
-)
+async transition approve_public(
+    private spender: address,
+    private nft_data: data,
+    private nft_edition: scalar,
+) -> Future
+
+// Revoke approval
+async transition unapprove_public(
+    private collection_id: field,
+    private nft_data: Data,
+    private nft_edition: scalar,
+) -> Future
 ```
 
-### Metadata and Content
+## Settings
 
-**ERC721**
-```solidity
-function tokenURI(uint256 tokenId) public view returns (string memory)
-```
-
-**ARC721**
-```leo
-struct data {
-    metadata: [field; 4], // URI of offchain metadata JSON
-    // Optional fields for on-chain data
-    // name: [field; 4],
-    // image: [field; 16],
-    // attributes: [attribute; 4],
-}
-```
-
-## ARC721-Specific Features
-
-### Edition System
-
-The edition system in ARC721 serves multiple purposes:
-
-1. **Uniqueness Guarantee**
-   - Each NFT has a unique edition number (scalar)
-   - Editions are used to generate unique commits without revealing data
-   - Prevents duplicate NFTs while maintaining privacy
-
-2. **Privacy Enhancement**
-   - Editions act as obfuscators for NFT data
-   - Allows verification of uniqueness without revealing content
-   - Enables re-obfuscation through edition updates
-
-3. **Commit Generation**
-```leo
-inline commit_nft(
-    nft_data: data,
-    nft_edition: scalar
-) -> field {
-    let data_hash: field = BHP256::hash_to_field(nft_data);
-    let nft_commit: field = BHP256::commit_to_field(data_hash, nft_edition);
-    return nft_commit;
-}
-```
-
-### NFTView Record
-
-The NFTView record is a specialized record type that enables public ownership while maintaining data privacy:
-
-1. **Structure**
-```leo
-record NFTView {
-    private owner: address,
-    private data: data,
-    private edition: scalar,
-    private is_view: bool
-}
-```
-
-2. **Purpose**
-   - Enables programs to own NFTs without revealing their data
-   - Serves as a vehicle for NFT data during public transfers
-   - Maintains privacy while allowing public ownership
-
-3. **Usage in Transfers**
-```leo
-async transition transfer_private_to_public(
-    private nft: NFT,
-    public to: address,
-) -> (NFTView, Future) {
-    let nft_commit: field = commit_nft(nft.data, nft.edition);
-    let nft_view: NFTView = NFTView {
-        owner: to,
-        data: nft.data,
-        edition: nft.edition,
-        is_view: true
-    };
-    let transfer_private_to_public_future: Future =
-        finalize_transfer_private_to_public(
-            to, nft_commit
-        );
-    return (
-        nft_view,
-        transfer_private_to_public_future
-    );
-}
-```
-
-4. **Key Benefits**
-   - Enables private data transfer to public owners
-   - Maintains data privacy in program-to-program transfers
-   - Supports marketplace and escrow functionality
-
-### Settings Management
-
-The ARC721 standard includes a flexible settings management system through a mapping:
+ARC-721 also specify standard setting for collection:
 
 ```leo
-mapping general_settings: u8 => field;
-// Setting index => Setting value
+mapping general_settings: u8 => field;  // Setting index => Setting value
 ```
 
-Available settings indices and their purposes:
-- `0u8`: Amount of mintable NFTs (all editions)
-- `1u8`: Number of total NFTs (first-editions) that can be minted
-- `2u8`: Symbol for the NFT
-- `3u8`: Base URI for NFT, part 1
-- `4u8`: Base URI for NFT, part 2
-- `5u8`: Base URI for NFT, part 3
-- `6u8`: Base URI for NFT, part 4
-- `7u8`: Admin address hash
+- `0u8` - Amount of mintable NFTs (all editions)
+- `1u8` - Number of total NFTs (first-editions) that can be minted
+- `2u8` - Symbol for the NFT
+- `3u8` - Base URI for NFT, part 1
+- `4u8` - Base URI for NFT, part 2
+- `5u8` - Base URI for NFT, part 3
+- `6u8` - Base URI for NFT, part 4
+- `7u8` - Admin address hash
 
-These settings allow for fine-grained control over the NFT collection's properties, including minting limits, metadata location, and administrative controls.
+## Edition
+ARC-721 introduces the edition field as a mandatory scalar inside every NFT record. The reason for using edition is three-fold:
+
+**Privacy salt** – edition is mixed with the BHP256 hash of the NFT’s data to form
+`nft_commit = BHP256::commit_to_field(BHP256::hash_to_field(data), edition)`.
+This blinding factor prevents anyone from testing whether two commits hide the same data.
+
+**Uniqueness anchor** – Because the commit depends on edition, any change (even when
+data is identical) produces a brand-new nft_commit, guaranteeing each token is non-fungible.
+
+**Re-obfuscation** –
+Owners may “rotate” privacy by choosing a fresh random scalar and calling `update_edition_private`, breaking on-chain linkage to prior transfers.
+
+## Publishing (and re-hiding) content
+
+When an NFT's data should become public, the minter (or seller) calls:
+
+```leo
+transition publish_nft_content(nft_data, nft_edition)
+```
+
+which copies the cleartext struct into:
+
+```leo
+mapping nft_contents: field => nft_content;
+```
+
+If you later need to hide it again:
+
+1. Bring the NFT **private** with `transfer_public_to_private`.
+2. Call `update_edition_private` to roll the commitment.
+
 
 ## Privacy Features
 
-The ARC721 standard provides additional privacy features not available in ERC721:
+The ARC-721 standard provides several privacy-enhancing features:
 
-1. **Private Ownership**: NFT ownership can be kept private using Aleo records
-2. **Private Data**: NFT data can be kept private by default
-3. **Edition-based Privacy**: Unique edition numbers ensure privacy while maintaining uniqueness
-4. **Re-obfuscation**: Ability to update NFT editions to re-obfuscate content
-5. **Public/Private Conversion**: Convert between public and private ownership
+1. **Private Ownership**
+   - NFTs can be held privately using Aleo records
+   - Ownership can be verified without revealing the owner's identity
+   - Supports conversion between private and public ownership states
 
-### Privacy Implementation Details
+2. **Private Data**
+   - NFT data is kept private by default
+   - Optional data publication through `publish_nft_content`
 
-The ARC721 standard implements privacy through several key mechanisms:
-
-1. **Record-based Privacy**
-   - NFTs are represented as Aleo records with private fields
-   - Ownership and data remain private by default
-   - Records can be spent only by their owners
-
-2. **Edition-based Uniqueness**
+3. **Edition-based Privacy**
    - Each NFT has a unique edition number (scalar)
-   - Editions are used to generate unique commits without revealing data
-   - Enables privacy while maintaining non-fungibility
+   - Editions enable privacy while maintaining uniqueness
+   - Supports edition updates for re-obfuscation
 
-3. **Flexible Visibility**
-   - Owners can choose to make ownership public while keeping data private
-   - Data can be published or kept private based on use case
-   - Supports both private and public transfers
-
-4. **Data Privacy Controls**
-   - On-chain data can be kept private or made public
-   - Off-chain data can be referenced without revealing content
-   - Supports re-obfuscation of previously public data
-
-## Key Features Comparison
-
-| Feature | ERC721 | ARC721 |
-|---------|--------|--------|
-| Collection Creation | Deploy new contract | Deploy new program |
-| State Management | Per contract | Per program |
-| Transfer Mechanism | Direct contract call | Program call |
-| Privacy | None | Built-in private transfers |
-| Approval Flow | Required | Optional |
-| Metadata Storage | URI-based | Flexible (on-chain/off-chain) |
-| Content Management | Per contract | Per program |
-
-## Data Storage 
-
-Data storage in ARC721 standard are both on-chain and off-chain:
-
-1. **On-chain Data**
-   - Direct storage of NFT data on the blockchain
-   - Enables use of data in zk-circuits
-   - Can store complete data or hashes
-
-2. **Off-chain Data**
-   - URI-based metadata storage
-   - Reduces on-chain storage costs
-   - Standard JSON metadata format
-
-## String Encoding
-
-The ARC721 standard uses a specific string encoding format:
-
-```leo
-// Leo
-string: [field; 4],
-
-// Aleo instructions
-string as [field; 4u32];
-```
-
-This encoding allows for efficient storage of strings while maintaining compatibility with Aleo's field type system.
-
-## Summary
-
-The ARC721 standard provides a more feature-rich approach to NFT management compared to ERC721, with built-in privacy features and flexible data storage options. While both standards require separate deployments for each collection, ARC721 leverages Aleo's privacy features to provide enhanced functionality.
-
-The standard is designed to be compatible with the ARC21 standard for name and symbol of fungible tokens, and provides mechanisms for both private and public NFT management.
-
-There is a proposed [NFT Registry Program (ARC722)](https://github.com/ProvableHQ/ARCs/discussions/80) that would serve as a central hub for NFT collections, similar to how the Token Registry Program works for fungible tokens. This registry would address program composability challenges by allowing multiple implementations with different data structures, identified by the unique pair (registry_program_id, collection_id). With the future implementation of dynamic dispatch, this would enable even more flexible program composability while maintaining Aleo's privacy features.
+4. **Flexible Visibility**
+   - `NFTView` record type for public ownership with private data
+   - `NFT` record type for fully private ownership
+   - Built-in conversion functions between states
