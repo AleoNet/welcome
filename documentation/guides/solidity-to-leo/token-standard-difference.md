@@ -62,6 +62,11 @@ register_token(
 )
 ```
 
+#### External Authorization
+The ARC-21 Token Registry supports an optional external authorization system where a designated party (usually a program) can control token spending permissions with time-limited approvals. This feature enforces extra requirements on tokens before they can be transferred, such as time-locked tokens, tokens with vesting schedules or spending limits, compliance requirements, and more. The authorization party can be updated later using `update_token_management`.
+
+`prehook_public` and `prehook_private` are both functions that the `external_authorization_party` can use to unlock token transfers once the extra requirements have been fulfilled.
+
 ### Token Transfer
 
 **ERC-20**
@@ -72,28 +77,125 @@ function transferFrom(address from, address to, uint256 amount) public returns (
 
 **ARC-21 Token Registry**
 ```leo
-// Public transfer
-transfer_public(
-    token_id: field,
-    recipient: address,
-    amount: u128
-)
+// Public transfer from function caller
+async transition transfer_public(
+    public token_id: field,
+    public recipient: address,
+    public amount: u128
+) -> Future
+
+// Public transfer from transaction signer
+async transition transfer_public_as_signer(
+    public token_id: field,
+    public recipient: address,
+    public amount: u128
+) -> Future
 
 // Private transfer
-transfer_private(
+async transition transfer_private(
     recipient: address,
     amount: u128,
     input_record: Token
-)
+) -> (Token, Token, Future)
 
-// Transfer from (after approval)
-transfer_from_public(
-    token_id: field,
-    owner: address,
+// Public transfer by an approved spender
+async transition transfer_from_public(
+    public token_id: field,
+    public owner: address,
+    public recipient: address,
+    public amount: u128
+) -> Future
+
+// Convert public balance to private Token
+async transition transfer_public_to_private(
+    public token_id: field,
     recipient: address,
-    amount: u128
-)
+    public amount: u128,
+    public external_authorization_required: bool
+) -> (Token, Future)
+
+// Convert public balance to private Token by an approved spender
+async transition transfer_from_public_to_private(
+    public token_id: field,
+    public owner: address,
+    recipient: address,
+    public amount: u128,
+    public external_authorization_required: bool
+) -> (Token, Future)
+
+// Conver private Token to public balance
+async transition transfer_private_to_public(
+    public recipient: address,
+    public amount: u128,
+    input_record: Token
+) -> (Token, Future)
 ```
+
+#### Privacy Features
+
+The ARC-21 Token Registry provides additional privacy features not available in ERC-20:
+
+1. **Private Transfers**: Ability to transfer tokens privately using the `transfer_private` function
+2. **Public to Private Conversion**: Convert public tokens to private using `transfer_public_to_private`
+3. **Private to Public Conversion**: Convert private tokens to public using `transfer_private_to_public`
+
+### Token Minting
+
+**ERC-20**
+```solidity
+function mint(address to, uint256 amount) public onlyOwner {
+    _mint(to, amount);
+}
+```
+
+**ARC-21 Token Registry**
+```leo
+// Public minting
+async transition mint_public(
+    public token_id: field,
+    public recipient: address,
+    public amount: u128,
+    public authorized_until: u32
+) -> Future
+
+// Private minting
+async transition mint_private(
+    public token_id: field,
+    recipient: address,
+    public amount: u128,
+    public external_authorization_required: bool,
+    public authorized_until: u32
+) -> (Token, Future)
+```
+
+The ARC-21 Token Registry provides both public and private minting capabilities. Access to minting is controlled through roles that can be assigned using `set_role` and revoked using `remove_role`. Only addresses with `MINTER_ROLE` or `SUPPLY_MANAGER_ROLE` can mint tokens if not the admin.
+
+### Token Burning
+
+**ERC-20**
+```solidity
+function burn(uint256 amount) public {
+    _burn(msg.sender, amount);
+}
+```
+
+**ARC-21 Token Registry**
+```leo
+// Public burning
+async transition burn_public(
+    public token_id: field,
+    public owner: address,
+    public amount: u128
+) -> Future
+
+// Private burning
+async transition burn_private(
+    input_record: Token,
+    public amount: u128
+) -> (Token, Future)
+```
+
+The ARC-21 Token Registry supports both public and private burning mechanisms. Similar to minting, burning permissions are managed through roles using `set_role` and `remove_role`. Only addresses with `BURNER_ROLE` or `SUPPLY_MANAGER_ROLE` can burn tokens if not the admin.
 
 ### Token Approval
 
@@ -106,18 +208,18 @@ function allowance(address owner, address spender) public view returns (uint256)
 **ARC-21 Token Registry**
 ```leo
 // Public approval
-approve_public(
-    token_id: field,
-    spender: address,
-    amount: u128
-)
+async transition approve_public(
+    public token_id: field,
+    public spender: address,
+    public amount: u128
+) -> Future
 
-// Public unapproval
-unapprove_public(
-    token_id: field,
-    spender: address,
-    amount: u128
-)
+// Revoke public unapproval
+async transition unapprove_public(
+    public token_id: field,
+    public spender: address,
+    public amount: u128
+) -> Future
 ```
 
 ### Balance and Supply Queries
@@ -151,35 +253,8 @@ The ARC-21 Token Registry uses RPC endpoints to query balances and supply by acc
 | Token Metadata | In contract | In registry |
 | Supply Management | Per contract | Centralized registry |
 
-## Privacy Features
-
-The ARC-21 Token Registry provides additional privacy features not available in ERC-20:
-
-1. **Private Transfers**: Ability to transfer tokens privately using the `transfer_private` function
-2. **Public to Private Conversion**: Convert public tokens to private using `transfer_public_to_private`
-3. **Private to Public Conversion**: Convert private tokens to public using `transfer_private_to_public`
-4. **Record Management**: Ability to join and split private token records
-
-## Role Management
-
-The ARC-21 Token Registry implements a role-based access control system:
-
-- `MINTER_ROLE`: Can mint new tokens
-- `BURNER_ROLE`: Can burn tokens
-- `SUPPLY_MANAGER_ROLE`: Can manage token supply
-
-This is different from ERC-20 where such roles need to be implemented separately in each contract.
-
-## External Authorization
-
-The ARC-21 Token Registry includes an optional external authorization system that allows for:
-
-1. Required external approval for token transfers
-2. Time-limited authorizations
-3. External party management of token permissions
-
-## Summary and Future Outlook
+## Summary and Future
 
 The ARC-21 Token Registry provides a more centralized and feature-rich approach to token management compared to ERC-20. While ERC-20 requires separate contracts for each token, the Token Registry manages all tokens through a single program, providing additional features like privacy and role-based access control. This design choice makes it easier to implement DeFi applications and ensures better interoperability between different tokens on the Aleo blockchain.
 
-With the future implementation of dynamic dispatch, the ARC-20 standard will provide a more familiar approach for Ethereum developers, allowing for individual token programs while maintaining Aleo's privacy features.
+With the future implementation of dynamic dispatch, the ARC-20 standard will provide a more familiar approach for Ethereum developers, allowing different individual token programs to be called at runtime rather than being strictly defined.
