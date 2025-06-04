@@ -98,11 +98,37 @@ mapping for_all_approvals: field => bool     // approval hash → bool
 mapping nft_approvals:     field => field    // commit → approval hash
 ```
 
+### String Management
+
+Since Leo doesn't have a native string type, strings are managed using arrays of `field` elements:
+
+```leo
+// Example attribute, optional
+struct attribute {
+    trait_type: [field; 4],
+    _value: [field; 4],
+}
+
+struct data {
+    metadata: [field; 4], // URI of offchain metadata JSON
+    // (optional) name: [field; 4],
+    // (optional) image: [field; 16],
+    // (optional) attributes: [attribute; 4],
+    // (optional) ...
+}
+```
+
+Key points about string management in Leo:
+- The array length can be adjusted based on the maximum number of characters needed
+- Fields are used instead of u128 because they offer approximately twice the amount of data for the same constraints
+- This approach is particularly useful for storing metadata URIs and other string data in NFTs
+- For JavaScript/TypeScript applications, an example [utility](https://github.com/zsociety-io/aleo-standard-programs/blob/main/arc721/utils/strings.js) is available in the ARC-721 implementation to convert between JavaScript strings and Aleo plaintexts
+
 ### NFT Identifier
 
 **ERC-721**
 
-In ERC-721, NFTs are identified by a simple incremental uint256 tokenId.
+In ERC-721, NFTs are identified by a simple incremental `uint256 tokenId`.
 
 **ARC-721**
 
@@ -339,7 +365,7 @@ mapping general_settings: u8 => field;  // Setting index => Setting value
 ## Edition
 ARC-721 introduces the edition field as a mandatory scalar inside every NFT record. The reason for using edition is three-fold:
 
-**Privacy salt** – edition is mixed with the BHP256 hash of the NFT’s data to form
+**Privacy salt** – edition is mixed with the BHP256 hash of the NFT's data to form
 `nft_commit = BHP256::commit_to_field(BHP256::hash_to_field(data), edition)`.
 This blinding factor prevents anyone from testing whether two commits hide the same data.
 
@@ -347,7 +373,7 @@ This blinding factor prevents anyone from testing whether two commits hide the s
 data is identical) produces a brand-new nft_commit, guaranteeing each token is non-fungible.
 
 **Re-obfuscation** –
-Owners may “rotate” privacy by choosing a fresh random scalar and calling `update_edition_private`, breaking on-chain linkage to prior transfers.
+Owners may "rotate" privacy by choosing a fresh random scalar and calling `update_edition_private`, breaking on-chain linkage to prior transfers.
 
 ## Publishing (and re-hiding) content
 
