@@ -17,7 +17,7 @@ This difference influences many language design decisions that can be seen below
 
 ## Basic Structure
 
-### File Headers
+### Headers
 
 Programs begin differently in each language:
 
@@ -45,28 +45,10 @@ program my_token.aleo {
 - Leo does not require license identifiers or pragma statements
 - Import statements in Leo use program IDs rather than file paths
 - Leo programs must have a `.aleo` suffix in their name
-
-### Contract Structure
-
-**Contract vs Program Declaration:**
-To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`.
-
-```solidity
-// Solidity
-contract MyContract {
-    // Contract implementation
-}
-```
-
-```leo
-// Leo
-program my_program.aleo {
-    // Program implementation
-}
-```
+- To define a contract in Solidity, `contract` is used as the keyword. In Leo, programs (equivalent to smart contracts in Solidity) are defined with the `program` keyword, followed by curly brackets `{}`
 
 ### Constructor
-Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) that will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
+Constructor in Solidity is optional. Leo does not have a constructor currently, but [ARC-0006: Program Upgradability](https://github.com/ProvableHQ/ARCs/discussions/94) will introduce a must-have constructor in new programs in Leo. While constructor in Solidity only runs once, constructor in Leo is immutable and will run as part of a deployment or upgrade, thus is used to define the program upgradability logic.
 
 ### Comments
 
@@ -83,6 +65,30 @@ Both languages support identical comment syntax:
 
 ### Imports
 
+**Solidity's Import System:**
+```solidity
+// Import entire file
+import "./MyContract.sol";
+
+// Import specific symbols
+import {Symbol1, Symbol2} from "./MyContract.sol";
+
+// Import with alias
+import * as MyAlias from "./MyContract.sol";
+
+// Import from node_modules
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+```
+
+**Leo's Import System:**
+```leo
+import credits.aleo;
+
+program helloworld.aleo {
+    // Program implementation
+}
+```
+
 **Important: Leo imports must also be declared in `program.json`:**
 ```json
 {
@@ -92,30 +98,26 @@ Both languages support identical comment syntax:
   "license": "MIT",
   "dependencies": [
     {
-      "name": "credits.aleo",
-      "location": "network",
+      "name": "credits.aleo",   
+      "location": "network",    // Importing from network
       "network": "testnet"
     },
-    // {
-    //   "name": "foo.aleo",        // If importing from Git repository
-    //   "location": "git",
-    //   "url": "https://github.com/alice/foo.git",
-    //   "branch": "bar",
-    //   "rev": "3ab873bd89de"
-    // },
-    // {
-    //   "name": "board.aleo",      // If importing from local
-    //   "location": "local",
-    //   "path": "../board"
-    // }
+    {
+      "name": "board.aleo",      
+      "location": "local",      // Importing from local
+      "path": "../board"
+    }
   ]
 }
 ```
 
 **Dependency Types:**
 - **Network dependencies**: Programs deployed on Aleo networks (mainnet, testnet)
-- **Git dependencies**: Programs hosted in Git repositories with optional branch/revision
 - **Local dependencies**: Programs in local file system directories
+
+**Key Import Difference:**
+- **Solidity**: Imports copy code directly into your contract at compile time, combining everything into one file
+- **Leo**: Imported programs remain separate entities - they are not merged with the current file, and each keeps its own unique program ID on the blockchain
 
 ## Data & State
 
@@ -270,7 +272,7 @@ let user_addr: address = aleo1abc...;
 ```
 
 **Type Suffix Requirement:**
-In Leo, all literals must explicitly append their type suffix. This is different from Solidity where types are inferenced.
+In Leo, all literals must explicitly append their type suffix.
 
 **Leo Special Types:**  
 
@@ -303,11 +305,11 @@ let big_number: u128 = 340282366920938463463374607431768211455u128;
 2. **Types Not Supported in Leo:**
 ```solidity
 // Solidity types that Leo does not support
-string memory text = "Hello World";           // No string type
-bytes memory data = hex"1234";                // No bytes type
-uint256[] memory dynamicArray;                // No dynamic arrays
-mapping(string => uint256) stringMap;         // No string keys in mappings
-enum Status { Active, Inactive }              // No enum type
+string memory text = "Hello World";           // String type not available in Leo
+bytes memory data = hex"1234";                // Bytes type not available in Leo
+uint256[] memory dynamicArray;                // Dynamic arrays not available in Leo
+mapping(string => uint256) stringMap;         // String keys in mappings not available in Leo
+enum Status { Active, Inactive }              // Enum type not available in Leo 
 ```
 
 ```leo
