@@ -3,11 +3,21 @@ id: token-standard-difference
 title: Token Standard Differences
 sidebar_label: Token Standard Differences
 ---
-## Current Implementation: Token Registry (ARC-21)
+## Introduction
 
-The centralized [Token Registry Program](../standards/00_token_registry.md) (ARC-21) serves as the primary way to manage tokens on Aleo. This approach was chosen because on Aleo, all imported programs must be known and deployed before the importing program, and dynamic cross-program calls are not currently supported which makes composability difficult to implement.
+The [Token Registry Program (ARC-21)](../standards/00_token_registry.md) serves as the standard "hub" that all tokens and DeFi programs interface with, providing interoperability between new tokens and DeFi programs without requiring program re-deployment. This approach was chosen because on Aleo, all imported programs must be known and deployed before the importing program, and dynamic cross-program calls are not currently supported, which makes composability difficult to implement. However, dynamic dispatch is currently in development and will enable more flexible program interactions in the future.
 
-The Token Registry Program (ARC-21) serves as the standard "hub" that all tokens and DeFi programs interface with, providing interoperability between new tokens and DeFi programs without requiring program re-deployment.
+## Quick-glance Comparison
+
+| Feature | ERC-20 | ARC-21 Token Registry |
+|---------|-------|-------------------|
+| Token Creation | Deploy new contract | Register with registry |
+| State Management | Per contract | Centralized registry |
+| Transfer Mechanism | Direct contract call | Registry program call |
+| Privacy | None | Built-in private transfers |
+| Approval Flow | Required | Optional |
+| Token Metadata | In contract | In registry |
+| Supply Management | Per contract | Centralized registry |
 
 ## Architectural Differences
 
@@ -240,18 +250,6 @@ GET /{network}/program/token_registry.aleo/mapping/registered_tokens/{token_id}
 ```
 
 The ARC-21 Token Registry uses RPC endpoints to query balances and supply by accessing the program's mappings directly. This approach allows for efficient querying of on-chain state without requiring a transaction. The balance is stored in the `balances` mapping with a composite key of `token_id` and `account`, while the supply information is stored in the `registered_tokens` mapping.
-
-## Key Features Comparison
-
-| Feature | ERC-20 | ARC-21 Token Registry |
-|---------|-------|-------------------|
-| Token Creation | Deploy new contract | Register with registry |
-| State Management | Per contract | Centralized registry |
-| Transfer Mechanism | Direct contract call | Registry program call |
-| Privacy | None | Built-in private transfers |
-| Approval Flow | Required | Optional |
-| Token Metadata | In contract | In registry |
-| Supply Management | Per contract | Centralized registry |
 
 ## Summary and Future
 
