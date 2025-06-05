@@ -25,9 +25,7 @@ The standard allows for NFT data to be stored in three ways:
 
 1. **On-chain Data**
    - Direct storage of data on the blockchain
-   - Enables use of data as input/outputs of zk-circuits
    - Can be either the complete data or a hash of the data
-   - Provides transactional guarantees for data access
 
 2. **Off-chain Data**
    - Reduces storage fees on the network
@@ -36,9 +34,8 @@ The standard allows for NFT data to be stored in three ways:
 
 3. **Hybrid Approach**
    - Combination of on-chain and off-chain storage
-   - Critical data stored on-chain
-   - Supplementary data stored off-chain
-   - Provides balance between cost and functionality
+   - Data can be public is stored on-chain (NFT ownership for example)
+   - Private data is stored off-chain (NFT data for example)
 
 ## Data Structures
 
