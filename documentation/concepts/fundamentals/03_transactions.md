@@ -143,7 +143,7 @@ The fee transaction represents a fee paid to the network, used for rejected tran
 
 [//]: # (4. Verify that the transaction proof `transaction_proof` verifies.)
 
-## Transaction Status
+## Determining Transaction Status
 
 Transactions processed by Aleo validators achieve one of the following states:
 
