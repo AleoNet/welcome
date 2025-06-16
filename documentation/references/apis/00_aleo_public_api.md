@@ -19,3 +19,5 @@ Simply replace `{network}` in the base URL with either `testnet` or `mainnet` to
 
 For example, you can [retrieve the current block height](https://api.explorer.provable.com/v1/testnet/block/height/latest).
 <!-- markdown-link-check-enable -->
+
+Some endpoints are guarded by JWT, more information [here](../../concepts/network/snarkos.md#jwt-authentication).

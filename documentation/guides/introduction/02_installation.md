@@ -65,10 +65,17 @@ For detailed instructions on how to set up syntax highlighting for these editors
 
 Before beginning, please ensure your machine has Rust v1.79+ installed. Instructions to install Rust can be found [here](https://www.rust-lang.org/tools/install).
 
+**[For Windows users]** Additional dependencies if usual installation path does not works:
+1. Install C++ Clang tools for Windows via the Visual Studio Installer
+2. Set the `LIBCLANG_PATH` environment variable to the location of the installed `libclang.dll` file, typically found at:
+   ```
+   Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\x64\bin
+   ```
+
 ### 2.2 Clone the snarkOS repository
 
 ```bash
-git clone --branch mainnet --single-branch https://github.com/AleoNet/snarkOS.git
+git clone --branch mainnet --single-branch https://github.com/ProvableHQ/snarkOS.git
 ```
 
 **[For Ubuntu users]** A helper script to install dependencies is available. From the snarkOS directory, run:
