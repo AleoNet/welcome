@@ -5,8 +5,51 @@ sidebar_label: Transactions
 ---
 
 A **transaction** is a fundamental data structure for publishing a new program or a set of state transitions on the ledger.
+On Aleo, a transaction is issued locally by a user using their Aleo private key, which corresponds to an on-chain Aleo account.
+Using tools like [Leo CLI](https://github.com/ProvableHQ/leo), [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) 
+or ecosystem wallet adapters such as [Puzzle Wallet SDK](https://docs.puzzle.online/) and [Leo Wallet SDK](https://docs.leo.app/aleo-wallet-adapter).
 
 ## Types of Transactions
+
+### Execute Transaction
+The execution transaction represents a call to an Aleo program function. Below is the structure of an execution transaction response:
+
+|    Parameter     |  Type  |                                   Description                                    |
+|:----------------:|:------:|:--------------------------------------------------------------------------------:|
+|      `type`      | string |                        The type of transaction (execute)                         |
+|       `id`       | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
+|   `execution`    | object |                          The execution transaction info                          |
+|       `fee`      | object |                          The execution transaction fee                           |
+
+#### Execution Object Info
+
+|      Parameter      | Type  |                            Description                            |
+|:-------------------:|:-----:|:-----------------------------------------------------------------:|
+| `global_state_root` |  u16  |             The global state root of the merkle tree              |
+|    `transitions`    | array |              The [transitions](./04_transitions.md)               |
+|       `proof`       | string|                   ZK proof of the execution                       |
+
+#### Relationship of Transaction and Transition
+
+- A **Transaction** is the top-level unit that represents a complete operation. A **Transition** is a lower-level component that represents an individual state change within a **Transaction**.
+- A **Transaction** can contain multiple **Transition** objects. An Execution, which is part of a **Transaction**, includes a collection of **Transitions**.
+- A **Transaction** may contain multiple **Transitions**, especially in cases involving multiple cross-program calls.
+
+For more information of a **Transition**, please refer to [Transitions](./04_transitions.md).
+
+#### Building an execution transaction using Leo CLI
+
+**Required Details:**
+- Program ID (name of deployed program)
+- Function name to execute
+- Arguments to the function
+- Network ID (`testnet` or `mainnet`)
+- Private key of the caller (or specify in .env from project directory)
+
+**Optional Parameters:**
+- Broadcast flag (to send to the network or not)
+- Private fees
+- Priority fees
 
 ### Deploy Transaction
 The deployment transaction publishes an Aleo program to the network.
@@ -19,33 +62,26 @@ The deployment transaction publishes an Aleo program to the network.
 | `deployment` | object |                         The deployment transaction info                          |
 |    `fee`     | object |                          The deployment transaction fee                          |
 
-#### Deployment Info
+#### Deployment Object Info
 
 |      Parameter      | Type  |                            Description                            |
 |:-------------------:|:-----:|:-----------------------------------------------------------------:|
 | `global_state_root` |  u16  |             The global state root of the merkle tree              |
 |    `transitions`    | array |              The [transitions](./04_transitions.md)               |
 
-### Execute Transaction
-The execution transaction represents a call to an Aleo program function.
+#### Building a deployment transaction
 
-|    Parameter     |  Type  |                                   Description                                    |
-|:----------------:|:------:|:--------------------------------------------------------------------------------:|
-|      `type`      | string |                        The type of transaction (execute)                         |
-|       `id`       | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
-|   `execution`    | object |                          The execution transaction info                          |
-| `fee` (optional) | object |                      The optional execution transaction fee                      |
+**Required Details:**
+- Compiled Leo program in Aleo Instructions
+- Network ID (`testnet` or `mainnet`)
+- Private key of the deployer (or specify in .env from project directory)
 
-
-#### Execution Info
-
-|      Parameter      | Type  |                            Description                            |
-|:-------------------:|:-----:|:-----------------------------------------------------------------:|
-| `global_state_root` |  u16  |             The global state root of the merkle tree              |
-|    `transitions`    | array |              The [transitions](./04_transitions.md)               |
+**Optional Parameters:**
+- Private fees
+- Priority fees
 
 ### Fee Transaction
-The fee transaction represents a fee paid to the network, used for rejected transactions
+A fee transaction represents the network fee paid for processing. Rejected transactions are included in blocks as confirmed “rejected” transactions. In those cases, a new transaction ID is generated alongside a valid fee transaction to ensure the fee is charged. In normal successful execution case, the fee is recorded as a transition object within the execution or deployment transaction. 
 
 | Parameter |  Type  |                                   Description                                    |
 |:---------:|:------:|:--------------------------------------------------------------------------------:|
@@ -53,19 +89,8 @@ The fee transaction represents a fee paid to the network, used for rejected tran
 |   `id`    | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
 |   `fee`   | object |                           The rejected transaction fee                           |
 
-
-
-
-
-## Transaction Structure
-
-|    Parameter     |  Type  |                Description                |
-|:----------------:|:------:|:-----------------------------------------:|
-|      `type`      | string |          The type of transaction          |
-|       `id`       | string |    The ID of transaction (at1 prefix)     |
-|   `deployment`   | object |      The deployment transaction info      |
-| `additional_fee` | object |  The additional fee for the transaction   |
-
+Transaction fees are calculated based on the size of the transaction and how complicated operations the validators need to do. Fees can be paid in public or private with Aleo Credits records.
+For more detailed information about transaction fees, please refer to [Transaction Fees](./03A_transaction_fees.md). 
 
 [//]: # ()
 [//]: # (#### Deploy Transaction)
