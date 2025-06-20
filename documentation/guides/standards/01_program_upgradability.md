@@ -4,280 +4,334 @@ title: Program Upgradability
 sidebar_label: Program Upgradability
 ---
 
-## Overview 
+# Aleo Program Upgradability: A Developer's Guide
 
-Upgradability is often necessary for blockchain applications, however, the specific requirements can vary widely. 
-The AVM (Aleo Virtual Machine) provides a flexible framework for program upgrades, allowing developers to define their own upgrade logic, suited to their needs.
+## An Introduction to Upgradable Programs on Aleo
 
-This guide covers a number of topics including new syntax like `edition`, `checksum`, and `program_owner`, and the use of immutable `constructor`s to define upgrade logic. 
-It outlines what parts of a program can or cannot change, how upgrades are validated, and provides practical patterns—such as admin-controlled, time-locked, or vote-driven upgrades—to help developers write secure, upgradeable zero-knowledge applications.
+Traditionally, blockchain development has been defined by immutable, "deploy-once" contracts. This provides security but makes it hard to fix bugs or add features. To solve this, Aleo introduces a framework for program upgradability that is timely, cost-effective, and doesn't disrupt your application's state.[1]
 
-**Developers should take great care in defining their own upgrade mechanisms. 
-Once a program is deployed, the code defining the upgrade logic is immutable.**
-To improve the developer experience, Leo provides an intuitive interface with some sensible defaults. 
-To learn more, see [Upgrading Leo Program](TODO).
+This framework moves Aleo development from a static model to a dynamic one, allowing applications to evolve. It lets you modify program logic after deployment, so you can patch vulnerabilities, improve features, and adapt to user needs without a complex and costly state migration. This capability isn't on by default; it's a choice you make when you first create your program.
 
+The `constructor` is the core of the upgradability system. Including a `constructor` in your program's code at its initial deployment is the only way to make it upgradable. This puts the decision of mutability in your hands. Adding a `constructor` signals that the program can change in the future, while leaving it out guarantees it will be immutable forever. This guide covers how this feature works, its security implications, and the rules you need to follow.
 
-**To learn about the underlying design, see [ARC-0006](https://github.com/ProvableHQ/ARCs/discussions/94).**
+## The Upgradability Framework: Core Concepts and Mechanics
 
----
+Aleo's upgradability framework uses a few core components to let you securely modify deployed programs. Understanding the `constructor`, program metadata operands, and the cost model is essential for building upgradable applications.
 
+### The constructor: Gateway to Upgradability
 
-## 🔒 Constructors
+The `constructor` is a special block of code that acts as the sole gateway for enabling and managing upgrades. Its behavior is strictly defined:
 
-A **constructor** is an immutable code block executed on deployment or upgrade.
+*   **Execution Context:** The `constructor` logic runs on-chain by the Aleo Virtual Machine (AVM) only during a deployment event (the initial deployment and every subsequent upgrade). It never runs during a standard function call.[1]
+*   **Immutability:** The logic inside a `constructor` is permanent. Once a program is deployed, its `constructor` can't be modified or removed in an upgrade. This ensures the rules for upgrading your program are stable and can't be bypassed.[1]
+*   **Transaction Finality:** The `constructor` is a final check for any deployment or upgrade. If its logic halts (for example, due to a failed `assert` statement), the entire deployment or upgrade transaction fails. This makes the `constructor` a powerful tool for enforcing conditions on upgrades.[1]
 
-### Constructor Rules
-- A constructor **must** be present in all programs after the feature is enabled.
-- If constructor **halts**, deployment/upgrade **fails**
+The two most basic rules of the framework come from this component:
+1.  A program with a `constructor` is upgradable.
+2.  A program without a `constructor` is permanently non-upgradable.
 
-#### Minimal Constructor Example:
-**Note: This constructor allows the program to be upgraded by anyone.**
-```leo
-constructor:
-  assert.eq true true;
-```
+Mutability is a feature you must explicitly design into your program from the start.
 
----
+### Program Metadata Operands
 
-## 🧩 New Operands
+To build logic inside a `constructor`, the AVM provides three new metadata operands. These give you on-chain, verifiable information about the program's state, allowing you to write secure upgrade rules.[1]
 
-### 🧾 `checksum`
+*   **`<PROGRAM_ID>/edition`**
+  *   **Description:** An unsigned 16-bit integer (`u16`) that acts as the program's version number.
+  *   **Rules:** The `edition` must be `0u16` for the initial deployment. For every valid upgrade, it must increment by exactly 1.
+  *   **Scope:** This operand is exclusively available within the `finalize` scope.[1]
 
-- **Type**: `[u8; 32u32]`
-- **Meaning**: SHA3-256 hash of the program string
-- **Access**: Available both **on-chain** and **off-chain**
+*   **`<PROGRAM_ID>/checksum`**
+  *   **Description:** A 32-byte array (`[u8; 32u32]`) representing the SHA3-256 hash of the program string. It's a unique fingerprint of the program's code.
+  *   **Rules:** The `checksum` is required in any deployment of an upgradable program and is used to verify that the deployed code is what was expected.
+  *   **Scope:** This operand is exclusively available within the `finalize` scope.[1]
 
-#### Usage Example:
-```leo
-constructor:
-  assert.eq foo.aleo/checksum r0;
-  assert.eq checksum r0; // If no program ID is provided, then refer to the current program.
-```
+*   **`<PROGRAM_ID>/program_owner`**
+  *   **Description:** The `address` of the account that submitted the deployment transaction.
+  *   **Rules:** The `program_owner` is required in any deployment of an upgradable program.
+  *   **Scope:** This operand is exclusively available within the `finalize` scope.[1]
 
----
+The `finalize`-only scope for all three operands is a critical security feature. It forces any logic that authorizes an upgrade—based on ownership, version, or content—to be executed and verified on-chain as part of a public state transition. This prevents these sensitive checks from being spoofed or manipulated in an off-chain proof context.
 
-### 🔢 `edition`
+### The Cost of Upgradability
 
-- **Type**: `u16`
-- **Meaning**: Logical version of the program
-- **Behavior**:
-    - Must be `0` on initial deploy
-    - Must increment by 1 on each upgrade
-- **Access**: Available both **on-chain** and **off-chain**
+Executing a `constructor` consumes network resources and has a cost. The cost model is the same as for standard `finalize` blocks but with a significant multiplier applied (currently 100x).[1]
 
-#### Usage Example:
-```leo
-constructor:
-  assert.eq foo.aleo/edition 0u16;
-  assert.eq edition 0u16; // If no program ID is provided, then refer to the current program.
-```
+This higher cost serves two purposes. First, it reflects the importance of the deployment transaction. Second, it acts as an economic incentive to keep your `constructor` logic simple and efficient, which reduces the risk of bugs in this critical, immutable code.
 
----
+## The Rules of Engagement: Defining Valid Upgrades
 
-### 👤 `program_owner`
+The Aleo protocol enforces strict rules on what makes a valid program upgrade. These rules balance the need for new logic with the need to protect a program's public interface and data structures, ensuring dependent programs and users aren't affected by breaking changes.
 
-- **Type**: `address`
-- **Meaning**: The address that deployed the program
-- **Availability**:
-    - Only accessible in **`finalize`** scopes
-    - **Not set** for programs deployed before the feature was introduced
+### Permissible and Prohibited Modifications
 
+The AVM has clear rules about what you can add, modify, and what you can't change.
 
-#### Usage Example:
-```leo
-finalize some_function:
-  input r0 as address.public;
-  get program_owner into r1; // If no program ID is provided, then refer to the current program.
-  assert.eq r0 r1; // Ensure caller is the owner
-  get foo.aleo/program_owner into r2;
-```
-
----
-
-## 🧱 Upgrade Rules
-
-| Component    | Add | Modify       | Delete |
-|--------------|-----|--------------|--------|
-| `import`     | ✅  | ❌           | ❌     |
-| `struct`     | ✅  | ❌           | ❌     |
-| `record`     | ✅  | ❌           | ❌     |
-| `mapping`    | ✅  | ❌           | ❌     |
-| `closure`    | ✅  | ❌           | ❌     |
-| `function`   | ✅  | ✅ (logic)   | ❌     |
-| `finalize`   | ✅  | ✅ (logic)   | ❌     |
-| `constructor`| ❌  | ❌           | ❌     |
-
-### Interface Constraints
+An upgrade **can**:
+*   **Modify Logic:** Change the internal implementation of any existing `function` or `finalize` block. This is the main way to fix bugs or improve performance.[1]
+*   **Add New Components:** Define new `struct`s, `record`s, `mapping`s, `function`s, and `closure`s to extend functionality.[1]
+*   **Add Imports:** Import new external programs.
 
 An upgrade **cannot**:
-- Change `function` input/output types
-- Change `finalize` input types
-- Modify existing `struct`, `record`, `mapping`, or `closure` definitions
+*   **Change Interfaces:** Modify the `input` or `output` signature of any existing `function`, or the `input` interface of a `finalize` block. This maintains backward compatibility.[1]
+*   **Modify Closures:** Change the logic within an existing `closure`. Doing so would invalidate all its proving and verifying keys, breaking existing user assets.[1]
+*   **Alter Data Structures:** Modify or remove any existing `struct`, `record`, or `mapping`. This preserves existing program state.[1]
+*   **Delete Components:** No program component of any kind can be deleted.[1]
 
----
+Use this table as a quick reference before planning an upgrade:
 
-## 🚀 Upgrade Patterns
+| Program Component | Delete | Modify | Add |
+| :--- | :---: | :---: | :---: |
+| `import` | ❌ | ❌ | ✅ |
+| `struct` | ❌ | ❌ | ✅ |
+| `record` | ❌ | ❌ | ✅ |
+| `mapping` | ❌ | ❌ | ✅ |
+| `closure` | ❌ | ❌ | ✅ |
+| `function` | ❌ | ✅ (logic) | ✅ |
+| `finalize` | ❌ | ✅ (logic) | ✅ |
+| `constructor` | ❌ | ❌ | ❌ |
 
-Use constructors and metadata declarations to customize how your Aleo programs handle upgrades. Below are common patterns.
+### On-Chain Validation Logic
 
----
+When a `Deployment` transaction is submitted, the AVM runs a series of checks.
 
-### ❌ Not Upgradable
+**1. New Program Deployment (`edition` is 0):**
+For a new, upgradable program, the AVM verifies [1]:
+*   The program contains a `constructor`.
+*   The `edition` is `0u16`.
+*   The `checksum` is present and matches the hash of the program code.
+*   The `program_owner` is present and matches the transaction signer.
+*   The program ID does not already exist.
 
-**Goal:** Prevent all future upgrades.
+**2. Program Upgrade (`edition` > 0):**
+For an upgrade, the validation is more extensive [1]:
+*   The program ID must already exist.
+*   The new `edition` must be `old_edition + 1`.
+*   The upgraded code must follow all modification rules (e.g., no changing function signatures).
+*   The existing on-chain program being upgraded **must already have a `constructor`**.
 
-```leo
+This final check is the lynchpin of the system. It ensures that only programs designed for upgradability can ever be changed.
+
+## Legacy Programs: A Mandate of Immutability
+
+The introduction of program upgradability creates a clear dividing line. All programs deployed before this feature was activated are governed by a simple rule: they are permanently immutable.
+
+### The Definitive Status of Pre-Upgradability Programs
+
+**All programs deployed to the Aleo network before the upgradability feature was activated are, and will remain, permanently non-upgradable.**
+
+This is a direct technical consequence of the framework's design. The AVM's validation logic requires that an existing program must have a `constructor` to be upgraded.[1] Since legacy programs were created before the `constructor` existed, they don't have one. Any attempt to upgrade a legacy program will automatically fail the AVM's checks.
+
+### The No-Migration Policy
+
+Early proposals discussed a "one-time migration" path that would have allowed owners of legacy programs to add a `constructor`.[1]
+
+**This proposed migration path has been officially rescinded and is not supported by the protocol.** There is no way to retroactively add a `constructor` to a program that has already been deployed.
+
+If you maintain a legacy application and need to add new features or fix bugs, you must deploy an entirely new program and create a migration path for your users to move their state and assets.
+
+## Security and Best Practices for Mutable Programs
+
+Upgradability is powerful, but it introduces risks around mutability. When you make a program upgradable, you take on the responsibility of managing that power securely. A malicious or compromised developer could push an upgrade that introduces vulnerabilities, drains funds, or freezes user assets.[1]
+
+When a user interacts with an upgradable program, they are trusting both the current code and the governance process that can change it.
+
+### The Unfixable constructor: Audit with Extreme Care
+
+The most critical security component of an upgradable program is the `constructor` itself. Its logic is immutable and cannot be changed by a future upgrade.[1]
+
+A bug in the `constructor` is permanent and cannot be patched. If you hardcode the wrong admin address or have a flaw in your voting logic, you could be locked out or have your governance bypassed forever. Treat your `constructor` as mission-critical code and subject it to rigorous audits before deployment.
+
+### Defensive Design Patterns for Upgradability
+
+You can use several patterns in your `constructor` to build safer, more trustworthy programs.
+
+*   **Multi-Signature Governance:** Require multiple signatures for an upgrade to prevent a single point of failure.
+*   **Time-Locked Upgrades:** Enforce a delay between announcing an upgrade and executing it. This gives users time to review the changes and opt out.
+*   **Program Ossification:** Include a mechanism to permanently disable future upgrades, for example, by setting the admin to a null address like `aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc`.[1]
+*   **Dependency Pinning:** If your program depends on another upgradable program, you can "pin" the dependency to a specific version by asserting its `edition` in a `finalize` block (e.g., `assert.eq child.aleo/edition 0u16;`). This protects you from breaking changes in the dependency but requires you to upgrade your own program to adopt new, legitimate versions of that dependency.[1]
+
+## Practical Implementation: Upgrade Patterns and Recipes
+
+The `constructor` lets you implement a wide range of governance models. Here are some practical, commented code recipes for common upgrade patterns.
+
+### Recipe 1: The Immutable Contract
+
+**Goal:** Define a program that can never be upgraded.aleo
 program foo.aleo;
-// A program without a constructor cannot be upgraded.
-```
 
-```leo
-constructor:
-  assert.eq foo.aleo/edition 0u16; // Reject upgrades: edition will never be zero again
-```
-
----
-
-### 🌐 Anyone Can Upgrade
-
-**Goal:** Allow upgrades by anyone, unconditionally.
-
-```leo
-constructor:
-  assert.eq true true;
-```
-
----
-
-### 🔗 Fix Dependency
-
-**Goal:** Ensure a dependent program is on a specific version.
-
-> ℹ️ *Tip: Make your own program upgradable in case the dependency changes and locks your functionality.*
-
-```leo
-constructor:
-  assert.eq bar.aleo/edition 3u16;
-```
-
----
-
-### 🔐 Remove Upgradability
-
-**Goal:** Allow upgrades until a flag is set, then lock forever.
-
-```leo
-mapping locked:
-    key as boolean;
-    value as boolean;
+//... other program logic...
 
 constructor:
-    contains locked[true] into r0;
-    assert.eq r0 false;
+// This assertion checks if the program's edition is 0.
+// It passes on initial deployment. For any upgrade attempt,
+// the edition will be > 0, causing the assertion to fail and
+// halting the upgrade transaction.
+assert.eq foo.aleo/edition 0u16;
 ```
+*   **Mechanism:** This `constructor` ensures the program can only be deployed at `edition 0`, making upgrades impossible.[1]
 
----
+### Recipe 2: Simple Admin-Controlled Upgrades
 
-### 👤 Admin-Driven Upgrades (Static Admin)
+**Goal:** Restrict upgrades to a single, hardcoded administrator address.
 
-**Goal:** Restrict upgrades to a hardcoded admin address.
+```aleo
+program foo.aleo;
 
-> ⚠️ *The admin address is immutable, make sure it’s secured!*
+//... other program logic...
 
-```leo
-constructor:
-  assert.eq owner <ADMIN_ADDRESS>;
-```
-
----
-
-### 📦 Content-Locked Upgrades
-
-**Goal:** Only allow upgrades that match a predetermined checksum.
-
-```leo
-mapping expected:
-    key as boolean;
-    value as u128;
+// IMPORTANT: This address is hardcoded and cannot be changed after deployment.
+define ADMIN_ADDRESS aleo1...;
 
 constructor:
-    branch.neq foo.aleo/edition 0u16 to end;
-    get expected[true] into r0;
-    assert.eq foo.aleo/checksum r0;
+    // This asserts that the address deploying this version of the program
+    // is the predefined ADMIN_ADDRESS.
+    assert.eq foo.aleo/program_owner ADMIN_ADDRESS;
 ```
+*   **Mechanism:** This pattern uses the `program_owner` operand to check that the deployer is the designated admin. It's simple, but if the admin key is lost, control is lost forever.[1]
 
----
+### Recipe 3: Configurable Admin & Pre-Approved Upgrades
 
-### ⚙️ Configurable Admin-Driven Upgrades
+**Goal:** Allow a changeable admin to pre-authorize specific upgrades by their `checksum`.
 
-**Goal:** Allow upgrades by a changeable admin that sets allowed checksums.
+```aleo
+program foo.aleo;
 
-```leo
 mapping admin:
     key as boolean.public;
     value as address.public;
 
 mapping expected:
-    key as boolean;
-    value as [u8; 32u32];
+    key as boolean.public;
+    value as [u8; 32u32].public;
 
 constructor:
-    branch.neq foo.aleo/edition 0u16 to rest;
-    set aleo1... into admin[true];
+    // If this is the first deployment (edition 0), set the initial admin.
+    branch.neq foo.aleo/edition 0u16 to upgrade_check;
+    set aleo1... into admin[true]; // Replace with the initial admin address.
     branch.eq true true to end;
-    position rest;
+
+    // For all upgrades, check the checksum against the pre-approved value.
+    position upgrade_check;
     get expected[true] into r0;
     assert.eq foo.aleo/checksum r0;
+
     position end;
 
+// This function allows the current admin to set the checksum for the next upgrade.
 function set_expected:
     input r0 as [u8; 32u32].public;
     async set_expected self.caller r0 into r1;
     output r1 as foo.aleo/set_expected.future;
 
 finalize set_expected:
-    input r0 as address.public;
-    input r1 as [u8; 32u32].public;
+    input r0 as address.public; // The caller.
+    input r1 as [u8; 32u32].public; // The expected checksum.
+    // Get the current admin.
     get admin[true] into r2;
+    // Check that the caller is the admin.
     assert.eq r0 r2;
+    // Set the checksum for the next expected upgrade.
     set r1 into expected[true];
 ```
+*   **Mechanism:** This pattern uses on-chain `mapping`s to store the admin and the `checksum` of the next valid upgrade. A separate function, `set_expected`, allows the admin to authorize the next upgrade. Another function could be added to change the admin, providing more flexibility than a hardcoded address.[1]
 
----
+### Recipe 4: DAO-Driven Upgrades
 
-### 🗳️ Vote-Driven Upgrades
+**Goal:** Let an external DAO contract govern upgrades.
 
-**Goal:** Require governance approval for upgrades.
-
-```leo
+```aleo
 import governor.aleo;
 
+program foo.aleo;
+
+//... other program logic...
+
 constructor:
-    branch.neq foo.aleo/edition 0u16 to end;
+    // This assumes 'governor.aleo' is a DAO contract that stores the
+    // checksum of an approved upgrade in a mapping.
     get governor.aleo/accepted[true] into r0;
+
+    // Assert that the checksum of the program being deployed
+    // matches the checksum approved by the DAO.
     assert.eq foo.aleo/checksum r0;
 ```
+*   **Mechanism:** This pattern delegates upgrade authority to another program. The `constructor` fetches the valid `checksum` from the DAO contract, decoupling the application's logic from its governance.[1]
 
----
+### Recipe 5: Time-Locked Upgrade Windows
 
-### ⏳ Time-Locked Upgrades
+**Goal:** Only allow upgrades after a specific block height.
 
-**Goal:** Enable upgrades only after a specific block height.
+```aleo
+program foo.aleo;
 
-```leo
+//... other program logic...
+
+define UPGRADE_BLOCK_HEIGHT 100000u32;
+
 constructor:
-    gte block.height 10u32 into r0;
+    // This asserts that the current block height is greater than or equal
+    // to the defined height, creating a time-lock.
+    gte block.height UPGRADE_BLOCK_HEIGHT into r0;
     assert.eq r0 true;
 ```
+*   **Mechanism:** This `constructor` uses `block.height` to enforce a time-based constraint, which can ensure a "cool-down" period before an upgrade is applied.[1]
 
----
+### Recipe 6: Program Ossification
 
-## 🔍 Deployment Validation Logic
+**Goal:** Allow an admin to permanently lock a program from future upgrades.
 
-| Condition             | Rule                                                        |
-|-----------------------|-------------------------------------------------------------|
-| `edition == 0`        | Program must not exist yet                                  |
-| `edition > 0`         | Program must exist, be upgradable, and have edition = old + 1 |
-| `checksum` (optional) | Must match the hash of program string                       |
-| `program_owner`       | Available only for **post-feature** programs in `finalize`  |
+```aleo
+program foo.aleo;
+
+mapping is_locked:
+    key as boolean.public;
+    value as boolean.public;
+
+//... other logic, including a function for an admin to set is_locked[true] to true.
+
+constructor:
+    // This check runs on every upgrade attempt. If the 'is_locked' flag
+    // is true, the assertion fails, halting the upgrade.
+    contains is_locked[true] into r0;
+    assert.eq r0 false;
+
+    //... other upgrade logic (e.g., admin check) can follow...
+```
+*   **Mechanism:** This pattern uses a `mapping` as a one-way flag. Once set to `true`, the `constructor` will block all future upgrade attempts.[1]
+
+### Recipe 7: Managing Dependencies
+
+**Goal:** Protect a program from unexpected upgrades in its dependencies by pinning to a specific version.
+
+```aleo
+import child.aleo;
+
+program parent.aleo;
+
+//... other program logic...
+
+function some_function:
+    //... logic that calls a function from child.aleo...
+    call child.aleo/some_child_function...;
+
+finalize some_function:
+    //...
+    // In the finalize scope, assert that the dependency is on the expected edition.
+    // This must be in finalize, as the 'edition' operand is only available here.
+    assert.eq child.aleo/edition 0u16;
+    //...
+```
+*   **Mechanism:** This is a defensive pattern used in a `finalize` block, not the `constructor`. It checks the `edition` of a dependency before interacting with it. This prevents breaking changes but requires an upgrade to `parent.aleo` to adopt a new, valid version of `child.aleo`.[1]
+
+## Quick Reference Summary
+
+| Concept | Mechanism | Critical Takeaway |
+| :--- | :--- | :--- |
+| **Enabling Upgradability** | Inclusion of a `constructor` block at initial deployment. | No `constructor`, no upgrades. This decision is irreversible. |
+| **Legacy Program Status** | Programs deployed before the feature lack a `constructor`. | Permanently non-upgradable. The one-time migration path does not exist. |
+| **Upgrade Authority** | The immutable logic within the `constructor`. | Your `constructor` is your governance. Its logic is permanent. |
+| **Core Risk** | The `constructor` logic itself is immutable and cannot be patched. | A bug in the `constructor` is permanent. Audit this code with extreme care. |
+| **Valid Upgrade Changes** | Modify logic in `function`s/`finalize`; add new components. | Interfaces (function signatures, existing data structures) cannot be changed or removed. |
+| **Program Ossification** | Logic in the `constructor` to permanently revoke upgrade authority. | Provide a path to make your program immutable to build long-term user trust. |
+```
