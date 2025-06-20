@@ -16,10 +16,10 @@ An Aleo transition is serialized in the following format:
 | `function_name` |        string        |                                    The function name, which is used to compute a `function_id` using the `program_id`.                                    |
 |    `inputs`     |  array of `Input`s   |                                 The transition `Input`s, which can be a `constant`, `public`, `private`, or `inputRecord`                                 |
 |    `outputs`    |  array of `Output`s  |                                The transition `Output`s, which can be a `constant`, `public`, `private`, or `outputRecord`                                |
-|   `finalize`    |        array         |                                                                  The inputs for finalize                                                                  |
+|   `finalize`    |        array         |                                                                  The inputs for [finalize](./07_async.md)                                                                  |
 |      `tpk`      |    group element     |                    The transition public key, equivalent to `r * G`                    |
-|      `tcm`      | finite field element |                                                                 The transition commitment, Poseidon hash of transition view key (tvk)                                                                 |
-|      `scm`      | finite field element |                                                                 Signer commitment, Poseidon hash of the x-coordinate of owner address and root transition view key (root_tvk)                                                                 |
+|      `tcm`      | finite field element |                                                                 The transition commitment, hash of transition view key (tvk)                                                                 |
+|      `scm`      | finite field element |                                                                 Signer commitment, hash of the owner address and root transition view key (root_tvk)                                                                 |
 
 ## Transition Public Key (TPK)
 
@@ -28,9 +28,9 @@ The transition public key (`tpk`) is computed as part of the transition key gene
 1. **Sample Random Nonce**: A random nonce is generated as a field element
 2. **Compute Transition Secret Key (r)**: The transition secret key `r` is computed as:
    ```
-   r = HashToScalar_PSD4(serial_number_domain || sk_sig || nonce)
+   r = HashToScalar(serial_number_domain || sk_sig || nonce)
    ```
-   Where `sk_sig` is the signature secret key from the account's private key
+   Where `sk_sig` is the signature secret key from the account's private key and `||` denotes concatenation
 
 3. **Compute Transition Public Key**: The `tpk` is computed as:
    ```
@@ -56,7 +56,7 @@ The `tvk` is used in the encryption process for private inputs and outputs.
 
 The transition commitment (`tcm`) is computed as:
 ```
-tcm = Hash_PSD2(tvk)
+tcm = Hash(tvk)
 ```
 Where `tvk` is the transition view key computed in the previous step. This commitment provides a cryptographic binding to the transition view key while maintaining privacy.
 
@@ -64,47 +64,47 @@ Where `tvk` is the transition view key computed in the previous step. This commi
 
 The signer commitment (`scm`) is computed as:
 ```
-scm = Hash_PSD2(signer.to_x_coordinate() || root_tvk)
+scm = Hash(signer.to_x_coordinate() || root_tvk)
 ```
 Where:
 - `signer.to_x_coordinate()` is the x-coordinate of the signer's address
 - `root_tvk` is the root transition view key when multiple circuits are involved
 - The commitment binds the signer's identity to the root transition view key
 
-The signer commitment uses the PSD2 hash function and serves as a cryptographic proof that links the transition to its creator while preserving privacy properties.
+The signer commitment serves as a cryptographic proof that links the transition to its creator while preserving privacy properties.
 
 ## Record
 
 ### Input Record
 An `inputRecord` consists of a `record_commitment`, `gamma`, `serial_number`, and a `tag`. When a record is used as input to a transition, it is computed to its serial number through the following process:
 
-1. **Record Commitment**: The record commitment is computed as a BHP1024 hash of the concatenated input `(program_id || record_name || record)`, where the components are converted to little-endian bits before hashing.
+1. **Record Commitment**: The record commitment is computed as a hash of the concatenated input `(program_id || record_name || record)`, where the components are converted to little-endian bits before hashing.
 
 2. **Gamma Computation**: A generator `H` is computed as `HashToGroup(serial_number_domain || commitment)` using the Poseidon hash-to-group function with the serial number domain and commitment. Then `gamma` is calculated as `sk_sig * H`, where `sk_sig` is from the owner's private key.
 
 3. **Serial Number Derivation**: The `serial_number` is computed in two steps:
-   - First, `sn_nonce` is calculated as `Hash_PSD2(serial_number_domain || (COFACTOR * gamma).to_x_coordinate())`
-   - Then, `serial_number` is computed as `Commit_BHP512((serial_number_domain || commitment).to_bits_le(), sn_nonce)`
+   - First, `sn_nonce` is calculated as `Hash(serial_number_domain || (COFACTOR * gamma).to_x_coordinate())`
+   - Then, `serial_number` is computed as `Commit((serial_number_domain || commitment).to_bits_le(), sn_nonce)`
 
-4. **Tag Calculation**: The `tag` is computed as `Hash_PSD2(sk_tag, commitment)`, where `sk_tag = Hash_PSD4(graph_key_domain || view_key || 0)`, `0` is used as a counter value (Field::zero()).
+4. **Tag Calculation**: The `tag` is computed as `Hash(sk_tag, commitment)`, where `sk_tag = Hash(graph_key_domain || view_key || 0)`, `0` is used as a counter value (Field::zero()).
 
 The serial number is disclosed on the ledger to publicly announce that the record has been spent, preventing double-spending while maintaining privacy. The tag is used to keep track of records that are spendable by the user.
 
 ### Output Record
 An `outputRecord` consists of a `record_commitment`, `checksum`, and a `record_ciphertext`. When a record is produced as output from a transition, it is computed through the following process:
 
-1. **Record Commitment**: The record commitment is computed as a BHP1024 hash of the concatenated input `(program_id || record_name || record)`, where the components are converted to little-endian bits before hashing.
+1. **Record Commitment**: The record commitment is computed as a hash of the concatenated input `(program_id || record_name || record)`, where the components are converted to little-endian bits before hashing.
 
-2. **Randomizer Computation**: The encryption randomizer is computed as `Hash_PSD2(tvk || index)`, where `tvk` is the transition view key and `index` is the field element representation of the output register locator.
+2. **Randomizer Computation**: The encryption randomizer is computed as `Hash(tvk || index)`, where `tvk` is the transition view key and `index` is the field element representation of the output register locator.
 
 3. **Record View Key Generation**: The record view key is computed as `(owner_address * randomizer).to_x_coordinate()`, where `owner_address` is the record owner's address and `randomizer` is from step 2.
 
 4. **Record Encryption**: The `record_ciphertext` is computed by:
-   - Generating multiple randomizers using `Hash_PSD8(encryption_domain || record_view_key)` based on the number of field elements needed
+   - Generating multiple randomizers using `Hash(encryption_domain || record_view_key)` based on the number of field elements needed
    - Encrypting each private field element by adding the corresponding randomizer: `encrypted_field[i] = plaintext_field[i] + randomizer[i]`
    - Constant and public entries remain unencrypted
 
-5. **Checksum Calculation**: The `checksum` is computed as a BHP1024 hash of the `record_ciphertext` converted to little-endian bits and is used to verify the integrity of the encrypted record.
+5. **Checksum Calculation**: The `checksum` is computed as a hash of the `record_ciphertext` converted to little-endian bits and is used to verify the integrity of the encrypted record.
 
 The record commitment and checksum are publicly visible on the ledger, while the record ciphertext contains the encrypted record data that can only be decrypted by the record owner.  
 
@@ -115,7 +115,7 @@ Non-record ciphertext are encrypted data that hides private information on Aleo 
 
 #### Step 1: Create a Plaintext View Key
 **For Private Plaintext Inputs and Outputs:**
-- The plaintext view key is computed as `Hash_PSD4(function_id || tvk || index)`
+- The plaintext view key is computed as `Hash(function_id || tvk || index)`
 - Where:
     - `function_id` is the unique identifier of the function being executed
     - `tvk` is the transition view key from the request
@@ -126,7 +126,7 @@ Non-record ciphertext are encrypted data that hides private information on Aleo 
 
 #### Step 2: Generate Randomizers
 - Determine the number of randomizers needed based on the plaintext structure
-- Generate randomizers using `Hash_Many_PSD8([encryption_domain, plaintext_view_key], num_randomizers)`
+- Generate randomizers using `Hash(encryption_domain || plaintext_view_key)` with `num_randomizers` as number of outputs
 - One randomizer is created for each field element in the plaintext
 
 #### Step 3: Encrypt the Plaintext
@@ -137,7 +137,7 @@ Non-record ciphertext are encrypted data that hides private information on Aleo 
 
 #### Step 4: Compute Ciphertext Hash
 - Convert the ciphertext to field elements
-- Compute the ciphertext hash as `Hash_PSD8(ciphertext_fields)`
+- Compute the ciphertext hash as `Hash(ciphertext_fields)`
 - This hash serves as the output ID for verification
 
 ### Decryption
@@ -150,7 +150,7 @@ Non-record ciphertext are encrypted data that hides private information on Aleo 
 
 #### Step 2: Regenerate the Same Randomizers
 - Determine the number of randomizers needed (same as encryption)
-- Use the same hash function: `Hash_Many_PSD8([encryption_domain, plaintext_view_key], num_randomizers)`
+- Use the same hash function: `Hash(encryption_domain || plaintext_view_key)` with `num_randomizers` as number of outputs
 
 #### Step 3: Decrypt the Ciphertext
 - Subtract each randomizer from the corresponding encrypted field element:
