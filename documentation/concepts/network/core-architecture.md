@@ -17,6 +17,12 @@ This architecture enables two key capabilities:
 
 For more detailed information on these components, check out [specification](../../references/03_specifications.md) section in reference, which covers SnarkVM and SnarkOS in depth.
 
+## Aleo Roadmap
+
+Aleo is consistently improving its protocol to enhance privacy, scalability, and usability. The roadmap outlines key initiatives and projects that aim to strengthen the network's infrastructure, introduce new features, and optimize performance. By following the roadmap, developers and users can stay informed about upcoming releases and participate in the evolution of the Aleo ecosystem.
+
+For the latest updates on Aleo's development progress and future milestones, visit the official [Aleo Roadmap](https://aleo.org/roadmap/). 
+
 ## What makes Aleo permissionless, private and programmable ?
 
 An overview of the Aleo network architecture will help contextualize the concepts introduced in the learn section.
