@@ -43,6 +43,10 @@ The source code in Aleo Instructions can be found [here](https://github.com/Prov
 
 To become a validator or top-up the self-bonded stake, execute the `bond_validator` function using the validator address:
 
+```bash
+leo execute credits.aleo/bond_validator <withdrawal_address> <amount> <commission_percentage> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
+```
+
 ```aleo
 function bond_validator:
     // Input the withdrawal address.
