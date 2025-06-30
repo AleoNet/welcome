@@ -24,7 +24,7 @@ The community tools are developed by third parties within the Aleo ecosystem. Al
 Native staking enables token holders to interact on-chain and stake their Aleo Credits (ACs) directly, without the need to rely on third-party programs or custodial services. The native staking functions are made available in the `credits.aleo` program, the same program that host every Aleo Credit. There are staking rules enforced in the `credits.aleo` program:
 
 * **Self-bond minimums** for validators (≥ 100 credits)
-* **Delegation minimums** for delegators (≥ 10 000 credits)
+* **Delegation minimums** for stakers (≥ 10 000 credits)
 * **Automatic removal** of validators that drop below 10 M total stake
 * **Time-locked unbonding** (360 blocks) before re-claiming stakes
 
@@ -35,8 +35,8 @@ The source code in Aleo Instructions can be found [here](https://github.com/Prov
 | Function | Caller | Purpose |
 |----------|---------------|---------|
 | `bond_validator` | Validator (self-bond) | Creates a validator or tops-up self-bonded stake and sets commission + withdrawal address |
-| `bond_public` | Delegator | Bonds (delegates) stake to an existing validator that is open to new stake |
-| `unbond_public` | Validator or Delegator | Starts the unbonding timer for some or all of the bonded amount |
+| `bond_public` | Staker | Bonds (delegates) stake to an existing validator that is open to new stake |
+| `unbond_public` | Validator or Staker | Starts the unbonding timer for some or all of the bonded amount |
 | `claim_unbond_public` | Anyone | After the timer has expired, transfers the unbonded amount to the staker's withdrawal address |
 
 ### Becoming or topping-up as a validator
@@ -89,6 +89,9 @@ A healthy validator typically has:
 #### Steps to delegate
 
 1. Decide the amount you want to delegate (≥ 10 000 AC).
+:::warning[important]
+Must keep minimum bonded balance of ≥ 10 000 ALEO bonded at all times.
+:::
 2. Ensure that amount is available in your public account balance.
 3. Choose a withdrawal address (can reuse current signer address or another address).
 4. Execute `bond_public` function from `credits.aleo` using [Leo CLI](https://docs.leo-lang.org/cli/execute):
@@ -111,25 +114,27 @@ function bond_public:
 [Staking.xyz](https://www.staking.xyz/stake?network=aleo&currency=ALEO&stakingType=native) also provides an interface to `bond_public`. 
 :::
 
-After the transaction is finalized you will start to accrue a share of the validator's block rewards proportionally to your stake.
+After the transaction is finalized you will start to accrue a share of the validator's block rewards proportionally to your stake. You may top up your bond at any time, in any amount.
 
 On-chain effects:
 
-1. Deducts the amount from the delegator's `account`.
-2. Updates `bonded[delegator]` (mapping delegator → validator).
+1. Deducts the amount from the staker's `account`.
+2. Updates `bonded[delegator]` (mapping staker → validator).
 3. Adds the amount to `delegated[validator]`.
-4. Increments the global delegator counter (`metadata[delegator_count]`, capped at 100,000).
+4. Increments the global staker counter (`metadata[delegator_count]`, capped at 100,000).
 
 :::warning[important]
 The validator must be open (`committee_state.is_open = true`) and not in the unbonding (exiting) process.
 :::
 :::info
-Every delegator can only delegates to a single validator. To delegate to a new validator, use another account or unbond all existing stake.
+Each address can be bonded to one validator at a time. Staker may bond to a new validator only after the previous bond has fully unbonded and the ACs has been claimed. Or simply use a new address.
 :::
 
-### Exiting stake
+### Withdrawing stake
 
-To exit a stake, the delegator must first call the `unbond_public` function. This function initiates the unbonding process by specifying the staker's address and the amount of microcredits to unbond. The unbonding process allows the delegator to either partially or fully unbond their stake. This can be done by using [Leo CLI](https://docs.leo-lang.org/cli/execute):
+ Stakers can withdraw bonded ACs at any time, provided the remaining bonded balance stays ≥ 10 000. Any withdrawal that takes the bonded balance below 10 000 ACs immediately triggers a full unbond.
+ 
+To withdraw a stake, the staker must first call the `unbond_public` function. This function initiates the unbonding process by specifying the staker's address and the amount of microcredits to unbond. The unbonding process allows the staker to either partially or fully unbond their stake. This can be done by using [Leo CLI](https://docs.leo-lang.org/cli/execute):
 
 ```bash
 leo execute credits.aleo/unbond_public <staker_address> <amount> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
@@ -145,9 +150,9 @@ function unbond_public:
 
 Called either by the staker's withdrawal address or the validator's withdrawal address.
 
-* Delegators may unbond partially or fully. If the remaining bond falls below 10 000 AC, the entire bond is unbonded and the delegator entry is removed.
-* Validators can unbond themselves or forcibly unbond a delegator.
-* If unbonding causes the validator's total stake to drop below 10 M AC or self-bond below 100 AC, the validator is removed from the committee.
+* Stakers may unbond partially or fully. If the remaining bond falls below 10 000 ACs, the entire bond is unbonded and the staker entry is removed.
+* Validators can unbond themselves or forcibly unbond a staker.
+* If unbonding causes the validator's total stake to drop below 10 millions ACs or self-bond below 100 ACs, the validator is removed from the committee.
 * The amount begins a 360-block cooldown stored in `unbonding[staker]`.
 
 #### Claiming unbonded stake
