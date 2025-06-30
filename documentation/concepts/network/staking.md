@@ -128,7 +128,7 @@ Every delegator can only delegates to a single validator. To delegate to a new v
 To exit a stake, the delegator must first call the `unbond_public` function. This function initiates the unbonding process by specifying the staker's address and the amount of microcredits to unbond. The unbonding process allows the delegator to either partially or fully unbond their stake. This can be done by using [Leo CLI](https://docs.leo-lang.org/cli/execute):
 
 ```bash
-leo execute credits.aleo/unbond_public <staker_address> <amount> --network mainnet --endpoint https://api.explorer.provable.com/v1 --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
+leo execute credits.aleo/unbond_public <staker_address> <amount> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
 ```
 
 ```aleo
@@ -151,7 +151,7 @@ Called either by the staker's withdrawal address or the validator's withdrawal a
 To claim your unbonded stake, make sure the 360 blocks cooldown has passed, then you can use the [Leo CLI](https://docs.leo-lang.org/cli/execute) as follows:
 
 ```bash
-leo execute credits.aleo/claim_unbond_public <staker_address> --broadcast
+leo execute credits.aleo/claim_unbond_public <staker_address> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast
 ```
 
 ```aleo
