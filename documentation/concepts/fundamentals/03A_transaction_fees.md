@@ -34,8 +34,10 @@ This is what you pay for executing program functions on the Aleo network.
 ### Priority Fee
 Priority fees are optional fees which can help speed up the processing of your transaction during high traffic. They are not yet supported, but will soon be.
 
+<!-- markdown-link-check-disable -->
 ### Estimating fees
 The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs#L26). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use `leo cli` to estimate the fees for your transaction. Example as below:
+<!-- markdown-link-check-enable -->
 
 First, generate a example program using `leo example`.
 ```bash

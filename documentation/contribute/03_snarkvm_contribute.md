@@ -18,13 +18,16 @@ This guide details the steps required to update snarkVM and propagate these chan
 
 ## Review and Merge Process for snarkVM PRs
 **1. Review snarkVM PRs:**
-- Carefully review PRs for snarkVM, considering their status and any comments.
+- Carefully review PRs for snarkVM, considering their status and any comments.  
+
 **2. Run CI on snarkVM PRs:**
-- Execute Continuous Integration (CI) to validate the reviewed PRs.
+- Execute Continuous Integration (CI) to validate the reviewed PRs.  
+
 **3. Checkout and Push snarkVM Branch:**
-- Checkout the relevant snarkVM branch and push it to the repository.
+- Checkout the relevant snarkVM branch and push it to the repository.  
+
 **4. Merge snarkVM PRs:**
-- Merge the reviewed and approved snarkVM PRs.
+- Merge the reviewed and approved snarkVM PRs.  
 
 ## Genesis Block and Parameter Re-generation
 - Re-generate Genesis Block and Parameters:
