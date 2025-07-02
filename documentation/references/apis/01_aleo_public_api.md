@@ -33,7 +33,7 @@ These endpoints provide block level information based on block height or block h
 | [`/latest/block`](./04_get_latest_block.md), [`/block/latest`](./04_get_latest_block.md) | Get the latest block information |
 | [`/latest/height`](./02_get_latest_height.md), [`/block/height/latest`](./02_get_latest_height.md) | Get the latest block height |
 | [`/latest/hash`](./03_get_latest_hash.md), [`/block/hash/latest`](./03_get_latest_hash.md) | Get the latest block hash |
-| [`/find/blockHash/{tx_id}`](./08_find_block_hash.md) | Find block hash by transaction ID |
+| [`/find/blockHash/{tx_id}`](./05_find_block_hash.md) | Find block hash by transaction ID |
 | [`/block/{height_or_hash}`](./06_get_block.md) | Get block by height or hash |
 | [`/{network}/block/{height_hash}/transactions`](./07_get_block_transactions.md) | Get block transactions by height or hash |
 
@@ -42,8 +42,8 @@ These endpoints allow one to fetch the most recent data gathered from the most r
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/committee/latest`](./09_get_committee.md), [`/latest/committee`](./09_get_committee.md) | Get the latest committee information |
-| [`/stateRoot/latest`](./05_get_latest_state_root.md), [`/latest/stateRoot`](./05_get_latest_state_root.md) | Get the latest state root |
+| [`/committee/latest`](./08_get_committee.md), [`/latest/committee`](./08_get_committee.md) | Get the latest committee information |
+| [`/stateRoot/latest`](./09_get_latest_state_root.md), [`/latest/stateRoot`](./09_get_latest_state_root.md) | Get the latest state root |
 | [`/latest/totalSupply`](./10_get_latest_total_supply.md) | Get the total supply |
 | [`/latest/circulatingSupply`](./11_get_latest_circulating_supply.md) | Get the circulating supply |
 
@@ -52,19 +52,19 @@ These endpoints provide program-related information including deployments and ma
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/program/{id}`](./12_get_program.md) | Get program information by ID |
-| [`/program/{id}/mappings`](./13_get_mapping_names.md) | Get program mappings by ID |
-| [`/program/{id}/mapping/{name}/{key}`](./14_get_mapping_value.md) | Get specific program mapping by name and key |
-| [`/find/transactionID/deployment/{program_id}`](./15_find_transaction_id_from_program_id.md) | Find transaction ID for program deployment |
+| [`/find/transactionID/deployment/{program_id}`](./12_find_transaction_id_from_program_id.md) | Find transaction ID for program deployment |
+| [`/program/{id}`](./13_get_program.md) | Get program information by ID |
+| [`/program/{id}/mappings`](./14_get_mapping_names.md) | Get program mappings by ID |
+| [`/program/{id}/mapping/{name}/{key}`](./15_get_mapping_value.md) | Get specific program mapping by name and key |
 
 ### Transaction Data
 These endpoints provide transaction-related information including confirmations and transitions.
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/find/transactionID/{transition_id}`](./17_find_transaction_id_from_transition_id.md) | Find transaction ID by transition ID |
-| [`/find/transitionID/{input_or_output_id}`](./18_find_transition_id.md) | Find transition ID by input or output ID |
-| [`/transaction/{id}`](./19_get_transaction.md) | Get transaction information by ID |
-| [`/transaction/confirmed/{id}`](./20_get_transaction_confirmed.md) | Get transaction confirmation status |
-| [`/transaction/unconfirmed/{id}`](./21_get_transaction_unconfirmed.md) | Get unconfirmed transaction details by ID |
-| [`/transaction/broadcast`](./22_transaction_broadcast.md) | Broadcast a new transaction |
+| [`/find/transactionID/{transition_id}`](./16_find_transaction_id_from_transition_id.md) | Find transaction ID by transition ID |
+| [`/find/transitionID/{input_or_output_id}`](./17_find_transition_id.md) | Find transition ID by input or output ID |
+| [`/transaction/{id}`](./18_get_transaction.md) | Get transaction information by ID |
+| [`/transaction/confirmed/{id}`](./19_get_transaction_confirmed.md) | Get transaction confirmation status |
+| [`/transaction/unconfirmed/{id}`](./20_get_transaction_unconfirmed.md) | Get unconfirmed transaction details by ID |
+| [`/transaction/broadcast`](./21_transaction_broadcast.md) | Broadcast a new transaction |
