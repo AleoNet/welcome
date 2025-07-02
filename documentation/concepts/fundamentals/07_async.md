@@ -9,6 +9,8 @@ For example, suppose we have a function `A` first calls `B` and then calls `C`. 
 
 To enable more expressive programs, the `finalize` model was deprecated in favor of the `async/await` model. This model borrows heavily from asynchronous programming models in other programming languages, but has some restrictions that are specific to the Aleo blockchain. Users familiar with asynchronous programming should find its instantiation in Leo familiar.
 
+More information about `async/await` model can be found [here](https://docs.leo-lang.org/guides/async).
+
 At a high-level, on-chain code is asynchronous code that does not return a value. Instead it returns a `Future`. Futures can be composed to execute simply one after another or through complex control flow.
 
 The rules in the `async/await` model are:

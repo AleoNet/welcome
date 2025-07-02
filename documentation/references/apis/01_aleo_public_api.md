@@ -25,16 +25,6 @@ Rate limiting will be enforced and users are subject to blacklisting if they abu
 
 ## API Endpoints
 
-### Network Data
-These endpoints allow one to fetch the most recent data gathered from the most recent block (i.e. tip of chain).
-
-| Endpoint | Description |
-|----------|-------------|
-| [`/committee/latest`](./15_get_committee.md), [`/latest/committee`](./15_get_committee.md) | Get the latest committee information |
-| [`/stateRoot/latest`](./05_get_latest_state_root.md), [`/latest/stateRoot`](./05_get_latest_state_root.md) | Get the latest state root |
-| `/latest/totalSupply` | Get the total supply |
-| `/latest/circulatingSupply` | Get the circulating supply |
-
 ### Block Data
 These endpoints provide block level information based on block height or block hash.
 
@@ -43,29 +33,38 @@ These endpoints provide block level information based on block height or block h
 | [`/latest/block`](./04_get_latest_block.md), [`/block/latest`](./04_get_latest_block.md) | Get the latest block information |
 | [`/latest/height`](./02_get_latest_height.md), [`/block/height/latest`](./02_get_latest_height.md) | Get the latest block height |
 | [`/latest/hash`](./03_get_latest_hash.md), [`/block/hash/latest`](./03_get_latest_hash.md) | Get the latest block hash |
-| [`/find/blockHash/{tx_id}`](./22_find_block_hash.md) | Find block hash by transaction ID |
+| [`/find/blockHash/{tx_id}`](./08_find_block_hash.md) | Find block hash by transaction ID |
 | [`/block/{height_or_hash}`](./06_get_block.md) | Get block by height or hash |
-| [`/blocks?start={start_height}&end={end_height}`](./07_get_blocks.md) | Get blocks by range |
+| [`/{network}/block/{height_hash}/transactions`](./07_get_block_transactions.md) | Get block transactions by height or hash |
+
+### Network Data
+These endpoints allow one to fetch the most recent data gathered from the most recent block (i.e. tip of chain) and network information.
+
+| Endpoint | Description |
+|----------|-------------|
+| [`/committee/latest`](./09_get_committee.md), [`/latest/committee`](./09_get_committee.md) | Get the latest committee information |
+| [`/stateRoot/latest`](./05_get_latest_state_root.md), [`/latest/stateRoot`](./05_get_latest_state_root.md) | Get the latest state root |
+| [`/latest/totalSupply`](./10_get_latest_total_supply.md) | Get the total supply |
+| [`/latest/circulatingSupply`](./11_get_latest_circulating_supply.md) | Get the circulating supply |
 
 ### Program Data
-These endpoints provide block level information based on block height or block hash.
+These endpoints provide program-related information including deployments and mappings.
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/program/{id}`](./13_get_program.md) | Get program information by ID |
-| [`/program/{id}/mappings`](./16_get_mapping_names.md) | Get program mappings by ID |
-| [`/program/{id}/mapping/{name}/{key}`](./17_get_mapping_value.md) | Get specific program mapping by name and key |
-| [`/find/transactionID/deployment/{program_id}`](./24_find_transaction_id_from_program_id.md) | Find transaction ID for program deployment |
+| [`/program/{id}`](./12_get_program.md) | Get program information by ID |
+| [`/program/{id}/mappings`](./13_get_mapping_names.md) | Get program mappings by ID |
+| [`/program/{id}/mapping/{name}/{key}`](./14_get_mapping_value.md) | Get specific program mapping by name and key |
+| [`/find/transactionID/deployment/{program_id}`](./15_find_transaction_id_from_program_id.md) | Find transaction ID for program deployment |
 
 ### Transaction Data
-These endpoints provide block level information based on block height or block hash.
+These endpoints provide transaction-related information including confirmations and transitions.
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/transaction/{id}`](./10_get_transaction.md) | Get transaction information by ID |
-| [`/transaction/confirmed/{id}`](./11_get_confirmation_status.md) | Get confirmed transaction by ID |
-| [`/transaction/broadcast`](./26_transaction_broadcast.md) | Broadcast a new transaction |
-| [`/find/transitionID/{input_or_output_id}`](./23_find_transition_id.md) | Find transition ID by input or output ID |
-| [`/find/transactionID/{transition_id}`](./25_find_transaction_id_from_transition_id.md) | Find transaction ID by transition ID |
-| [`/block/{height}/transactions`](./08_get_block_transactions.md) | Get all transactions in a block by height |
-| [`/memoryPool/transactions`](./12_get_memory_pool_transactions.md) | Get all transactions in the memory pool |
+| [`/find/transactionID/{transition_id}`](./17_find_transaction_id_from_transition_id.md) | Find transaction ID by transition ID |
+| [`/find/transitionID/{input_or_output_id}`](./18_find_transition_id.md) | Find transition ID by input or output ID |
+| [`/transaction/{id}`](./19_get_transaction.md) | Get transaction information by ID |
+| [`/transaction/confirmed/{id}`](./20_get_transaction_confirmed.md) | Get transaction confirmation status |
+| [`/transaction/unconfirmed/{id}`](./21_get_transaction_unconfirmed.md) | Get unconfirmed transaction details by ID |
+| [`/transaction/broadcast`](./22_transaction_broadcast.md) | Broadcast a new transaction |

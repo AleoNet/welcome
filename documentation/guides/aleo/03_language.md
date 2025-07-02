@@ -190,7 +190,7 @@ program bar.aleo;
 function call_external:
     input r0 as u64.private;
     call foo.aleo/baz r0 into r1; // Externally call function `baz` in foo.aleo with argument `r0` and store the result in `r1`.
-    output r1;
+    output r1 as u64.private;
 ```
 
 ### Closure
@@ -217,7 +217,7 @@ program bar.aleo;
 function call_internal:
     input r0 as u64.private;
     call foo r0 into r1; // Internally call closure `foo` with argument `r0` and store the result in `r1`.
-    output r1;
+    output r1 as u64.private;
 ```
 
 ### Struct
@@ -240,18 +240,18 @@ function new_array3:
     input r1 as u32.private;
     input r2 as u32.private;
     cast r0 r1 r2 into r3 as array3;
-    output r3;
+    output r3 as array3.private;
 ```
 
 ### Array
 
-An array is a data type declared as `[{value}, {value}]`.
+An array literal is written as `[{value}, {value}, ..]`, where all the values are the same type. For example,
 
 ```aleo
 [true, false, true]
 ```
 
-Arrays contain a list of values of the same type `[{type}; {length}]`.
+The type of an array includes the type of the elements and the length of the array `[{type}; {length}]`. The type of this example is
 
 ```aleo
 [boolean; 3u32]
@@ -265,7 +265,7 @@ function new_array:
     input r1 as boolean.private;
     input r2 as boolean.private;
     cast r0 r1 r2 into r3 as [boolean; 3u32];
-    output r3;
+    output r3 as [boolean; 3u32].private;
 ```
 
 Arrays can be indexed using `{name}[{index}]`.
@@ -275,7 +275,7 @@ function get_array_element:
     input r0 as [boolean; 4u32].public;
     input r1 as u32.public;
     r0[r1] into r2;
-    output r2;
+    output r2 as boolean.public;
 ```
 
 Arrays can be nested.
@@ -288,7 +288,7 @@ Arrays can be nested.
 function get_nested_array_element:
     input r0 as [[boolean; 4u32]; 2u32].public;
     r0[0u32][1u32] into r1;
-    output r1;
+    output r1 as boolean.public;
 ```
 
 :::info
@@ -318,7 +318,7 @@ function new_token:
     input r1 as u64.private;
     input r2 as u64.private;
     cast r0 r1 r2 into r3 as token.record;
-    output r3;
+    output r3 as token.record;
 ```
 
 ### Special Operands

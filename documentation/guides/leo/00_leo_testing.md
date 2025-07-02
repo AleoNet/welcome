@@ -10,6 +10,53 @@ To test Leo programs locally without network, simply run command `leo run <FUNCT
 
 This approach helps testing the logic within transition scope but does not cover anything in asynchronous function scope, as there is no active network to execute and store states for async functions. It is a lot faster and can effectively test the creation and consumption of records. However, it cannot test states stored with mappings and verify double spending of records, since there is no network to enforce such checks.  
 
+### Leo Testing
+
+Leo's native testing framework allows developers to validate their program logic by writing unit and integration tests. These tests are written in Leo and are located in a `tests/` subdirectory of the main Leo project directory. Each test file is a Leo program that imports the program in `main.leo`. Test functions are annotated with `@test` above the function declaration.
+
+For example, a transition function in `example_program.leo` might look like this:
+
+```leo
+transition simple_addition(public a: u32, b: u32) -> u32 {
+    let c: u32 = a + b;
+    return c;
+}
+```
+
+And a corresponding test in `test_example_program.leo` would be:
+
+```leo
+@test
+transition test_simple_addition() {
+    let result: u32 = example_program.aleo/simple_addition(2u32, 3u32);
+    assert_eq(result, 5u32);
+}
+```
+
+Tests expected to fail can be annotated with `@should_fail`.
+
+Additionally, `script` can be used to simulate on-chain state, allowing developers to test async functions and mapping operations directly without the need to start a local devnet or access the testnet/mainnet.
+
+More details can be found in the [Leo Testing Framework documentation](https://docs.leo-lang.org/testing/test_framework).
+
+### Leo Debugging
+
+Leo also includes an interactive debugger that allows developers to step through their programs. This debugger is expression and statement-oriented, providing commands to evaluate expressions, set breakpoints, and inspect values.
+
+For instance, you can set a breakpoint with:
+
+```
+#break program_name line_number
+```
+
+And print the value of a register during execution:
+
+```
+#print 2
+```
+
+The debugger also supports entering Leo expressions directly to evaluate them, making it a powerful tool for inspecting and debugging Leo programs. For more information, refer to the [Leo Debugging documentation](https://docs.leo-lang.org/testing/debugging).
+
 ## Local Testing with Network
 To test with the network, developers need to set up a local development network (devnet), which provides an isolated environment to deploy programs and execute transactions that modify program states. With this local network running, developers can validate state transitions within their programs, ensuring that record creation and consumption are correctly verified according to program logic, thereby preventing issues such as double spending.  
 
@@ -56,6 +103,13 @@ sudo apt install tmux
 
 2. Clone [snarkOS repository](https://github.com/AleoNet/snarkOS) to your local machine if you haven't done so.  
 3. Run `./devnet.sh` from the snarkOS repository that you just cloned.  
+
+<!-- markdown-link-check-disable -->
+:::tip
+As an alternative to `./devnet.sh`, you can also use the drop-in replacement [`amareleo-chain`](https://github.com/kaxxa123/amareleo-chain/blob/main/docs/00_introduction.md) which provides similar functionality but lighter and faster for setting up a local devnet. Built by the Aleo community.
+:::
+<!-- markdown-link-check-enable -->
+
 4. When asked for the total number of validators and clients, press enter to use default values.  
 5. Pick a network ID or press enter to use the default network.  
 6. When asked to run build the binary, enter `y` if this is the first time running, or `n` to skip if this is not the first time and nothing has changed in the snarkOS repo.  
@@ -73,10 +127,16 @@ Ctrl+b p
 ```
 Ctrl+b [
 ```  
+:::tip
+Press `q` to quit scrolling mode.
+
+To kill session, press `Ctrl+b` and type `:kill-session`.
+:::
+
 10. Look for the validator node 0 and take note of its private key that is shown during startup of the node. It should look something like below:
 ![TestnetValidator](./images/devnet_validator_zero.png)
 11. The private key will always stay the same for every node that runs with devnet.sh script so it only needs to remember once.  
-12. The reason for taking note of validator node 0's private key is because it is automatically funded with test Aleo Tokens (AT) with both public mapping balance and private records.  
+12. The reason for taking note of validator node 0's private key is because it is automatically funded with test Aleo Credits (ACs) with both public mapping balance and private records.  
 13. To interact with the local devnet:
     - Replace all API calls URL with `http://localhost:3030`.
     - When using Leo CLI commands, you can set the endpoint in two ways:  

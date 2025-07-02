@@ -356,24 +356,41 @@ cast r7 into r8 as [[boolean; 4u32]; 1u32];
 
 #### Supported Types
 
-| First     | Second    |
-|-----------|-----------|
-| `Address` | `Address` |
-| `Array`   | `Array`   |
-| `Boolean` | `Boolean` |
-| `Field`   | `Field`   |
-| `Group`   | `Group`   |
-| `I8`      | `I8`      |
-| `I16`     | `I16`     |
-| `I32`     | `I32`     |
-| `I64`     | `I64`     |
-| `I128`    | `I128`    |
-| `U8`      | `U8`      |
-| `U16`     | `U16`     |
-| `U32`     | `U32`     |
-| `U64`     | `U64`     |
-| `U128`    | `U128`    |
-| `Scalar`  | `Scalar`  |
+| From      | To                                                                                                        |
+|-----------|-----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+| Elements  | To                |
+|-----------|-------------------|
+| `Address` | `Array`, `Struct` |
+| `Boolean` | `Array`, `Struct` |
+| `Field`   | `Array`, `Struct` |
+| `Group`   | `Array`, `Struct` |
+| `I8`      | `Array`, `Struct` |
+| `I16`     | `Array`, `Struct` |
+| `I32`     | `Array`, `Struct` |
+| `I64`     | `Array`, `Struct` |
+| `I128`    | `Array`, `Struct` |
+| `U8`      | `Array`, `Struct` |
+| `U16`     | `Array`, `Struct` |
+| `U32`     | `Array`, `Struct` |
+| `U64`     | `Array`, `Struct` |
+| `U128`    | `Array`, `Struct` |
+| `Scalar`  | `Array`, `Struct` |
 
 ***
 
@@ -395,24 +412,41 @@ cast.lossy r0 into r3 as u8; // The bottom 8 bits of the r0 are extracted into a
 ```
 
 #### Supported Types
+| From      | To                                                                                                        |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 
-| First     | Second    |
-|-----------|-----------|
-| `Address` | `Address` |
-| `Boolean` | `Boolean` |
-| `Field`   | `Field`   |
-| `Group`   | `Group`   |
-| `I8`      | `I8`      |
-| `I16`     | `I16`     |
-| `I32`     | `I32`     |
-| `I64`     | `I64`     |
-| `I128`    | `I128`    |
-| `U8`      | `U8`      |
-| `U16`     | `U16`     |
-| `U32`     | `U32`     |
-| `U64`     | `U64`     |
-| `U128`    | `U128`    |
-| `Scalar`  | `Scalar`  |
+| Elements  | To                |
+|-----------|-------------------|
+| `Address` | `Array`, `Struct` |
+| `Boolean` | `Array`, `Struct` |
+| `Field`   | `Array`, `Struct` |
+| `Group`   | `Array`, `Struct` |
+| `I8`      | `Array`, `Struct` |
+| `I16`     | `Array`, `Struct` |
+| `I32`     | `Array`, `Struct` |
+| `I64`     | `Array`, `Struct` |
+| `I128`    | `Array`, `Struct` |
+| `U8`      | `Array`, `Struct` |
+| `U16`     | `Array`, `Struct` |
+| `U32`     | `Array`, `Struct` |
+| `U64`     | `Array`, `Struct` |
+| `U128`    | `Array`, `Struct` |
+| `Scalar`  | `Array`, `Struct` |
 ***
 
 ### `commit.bhp256`
@@ -422,6 +456,8 @@ cast.lossy r0 into r3 as u8; // The bottom 8 bits of the r0 are extracted into a
 #### Description
 
 Computes a Bowe-Hopwood-Pedersen commitment on inputs of 256-bit chunks in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment will always be an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 129 bits.
 
 #### Supported Types
 
@@ -454,6 +490,8 @@ Computes a Bowe-Hopwood-Pedersen commitment on inputs of 256-bit chunks in `firs
 
 Computes a Bowe-Hopwood-Pedersen commitment on inputs of 512-bit chunks in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment will always be an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
 
+The compiler will throw an error if the given input is smaller than 171 bits.
+
 #### Supported Types
 
 | First     | Second   | Destination                 |
@@ -484,6 +522,8 @@ Computes a Bowe-Hopwood-Pedersen commitment on inputs of 512-bit chunks in `firs
 #### Description
 
 Computes a Bowe-Hopwood-Pedersen commitment on inputs of 768-bit chunks in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment will always be an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 129 bits.
 
 #### Supported Types
 
@@ -516,6 +556,8 @@ Computes a Bowe-Hopwood-Pedersen commitment on inputs of 768-bit chunks in `firs
 
 Computes a Bowe-Hopwood-Pedersen commitment on inputs of 1024-bit chunks in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment will always be an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
 
+The compiler will throw an error if the given input is smaller than 171 bits.
+
 #### Supported Types
 
 | First     | Second   | Destination                 |
@@ -547,7 +589,7 @@ Computes a Bowe-Hopwood-Pedersen commitment on inputs of 1024-bit chunks in `fir
 
 Computes a Pedersen commitment up to a 64-bit input in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment is an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
 
-The instruction will halt if the given `Struct` value exceeds the 64-bit limit.
+The compiler will throw an error if the given `Struct` value exceeds the 64-bit limit.
 
 #### Supported Types
 
@@ -572,7 +614,7 @@ The instruction will halt if the given `Struct` value exceeds the 64-bit limit.
 
 Computes a Pedersen commitment up to a 128-bit input in `first`, and some randomness in `second`, storing the commitment in `destination`. Randomness should always be a `Scalar` value, and the produced commitment is an `Address`, `Field`, or `Group` value, as specified via `as` at the end of the instruction.
 
-The instruction will halt if the given `Struct` value exceeds the 128-bit limit.
+The compiler will throw an error if the given `Struct` value exceeds the 128-bit limit.
 
 #### Supported Types
 
@@ -725,6 +767,8 @@ Checks if `first` is greater than or equal to `second`, storing the result in `d
 
 Computes a Bowe-Hopwood-Pedersen hash on inputs of 256-bit chunks in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
 
+The compiler will throw an error if the given input is smaller than 129 bits.
+
 #### Supported Types
 
 | First     | Destination                                                                                               |
@@ -755,6 +799,8 @@ Computes a Bowe-Hopwood-Pedersen hash on inputs of 256-bit chunks in `first`, st
 #### Description
 
 Computes a Bowe-Hopwood-Pedersen hash on inputs of 512-bit chunks in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 171 bits.
 
 #### Supported Types
 
@@ -787,6 +833,8 @@ Computes a Bowe-Hopwood-Pedersen hash on inputs of 512-bit chunks in `first`, st
 
 Computes a Bowe-Hopwood-Pedersen hash on inputs of 768-bit chunks in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
 
+The compiler will throw an error if the given input is smaller than 129 bits.
+
 #### Supported Types
 
 | First     | Destination                                                                                               |
@@ -817,6 +865,8 @@ Computes a Bowe-Hopwood-Pedersen hash on inputs of 768-bit chunks in `first`, st
 #### Description
 
 Computes a Bowe-Hopwood-Pedersen hash on inputs of 1024-bit chunks in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 171 bits.
 
 #### Supported Types
 
@@ -942,7 +992,7 @@ Performs a Keccak hash on `first`, storing a 512-bit digest in `destination`. Th
 
 Computes a Pedersen hash up to a 64-bit input in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
 
-The instruction will halt if the given `Struct` value exceeds the 64-bit limit.
+The compiler will throw an error if the given `Struct` value exceeds the 64-bit limit.
 
 #### Supported Types
 
@@ -967,7 +1017,7 @@ The instruction will halt if the given `Struct` value exceeds the 64-bit limit.
 
 Computes a Pedersen hash up to a 128-bit input in `first`, storing the hash in `destination`. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
 
-The instruction will halt if the given `Struct` value exceeds the 128-bit limit.
+The compiler will throw an error if the given `Struct` value exceeds the 128-bit limit.
 
 #### Supported Types
 

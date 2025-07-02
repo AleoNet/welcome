@@ -5,8 +5,51 @@ sidebar_label: Transactions
 ---
 
 A **transaction** is a fundamental data structure for publishing a new program or a set of state transitions on the ledger.
+On Aleo, a transaction is issued locally by a user using their Aleo private key, which corresponds to an on-chain Aleo account.
+Using tools like [Leo CLI](https://github.com/ProvableHQ/leo), [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) 
+or ecosystem wallet adapters such as [Puzzle Wallet SDK](https://docs.puzzle.online/) and [Leo Wallet SDK](https://docs.leo.app/aleo-wallet-adapter).
 
 ## Types of Transactions
+
+### Execute Transaction
+The execution transaction represents a call to an Aleo program function. Below is the structure of an execution transaction response:
+
+|    Parameter     |  Type  |                                   Description                                    |
+|:----------------:|:------:|:--------------------------------------------------------------------------------:|
+|      `type`      | string |                        The type of transaction (execute)                         |
+|       `id`       | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
+|   `execution`    | object |                          The execution transaction info                          |
+|       `fee`      | object |                          The execution transaction fee                           |
+
+#### Execution Object Info
+
+|      Parameter      | Type  |                            Description                            |
+|:-------------------:|:-----:|:-----------------------------------------------------------------:|
+| `global_state_root` |  u16  |             The global state root of the merkle tree              |
+|    `transitions`    | array |              The [transitions](./04_transitions.md)               |
+|       `proof`       | string|                   ZK proof of the execution                       |
+
+#### Relationship of Transaction and Transition
+
+- A **Transaction** is the top-level unit that represents a complete operation. A **Transition** is a lower-level component that represents an individual state change within a **Transaction**.
+- A **Transaction** can contain multiple **Transition** objects. An Execution, which is part of a **Transaction**, includes a collection of **Transitions**.
+- A **Transaction** may contain multiple **Transitions**, especially in cases involving multiple cross-program calls.
+
+For more information of a **Transition**, please refer to [Transitions](./04_transitions.md).
+
+#### Building an execution transaction using Leo CLI
+
+**Required Details:**
+- Program ID (name of deployed program)
+- Function name to execute
+- Arguments to the function
+- Network ID (`testnet` or `mainnet`)
+- Private key of the caller (or specify in .env from project directory)
+
+**Optional Parameters:**
+- Broadcast flag (to send to the network or not)
+- Private fees
+- Priority fees
 
 ### Deploy Transaction
 The deployment transaction publishes an Aleo program to the network.
@@ -19,33 +62,26 @@ The deployment transaction publishes an Aleo program to the network.
 | `deployment` | object |                         The deployment transaction info                          |
 |    `fee`     | object |                          The deployment transaction fee                          |
 
-#### Deployment Info
+#### Deployment Object Info
 
 |      Parameter      | Type  |                            Description                            |
 |:-------------------:|:-----:|:-----------------------------------------------------------------:|
 | `global_state_root` |  u16  |             The global state root of the merkle tree              |
 |    `transitions`    | array |              The [transitions](./04_transitions.md)               |
 
-### Execute Transaction
-The execution transaction represents a call to an Aleo program function.
+#### Building a deployment transaction
 
-|    Parameter     |  Type  |                                   Description                                    |
-|:----------------:|:------:|:--------------------------------------------------------------------------------:|
-|      `type`      | string |                        The type of transaction (execute)                         |
-|       `id`       | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
-|   `execution`    | object |                          The execution transaction info                          |
-| `fee` (optional) | object |                      The optional execution transaction fee                      |
+**Required Details:**
+- Compiled Leo program in Aleo Instructions
+- Network ID (`testnet` or `mainnet`)
+- Private key of the deployer (or specify in .env from project directory)
 
-
-#### Execution Info
-
-|      Parameter      | Type  |                            Description                            |
-|:-------------------:|:-----:|:-----------------------------------------------------------------:|
-| `global_state_root` |  u16  |             The global state root of the merkle tree              |
-|    `transitions`    | array |              The [transitions](./04_transitions.md)               |
+**Optional Parameters:**
+- Private fees
+- Priority fees
 
 ### Fee Transaction
-The fee transaction represents a fee paid to the network, used for rejected transactions
+A fee transaction represents the network fee paid for processing. Rejected transactions are included in blocks as confirmed "rejected" transactions. In those cases, a new transaction ID is generated alongside a valid fee transaction to ensure the fee is charged. In normal successful execution case, the fee is recorded as a transition object within the execution or deployment transaction. 
 
 | Parameter |  Type  |                                   Description                                    |
 |:---------:|:------:|:--------------------------------------------------------------------------------:|
@@ -53,19 +89,99 @@ The fee transaction represents a fee paid to the network, used for rejected tran
 |   `id`    | string | The ID of transaction, computed via the Merkle Tree Digest of the transition IDs |
 |   `fee`   | object |                           The rejected transaction fee                           |
 
+Transaction fees are calculated based on the size of the transaction and how complicated operations the validators need to do. Fees can be paid in public or private with Aleo Credits records.
+For more detailed information about transaction fees, please refer to [Transaction Fees](./03A_transaction_fees.md). 
 
+## Transaction Lifecycle
 
+<div align="center">
 
+```mermaid
+%%{init: {'theme':'dark', 'themeVariables': { 'fontSize': '12px'}, 'flowchart': {'nodeSpacing': 25, 'rankSpacing': 40}}}%%
+flowchart TD
+    subgraph LOCAL ["🖥️ LOCAL CLIENT"]
+        direction TB
+        SPACER1[" "]
+        A["🔑 User Initiates<br/>Private Key + Inputs"] 
+        A --> TYPE{"📋 Transaction Type"}
+        
+        %% Execution Path
+        TYPE -->|Execute| B1["📥 Download Programs<br/>& SRS (or use cached)"]
+        B1 --> C1["🔍 Add Program<br/>to VM Process"]
+        C1 --> D1["✍️ Authorization<br/>Sign Function Call"]
+        D1 --> |Delegate| D1b
+        subgraph EXTERNAL ["🔐 External Prover"]
+            D1b["Delegate Transaction<br/>to Prover"]
+        end
+        D1 --> |Run Locally| E1["⚙️ Local Execution<br/>Run VM & Generate Proofs"]
+        D1b --> F1
+        E1 --> F1["💰 Fee Calculation<br/>Based on Execution Cost"]
+        F1 --> G1["📦 Transaction Assembly<br/>Execution + Fee + Proofs"]
+        
+        %% Deployment Path
+        TYPE -->|Deploy| B2["📝 Leo Compilation<br/>Source → Aleo Bytecode"]
+        B2 --> C2["🔧 Key Synthesis<br/>Generate Verifying Keys"]
+        C2 --> D2["✍️ Authorization<br/>Sign Deployment"]
+        D2 --> F2["💰 Fee Calculation<br/>Based on Program Size"]
+        F2 --> G2["📦 Transaction Assembly<br/>Deployment + Fee + Keys"]
+        
+        SPACER2[" "]
+    end
+    
+    G1 --> H
+    G2 --> H
+    
+    subgraph NETWORK ["🌐 ALEO NETWORK"]
+        direction TB
+        SPACER3[" "]
+        H["📡 Broadcast<br/>to Validators"] 
+        H --> I["⏳ Mempool<br/>Unconfirmed Transaction"]
+        I --> J["🤝 Consensus<br/>AleoBFT"]
+        J --> K{"✅❌🚫<br/>Decision"}
+        K -->|Accepted| L["✅ Add to proposed Block<br/>as ConfirmedTransaction::Accepted"]
+        K -->|Rejected| M["💸 Add Fees to proposed Block<br/>and reject original Transaction<br/>as ConfirmedTransaction::Rejected"]
+        K -->|Aborted| P["🚫 Transaction Aborted<br/>No Block Inclusion"]
+        L --> N["🔄 Finalization<br/>State Updates"]
+        M --> N
+        N --> O["🌐 Sync<br/>Network Update"]
+        SPACER4[" "]
+    end
+    
+    O -.->|"📊 Query Status"| A
+    
+    style LOCAL fill:#1a202c,stroke:#2d3748,stroke-width:2px,color:#ffffff
+    style NETWORK fill:#1a202c,stroke:#2d3748,stroke-width:2px,color:#ffffff
+    style EXTERNAL fill:#2d3748,stroke:#4a5568,stroke-width:2px,color:#ffffff
+    style TYPE fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style A fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style B1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style B2 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style C1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style C2 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style D1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style D1b fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style D2 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style E1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style F1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style F2 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style G1 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style G2 fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style H fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style I fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style J fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style K fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style L fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style M fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style N fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style O fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style P fill:#374151,stroke:#4a5568,stroke-width:1px,color:#ffffff
+    style SPACER1 fill:transparent,stroke:none
+    style SPACER2 fill:transparent,stroke:none
+    style SPACER3 fill:transparent,stroke:none
+    style SPACER4 fill:transparent,stroke:none
+```
 
-## Transaction Structure
-
-|    Parameter     |  Type  |                Description                |
-|:----------------:|:------:|:-----------------------------------------:|
-|      `type`      | string |          The type of transaction          |
-|       `id`       | string |    The ID of transaction (at1 prefix)     |
-|   `deployment`   | object |      The deployment transaction info      |
-| `additional_fee` | object |  The additional fee for the transaction   |
-
+</div>
 
 [//]: # ()
 [//]: # (#### Deploy Transaction)
@@ -143,3 +259,130 @@ The fee transaction represents a fee paid to the network, used for rejected tran
 
 [//]: # (4. Verify that the transaction proof `transaction_proof` verifies.)
 
+## Determining Transaction Status
+
+Transactions processed by Aleo validators achieve one of the following states:
+
+| Status | Description |
+|:------:|:------------|
+| `accepted` | The underlying deployment or execution was successful, and the associated fee was consumed. The transaction has a confirmed ID. |
+| `rejected` | The deployment or execution logic failed. Validators process the fee as an independent fee transaction. The original transaction has an unconfirmed ID, while the fee transaction has a confirmed ID. |
+| `aborted` | Both the deployment/execution logic and fee processing failed. The transaction is aborted. |
+
+:::note
+Transactions may not be included in any block when not selected from the mempool by validators during high network load conditions.
+:::
+
+### Method 1: Parsing Transactions from Blocks
+
+Transaction status can be determined by processing blocks retrieved via:  
+
+- `GET /<network>/block/{height}` - snarkOS node endpoint
+- [Get block by height or hash](https://docs.explorer.provable.com/docs/api-reference/8sqnes7uvwe05-get-block-by-height-or-hash) on the Provable explorer
+
+Transaction status can be determined from a block response as follows:
+
+#### Accepted Transactions
+- Get the list of transactions using `echo response | jq .transactions`
+- The transaction JSON contains `"status": "accepted"`
+- The transaction id is present in `echo transaction | jq .transaction.id`
+
+#### Rejected Transactions
+- Get the list of transactions using `echo response | jq .transactions`
+- The transaction JSON contains `"status": "rejected"`
+- The confirmed transaction id is present in `echo transaction | jq .transaction.id`
+- The associated unconfirmed transaction id can be acquired by:
+  - Calling `GET /<network>/unconfirmed/{confirmed id}` and calling `echo transaction | jq .transaction.id`
+  - You can also hit `https://api.explorer.provable.com/v1/mainnet/transaction/unconfirmed/{ID}`
+
+#### Aborted Transactions
+- Get the list of aborted ids using `echo response | jq .aborted_transaction_ids`
+
+#### SDK - getConfirmedTransaction
+
+```javascript
+import { AleoNetworkClient } from '@provablehq/sdk/mainnet.js';
+
+const net  = new AleoNetworkClient('https://api.explorer.provable.com/v1');   
+const txId = 'at14v8nt94d7xmsp3dq2glpzft6xw3x42ne753mlt8uenn8zw76dsqqc65jnf';                                
+
+const status = await net.getConfirmedTransaction(txId);
+console.log(status.status);
+```
+
+### Method 2: Directly Querying Transaction Status
+
+An alternative way to get feedback on the status of transactions, is to call the following endpoint.
+
+- `GET /<network>/transaction/confirmed/{transaction id}` on a fully synced snarkOS node REST endpoint
+- [Get transaction by ID](https://docs.explorer.provable.com/docs/api-reference/bqly6ukna97b6-get-transaction-by-id) on the Provable explorer
+
+If the transaction was accepted, `echo $transaction | jq .type` will say "execute"  
+If the transaction was rejected, `echo $transaction | jq .type` will say "fee"
+:::note
+Currently no API endpoint is available to quickly check whether a transaction was aborted.
+:::
+
+Given a confirmed transaction id, you can find the block it was included in using:
+
+- `GET /<network>/find/blockHash//{transaction id}` on a fully synced snarkOS node REST endpoint
+- [Get block hash for transaction ID](https://docs.explorer.provable.com/docs/api-reference/8ka85a1oq8iau-get-block-hash-for-transaction-id) on the Provable explorer
+
+#### SDK - fetchData and getBlockByHash
+
+```javascript
+import { AleoNetworkClient } from '@provablehq/sdk/mainnet.js';
+
+const net  = new AleoNetworkClient('https://api.explorer.provable.com/v1');   
+const txId = 'at14v8nt94d7xmsp3dq2glpzft6xw3x42ne753mlt8uenn8zw76dsqqc65jnf'; 
+// Get block hash using fetchData
+const res = await net.fetchData('/find/blockHash/' + txId);   
+// Get block by using getBlockByHash 
+const block = await net.getBlockByHash(res)
+// Get block height by response json
+console.log(block.header.metadata.height);
+```
+
+### Parsing the Sender Address from transfer_public or transfer_public_as_signer Executions
+
+Note that the sender address might be an externally owned account (EOA), i.e. owned by a user, or it might be the address of an Aleo program.
+
+The sender address of a Transaction is present as the first argument of the first output. The following will return a human readable string containing the public values of the first output.
+
+```bash
+echo $transaction | jq '.execution.transitions[0].outputs[0].value'
+```
+
+Unfortunately, the current snarkOS and explorer REST endpoints return execution outputs as a string which is not compatible with JSON. You'll still need to extract the first value from it. The sender address can be parsed for example using a regex or by parsing out the 5th line:
+
+```bash
+echo $(echo $transaction | jq '.execution.transitions[0].outputs[0].value') | sed -n '5p'
+```
+
+### Summarized Block Contents
+
+A block contains confirmed transactions.
+
+A confirmed transaction can either have status "accepted" or "rejected", and type "deploy" or "execute", and it contains a "transaction" and optional "rejected" object.
+
+- A "transaction" can have type "fee", "execute" or "deploy".
+- A "rejected" can have type "execution" or "deployment".
+
+```json
+{
+  …,
+  "transactions": [
+    "status": "accepted"/"rejected"
+    "type": "deploy"/"execute",
+    "transaction": {
+      …,
+      "type": "fee"/"execute"/"deploy"
+    }
+ "rejected": {
+      …,
+      "type": "execution"/"deployment"
+    } 
+  ],
+  "unconfirmed_transaction_ids": [...]
+}
+```
