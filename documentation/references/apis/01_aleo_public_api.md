@@ -30,9 +30,9 @@ These endpoints provide block level information based on block height or block h
 
 | Endpoint | Description |
 |----------|-------------|
-| [`/latest/block`](./04_get_latest_block.md), [`/block/latest`](./04_get_latest_block.md) | Get the latest block information |
-| [`/latest/height`](./02_get_latest_height.md), [`/block/height/latest`](./02_get_latest_height.md) | Get the latest block height |
-| [`/latest/hash`](./03_get_latest_hash.md), [`/block/hash/latest`](./03_get_latest_hash.md) | Get the latest block hash |
+| [`/latest/block`](./02_get_latest_block.md), [`/block/latest`](./02_get_latest_block.md) | Get the latest block information |
+| [`/latest/height`](./03_get_latest_height.md), [`/block/height/latest`](./03_get_latest_height.md) | Get the latest block height |
+| [`/latest/hash`](./04_get_latest_hash.md), [`/block/hash/latest`](./04_get_latest_hash.md) | Get the latest block hash |
 | [`/find/blockHash/{tx_id}`](./05_find_block_hash.md) | Find block hash by transaction ID |
 | [`/block/{height_or_hash}`](./06_get_block.md) | Get block by height or hash |
 | [`/{network}/block/{height_hash}/transactions`](./07_get_block_transactions.md) | Get block transactions by height or hash |
