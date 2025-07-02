@@ -13,7 +13,6 @@ The Provable API is designed to provide users with access to the Aleo blockchain
 |-------------|-----|
 | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
 | Testnet API | https://api.explorer.provable.com/v1/testnet |
-| Mock Server | https://stoplight.io/mocks/provable1/api-reference/33447 |
 
 ## Rate Limiting
 Rate limiting is setup across all provided endpoints and follows the below limits:
@@ -66,4 +65,3 @@ These endpoints provide block level information based on block height or block h
 | [`/find/transitionID/{input_or_output_id}`](/references/apis/15_find_transition_id) | Find transition ID by input or output ID |
 | [`/find/transactionID/{transition_id}`](/references/apis/21_find_transaction_id_from_transition_id) | Find transaction ID by transition ID |
 | [`/block/{height}/transactions`](/references/apis/05_get_block_transactions) | Get all transactions in a block by height |
-| [`/memoryPool/transactions`](/references/apis/07_get_memory_pool_transactions) | Get all transactions in the memory pool |
