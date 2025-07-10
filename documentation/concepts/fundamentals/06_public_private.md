@@ -43,7 +43,7 @@ An Aleo record is serialized in the following format:
 
 Records are tied to programs deployed on Aleo, and only the owner has permissions to alter the state of the record.
 
-Records are private by default and are stored as ciphertext on-chain.
+Records are private by default and are stored as ciphertext on-chain. For more information on how Records are encrypted, please refer to the [Output Record](./04_transitions.md#output-record).
 
 ### Storing Public State via Mapping
 
@@ -84,6 +84,9 @@ program sum.aleo {
     }
 }
 ```
+
+More information on how private inputs and outputs are encrypted, please refer to [here](./04_transitions.md#non-record-ciphertext).
+
 ## Public vs. Private States
 
 The choice to store an application state as public or private should depend on the particular use case of the program. Instead of being a chain that is completely private or completely public, Aleo believes in a hybrid approach that offers developers a choice. 
