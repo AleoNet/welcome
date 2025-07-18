@@ -362,18 +362,10 @@ Individual Reward = Puzzle Reward * (Individual Proof Target / Combined Proof Ta
 
 This approach avoids a winner-takes-all outcome by distributing rewards more equitably among provers, based on the proportion of their individual contributions.
 
-## ARC-46
-The ARC-46 is [voted and accepted](https://vote.aleo.org/p/46) by the Aleo community. The goal of this ARC is to align prover incentives with the overall network’s health, and gradually adjust up economic requirements for provers as the network matures.
+## ARC-46 Staking for Puzzle Solution Submissions
+As the Aleo Network grows, ensuring long-term security, stability, and fair participation is critical to the success of the ecosystem. The ARC-46 is [voted and accepted](https://vote.aleo.org/p/46) by the Aleo community. The goal of this ARC is to align prover incentives with the overall network’s health, and gradually adjust up economic requirements for provers as the network matures.
 
 This ARC proposes a mechanism requiring provers on the Aleo Network to stake a specific amount of Aleo credits to be eligible to submit a specific number of solutions per epoch. This feature is programmatic, with a stepwise increase in the required amount of stake over a two-year period following the activation of this ARC.
-
-### Key Objectives
-- **Sybil Resistance** - Aligning stake with number of solutions per epoch ensures that provers cannot bypass this new cryptoeconomic mechanism by creating new identities on-chain. In addition, this new cryptoeconomic mechanism makes it economically costly for malicious actors to create numerous identities (Sybil attacks) to flood the network with malformed solutions.
-- **BFT Security** - The proposed timetable ensures that provers gradually increase their stake participation to achieve at least the availability threshold of the Aleo Network within 2 years. This ensures that provers contribute to the underlying security of the Aleo Network.
-- **Economic Growth** - A transparent schedule increase in the staking requirement allows the network to adapt to its growing value and security needs without introducing sudden economic impacts or shocks. By ensuring provers contribute to staking, this ensures that their earned rewards are then directly utilized by the Aleo Network itself.
-
-### Specification
-As the Aleo Network grows, ensuring long-term security, stability, and fair participation is critical to the success of the ecosystem.
 
 Before ARC-46, provers are able to participate in Proof of Succinct Work and earn puzzle rewards without any entry or exit requirements. This ARC contemplates introducing entry requirements for provers, and while exit requirements are desirable, they are out of scope for this ARC at this time.
 
@@ -381,6 +373,12 @@ To participate as a prover on the Aleo network, this ARC proposes requiring the 
 
 There is no requirement that the prover must stake to any specific validator. Rather, in consensus, the protocol will enforce that the prover submitting solutions has an adequate amount of stake that is bonded to a validator on the Aleo Network.
 
+### Key Objectives
+- **Sybil Resistance** - Aligning stake with number of solutions per epoch ensures that provers cannot bypass this new cryptoeconomic mechanism by creating new identities on-chain. In addition, this new cryptoeconomic mechanism makes it economically costly for malicious actors to create numerous identities (Sybil attacks) to flood the network with malformed solutions.
+- **BFT Security** - The proposed timetable ensures that provers gradually increase their stake participation to achieve at least the availability threshold of the Aleo Network within 2 years. This ensures that provers contribute to the underlying security of the Aleo Network.
+- **Economic Growth** - A transparent schedule increase in the staking requirement allows the network to adapt to its growing value and security needs without introducing sudden economic impacts or shocks. By ensuring provers contribute to staking, this ensures that their earned rewards are then directly utilized by the Aleo Network itself.
+
+### Specification
 The staking requirement will increase in a stepwise function over 2 years on a quarterly basis. Namely, each quarter, the amount of stake required to submit 1 solution per epoch will increase for provers.
 
 The following outlines the timetable for introducing the stepwise staking requirements for provers to continue participating on the Aleo Network:
