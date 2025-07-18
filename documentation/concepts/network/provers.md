@@ -400,3 +400,24 @@ The following outlines the timetable for introducing the stepwise staking requir
 This ARC benefits three main parties: **validators**, **provers**, and **long-term holders** of Aleo Credits.
 
 **Validators** are likely to receive increased delegations from provers as the staking requirements are rolled out over the next two years, enhancing their participation and rewards. **Provers** benefit by earning additional staking yield on their token rewards through the staking process, further aligning their incentives with the network’s security and long-term growth. **Long-term token holders** gain increased confidence that Aleo Credits are being actively used to secure the network and are delegated appropriately, supporting the network’s health.
+
+## Future Plans
+### ARC-43: Extending the Puzzle to a Full SNARK
+
+ARC-43 proposes extending the current synthesis-focused puzzle to a full Succinct Non-interactive Argument of Knowledge (SNARK). This extension aims to address current bottlenecks and leverage recent hardware advancements.
+
+**Key Changes:**
+- **Increased Instruction Count**: Expand the puzzle by orders of magnitude beyond current consensus verification limits
+- **Expanded Instruction Set**: Include richer opcodes with larger operands for greater complexity
+- **zkSNARK Verification**: Implement succinct puzzle proof verification to improve block verification times
+
+**Benefits:**
+- Incentivizes dedicated hardware development for full SNARK acceleration
+- Significantly improves block verification performance
+- Enhances puzzle complexity and security through larger instruction sets
+- Leverages recent GPU and FPGA acceleration advancements
+
+**Technical Approach:**
+- Built on existing proof system and elliptic curve to minimize technical risk
+- Extends to SNARK (not zkSNARK) to maintain non-malleability and prevent grindability
+- Phased implementation to allow gradual hardware upgrades
