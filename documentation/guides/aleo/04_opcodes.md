@@ -430,23 +430,6 @@ cast.lossy r0 into r3 as u8; // The bottom 8 bits of the r0 are extracted into a
 | `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 
-| Elements  | To                |
-|-----------|-------------------|
-| `Address` | `Array`, `Struct` |
-| `Boolean` | `Array`, `Struct` |
-| `Field`   | `Array`, `Struct` |
-| `Group`   | `Array`, `Struct` |
-| `I8`      | `Array`, `Struct` |
-| `I16`     | `Array`, `Struct` |
-| `I32`     | `Array`, `Struct` |
-| `I64`     | `Array`, `Struct` |
-| `I128`    | `Array`, `Struct` |
-| `U8`      | `Array`, `Struct` |
-| `U16`     | `Array`, `Struct` |
-| `U32`     | `Array`, `Struct` |
-| `U64`     | `Array`, `Struct` |
-| `U128`    | `Array`, `Struct` |
-| `Scalar`  | `Array`, `Struct` |
 ***
 
 ### `commit.bhp256`
