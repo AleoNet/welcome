@@ -14,7 +14,6 @@ The Provable API is designed to provide users with access to the Aleo blockchain
 |-------------|-----|
 | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
 | Testnet API | https://api.explorer.provable.com/v1/testnet |
-| Mock Server | https://stoplight.io/mocks/provable1/api-reference/33447 |
 <!-- markdown-link-check-enable -->
 
 ## Rate Limiting
