@@ -127,23 +127,25 @@ You can use several patterns in your `constructor` to build safer, more trustwor
 
 ## Examples
 
-The `constructor` let you implement a wide range of governance models. Here are some practical, commented code examples for common upgrade patterns.
+The `constructor` lets you implement a wide range of governance models. Below are practical, commented examples written in Aleo Instructions (the low-level format executed by the AVM) for common upgrade patterns. 
+
+To learn how to write these patterns in the Leo language, please refer to the [Leo documentation](https://github.com/ProvableHQ/leo-docs-source/blob/6ec29db64ef4620b9bfd86a876818f260202c230/documentation/guides/03_program_upgradability.md).
 
 ### Non-upgradable program
 
 A program that can never be upgraded.
 
 ```aleo
-program foo.aleo;
+program noupgrade_example.aleo;
 
 //... other program logic...
 
 constructor:
-// This assertion checks if the program's edition is 0.
-// It passes on initial deployment. For any upgrade attempt,
-// the edition will be > 0, causing the assertion to fail and
-// halting the upgrade transaction.
-assert.eq foo.aleo/edition 0u16;
+    // This assertion checks if the program's edition is 0.
+    // It passes on initial deployment. For any upgrade attempt,
+    // the edition will be > 0, causing the assertion to fail and
+    // halting the upgrade transaction.
+    assert.eq edition 0u16;
 ```
 The `constructor` ensures the program can only be deployed at `edition 0`, making upgrades impossible.
 
@@ -152,14 +154,14 @@ The `constructor` ensures the program can only be deployed at `edition 0`, makin
 Restrict upgrades to a single, hardcoded administrator address.
 
 ```aleo
-program foo.aleo;
+program admin_example.aleo;
 
 //... other program logic...
 
 constructor:
     // This asserts that the address deploying this version of the program is the predefined ADMIN_ADDRESS.
     // IMPORTANT: This address is hardcoded and cannot be changed after deployment.
-    assert.eq foo.aleo/program_owner <ADMIN_ADDRESS>;
+    assert.eq program_owner <ADMIN_ADDRESS>;
 ```
 This pattern uses `program_owner` operand to check that the deployer is the designated admin. It's simple, but if the admin key is lost, control is lost forever.
 
@@ -168,7 +170,7 @@ This pattern uses `program_owner` operand to check that the deployer is the desi
 Allow a changeable admin to pre-authorize specific upgrades by their `checksum`.
 
 ```aleo
-program foo.aleo;
+program preapproved_example.aleo;
 
 mapping admin:
     key as boolean.public;
@@ -180,14 +182,14 @@ mapping expected:
 
 constructor:
     // If this is the first deployment (edition 0), set the initial admin.
-    branch.neq foo.aleo/edition 0u16 to upgrade_check;
-    set aleo1... into admin[true]; // Replace with the initial admin address.
+    branch.neq edition 0u16 to upgrade_check;
+    set <ADMIN_ADDRESS> into admin[true]; // Replace with the initial admin address.
     branch.eq true true to end;
 
     // For all upgrades, check the checksum against the pre-approved value.
     position upgrade_check;
     get expected[true] into r0;
-    assert.eq foo.aleo/checksum r0;
+    assert.eq checksum r0;
 
     position end;
 
@@ -216,18 +218,23 @@ Let an external DAO contract governs upgrades.
 ```aleo
 import governor.aleo;
 
-program foo.aleo;
+program dao_example.aleo;
 
 //... other program logic...
 
 constructor:
+    // If edition is 0 (first deployment), skip upgrade checks.
+    branch.eq edition 0u16 to end;
+
     // This assumes 'governor.aleo' is a DAO contract that stores the
     // checksum of an approved upgrade in a mapping.
-    get governor.aleo/accepted[true] into r0;
+    get governor.aleo/approved_checksum[true] into r0;
 
     // Assert that the checksum of the program being deployed
     // matches the checksum approved by the DAO.
-    assert.eq foo.aleo/checksum r0;
+    assert.eq checksum r0;
+
+    position end;
 ```
 This pattern delegates upgrade authority to another program. The `constructor` fetches the valid `checksum` from the DAO contract, decoupling the application's logic from its governance.
 
@@ -236,17 +243,23 @@ This pattern delegates upgrade authority to another program. The `constructor` f
 **Goal:** Only allow upgrades after a specific block height.
 
 ```aleo
-program foo.aleo;
+program timelock_example.aleo;
 
 //... other program logic...
 
-define UPGRADE_BLOCK_HEIGHT 100000u32;
-
 constructor:
-    // This asserts that the current block height is greater than or equal
-    // to the defined height, creating a time-lock.
-    gte block.height UPGRADE_BLOCK_HEIGHT into r0;
-    assert.eq r0 true;
+    // Checks if the edition is 0 (first deployment); if so, skips the time-lock check.
+    gt edition 0u16 into r0;
+    branch.eq r0 false to end_then_0_0;
+
+    // Otherwise, it asserts that the current block height is greater than or equal
+    // to the defined height, creating a time-lock for upgrades.
+    gte block.height <BLOCK_HEIGHT> into r1;
+    assert.eq r1 true;
+    
+    branch.eq true true to end_otherwise_0_1;
+    position end_then_0_0;
+    position end_otherwise_0_1;
 ```
 *   **Mechanism:** This `constructor` uses `block.height` to enforce a time-based constraint, which can ensure a "cool-down" period before an upgrade is applied.[1]
 
@@ -255,7 +268,7 @@ constructor:
 Allow an admin to permanently lock a program from future upgrades.
 
 ```aleo
-program foo.aleo;
+program ossification_example.aleo;
 
 mapping is_locked:
     key as boolean.public;
@@ -284,8 +297,12 @@ program parent.aleo;
 
 //... other program logic...
 
+constructor:
+    //... Programs that fix dependencies should have an upgrade mechanism
+    // in case the dependency made an upgrade.
+
 function some_function:
-    //... logic that calls a function from child.aleo...
+    //... logic that calls a function from child.aleo
     call child.aleo/some_child_function...;
 
 finalize some_function:
@@ -296,6 +313,10 @@ finalize some_function:
     //...
 ```
 This is a defensive pattern used in a `finalize` block, not the `constructor`. It checks the `edition` of a dependency before interacting with it. This prevents breaking changes but requires an upgrade to `parent.aleo` to adopt a new, valid version of `child.aleo`.
+
+:::warning[important]
+If using this pattern, we recommend you make your program upgradable, in case your function is locked due to a dependency upgrade.
+:::
 
 ## Quick Reference Summary
 
