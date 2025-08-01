@@ -28,7 +28,7 @@ Native staking enables token holders to interact on-chain and stake their Aleo C
 * **Automatic removal** of validators that drop below 10 M total stake
 * **Time-locked unbonding** (360 blocks) before re-claiming stakes
 
-The source code in Aleo Instructions can be found [here](https://github.com/ProvableHQ/snarkVM/blob/ac93164b8ef6371026880cee411e2d753de80cfe/synthesizer/program/src/resources/credits.aleo#L292).
+The source code in Aleo Instructions can be found [here](https://github.com/ProvableHQ/snarkVM/blob/staging/synthesizer/program/src/resources/credits.aleo).
 
 ### Function glossary
 
@@ -38,6 +38,116 @@ The source code in Aleo Instructions can be found [here](https://github.com/Prov
 | `bond_public` | Staker | Bonds (delegates) stake to an existing validator that is open to new stake |
 | `unbond_public` | Validator or Staker | Starts the unbonding timer for some or all of the bonded amount |
 | `claim_unbond_public` | Anyone | After the timer has expired, transfers the unbonded amount to the staker's withdrawal address |
+
+### Staking related mappings
+
+The staking system in Aleo uses several key mappings to track validator and delegator states:
+
+#### `committee`
+Contains the active validator set with their committee state:
+- Whether the validator is open to new stakers (`is_open`)
+- The commission percentage (0-100) that the validator keeps from rewards
+
+```aleo
+/// The `committee` mapping contains the active validator set and their corresponding stake.
+mapping committee:
+    // The key represents the address of the validator.
+    key as address.public;
+    // The value represents the committee state of the validator.
+    value as committee_state.public;
+
+// The `committee_state` struct tracks the total stake of the validator, and whether they are open to new stakers.
+struct committee_state:
+    // The boolean flag indicating if the validator is open to new stakers.
+    is_open as boolean;
+    // The percentage amount (from 0 to 100, inclusive) of rewards that retained by the validator.
+    commission as u8;
+```
+
+#### `delegated`
+Tracks the total amount of microcredits bonded to each validator address (including both self-bonded and delegator bonds). This mapping is used to determine if a validator meets the minimum 10 million credits threshold to join the committee.
+
+```aleo
+// The `delegated` mapping tracks the total amount of microcredits that are prebonded and bonded to validator addresses.
+// Note: The mapping includes both prebonded and bonded microcredits. However, it does not contain unbonding microcredits.
+mapping delegated:
+    // The key represents the address of the validator.
+    key as address.public;
+    // The value represents the amount of microcredits bonded to the validator, by the validator and its delegators.
+    value as u64.public;
+```
+
+#### `metadata`
+Stores global staking statistics:
+- `metadata[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc]` - Number of active committee members
+- `metadata[aleo1qgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqanmpl0]` - Number of delegators (capped at 100,000)
+
+```aleo
+/// The `metadata` mapping stores:
+///   - The number of members in the committee.
+///   - The number of delegators.
+mapping metadata:
+    // The key represents the index at which the count is stored.
+    //    - This address (aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc) stores the number of **members** in the committee.
+    //    - This address (aleo1qgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqanmpl0) stores the number of **delegators**.
+    key as address.public;
+    // The value represents the count.
+    value as u32.public;
+```
+
+#### `bonded`
+Maps each staker's address to their bond state, which includes:
+- The validator address they're bonded to
+- The amount of microcredits currently bonded
+
+```aleo
+// The `bonded` mapping represents the amount of microcredits that are currently bonded.
+mapping bonded:
+    // The key represents the address of the staker, which includes the validators and their delegators.
+    key as address.public;
+    // The value represents the bond state.
+    value as bond_state.public;
+
+// The `bond_state` struct tracks the amount of microcredits that are currently bonded to the specified validator.
+struct bond_state:
+    // The address of the validator.
+    validator as address;
+    // The amount of microcredits that are currently bonded to the specified validator.
+    microcredits as u64;
+```
+
+#### `unbonding`
+Tracks stakers who have initiated the unbonding process:
+- The amount of microcredits currently unbonding
+- The block height when unbonding will be complete (360 blocks from initiation)
+
+```aleo
+// The `unbonding` mapping contains a set of stakers with their unbonding microcredits and unlock height.
+mapping unbonding:
+    // The key represents the address of the staker, which includes the validators and their delegators.
+    key as address.public;
+    // The value represents the unbond state.
+    value as unbond_state.public;
+
+// The `unbond_state` struct tracks the microcredits that are currently unbonding, along with the unlock height.
+struct unbond_state:
+    // The amount of microcredits that are currently unbonding.
+    microcredits as u64;
+    // The block height at which the unbonding will be complete, and can be claimed.
+    height as u32;
+```
+
+#### `withdraw`
+Maps each staker's address to their withdrawal address, which is where rewards and unbonded amounts are sent.
+
+```aleo
+// The `withdraw` mapping contains the staking address and their corresponding withdrawal address.
+mapping withdraw:
+    // The key represents the staking address of the owner.
+    key as address.public;
+    // The value represents the withdrawal address of the owner.
+    value as address.public;
+```
 
 ### Becoming or topping-up as a validator
 
