@@ -1,11 +1,15 @@
 ---
-id: latest_block
-title: Latest Block
-sidebar_label: Latest Block
+id: get_latest_block
+title: Get Latest Block
+sidebar_label: Get Latest Block
 ---
 
 ```bash title=ENDPOINT
 GET /{network}/block/latest
+```
+
+```bash title=ENDPOINT
+GET /{network}/latest/block
 ```
 
 Returns the latest block.
