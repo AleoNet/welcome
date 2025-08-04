@@ -17,6 +17,26 @@ in environments where the safety of the underlying key material can be assured.<
 
 **Kind**: global class  
 
+## Examples 
+```javascript
+// Create a new account
+const myRandomAccount = new Account();
+
+// Create an account from a randomly generated seed
+const seed = new Uint8Array([94, 91, 52, 251, 240, 230, 226, 35, 117, 253, 224, 210, 175, 13, 205, 120, 155, 214, 7, 169, 66, 62, 206, 50, 188, 40, 29, 122, 40, 250, 54, 18]);
+const mySeededAccount = new Account({seed: seed});
+
+// Create an account from an existing private key
+const myExistingAccount = new Account({privateKey: 'myExistingPrivateKey'})
+
+// Sign a message
+const hello_world = Uint8Array.from([104, 101, 108, 108, 111 119, 111, 114, 108, 100])
+const signature = myRandomAccount.sign(hello_world)
+
+// Verify a signature
+myRandomAccount.verify(hello_world, signature)
+```
+
 * [Account](#Account)
     * _instance_
         * [.encryptAccount(ciphertext)](#Account+encryptAccount) ⇒ <code>PrivateKeyCiphertext</code>
@@ -30,14 +50,19 @@ in environments where the safety of the underlying key material can be assured.<
 
 <a name="Account+encryptAccount"></a>
 
-### account.encryptAccount(ciphertext) ⇒ <code>PrivateKeyCiphertext</code>
+### encryptAccount
+```javascript
+account.encryptAccount(ciphertext) ⇒ PrivateKeyCiphertext
+```
+
 <p>Encrypt the account's private key with a password</p>
 
 **Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| ciphertext | <code>string</code> | 
+| ciphertext | <code>string</code> |
+| *return* | <code>PrivateKeyCiphertext</code> | 
 
 **Example**  
 ```js
@@ -46,14 +71,18 @@ let ciphertext = account.encryptAccount("password");
 ```
 <a name="Account+decryptRecord"></a>
 
-### account.decryptRecord(ciphertext) ⇒ <code>Record</code>
+### decryptRecord
+```javascript
+account.decryptRecord(ciphertext) ⇒ Record
+```
 <p>Decrypts a Record in ciphertext form into plaintext</p>
 
 **Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| ciphertext | <code>string</code> | 
+| ciphertext | <code>string</code> |
+| *return* | <code>Record</code> | 
 
 **Example**  
 ```js
@@ -62,14 +91,18 @@ let record = account.decryptRecord("record1ciphertext");
 ```
 <a name="Account+decryptRecords"></a>
 
-### account.decryptRecords(ciphertexts) ⇒ <code>Array.&lt;Record&gt;</code>
+### decryptRecords
+```javascript
+account.decryptRecords(ciphertexts) ⇒ Array.<Record>
+```
 <p>Decrypts an array of Records in ciphertext form into plaintext</p>
 
 **Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| ciphertexts | <code>Array.&lt;string&gt;</code> | 
+| ciphertexts | <code>Array.&lt;string&gt;</code> |
+| *return* | <code>Array.&lt;Record&gt;</code> | 
 
 **Example**  
 ```js
@@ -78,14 +111,18 @@ let record = account.decryptRecords(["record1ciphertext", "record2ciphertext"]);
 ```
 <a name="Account+ownsRecordCiphertext"></a>
 
-### account.ownsRecordCiphertext(ciphertext) ⇒ <code>boolean</code>
+### ownsRecordCiphertext
+```javascript
+account.ownsRecordCiphertext(ciphertext) ⇒ boolean
+```
 <p>Determines whether the account owns a ciphertext record</p>
 
 **Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| ciphertext | <code>RecordCipherText</code> \| <code>string</code> | 
+| ciphertext | <code>RecordCipherText</code> \| <code>string</code> |
+| *return* | <code>boolean</code> | 
 
 **Example**  
 ```js
@@ -107,7 +144,10 @@ if account.ownsRecord(recordCipherText) {
 ```
 <a name="Account+sign"></a>
 
-### account.sign(message) ⇒ <code>Signature</code>
+### sign
+```javascript
+account.sign(message) ⇒ Signature
+```
 <p>Signs a message with the account's private key.
 Returns a Signature.</p>
 
@@ -115,7 +155,8 @@ Returns a Signature.</p>
 
 | Param | Type |
 | --- | --- |
-| message | <code>Uint8Array</code> | 
+| message | <code>Uint8Array</code> |
+| *return* | <code>Signature</code> | 
 
 **Example**  
 ```js
@@ -125,15 +166,19 @@ account.sign(message);
 ```
 <a name="Account+verify"></a>
 
-### account.verify(message, signature) ⇒ <code>boolean</code>
+### verify
+```javascript
+account.verify(message, signature) ⇒ boolean
+```
 <p>Verifies the Signature on a message.</p>
 
 **Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| message | <code>Uint8Array</code> | 
-| signature | <code>Signature</code> | 
+| message | <code>Uint8Array</code> |
+| signature | <code>Signature</code> |
+| *return* | <code>boolean</code> | 
 
 **Example**  
 ```js
@@ -144,15 +189,19 @@ account.verify(message, signature);
 ```
 <a name="Account.fromCiphertext"></a>
 
-### Account.fromCiphertext(ciphertext, password) ⇒ <code>PrivateKey</code> \| <code>Error</code>
+### fromCiphertext
+```javascript
+Account.fromCiphertext(ciphertext, password) ⇒ PrivateKey | Error
+```
 <p>Attempts to create an account from a private key ciphertext</p>
 
 **Kind**: static method of [<code>Account</code>](#Account)  
 
 | Param | Type |
 | --- | --- |
-| ciphertext | <code>PrivateKeyCiphertext</code> \| <code>string</code> | 
-| password | <code>string</code> | 
+| ciphertext | <code>PrivateKeyCiphertext</code> \| <code>string</code> |
+| password | <code>string</code> |
+| *return* | <code>PrivateKey</code> \| <code>Error</code> | 
 
 **Example**  
 ```js
