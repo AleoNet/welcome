@@ -17,7 +17,7 @@ in environments where the safety of the underlying key material can be assured.<
 
 **Kind**: global class  
 
-## Examples 
+## Example
 ```javascript
 // Create a new account
 const myRandomAccount = new Account();
@@ -36,6 +36,8 @@ const signature = myRandomAccount.sign(hello_world)
 // Verify a signature
 myRandomAccount.verify(hello_world, signature)
 ```
+
+## Methods
 
 * [Account](#Account)
     * _instance_
