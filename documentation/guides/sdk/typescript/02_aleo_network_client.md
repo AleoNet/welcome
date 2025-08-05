@@ -8,11 +8,9 @@ sidebar_label: Aleo Network Client
 ## Overview
 Client library that encapsulates REST calls to publicly exposed endpoints of Aleo nodes. The methods provided in this allow users to query public information from the Aleo blockchain and submit transactions to the network.
 
-## Methods
-
 **Kind**: global class  
 
-* [AleoNetworkClient](#AleoNetworkClient)
+* AleoNetworkClient
     * [new AleoNetworkClient(host)](#new_AleoNetworkClient_new)
     * [.setHost(host)](#AleoNetworkClient+setHost)
     * [.setAccount(account)](#AleoNetworkClient+setAccount)
@@ -45,6 +43,8 @@ Client library that encapsulates REST calls to publicly exposed endpoints of Ale
     * [.submitTransaction(transaction)](#AleoNetworkClient+submitTransaction)
     * [.submitSolution(solution)](#AleoNetworkClient+submitSolution)
 
+## Constructor
+
 <a name="new_AleoNetworkClient_new"></a>
 
 ### AleoNetworkClient
@@ -68,13 +68,15 @@ let public_connection = new AleoNetworkClient("https://api.explorer.provable.com
 
 <a name="AleoNetworkClient+setHost"></a>
 
+## Methods
+
 ### setHost
+
+<p>Set a new host for the networkClient</p>
 
 ```javascript
 networkClient.setHost(host)
 ```
-
-<p>Set a new host for the networkClient</p>
 
 | Param | Type |
 | --- | --- |
@@ -88,13 +90,15 @@ let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable
 
 <a name="AleoNetworkClient+setAccount"></a>
 
+---
+
 ### setAccount
+
+<p>Set an account to use in networkClient calls</p>
 
 ```javascript
 networkClient.setAccount(account)
 ```
-
-<p>Set an account to use in networkClient calls</p>
 
 | Param | Type |
 | --- | --- |
@@ -108,13 +112,15 @@ networkClient.setAccount(account);
 
 <a name="AleoNetworkClient+getAccount"></a>
 
+---
+
 ### getAccount
+
+<p>Return the Aleo account used in the networkClient</p>
 
 ```javascript
 networkClient.getAccount() ⇒ Account
 ```
-
-<p>Return the Aleo account used in the networkClient</p>
 
 | Param | Type |
 | --- | --- |
@@ -127,13 +133,15 @@ let account = networkClient.getAccount();
 
 <a name="AleoNetworkClient+fetchData"></a>
 
+---
+
 ### fetchData
+
+<p>Fetches data from the Aleo network and returns it as a JSON object.</p>
 
 ```javascript
 networkClient.fetchData(url) ⇒ Promise.<Type>
 ```
-
-<p>Fetches data from the Aleo network and returns it as a JSON object.</p>
 
 | Param | Type |
 | --- | --- |
@@ -142,13 +150,15 @@ networkClient.fetchData(url) ⇒ Promise.<Type>
 
 <a name="AleoNetworkClient+fetchRaw"></a>
 
+---
+
 ### fetchRaw
+
+<p>Fetches data from the Aleo network and returns it as an unparsed string. This method should be used when it is desired to reconstitute data returned from the network into a WASM object.</p>
 
 ```javascript
 networkClient.fetchRaw(url) ⇒ Promise.<string>
 ```
-
-<p>Fetches data from the Aleo network and returns it as an unparsed string. This method should be used when it is desired to reconstitute data returned from the network into a WASM object.</p>
 
 | Param | Type |
 | --- | --- |
@@ -157,13 +167,15 @@ networkClient.fetchRaw(url) ⇒ Promise.<string>
 
 <a name="AleoNetworkClient+findRecords"></a>
 
+---
+
 ### findRecords
+
+<p>Attempt to find records in the Aleo blockchain.</p>
 
 ```javascript
 networkClient.findRecords(startHeight, endHeight, unspent, programs, amounts, maxMicrocredits, nonces, privateKey) ⇒ Promise.<Array.<RecordPlaintext>>
 ```
-
-<p>Attempt to find records in the Aleo blockchain.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -191,13 +203,15 @@ const records = await networkClient.findRecords(startHeight, undefined, true, ["
 
 <a name="AleoNetworkClient+findUnspentRecords"></a>
 
+---
+
 ### findUnspentRecords
+
+<p>Attempts to find unspent records in the Aleo blockchain.</p>
 
 ```javascript
 networkClient.findUnspentRecords(startHeight, endHeight, programs, amounts, maxMicrocredits, nonces, privateKey) ⇒ Promise.<Array.<RecordPlaintext>>
 ```
-
-<p>Attempts to find unspent records in the Aleo blockchain.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -225,13 +239,15 @@ const records = await networkClient.findUnspentRecords(startHeight, undefined, [
 
 <a name="AleoNetworkClient+getBlock"></a>
 
+---
+
 ### getBlock
+
+<p>Returns the contents of the block at the specified block height.</p>
 
 ```javascript
 networkClient.getBlock(height) ⇒ Promise.<BlockJSON>
 ```
-
-<p>Returns the contents of the block at the specified block height.</p>
 
 | Param | Type |
 | --- | --- |
@@ -245,13 +261,15 @@ let block = await networkClient.getBlock(1234);
 
 <a name="AleoNetworkClient+getBlockRange"></a>
 
+---
+
 ### getBlockRange
+
+<p>Returns a range of blocks between the specified block heights.</p>
 
 ```javascript
 networkClient.getBlockRange(start, end) ⇒ Promise.<Array.<BlockJSON>>
 ```
-
-<p>Returns a range of blocks between the specified block heights.</p>
 
 | Param | Type |
 | --- | --- |
@@ -266,13 +284,15 @@ let blockRange = await networkClient.getBlockRange(2050, 2100);
 
 <a name="AleoNetworkClient+getProgram"></a>
 
+---
+
 ### getProgram
+
+<p>Returns the source code of a program given a program ID.</p>
 
 ```javascript
 networkClient.getProgram(programId) ⇒ Promise.<string>
 ```
-
-<p>Returns the source code of a program given a program ID.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -288,13 +308,15 @@ assert.equal(program, expectedSource);
 
 <a name="AleoNetworkClient+getProgramObject"></a>
 
+---
+
 ### getProgramObject
+
+<p>Returns a program object from a program ID or program source code.</p>
 
 ```javascript
 networkClient.getProgramObject(inputProgram) ⇒ Promise.<Program>
 ```
-
-<p>Returns a program object from a program ID or program source code.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -316,13 +338,15 @@ assert.equal(programObjectFromID.to_string(), programObjectFromSource.to_string(
 
 <a name="AleoNetworkClient+getProgramImports"></a>
 
+---
+
 ### getProgramImports
+
+<p>Returns an object containing the source code of a program and the source code of all programs it imports</p>
 
 ```javascript
 networkClient.getProgramImports(inputProgram) ⇒ Promise.<ProgramImports>
 ```
-
-<p>Returns an object containing the source code of a program and the source code of all programs it imports</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -353,13 +377,15 @@ assert.deepStrictEqual(programImports, expectedImports);
 
 <a name="AleoNetworkClient+getProgramImportNames"></a>
 
+---
+
 ### getProgramImportNames
+
+<p>Get a list of the program names that a program imports.</p>
 
 ```javascript
 networkClient.getProgramImportNames(inputProgram) ⇒ Array.<string>
 ```
-
-<p>Get a list of the program names that a program imports.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -375,13 +401,15 @@ assert.deepStrictEqual(programImportsNames, expectedImportsNames);
 
 <a name="AleoNetworkClient+getDeploymentTransactionIDForProgram"></a>
 
+---
+
 ### getDeploymentTransactionIDForProgram
+
+<p>Returns the deployment transaction id associated with the specified program.</p>
 
 ```javascript
 networkClient.getDeploymentTransactionIDForProgram(program) ⇒ TransactionJSON
 ```
-
-<p>Returns the deployment transaction id associated with the specified program.</p>
 
 | Param | Type |
 | --- | --- |
@@ -395,13 +423,15 @@ let program = networkClient.getDeploymentTransactionIDForProgram("foo.aleo");
 
 <a name="AleoNetworkClient+getDeploymentTransactionForProgram"></a>
 
+---
+
 ### getDeploymentTransactionForProgram
+
+<p>Returns the deployment transaction associated with a specified program.</p>
 
 ```javascript
 networkClient.getDeploymentTransactionForProgram(program) ⇒ TransactionJSON
 ```
-
-<p>Returns the deployment transaction associated with a specified program.</p>
 
 | Param | Type |
 | --- | --- |
@@ -415,13 +445,15 @@ let program = networkClient.getDeploymentTransactionForProgram("foo.aleo");
 
 <a name="AleoNetworkClient+getDeploymentTransactionObjectForProgram"></a>
 
+---
+
 ### getDeploymentTransactionObjectForProgram
+
+<p>Returns the deployment transaction associated with a specified program as a wasm object.</p>
 
 ```javascript
 networkClient.getDeploymentTransactionObjectForProgram(program) ⇒ TransactionJSON
 ```
-
-<p>Returns the deployment transaction associated with a specified program as a wasm object.</p>
 
 | Param | Type |
 | --- | --- |
@@ -430,13 +462,15 @@ networkClient.getDeploymentTransactionObjectForProgram(program) ⇒ TransactionJ
 
 <a name="AleoNetworkClient+getProgramMappingNames"></a>
 
+---
+
 ### getProgramMappingNames
+
+<p>Returns the names of the mappings of a program.</p>
 
 ```javascript
 networkClient.getProgramMappingNames(programId) ⇒ Promise.<Array.<string>>
 ```
-
-<p>Returns the names of the mappings of a program.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -460,13 +494,15 @@ assert.deepStrictEqual(mappings, expectedMappings);
 
 <a name="AleoNetworkClient+getProgramMappingValue"></a>
 
+---
+
 ### getProgramMappingValue
+
+<p>Returns the value of a program's mapping for a specific key.</p>
 
 ```javascript
 networkClient.getProgramMappingValue(programId, mappingName, key) ⇒ Promise.<string>
 ```
-
-<p>Returns the value of a program's mapping for a specific key.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -485,13 +521,15 @@ assert.equal(mappingValue, expectedValue);
 
 <a name="AleoNetworkClient+getProgramMappingPlaintext"></a>
 
+---
+
 ### getProgramMappingPlaintext
+
+<p>Returns the value of a mapping as a wasm Plaintext object. Returning an object in this format allows it to be converted to a Js type and for its internal members to be inspected if it's a struct or array.</p>
 
 ```javascript
 networkClient.getProgramMappingPlaintext(programId, mappingName, key) ⇒ Promise.<string>
 ```
-
-<p>Returns the value of a mapping as a wasm Plaintext object. Returning an object in this format allows it to be converted to a Js type and for its internal members to be inspected if it's a struct or array.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -525,13 +563,15 @@ assert.equal(unbondedState, expectedState);
 
 <a name="AleoNetworkClient+getLatestBlock"></a>
 
+---
+
 ### getLatestBlock
+
+<p>Returns the contents of the latest block.</p>
 
 ```javascript
 networkClient.getLatestBlock() ⇒ Promise.<BlockJSON>
 ```
-
-<p>Returns the contents of the latest block.</p>
 
 | Param | Type |
 | --- | --- |
@@ -544,13 +584,15 @@ let latestHeight = await networkClient.getLatestBlock();
 
 <a name="AleoNetworkClient+getLatestHeight"></a>
 
+---
+
 ### getLatestHeight
+
+<p>Returns the latest block height.</p>
 
 ```javascript
 networkClient.getLatestHeight() ⇒ Promise.<number>
 ```
-
-<p>Returns the latest block height.</p>
 
 | Param | Type |
 | --- | --- |
@@ -563,13 +605,15 @@ let latestHeight = await networkClient.getLatestHeight();
 
 <a name="AleoNetworkClient+getLatestCommittee"></a>
 
+---
+
 ### getLatestCommittee
+
+<p>Returns the latest committee.</p>
 
 ```javascript
 networkClient.getLatestCommittee() ⇒ Promise.<object>
 ```
-
-<p>Returns the latest committee.</p>
 
 | Param | Type |
 | --- | --- |
@@ -582,13 +626,15 @@ let latestCommittee = await networkClient.getLatestCommittee();
 
 <a name="AleoNetworkClient+getStateRoot"></a>
 
+---
+
 ### getStateRoot
+
+<p>Returns the latest state/merkle root of the Aleo blockchain.</p>
 
 ```javascript
 networkClient.getStateRoot() ⇒ Promise.<string>
 ```
-
-<p>Returns the latest state/merkle root of the Aleo blockchain.</p>
 
 | Param | Type |
 | --- | --- |
@@ -601,13 +647,15 @@ let stateRoot = await networkClient.getStateRoot();
 
 <a name="AleoNetworkClient+getTransaction"></a>
 
+---
+
 ### getTransaction
+
+<p>Returns a transaction by its unique identifier.</p>
 
 ```javascript
 networkClient.getTransaction(id) ⇒ Promise.<TransactionJSON>
 ```
-
-<p>Returns a transaction by its unique identifier.</p>
 
 | Param | Type |
 | --- | --- |
@@ -621,13 +669,15 @@ let transaction = await networkClient.getTransaction("at1handz9xjrqeynjrr0xay4pc
 
 <a name="AleoNetworkClient+getTransactionObject"></a>
 
+---
+
 ### getTransactionObject
+
+<p>Returns a transaction as a wasm object. Getting a transaction of this type will allow the ability for the inputs, outputs, and records to be searched for and displayed.</p>
 
 ```javascript
 networkClient.getTransactionObject(transactionId) ⇒ Promise.<Transaction>
 ```
-
-<p>Returns a transaction as a wasm object. Getting a transaction of this type will allow the ability for the inputs, outputs, and records to be searched for and displayed.</p>
 
 | Param | Type |
 | --- | --- |
@@ -656,13 +706,15 @@ const transactionSummary = transactionObject.summary();
 
 <a name="AleoNetworkClient+getTransactions"></a>
 
+---
+
 ### getTransactions
+
+<p>Returns the transactions present at the specified block height.</p>
 
 ```javascript
 networkClient.getTransactions(height) ⇒ Promise.<Array.<ConfirmedTransactionJSON>>
 ```
-
-<p>Returns the transactions present at the specified block height.</p>
 
 | Param | Type |
 | --- | --- |
@@ -676,13 +728,15 @@ let transactions = await networkClient.getTransactions(654);
 
 <a name="AleoNetworkClient+getTransactionsInMempool"></a>
 
+---
+
 ### getTransactionsInMempool
+
+<p>Returns the transactions in the memory pool. This method requires access to a validator's REST API.</p>
 
 ```javascript
 networkClient.getTransactionsInMempool() ⇒ Promise.<Array.<TransactionJSON>>
 ```
-
-<p>Returns the transactions in the memory pool. This method requires access to a validator's REST API.</p>
 
 | Param | Type |
 | --- | --- |
@@ -695,13 +749,15 @@ let transactions = await networkClient.getTransactionsInMempool();
 
 <a name="AleoNetworkClient+getTransitionId"></a>
 
+---
+
 ### getTransitionId
+
+<p>Returns the transition ID of the transition corresponding to the ID of the input or output.</p>
 
 ```javascript
 networkClient.getTransitionId(inputOrOutputID) ⇒ Promise.<string>
 ```
-
-<p>Returns the transition ID of the transition corresponding to the ID of the input or output.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -715,13 +771,15 @@ let transition = await networkClient.getTransitionId("24292328552368309261443563
 
 <a name="AleoNetworkClient+submitTransaction"></a>
 
+---
+
 ### submitTransaction
+
+<p>Submit an execute or deployment transaction to the Aleo network.</p>
 
 ```javascript
 networkClient.submitTransaction(transaction) ⇒ string
 ```
-
-<p>Submit an execute or deployment transaction to the Aleo network.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -730,13 +788,15 @@ networkClient.submitTransaction(transaction) ⇒ string
 
 <a name="AleoNetworkClient+submitSolution"></a>
 
+---
+
 ### submitSolution
+
+<p>Submit a solution to the Aleo network.</p>
 
 ```javascript
 networkClient.submitSolution(solution) ⇒ Promise.<string>
 ```
-
-<p>Submit a solution to the Aleo network.</p>
 
 | Param | Type | Description |
 | --- | --- | --- |
