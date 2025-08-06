@@ -45,8 +45,7 @@ The Provable SDK provides the following functionality (Click to see examples):
         * [Deploy Programs](#27-deploy-a-new-program-to-the-aleo-network)
         * [React Example](#28-react-example)
     * [Aleo Credit Transfers](#3-aleo-credit-transfers)
-        * [Aleo Credits](#31-aleo-credits)
-        * [Transfer Aleo Credits](#32-transfer-aleo-credits)
+        * [Transfer Aleo Credits](#31-transfer-aleo-credits)
         * [Check Public Balances](#32-checking-public-balances)
     * [Program Data and Private State](#4-managing-program-data-and-private-state)
         * [Private State Data: Records](#41-private-state-data-records)
@@ -677,122 +676,13 @@ A full example of this implementation can be found [here](https://github.com/pro
 
 ## 3. Aleo Credit Transfers
 
-### 3.1 Aleo Credits
+### 3.1 Transfer Aleo Credits
 
 The official token of operation of the Aleo Network are Aleo credits. Aleo credits are used to pay all fees for program
-execution on the Aleo network.
+execution on the Aleo network. Please refer [here](../../../concepts/fundamentals/08_transfers.md) for more information about Aleo credits. 
 
-
-
-Aleo credits are defined in the [credits.aleo](https://explorer.aleo.org/program/credits.aleo) program. This program is
-deployed to the Aleo Network and defines data structures representing Aleo credits and the functions used to manage them.
-
-
-
-There are two ways to hold Aleo credits.
-
-#### 1 - Private balances via credits.aleo records
-The first method is owning a `credits` record which enables a participant in the Aleo
-network to hold a private balance of Aleo credits.
-```
-record credits:
-    owner as address.private;
-    microcredits as u64.private;
-```
-
-A user's total private credits balance will consist of all unspent `credits` records owned by the user with a nonzero
-`microcredits` value.
-
-#### 2 - Public balances via credits.aleo account mapping
-The second is by holding a `balance` in the `account` mapping in the `credits.aleo` program on the Aleo Network.
-
-```
-mapping account:
-    key owner as address.public;
-    value microcredits as u64.public;
-```
-
-The total public credits balance of a user is the value of account mapping at the user's address. Users can hold both private and public balances simultaneously.
-
-More information about `records` and `mappings` and how they related to private and public balances are explained in the
-[Managing Program Data and Private State](#4-managing-program-data-and-private-state) section.
-
-### 3.2 Transfer Aleo Credits
-The `ProgramManager` allows transfers of aleo credits via the `transfer` method. This function executes the credits.aleo
-program under the hood.
-
-There are four transfer functions available.
-
-#### 1. transfer_private
-
-Takes a `credits` record of owned by the sender, subtracts an amount from it, and adds that amount
-to a new record owned by the receiver. This function is %100 private and does not affect the `account` mapping.
-
-```mermaid
-graph LR
-    user1--record1 \n owner: user1address \n balance: 10000u64-->t1[transfer_private]
-    user1--amount: 4000u64-->t1
-    t1-.record2 \n owner: user1address \n amount: 6000u64.->user1
-    t1--record3  \n owner: user2address \n balance: 4000u64-->user2
-
-```
-
-#### 2. transfer_private_to_public
-Takes a `credits` record of owned by the sender, subtracts an amount from it, and adds
-that amount to the `account` mapping of the receiver. This function is %50 private and %50 public. It consumes a record
-as a private input and generates a public balance in the `account` mapping entry belonging to the receiver.
-
-```mermaid
-graph LR
-    subgraph credits.aleo
-        m1[account mapping \n key: user3address \n value: 3000u64]
-    end
-    user1--record3 \n owner: user2address \n balance: 4000u64-->t1[transfer_private_to_public]
-    t1-.record4 \n owner: user2address \n amount: 1000u64.->user1
-    t1--amount 3000u64-->m1
-```
-
-#### 3. transfer_public
-
-Subtracts an amount of `credits` stored in the `account` mapping of the `credits.aleo program`, and
-adds that amount to the `account` mapping of the receiver. This function is 100% public and does not consume or generate
-any records.
-
-```mermaid
-graph LR
-    subgraph credits.aleo account mappings - state 2
-        m3[account mapping \n key: user4address \n value: 3000u64]
-        m4[account mapping \n key: user3address \n value: 0u64]
-    end
-    
-    subgraph credits.aleo account mappings - state 1
-        m2[account mapping \n key: user3address \n value: 3000u64]--transfer_public \n recipient: user4address \n amount: 3000u64-->m3
-        m1[account mapping \n key: user4address \n value: N/A]
-    end
-```
-
-#### 4. transfer_public_to_private
-Subtracts an amount `credits` stored in the `account` mapping of the `credits.aleo program`
-and adds that amount to a new private record owned by the receiver. This function is %50 private and %50 public.
-It publicly consumes a balance in the `account` mapping entry belonging to the sender and generates a private record
-as a private output.
-
-```mermaid
-graph LR
-    subgraph credits.aleo account mappings - state 2
-        m2[account mapping \n key: user5address \n value: 0u64]
-    end
-    
-    subgraph credits.aleo account mappings - state 1
-        m1[account mapping \n key: user5address \n value: 3000u64]
-    end
-
-    m1--recipient: user6address \n amount: 3000u64-->transfer_public_to_private
-    transfer_public_to_private--record5 \n owner: user6address \n amount: 3000u64-->user6
-```
-
-All four of these functions can be used to transfer credits between users via the `transfer` function in the
-`ProgramManager` by specifying the transfer type as the third argument.
+The `transfer` functions can be used to transfer credits between users in the
+`ProgramManager` by specifying the transfer type as the third argument. Below is an example of how the SDK can be used to transfer Aleo credits.
 
 ```typescript
 import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNetworkClient } from '@provable/sdk';
