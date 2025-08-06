@@ -6,13 +6,17 @@ sidebar_label: Program Upgrades
 
 Traditionally, blockchain development has been defined by immutable, "deploy-once" contracts. This provides security but makes it hard to fix bugs or add features. To solve this, Aleo introduces a framework for program upgradability that is timely, cost-effective, and doesn't disrupt your application's state.
 
-This framework moves Aleo development from a static model to a dynamic one, allowing applications to evolve. It lets you modify program logic after deployment, so you can patch vulnerabilities, improve features, and adapt to user needs without a complex and costly state migration. This capability isn't on by default, it's a choice you make when you first create your program.
+This framework moves Aleo development from a static model to a dynamic one, allowing applications to evolve. 
+It lets you modify program logic after deployment, so you can patch vulnerabilities, improve features, and adapt to user needs without a complex and costly state migration. 
+Developers are required to design upgradability at the start and reason about the lifecycle of their programs.
 
 This guide covers how this feature works, its security implications, and the rules you need to follow.
 
 ## Constructor
 
-The `constructor` is a special block of code that acts as the sole gateway for enabling and managing upgrades. Including a `constructor` in your program's code at its initial deployment is the only way to make it upgradable. Programs deployed after program upgradability is supported must all have constructors. Developers have the freedom to implement the `constructor` logic as they see fit, allowing for flexibility in how upgrades are handled. 
+The `constructor` is a special block of code that acts as the sole gateway for enabling and managing upgrades. Including a `constructor` in your program's code at its initial deployment is the only way to make it upgradable. 
+Programs deployed after program upgradability is supported must all have **non-empty** constructors. 
+Developers have the freedom to implement the `constructor` logic as they see fit, allowing for flexibility in how upgrades are handled. 
 
 Its behavior is strictly defined:
 
@@ -28,17 +32,17 @@ Mutability is a feature you must explicitly design into your program from the st
 
 Alongside the `constructor`, the AVM also provides three new metadata operands. These give you on-chain, verifiable information about the program's state, allowing you to write secure upgrade rules.
 
-**`<PROGRAM_ID>/edition`**
+**`<PROGRAM_ID>/edition` | `edition` **
   *   **Description:** An unsigned 16-bit integer (`u16`) that acts as the program's version number.
   *   **Rules:** The `edition` must be `0u16` for the initial deployment. For every valid upgrade, it must increment by exactly 1.
   *   **Scope:** This operand is exclusively available within the `finalize` scope.
 
-**`<PROGRAM_ID>/checksum`**
+**`<PROGRAM_ID>/checksum` | `edition`**
   *   **Description:** A 32-byte array (`[u8; 32u32]`) representing the SHA3-256 hash of the program string. It's a unique fingerprint of the program's code.
   *   **Rules:** The `checksum` is required in any deployment of an upgradable program and is used to verify that the deployed code is what was expected.
   *   **Scope:** This operand is exclusively available within the `finalize` scope.
 
-**`<PROGRAM_ID>/program_owner`**
+**`<PROGRAM_ID>/program_owner` | `program_owner`**
   *   **Description:** The `address` of the account that submitted the deployment transaction.
   *   **Rules:** The `program_owner` is required in any deployment of an upgradable program.
   *   **Scope:** This operand is exclusively available within the `finalize` scope.
@@ -320,14 +324,14 @@ If using this pattern, we recommend you make your program upgradable, in case yo
 
 ## Quick Reference Summary
 
-| Concept | Mechanism | Critical Takeaway |
-| :--- | :--- | :--- |
-| **Enabling Upgradability** | Inclusion of a `constructor` block at initial deployment. | No `constructor`, no upgrades. This decision is irreversible. |
-| **Legacy Program Status** | Programs deployed before the feature lack a `constructor`. | Permanently non-upgradable.  |
-| **Upgrade Authority** | The immutable logic within the `constructor`. | Your `constructor` is your governance. Its logic is permanent. |
-| **Core Risk** | The `constructor` logic itself is immutable and cannot be patched. | A bug in the `constructor` is permanent. Audit this code with extreme care. |
-| **Valid Upgrade Changes** | Modify logic in `function`s/`finalize`; add new components. | Interfaces (function signatures, existing data structures) cannot be changed or removed. |
-| **Program Ossification** | Logic in the `constructor` to permanently revoke upgrade authority. | Provide a path to make your program immutable to build long-term user trust. |
+| Concept | Mechanism                                                           | Critical Takeaway                                                                        |
+| :--- |:--------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| **Enabling Upgradability** | All new programs must specify how they will handle upgrades.        | Know your upgrade.                                                                       |
+| **Legacy Program Status** | Programs deployed before the feature lack a `constructor`.          | Permanently non-upgradable.                                                              |
+| **Upgrade Authority** | The immutable logic within the `constructor`.                       | Your `constructor` is your governance. Its logic is permanent.                           |
+| **Core Risk** | The `constructor` logic itself is immutable and cannot be patched.  | A bug in the `constructor` is permanent. Audit this code with extreme care.              |
+| **Valid Upgrade Changes** | Modify logic in `function`s/`finalize`; add new components.         | Interfaces (function signatures, existing data structures) cannot be changed or removed. |
+| **Program Ossification** | Logic in the `constructor` to permanently revoke upgrade authority. | Provide a path to make your program immutable to build long-term user trust.             |
 
 ## Pre-Upgradability Programs
 
