@@ -113,6 +113,9 @@ account.encryptAccount(ciphertext) ⇒ PrivateKeyCiphertext
 let account = new Account();
 let ciphertext = account.encryptAccount("password");
 ```
+
+---
+
 <a name="Account+decryptRecord"></a>
 
 ### decryptRecord
@@ -135,6 +138,9 @@ account.decryptRecord(ciphertext) ⇒ Record
 let account = new Account();
 let record = account.decryptRecord("record1ciphertext");
 ```
+
+---
+
 <a name="Account+decryptRecords"></a>
 
 ### decryptRecords
@@ -157,6 +163,9 @@ account.decryptRecords(ciphertexts) ⇒ Array.<Record>
 let account = new Account();
 let record = account.decryptRecords(["record1ciphertext", "record2ciphertext"]);
 ```
+
+---
+
 <a name="Account+ownsRecordCiphertext"></a>
 
 ### ownsRecordCiphertext
@@ -192,6 +201,9 @@ if account.ownsRecord(recordCipherText) {
     // Etc.
 }
 ```
+
+---
+
 <a name="Account+sign"></a>
 
 ### sign
@@ -216,6 +228,9 @@ let account = new Account();
 let message = Uint8Array.from([104, 101, 108, 108, 111 119, 111, 114, 108, 100])
 account.sign(message);
 ```
+
+---
+
 <a name="Account+verify"></a>
 
 ### verify
@@ -241,6 +256,9 @@ let message = Uint8Array.from([104, 101, 108, 108, 111 119, 111, 114, 108, 100])
 let signature = account.sign(message);
 account.verify(message, signature);
 ```
+
+---
+
 <a name="Account.fromCiphertext"></a>
 
 ### fromCiphertext

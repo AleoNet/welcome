@@ -10,10 +10,14 @@ Cryptographic signature of a message signed by an Aleo account
 
 ## Methods
 
-### `sign(private_key, message) ► Signature`
- 
+### sign
+
 
 Sign a message with a private key
+
+```javascript
+sign(private_key, message) ► Signature
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -23,10 +27,14 @@ __*return*__ | Signature | *Signature of the message*
 
 ---
 
-### `to_address() ► Address`
+### to_address
 
 
 Get an address from a signature.
+
+```javascript
+to_address() ► Address
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -34,32 +42,44 @@ __*return*__ | Address | *Address object*
 
 ---
 
-### `challenge() ► Scalar`
+### challenge
 
 
 Get the challenge of a signature.
 
+```javascript
+challenge() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `response() ► Scalar`
+### response
 
 
 Get the response of a signature.
 
+```javascript
+response() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `verify(address, message) ► boolean`
+### verify
 
 
 Verify a signature of a message with an address
+
+```javascript
+verify(address, message) ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -69,10 +89,14 @@ __*return*__ | `boolean` | *True if the signature is valid, false otherwise*
 
 ---
 
-### `fromBytesLe(bytes) ► Signature`
- 
+### fromBytesLe
+
 
 Get a signature from a series of bytes.
+
+```javascript
+fromBytesLe(bytes) ► Signature
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -81,10 +105,14 @@ __*return*__ | Signature | *The signature object.*
 
 ---
 
-### `toBytesLe() ► Uint8Array`
+### toBytesLe
 
 
 Get the left endian byte array representation of the signature.
+
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -92,10 +120,14 @@ __*return*__ | `Uint8Array` | **
 
 ---
 
-### `fromBitsLe(bits) ► Signature`
- 
+### fromBitsLe
+
 
 Get a signature from a series of bits represented as a boolean array.
+
+```javascript
+fromBitsLe(bits) ► Signature
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -104,32 +136,44 @@ __*return*__ | Signature | *The signature object.*
 
 ---
 
-### `toBitsLe() ► Array.<any>`
+### toBitsLe
 
 
 Get the left endian boolean array representation of the bits of the signature.
 
+```javascript
+toBitsLe() ► Array.<any>
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `Array.<any>` | **
 
 ---
 
-### `toFields() ► Array.<any>`
+### toFields
 
 
 Get the field array representation of the signature.
 
+```javascript
+toFields() ► Array.<any>
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `Array.<any>` | **
 
 ---
 
-### `from_string(signature) ► Signature`
- 
+### from_string
+
 
 Get a signature from a string representation of a signature
+
+```javascript
+from_string(signature) ► Signature
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -138,10 +182,14 @@ __*return*__ | Signature | *Signature*
 
 ---
 
-### `to_string() ► string`
+### to_string
 
 
 Get a string representation of a signature
+
+```javascript
+to_string() ► string
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -149,10 +197,14 @@ __*return*__ | `string` | *String representation of a signature*
 
 ---
 
-### `toPlaintext() ► Plaintext`
+### toPlaintext
 
 
 Get the plaintext representation of the signature.
+
+```javascript
+toPlaintext() ► Plaintext
+```
 
 Parameters | Type | Description
 --- | --- | ---

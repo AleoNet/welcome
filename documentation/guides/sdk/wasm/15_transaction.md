@@ -13,10 +13,14 @@ object that should be submitted to the Aleo Network in order to deploy or execut
 
 ## Methods
 
-### `fromString(transaction) ► Transaction`
- 
+### fromString
+
 
 Create a transaction from a string
+
+```javascript
+fromString(transaction) ► Transaction
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -25,10 +29,14 @@ __*return*__ | Transaction | **
 
 ---
 
-### `fromBytesLe(Uint8Array) ► Transaction`
- 
+### fromBytesLe
+
 
 Create a transaction from a Uint8Array of left endian bytes.
+
+```javascript
+fromBytesLe(Uint8Array) ► Transaction
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -37,11 +45,15 @@ __*return*__ | Transaction | **
 
 ---
 
-### `toString() ► string`
+### toString
 
 
 Get the transaction as a string. If you want to submit this transaction to the Aleo Network
 this function will create the string that should be submitted in the &#x60;POST&#x60; data.
+
+```javascript
+toString() ► string
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -49,10 +61,14 @@ __*return*__ | `string` | *String representation of the transaction*
 
 ---
 
-### `toBytesLe() ► Uint8Array`
+### toBytesLe
 
 
 Get the transaction as a Uint8Array of left endian bytes.
+
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -60,10 +76,14 @@ __*return*__ | `Uint8Array` | *Uint8Array representation of the transaction*
 
 ---
 
-### `constainsSerialNumber(True) ► boolean`
+### constainsSerialNumber
 
 
 Returns true if the transaction contains the given serial number.
+
+```javascript
+constainsSerialNumber(True) ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -72,10 +92,14 @@ __*return*__ | `boolean` | **
 
 ---
 
-### `constainsCommitment(True) ► boolean`
+### constainsCommitment
 
 
 Returns true if the transaction contains the given commitment.
+
+```javascript
+constainsCommitment(True) ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -84,10 +108,14 @@ __*return*__ | `boolean` | **
 
 ---
 
-### `findRecord(commitment) ► RecordCiphertext`
+### findRecord
 
 
 Find a record in the transaction by the records commitment.
+
+```javascript
+findRecord(commitment) ► RecordCiphertext
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -96,45 +124,61 @@ __*return*__ | RecordCiphertext | **
 
 ---
 
-### `baseFeeAmount() ► BigInt`
+### baseFeeAmount
 
 
 Returns the transaction's base fee.
 
+```javascript
+baseFeeAmount() ► BigInt
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `BigInt` | **
 
 ---
 
-### `feeAmount() ► BigInt`
+### feeAmount
 
 
 Returns the transaction's total fee.
 
+```javascript
+feeAmount() ► BigInt
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `BigInt` | **
 
 ---
 
-### `priorityFeeAmount() ► BigInt`
+### priorityFeeAmount
 
 
 Returns the transaction's priority fee.
 
 returns {BigInt} The transaction's priority fee.
 
+```javascript
+priorityFeeAmount() ► BigInt
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `BigInt` | **
 
 ---
 
-### `isDeploy() ► boolean`
+### isDeploy
 
 
 Returns true if the transaction is a deployment transaction.
+
+```javascript
+isDeploy() ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -142,10 +186,14 @@ __*return*__ | `boolean` | *True if the transaction is a deployment transaction*
 
 ---
 
-### `isExecute() ► boolean`
+### isExecute
 
 
 Returns true if the transaction is an execution transaction.
+
+```javascript
+isExecute() ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -153,10 +201,14 @@ __*return*__ | `boolean` | *True if the transaction is an execution transaction*
 
 ---
 
-### `isFee() ► boolean`
+### isFee
 
 
 Returns true if the transaction is a fee transaction.
+
+```javascript
+isFee() ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -164,11 +216,15 @@ __*return*__ | `boolean` | *True if the transaction is a fee transaction*
 
 ---
 
-### `deployedProgram() ► Program`
+### deployedProgram
 
 
 Returns the program deployed within the transaction if the transaction is a deployment
 transaction.
+
+```javascript
+deployedProgram() ► Program
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -176,10 +232,14 @@ __*return*__ | Program | *The program deployed within the transaction.*
 
 ---
 
-### `execution() ► Execution`
+### execution
 
 
 Returns the execution within the transaction (if present).
+
+```javascript
+execution() ► Execution
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -187,10 +247,14 @@ __*return*__ | Execution | *The execution within the transaction.*
 
 ---
 
-### `ownedRecords(view_key) ► Array.<RecordPlaintext>`
+### ownedRecords
 
 
 Get the record plaintext present in a transaction owned by a specific view key.
+
+```javascript
+ownedRecords(view_key) ► Array.<RecordPlaintext>
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -199,10 +263,14 @@ __*return*__ | `Array.<RecordPlaintext>` | *Array of record plaintext objects*
 
 ---
 
-### `records() ► Array.<{commitment: Field, record: RecordCiphertext}>`
+### records
 
 
 Get the records present in a transaction and their commitments.
+
+```javascript
+records() ► Array.<{commitment: Field, record: RecordCiphertext}>
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -210,7 +278,7 @@ __*return*__ | `Array.<{commitment: Field, record: RecordCiphertext}>` | *Array 
 
 ---
 
-### `summary(convert_to_js) ► Object`
+### summary
 
 
 Get a summary of the transaction within a javascript object.
@@ -221,6 +289,10 @@ transitions and their inputs and outputs.
 If the transaction is a deployment transaction, this function will return the program id and
 a list of the functions and their verifying keys, constraint, and variable counts.
 
+```javascript
+summary(convert_to_js) ► Object
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __convert_to_js__ | `boolean` | *If true the inputs and outputs will be converted to JS objects,
@@ -229,7 +301,7 @@ __*return*__ | `Object` | *Transaction summary*
 
 ---
 
-### `id() ► string`
+### id
 
 
 Get the id of the transaction. This is the merkle root of the transactions inclusion proof.
@@ -238,16 +310,24 @@ This value can be used to query the status of the transaction on the Aleo Networ
 if it was successful. If successful, the transaction will be included in a block and this
 value can be used to lookup the transaction data on-chain.
 
+```javascript
+id() ► string
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | `string` | *TransactionId*
 
 ---
 
-### `transactionType() ► string`
+### transactionType
 
 
 Get the type of the transaction (will return &quot;deploy&quot; or &quot;execute&quot;)
+
+```javascript
+transactionType() ► string
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -255,10 +335,14 @@ __*return*__ | `string` | *Transaction type*
 
 ---
 
-### `transitions() ► Array.<Transition>`
+### transitions
 
 
 Get the transitions in a transaction.
+
+```javascript
+transitions() ► Array.<Transition>
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -266,10 +350,14 @@ __*return*__ | `Array.<Transition>` | *Array of transition objects*
 
 ---
 
-### `verifyingKeys() ► Array.<Object>`
+### verifyingKeys
 
 
 Get the verifying keys in a transaction.
+
+```javascript
+verifyingKeys() ► Array.<Object>
+```
 
 Parameters | Type | Description
 --- | --- | ---

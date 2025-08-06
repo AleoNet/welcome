@@ -88,6 +88,8 @@ networkClient.setHost(host)
 let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable.com/v1");
 ```
 
+---
+
 <a name="AleoNetworkClient+setAccount"></a>
 
 ---
@@ -110,6 +112,8 @@ let account = new Account();
 networkClient.setAccount(account);
 ```
 
+---
+
 <a name="AleoNetworkClient+getAccount"></a>
 
 ---
@@ -130,6 +134,8 @@ networkClient.getAccount() ⇒ Account
 ```js
 let account = networkClient.getAccount();
 ```
+
+---
 
 <a name="AleoNetworkClient+fetchData"></a>
 

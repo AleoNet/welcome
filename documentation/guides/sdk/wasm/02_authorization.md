@@ -1,181 +1,289 @@
 ---
-id: authorization
 title: Authorization
 sidebar_label: Authorization
 ---
 
-## Class `Authorization`
+<a name="Authorization"></a>
 
-Authorization object containing the authorization for a transaction.
+## Overview
 
-### Methods
-
-### `new(request) ► Authorization`
- 
-
-Create a new authorization from a request object.
-
-Parameters | Type | Description
---- | --- | ---
-__request__ | `ExecutionRequest` | *The ExecutionRequest to build the authorization from.*
-__*return*__ | Authorization | **
-
----
-
-### `replicate() ► Authorization`
+<p>Authorization object containing the authorization for a transaction. This class provides methods for creating, manipulating, and querying authorization objects that are used in Aleo transactions to authorize program executions.</p>
 
 
-Returns a new and independent replica of the Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Authorization | **
+## Methods
 
----
+<a name="Authorization.new"></a>
 
-### `toString() ► string`
+### new
+
+<p>Create a new authorization from a request object</p>
+
+```javascript
+new(request) ► Authorization
+```
 
 
-Returns the string representation of the Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| request | <code>ExecutionRequest</code> | The ExecutionRequest to build the authorization from |
+| *return* | <code>Authorization</code> |
 
 ---
 
-### `fromString(authorization) ► Authorization`
- 
+<a name="Authorization+replicate"></a>
 
-Reconstructs an Authorization object from its string representation.
+### replicate
 
-Parameters | Type | Description
---- | --- | ---
-__authorization__ | `String` | *The string representation of the Authorization.*
-__*return*__ | Authorization | **
+<p>Returns a new and independent replica of the Authorization</p>
 
----
-
-### `toBytesLe() ► Uint8Array`
+```javascript
+replicate() ► Authorization
+```
 
 
-Returns the left-endian byte representation of the Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Uint8Array` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Authorization</code> |
 
 ---
 
-### `fromBytesLe(bytes) ► Authorization`
- 
+<a name="Authorization+toString"></a>
 
-Creates an authorization object from a left-endian byte representation of an Authorization.
+### toString
 
-Parameters | Type | Description
---- | --- | ---
-__bytes__ | `Uint8Array` | *Left-endian bytes representing the Authorization.*
-__*return*__ | Authorization | **
+<p>Returns the string representation of the Authorization</p>
 
----
-
-### `equals(other) ► boolean`
+```javascript
+toString() ► string
+```
 
 
-Check if an Authorization object is the same as another.
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Authorization | *The Authorization object to determine equality with.*
-__*return*__ | `boolean` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> |
 
 ---
 
-### `len() ► number`
+<a name="Authorization.fromString"></a>
+
+### fromString
+
+<p>Reconstructs an Authorization object from its string representation</p>
+
+```javascript
+fromString(authorization) ► Authorization
+```
 
 
-Returns the number of &#x60;Request&#x60;s in the Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `number` | **
-
----
-
-### `isEmpty() ► boolean`
-
-
-Return &#x60;true&#x60; if the Authorization is empty.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `boolean` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| authorization | <code>String</code> | The string representation of the Authorization |
+| *return* | <code>Authorization</code> |
 
 ---
 
-### `isFeePrivate() ► boolean`
+<a name="Authorization+toBytesLe"></a>
+
+### toBytesLe
+
+<p>Returns the left-endian byte representation of the Authorization</p>
+
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 
-Returns &#x60;true&#x60; if the Authorization is for &#x60;credits.aleo/fee_private&#x60;.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `boolean` | **
-
----
-
-### `isFeePublic() ► boolean`
-
-
-Returns &#x60;true&#x60; if the Authorization is for &#x60;credits.aleo/fee_public&#x60;.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `boolean` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Uint8Array</code> |
 
 ---
 
-### `isSplit() ► boolean`
+<a name="Authorization.fromBytesLe"></a>
+
+### fromBytesLe
+
+<p>Creates an authorization object from a left-endian byte representation of an Authorization</p>
+
+```javascript
+fromBytesLe(bytes) ► Authorization
+```
 
 
-Returns &#x60;true&#x60; if the Authorization is for &#x60;credits.aleo/split&#x60;.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `boolean` | **
-
----
-
-### `insertTransition(transition) ► void`
-
-
-Insert a transition into the Authorization.
-
-Parameters | Type | Description
---- | --- | ---
-__transition__ | `Transition` | *The transition object to insert into the Authorization.*
-__*return*__ | `void` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bytes | <code>Uint8Array</code> | Left-endian bytes representing the Authorization |
+| *return* | <code>Authorization</code> |
 
 ---
 
-### `transitions() ► Array.<Transition>`
+<a name="Authorization+equals"></a>
+
+### equals
+
+<p>Check if an Authorization object is the same as another</p>
+
+```javascript
+equals(other) ► boolean
+```
 
 
-Get the transitions in an Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<Transition>` | *Array of transition objects*
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Authorization</code> | The Authorization object to determine equality with |
+| *return* | <code>boolean</code> |
 
 ---
 
-### `toExecutionId() ► Field`
+<a name="Authorization+len"></a>
+
+### len
+
+<p>Returns the number of Requests in the Authorization</p>
+
+```javascript
+len() ► number
+```
 
 
-Returns the execution ID for the Authorization.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | *The execution ID for the Authorization, call toString() after this result to get the string representation.*
+| Param | Type |
+| --- | --- |
+| *return* | <code>number</code> |
 
---- 
+---
+
+<a name="Authorization+isEmpty"></a>
+
+### isEmpty
+
+<p>Return true if the Authorization is empty</p>
+
+```javascript
+isEmpty() ► boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>boolean</code> |
+
+---
+
+<a name="Authorization+isFeePrivate"></a>
+
+### isFeePrivate
+
+<p>Returns true if the Authorization is for credits.aleo/fee_private</p>
+
+```javascript
+isFeePrivate() ► boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>boolean</code> |
+
+---
+
+<a name="Authorization+isFeePublic"></a>
+
+### isFeePublic
+
+<p>Returns true if the Authorization is for credits.aleo/fee_public</p>
+
+```javascript
+isFeePublic() ► boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>boolean</code> |
+
+---
+
+<a name="Authorization+isSplit"></a>
+
+### isSplit
+
+<p>Returns true if the Authorization is for credits.aleo/split</p>
+
+```javascript
+isSplit() ► boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>boolean</code> |
+
+---
+
+<a name="Authorization+insertTransition"></a>
+
+### insertTransition
+
+<p>Insert a transition into the Authorization</p>
+
+```javascript
+insertTransition(transition) ► void
+```
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transition | <code>Transition</code> | The transition object to insert into the Authorization |
+| *return* | <code>void</code> |
+
+---
+
+<a name="Authorization+transitions"></a>
+
+### transitions
+
+<p>Get the transitions in an Authorization</p>
+
+```javascript
+transitions() ► Array.<Transition>
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;Transition&gt;</code> | Array of transition objects |
+
+---
+
+<a name="Authorization+toExecutionId"></a>
+
+### toExecutionId
+
+<p>Returns the execution ID for the Authorization</p>
+
+```javascript
+toExecutionId() ► Field
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> | The execution ID for the Authorization, call toString() after this result to get the string representation |
+
+---

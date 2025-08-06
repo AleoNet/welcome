@@ -10,10 +10,14 @@ Scalar field element.
 
 ## Methods
 
-### `fromString(group) ► Scalar`
+### fromString
  
 
 Creates a scalar object from a string representation of a scalar element.
+
+```javascript
+fromString(group) ► Scalar
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -22,10 +26,14 @@ __*return*__ | Scalar | **
 
 ---
 
-### `toString() ► string`
+### toString
 
 
 Returns the string representation of the scalar element.
+
+```javascript
+toString() ► string
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -33,10 +41,14 @@ __*return*__ | `string` | **
 
 ---
 
-### `fromBytesLe(bytes) ► Scalar`
- 
+### fromBytesLe
+
 
 Create a scalar element from a Uint8Array of left endian bytes.
+
+```javascript
+fromBytesLe(bytes) ► Scalar
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -45,10 +57,14 @@ __*return*__ | Scalar | **
 
 ---
 
-### `toBytesLe() ► Uint8Array`
+### toBytesLe
 
 
 Encode the scalar element as a Uint8Array of left endian bytes.
+
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -56,10 +72,14 @@ __*return*__ | `Uint8Array` | **
 
 ---
 
-### `fromBitsLe(bits) ► Scalar`
- 
+### fromBitsLe
+
 
 Reconstruct a scalar element from a boolean array representation.
+
+```javascript
+fromBitsLe(bits) ► Scalar
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -68,10 +88,14 @@ __*return*__ | Scalar | **
 
 ---
 
-### `toBitsLe() ► Array.<any>`
+### toBitsLe
 
 
 Get the left endian boolean array representation of the scalar element.
+
+```javascript
+toBitsLe() ► Array.<any>
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -79,10 +103,14 @@ __*return*__ | `Array.<any>` | **
 
 ---
 
-### `toPlaintext() ► Plaintext`
+### toPlaintext
 
 
 Create a plaintext element from a scalar element.
+
+```javascript
+toPlaintext() ► Plaintext
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -90,33 +118,45 @@ __*return*__ | Plaintext | **
 
 ---
 
-### `clone() ► Scalar`
+### clone
 
 
 Clone the scalar element.
 
+```javascript
+clone() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `random() ► Scalar`
- 
+### random
+
 
 Generate a random scalar element.
 
+```javascript
+random() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `add(other) ► Scalar`
+### add
 
 
 Add two scalar elements.
 
+```javascript
+add(other) ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __other__ | Scalar | **
@@ -124,11 +164,15 @@ __*return*__ | Scalar | **
 
 ---
 
-### `subtract(other) ► Scalar`
+### subtract
 
 
 Subtract two scalar elements.
 
+```javascript
+subtract(other) ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __other__ | Scalar | **
@@ -136,11 +180,15 @@ __*return*__ | Scalar | **
 
 ---
 
-### `multiply(other) ► Scalar`
+### multiply
 
 
 Multiply two scalar elements.
 
+```javascript
+multiply(other) ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __other__ | Scalar | **
@@ -148,11 +196,15 @@ __*return*__ | Scalar | **
 
 ---
 
-### `divide(other) ► Scalar`
+### divide
 
 
 Divide two scalar elements.
 
+```javascript
+divide(other) ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __other__ | Scalar | **
@@ -160,21 +212,29 @@ __*return*__ | Scalar | **
 
 ---
 
-### `double() ► Scalar`
+### double
 
 
 Double the scalar element.
 
+```javascript
+double() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `pow(other) ► Scalar`
+### pow
 
 
 Power of a scalar element.
+
+```javascript
+pow(other) ► Scalar
+```
 
 Parameters | Type | Description
 --- | --- | ---
@@ -183,43 +243,59 @@ __*return*__ | Scalar | **
 
 ---
 
-### `inverse() ► Scalar`
+### inverse
 
 
 Invert the scalar element.
 
+```javascript
+inverse() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `one() ► Scalar`
- 
+### one
+
 
 Get the multiplicative identity of the scalar field.
 
+```javascript
+one() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `zero() ► Scalar`
- 
+### zero
+
 
 Get the additive identity of the scalar field.
 
+```javascript
+zero() ► Scalar
+```
+
 Parameters | Type | Description
 --- | --- | ---
 __*return*__ | Scalar | **
 
 ---
 
-### `equals(other) ► boolean`
+### equals
 
 
 Check if one scalar element equals another.
+
+```javascript
+equals(other) ► boolean
+```
 
 Parameters | Type | Description
 --- | --- | ---

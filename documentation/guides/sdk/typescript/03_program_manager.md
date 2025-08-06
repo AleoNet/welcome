@@ -67,8 +67,6 @@ host | `string` | *A host uri running the official Aleo API*
 keyProvider | `FunctionKeyProvider` | *A key provider that implements FunctionKeyProvider interface*
 recordProvider | `RecordProvider` | *A record provider that implements RecordProvider interface*
 
----
-
 ## Methods
 
 ### checkFee

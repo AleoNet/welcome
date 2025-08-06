@@ -1,186 +1,294 @@
 ---
-id: address
 title: Address
 sidebar_label: Address
 ---
 
-## Class `Address`
+<a name="Address"></a>
 
-Public address of an Aleo account
+## Overview
 
-### Methods
+<p>Represents a public address of an Aleo account. The Address class provides methods for creating addresses from various sources (private keys, view keys, compute keys), converting between different formats (bytes, bits, fields, groups), and verifying signatures.</p>
 
-### `from_private_key(private_key) ► Address`
- 
 
-Derive an Aleo address from a private key
 
-Parameters | Type | Description
---- | --- | ---
-__private_key__ | PrivateKey | *The private key to derive the address from*
-__*return*__ | Address | *Address corresponding to the private key*
+## Methods
 
----
+<a name="Address.from_private_key"></a>
 
-### `from_view_key(view_key) ► Address`
- 
+### from_private_key
 
-Derive an Aleo address from a view key
+<p>Derive an Aleo address from a private key</p>
 
-Parameters | Type | Description
---- | --- | ---
-__view_key__ | `ViewKey` | *The view key to derive the address from*
-__*return*__ | Address | *Address corresponding to the view key*
+```javascript
+from_private_key(private_key) ► Address
+```
 
----
 
-### `from_compute_key(compute_key) ► Address`
- 
 
-Derive an Aleo address from a compute key.
-
-Parameters | Type | Description
---- | --- | ---
-__compute_key__ | `ComputeKey` | *The compute key to derive the address from*
-__*return*__ | Address | **
+| Param | Type | Description |
+| --- | --- | --- |
+| private_key | <code>PrivateKey</code> | The private key to derive the address from |
+| *return* | <code>Address</code> | Address corresponding to the private key |
 
 ---
 
-### `fromBytesLe(bytes) ► Address`
- 
+<a name="Address.from_view_key"></a>
 
-Get an address from a series of bytes.
+### from_view_key
 
-Parameters | Type | Description
---- | --- | ---
-__bytes__ | `Uint8Array` | *A left endian byte array representing the address.*
-__*return*__ | Address | *The address object.*
+<p>Derive an Aleo address from a view key</p>
 
----
-
-### `toBytesLe() ► Uint8Array`
+```javascript
+from_view_key(view_key) ► Address
+```
 
 
-Get the left endian byte array representation of the address.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Uint8Array` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| view_key | <code>ViewKey</code> | The view key to derive the address from |
+| *return* | <code>Address</code> | Address corresponding to the view key |
 
 ---
 
-### `fromBitsLe(bits) ► Address`
- 
+<a name="Address.from_compute_key"></a>
 
-Get an address from a series of bits represented as a boolean array.
+### from_compute_key
 
-Parameters | Type | Description
---- | --- | ---
-__bits__ | `Array` | *A left endian boolean array representing the bits of the address.*
-__*return*__ | Address | *The address object.*
+<p>Derive an Aleo address from a compute key</p>
 
----
-
-### `toBitsLe() ► Array.<any>`
+```javascript
+from_compute_key(compute_key) ► Address
+```
 
 
-Get the left endian boolean array representation of the bits of the address.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| compute_key | <code>ComputeKey</code> | The compute key to derive the address from |
+| *return* | <code>Address</code> | Address corresponding to the compute key |
 
 ---
 
-### `fromFields(fields) ► Plaintext`
- 
+<a name="Address.fromBytesLe"></a>
 
-Get an address object from an array of fields.
+### fromBytesLe
 
-Parameters | Type | Description
---- | --- | ---
-__fields__ | `Array` | *An array of fields.*
-__*return*__ | Plaintext | *The address object.*
+<p>Get an address from a series of bytes</p>
 
----
-
-### `toFields() ► Array.<any>`
+```javascript
+fromBytesLe(bytes) ► Address
+```
 
 
-Get the field array representation of the address.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bytes | <code>Uint8Array</code> | A left endian byte array representing the address |
+| *return* | <code>Address</code> | The address object |
 
 ---
 
-### `fromGroup(group) ► Address`
- 
+<a name="Address+toBytesLe"></a>
 
-Get an address object from a group.
+### toBytesLe
 
-Parameters | Type | Description
---- | --- | ---
-__group__ | Group | *The group object.*
-__*return*__ | Address | *The address object.*
+<p>Get the left endian byte array representation of the address</p>
 
----
-
-### `toGroup() ► Group`
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 
-Get the group representation of the address object.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Uint8Array</code> |
 
 ---
 
-### `from_string(address) ► Address`
- 
+<a name="Address.fromBitsLe"></a>
 
-Create an aleo address object from a string representation of an address
+### fromBitsLe
 
-Parameters | Type | Description
---- | --- | ---
-__address__ | `string` | *String representation of an addressm*
-__*return*__ | Address | *Address*
+<p>Get an address from a series of bits represented as a boolean array</p>
 
----
-
-### `to_string(Address) ► string`
+```javascript
+fromBitsLe(bits) ► Address
+```
 
 
-Get a string representation of an Aleo address object
 
-Parameters | Type | Description
---- | --- | ---
-__Address__ | Address | **
-__*return*__ | `string` | *String representation of the address*
+| Param | Type | Description |
+| --- | --- | --- |
+| bits | <code>Array</code> | A left endian boolean array representing the bits of the address |
+| *return* | <code>Address</code> | The address object |
 
 ---
 
-### `toPlaintext() ► Plaintext`
+<a name="Address+toBitsLe"></a>
+
+### toBitsLe
+
+<p>Get the left endian boolean array representation of the bits of the address</p>
+
+```javascript
+toBitsLe() ► Array.<any>
+```
 
 
-Get the plaintext representation of the address.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Plaintext | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
 
 ---
 
-### `verify(Byte) ► boolean`
+<a name="Address.fromFields"></a>
+
+### fromFields
+
+<p>Get an address object from an array of fields</p>
+
+```javascript
+fromFields(fields) ► Plaintext
+```
 
 
-Verify a signature for a message signed by the address
 
-Parameters | Type | Description
---- | --- | ---
-__Byte__ | `Uint8Array` | *array representing a message signed by the address*
-__*return*__ | `boolean` | *Boolean representing whether or not the signature is valid*
+| Param | Type | Description |
+| --- | --- | --- |
+| fields | <code>Array</code> | An array of fields |
+| *return* | <code>Plaintext</code> | The address object |
+
+---
+
+<a name="Address+toFields"></a>
+
+### toFields
+
+<p>Get the field array representation of the address</p>
+
+```javascript
+toFields() ► Array.<any>
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
+
+---
+
+<a name="Address.fromGroup"></a>
+
+### fromGroup
+
+<p>Get an address object from a group</p>
+
+```javascript
+fromGroup(group) ► Address
+```
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| group | <code>Group</code> | The group object |
+| *return* | <code>Address</code> | The address object |
+
+---
+
+<a name="Address+toGroup"></a>
+
+### toGroup
+
+<p>Get the group representation of the address object</p>
+
+```javascript
+toGroup() ► Group
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Address.from_string"></a>
+
+### from_string
+
+<p>Create an aleo address object from a string representation of an address</p>
+
+```javascript
+from_string(address) ► Address
+```
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string</code> | String representation of an address |
+| *return* | <code>Address</code> | Address object |
+
+---
+
+<a name="Address+to_string"></a>
+
+### to_string
+
+<p>Get a string representation of an Aleo address object</p>
+
+```javascript
+to_string(Address) ► string
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| Address | <code>Address</code> |
+| *return* | <code>string</code> | String representation of the address |
+
+---
+
+<a name="Address+toPlaintext"></a>
+
+### toPlaintext
+
+<p>Get the plaintext representation of the address</p>
+
+```javascript
+toPlaintext() ► Plaintext
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Plaintext</code> |
+
+---
+
+<a name="Address+verify"></a>
+
+### verify
+
+<p>Verify a signature for a message signed by the address</p>
+
+```javascript
+verify(Byte) ► boolean
+```
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Byte | <code>Uint8Array</code> | array representing a message signed by the address |
+| *return* | <code>boolean</code> | Boolean representing whether or not the signature is valid |
 
 ---

@@ -1,67 +1,105 @@
 ---
-id: execution
 title: Execution
 sidebar_label: Execution
 ---
 
-## Class `Execution`
+<a name="Execution"></a>
 
-Execution of an Aleo program.
+## Overview
 
-### Methods
-
-### `toString() ► string`
+<p>Execution of an Aleo program. This class represents the execution state and proof of a program run on the Aleo network, providing access to execution details like global state root, proof, and transitions.</p>
 
 
-Returns the string representation of the execution.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | *The string representation of the execution.*
+## Methods
 
----
+<a name="Execution+toString"></a>
 
-### `fromString(execution) ► Execution`
- 
+### toString
 
-Creates an execution object from a string representation of an execution.
+<p>Returns the string representation of the execution</p>
 
-Parameters | Type | Description
---- | --- | ---
-__execution__ | `string` | **
-__*return*__ | Execution | *The wasm representation of an execution object.*
-
----
-
-### `globalStateRoot() ► Execution`
+```javascript
+toString() ► string
+```
 
 
-Returns the global state root of the execution.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Execution | *The global state root used in the execution.*
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> | The string representation of the execution |
 
 ---
 
-### `proof() ► string`
+<a name="Execution.fromString"></a>
+
+### fromString
+
+<p>Creates an execution object from a string representation of an execution</p>
+
+```javascript
+fromString(execution) ► Execution
+```
 
 
-Returns the proof of the execution.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | *The execution proof.*
+| Param | Type |
+| --- | --- |
+| execution | <code>string</code> |
+| *return* | <code>Execution</code> | The wasm representation of an execution object |
 
 ---
 
-### `transitions() ► `
+<a name="Execution+globalStateRoot"></a>
+
+### globalStateRoot
+
+<p>Returns the global state root of the execution</p>
+
+```javascript
+globalStateRoot() ► Execution
+```
 
 
-Returns the transitions present in the execution.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `undefined` | *Array&lt;Transition&gt; the array of transitions present in the execution.*
+| Param | Type |
+| --- | --- |
+| *return* | <code>Execution</code> | The global state root used in the execution |
 
---- 
+---
+
+<a name="Execution+proof"></a>
+
+### proof
+
+<p>Returns the proof of the execution</p>
+
+```javascript
+proof() ► string
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> | The execution proof |
+
+---
+
+<a name="Execution+transitions"></a>
+
+### transitions
+
+<p>Returns the transitions present in the execution</p>
+
+```javascript
+transitions() ► 
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>undefined</code> | Array&lt;Transition&gt; the array of transitions present in the execution |
+
+---

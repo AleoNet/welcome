@@ -1,93 +1,140 @@
 ---
-id: execution_response
 title: ExecutionResponse
 sidebar_label: ExecutionResponse
 ---
 
-## Class `ExecutionResponse`
+<a name="ExecutionResponse"></a>
 
-Webassembly Representation of an Aleo function execution response
+## Overview
 
-This object is returned by the execution of an Aleo function off-chain. It provides methods for
-retrieving the outputs of the function execution.
-
-### Methods
-
-### `getOutputs() ► Array`
+<p>Webassembly Representation of an Aleo function execution response. This object is returned by the execution of an Aleo function off-chain. It provides methods for retrieving the outputs of the function execution, as well as access to execution details, program keys, and proving/verifying keys.</p>
 
 
-Get the outputs of the executed function
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array` | *Array of strings representing the outputs of the function*
+## Methods
 
----
+<a name="ExecutionResponse+getOutputs"></a>
 
-### `getExecution() ► Execution`
+### getOutputs
+
+<p>Get the outputs of the executed function</p>
+
+```javascript
+getOutputs() ► Array
+```
 
 
-Returns the execution object if present, null if otherwise.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Execution | *The execution object if present, null if otherwise*
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array</code> | Array of strings representing the outputs of the function |
 
 ---
 
-### `getKeys() ► KeyPair`
+<a name="ExecutionResponse+getExecution"></a>
+
+### getExecution
+
+<p>Returns the execution object if present, null if otherwise</p>
+
+```javascript
+getExecution() ► Execution
+```
 
 
-Returns the program keys if present
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | KeyPair | **
-
----
-
-### `getProvingKey() ► ProvingKey`
-
-
-Returns the proving_key if the proving key was cached in the Execution response.
-Note the proving key is removed from the response object after the first call to this
-function. Subsequent calls will return null.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | ProvingKey | *The proving key*
+| Param | Type |
+| --- | --- |
+| *return* | <code>Execution</code> | The execution object if present, null if otherwise |
 
 ---
 
-### `getVerifyingKey() ► VerifyingKey`
+<a name="ExecutionResponse+getKeys"></a>
+
+### getKeys
+
+<p>Returns the program keys if present</p>
+
+```javascript
+getKeys() ► KeyPair
+```
 
 
-Returns the verifying_key associated with the program
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | VerifyingKey | *The verifying key*
-
----
-
-### `getFunctionId() ► string`
-
-
-Returns the function identifier
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>KeyPair</code> |
 
 ---
 
-### `getProgram() ► Program`
+<a name="ExecutionResponse+getProvingKey"></a>
+
+### getProvingKey
+
+<p>Returns the proving_key if the proving key was cached in the Execution response. Note the proving key is removed from the response object after the first call to this function. Subsequent calls will return null.</p>
+
+```javascript
+getProvingKey() ► ProvingKey
+```
 
 
-Returns the program
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Program | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>ProvingKey</code> | The proving key |
 
---- 
+---
+
+<a name="ExecutionResponse+getVerifyingKey"></a>
+
+### getVerifyingKey
+
+<p>Returns the verifying_key associated with the program</p>
+
+```javascript
+getVerifyingKey() ► VerifyingKey
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>VerifyingKey</code> | The verifying key |
+
+---
+
+<a name="ExecutionResponse+getFunctionId"></a>
+
+### getFunctionId
+
+<p>Returns the function identifier</p>
+
+```javascript
+getFunctionId() ► string
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> |
+
+---
+
+<a name="ExecutionResponse+getProgram"></a>
+
+### getProgram
+
+<p>Returns the program</p>
+
+```javascript
+getProgram() ► Program
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Program</code> |
+
+---

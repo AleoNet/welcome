@@ -1,209 +1,325 @@
 ---
-id: boolean
 title: Boolean
 sidebar_label: Boolean
 ---
 
-## Class `Boolean`
+<a name="Boolean"></a>
 
-Boolean element.
+## Overview
 
-### Constructors
-
-
-### `Boolean(value)`
-
-Creates a Boolean from a native JS bool.
-
-Parameters | Type | Description
---- | --- | ---
-__value__ | `boolean` | **
-
----
-
-### Methods
-
-### `fromString(boolean) ► Boolean`
- 
-
-Creates a boolean object from a string representation (&quot;true&quot;/&quot;false&quot;).
-
-Parameters | Type | Description
---- | --- | ---
-__boolean__ | `string` | **
-__*return*__ | Boolean | **
-
----
-
-### `toString() ► string`
+<p>Boolean element class for performing logical operations in Aleo. This class provides methods for creating boolean values, converting between different formats, and performing logical operations like AND, OR, XOR, NAND, NOR, and NOT.</p>
 
 
-Returns the string representation of the boolean element.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | **
+## Constructors
 
----
+### Boolean
 
-### `fromBytesLe(bytes) ► Boolean`
- 
+<p>Creates a Boolean from a native JS bool</p>
 
-Create a boolean element from a Uint8Array of left endian bytes.
+```javascript
+Boolean(value)
+```
 
-Parameters | Type | Description
---- | --- | ---
-__bytes__ | `Uint8Array` | **
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| value | <code>boolean</code> |
+
+## Methods
+
+<a name="Boolean.fromString"></a>
+
+### fromString
+
+<p>Creates a boolean object from a string representation ("true"/"false")</p>
+
+```javascript
+fromString(boolean) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| boolean | <code>string</code> |
+| *return* | <code>Boolean</code> |
 
 ---
 
-### `toBytesLe() ► Uint8Array`
+<a name="Boolean+toString"></a>
+
+### toString
+
+<p>Returns the string representation of the boolean element</p>
+
+```javascript
+toString() ► string
+```
 
 
-Encode the boolean element as a Uint8Array of left endian bytes.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Uint8Array` | **
-
----
-
-### `fromBitsLe(bits) ► Boolean`
- 
-
-Reconstruct a boolean element from a boolean array representation.
-
-Parameters | Type | Description
---- | --- | ---
-__bits__ | `Array.<any>` | **
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> |
 
 ---
 
-### `toBitsLe() ► Array.<any>`
+<a name="Boolean.fromBytesLe"></a>
+
+### fromBytesLe
+
+<p>Create a boolean element from a Uint8Array of left endian bytes</p>
+
+```javascript
+fromBytesLe(bytes) ► Boolean
+```
 
 
-Get the left endian boolean array representation of the boolean element.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
-
----
-
-### `toPlaintext() ► Plaintext`
-
-
-Create a plaintext from the boolean element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Plaintext | **
+| Param | Type |
+| --- | --- |
+| bytes | <code>Uint8Array</code> |
+| *return* | <code>Boolean</code> |
 
 ---
 
-### `clone() ► Boolean`
+<a name="Boolean+toBytesLe"></a>
+
+### toBytesLe
+
+<p>Encode the boolean element as a Uint8Array of left endian bytes</p>
+
+```javascript
+toBytesLe() ► Uint8Array
+```
 
 
-Clone the boolean element.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Boolean | **
-
----
-
-### `random() ► Boolean`
- 
-
-Generate a random boolean element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Uint8Array</code> |
 
 ---
 
-### `not() ► Boolean`
+<a name="Boolean.fromBitsLe"></a>
+
+### fromBitsLe
+
+<p>Reconstruct a boolean element from a boolean array representation</p>
+
+```javascript
+fromBitsLe(bits) ► Boolean
+```
 
 
-Logical NOT.
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Boolean | **
-
----
-
-### `and(other) ► Boolean`
-
-
-Logical AND.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| bits | <code>Array.&lt;any&gt;</code> |
+| *return* | <code>Boolean</code> |
 
 ---
 
-### `or(other) ► Boolean`
+<a name="Boolean+toBitsLe"></a>
+
+### toBitsLe
+
+<p>Get the left endian boolean array representation of the boolean element</p>
+
+```javascript
+toBitsLe() ► Array.<any>
+```
 
 
-Logical OR.
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | Boolean | **
-
----
-
-### `xor(other) ► Boolean`
-
-
-Logical XOR.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
 
 ---
 
-### `nand(other) ► Boolean`
+<a name="Boolean+toPlaintext"></a>
+
+### toPlaintext
+
+<p>Create a plaintext from the boolean element</p>
+
+```javascript
+toPlaintext() ► Plaintext
+```
 
 
-Logical NAND.
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | Boolean | **
-
----
-
-### `nor(other) ► Boolean`
-
-
-Logical NOR.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | Boolean | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Plaintext</code> |
 
 ---
 
-### `equals(other) ► boolean`
+<a name="Boolean+clone"></a>
+
+### clone
+
+<p>Clone the boolean element</p>
+
+```javascript
+clone() ► Boolean
+```
 
 
-Check if one boolean element equals another.
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Boolean | **
-__*return*__ | `boolean` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Boolean</code> |
 
---- 
+---
+
+<a name="Boolean.random"></a>
+
+### random
+
+<p>Generate a random boolean element</p>
+
+```javascript
+random() ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+not"></a>
+
+### not
+
+<p>Logical NOT</p>
+
+```javascript
+not() ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+and"></a>
+
+### and
+
+<p>Logical AND</p>
+
+```javascript
+and(other) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+or"></a>
+
+### or
+
+<p>Logical OR</p>
+
+```javascript
+or(other) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+xor"></a>
+
+### xor
+
+<p>Logical XOR</p>
+
+```javascript
+xor(other) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+nand"></a>
+
+### nand
+
+<p>Logical NAND</p>
+
+```javascript
+nand(other) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+nor"></a>
+
+### nor
+
+<p>Logical NOR</p>
+
+```javascript
+nor(other) ► Boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>Boolean</code> |
+
+---
+
+<a name="Boolean+equals"></a>
+
+### equals
+
+<p>Check if one boolean element equals another</p>
+
+```javascript
+equals(other) ► boolean
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| other | <code>Boolean</code> |
+| *return* | <code>boolean</code> |
+
+---

@@ -1,48 +1,66 @@
 ---
-id: key_pair
 title: KeyPair
 sidebar_label: KeyPair
 ---
 
-## Class `KeyPair`
+<a name="KeyPair"></a>
 
-Key pair object containing both the function proving and verifying keys
+## Overview
 
-### Constructors
+<p>Key pair object containing both the function proving and verifying keys for Aleo programs. This class provides access to cryptographic keys needed for proving and verifying function executions.</p>
 
 
-### `KeyPair(proving_key, verifying_key)`
 
-Create new key pair from proving and verifying keys
+## Constructors
 
-Parameters | Type | Description
---- | --- | ---
-__proving_key__ | ProvingKey | *Proving key corresponding to a function in an Aleo program*
-__verifying_key__ | VerifyingKey | *Verifying key corresponding to a function in an Aleo program*
-__*return*__ | KeyPair | *Key pair object containing both the function proving and verifying keys*
+### KeyPair
+
+<p>Create new key pair from proving and verifying keys</p>
+
+```javascript
+KeyPair(proving_key, verifying_key)
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| proving_key | <code>ProvingKey</code> | Proving key corresponding to a function in an Aleo program |
+| verifying_key | <code>VerifyingKey</code> | Verifying key corresponding to a function in an Aleo program |
+| *return* | <code>KeyPair</code> | Key pair object containing both the function proving and verifying keys |
+
+## Methods
+
+<a name="KeyPair+provingKey"></a>
+
+### provingKey
+
+<p>Get the proving key. This method will remove the proving key from the key pair</p>
+
+```javascript
+provingKey() ► ProvingKey
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>ProvingKey</code> |
 
 ---
 
-### Methods
+<a name="KeyPair+verifyingKey"></a>
 
-### `provingKey() ► ProvingKey`
+### verifyingKey
+
+<p>Get the verifying key. This method will remove the verifying key from the key pair</p>
+
+```javascript
+verifyingKey() ► VerifyingKey
+```
 
 
-Get the proving key. This method will remove the proving key from the key pair
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | ProvingKey | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>VerifyingKey</code> |
 
 ---
-
-### `verifyingKey() ► VerifyingKey`
-
-
-Get the verifying key. This method will remove the verifying key from the key pair
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | VerifyingKey | **
-
---- 

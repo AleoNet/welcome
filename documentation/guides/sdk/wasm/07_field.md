@@ -1,229 +1,323 @@
 ---
-id: field
 title: Field
 sidebar_label: Field
 ---
 
-## Class `Field`
+<a name="Field"></a>
 
-Field element.
+## Overview
 
-### Methods
+<p>Field element class for operations on field elements in the Aleo network. Provides methods for creating, converting, and manipulating field elements with support for various formats including strings, bytes, and BigInt.</p>
 
-### `fromString(field) ► Field`
- 
+## Methods
 
-Creates a field object from a string representation of a field element.
+<a name="Field.fromString"></a>
 
-Parameters | Type | Description
---- | --- | ---
-__field__ | `string` | **
-__*return*__ | Field | **
+### fromString
 
----
+<p>Creates a field object from a string representation of a field element</p>
 
-### `toString() ► string`
+```javascript
+fromString(field) ► Field
+```
 
-
-Returns the string representation of the field element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| field | <code>string</code> | String representation of a field element |
+| *return* | <code>Field</code> | Field object |
 
 ---
 
-### `fromBytesLe(bytes) ► Field`
- 
+<a name="Field+toString"></a>
 
-Create a field element from a Uint8Array of left endian bytes.
+### toString
 
-Parameters | Type | Description
---- | --- | ---
-__bytes__ | `Uint8Array` | **
-__*return*__ | Field | **
+<p>Returns the string representation of the field element</p>
 
----
+```javascript
+toString() ► string
+```
 
-### `toBytesLe() ► Uint8Array`
-
-
-Encode the field element as a Uint8Array of left endian bytes.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Uint8Array` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> |
 
 ---
 
-### `fromBitsLe(bits) ► Field`
- 
+<a name="Field.fromBytesLe"></a>
 
-Reconstruct a field element from a boolean array representation.
+### fromBytesLe
 
-Parameters | Type | Description
---- | --- | ---
-__bits__ | `Array.<any>` | **
-__*return*__ | Field | **
+<p>Create a field element from a Uint8Array of left endian bytes</p>
 
----
+```javascript
+fromBytesLe(bytes) ► Field
+```
 
-### `toBitsLe() ► Array.<any>`
-
-
-Get the left endian boolean array representation of the field element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bytes | <code>Uint8Array</code> | Byte array representation |
+| *return* | <code>Field</code> | Field object |
 
 ---
 
-### `toPlaintext() ► Plaintext`
+<a name="Field+toBytesLe"></a>
 
+### toBytesLe
 
-Create a plaintext from the field element.
+<p>Encode the field element as a Uint8Array of left endian bytes</p>
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Plaintext | **
+```javascript
+toBytesLe() ► Uint8Array
+```
 
----
-
-### `clone() ► Field`
-
-
-Clone the field element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Uint8Array</code> |
 
 ---
 
-### `random() ► Field`
- 
+<a name="Field.fromBitsLe"></a>
 
-Generate a random field element.
+### fromBitsLe
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+<p>Reconstruct a field element from a boolean array representation</p>
 
----
+```javascript
+fromBitsLe(bits) ► Field
+```
 
-### `add(other) ► Field`
-
-
-Add two field elements.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | Field | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bits | <code>Array.&lt;any&gt;</code> | Boolean array representation |
+| *return* | <code>Field</code> | Field object |
 
 ---
 
-### `subtract(other) ► Field`
+<a name="Field+toBitsLe"></a>
 
+### toBitsLe
 
-Subtract two field elements.
+<p>Get the left endian boolean array representation of the field element</p>
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | Field | **
+```javascript
+toBitsLe() ► Array.<any>
+```
 
----
-
-### `multiply(other) ► Field`
-
-
-Multiply two field elements.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
 
 ---
 
-### `divide(other) ► Field`
+<a name="Field+toPlaintext"></a>
 
+### toPlaintext
 
-Divide two field elements.
+<p>Create a plaintext from the field element</p>
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | Field | **
+```javascript
+toPlaintext() ► Plaintext
+```
 
----
-
-### `pow(other) ► Field`
-
-
-Power of a field element.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Plaintext</code> |
 
 ---
 
-### `inverse() ► Field`
+<a name="Field+clone"></a>
 
+### clone
 
-Invert the field element.
+<p>Clone the field element</p>
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+```javascript
+clone() ► Field
+```
 
----
-
-### `zero() ► Field`
- 
-
-Get the additive identity element of the field.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
 
 ---
 
-### `one() ► Field`
- 
+<a name="Field.random"></a>
 
-Get the multiplicative identity of the field.
+### random
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+<p>Generate a random field element</p>
 
----
+```javascript
+random() ► Field
+```
 
-### `double() ► Field`
-
-
-Double the field element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
 
 ---
 
-### `equals(other) ► boolean`
+<a name="Field+add"></a>
 
+### add
 
-Check if one field element equals another.
+<p>Add two field elements</p>
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Field | **
-__*return*__ | `boolean` | **
+```javascript
+add(other) ► Field
+```
 
---- 
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element to add |
+| *return* | <code>Field</code> | Sum of the field elements |
+
+---
+
+<a name="Field+subtract"></a>
+
+### subtract
+
+<p>Subtract two field elements</p>
+
+```javascript
+subtract(other) ► Field
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element to subtract |
+| *return* | <code>Field</code> | Difference of the field elements |
+
+---
+
+<a name="Field+multiply"></a>
+
+### multiply
+
+<p>Multiply two field elements</p>
+
+```javascript
+multiply(other) ► Field
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element to multiply |
+| *return* | <code>Field</code> | Product of the field elements |
+
+---
+
+<a name="Field+divide"></a>
+
+### divide
+
+<p>Divide two field elements</p>
+
+```javascript
+divide(other) ► Field
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element to divide by |
+| *return* | <code>Field</code> | Quotient of the field elements |
+
+---
+
+<a name="Field+pow"></a>
+
+### pow
+
+<p>Power of a field element</p>
+
+```javascript
+pow(other) ► Field
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element as exponent |
+| *return* | <code>Field</code> | Result of the power operation |
+
+---
+
+<a name="Field+inverse"></a>
+
+### inverse
+
+<p>Invert the field element</p>
+
+```javascript
+inverse() ► Field
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
+
+---
+
+<a name="Field.zero"></a>
+
+### zero
+
+<p>Get the additive identity element of the field</p>
+
+```javascript
+zero() ► Field
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
+
+---
+
+<a name="Field.one"></a>
+
+### one
+
+<p>Get the multiplicative identity of the field</p>
+
+```javascript
+one() ► Field
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
+
+---
+
+<a name="Field+double"></a>
+
+### double
+
+<p>Double the field element</p>
+
+```javascript
+double() ► Field
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
+
+---
+
+<a name="Field+equals"></a>
+
+### equals
+
+<p>Check if one field element equals another</p>
+
+```javascript
+equals(other) ► boolean
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Field</code> | Field element to compare |
+| *return* | <code>boolean</code> | Whether the field elements are equal |

@@ -1,228 +1,321 @@
 ---
-id: group
 title: Group
 sidebar_label: Group
 ---
 
-## Class `Group`
+<a name="Group"></a>
 
-Elliptic curve element.
+## Overview
 
-### Methods
+<p>Elliptic curve group element class for operations on group elements in the Aleo network. Provides methods for creating, converting, and manipulating group elements with support for various arithmetic operations and format conversions.</p>
 
-### `fromString(group) ► Group`
- 
+## Methods
 
-Creates a group object from a string representation of a group element.
+<a name="Group.fromString"></a>
 
-Parameters | Type | Description
---- | --- | ---
-__group__ | `string` | **
-__*return*__ | Group | **
+### fromString
 
----
+<p>Creates a group object from a string representation of a group element</p>
 
-### `toString() ► string`
+```javascript
+fromString(group) ► Group
+```
 
-
-Returns the string representation of the group element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `string` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| group | <code>string</code> | String representation of a group element |
+| *return* | <code>Group</code> | Group object |
 
 ---
 
-### `fromBytesLe(bytes) ► Group`
- 
+<a name="Group+toString"></a>
 
-Create a group element from a Uint8Array of left endian bytes.
+### toString
 
-Parameters | Type | Description
---- | --- | ---
-__bytes__ | `Uint8Array` | **
-__*return*__ | Group | **
+<p>Returns the string representation of the group element</p>
 
----
+```javascript
+toString() ► string
+```
 
-### `toBytesLe() ► Uint8Array`
-
-
-Encode the group element as a Uint8Array of left endian bytes.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Uint8Array` | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> |
 
 ---
 
-### `fromBitsLe(bits) ► Group`
- 
+<a name="Group.fromBytesLe"></a>
 
-Reconstruct a group element from a boolean array representation.
+### fromBytesLe
 
-Parameters | Type | Description
---- | --- | ---
-__bits__ | `Array.<any>` | **
-__*return*__ | Group | **
+<p>Create a group element from a Uint8Array of left endian bytes</p>
 
----
+```javascript
+fromBytesLe(bytes) ► Group
+```
 
-### `toBitsLe() ► Array.<any>`
-
-
-Get the left endian boolean array representation of the group element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bytes | <code>Uint8Array</code> | Byte array representation |
+| *return* | <code>Group</code> | Group object |
 
 ---
 
-### `toFields() ► Array.<any>`
+<a name="Group+toBytesLe"></a>
 
+### toBytesLe
 
-Get the field array representation of the group.
+<p>Encode the group element as a Uint8Array of left endian bytes</p>
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Array.<any>` | **
+```javascript
+toBytesLe() ► Uint8Array
+```
 
----
-
-### `toXCoordinate() ► Field`
-
-
-Get the x-coordinate of the group element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Field | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Uint8Array</code> |
 
 ---
 
-### `toPlaintext() ► Plaintext`
+<a name="Group.fromBitsLe"></a>
 
+### fromBitsLe
 
-Create a plaintext element from a group element.
+<p>Reconstruct a group element from a boolean array representation</p>
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Plaintext | **
+```javascript
+fromBitsLe(bits) ► Group
+```
 
----
-
-### `clone() ► Group`
-
-
-Clone the group element.
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+| Param | Type | Description |
+| --- | --- | --- |
+| bits | <code>Array.&lt;any&gt;</code> | Boolean array representation |
+| *return* | <code>Group</code> | Group object |
 
 ---
 
-### `random() ► Group`
- 
+<a name="Group+toBitsLe"></a>
 
-Generate a random group element.
+### toBitsLe
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+<p>Get the left endian boolean array representation of the group element</p>
 
----
+```javascript
+toBitsLe() ► Array.<any>
+```
 
-### `add(other) ► Group`
-
-
-Add two group elements.
-
-Parameters | Type | Description
---- | --- | ---
-__other__ | Group | **
-__*return*__ | Group | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
 
 ---
 
-### `subtract(other) ► Group`
+<a name="Group+toFields"></a>
 
+### toFields
 
-Subtract two group elements (equivalently: add the inverse of an element).
+<p>Get the field array representation of the group</p>
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Group | **
-__*return*__ | Group | **
+```javascript
+toFields() ► Array.<any>
+```
 
----
-
-### `scalarMultiply(scalar) ► Group`
-
-
-Multiply a group element by a scalar element.
-
-Parameters | Type | Description
---- | --- | ---
-__scalar__ | Scalar | **
-__*return*__ | Group | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Array.&lt;any&gt;</code> |
 
 ---
 
-### `double() ► Group`
+<a name="Group+toXCoordinate"></a>
 
+### toXCoordinate
 
-Double the group element.
+<p>Get the x-coordinate of the group element</p>
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+```javascript
+toXCoordinate() ► Field
+```
 
----
-
-### `inverse() ► Group`
-
-
-Get the inverse of the group element. This is the reflection of the point about the axis
-of symmetry i.e. (x,y) -&gt; (x, -y).
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Field</code> |
 
 ---
 
-### `equals(other) ► boolean`
+<a name="Group+toPlaintext"></a>
 
+### toPlaintext
 
-Check if one group element equals another.
+<p>Create a plaintext element from a group element</p>
 
-Parameters | Type | Description
---- | --- | ---
-__other__ | Group | **
-__*return*__ | `boolean` | **
+```javascript
+toPlaintext() ► Plaintext
+```
 
----
-
-### `zero() ► Group`
- 
-
-Get the group identity element under the group operation (i.e. the point at infinity.)
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+| Param | Type |
+| --- | --- |
+| *return* | <code>Plaintext</code> |
 
 ---
 
-### `generator() ► Group`
- 
+<a name="Group+clone"></a>
 
-Get the generator of the group.
+### clone
 
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | Group | **
+<p>Clone the group element</p>
 
---- 
+```javascript
+clone() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Group.random"></a>
+
+### random
+
+<p>Generate a random group element</p>
+
+```javascript
+random() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Group+add"></a>
+
+### add
+
+<p>Add two group elements</p>
+
+```javascript
+add(other) ► Group
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Group</code> | Group element to add |
+| *return* | <code>Group</code> | Sum of the group elements |
+
+---
+
+<a name="Group+subtract"></a>
+
+### subtract
+
+<p>Subtract two group elements (equivalently: add the inverse of an element)</p>
+
+```javascript
+subtract(other) ► Group
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Group</code> | Group element to subtract |
+| *return* | <code>Group</code> | Difference of the group elements |
+
+---
+
+<a name="Group+scalarMultiply"></a>
+
+### scalarMultiply
+
+<p>Multiply a group element by a scalar element</p>
+
+```javascript
+scalarMultiply(scalar) ► Group
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| scalar | <code>Scalar</code> | Scalar element to multiply by |
+| *return* | <code>Group</code> | Result of scalar multiplication |
+
+---
+
+<a name="Group+double"></a>
+
+### double
+
+<p>Double the group element</p>
+
+```javascript
+double() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Group+inverse"></a>
+
+### inverse
+
+<p>Get the inverse of the group element. This is the reflection of the point about the axis of symmetry i.e. (x,y) -> (x, -y)</p>
+
+```javascript
+inverse() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Group+equals"></a>
+
+### equals
+
+<p>Check if one group element equals another</p>
+
+```javascript
+equals(other) ► boolean
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| other | <code>Group</code> | Group element to compare |
+| *return* | <code>boolean</code> | Whether the group elements are equal |
+
+---
+
+<a name="Group.zero"></a>
+
+### zero
+
+<p>Get the group identity element under the group operation (i.e. the point at infinity)</p>
+
+```javascript
+zero() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
+
+---
+
+<a name="Group.generator"></a>
+
+### generator
+
+<p>Get the generator of the group</p>
+
+```javascript
+generator() ► Group
+```
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>Group</code> |
