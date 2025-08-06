@@ -264,6 +264,56 @@ The mapping key being modified is the transaction signer, which this is the "fro
 A program can use `transfer_public_from_signer` to receive funds from a user to itself, then use `transfer_public` to transfer funds from itself back to the user.
 :::
 
+## Leo code examples
+
+### Transfer from transaction signer
+
+#### Transfer to current program as public balance
+
+```leo
+program example.aleo {
+    async transition transfer_from_txn_signer(amount: u64) -> Future {
+        let f: Future = credits.aleo/transfer_public_as_signer(THIS_PROGRAM_ADDRESS, amount);
+        ... // Other logic
+    }
+}
+```
+
+#### Transfer to target address as public balance
+
+```leo
+program example.aleo {
+    async transition transfer_from_txn_signer(receiver: address, amount: u64) -> Future {
+        let f: Future = credits.aleo/transfer_public_as_signer(receiver, amount);
+        ... // Other logic
+    }
+}
+```
+
+### Transfer from current program
+
+#### Transfer to receiver as public balance
+
+```leo
+program example.aleo {
+    async transition transfer_from_this_program(receiver: address, amount: u64) -> Future {
+        let f: Future = credits.aleo/transfer_public(receiver, amount);
+        ... // Other logic
+    }
+}
+```
+
+#### Transfer to receiver as private balance
+
+```leo
+program example.aleo {
+    async transition transfer_from_this_program(receiver: address, amount: u64) -> (credits.aleo/credits, Future) {
+        let (r, f): (credits.aleo/credits, Future) = credits.aleo/transfer_public_to_private(receiver, amount);
+        ... // Other logic
+    }
+}
+```
+
 ## Transferring with SDK
 
 All five of these functions can be used to transfer credits between users via the `transfer` function in the

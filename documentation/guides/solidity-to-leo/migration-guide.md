@@ -1399,6 +1399,10 @@ Leo programs cannot create new programs:
 - **No CREATE2**: No deterministic address generation but programs on Aleo already have developer-defined human-readable names.
 - **Fixed Architecture**: Program relationships must be established at deployment time
 
+:::info
+CREATE2 is a special opcode in Solidity to compute the address of creating contract deterministically, please refer to the [Solidity docs](https://docs.soliditylang.org/en/v0.8.30/control-structures.html#salted-contract-creations-create2) for more information.
+:::
+
 ## Scoping Rules
 
 **Solidity and Leo Similarities:**
