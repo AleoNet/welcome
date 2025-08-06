@@ -4,6 +4,10 @@ title: Program Upgrades on Aleo
 sidebar_label: Program Upgrades
 ---
 
+:::info
+Please note that this change is currently live only on Testnet and is expected to go live on Mainnet around 9 AM PT on August 12th, 2025.
+:::
+
 Traditionally, blockchain development has been defined by immutable, "deploy-once" contracts. This provides security but makes it hard to fix bugs or add features. To solve this, Aleo introduces a framework for program upgradability that is timely, cost-effective, and doesn't disrupt your application's state.
 
 This framework moves Aleo development from a static model to a dynamic one, allowing applications to evolve. It lets you modify program logic after deployment, so you can patch vulnerabilities, improve features, and adapt to user needs without a complex and costly state migration. This capability isn't on by default, it's a choice you make when you first create your program.
