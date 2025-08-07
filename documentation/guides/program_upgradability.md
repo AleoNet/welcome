@@ -5,7 +5,7 @@ sidebar_label: Program Upgrades
 ---
 
 :::info
-Please note that this change is not yet live. It is expected to go live on Testnet at block 9,800,000 and on Mainnet at block 10,272,000.
+Please note that this change is not yet live. It is expected to go live on Testnet at block 9,800,000 (expeceted 8/8/2025) and on Mainnet at block 10,272,000 (expeceted 8/19/2025).
 :::
 
 Traditionally, blockchain development has been defined by immutable, "deploy-once" contracts. This provides security but makes it hard to fix bugs or add features. To solve this, Aleo introduces a framework for program upgradability that is timely, cost-effective, and doesn't disrupt your application's state.
