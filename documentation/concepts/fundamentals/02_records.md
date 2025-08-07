@@ -51,12 +51,23 @@ Only the sender and receiver with their corresponding account view keys are able
 
 The serial number nonce is used to create a unique identifier for each record, and is computed via a PRF evaluation of the address secret key ask of the owner and the record's serial number.
 
-### Version
-`1u8.public`
+### Version  
+`1u8.public`  
 
-The version field specifies the version of the program record, which determines how the record commitment is derived:
-- **Version 0**: Uses a BHP hash to derive the record commitment
-- **Version 1**: Uses a BHP commitment to derive the record commitment
+The `version` field specifies the version of the program record, which determines how the record commitment is derived and what privacy features are available.
+
+#### Record v0
+- Uses the BHP hash to derive the record commitment  
+- No sender ciphertext is included  
+- Can only be decrypted with an account’s view key
+- Allowed before Consensus V8, but disallowed after
+
+#### Record v1
+- Uses a BHP commitment with a nonce to derive the record commitment, where the nonce is generated from the record view key
+- Enhanced privacy with hiding properties
+- Includes encrypted sender ciphertext, allowing users to determine which address sent them a record
+- Can be decrypted with the record view key without sharing an account’s view key
+- Required after Consensus V8
 
 For a practical demonstration of a record in Aleo, watch the video [here](https://youtu.be/JIgrKv_Q6Jo?feature=shared) (Version 0). More record details can be found in [transitions](./04_transitions.md#record). 
 
