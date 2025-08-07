@@ -58,26 +58,21 @@ Aleo Wasm is a Rust crate which compiles Aleo code responsible for creating and 
 WebAssembly.
 
 When compiled with `wasm-pack` JavaScript bindings are generated for the WebAssembly allowing Aleo zero
-knowledge programs to be used in the browser and NodeJS. This package is available on NPM (linked above). The 
-[documentation](./wasm/00_wasm_installation.md) provides instructions for compiling this [crate](https://github.com/ProvableHQ/sdk/tree/testnet3/wasm) and using it in web projects for those interested in building from
-source.
+knowledge programs to be used in the browser and NodeJS. This package is available on NPM (linked above).
 
-❗ Currently program execution is only available in web Browsers. However, account, program and data management within
-NodeJS is functional.
-
-Source: [`sdk/wasm`](https://github.com/provablehq/sdk/tree/testnet3/wasm)
+Source: [`sdk/wasm`](https://github.com/provablehq/sdk/tree/mainnet/wasm)
 
 
 ## 📚 Documentation
 
-#### [API Documentation](../../references/apis/00_aleo_public_api.md)
+#### [API Documentation](../../references/apis/01_aleo_public_api.md)
 This API documentation provides information on the available endpoints to query the Aleo network.
 
 
-#### [SDK Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk#readme)
+#### [SDK Readme](https://github.com/ProvableHQ/sdk/tree/mainnet/sdk#readme)
 The SDK Readme provides concepts core to executing zero knowledge programs in the web and several detailed examples of
 how to use the SDK to build web apps using Aleo.
 
-#### [Aleo Wasm Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/wasm#readme)
+#### [Aleo Wasm Readme](https://github.com/ProvableHQ/sdk/tree/mainnet/wasm#readme)
 The Aleo Wasm Readme provides instructions for compiling the Aleo Wasm crate and using it in web projects. Those who
 want to build from source or create their own WebAssembly bindings should start here
