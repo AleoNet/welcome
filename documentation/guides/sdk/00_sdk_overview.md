@@ -49,7 +49,7 @@ npm create leo-app@latest
 
 #### Source: [`sdk/create-leo-app`](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app )
 
-## 3. [Aleo-Wasm](./wasm/00_wasm_installation.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
+## 3. [Aleo-Wasm](./wasm/01_address.md) - Zero Knowledge Algorithms in JavaScript + WebAssembly
 
 <a href="https://www.npmjs.com/package/@provablehq/wasm"> <img alt="Create Leo App" src="https://img.shields.io/npm/l/%40provablehq%2Fwasm?label=NPM%20-%20Aleo%20Wasm&labelColor=green&color=blue" /></a>
 <a href="https://crates.io/crates/aleo-wasm"> <img alt="Aleo-Wasm" src="https://img.shields.io/crates/v/aleo-wasm.svg?color=neon" /></a>
@@ -67,25 +67,12 @@ NodeJS is functional.
 
 Source: [`sdk/wasm`](https://github.com/provablehq/sdk/tree/testnet3/wasm)
 
-## 4. Aleo Python SDK - Zero Knowledge Algorithms in Python and Zero Knowledge Machine Learning
-
-The official Aleo Python SDK providing tools for creating zero knowledge apps. It consists of two separate libraries:
-
-* The **aleo** library, which uses foreign function interfaces to bring snarkVM functionalities to Python.
-* The **zkml** library, which transpiles scikit-learn machine learning models into Leo programs for inference.
-
-Both libraries are in an early development stage. They can be installed through `pip install aleo` respectively `pip install zkml`. The 
-[documentation on the aleo library](./python/00_aleo_sdk.md) and the [documentation on the zkml library](./python/01_zkml_transpiler.md) provide more information on installation and usage.
-
-
-Source: [`python-sdk`](https://github.com/provablehq/python-sdk)
-
 
 ## 📚 Documentation
 
-#### [API Documentation](https://developer.aleo.org)
-API Documentation, tutorials for the Provable SDK, and documentation on how to build Leo and Aleo Instructions programs can
-be found on the [Aleo Developer Docs](https://developer.aleo.org) page.
+#### [API Documentation](../../references/apis/00_aleo_public_api.md)
+This API documentation provides information on the available endpoints to query the Aleo network.
+
 
 #### [SDK Readme](https://github.com/ProvableHQ/sdk/tree/testnet3/sdk#readme)
 The SDK Readme provides concepts core to executing zero knowledge programs in the web and several detailed examples of
