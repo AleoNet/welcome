@@ -143,7 +143,7 @@ as a private input and generates a public balance in the `account` mapping entry
 ```mermaid
 graph LR
     subgraph credits.aleo
-        m1[account mapping key:user3address value:3000u64]
+                    m1[account mapping<br>key:user3address<br>value:3000u64]
     end
     user1--record3 owner:user2address balance:4000u64-->t1[transfer_private_to_public]
     user1--amount:3000u64-->t1
@@ -171,12 +171,12 @@ graph LR
     intermediate--recipient:user2address amount:3000u64-->t1[transfer_public]
     subgraph credits.aleo
         subgraph after["After Transfer"]
-            m1_after[account mapping key:intermediate_program.aleo value:0u64]
-            m2_after[account mapping key:user2address value:3000u64]
+            m1_after[account mapping<br>key:intermediate_program.aleo<br>value:0u64]
+            m2_after[account mapping<br>key:user2address<br>value:3000u64]
         end
         subgraph before["Before Transfer"]
-            m1_before[account mapping key:intermediate_program.aleo value:3000u64]
-            m2_before[account mapping key:user2address value:0u64]
+            m1_before[account mapping<br>key:intermediate_program.aleo<br>value:3000u64]
+            m2_before[account mapping<br>key:user2address<br>value:0u64]
         end
     end
     t1-->credits.aleo
@@ -207,10 +207,10 @@ graph LR
     user1(["caller (aleo1123...)"])--recipient:user2address amount:3000u64-->t1[transfer_public_to_private]
     subgraph credits.aleo
         subgraph after["After Transfer"]
-            m1_after[account mapping key:caller value:0u64]
+            m1_after[account mapping<br>key:caller<br>value:0u64]
         end
         subgraph before["Before Transfer"]
-            m1_before[account mapping key:caller value:3000u64]
+            m1_before[account mapping<br>key:caller<br>value:3000u64]
         end
     end
     t1-->credits.aleo
@@ -240,12 +240,12 @@ graph LR
     intermediate--recipient:user2address amount:3000u64-->t1[transfer_public_as_signer]
     subgraph credits.aleo
         subgraph after["After Transfer"]
-            m1_after[account mapping key:txn signer value:0u64]
-            m2_after[account mapping key:user2address value:3000u64]
+            m1_after[account mapping<br>key:txn signer<br>value:0u64]
+            m2_after[account mapping<br>key:user2address<br>value:3000u64]
         end
         subgraph before["Before Transfer"]
-            m1_before[account mapping key:txn signer value:3000u64]
-            m2_before[account mapping key:user2address value:0u64]
+            m1_before[account mapping<br>key:txn signer<br>value:3000u64]
+            m2_before[account mapping<br>key:user2address<br>value:0u64]
         end
     end
     t1-->credits.aleo
