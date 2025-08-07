@@ -1,11 +1,15 @@
 ---
-id: latest_state_root
-title: Latest State Root
-sidebar_label: Latest State Root
+id: get_latest_state_root
+title: Get Latest State Root
+sidebar_label: Get Latest State Root
 ---
 
 ```bash title=ENDPOINT
 GET /{network}/stateRoot/latest
+```
+
+```bash title=ENDPOINT
+GET /{network}/latest/stateRoot
 ```
 
 Returns the latest state root.

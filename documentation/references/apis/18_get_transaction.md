@@ -5,7 +5,7 @@ sidebar_label: Get Transaction
 ---
 
 ```bash title=ENDPOINT
-GET /{network}/transaction/{transactionID}
+GET /{network}/transaction/{ID}
 ```
 
 Returns the transaction for the given transaction ID.
@@ -14,7 +14,7 @@ Returns the transaction for the given transaction ID.
 
 | Parameter       |  Type  | Required | Description                                         |
 |:----------------|:------:|:--------:|:----------------------------------------------------|
-| `transactionID` | string |   Yes    | The transaction id of the requested transaction hex |
+| `ID` | string |   Yes    | The transaction id of the requested transaction hex |
 
 ### Response
 

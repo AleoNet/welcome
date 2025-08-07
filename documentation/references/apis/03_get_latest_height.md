@@ -1,11 +1,15 @@
 ---
-id: latest_height
-title: Latest Height
-sidebar_label: Latest Height
+id: get_latest_height
+title: Get Latest Height
+sidebar_label: Get Latest Height
 ---
 
 ```bash title=ENDPOINT
 GET /{network}/block/height/latest
+```
+or
+```bash title=ENDPOINT
+GET /{network}/latest/height
 ```
 
 Returns the latest block height.
