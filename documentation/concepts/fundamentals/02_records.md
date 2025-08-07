@@ -20,13 +20,15 @@ An Aleo record is serialized in the following format:
 |  `owner`  |        address         |                               The address public key of the owner of the program record                                |
 |  `data`   | Map\<Identifier, Entry\> | A data payload containing arbitrary application-dependent information. Each entry can either be `public` or `private`. |
 |  `nonce`  |         group          |                                     The serial number nonce of the program record                                      |
+|  `version`|         u8             |                                     The version of the program record                                                  |
 
 An example record:
 ```bash
 {
   owner: aleo13ssze66adjjkt795z9u5wpq8h6kn0y2657726h4h3e3wfnez4vqsm3008q.private,
   amount: 100u64.private,
-  _nonce: 5861592911433819692697358191094794940442348980903696700646555355124091569429group.public
+  _nonce: 5861592911433819692697358191094794940442348980903696700646555355124091569429group.public,
+  version: 1u8.public
 }
 ```
 
@@ -48,8 +50,15 @@ Only the sender and receiver with their corresponding account view keys are able
 `5861592911433819692697358191094794940442348980903696700646555355124091569429group`
 
 The serial number nonce is used to create a unique identifier for each record, and is computed via a PRF evaluation of the address secret key ask of the owner and the record's serial number.
-For a practical demonstration of a record in Aleo, see [here](https://youtu.be/JIgrKv_Q6Jo?feature=shared).
 
+### Version
+`1u8.public`
+
+The version field specifies the version of the program record, which determines how the record commitment is derived:
+- **Version 0**: Uses a BHP hash to derive the record commitment
+- **Version 1**: Uses a BHP commitment to derive the record commitment
+
+For a practical demonstration of a record in Aleo, watch the video [here](https://youtu.be/JIgrKv_Q6Jo?feature=shared) (Version 0). More record details can be found in [transitions](./04_transitions.md#record). 
 
 ## Diving into the Concepts
 To understand how to use records, we must understand the design principles behind Aleo.
