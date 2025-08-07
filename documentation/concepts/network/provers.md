@@ -10,6 +10,10 @@ The Aleo blockchain introduces a computational puzzle aimed at incentivizing the
 
 The puzzle sets its sights on enhancing synthesis, otherwise known as witness generation. This area is particularly crucial for Aleo, as it represents a significant portion of the time spent in generating proof for Aleo programs. By directing efforts towards synthesis, the puzzle aims to address a critical bottleneck specific to Aleo's ecosystem, ensuring a more streamlined and efficient process for developers and users alike. This strategic emphasis not only caters to the unique needs of Aleo's platform but also fosters innovation and optimizations in the broader ecosystem.
 
+:::info
+For more detailed information of the puzzle, please refer to the [specification](https://github.com/ProvableHQ/snarkVM/blob/staging/ledger/puzzle/epoch/docs/spec.md).
+:::
+
 ### Role and Incentives of Provers
 
 Anyone can run a prover. Provers does not participate in Aleo's network consensus. They run specific algorithms to solve the `Puzzle` and obtain a `Solution` that satisfies the `proof_target`. This `Solution` is then broadcasted to the network. After the consensus network verifies and include the `Solution` in a block, the Prover receives `puzzle_reward` as incentives.
@@ -244,10 +248,6 @@ Below are the all instruction variants in the puzzle and whether or not they are
 -   `Ternary`: Yes
 -   `Xor`: Yes
 
-:::info
-For more detailed information of the puzzle, please refer to the [specification](https://github.com/ProvableHQ/snarkVM/blob/staging/ledger/puzzle/epoch/docs/spec.md).
-:::
-
 ### Epochs
 
 An epoch is a period of 360 blocks. At the start of each epoch, a new puzzle program is generated using a hash of the previous block. This program is the same for all provers during the epoch and changes every epoch to prevent precomputation and ensure fairness.
@@ -404,7 +404,7 @@ This ARC benefits three main parties: **validators**, **provers**, and **long-te
 ## Future Plans
 ### ARC-43: Extending the Puzzle to a Full SNARK
 
-ARC-43 proposes extending the current synthesis-focused puzzle to a full Succinct Non-interactive Argument of Knowledge (SNARK). This extension aims to address current bottlenecks and leverage recent hardware advancements.
+ARC-43 proposes extending the current synthesis-focused puzzle to a full Succinct Non-interactive Argument of Knowledge (SNARK). This extension aims to address current bottlenecks and leverage recent hardware advancements. The full proposal can be found [here](https://github.com/ProvableHQ/ARCs/discussions/77).
 
 **Key Changes:**
 - **Increased Instruction Count**: Expand the puzzle by orders of magnitude beyond current consensus verification limits
