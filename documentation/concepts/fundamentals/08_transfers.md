@@ -115,7 +115,7 @@ to a new record owned by the receiver. This function is 100% private and does no
 **Input Parameters:**
 - `credits.record` - The sender's record containing the credits to transfer
 - `address.private` - The receiver's address (private)
-- `u64.private` - The amount of credits to transfer in u64 (private)
+- `u64.private` - The amount of microcredits to transfer in u64 (private)
 
 ```mermaid
 graph LR
@@ -138,7 +138,7 @@ as a private input and generates a public balance in the `account` mapping entry
 **Input Parameters:**
 - `credits.record` - The sender's record containing the credits to transfer
 - `address.public` - The receiver's address (public)
-- `u64.public` - The amount of credits to transfer in u64 (public)
+- `u64.public` - The amount of microcredits to transfer in u64 (public)
 
 ```mermaid
 graph LR
@@ -163,7 +163,7 @@ any records.
 
 **Input Parameters:**
 - `address.public` - The receiver's address (public)
-- `u64.public` - The amount of credits to transfer in u64 (public)
+- `u64.public` - The amount of microcredits to transfer in u64 (public)
 
 ```mermaid
 graph LR
@@ -183,7 +183,7 @@ graph LR
     before-->after
 
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000,font-size:18px;
-    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:18px;
+    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:16px;
     linkStyle default stroke:#f229e0,stroke-width:3px;
 ```
 
@@ -200,7 +200,7 @@ as a private output.
 
 **Input Parameters:**
 - `address.private` - The receiver's address (private)
-- `u64.public` - The amount of credits to transfer in u64 (public)
+- `u64.public` - The amount of microcredits to transfer in u64 (public)
 
 ```mermaid
 graph LR
@@ -218,7 +218,7 @@ graph LR
     credits.aleo--record5 owner:user2address amount:3000u64-->user2
 
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000,font-size:18px;
-    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:18px;
+    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:16px;
     linkStyle default stroke:#f229e0,stroke-width:3px;
 ```
 
@@ -232,7 +232,7 @@ Similar to `transfer_public`, this function subtracts an amount of `credits` sto
 
 **Input Parameters:**
 - `address.public` - The receiver's address (public)
-- `u64.public` - The amount of credits to transfer in u64 (public)
+- `u64.public` - The amount of microcredits to transfer in u64 (public)
 
 ```mermaid
 graph LR
@@ -252,7 +252,7 @@ graph LR
     before-->after
 
     classDef default fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000,font-size:18px;
-    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:18px;
+    style credits.aleo fill:#ffdbf0,stroke:#f229e0,stroke-width:3px,color:#000,font-size:16px;
     linkStyle default stroke:#f229e0,stroke-width:3px;
 ```
 
