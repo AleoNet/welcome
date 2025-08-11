@@ -13,6 +13,9 @@ The following lists show the special operands supported by Aleo instructions.
 | [self.signer](#selfsigner)   | Returns the user address that originated the transition |
 | [self.caller](#selfcaller)   | Returns the address of the immediate caller of the program |
 | [network.id](#networkid)     | Returns the ID of the network on which the program is executed |
+| [edition](#edition)          | Returns the program's version number (u16) |
+| [checksum](#checksum)        | Returns the SHA3-256 hash of the program string |
+| [program_owner](#programowner) | Returns the address of the account that submitted the deployment transaction |
 
 ## Specification
 
@@ -20,7 +23,7 @@ The following is the specification for each special operands in the Aleo Virtual
 
 ### `network.id`
 
-[Back to Top](#table-of-standard-operands)
+[Back to Top](#table-of-special-operands)
 
 #### Description
 
@@ -40,7 +43,7 @@ assert.eq network.id 0u64;  // For mainnet
 
 ### `block.height`
 
-[Back to Top](#table-of-standard-operands)
+[Back to Top](#table-of-special-operands)
 
 #### Description
 
@@ -55,7 +58,7 @@ assert.eq block.height 100u64;
 
 ### `self.signer`
 
-[Back to Top](#table-of-standard-operands)
+[Back to Top](#table-of-special-operands)
 
 #### Description
 
@@ -69,7 +72,7 @@ assert.eq self.signer aleo1...;
 
 ### `self.caller`
 
-[Back to Top](#table-of-standard-operands)
+[Back to Top](#table-of-special-operands)
 
 #### Description
 
@@ -81,5 +84,56 @@ Returns the address of the immediate caller of the program.
 assert.eq self.caller aleo1...;
 ```
 
-***
+### `edition`
+
+[Back to Top](#table-of-special-operands)
+
+#### Description
+
+Returns the program's version number as an unsigned 16-bit integer (`u16`). The `edition` must be `0u16` for the initial deployment. For every valid upgrade, it must increment by exactly 1.
+
+This operand is exclusively available within the `finalize` scope and is used for program upgradability.
+
+#### Example Usage
+
+```aleo
+assert.eq edition 0u16;  // Check if this is the initial deployment
+```
+
+### `checksum`
+
+[Back to Top](#table-of-special-operands)
+
+#### Description
+
+Returns a 32-byte array (`[u8; 32u32]`) representing the SHA3-256 hash of the program string. It's a unique fingerprint of the program's code.
+
+The `checksum` is required in any deployment of an upgradable program and is used to verify that the deployed code is what was expected.
+
+This operand is exclusively available within the `finalize` scope.
+
+#### Example Usage
+
+```aleo
+assert.eq checksum <EXPECTED_CHECKSUM>;  // Verify program code matches expected hash
+```
+
+### `program_owner`
+
+[Back to Top](#table-of-special-operands)
+
+#### Description
+
+Returns the `address` of the account that submitted the deployment transaction.
+
+The `program_owner` is required in any deployment of an upgradable program and can be used to enforce access control for program upgrades.
+
+This operand is exclusively available within the `finalize` scope.
+
+#### Example Usage
+
+```aleo
+assert.eq program_owner <ADMIN_ADDRESS>;  // Restrict upgrades to specific admin
+```
+
 
