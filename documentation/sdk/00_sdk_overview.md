@@ -65,7 +65,7 @@ Source: [`sdk/wasm`](https://github.com/provablehq/sdk/tree/mainnet/wasm)
 
 ## 📚 Documentation
 
-#### [API Documentation](../../references/apis/01_aleo_public_api.md)
+#### [API Documentation](../apis/01_aleo_public_api.md)
 This API documentation provides information on the available endpoints to query the Aleo network.
 
 

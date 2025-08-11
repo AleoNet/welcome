@@ -23,4 +23,4 @@ Returns the value in a key-value mapping corresponding to the supplied mappingKe
 
 | Parameter |                  Type                   |                  Description                   |
 |:---------:|:---------------------------------------:|:----------------------------------------------:|
-| `result`  | [object](../../concepts/fundamentals/01_programs.md) | The value of the key-value pair in the mapping |
+| `result`  | [object](../concepts/fundamentals/01_programs.md) | The value of the key-value pair in the mapping |

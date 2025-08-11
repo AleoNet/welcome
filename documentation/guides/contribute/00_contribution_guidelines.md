@@ -4,12 +4,12 @@ title: Welcome
 sidebar_label: Contribution Guidelines
 ---
 ## Contribution Guidelines
-Welcome to Aleo’s Developer Documentation. Committed to open-source principles and decentralization, Aleo actively welcomes and values contributions from the community. All forms of contributions are encouraged, including suggesting new topics and contents, or providing examples to improve clarity and usefulness.
+Welcome to Aleo's Developer Documentation. Committed to open-source principles and decentralization, Aleo actively welcomes and values contributions from the community. All forms of contributions are encouraged, including suggesting new topics and contents, or providing examples to improve clarity and usefulness.
 
 ## Introduction
 Aleo is a fully open-source, decentralized, programmable and privacy-preserving Layer 1 blockchain that allows developers to create applications with built-in privacy features. Using zero-knowledge proofs, programs deployed on Aleo enable sensitive data to be kept confidential while still allowing verification. The platform offers high scalability, making it capable of supporting large-scale applications, and provides an unrestricted runtime environment that removes typical blockchain limitations. This unique combination of privacy, scalability, and flexibility makes Aleo an ideal platform for building the next generation of privacy-focused decentralized applications.   
 
-For more details, visit the [Concepts](../concepts/fundamentals/00_accounts.md) section to explore Aleo’s architecture and features.
+For more details, visit the [Concepts](../../concepts/fundamentals/00_accounts.md) section to explore Aleo's architecture and features.
 
 ## Help improve our ecosystem
 ### Proposing an ARC
@@ -49,6 +49,6 @@ Every component that forms Aleo is open-sourced and welcomes contributions of al
 - [Leo](https://github.com/ProvableHQ/leo-docs-source) - Rust-based DSL to write programs on Aleo  
 - [Provable SDK](https://github.com/ProvableHQ/sdk/tree/mainnet/sdk) - Javascript/Typescript tools for creating zero knowledge apps  
 - [Create-leo-app](https://github.com/ProvableHQ/sdk/tree/mainnet/create-leo-app) - Scaffolding your first Aleo project  
-- [Aleo Instruction](../guides/aleo/00_aleo_overview.md) - IR that Leo language compiles into  
+- [Aleo Instruction](../aleo/00_aleo_overview.md) - IR that Leo language compiles into  
 - [SnarkOS](./02_snarkos_contribute.md) - The operating system or blockchain node client of Aleo  
 - [SnarkVM](./03_snarkvm_contribute.md) - The virtual machine that performs verifiable computation  

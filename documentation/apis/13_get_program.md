@@ -29,4 +29,4 @@ Returns the program for the given program ID.
 
 | Parameter |                  Type                   |      Description      |
 |:---------:|:---------------------------------------:|:---------------------:|
-| `result`  | [object](../../concepts/fundamentals/01_programs.md) | The requested program |
+| `result`  | [object](../concepts/fundamentals/01_programs.md) | The requested program |
