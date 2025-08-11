@@ -100,6 +100,10 @@ This operand is exclusively available within the `finalize` scope and is used fo
 assert.eq edition 0u16;  // Check if this is the initial deployment
 ```
 
+:::note
+You may also refer to other program's metadata by qualifying the operand with the program name, like `Program::edition(credits.aleo)`, `Program::edition(foo.aleo)`. You will need to import the program in your Leo file to use this syntax.
+:::
+
 ### `checksum`
 
 [Back to Top](#table-of-special-operands)
@@ -117,6 +121,10 @@ This operand is exclusively available within the `finalize` scope.
 ```aleo
 assert.eq checksum <EXPECTED_CHECKSUM>;  // Verify program code matches expected hash
 ```
+
+:::note
+You may also refer to other program's metadata by qualifying the operand with the program name, like `Program::checksum(credits.aleo)`, `Program::checksum(foo.aleo)`. You will need to import the program in your Leo file to use this syntax.
+:::
 
 ### `program_owner`
 
@@ -136,4 +144,10 @@ This operand is exclusively available within the `finalize` scope.
 assert.eq program_owner <ADMIN_ADDRESS>;  // Restrict upgrades to specific admin
 ```
 
+:::note
+You may also refer to other program's metadata by qualifying the operand with the program name, like `Program::program_owner(credits.aleo)`, `Program::program_owner(foo.aleo)`. You will need to import the program in your Leo file to use this syntax.
+:::
 
+:::warning
+Programs deployed before upgradability do not have a `program_owner`. Attempting to access it will result in a runtime error.
+:::
