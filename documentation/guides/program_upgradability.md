@@ -146,14 +146,14 @@ A program that can never be upgraded.
 ```aleo
 program noupgrade_example.aleo;
 
-//... other program logic...
-
 constructor:
     // This assertion checks if the program's edition is 0.
     // It passes on initial deployment. For any upgrade attempt,
     // the edition will be > 0, causing the assertion to fail and
     // halting the upgrade transaction.
     assert.eq edition 0u16;
+
+//... other program logic...
 ```
 The `constructor` ensures the program can only be deployed at `edition 0`, making upgrades impossible.
 
@@ -164,12 +164,12 @@ Restrict upgrades to a single, hardcoded administrator address.
 ```aleo
 program admin_example.aleo;
 
-//... other program logic...
-
 constructor:
     // This asserts that the address deploying this version of the program is the predefined ADMIN_ADDRESS.
     // IMPORTANT: This address is hardcoded and cannot be changed after deployment.
     assert.eq program_owner <ADMIN_ADDRESS>;
+
+//... other program logic...
 ```
 This pattern uses `program_owner` operand to check that the deployer is the designated admin. It's simple, but if the admin key is lost, control is lost forever.
 
@@ -228,8 +228,6 @@ import governor.aleo;
 
 program dao_example.aleo;
 
-//... other program logic...
-
 constructor:
     // If edition is 0 (first deployment), skip upgrade checks.
     branch.eq edition 0u16 to end;
@@ -243,6 +241,8 @@ constructor:
     assert.eq checksum r0;
 
     position end;
+
+//... other program logic...
 ```
 This pattern delegates upgrade authority to another program. The `constructor` fetches the valid `checksum` from the DAO contract, decoupling the application's logic from its governance.
 
@@ -252,8 +252,6 @@ This pattern delegates upgrade authority to another program. The `constructor` f
 
 ```aleo
 program timelock_example.aleo;
-
-//... other program logic...
 
 constructor:
     // Checks if the edition is 0 (first deployment); if so, skips the time-lock check.
@@ -268,6 +266,8 @@ constructor:
     branch.eq true true to end_otherwise_0_1;
     position end_then_0_0;
     position end_otherwise_0_1;
+
+//... other program logic...
 ```
 *   **Mechanism:** This `constructor` uses `block.height` to enforce a time-based constraint, which can ensure a "cool-down" period before an upgrade is applied.[1]
 
@@ -282,8 +282,6 @@ mapping is_locked:
     key as boolean.public;
     value as boolean.public;
 
-//... other logic, including a function for an admin to set is_locked[true] to true.
-
 constructor:
     // This check runs on every upgrade attempt. If the 'is_locked' flag
     // is true, the assertion fails, halting the upgrade.
@@ -291,6 +289,8 @@ constructor:
     assert.eq r0 false;
 
     //... other upgrade logic (e.g., admin check) can follow...
+
+//... other logic, including a function for an admin to set is_locked[true] to true.
 ```
 *This pattern uses a `mapping` as a one-way flag. Once set to `true`, the `constructor` will block all future upgrade attempts.
 
@@ -302,8 +302,6 @@ Protect a program from unexpected upgrades in its dependencies by pinning to a s
 import child.aleo;
 
 program parent.aleo;
-
-//... other program logic...
 
 constructor:
     //... Programs that fix dependencies should have an upgrade mechanism
@@ -319,6 +317,8 @@ finalize some_function:
     // This must be in finalize, as the 'edition' operand is only available here.
     assert.eq child.aleo/edition 0u16;
     //...
+
+//... other program logic...
 ```
 This is a defensive pattern used in a `finalize` block, not the `constructor`. It checks the `edition` of a dependency before interacting with it. This prevents breaking changes but requires an upgrade to `parent.aleo` to adopt a new, valid version of `child.aleo`.
 

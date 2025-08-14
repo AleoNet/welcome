@@ -141,7 +141,7 @@ was run correctly. Keeping program inputs and outputs private allows developers 
 Zero-Knowledge programs are written in one of two languages:
 1. [Leo](https://docs.leo-lang.org): A high level, developer friendly language for developing
    zero knowledge programs.
-2. [Aleo Instructions](../../aleo/00_aleo_overview.md): A low level language that provides developers fine
+2. [Aleo Instructions](../../guides/aleo/00_aleo_overview.md): A low level language that provides developers fine
    grained control over the execution flow of zero knowledge programs. Leo programs are compiled into Aleo Instructions
    under the hood.
 
@@ -175,7 +175,7 @@ function hello:
 The SDK provides the ability to execute Aleo Instructions programs %100 client-side within the browser.
 
 The `ProgramManager` object encapsulates the functionality for executing programs and making zero knowledge proofs about
-them. Under the hood it uses cryptographic code compiled from [snarkVM](../../aleo/00_aleo_overview.md) into WebAssembly.
+them. Under the hood it uses cryptographic code compiled from [snarkVM](../../guides/aleo/00_aleo_overview.md) into WebAssembly.
 JavaScript bindings to this WebAssembly code allows execution of programs in zero knowledge fully within the browser
 without requiring any external communication with the internet. Users interested in lower level details on how this is
 achieved can visit the [aleo-wasm](https://github.com/provablehq/sdk/tree/testnet3/wasm) crate.
@@ -679,7 +679,7 @@ A full example of this implementation can be found [here](https://github.com/pro
 ### 3.1 Transfer Aleo Credits
 
 The official token of operation of the Aleo Network are Aleo credits. Aleo credits are used to pay all fees for program
-execution on the Aleo network. Please refer [here](../../../concepts/fundamentals/08_transfers.md) for more information about Aleo credits. 
+execution on the Aleo network. Please refer [here](../../concepts/fundamentals/08_transfers.md) for more information about Aleo credits. 
 
 The `transfer` functions can be used to transfer credits between users in the
 `ProgramManager` by specifying the transfer type as the third argument. Below is an example of how the SDK can be used to transfer Aleo credits.
@@ -1084,7 +1084,7 @@ A full list of methods provided by the `AleoNetworkClient` class and usage examp
 
 ## Further Documentation
 
-API documentation for this package, the Leo Language, and Aleo instructions can be found on the [Aleo Developer Hub](../../aleo/00_aleo_overview.md).
+API documentation for this package, the Leo Language, and Aleo instructions can be found on the [Aleo Developer Hub](../../guides/aleo/00_aleo_overview.md).
 
 To view the API documentation for this package locally, open `docs/index.html`.
 To regenerate the documentation, run `npx jsdoc --configure jsdoc.json --verbose`

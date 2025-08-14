@@ -16,7 +16,7 @@ Create a new application using `create-leo-app`:
 npm create leo-app@latest
 ```
 
-More information about `create-leo-app` can be found in [here](../sdk/create-leo-app/01_create_leo_app.md).
+More information about `create-leo-app` can be found in [here](../../sdk/create-leo-app/01_create_leo_app.md).
 
 ### Installation
 

@@ -21,5 +21,5 @@ Returns the block for the given block height or block hash.
 
 | Parameter |                 Type                  |     Description     |
 |:---------:|:-------------------------------------:|:-------------------:|
-| `result`  | [object](../../concepts/fundamentals/05_blocks.md) | The requested block |
+| `result`  | [object](../concepts/fundamentals/05_blocks.md) | The requested block |
 

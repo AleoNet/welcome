@@ -5,7 +5,7 @@ sidebar_label: Consensus
 ---
 
 ## Overview
-Aleo Network employs a unique consensus mechanism known as [AleoBFT](../../references/03_specifications.md#aleobft) to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
+Aleo Network employs a unique consensus mechanism known as [AleoBFT](../specifications.md#aleobft) to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
 
 Aleo Network is run and maintained by three groups of participants:  
 - **Stakers** - Delegate staked Aleo Credits (AC) to help onboard more validators and participate in consensus on the Network.  

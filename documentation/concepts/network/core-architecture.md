@@ -15,7 +15,7 @@ This architecture enables two key capabilities:
 - **For users**: The ability to maintain data privacy while interacting with decentralized applications (programs) on Aleo through off-chain computation and zero-knowledge proofs
 - **For developers**: The ability to create privacy-preserving decentralized applications using Leo programming language or Aleo instructions and deploy them to the network
 
-For more detailed information on these components, check out [specification](../../references/03_specifications.md) section in reference, which covers SnarkVM and SnarkOS in depth.
+For more detailed information on these components, check out [specification](../specifications.md) section in reference, which covers SnarkVM and SnarkOS in depth.
 
 ## Aleo Roadmap
 

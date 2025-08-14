@@ -20,4 +20,4 @@ Returns the transaction for the given transaction ID.
 
 | Parameter |                    Type                     |        Description        |
 |:---------:|:-------------------------------------------:|:-------------------------:|
-| `result`  | [object](../../concepts/fundamentals/03_transactions.md) | The requested transaction |
+| `result`  | [object](../concepts/fundamentals/03_transactions.md) | The requested transaction |

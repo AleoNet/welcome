@@ -151,7 +151,7 @@ To kill session, press `Ctrl+b` and type `:kill-session`.
          ```
          This way, you don't need to specify the endpoint for each command.
 
-Refer [here](../../references/apis/01_aleo_public_api.md) for all the default available REST API endpoints from a validator node.  
+Refer [here](../../apis/01_aleo_public_api.md) for all the default available REST API endpoints from a validator node.  
 
 Once you have a local devnet running in the background, you can start deploying a program to the devnet using `leo deploy --broadcast` and execute transactions using `leo execute --broadcast` to start testing any logic in the async functions and correctness of the state transitions of your programs. If you haven't set the endpoint in the `.env` file, remember to include the `--endpoint http://localhost:3030 --broadcast` flags when interacting with your local devnet.  
 
@@ -167,5 +167,5 @@ The `leo query` command supports querying different types of data from your loca
 The Aleo Testnet closely mimics the environment of the mainnet, providing a realistic testing scenario for developers. One important note to keep in mind is that since the Testnet is continuously running and the network identifies each program with its unique ID, developers cannot redeploy a program with the exact same ID once it has been deployed to the Testnet.  
 
 <!-- markdown-link-check-disable -->
-To start testing with the Aleo Testnet, simply make a REST API request to either the public endpoint at https://api.explorer.provable.com/v1/testnet or use a private endpoint provided by infrastructure providers. For further information, refer to the [default REST API endpoints](../../references/apis/01_aleo_public_api.md) available from a validator node.
+To start testing with the Aleo Testnet, simply make a REST API request to either the public endpoint at https://api.explorer.provable.com/v1/testnet or use a private endpoint provided by infrastructure providers. For further information, refer to the [default REST API endpoints](../../apis/01_aleo_public_api.md) available from a validator node.
 <!-- markdown-link-check-enable -->
