@@ -1,0 +1,71 @@
+---
+id: get-latest-block
+title: "Get Latest Block"
+description: "Returns the latest block"
+sidebar_label: "Get Latest Block"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVU1v2zgQ/SuD6aU1tLaz2F50aorNFgGyQOAmp8SHsTS22FCkSo6cGo7++2Io2nE22aLri0wO5833mz0KbSKWd7iyvnqIuCyw5lgF04nxDktcsPTBRZCGwZJwFEhPsUDfcSB9dlljiRuWqyT/nMUdBWpZOCj+Hh21jCU6lkcfVG4UviNp8N82bxqG/A7et2ScYwEfQNEdywcsMPD33gSusZTQc4GxarglLPcou07tRAnGbbBAdn2rAWYcLDDD4HIYlooUO+8iR1X+fT7Xz0t3Yl9VHOO6t3AMGQusvBN2ou+p66ypkmD2LarS/rVHfvWNK7XfBYURM5oMHHsrb717nZSUeTg+oLo2KiV7fQKpCRmGAsWIVbxUj0WOEodBZX+8Feel25I19TH1xwLiUODHtzWEgyMLkcOWA3AIPqAaaFkan9si9YI0WOJsn7GHWQplNnYUFjgCjJ3SB4slNiJdLGcz6syUf3TWBw7TLvgtrSxPK9/OtmevknR+fQkXru68cYJaXePW/rXfmsvrDAWqYyLUHM3GcQ3iQc2YmqGPHCI8GmmAUg+oUCfh3LIfq1E1ZBxIE3y/aWBx8fVG+4SzDzo3JEDW+kfwjlX/e89hl1AOiV77kEtrecsW1OnQpnYqQAK5SJUeYj6ZfCBXQ+sDT+FP1dMWiFCRA6Zo7A6MlocqgdoErsTuxlCS8wePV14aCCzB8Na4DdQkBBThka3V7yp4qiuKosJTX6b37t69e5fS95kiw+3iKurdE1y4rQnetewEnvQenu7d02+nv/Gk1/B3HnAFeoJfKfvswAlJ/2Yc5/+jnxlA9VMMCxKGK9MajVLvblPhKfBYutwVHLQuMJl8BOUfjhL1EiJX3tWTSSpI3+nbyeRsPi/m8/nLlzXtJpOUuWTSZpPwaKyFFQNr5SuuR6SjE7FPI6/AK0vVgzVjPcxa+2gHtOojp5bSr1+D74PmYwp/+QDGKVcajtoQHvxKyDhVb8ym4QDh6EosoLOsxQxMVQO+FyCBmrc6n6bi+Ok0lVO4VyLUwR3n6mw6n87xmXpOZywzJlWJ6/I20Jp97bvOByUBbsno6P+XvcQsnY/SkjsB+cIC4+qBw+55Me77Z6r+2TrL9Cv8Q2adJeOU9hIX7TN/3WH5vL4OapnClgU2Poo+2u9XFPk22GHQ6zTvWN4tC9xSMBpMornaRP1fY7kmG/knTr9f5G33AX5hNb4ZR74kt9OCke31hAU+8O5kKQ/LocCGqeaQXByl51XFnZzovVp3yrRHxv9ycYPD8A8sqOwr
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest Block"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/block/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest block
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The block object","additionalProperties":true}},"title":"BlockResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

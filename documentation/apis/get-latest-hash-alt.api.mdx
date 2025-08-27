@@ -1,0 +1,71 @@
+---
+id: get-latest-hash-alt
+title: "Get Latest Block Hash (Alternative)"
+description: "Returns the latest block hash (alternative endpoint)"
+sidebar_label: "Get Latest Block Hash (Alternative)"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVU1vG0cM/SsEc7GFrSQXzUWnOqibGEiBwLFPtg7ULqWdeHZmw+HKEeT97wVn17ISu0VaXVbDGX4+8nGPSpuEi1tc+VjeJ1wWWHEqxbXqYsAFXrF2EhJozeBJOSnkp1BTquGEvLIEUrdl4FC10QU9xQJjy0Jm4rLCBW5YP2bdD5Tqc69YYEtCDSuLed9joIZxgYH1Ico9FujMeUta448RXdcM4zs4aciFwApRwOwHzt6Fv3ZOuMKFSscFprLmhnCxR9215iepuLDBAjl0jaU/2sECRzO47PulWUptDImTKf86n9vn+3BSV5ac0rrzcEgaCyxjUA5q76ltvSvzxexLMqX9y4ji6guXuTBiZtQNLoVT5/W1yF8W5RkX7PsC1ak3Dav51ZgG9r1d/fZaIpdhS95Vh9oeEMK+wLeva2TwPSSWLQuwSJTsu2Gt44h8BltrXOBsP9ruZ0MrzXKwBQ76Qyd04nGBtWqbFrMZtW7K31ofhWXaStzSyvO0jM1se/aiCOefLuFibEI09FxYx5dhW60+jabAdFyCipPbBK5AI5gbVzF0iSXBg9MaKGNslzYH557jUO2yJhdAa4ndpoari8/X1gdPg2BTQwrkfXyAGNj0v3Ysu2zlqc7rKCN0nrfswYKWJrdLASoUEpV2SOPJjQcKFTRReAp/mJ51TYKSAjAl53fgDB0qFSonXKrfDank4J8iXkWtQVjF8daFDVSkBJTggb2370oiVSUltcvjWKZ34S68eZPL944Sw83Vx2SyR7gIWycxNBwUHk0Oj3fh8Zfj33AyMfw1DrAZeoSfgX32NPNZ/3oY1/+iP0646eccrkgZPrrGWZYmu8nAk/AA3dgVLIYLTCZvwfiFkyYTQuIyhmoyyYB0rb2dTM7m82I+n3//sqLdZJIrl1360SU8OO9hZQS6jlJyNVg6BJG6zA1meOWpvPduwMOtrY92QKsucW4p+8Y1xE6sHlP4Mwq4YFzoOFlDRIgrJRdMvXabmgXkEEoqoPVsYApTWUPsFEih4q3Npys5/X5cyincGdHZ4A5zdTadT+f4TDzHMzYyIpWZy0a2N8w+d20bxUiCG3I2+v/kLxNLG5M2FI6MvGeFYbnAuzxFH/JiOn9eTKc/EsX+mZ3/734b2Vj5m85aTy4YSWbq2o9sd4uL5202WMYCM+EtC6xjUnuz368o8Y34vjdxZgdc3C4L3JI4Sz2TYuWS/a9wsSaf+F/yObkad98p/MSifDWNUUhhZ/CS7+yEBd7z7mhF98u+wJqpYskhDrfnZcmtHum9WH7Gy4f18P7iGvv+b3Se+4s=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest Block Hash (Alternative)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/latest/hash"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest block hash (alternative endpoint)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The block hash"}},"title":"HashResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

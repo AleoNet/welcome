@@ -1,0 +1,71 @@
+---
+id: broadcast-transaction
+title: "Broadcast Transaction"
+description: "Broadcasts a transaction to the ledger"
+sidebar_label: "Broadcast Transaction"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVk1v4zYQ/SuD2cuuobWdonvRqUmbAgG2aOA4p8SHsTS2uKFILknZcR3/92Io2ZYTd5EW9UXmkPP95pFbjLQMmD9g9GQCFVFZE3CWYcmh8MrJGnO88pbKgkIMQNA7CtFCrBg0l0v2mKF17El2bkrMcb5Xmx5VMENHnmqO7MXzFg3VjDkajmvrnzBDJS4dxQpfxzGtGLpz8LEmZQxHsB4ih2g4fsIMPX9vlOcS8+gbzjAUFdeE+RbjxomfEL0yS8yQTVNL6p0dzLAzg7PdbtZa4hCvbLkR9beRBPaKtPqLy9c1OSR+JqDCmsgmiklyTqsi1Wv0LYjd7dt47fwbF2LIealuVBzSbq+kZ5L7b9Hudv14T1AhRWm3g7MmtEH8NB6/LU1oioJDWDQaDnDA/y1vz6HR8Z0pR4pNALtIIO1nfUgZKEauXZt6VFFzH+6TLllsc//5XLo3ZkVanRa1pEi4y/DLeYXI3pCWjqzYA3tvffJfc6ysDI6zCTppBnIcbTvM70Y9J6M+yFpT7Tw1XmOOVYwu5KMROTXkZ6etZz903q5ornlY2Hq0unhTtMvbG7g2pbPKRJQZkO5MjnNw/Uy1kxK9wt++CTsZ3oU9Py63nXMQLypAyUEtjcDRggSmSoYmsA+wVrECSijaM8ylZgtzbYunoiJlIFbeNssKJtd3U0Ead1EHiBVFIK3tGqxh0f/esN8kK3vuWFjfGgPNK9YgQfs6ATLrNzJ0K9UtyJRQW89D+E30BJcBCjLAFJTegJLWUhGhVJ6LqDdtKin4fcRzGyvwHL3ilTLLhBWgAGvWWr6HtspmP5bho3k0Hz6k8l1RYLiffA0ie4Frs1LemppNhBeRw8ujefnc/7UrEcMfHXGKoRd4D1BGe65N+tOWJv+Nfsesop9ymFBk+KpqJVmK7D41njy3retQwV76AoPBF+jYOIgQAhfWlINBakjj5OxgcDEeZ+Px+PRkSZvBIFUuudSdS1grrWHOwNL5gsvW0iGI0CT2SeyoqXjSqu2HSlSyAZo3gROk5GsXYBsv9RjC79aDMkKhioMAwoKdR1JG1Cu1rNiDP4QSMnCapZmeqajANsJIUPJKJloVHH7pl3IIj0KlMurtXF0Mx8MxHpmrP2Md51KR2LK7ZaVnd41z1gttcE1KyOKf/CVWEjKqyfSMHPgRTi/2k5nfHhn//e+HjtMjP8eR06SMUEoitG3Hhg+YH18K8cT9kRBnGVZCofkDbrdzCnzv9W4n4sQFmD/MMlyRV5JoIs1SBflfYr4gHfgHuXycdBfkJ3jHc+RsQp2QzEaaSbqRFWb4xJveQ2g322VYMZXsU4jt7q9tIJ+nYuOo/eZK3WV7jcuiYBd/eHbWu3tu/7ybSjG7Z09tS9HxtJa3DK3bSK1rX4pyIYtsi5rMsqGlnG1tyu9vDEqo6w==
+sidebar_class_name: "post api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Broadcast Transaction"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/{network}/transaction/broadcast"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Broadcasts a transaction to the ledger
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"The serialized transaction to broadcast","required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"transaction":{"type":"string","description":"The serialized transaction to broadcast"}},"required":["transaction"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The status of the transaction broadcast attempt"}},"title":"BroadcastResponse"}}}},"400":{"description":"Invalid transaction data"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

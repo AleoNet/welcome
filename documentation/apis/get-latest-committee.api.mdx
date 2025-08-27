@@ -1,0 +1,71 @@
+---
+id: get-latest-committee
+title: "Get Latest Committee"
+description: "Returns the latest committee information"
+sidebar_label: "Get Latest Committee"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVU1vGzcQ/SuDySURtpJcNJc91W3dwIALGIp9snUYcUdaxlxyQ87KEeT978Vw17JcOUWiy4rkfL+ZN3sU2iQs79CzPIb4gMsCK04m2lZs8FjigqWLPoHUDI6Ek4AJTWNFmMH6dYgNZdECQ8sx/7+ssMQNy1WW//NZHAtsKVLDwlGd7tFTw1genBdo1WVLUuN/47ipGUY5eN+Q9Z4FQgT14Fk+YIGRv3Y2coWlxI4LTKbmhrDco+xa9ZMkWr/BAtl3jWY92sECRzO47PulWkpt8ImTKv86n+vndTipM4ZTWncODmljgSZ4YS8qT23rrMkPsy9JlfanEYXVFzbqv41qRuzgMnLqnLwld1qU76FBVWX1L7nrI9tamb4vUKw4NXwAZzGmjH2v77+9lfSl35Kz1QGHA5rYF/jxbQ3h6MlB4rjlCBxjiKgOGpY6jH2SG0NqLHG2H233s0Nes6HtsMDByNA6XXRYYi3SpnI2o9ZO+VvrQuQ4bWPY0srx1IRmtj07qdr59SVc+KoN1gsq3Fq409i1uNejKVAdm6DiZDeeK5AA6sZWDF3imODRSg2Um0IfdVzOHQdYuWAeTE3Wg9QxdJsaFhefb7RxeIxBh4sEyLnwCMGz6n/tOO6yledir0McjIHjLbtjtAuQSD6R0UMaT3Y8kK+gCZGn8JfqaSskMOSBKVm3A6sQkRGobGQjbjekkoN/jngVpIbIEi1vrd9ARUJACR7ZOf2uYqDKUBJ9PI5leu/v/bt3uXx/UGK4XVwlvXuCC7+1MfiGvcCT3sPTvX/65fg3nPQa/hknXg09wY/APnsmiax/M8z3z+iPlKD6OYcFCcOVbaxmqXe3GXiKPEA3dgVHxQUmk4+ghMRJkl5CYhN8NZlkQLpWZSeTs/m8mM/nryUr2k0muXLZpRtdwqN1DlYMrMgbrgZLhyBSl0lCDa8cmQdnBzzsWvtoB7TqEueW0m9YQ+ii1mMKf4cI1it5Wk7aEAHCSsh6Va/tpuYI8RBKKqB1rGBGJlND6ARIoOKtzqc1nH4/LuUU7pWOdHCHuTqbzqdzfKGg4xkbKZRMJr9xPShmn7u2DVFJgBuyOvrf85fZpQ1JGvJHRj6xwLCP4HghvRr5/Qt//8zeGzla+JvMWkfWKx1mftqPvHaH5cuOM0fuR2pbFliHJCq4368o8W10fa/XmQewvFsWuKVoNclMf5VN+r/Cck0u8f8k8n4xrsUP8AM79M1cxkvyOwWSXKcnLPCBd0fbu1/2BdZMFccc4vB6bgy3cqR3sheVgQ/b4NPFDfb9vwoDBmE=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest Committee"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/committee/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest committee information
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The committee information","additionalProperties":true}},"title":"CommitteeResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

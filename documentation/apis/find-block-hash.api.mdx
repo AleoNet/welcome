@@ -1,0 +1,71 @@
+---
+id: find-block-hash
+title: "Find Block Hash by Transaction ID"
+description: "Returns the block hash of the block containing the given transaction ID"
+sidebar_label: "Find Block Hash by Transaction ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVsFu20gM/RWCvbSG1nYX7UWnTdF0N0AXKFznlPhASbQ1zWhGnaGcGo7+veBISew6G2QXm4syHJJD8pGP3qPQJmJ+hYX15U3EVYYVxzKYVox3mOOCpQsugtQMSQdqijX49YGk9E7IOOM2SbgxW3YggVykUt3AxUfM0LccSI8XFea4Nq76oNZ/Uawxw5YCNSwcNJo9OmoYc3Qstz7cYIZGg2lJVPc4wmXNMOrB64aMcyzgAwhHcSxvMMPA3zsTuMJcQscZxrLmhjDfo+xafSdKMG6DGbLrGi3H6AczHN3gqu+zh7gOkku5PR/dSSleGk/fr1Q5tt5Fjnr/+3yun+M3YleWHOO6s/BQZMxQYWEnqk9ta02ZLmbfohrtTx/1xTcuNeU2qBsxw5OBY2flqWKdZvrYIdj3GYoRqxaK8WJMA/ter949lciF25I11a8FS+rvTtWXB2rOC6x95yrVfv+0c+HgyELksOUAHIIPKcyGpfbalJuEeMIxx9l+7Kp+ps06K+67dbY/gr/HDAeXQ+t2wWKOtUgb89mMWjPlH631gcO0DX5LheVp6ZvZ9u1JCc++XMC5q1pvnKBib9zaP5F3zfBldAVqYyJUHM3GcQXiQZ8xFUMXOUS4NVIDpQ7RS53QM8t+wKqsyTiQOvhuU8Pi/OtSu4jHGHTsSYCs9bfgHav9947DLnm5H7q1DyPwlrdsQYMOTWq27BDKOJ7MeCBXQeMDT+Gj2mnPRSjJAVM0dgdGAaNSoDKBS7G7IZUU/H3EhZcaAkswvFX+qUgIKMItW6vfIniqSoqSyOkglum1u3avXqXyfaDIcLn4HFV2B+dua4J3DTuBO5XD3bW7++3wbzipGP4eGUcd3cFLYJ/dk1SyXw788m/sR0pS+5TDgoThs2mMZqmyywQ8BR6gG7uCg+ICk8l7UALiKFGFELn0rppMEiBdq7qTydv5PJvP58eaFe0mk1S59KQdn4RbYy0UDKzIl1wNnh6CiF1iFnVcWCpvrBnwMGmJ7ICKLnJqKf36NfguaD2m8MkHME7J0nDUhvDgi/tdU5tNzQHCQygxg9ayghmYyhp8J0ACFW91Pk3J8Y/DUk7hWmlSB3eYq7fT+XSOj7R1OGMjn1KZmHBcA4rZ165tfVDe4IaMjv4/vZe4pvVRGnIHTj4ZV0FahaDsAsUOlr8ujKP53z8y+/+4nkdyF/4hs9aScUqkicv2IyNeYf64j5USMcPiYIXnx1txlWHto6jdfl9Q5Mtg+17FiUIwv1pluKVgtD6JOSsT9f8K8zXZyM+k/XoxbtA38IL1/2Rqo5DcTnuAbKcnzPCGdwc/PHTn/+ewXlbj5wM5rmm/6jOsmSoOqWKDzllZcisH1ifrXnfJw5b783yJff8TaFZ6zA==
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find Block Hash by Transaction ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/find/blockHash/{transactionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the block hash of the block containing the given transaction ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"transactionID","in":"path","description":"The transaction ID","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The block hash"}},"title":"HashResponse"}}}},"400":{"description":"Invalid transaction ID"},"404":{"description":"Transaction not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

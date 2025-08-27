@@ -1,0 +1,71 @@
+---
+id: get-program-mappings
+title: "Get Program Mappings"
+description: "Returns all mapping names for a program"
+sidebar_label: "Get Program Mappings"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVk1v20gM/SsEe2kNre0u2otOzaLZIkALFGl6anKgJdqaZjSjciinhqP/vuBIcZwmu9s2F2Vm+M3HR+9RaZOw/IKdxI1Qm/CqwJpTJa5TFwOWeM7aS0hA3kNLXefCBgK1nGAdBQgmTSwwdixkWmc1lrhh/Tg+fRi1EhbYkVDLymJO92h2sMTAehPlGgt05rEjbfDHMC4ahkkOnrfkQmCFKKCcNLC+wAKFv/VOuMZSpecCU9VwS1juUXed+UkqLmywQA59a1lPdrDAyQxeDUNxiGtK7ezt/0Y2SUIW/dk4huHKhFMXQ+Jk738ul/Z5aD/1VcUprXsPhwpjgVUMykFNnrrOuyo/LL4mU9o/dhpXX7myVDsxM+pGl8Kp93okRyK0s4SV2/RE0D+mf2LyENcPwYHDUKA69aZ6B4DzKVccBnt+9VS2Z2FL3tXHFc2irx6LTvCCEBXWsQ+1Sb5+2qiyBPKQWLYswCJRcogtaxMnuGZ8aoMlLvYT1IbFFMdifwDDsGjvAT0aHNHci8cSG9UulYsFdW7O3zsfhWXeSdzSyvO8iu1i+/IRhk4+nsFpqLvogqLBwoV1fJyHQe3jZApMxyWoOblN4Bo0WtG2rmboE0uCG6cNUAaPPWrDcOI5wsrH6rpqyAXQRmK/aeD89NOFAYynGBJoQ2ozH28gBjb9bz3LLlu5m0MjgGwMPG/ZgwUtbcZhASoUElV2SNPJTQcKNbRReA5vTc/gmKCiAEzJ+R04axdVCrUTrtTvxlRy8HcRr6I2IKzieGuoq0kJKMENe2/flUSqK0pqj8exzC/DZXj2LJfvL0oMn8/fJ7u7hdOwdRJDy0Hh1u7h9jLc/nH8N57sGj5MJGSGbuFn2r64462sfzFSzq/oTyxl+jmHc1KG9651lqXdfc6NJ+GxdRMqWKwvMJu9BuMmTprsEhJXMdSzWW5I35nsbPZyuSyWy+VDyZp2s1muXHbpJ5dw47yHFQNb5yuuR0uHIFKfSccMrzxV196N/XBrw9EOaNUnzpCyb1xD7MXqMYe/o4ALxqOOkwEiQlwpuWDqjds0LCCHUFIBnWdrpjBVDcRegRRq3tp8uorTm+NSzuHSGNQGd5yrl/PlfIn3hHU8YxPVUpVJctoM1rNPfddFMdbglpyN/r/5y0zTxaQthSMj71jhjsOOduSDkd/f8/wvbOKJspW/66Lz5IIxY6an/URxX7C837r3iuXxyjvQ3FWBTUxqWvv9ihJ/Fj8Mdp05AcsvVwVuSZwlnKmwdsn+r7Fck0/8H0k9P5+25Qv4iRX/ZGJ3iyvY2tqS7+2EBV7z7ujHhe313w7rwX7/jSDuyzpcDQU2TDVLrtT4flJV3OmR5qOVbkvhsKzenV7gMPwDVcVk/w==
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Program Mappings"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/program/{programID}/mappings"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns all mapping names for a program
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"programID","in":"path","description":"The program ID","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"array","items":{"type":"string"},"description":"Array of mapping names"}},"title":"MappingsResponse"}}}},"400":{"description":"Invalid program ID"},"404":{"description":"Program not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

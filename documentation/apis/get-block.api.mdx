@@ -1,0 +1,71 @@
+---
+id: get-block
+title: "Get Block by Height or Hash"
+description: "Returns block information by height or hash"
+sidebar_label: "Get Block by Height or Hash"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVk1v20gM/SsEe0kMre0s0j34tCk22wbookGanBIfKIm2phnNqDOUU8PRfy84Uhx7nRZNfZE1HJKPX4/aoNAy4uwWc+uL+4jzDEuORTCNGO9whlcsbXARkhyMW/hQk8ogX0PFZlkJ+AAVxQoz9A2HJL0ocYZLlneqhhk2FKhm4aDONuioZpyhY3nwQeVGfTUkamQfwHXFMNyDo5qMc5w8CkdxLMeYYeCvrQlc4kxCyxnGouKacLZBWTfqJ0owbokZsmtrjXawgxkOZnDeddkWVx/Xp/Chj+rH4FJ4T2k4Mk54yeFY4fX50rTAUe/+50i940+LlJsB82AMM+xT3h/9dYqKcz+ubt51czUeG+8iR7X353Sqj324sS0KjnHRWthWCjMsvBN2ovepaawpkmDyJarS5jCdPv/ChSavCWpGTO8ycGytvHTvsKJ9erYXqCyNSsle7pjUHHVdhmLE8lO2r4YosetUdvpSnBduRdaU/+tP2DYhJsXTQ8W+ns4LLHzrSr339mUHwsGRhchhxQE4BB9Q8dQslR+aP/W9VDjDyWZo4W6SIp9sdluswwx7Q/10tMFqE4o0cTaZUGPG/K2xPnAYN8GvKLc8Lnw9WZ0c5Pbs8gLOXdl44wS1KXRiD/FrCS4HU6A6JkLJ0SwdlyAe1I0pGdrIIcKDkQootY4KpWI4s+z7IhYVGQdSBd8uK7g6/3yt7cUDhghSkQBZ6x/AO1b9ry2HdbLyNNeL7cBYXrHdpZkMJJCLVOhLHN7M8EKuhNoHHsM/qqedE6EgB0zR2DXoDAUqBEoTuBC77kNJ4J8Q514qCCzB8Mq4JZQkBBThga3VZx48lQVFUeEulvGdu3Nv3qT0vaPIcHP1MerZI5y7lQne1ewEHvUcHu/c4x+7v/5Nj+G/gdTU0CP8StknTzyY9K97CnuN/sB6qp9iuCJh+Ghqo1Hq2U0qPAXuSzd0BQetC4xGb0GZjKNEPYTIhXflaJQK0jZ6dzQ6mU6z6XS6f7Ok9WiUMpdc2sElPBhrIWdgrXzBZW9pCyK2iSnUcG6puLemr4dZaB+tgfI2cmopffoF+DZoPsbwrw9gnLKu4agN4cHnQsapemWWFQcIWygxg8ayFjMwFRX4VoAESl7pfJqC49+7qRzDnfKnDm4/Vyfj6XiKz4y1O2MD0VKRKHLYNFqzz23T+KBswTUZHf0f+UsM0/goNbkdI+9ZoGeufA0ftpw3bK+9yd88k/0rV/vA6cLfZNJYMk7JMTHVZmC5W5w9L/R8WPyzvV06z7DyUfTuZpNT5Jtgu06PEyng7Hae4YqC0YgTF5Ym6v8SZwuykX8SztHVsFyP4Re+GV4MZzgkt9aqkm31DTO85/XO14ou4N+C9dqvhd/AuJftbt5lWDGVHFIu+ytnRcGN7Cgf7HzdG9s99v78GrvuO/UJiaQ=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Block by Height or Hash"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/block/{heightOrHash}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns block information by height or hash
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"heightOrHash","in":"path","description":"Block height (integer) or block hash (string)","required":true,"schema":{"oneOf":[{"type":"integer","format":"int64"},{"type":"string"}]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The block object","additionalProperties":true}},"title":"BlockResponse"}}}},"400":{"description":"Invalid height or hash parameter"},"404":{"description":"Block not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

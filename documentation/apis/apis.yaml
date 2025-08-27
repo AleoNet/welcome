@@ -1,0 +1,851 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.explorer.provable.com/v1
+    description: API Endpoint
+info:
+  description: |
+    The Provable API is designed to provide users with access to the Aleo blockchain through RESTful endpoints that allow one to query the network for block level information, transactions, transitions, and more. Developers can easily interact directly with Aleo through both retrieving data as well as broadcasting transactions.
+    
+    ## API Base URLs
+
+    | Environment | URL |
+    |-------------|-----|
+    | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
+    | Testnet API | https://api.explorer.provable.com/v1/testnet |
+
+    ## Rate Limiting
+    
+    Users are allowed to perform **5 requests per second** and up to **100,000 requests per day**.
+    
+    Rate limiting will be enforced and users are subject to blacklisting if they abuse the use of our API. For inquiries into obtaining higher rate limits, please reach out at devservices@provable.com. 
+
+  version: 1.0.0
+  title: Provable API
+  contact:
+    name: API Support
+    email: devservices@provable.com
+externalDocs:
+  description: Find out more about Aleo
+  url: "https://aleo.org"
+tags:
+  - name: blocks
+    description: Block-level information and operations
+    x-displayName: Block Data
+  - name: network
+    description: Network and chain state information
+    x-displayName: Network Data
+  - name: programs
+    description: Program deployments and mappings
+    x-displayName: Program Data
+  - name: transactions
+    description: Transaction operations and queries
+    x-displayName: Transaction Data
+x-tagGroups:
+  - name: Blockchain Data
+    tags:
+      - blocks
+      - network
+  - name: Application Layer
+    tags:
+      - programs
+      - transactions
+paths:
+  /{network}/block/latest:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block
+      description: Returns the latest block
+      operationId: getLatestBlock
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/block:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block (Alternative)
+      description: Returns the latest block (alternative endpoint)
+      operationId: getLatestBlockAlt
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/block/height/latest:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block Height
+      description: Returns the latest block height
+      operationId: getLatestHeight
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeightResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/height:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block Height (Alternative)
+      description: Returns the latest block height (alternative endpoint)
+      operationId: getLatestHeightAlt
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeightResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/block/hash/latest:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block Hash
+      description: Returns the latest block hash
+      operationId: getLatestHash
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/hash:
+    get:
+      tags:
+        - blocks
+      summary: Get Latest Block Hash (Alternative)
+      description: Returns the latest block hash (alternative endpoint)
+      operationId: getLatestHashAlt
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/find/blockHash/{transactionID}:
+    get:
+      tags:
+        - blocks
+      summary: Find Block Hash by Transaction ID
+      description: Returns the block hash of the block containing the given transaction ID
+      operationId: findBlockHash
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: transactionID
+          in: path
+          description: The transaction ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashResponse'
+        "400":
+          description: Invalid transaction ID
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal server error
+  /{network}/block/{heightOrHash}:
+    get:
+      tags:
+        - blocks
+      summary: Get Block by Height or Hash
+      description: Returns block information by height or hash
+      operationId: getBlock
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: heightOrHash
+          in: path
+          description: Block height (integer) or block hash (string)
+          required: true
+          schema:
+            oneOf:
+              - type: integer
+                format: int64
+              - type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockResponse'
+        "400":
+          description: Invalid height or hash parameter
+        "404":
+          description: Block not found
+        "500":
+          description: Internal server error
+  /{network}/block/{heightOrHash}/transactions:
+    get:
+      tags:
+        - blocks
+      summary: Get Block Transactions
+      description: Returns all transactions in a block by height or hash
+      operationId: getBlockTransactions
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: heightOrHash
+          in: path
+          description: Block height (integer) or block hash (string)
+          required: true
+          schema:
+            oneOf:
+              - type: integer
+                format: int64
+              - type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsResponse'
+        "400":
+          description: Invalid height or hash parameter
+        "404":
+          description: Block not found
+        "500":
+          description: Internal server error
+  /{network}/committee/latest:
+    get:
+      tags:
+        - network
+      summary: Get Latest Committee
+      description: Returns the latest committee information
+      operationId: getLatestCommittee
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommitteeResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/committee:
+    get:
+      tags:
+        - network
+      summary: Get Latest Committee (Alternative)
+      description: Returns the latest committee information (alternative endpoint)
+      operationId: getLatestCommitteeAlt
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommitteeResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/stateRoot/latest:
+    get:
+      tags:
+        - network
+      summary: Get Latest State Root
+      description: Returns the latest state root
+      operationId: getLatestStateRoot
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateRootResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/stateRoot:
+    get:
+      tags:
+        - network
+      summary: Get Latest State Root (Alternative)
+      description: Returns the latest state root (alternative endpoint)
+      operationId: getLatestStateRootAlt
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateRootResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/totalSupply:
+    get:
+      tags:
+        - network
+      summary: Get Total Supply
+      description: Returns the total supply of Aleo credits
+      operationId: getTotalSupply
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplyResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/latest/circulatingSupply:
+    get:
+      tags:
+        - network
+      summary: Get Circulating Supply
+      description: Returns the circulating supply of Aleo credits
+      operationId: getCirculatingSupply
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplyResponse'
+        "400":
+          description: Invalid network parameter
+        "500":
+          description: Internal server error
+  /{network}/find/transactionID/deployment/{programID}:
+    get:
+      tags:
+        - programs
+      summary: Find Transaction ID for Program Deployment
+      description: Returns the transaction ID for a program deployment
+      operationId: findProgramDeploymentTxId
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: programID
+          in: path
+          description: The program ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionIdResponse'
+        "400":
+          description: Invalid program ID
+        "404":
+          description: Program deployment not found
+        "500":
+          description: Internal server error
+  /{network}/program/{programID}:
+    get:
+      tags:
+        - programs
+      summary: Get Program
+      description: Returns the program for the given program ID (latest edition)
+      operationId: getProgram
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: programID
+          in: path
+          description: The program ID
+          required: true
+          schema:
+            type: string
+        - name: metadata
+          in: query
+          description: Include program metadata in response
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramResponse'
+        "400":
+          description: Invalid program ID
+        "404":
+          description: Program not found
+        "500":
+          description: Internal server error
+  /{network}/program/{programID}/{edition}:
+    get:
+      tags:
+        - programs
+      summary: Get Program by Edition
+      description: Returns the program for the given program ID and specific edition
+      operationId: getProgramByEdition
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: programID
+          in: path
+          description: The program ID
+          required: true
+          schema:
+            type: string
+        - name: edition
+          in: path
+          description: The program edition
+          required: true
+          schema:
+            type: integer
+        - name: metadata
+          in: query
+          description: Include program metadata in response
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramResponse'
+        "400":
+          description: Invalid program ID or edition
+        "404":
+          description: Program not found
+        "500":
+          description: Internal server error
+  /{network}/program/{programID}/mappings:
+    get:
+      tags:
+        - programs
+      summary: Get Program Mappings
+      description: Returns all mapping names for a program
+      operationId: getProgramMappings
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: programID
+          in: path
+          description: The program ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsResponse'
+        "400":
+          description: Invalid program ID
+        "404":
+          description: Program not found
+        "500":
+          description: Internal server error
+  /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}:
+    get:
+      tags:
+        - programs
+      summary: Get Mapping Value
+      description: Returns the value in a key-value mapping corresponding to the supplied mapping key
+      operationId: getMappingValue
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: programID
+          in: path
+          description: The program ID
+          required: true
+          schema:
+            type: string
+        - name: mappingName
+          in: path
+          description: The name of the mapping
+          required: true
+          schema:
+            type: string
+        - name: mappingKey
+          in: path
+          description: The key of the key-value pair in the mapping
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingValueResponse'
+        "400":
+          description: Invalid parameters
+        "404":
+          description: Mapping or key not found
+        "500":
+          description: Internal server error
+  /{network}/find/transactionID/{transitionID}:
+    get:
+      tags:
+        - transactions
+      summary: Find Transaction ID by Transition ID
+      description: Returns the transaction ID for a given transition ID
+      operationId: findTransactionIdByTransition
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: transitionID
+          in: path
+          description: The transition ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionIdResponse'
+        "400":
+          description: Invalid transition ID
+        "404":
+          description: Transition not found
+        "500":
+          description: Internal server error
+  /{network}/find/transitionID/{inputOrOutputID}:
+    get:
+      tags:
+        - transactions
+      summary: Find Transition ID
+      description: Returns the transition ID for a given input or output ID
+      operationId: findTransitionId
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: inputOrOutputID
+          in: path
+          description: The input or output ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitionIdResponse'
+        "400":
+          description: Invalid input or output ID
+        "404":
+          description: Transition not found
+        "500":
+          description: Internal server error
+  /{network}/transaction/{transactionID}:
+    get:
+      tags:
+        - transactions
+      summary: Get Transaction
+      description: Returns the transaction for the given transaction ID
+      operationId: getTransaction
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: transactionID
+          in: path
+          description: The transaction ID (hex)
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        "400":
+          description: Invalid transaction ID
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal server error
+  /{network}/transaction/confirmed/{transactionID}:
+    get:
+      tags:
+        - transactions
+      summary: Get Transaction Confirmation Status
+      description: Returns the confirmation status of a transaction
+      operationId: getTransactionConfirmed
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: transactionID
+          in: path
+          description: The transaction ID (hex)
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationResponse'
+        "400":
+          description: Invalid transaction ID
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal server error
+  /{network}/transaction/unconfirmed/{transactionID}:
+    get:
+      tags:
+        - transactions
+      summary: Get Unconfirmed Transaction
+      description: Returns unconfirmed transaction details by ID
+      operationId: getUnconfirmedTransaction
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: transactionID
+          in: path
+          description: The transaction ID (hex)
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        "400":
+          description: Invalid transaction ID
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal server error
+  /{network}/transaction/broadcast:
+    post:
+      tags:
+        - transactions
+      summary: Broadcast Transaction
+      description: Broadcasts a transaction to the ledger
+      operationId: broadcastTransaction
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+      requestBody:
+        description: The serialized transaction to broadcast
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction:
+                  type: string
+                  description: The serialized transaction to broadcast
+              required:
+                - transaction
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BroadcastResponse'
+        "400":
+          description: Invalid transaction data
+        "500":
+          description: Internal server error
+components:
+  parameters:
+    NetworkParam:
+      name: network
+      in: path
+      description: The network (mainnet or testnet)
+      required: true
+      schema:
+        type: string
+        enum:
+          - mainnet
+          - testnet
+  schemas:
+    BlockResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          description: The block object
+          additionalProperties: true
+    HeightResponse:
+      type: object
+      properties:
+        result:
+          type: integer
+          format: int64
+          description: The block height
+    HashResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The block hash
+    TransactionsResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            description: Transaction object
+            additionalProperties: true
+          description: Array of transactions in the block
+    CommitteeResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          description: The committee information
+          additionalProperties: true
+    StateRootResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The state root hash
+    SupplyResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The supply amount in microcredits
+    TransactionIdResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The transaction ID
+    ProgramResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          description: The program object
+          additionalProperties: true
+    MappingsResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: string
+          description: Array of mapping names
+    MappingValueResponse:
+      type: object
+      properties:
+        result:
+          description: The value from the mapping
+          additionalProperties: true
+    TransactionResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          description: The transaction object
+          additionalProperties: true
+    TransitionIdResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The transition ID
+    ConfirmationResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          description: Whether the transaction is confirmed
+    BroadcastResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: The status of the transaction broadcast attempt
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string

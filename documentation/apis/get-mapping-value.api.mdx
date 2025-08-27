@@ -1,0 +1,71 @@
+---
+id: get-mapping-value
+title: "Get Mapping Value"
+description: "Returns the value in a key-value mapping corresponding to the supplied mapping key"
+sidebar_label: "Get Mapping Value"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1zEzkQ/StdzQVcg2224DKnZYsslQK2qJDsheTQnml7RDSSkDQOLmf+O9Ua2Z6QLISk1hdZmv5S9+un3mKkVcDyMzpvV57agBcF1hwqr1xU1mCJJxw7bwLEhmFNumNQBgguefN82LbknDIrqKz3HJw1teyiTRqhc04rrvdSl7zBAq1jT+LguMYSVxw/DJ//FYtYoCNPLUf2EtwWDbWMJRqOV9ZfYoFKInMUG/wx3NOGIcvB05aUMRzBeogcouH4DAv0/LVTnmsso++4wFA13BKWW4wbJ35C9MqssEA2XSvZyXawwGwGL/q+2MeVk3f85peRZUlIoveNY+wqp/Ef2f0yDdQy2GWqQ9Z7nNd3qXY/d3rJm53PA0QcKS+weWgkFyIs0Aoc5Psf87ksN72Hrqo4hGWnYQ8vLLCyJrKJIk+CxSp9mH0JorS97dQuvnAlpXZezEQ1uPQcOh1vez3dt8XS2/aHG1JdK5Ej/XFkTG7b9wVGFbV4HGP/JF8T+15EXt510WOzJq1qGDVJEn15WzSblgaQwhgbYWk7U4vCq7ttR/aGNAT2a/bA3lsvWMCWY2Nzt6YOjQ2WONvmZutnGduz7b4d+llOxWw7wm2/373jTY8FDq6GTu+8xhKbGF0oZzNyasrfnLae/dR5u6aF5mll29n6xS30vf54DEemdlaZiAIZZZb27oJ9zKZAdFSAmoNaGa6FtcSNqhm6wD7AlYoNUALWjtJea7aw0La6rBpKoPa2WzVwcvTpVMDHOQahTIpAWtsrsIZF/2vHfpOs7Dhqaf1gDDSvWYME7duE0QKiJxOokk3IO5U3ZGporecpvBE9QVeAigwwBaU3oKSQVEWolecq6s1wlRT8LuKFjQ14jl7xWlBSUySgAFestawLb6muKMRE6KNYpufm3Dx5ktL3FwWGs5P3Qc6u4cislbemZRPhWs7h+txcPx//hp0cw4dM0GLoGu5T9tmO05P+6UDHv6OfGVz00x1OKDK8V62SW8rZWSo8eR5Kl1HBXuoCk8krEN7iEIMcQuDKmnoySQXpnMhOJi/m82I+n9+UrGkzmaTMJZc6u4QrpTUsGFgqX3E9WNoHEbpESGJ4oam61Gqoh0okuwFadIETpGS1S7Cdl3xM4W8rpCscqzgIICzYRSRlRL1Rq4Y9+H0ooQCnWYrpmaoGbBeBItS8lv5UFYc/x6mcwrmwqzTu0FcvpvPpHA+sNu6xTMNUJQLNj4rU7FPnnPXCJ9ySktb/L3+Jg5wNsSUzMvKWI+xIbjc83Oj37eEB+H9GmfxsRP4WZ06TMsKtica2mSQ/Y3mYXDI5YoHleGw4vBnlzSe+HL29FwU2NkSxuN0uKPCZ130vx4lXsPx8UeCavJKkJTqtVZD/NZZL0oF/kpunJ/k1fgb3GKHuvHQ+JCNpSQnFErFAydNheJOx4sFh3ZifHhDEIeWPCuPuyeoB8Yxr/aiIfmPseniYgsH+oi+wYarZJ4QNAq+ril0cqd4ateRB3o8Qb49Ose+/A7byWrg=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Mapping Value"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/program/{programID}/mapping/{mappingName}/{mappingKey}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the value in a key-value mapping corresponding to the supplied mapping key
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"programID","in":"path","description":"The program ID","required":true,"schema":{"type":"string"}},{"name":"mappingName","in":"path","description":"The name of the mapping","required":true,"schema":{"type":"string"}},{"name":"mappingKey","in":"path","description":"The key of the key-value pair in the mapping","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"description":"The value from the mapping","additionalProperties":true}},"title":"MappingValueResponse"}}}},"400":{"description":"Invalid parameters"},"404":{"description":"Mapping or key not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

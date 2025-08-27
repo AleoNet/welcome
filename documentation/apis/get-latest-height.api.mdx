@@ -1,0 +1,71 @@
+---
+id: get-latest-height
+title: "Get Latest Block Height"
+description: "Returns the latest block height"
+sidebar_label: "Get Latest Block Height"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVU1v20YQ/SuDySURWEkukh50qoO6qYEUCBz7ZOswIkfixstdZnYoR5D534NZ0rJcu4WrC7W78/1m3uxRaZNwcY0rH8vbhMsCK06luFZdDLjAC9ZOQgKtGTwpJ4UsCjW7Ta1YYGxZyKTPK1zghvVzFvvr4b0loYaVxfzsMVDDuMDAehflFgt05qYlrfGfvi9rhlEO3jbkQmCFKGDmA+s7LFD4e+eEK1yodFxgKmtuCBd71F1rfpKKCxsskEPXWKKjHSxwNIPLvl+apdTGkDiZ8q/zuX2ehpO6suSU1p2HQ85YYBmDclCTp7b1rswPs2/JlPbPI4qrb1zmwoiZUTe4FE6d1yM5F5Q3LFjgOkpDOlz99v7FMj3BpO8LVKferAwwXIzJYd/b4/uX0jsPW/KuOlT8gBv2BX54WUNZAnlILFsWYJEo2XvDWsexHXILaI0LnO1H2/0sxzsb4p0NfYUFDnaGPunE4wJr1TYtZjNq3ZR/tD4Ky7SVuKWV52kZm9n25FlBTr+cw1mo2uiComHrwjo+D9/q9mU0BabjElSc3CZwBRrB3LiKoUssCe6c1kC5A+zR5uHUcxwqX9bkAmgtsdvUcHH29dK6hMcYbHpIgbyPdxADm/73jmWXrTzUex1lhNHzlj1Y0Ia7i6EAFQqJSjuk8eTGA4UKmig8hT9Mz3oqQUkBmJLzO7A+EioVKidcqt8NqeTgHyJeRa1BWMXx1oUNVKQElOCOvbfvSiJVJSW1x+NYpjfhJrx5k8v3kRLD1cXnZHf3cBa2TmJoOCjc2z3c34T7X45/w8mu4e9xvM3QPbwG9tkDI2T9y2GY/4/+OP+mn3O4IGX47BpnWdrdVQaehAfoxq5gMVxgMvkAxj6cNNklJC5jqCaTDEjXmuxkcjKfF/P5/KlkRbvJJFcuu/SjS7hz3sOKgQ35kqvB0iGI1GXmMMMrT+WtdwMebm19tANadYlzS9k3riF2YvWYwp9RwAVjSsfJGiJCXCm5YOq129QsIIdQUgGtZwNTmMoaYqdAChVvbT5dyen341JO4cZo0AZ3mKuT6Xw6x0cKOp6xkS+pzEw37gLD7GvXtlGMBLghZ6P/b/4ywbQxaUPhyMgnVhg2D3zMU3RYQE+mfv/I16/YbSMVK//QWevJBePCzEz7kdSucfG4yrI2FnjQH5ltWWAdk5r0fr+ixFfi+96uMw3g4npZ4JbEWY6Z/SqX7H+FizX5xP+RxNuLcQW+g1fsyxcTGi8p7AxH8p2dsMBb3h1t6n7ZW2ZUseQQh9fTsuRWj/Se7UAj4MM++HR2iX3/Ex2j9Tg=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest Block Height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/block/height/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest block height
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"integer","format":"int64","description":"The block height"}},"title":"HeightResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

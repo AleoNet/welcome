@@ -1,0 +1,71 @@
+---
+id: get-block-transactions
+title: "Get Block Transactions"
+description: "Returns all transactions in a block by height or hash"
+sidebar_label: "Get Block Transactions"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVktv20YQ/iuD6cURWEkpkh50qoO6aYAUCRznFPswIkfixstdZnYoR5D534tZ0rJkO0ESXSgu5/HN65vdodI64eITLn0srxNeFVhxKsW16mLABZ6zdhISkPegQiFRaV8SuAAEWQuWW6jZrWuFKFBTqrHA2LKQSb6pcIFr1lcmenFgAQtsSahhZTEIOwzUMC4wsN5EucYCnSFoSc3gMayLmmGUg5OGXAicvSsnDazPsEDhL50TrnCh0nGBqay5IVzsULet+UkqLqyxQA5dYzkY7WCBoxm86vtij2uI8Z38O0T4bXA51LuUnLigvGZ5ZvCGfFmK4GRw/32kMfC7Vc7NiHk0hgWuojSkw9GfL9BwHsfVX/X9lRlPbQyJk9n7Yz63xzHc1JUlp7TqPOyrhgWWMSgHNXlqW+/K/GH2OZnS7nE64/Izl5a8VsyMusGlcOq8HsiRCG0tf8pNekr/QaXvWwb2IlRVzk7Ivz9wZtnrH+qfmjuIq0fdqzUP9cC+L1Cdej52l87H1GHfm8iLp5L3JmzIu+rBAMC+szErvnisODRJiAqr2IXK5F4+7UBZAnlILBsWYJEoGXLDWsdxuvIwaY0LnO3GuehnObrZ7rBv+5kej+BgdZi/Try1uWqbFrMZtW7KX1sfhWXaStzQ0vO0jM1s8/xRlU7fv4GzULXRBUVrOxdW8XEwNrbvR1NgOi5BxcmtA1egEcyNqxi6xJLgxmkNlJvTPlrBTj3HoWplTbmIErt1DednHy6sgXnEkEBrUmOteAMxsOl/6Vi22codc6z2I+l5wx4MtE2Vi6E46pfxzY0vFCpoovAU/jY968AEJQVgSs5vwaZUqFSonHCpfjuEksHfIV5GrUFYxfHGhTVUpASU4Ia9t+dSIlUlJbWPh1iml+Ey/PZbTt8rSgwfz98mO7uFs7BxEkPDQeHWzuH2Mtz+fvgb3uwY/htp0wzdwo+UfXbHtFn/YiDJn9EfedX0cwznpAxvXeMsSjv7mAtPwkPpxq5gsbrAZPISjCs5abJDSFzGUE0muSBda7KTyfP5vJjP58eSFW0nk5y57NKPLuHGeQ9LBrbKl1wNlvYgUpcZxwwvPZXX3g31cCvroy3QskucW8qecQWxE8vHFP6JAi4Yrzs2utEIcankgqnXbl2zgOyhpAJaz1ZMYSpriJ0CKVS8sfl0Jae/DlM5hUtjaBvcYa6eT+fTOd6z2OGMjVROZSbhcZdZzT50bRvFqIMbcjb63/KX6aaNSRsKB0Zes8JAYw/2+tHQ7+43yS/fJsYVofxVZ60nF4wuM13tRt77hIv7e8NA6wUuHqzsI+67KrCOSU11t1tS4o/i+96OM1Hg4tNVgRsSZ1nI/Fi5ZP8rXKzIJ/5OnCfn40p/Bj9wU3kyurttGWxXbsh39oYFXvP24I5ka/+XYP3sHeUXMB4lv7/qC6yZKpacy0HktCy51QPlRzcN2yX7Rff67AL7/n8dzL3n
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Block Transactions"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/block/{heightOrHash}/transactions"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns all transactions in a block by height or hash
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"heightOrHash","in":"path","description":"Block height (integer) or block hash (string)","required":true,"schema":{"oneOf":[{"type":"integer","format":"int64"},{"type":"string"}]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"array","items":{"type":"object","description":"Transaction object","additionalProperties":true},"description":"Array of transactions in the block"}},"title":"TransactionsResponse"}}}},"400":{"description":"Invalid height or hash parameter"},"404":{"description":"Block not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

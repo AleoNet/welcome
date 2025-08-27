@@ -1,0 +1,71 @@
+---
+id: get-program-by-edition
+title: "Get Program by Edition"
+description: "Returns the program for the given program ID and specific edition"
+sidebar_label: "Get Program by Edition"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVktv2zgQ/isD9tIaWttZtBefNkWyhYEuELjpqclhTI0tNhSpkiOnhqP/vhiKfq2TTVLUF5nkPD7O4+NsFOMyqsk31QS/DFhHdVuokqIOpmHjnZqoGXEbXASuCLIULHxI66VZkdvtTi8AXQmxIW0WRgOVJtkolG8ooPyflmqilsRXvcrH9eVOpsGANTEFwbNRDmtSE+WI7324U4UyAqZBrtR/EV5XBFkO3tZonCMGQUiRHfE7VahAP1oTqFQTDi0VKuqKalSTjeJ1I34iB+OWqlDk2loCku2oQmUz6rbrih2ufOfpxbPI9tF5BY5DV/swvszRXv5Zb8YxLSkcuauJsUTGrb8fLYX1icOp07Yt9063WmAcBIqNd5GOECzQxscgzL23hC45WGBrOYt23a2o95aiKPw5HsvnGEdstaYYF62FXZGpQmnvmByLPDaNNTodjL5HUdqcovDz76Ql2U0QM2x6l4FiQnQq93T4dyJY9olAe3VgVDLRdYViw1Ys5k6YbWPWdXL6/rG7Tt0KrSkP+82HXbqT1vtTrewAnGdY+NaVIvnhcftMwaGFSGFFASgEn2pDaqLyuXVTq3KlJmq0yV3XjTKk0WbXF91ok5F1qlC9xb6z22DVRFXMTZyMRtiYIf1srA8Uhk3wK5xbGmpfj1ZnJ3E+v5rCpSsbbxwrKRDjFv70IpKOq2wKRMdEKCmapaMS2EsAV6YkaCOFCPeGK8BURnIovHZuycPcen2nKzQOuAq+XVYwu/xyLaVGGYOwIjKgtf4evCPRT/2SrGw5SdgyGQNLK7IgoEOdKrIADugialnEvDJ5IWRa+0BDuBA9qaEIGh0QRmPXIN0bUDOUJpBmu+6vksBvEc89VxCIg6GVcUtIPYoR7sla+c6Dx1JjZDk8xDK8cTfuzZsUvo8YCb7OPkfZe4BLtzLBu5ocw4Psw8ONe/jj8NevZBv+yYQshh7gJWkfbTk86V/39Psa/czYop/uMEMm+GxqI7eUva8p8RioT12uCgqSFxgMPoDwFkWOsgmRtHflYJAS0jYiOxicjcfFeDw+lixxPRikyCWXNruEe2MtzAlIMq+p7C3tQMQ2cYYYnlvUd9b0+TALqaM14LyNlEpKvn4Bvg0SjyH87QMYJxxrKEpBePBzRuNEvTLLigKEHZRYQGNJkhkIdQW+ZUCGklbSn0ZT/OswlEO4ES6Vxu376mw4Ho7VEXfteiyTLupEl/ktkZx9aZvGB6ENqtFI6z/lL1FN4yPX6A6MfCKGLYnN17CfGI6afrPn/N8ysmTCZ/rJo8aiSQSbqGuT+e+bmuynk2xQFWpyOBpMtgZvC1X5yKK12cwx0tdgu062+/dViLE0UUKxfyyfvOALX99H73BH6+NXfoW2FbFEqCsMRkC8EtDbWX7o38ELprFHceVNdOtDTFu820jLoPLLsI5GsV8Asc/sb4HxTLH9P5bds3/bFaoiLCmknPWn51pTwwd6J1OQJHv3rH+6vFZd9y/uiTMt
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Program by Edition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/program/{programID}/{edition}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the program for the given program ID and specific edition
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"programID","in":"path","description":"The program ID","required":true,"schema":{"type":"string"}},{"name":"edition","in":"path","description":"The program edition","required":true,"schema":{"type":"integer"}},{"name":"metadata","in":"query","description":"Include program metadata in response","required":false,"schema":{"type":"boolean","default":false}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The program object","additionalProperties":true}},"title":"ProgramResponse"}}}},"400":{"description":"Invalid program ID or edition"},"404":{"description":"Program not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

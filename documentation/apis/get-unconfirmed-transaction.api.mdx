@@ -1,0 +1,71 @@
+---
+id: get-unconfirmed-transaction
+title: "Get Unconfirmed Transaction"
+description: "Returns unconfirmed transaction details by ID"
+sidebar_label: "Get Unconfirmed Transaction"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVktv2zgQ/iuD6SU1tLazaC86NYtkiwBdIEiTU+LDmBpbbChSJUdODEf/fTGS4shNWjT1ReZw3o9vuEOhdcL8BiWST2TEBp9wkWHByURb6xlzvGRpok/QeBP8ysaKCxhJQMFC1iVYbuH8FDMMNUfSm/MCc1yzXD8LXj3LYYY1RapYOKoXO/RUMeboWe5DvMMMrZqvSUr80aerkmHgg6OKrPcsECIIJ/Es7zHDyN8bG7nAXGLDGSZTckWY71C2tdpJEq1fY4bsm0rTMOjBDAc1uGjbbO/XKOYuzl97N87Q+SkclfzwFq/adqHMqQ4+cdL7v+dz/RxaSo0xnNKqcbBPO2Zoghf2ovxU186a7mL2LanQ7qXRsPzGRgOvo6oR25uMnBonr/H9Ot49GxWFVQq5i5FijbxtMxQrTrWOmuJyiBjbVjk+vBbzud+Qs8UPGcaO/cNL9pF28EFgFRpfKPfH15ULR08OEscNR+AYQ0T1pWIpw9DRXe9KiTnOdkMbtrORP7PRrMx2B43TYoa97r7pm+gwx1KkTvlsRrWd8kPtQuQ4rWPY0NLx1IRqtjl+kfaTi3M480UdrBfUfrF+FV5JQMlwMagClbEJCk527XWQA6gZWzA0iWOCeyslUNdVeiklw4njAEsXzJ0pyXqQMoZmXcLl2dcr7TwefEggJQmQc+EegmeV/95w3HZansZ1FWKvDBxv2IE6HauuQbNxTdNwssOBfAFViDyFU5XTdkpgyANTsm4LVitHRqCwkY24bR9K5/yTx8sgJUSWaHlj/RoKEgJKcM/O6XcZAxWGkujl2Jfprb/179516fuHEsP15ZektEc48xsbg6/YCzwqHR5v/eNf419/UjL8N2CVKnqE3yn77AneOvmrHpneIj+Amcp3MVySMHyxldUolXbdFZ4i96UbuoKj1gUmk4+goMVJkhIhsQm+mEy6gjS18k4mx/N5Np/PDzkL2k4mXeY6k24wCffWOVgysFbecNFr2juRmg4+VPHSkblztq+HXWkfbYGWTeKupfQbVhCaqPmYwr8hgvUKsJaTNkSAsBSyXsVLuy45Qty7kjKoHWsxI5MpITQCJFDwRufTGk6fxqmcwq1Cqw5uP1fH0/l0js8wNp6xAYPJdOg5LBCt2demrkNUAOGKrI7+z+x1oFOHJBX5kZLPLDBaqHC4UQ8mf/e8B968xAfAF36QWe3IekXMDqt2A/TdYP68qeXAi5ERzBTvx4tzkWEZkqiC3W5Jia+ja1sld1iB+c0iww1Fq4noILKwSf8XmK/IJf5FlEeXw3p9D7/xQng1xoFIfqvFJtfoCTO84+3obaLPgj926ydPgz9w5zCz7aLNsGQqOHZ563lOjOFaRtIvXgS6Ovbb7fPZFbbt/5vNjBE=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Unconfirmed Transaction"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/transaction/unconfirmed/{transactionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns unconfirmed transaction details by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"transactionID","in":"path","description":"The transaction ID (hex)","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The transaction object","additionalProperties":true}},"title":"TransactionResponse"}}}},"400":{"description":"Invalid transaction ID"},"404":{"description":"Transaction not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

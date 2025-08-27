@@ -1,0 +1,71 @@
+---
+id: get-latest-state-root
+title: "Get Latest State Root"
+description: "Returns the latest state root"
+sidebar_label: "Get Latest State Root"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVU1v20YQ/SuDySURWEkumotOdVE3MOACgeycbB1G5EjceLnLzA7lCDL/ezFLWpZrt011oXZ3vt/MmwMqbRMubjGwPkS5x1WBFadSXKsuBlzgkrWTkEBrBk/KSSEpKYPEqFhgbFnIZC8rXOCW9SoLXZvMchBpSahhZTFPBwzUMC6OHgt05qclrfHvzm9qhlEO3jfkQmCFKGAeAusHLFD4W+eEK1yodFxgKmtuCBcH1H1rfpKKC1sskEPXWKqjHSxwNIOrvl+ZpdTGkDiZ8s/zuX1ehpO6suSUNp2HY9pYYBmDclCTp7b1rswPs6/JlA6vI4rrr1zmwoiZUTe4FE6d17cif12UZwigplRj3xeoTr2pHUu/HBPCvrf3X95K6TLsyLvqWOUjVtgX+PFtDWUJ5CGx7FiARaLkABrWOo5dkGHXGhc4O4y2+1l6imw2dBIWOBgZGqMTjwusVdu0mM2odVP+3vooLNNW4o7WnqdlbGa7s1c1Of98CRehaqMLigamC5v4OnYr3efRFJiOS1BxctvAFWgEc+Mqhi6xJHhwWgNlyO3RJuDcc4S1j+V9WZMLoLXEblvD8uL6xtqCxxhsXkiBvI8PEAOb/reOZZ+tPBV7E2UwBp537MGCliZ3TwEqFBKVdkjjyY0HChU0UXgKv5ueNVGCkgIwJef34AwiKhUqJ1yq3w+p5OCfIl5HrUFYxfHOhS1UpASU4IG9t+9aIlUlJbXH01imd+EuvHuXy/cbJYYvy6tkd49wEXZOYmg4KDzaPTzehcefTn/Dya7hz3GezdAj/AjssycKyPo3w/T+H/1x4E0/57C0KbpyjbMs7e5LBp6EB+jGrmAxXGAy+QhGN5w02SUkLmOoJpMMSNea7GRyNp8X8/n8pWRF+8kkVy679KNLeHDew5qBDfmSq8HSMYjUZaoww2tP5b13Ax5uY320B1p3iXNL2TduIHZi9ZjCH1HABaNGx8kaIkJcK7lg6rXb1iwgx1BSAa1nA1OYyhpip0AKFe9sPl3J6dfTUk7hznjPBneYq7PpfDrHZwo6nbGRIKnM1DaSv2F23bVtFCMBbsjZ6P+Tv8wubUzaUDgx8okVhm0DmfNg3DcvZv7wTM//uctG3lX+rrPWkwtGgpmVDiOb3eLieW+lkx03EtqqwDomNcHDYU2Jv4jve7vO04+L21WBOxJnqWXSq1yy/xUuNuQT/0v075fjqvsAP7AX38xlvKSwN/jId3bCAu95f7KR+1VfYM1UseQQh9fzsuRWT/Re7Trj3eMO+HRxg33/F5M58AQ=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest State Root"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/stateRoot/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest state root
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The state root hash"}},"title":"StateRootResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

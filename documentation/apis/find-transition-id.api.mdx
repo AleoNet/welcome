@@ -1,0 +1,71 @@
+---
+id: find-transition-id
+title: "Find Transition ID"
+description: "Returns the transition ID for a given input or output ID"
+sidebar_label: "Find Transition ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVk1v20YQ/SuDySURWEkpkgtPdWGnEJAigSKfbB1G5EjceLnL7A7lCDL/ezBLWpZt1XBbXUjuzve8eaM9Cm0i5lcogVykQox3EZcZlhyLYBr9xhznLG1wEaRiSJJGL2B2DmsfgGBjtuzAuKYV8AF8K/o2O8cMfcOBVHpWYo5r48rFwcCsxAwbClSzcNA49uioZszRsdz6cIMZGg2gIanwaVSLimGQg7c1Gec4uReO4ljeYYaBf7QmcIm5hJYzjEXFNWG+R9k16idKMG6DGbJray3EYAczHMzgsuuyQ1wpxy/hS8owJfhyfCdr8tqoum6pwrHxLnLU+9+nU3089hPbouAY162FQ7Uxw8I7YScqT01jTZEuJt+jKu2fO/Wr71xo4k1QM2J6l4Fja+VUyZ5n+wgb2HUZihGrSsdNnw8ZYdepyIdTOc3clqwpT9UvqXx4rvLgApwXWPvWlSr88bR94eDIQuSw5QAcgg8p4pql8orVTUJB6myOk/2AtG6iGJ48ZDo7n+yfoKLDDHu7PabbYDHHSqSJ+WRCjRnzz8b6wGHcBL+lleVx4evJ9v2zqp59ncGFKxtvnKDCwbi1P5F7xfB1MAWqYyKUHM3GcQniQd2YkqGNHCLcGqmAEmj0Uqf6zLKHlfXFTVGRcSBV8O2mgvnFt4UCi4cYlANIgKz1t+Adq/6PlsMuWbmfRmWFZAwsb9mCBh3qhL8MjqkmO4JMzIBcCbUPPIZz1VMYRijIAVM0dgdGu0aFQGkCF2J3fSop+PuIV14qCCzB8Na4DZQkBBThlq3V5yp4KguKopfHsYyv3bV78yaV70+KDJfzz1HP7uDCbU3wrmYncKfncHft7n47/vVfegx/D1Skhu7gNW2f3LNX0l/0xPNv9AeuUv2Uw5yE4bOpjWapZ5ep8RS4b92ACg7aFxiNPoJyEkeJegiRC+/K0Sg1pG1UdjR6P51m0+n0sWRJu9EoVS65tINLuDXWwoqBtfMFl72lQxCxTWSjhleWihtr+n6YteJoB7RqIydI6dOvwbdB6zGGTz6AccqfhqMCwoNfCRmn6pXZVBwgHEKJGTSWtZmBqaiURYAESt7qfJqC4x/HpRzDtTKnDm4/V+/H0/EUH2jseMYGiqUikeOwH7Rn39qm8UHJg2syOvr/5C8RTuOj1OSOjHwyroTFIy59wgv7B3b/P8t5YHThnzJpLBmnfJnYaj8Q3xXmD6tYmU+1jrgPM8yf7sRlhpWPosr7/YoiXwbbdXqcmALzq2WGWwpGy5AIsjRR30vM12Qjv5Ds2/mwO9/BK9b/yfyGQ3I7bTXZVr8wwxveHf3x0J3/n8N6fbFfDuZpZbtll2HFVHJIdeulzoqCGznSf7budXEc9tpfFwvsul8sS3yF
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find Transition ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/find/transitionID/{inputOrOutputID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the transition ID for a given input or output ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"inputOrOutputID","in":"path","description":"The input or output ID","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The transition ID"}},"title":"TransitionIdResponse"}}}},"400":{"description":"Invalid input or output ID"},"404":{"description":"Transition not found"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

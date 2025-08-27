@@ -1,0 +1,71 @@
+---
+id: get-total-supply
+title: "Get Total Supply"
+description: "Returns the total supply of Aleo credits"
+sidebar_label: "Get Total Supply"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVU1vG0cM/SsEc0mErSQXzUWnpqgbGEiBwHFOtg/ULKWdeHZmw+HKEeT97wVn14pcu0Wiy2o4w89HPh5QaZtxdY2R9T7JHd5WWHN24jv1KeIKL1l7iRm0YdCkFCD3XRf2kDbwLnACJ1x7zVhh6ljI1C5qXOGW9crefyrPscKOhFpWFnN4wEgt4+rouEJv7jrSBv8dw1XDML2D1y35GFkhCShnjaxvsELhr70XrnGl0nOF2TXcEq4OqPvO/GQVH7dYIce+tYwnO1jhZAZvh+HWLOUuxczZlH9dLu3zNJzcO8c5b/oAx5SxQpeiclR7T10XvCsXiy/ZlA7PI0rrL+zMfydmRv3oUjj3QV+K/HlRJiioTX1U8BFa7yQ9IjIMFarXYEZGFC6n3HAY7PK3l7K7iDsKvj4W/AgbDhW+fVlDWaJ1BsuOBVgkSfHesjZpaobSAdrgCheHyfawCGTFX+iTRhnNjF3SS8AVNqpdXi0W1Pk5f+tCEpZ5J2lH68Bzl9rF7uxZgd59vIDzWHfJR0VD1sdNeh691fHjZApMx2eoOftt5Bo0gbnxNUOfWTLce22ACv52aVNRpmAdkrtzDfkI2kjqtw1cnn+6sh7hKQabIVKgENI9pGjjBF97ln2x8ljuTZLRGATecQALWtrSShWoUMzk7JCnk58OFGtok/Ac/jQ966gMjiIwZR/24A0kcgq1F3Ya9mMqJfjHiNdJGxBW8bzzcQs1KQFluOcQ7LuWRLWjrHZ5Gsv8Jt7EV69K+f6gzPD58kM22QOcx52XFFuOCg8mh4eb+PDL6W88mRj+nobbDD3Aj8C+eOSDon81jvLP6E/Tb/olh0tShg++9ZalyT4X4El4hG7qChbDBWazt2Dcw1mzCSGzS7GezQogfWdvZ7Oz5bJaLpdPX9a0n81K5YrLMLmEex8CrBnYkHdcj5aOQeS+8IYZXgdyd8GPePiN9dEeaN1nLi1l37SB1IvVYw5/JQEfjSc9Z2uIBGmt5KOpN37bsIAcQ8kVdIENTGFyDaRegRRq3tl8esf599NSzuHGSNAGd5yrs/lyvsTvDHQ6YxNbkis8N20Cw8w4IIlxBbfkbfT/y1/hly5lbSmeGHnPCmXtwJFOnoz74TtN/8xqm6hY+ZsuukA+GhkWbjpMrHaNq++rbKQ10zshttsKm5TVnh4Oa8r8WcIwmLiwAK6ubyvckXhLsZBf7bP9r3G1oZD5f1J5fTntvzfwA8vyxWwmIUWr2Y5Cbyes8I73J2t6uB0qbJhqlhLiePvOOe70RO/ZAjT+PW6D9+dXOAz/AOAC+x8=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Total Supply"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/latest/totalSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the total supply of Aleo credits
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string","description":"The supply amount in microcredits"}},"title":"SupplyResponse"}}}},"400":{"description":"Invalid network parameter"},"500":{"description":"Internal server error"}}}
+>
+  
+</StatusCodes>
+
+
+      
