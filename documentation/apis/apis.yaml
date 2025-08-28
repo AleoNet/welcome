@@ -55,21 +55,23 @@ paths:
       tags:
         - blocks
       summary: Get Latest Block
-      description: Returns the latest block
+      description: Retrieves the latest block from the Aleo blockchain.
       operationId: getLatestBlock
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: >
+            The full Aleo block object. This object contains block level information including: 
+            metadata, ratifications, solutions, and transactions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/block:
     get:
       tags:
@@ -81,55 +83,57 @@ paths:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: >
+            The full Aleo block object. This object contains block level information including: 
+            metadata, ratifications, solutions, and transactions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/block/height/latest:
     get:
       tags:
         - blocks
       summary: Get Latest Block Height
-      description: Returns the latest block height
+      description: Retrieves the latest block height from the Aleo blockchain.
       operationId: getLatestHeight
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HeightResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/height:
     get:
       tags:
         - blocks
       summary: Get Latest Block Height (Alternative)
-      description: Returns the latest block height (alternative endpoint)
+      description: Retrieves the latest block height from the Aleo blockchain.
       operationId: getLatestHeightAlt
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HeightResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/block/hash/latest:
     get:
       tags:
@@ -141,41 +145,41 @@ paths:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: Retrieves the latest block hash from the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HashResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/hash:
     get:
       tags:
         - blocks
       summary: Get Latest Block Hash (Alternative)
-      description: Returns the latest block hash (alternative endpoint)
+      description: Retrieves the latest block hash from the Aleo blockchain.
       operationId: getLatestHashAlt
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: A block hash of the latest block from the canonical Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HashResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/find/blockHash/{transactionID}:
     get:
       tags:
         - blocks
       summary: Find Block Hash by Transaction ID
-      description: Returns the block hash of the block containing the given transaction ID
+      description: Retrieves the block hash associated with the given Transaction ID.
       operationId: findBlockHash
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -187,23 +191,21 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: A block hash of the block in which the transaction was added to.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HashResponse'
-        "400":
-          description: Invalid transaction ID
         "404":
-          description: Transaction not found
+          description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/block/{heightOrHash}:
     get:
       tags:
         - blocks
       summary: Get Block by Height or Hash
-      description: Returns block information by height or hash
+      description: Retrieves the latest block from the Aleo blockchain via the block's height or blockhash.
       operationId: getBlock
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -214,27 +216,26 @@ paths:
           schema:
             oneOf:
               - type: integer
-                format: int64
               - type: string
       responses:
         "200":
-          description: successful operation
+          description: >
+            The full Aleo block object. This object contains block level information including: 
+            metadata, ratifications, solutions, and transactions.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockResponse'
-        "400":
-          description: Invalid height or hash parameter
         "404":
           description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/block/{heightOrHash}/transactions:
     get:
       tags:
         - blocks
       summary: Get Block Transactions
-      description: Returns all transactions in a block by height or hash
+      description: Retrieves all transactions for a block the block's height or blockhash.
       operationId: getBlockTransactions
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -245,147 +246,187 @@ paths:
           schema:
             oneOf:
               - type: integer
-                format: int64
               - type: string
       responses:
         "200":
-          description: successful operation
+          description: An array of transactions in the given block.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsResponse'
-        "400":
-          description: Invalid height or hash parameter
         "404":
           description: Block not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/committee/latest:
     get:
       tags:
         - network
       summary: Get Latest Committee
-      description: Returns the latest committee information
+      description: >
+        Retrieves the latest committee from the Aleo blockchain. 
+        The committee represents the Validator set at this given point in time.
       operationId: getLatestCommittee
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: >
+            The full committee object containing the list of validators, staked amount, 
+            bonding state, and commission rate.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommitteeResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Committee not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/committee:
     get:
       tags:
         - network
       summary: Get Latest Committee (Alternative)
-      description: Returns the latest committee information (alternative endpoint)
+      description: >
+        Retrieves the latest committee from the Aleo blockchain. The committee represents the Validator set at this given point in time.
       operationId: getLatestCommitteeAlt
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: >
+            The full committee object containing the list of validators, staked amount, 
+            bonding state, and commission rate.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommitteeResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Committee not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/stateRoot/latest:
     get:
       tags:
         - network
       summary: Get Latest State Root
-      description: Returns the latest state root
+      description: >
+        Retrieves the latest state root from the Aleo blockchain. 
+        The state root is the merkle root of all previous block hashes.
       operationId: getLatestStateRoot
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The state root of the canonical Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StateRootResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: State root not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/stateRoot:
     get:
       tags:
         - network
       summary: Get Latest State Root (Alternative)
-      description: Returns the latest state root (alternative endpoint)
+      description: >
+        Retrieves the latest state root from the Aleo blockchain. 
+        The state root is the merkle root of all previous block hashes.
       operationId: getLatestStateRootAlt
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The state root of the canonical Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StateRootResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: State root not found
         "500":
-          description: Internal server error
+          description: Server error
+  /{network}/stateRoot/{height}:
+    get:
+      tags:
+        - network
+      summary: Get State Root at Specified Height
+      description: >
+        Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes.
+      operationId: getStateRootAtHeight
+      parameters:
+        - $ref: '#/components/parameters/NetworkParam'
+        - name: height
+          in: path
+          description: The block height
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The state root of the canonical Aleo blockchain at a given block height.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateRootResponse'
+        "404":
+          description: State Root not found
+        "500":
+          description: Server error
   /{network}/latest/totalSupply:
     get:
       tags:
         - network
       summary: Get Total Supply
-      description: Returns the total supply of Aleo credits
+      description: >
+        Retrieves the latest total supply for the Aleo blockchain. 
+        Note: This is only available for mainnet currently.
       operationId: getTotalSupply
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The latest total supply in credits, retrieved from the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SupplyResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Supply not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/latest/circulatingSupply:
     get:
       tags:
         - network
       summary: Get Circulating Supply
-      description: Returns the circulating supply of Aleo credits
+      description: >
+        Retrieves the latest circulating supply for the Aleo blockchain. 
+        Note: This is only available for mainnet currently.
       operationId: getCirculatingSupply
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
-          description: successful operation
+          description: The latest circulating supply in credits, retrieved from the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SupplyResponse'
-        "400":
-          description: Invalid network parameter
+        "404":
+          description: Supply not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/find/transactionID/deployment/{programID}:
     get:
       tags:
         - programs
       summary: Find Transaction ID for Program Deployment
-      description: Returns the transaction ID for a program deployment
+      description: >
+        Retrieves the Transaction ID associated to the deployment of the given Program.
       operationId: findProgramDeploymentTxId
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -397,23 +438,21 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: The deployment transactionID for when the program was deployed on the Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionIdResponse'
-        "400":
-          description: Invalid program ID
         "404":
-          description: Program deployment not found
+          description: Transaction not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/program/{programID}:
     get:
       tags:
         - programs
       summary: Get Program
-      description: Returns the program for the given program ID (latest edition)
+      description: Retrieves program details by Program ID.
       operationId: getProgram
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -432,23 +471,22 @@ paths:
             default: false
       responses:
         "200":
-          description: successful operation
+          description: The program source code.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProgramResponse'
-        "400":
-          description: Invalid program ID
         "404":
           description: Program not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/program/{programID}/{edition}:
     get:
       tags:
         - programs
       summary: Get Program by Edition
-      description: Returns the program for the given program ID and specific edition
+      description: >
+        Retrieves program details by Program ID and specific edition.
       operationId: getProgramByEdition
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -473,23 +511,23 @@ paths:
             default: false
       responses:
         "200":
-          description: successful operation
+          description: The program source code.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProgramResponse'
-        "400":
-          description: Invalid program ID or edition
         "404":
           description: Program not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/program/{programID}/mappings:
     get:
       tags:
         - programs
       summary: Get Program Mappings
-      description: Returns all mapping names for a program
+      description: >
+        Retrieves mappings for a given program by Program ID. These mappings can then 
+        be queried through additional endpoints.
       operationId: getProgramMappings
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -501,23 +539,22 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: An array of mappings for the given program.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingsResponse'
-        "400":
-          description: Invalid program ID
         "404":
           description: Program not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}:
     get:
       tags:
         - programs
       summary: Get Mapping Value
-      description: Returns the value in a key-value mapping corresponding to the supplied mapping key
+      description: >
+        Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/{programID}/mappings query.
       operationId: getMappingValue
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -541,23 +578,23 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: >
+            A mapping object pertaining to the revelant information that the program holds 
+            in the associated mapping.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingValueResponse'
-        "400":
-          description: Invalid parameters
         "404":
-          description: Mapping or key not found
+          description: Program not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/find/transactionID/{transitionID}:
     get:
       tags:
         - transactions
       summary: Find Transaction ID by Transition ID
-      description: Returns the transaction ID for a given transition ID
+      description: Retrieves the Transaction ID associated with a Transition ID.
       operationId: findTransactionIdByTransition
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -569,23 +606,23 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: The transactionID in which the transition is part of.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionIdResponse'
-        "400":
-          description: Invalid transition ID
         "404":
-          description: Transition not found
+          description: Transaction not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/find/transitionID/{inputOrOutputID}:
     get:
       tags:
         - transactions
       summary: Find Transition ID
-      description: Returns the transition ID for a given input or output ID
+      description: >
+        Retrieves the Transition ID associated with a given input our output ID. Input and 
+        output IDs can be found via the associated field elements of an input or output.
       operationId: findTransitionId
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -597,23 +634,21 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: The transition ID.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransitionIdResponse'
-        "400":
-          description: Invalid input or output ID
         "404":
           description: Transition not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/transaction/{transactionID}:
     get:
       tags:
         - transactions
       summary: Get Transaction
-      description: Returns the transaction for the given transaction ID
+      description: Retrieves the full transaction object given a Transaction ID.
       operationId: getTransaction
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -625,23 +660,21 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: A Transaction object containing all inputs, outputs, and fee object.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionResponse'
-        "400":
-          description: Invalid transaction ID
         "404":
           description: Transaction not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/transaction/confirmed/{transactionID}:
     get:
       tags:
         - transactions
       summary: Get Transaction Confirmation Status
-      description: Returns the confirmation status of a transaction
+      description: Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain.
       operationId: getTransactionConfirmed
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -653,23 +686,22 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: A Transaction object containing confirmation status, all inputs, outputs, and fee object.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationResponse'
-        "400":
-          description: Invalid transaction ID
         "404":
           description: Transaction not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/transaction/unconfirmed/{transactionID}:
     get:
       tags:
         - transactions
       summary: Get Unconfirmed Transaction
-      description: Returns unconfirmed transaction details by ID
+      description: >
+        Retrieves an unconfirmed transaction from the Aleo blockchain.
       operationId: getUnconfirmedTransaction
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
@@ -681,50 +713,52 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: A Transaction object containing all inputs, outputs, and fee object.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionResponse'
-        "400":
-          description: Invalid transaction ID
         "404":
           description: Transaction not found
         "500":
-          description: Internal server error
+          description: Server error
   /{network}/transaction/broadcast:
     post:
       tags:
         - transactions
       summary: Broadcast Transaction
-      description: Broadcasts a transaction to the ledger
+      description: Broadcast a transaction to the Aleo blockchain.
       operationId: broadcastTransaction
       parameters:
         - $ref: '#/components/parameters/NetworkParam'
       requestBody:
-        description: The serialized transaction to broadcast
+        description: >
+          To broadcast a transactions, the request body should follow the outlined json object below. Please be sure to specify the correct "type" of transaction. If you are broadcasting a transaction to deploy a program, use the type "deploy". All other transactions will be of type "execute".
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                transaction:
-                  type: string
-                  description: The serialized transaction to broadcast
-              required:
-                - transaction
+              oneOf:
+                - $ref: '#/components/schemas/ExecuteTransaction'
+                - $ref: '#/components/schemas/DeployTransaction'
+              discriminator:
+                propertyName: type
+                mapping:
+                  execute: '#/components/schemas/ExecuteTransaction'
+                  deploy: '#/components/schemas/DeployTransaction'
       responses:
         "200":
-          description: successful operation
+          description: >
+            A string either indicating why the transaction failed or the successfully 
+            broadcasted transaction id.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BroadcastResponse'
-        "400":
-          description: Invalid transaction data
+        "404":
+          description: Failed to post to route
         "500":
-          description: Internal server error
+          description: Server error
 components:
   parameters:
     NetworkParam:
@@ -743,21 +777,323 @@ components:
       properties:
         result:
           type: object
-          description: The block object
-          additionalProperties: true
+          properties:
+            block_hash:
+              type: string
+            previous_hash:
+              type: string
+            header:
+              type: object
+              properties:
+                previous_state_root:
+                  type: string
+                transactions_root:
+                  type: string
+                finalize_root:
+                  type: string
+                ratifications_root:
+                  type: string
+                solutions_root:
+                  type: string
+                subdag_root:
+                  type: string
+                metadata:
+                  type: object
+                  properties:
+                    network:
+                      type: integer
+                    round:
+                      type: integer
+                    height:
+                      type: integer
+                    cumulative_weight:
+                      type: string
+                    cumulative_proof_target:
+                      type: string
+                    coinbase_target:
+                      type: integer
+                    proof_target:
+                      type: integer
+                    last_coinbase_target:
+                      type: integer
+                    last_coinbase_timestamp:
+                      type: integer
+                    timestamp:
+                      type: integer
+            authority:
+              type: object
+              properties:
+                type:
+                  type: string
+                subdag:
+                  type: object
+                  properties:
+                    subdag:
+                      type: object
+                      properties:
+                        round:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              batch_header:
+                                type: object
+                                properties:
+                                  batch_id:
+                                    type: string
+                                  author:
+                                    type: string
+                                  round:
+                                    type: integer
+                                  timestamp:
+                                    type: integer
+                                  committee_id:
+                                    type: string
+                                  transmission_ids:
+                                    type: array
+                                    items:
+                                      type: string
+                                  previous_certificate_ids:
+                                    type: array
+                                    items:
+                                      type: string
+                                  signature:
+                                    type: string
+                              signatures:
+                                type: array
+                                items:
+                                  type: string
+            ratifications:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  amount:
+                    type: integer
+            solutions:
+              type: object
+              properties:
+                version:
+                  type: integer
+            transactions:
+              type: array
+              items:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  type:
+                    type: string
+                  index:
+                    type: integer
+                  transaction:
+                    oneOf:
+                      - title: deploy
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum: ["deploy"]
+                          id:
+                            type: string
+                          owner:
+                            type: object
+                            properties:
+                              address:
+                                type: string
+                              signature:
+                                type: string
+                            required: ["address", "signature"]
+                          deployment:
+                            type: object
+                            properties:
+                              edition:
+                                type: integer
+                              program:
+                                type: string
+                              verifying_keys:
+                                type: array
+                                items:
+                                  type: array
+                                  items:
+                                    oneOf:
+                                      - type: string
+                                      - type: array
+                                        items:
+                                          type: string
+                              program_owner:
+                                type: string
+                            required: ["edition", "program", "verifying_keys"]
+                          fee:
+                            type: object
+                            properties:
+                              transition:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  program:
+                                    type: string
+                                  function:
+                                    type: string
+                                  inputs:
+                                    type: array
+                                    items:
+                                      type: object
+                                      additionalProperties: true
+                                  outputs:
+                                    type: array
+                                    items:
+                                      type: object
+                                      additionalProperties: true
+                                  tpk:
+                                    type: string
+                                  tcm:
+                                    type: string
+                                  scm:
+                                    type: string
+                                  global_state_root:
+                                    type: string
+                                  proof:
+                                    type: string
+                              finalize:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    mapping_id:
+                                      type: string
+                                    key_id:
+                                      type: string
+                                    value_id:
+                                      type: string
+                        required: ["type", "id", "owner", "deployment", "fee"]
+                      - title: execute
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum: ["execute"]
+                          id:
+                            type: string
+                          execution:
+                            type: object
+                            properties:
+                              transitions:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    program:
+                                      type: string
+                                    function:
+                                      type: string
+                                    inputs:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          type:
+                                            type: string
+                                          id:
+                                            type: string
+                                          value:
+                                            type: string
+                                    outputs:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          type:
+                                            type: string
+                                          id:
+                                            type: string
+                                          value:
+                                            type: string
+                                          checksum:
+                                            type: string
+                                          sender_ciphertext:
+                                            type: string
+                                    tpk:
+                                      type: string
+                                    tcm:
+                                      type: string
+                                    scm:
+                                      type: string
+                              global_state_root:
+                                type: string
+                              proof:
+                                type: string
+                          fee:
+                            type: object
+                            properties:
+                              transition:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  program:
+                                    type: string
+                                  function:
+                                    type: string
+                                  inputs:
+                                    type: array
+                                    items:
+                                      type: object
+                                      additionalProperties: true
+                                  outputs:
+                                    type: array
+                                    items:
+                                      type: object
+                                      additionalProperties: true
+                                  tpk:
+                                    type: string
+                                  tcm:
+                                    type: string
+                                  scm:
+                                    type: string
+                                  global_state_root:
+                                    type: string
+                                  proof:
+                                    type: string
+                              finalize:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    mapping_id:
+                                      type: string
+                                    key_id:
+                                      type: string
+                                    value_id:
+                                      type: string
+                        required: ["type", "id", "execution", "fee"]
+            aborted_transaction_ids:
+              type: array
+              items:
+                type: string
+            aborted_solution_ids:
+              type: array
+              items:
+                type: string
     HeightResponse:
       type: object
       properties:
         result:
           type: integer
-          format: int64
-          description: The block height
     HashResponse:
       type: object
       properties:
         result:
           type: string
-          description: The block hash
     TransactionsResponse:
       type: object
       properties:
@@ -765,41 +1101,240 @@ components:
           type: array
           items:
             type: object
-            description: Transaction object
-            additionalProperties: true
-          description: Array of transactions in the block
+            properties:
+              status:
+                type: string
+              type:
+                type: string
+              index:
+                type: integer
+              transaction:
+                oneOf:
+                  - title: deploy
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum: ["deploy"]
+                      id:
+                        type: string
+                      owner:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                          signature:
+                            type: string
+                        required: ["address", "signature"]
+                      deployment:
+                        type: object
+                        properties:
+                          edition:
+                            type: integer
+                          program:
+                            type: string
+                          verifying_keys:
+                            type: array
+                            items:
+                              type: array
+                              items:
+                                oneOf:
+                                  - type: string
+                                  - type: array
+                                    items:
+                                      type: string
+                          program_owner:
+                            type: string
+                        required: ["edition", "program", "verifying_keys"]
+                      fee:
+                        type: object
+                        properties:
+                          transition:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              program:
+                                type: string
+                              function:
+                                type: string
+                              inputs:
+                                type: array
+                                items:
+                                  type: object
+                                  additionalProperties: true
+                              outputs:
+                                type: array
+                                items:
+                                  type: object
+                                  additionalProperties: true
+                              tpk:
+                                type: string
+                              tcm:
+                                type: string
+                              scm:
+                                type: string
+                              global_state_root:
+                                type: string
+                              proof:
+                                type: string
+                          finalize:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                mapping_id:
+                                  type: string
+                                key_id:
+                                  type: string
+                                value_id:
+                                  type: string
+                    required: ["type", "id", "owner", "deployment", "fee"]
+                  - title: execute
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum: ["execute"]
+                      id:
+                        type: string
+                      execution:
+                        type: object
+                        properties:
+                          transitions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                program:
+                                  type: string
+                                function:
+                                  type: string
+                                inputs:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                      id:
+                                        type: string
+                                      value:
+                                        type: string
+                                outputs:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                      id:
+                                        type: string
+                                      value:
+                                        type: string
+                                      checksum:
+                                        type: string
+                                      sender_ciphertext:
+                                        type: string
+                                tpk:
+                                  type: string
+                                tcm:
+                                  type: string
+                                scm:
+                                  type: string
+                          global_state_root:
+                            type: string
+                          proof:
+                            type: string
+                      fee:
+                        type: object
+                        properties:
+                          transition:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              program:
+                                type: string
+                              function:
+                                type: string
+                              inputs:
+                                type: array
+                                items:
+                                  type: object
+                                  additionalProperties: true
+                              outputs:
+                                type: array
+                                items:
+                                  type: object
+                                  additionalProperties: true
+                              tpk:
+                                type: string
+                              tcm:
+                                type: string
+                              scm:
+                                type: string
+                              global_state_root:
+                                type: string
+                              proof:
+                                type: string
+                          finalize:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                mapping_id:
+                                  type: string
+                                key_id:
+                                  type: string
+                                value_id:
+                                  type: string
+                    required: ["type", "id", "execution", "fee"]
+
     CommitteeResponse:
       type: object
       properties:
         result:
           type: object
-          description: The committee information
-          additionalProperties: true
+          properties:
+            id:
+              type: string
+            starting_round:
+              type: integer
+            address:
+              type: object
+              properties:
+                stake:
+                  type: integer
+                open_for_delegation:
+                  type: boolean
+                commission_rate:
+                  type: integer
+            total_stake:
+              type: integer
     StateRootResponse:
       type: object
       properties:
         result:
           type: string
-          description: The state root hash
     SupplyResponse:
       type: object
       properties:
         result:
           type: string
-          description: The supply amount in microcredits
     TransactionIdResponse:
       type: object
       properties:
         result:
           type: string
-          description: The transaction ID
     ProgramResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          description: The program object
-          additionalProperties: true
+      type: string
     MappingsResponse:
       type: object
       properties:
@@ -807,38 +1342,282 @@ components:
           type: array
           items:
             type: string
-          description: Array of mapping names
+
     MappingValueResponse:
       type: object
       properties:
         result:
-          description: The value from the mapping
           additionalProperties: true
     TransactionResponse:
       type: object
       properties:
         result:
           type: object
-          description: The transaction object
           additionalProperties: true
     TransitionIdResponse:
       type: object
       properties:
         result:
           type: string
-          description: The transition ID
     ConfirmationResponse:
       type: object
       properties:
         result:
           type: boolean
-          description: Whether the transaction is confirmed
     BroadcastResponse:
       type: object
       properties:
         result:
           type: string
-          description: The status of the transaction broadcast attempt
+    ExecuteTransaction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["execute"]
+        id:
+          type: string
+        execution:
+          type: object
+          properties:
+            transitions:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  program:
+                    type: string
+                  function:
+                    type: string
+                  inputs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string
+                        value:
+                          type: string
+                      required:
+                        - type
+                        - id
+                        - value
+                  outputs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string
+                        value:
+                          type: string
+                      required:
+                        - type
+                        - id
+                        - value
+                  tpk:
+                    type: string
+                  tcm:
+                    type: string
+                  scm:
+                    type: string
+                required:
+                  - id
+                  - program
+                  - function
+                  - inputs
+                  - outputs
+                  - tpk
+                  - tcm
+                  - scm
+            global_state_root:
+              type: string
+            proof:
+              type: string
+          required:
+            - transitions
+            - global_state_root
+            - proof
+        fee:
+          type: object
+          properties:
+            transition:
+              type: object
+              properties:
+                id:
+                  type: string
+                program:
+                  type: string
+                function:
+                  type: string
+                inputs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      id:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                      - type
+                      - id
+                      - value
+                outputs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      id:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                      - type
+                      - id
+                      - value
+                tpk:
+                  type: string
+                tcm:
+                  type: string
+                scm:
+                  type: string
+              required:
+                - id
+                - program
+                - function
+                - inputs
+                - outputs
+                - tpk
+                - tcm
+                - scm
+            global_state_root:
+              type: string
+            proof:
+              type: string
+          required:
+            - transition
+            - global_state_root
+            - proof
+      required:
+        - type
+        - id
+        - execution
+        - fee
+    DeployTransaction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["deploy"]
+        id:
+          type: string
+        deployment:
+          type: object
+          properties:
+            edition:
+              type: integer
+            program:
+              type: string
+            verifying_keys:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  id:
+                    type: string
+                  value:
+                    type: string
+                required:
+                  - type
+                  - id
+                  - value
+          required:
+            - edition
+            - program
+            - verifying_keys
+        fee:
+          type: object
+          properties:
+            transition:
+              type: object
+              properties:
+                id:
+                  type: string
+                program:
+                  type: string
+                function:
+                  type: string
+                inputs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      id:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                      - type
+                      - id
+                      - value
+                outputs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      id:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                      - type
+                      - id
+                      - value
+                tpk:
+                  type: string
+                tcm:
+                  type: string
+                scm:
+                  type: string
+              required:
+                - id
+                - program
+                - function
+                - inputs
+                - outputs
+                - tpk
+                - tcm
+                - scm
+            global_state_root:
+              type: string
+            proof:
+              type: string
+          required:
+            - transition
+            - global_state_root
+            - proof
+      required:
+        - type
+        - id
+        - deployment
+        - fee
     ApiResponse:
       type: object
       properties:

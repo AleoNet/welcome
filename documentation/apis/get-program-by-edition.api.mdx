@@ -1,11 +1,11 @@
 ---
 id: get-program-by-edition
 title: "Get Program by Edition"
-description: "Returns the program for the given program ID and specific edition"
+description: "Retrieves program details by Program ID and specific edition."
 sidebar_label: "Get Program by Edition"
 hide_title: true
 hide_table_of_contents: true
-api: eJytVktv2zgQ/isD9tIaWttZtBefNkWyhYEuELjpqclhTI0tNhSpkiOnhqP/vhiKfq2TTVLUF5nkPD7O4+NsFOMyqsk31QS/DFhHdVuokqIOpmHjnZqoGXEbXASuCLIULHxI66VZkdvtTi8AXQmxIW0WRgOVJtkolG8ooPyflmqilsRXvcrH9eVOpsGANTEFwbNRDmtSE+WI7324U4UyAqZBrtR/EV5XBFkO3tZonCMGQUiRHfE7VahAP1oTqFQTDi0VKuqKalSTjeJ1I34iB+OWqlDk2loCku2oQmUz6rbrih2ufOfpxbPI9tF5BY5DV/swvszRXv5Zb8YxLSkcuauJsUTGrb8fLYX1icOp07Yt9063WmAcBIqNd5GOECzQxscgzL23hC45WGBrOYt23a2o95aiKPw5HsvnGEdstaYYF62FXZGpQmnvmByLPDaNNTodjL5HUdqcovDz76Ql2U0QM2x6l4FiQnQq93T4dyJY9olAe3VgVDLRdYViw1Ys5k6YbWPWdXL6/rG7Tt0KrSkP+82HXbqT1vtTrewAnGdY+NaVIvnhcftMwaGFSGFFASgEn2pDaqLyuXVTq3KlJmq0yV3XjTKk0WbXF91ok5F1qlC9xb6z22DVRFXMTZyMRtiYIf1srA8Uhk3wK5xbGmpfj1ZnJ3E+v5rCpSsbbxwrKRDjFv70IpKOq2wKRMdEKCmapaMS2EsAV6YkaCOFCPeGK8BURnIovHZuycPcen2nKzQOuAq+XVYwu/xyLaVGGYOwIjKgtf4evCPRT/2SrGw5SdgyGQNLK7IgoEOdKrIADugialnEvDJ5IWRa+0BDuBA9qaEIGh0QRmPXIN0bUDOUJpBmu+6vksBvEc89VxCIg6GVcUtIPYoR7sla+c6Dx1JjZDk8xDK8cTfuzZsUvo8YCb7OPkfZe4BLtzLBu5ocw4Psw8ONe/jj8NevZBv+yYQshh7gJWkfbTk86V/39Psa/czYop/uMEMm+GxqI7eUva8p8RioT12uCgqSFxgMPoDwFkWOsgmRtHflYJAS0jYiOxicjcfFeDw+lixxPRikyCWXNruEe2MtzAlIMq+p7C3tQMQ2cYYYnlvUd9b0+TALqaM14LyNlEpKvn4Bvg0SjyH87QMYJxxrKEpBePBzRuNEvTLLigKEHZRYQGNJkhkIdQW+ZUCGklbSn0ZT/OswlEO4ES6Vxu376mw4Ho7VEXfteiyTLupEl/ktkZx9aZvGB6ENqtFI6z/lL1FN4yPX6A6MfCKGLYnN17CfGI6afrPn/N8ysmTCZ/rJo8aiSQSbqGuT+e+bmuynk2xQFWpyOBpMtgZvC1X5yKK12cwx0tdgu062+/dViLE0UUKxfyyfvOALX99H73BH6+NXfoW2FbFEqCsMRkC8EtDbWX7o38ELprFHceVNdOtDTFu820jLoPLLsI5GsV8Asc/sb4HxTLH9P5bds3/bFaoiLCmknPWn51pTwwd6J1OQJHv3rH+6vFZd9y/uiTMt
+api: eJytVktvGzkM/iuEemmNWdtZtBefNkWyRYAuEORxanLgaGiPGo00lThODWf++4Ia+bVJtklQXwxxRPLj66PWinER1eybaoNfBGyiui1URVEH07LxTs3UBXEwtKQI+Q5UxGhshHIF51l0dgLoKogtaTM3Gqgyoj6+capQvqWAcjyr1EwtiLPW59XpcE0VqsWADTEFQbNWDhtSM+WI7324U4UyAqVFrtV/8V3VBPkevG/QOEcMPgBTZEf8QRUq0I/OBKrUjENHhYq6pgbVbK141YqfyMG4hSoUua6RdGQ7qlDZjLrt+2KLK2fi7OSXyNptgl6BY98VbVP0Mke7+7/0ZhzTgsKBu4YYK2Tc+PvRUVg9cnjmtO2qndONFhgHgWLrXaQDBHO08SkIpfeW0CUHc+ws56t9fyvqg6UoCn9Op/L3fODRd0ETaF/RWBVKe8fkWHSwba3RqQMn36Morv+nBdiwFUFu0otNOH3f94X6OP34GMZmCpxnmPvOVaov1KenAF9SWFIACsGnvEu+a5/HIo0B12qmJuvc0f0khzdZb3uun6xzkXtVqJgsDlPTBatmqmZu42wywdaM6WdrfaAwboNfYmlprH0zWR49qujx+Rmcuqr1xrGS5Bs3908n/DybAtExESqKZuGoAvZSjKWpCLpIIcK94RpQa4pRPnJNcGzJQ2m9vtM1GgdcB98targ4vbyadxYoY4jANTKgtf4evCPRT72YrGzmfe7DYAwsLcmCgA5NqnQBHNBF1HKI+WTyQbiq8YHGcCJ6QlARNDogjMauQCYjoGaoTCDNdjWEksBvEJeeawgDORq3gNT/GOGerJX/MnisNEaWj/tYxjfuxr17l9L3GSPB9cXXKLIHOHVLE7xryDE8iBwebtzDH/u/4SRi+CeTnRh6gJeUfbLhx6R/NVDba/QzG4p+iuECmeCraYxEKbLrVHgMNJQudwUFqQuMRp9AOIEiRxFCJO1dNRqlgnSt3B2NjqbTYjqdHt6scDUapcwllza7hHtjLZQEJJXXVA2WtiBiV34nzWK4tKjvrBnqYebSRyvAsouUWkr+/Rx8FyQfY/jbBzBO+MtQlIbw4EtG40S9NouaAoQtlFhAa0mKGQh1Db5jQIaKljKfRlP8az+VY0iLUQZ3mKuj8XQ8PSSf7YxlMkOdyCzztNTssmtbH4Q2qEEjo/+cv0Q1rY/coNsz8oV4u8HLFey28cHQr3dc+hseA5lumX7ypLVonHBlIq51Zr9varbb+9mNKtRsf+nONmvutlC1jyxa63WJka6D7XsRD5tLaLEyURKxW0PPhvfCvfZkDHe0OtyfS7SdXEt0usRgBMQrAb2/yCv0A7zgnfMkrixEt9rHtMG7ybQ8Ad4M6+CR8wYQu8r+Fhi7J9AbsGyU+9u+UDVhRSHVbPh6rDW1vKf36G0hxd4u9S+nV6rv/wWlXvaX
 sidebar_class_name: "get api-method"
 info_path: apis/provable-api
 custom_edit_url: null
@@ -36,7 +36,8 @@ import Heading from "@theme/Heading";
 
 
 
-Returns the program for the given program ID and specific edition
+Retrieves program details by Program ID and specific edition.
+
 
 <Heading
   id={"request"}
@@ -62,7 +63,7 @@ Returns the program for the given program ID and specific edition
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","description":"The program object","additionalProperties":true}},"title":"ProgramResponse"}}}},"400":{"description":"Invalid program ID or edition"},"404":{"description":"Program not found"},"500":{"description":"Internal server error"}}}
+  responses={{"200":{"description":"The program source code.","content":{"application/json":{"schema":{"type":"string","title":"ProgramResponse"}}}},"404":{"description":"Program not found"},"500":{"description":"Server error"}}}
 >
   
 </StatusCodes>

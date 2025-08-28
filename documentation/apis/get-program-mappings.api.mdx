@@ -1,11 +1,11 @@
 ---
 id: get-program-mappings
 title: "Get Program Mappings"
-description: "Returns all mapping names for a program"
+description: "Retrieves mappings for a given program by Program ID. These mappings can then  be queried through additional endpoints."
 sidebar_label: "Get Program Mappings"
 hide_title: true
 hide_table_of_contents: true
-api: eJydVk1v20gM/SsEe2kNre0u2otOzaLZIkALFGl6anKgJdqaZjSjciinhqP/vuBIcZwmu9s2F2Vm+M3HR+9RaZOw/IKdxI1Qm/CqwJpTJa5TFwOWeM7aS0hA3kNLXefCBgK1nGAdBQgmTSwwdixkWmc1lrhh/Tg+fRi1EhbYkVDLymJO92h2sMTAehPlGgt05rEjbfDHMC4ahkkOnrfkQmCFKKCcNLC+wAKFv/VOuMZSpecCU9VwS1juUXed+UkqLmywQA59a1lPdrDAyQxeDUNxiGtK7ezt/0Y2SUIW/dk4huHKhFMXQ+Jk738ul/Z5aD/1VcUprXsPhwpjgVUMykFNnrrOuyo/LL4mU9o/dhpXX7myVDsxM+pGl8Kp93okRyK0s4SV2/RE0D+mf2LyENcPwYHDUKA69aZ6B4DzKVccBnt+9VS2Z2FL3tXHFc2irx6LTvCCEBXWsQ+1Sb5+2qiyBPKQWLYswCJRcogtaxMnuGZ8aoMlLvYT1IbFFMdifwDDsGjvAT0aHNHci8cSG9UulYsFdW7O3zsfhWXeSdzSyvO8iu1i+/IRhk4+nsFpqLvogqLBwoV1fJyHQe3jZApMxyWoOblN4Bo0WtG2rmboE0uCG6cNUAaPPWrDcOI5wsrH6rpqyAXQRmK/aeD89NOFAYynGBJoQ2ozH28gBjb9bz3LLlu5m0MjgGwMPG/ZgwUtbcZhASoUElV2SNPJTQcKNbRReA5vTc/gmKCiAEzJ+R04axdVCrUTrtTvxlRy8HcRr6I2IKzieGuoq0kJKMENe2/flUSqK0pqj8exzC/DZXj2LJfvL0oMn8/fJ7u7hdOwdRJDy0Hh1u7h9jLc/nH8N57sGj5MJGSGbuFn2r64462sfzFSzq/oTyxl+jmHc1KG9651lqXdfc6NJ+GxdRMqWKwvMJu9BuMmTprsEhJXMdSzWW5I35nsbPZyuSyWy+VDyZp2s1muXHbpJ5dw47yHFQNb5yuuR0uHIFKfSccMrzxV196N/XBrw9EOaNUnzpCyb1xD7MXqMYe/o4ALxqOOkwEiQlwpuWDqjds0LCCHUFIBnWdrpjBVDcRegRRq3tp8uorTm+NSzuHSGNQGd5yrl/PlfIn3hHU8YxPVUpVJctoM1rNPfddFMdbglpyN/r/5y0zTxaQthSMj71jhjsOOduSDkd/f8/wvbOKJspW/66Lz5IIxY6an/URxX7C837r3iuXxyjvQ3FWBTUxqWvv9ihJ/Fj8Mdp05AcsvVwVuSZwlnKmwdsn+r7Fck0/8H0k9P5+25Qv4iRX/ZGJ3iyvY2tqS7+2EBV7z7ujHhe313w7rwX7/jSDuyzpcDQU2TDVLrtT4flJV3OmR5qOVbkvhsKzenV7gMPwDVcVk/w==
+api: eJzFVk1vG0cM/SsEc0mErSQXyWVPcWE3MJAAhmyfbB2oXUo78ezMZIYrR5D3vxdcjWS5dtskl/qymg9yHvnIR29RaJWwvMUQ/SpSm3BeYM2piiaI8Q5LnLFEw2tO0FIIxq0SLH0EgpVZs4NsCIsNXOafF2djuG448ZNFRQ6kYQewYPjWcTRcgzTRd6sGqK6NPkYW2NXBGydpfOewQB84kh5d1FjiiiU/8SX7xQIDRWpZOGoYW3TUMpboWB58vMcCjcYQSBr8e2DXDUO+B29bMs6xgI8gnMSxvMMCI3/rTOQaS4kdF5iqhlvCcouyCfpOkmjcCgtk17Wax+wHC8xucN73xQFXztbF2X8iC4dk/gSOvp/r5RS8S5z0/PfpVD/P/Z86oBhpA375nFRp+DmtYyyw8k7YibqhEKypBkYmX5P62r7E4hdfudIMhKj8idkhiZw6K0f3BgiaB+E2vRZLX6AYsbq3J3yWY9PTvsD30/cvo9uXofMCS9+5GvsCP7yWhyuOa47AMfqI6q9laXwutaG2pMESJ9tcJv0kp2WyPRDZT9qnYkyDw10ldtFiiY1ISOVkQsGM+XuwPnIch+jXtLA8rnw7WZ+84P/08gLOcyegUmrc0r+Er2VymV2B2pgENSezctpcXjlcm5qhSxwTPBhpgKqKU9JDpfrUsoeF9dV91ZBxh4acnV9dL7ujbgRpSICs9Q/gHau9NvFm8LLvIS2gwRlYXrMFBR3boVgKkEguUaWLlFcmL8jV0PrIYzhTO62ZnWAwJWM3YJxwpEqgNpErsZtdKAP4PeKFlwbiTqmMW0FNQkAJHtha/S6ip7qiJHp4jGV85+7cmzdD+v6gxHAz+5x07xHO3dpE71p2Ao+6D4937vG347/dSrfhSxYQdfQIP0L7ZK85g/31Ti5+xj4rjNoPMcxIGD6b1miUunczEE+Rd9TlquCovMBo9AFUVzhJ0k1IXHlXj0YDIV3Qu6PRyXRaTKfT5zdr2oxGQ+aGJ21+Eh6MtSrwrMxXXO88HUCkblAGdbywVN1bs+PDLLWONkCLLvFQUvr1S/Bd1HyM4U8fwTjVQMNJC8KDXwgZp+aNWTUcIR6gpAKCZSUzMlUN+E6ABGpea3+aitPH41SOYZg12ri7vjoZT8dTfBKf4x7LekjVoGRZ1ZWzqy4EH1U1uCWjrf9P7w1KE3ySltyRk08shwl6NN+etfz2SYz/17mclVr4u0yCJeNUYgfB22bRvMXyaQZnLFhgeTwAD8I5L7DxSdRqu11Q4pto+163B5XB8nZe4Jqi0RQO4lqbpL9rLJdkE/9Lmt7O8ux8Bz8w8F8NbD+vnE6rNdlOV1jgPW+O/tXQKf/LsJ5N+18A8ZTWft4X2DDVHIdM7c5Pq4qDHFm+mOQ6Zg7j79P5Nfb9X36riJw=
 sidebar_class_name: "get api-method"
 info_path: apis/provable-api
 custom_edit_url: null
@@ -36,7 +36,8 @@ import Heading from "@theme/Heading";
 
 
 
-Returns all mapping names for a program
+Retrieves mappings for a given program by Program ID. These mappings can then  be queried through additional endpoints.
+
 
 <Heading
   id={"request"}
@@ -62,7 +63,7 @@ Returns all mapping names for a program
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"array","items":{"type":"string"},"description":"Array of mapping names"}},"title":"MappingsResponse"}}}},"400":{"description":"Invalid program ID"},"404":{"description":"Program not found"},"500":{"description":"Internal server error"}}}
+  responses={{"200":{"description":"An array of mappings for the given program.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"array","items":{"type":"string"}}},"title":"MappingsResponse"}}}},"404":{"description":"Program not found"},"500":{"description":"Server error"}}}
 >
   
 </StatusCodes>

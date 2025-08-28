@@ -1,0 +1,72 @@
+---
+id: get-state-root-at-height
+title: "Get State Root at Specified Height"
+description: "Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes."
+sidebar_label: "Get State Root at Specified Height"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vGzcQ/SuDySURtpJSJBed6qJuGiAFAtk+2TpQ3JGWMZfcDGflCPL+92C4tKLEbprmVF1WnOV8vpk3e0Ax24SLawwkd5FvcVVhTcmy68TFgAtckrCjHSWQhsAboSSQxAgtYxTYcGzBQOrIuo2zsPbR3kIM+faZpzhKbGNcmMJlQye6brTZEt96AlZR3IDxHjqmnYt9KuYakxpK05uAFcaO2Ghsb2tc4Jbk4sHemfxFbtsIVtgZNi0JseZ2wGBawsUxxwqdZtYZafDbdDXCcg+et8aFQAKRQdMOJC+wQqaPvWOqcSHcU4XJNtQaXBxQ9p36ScIubLFCCn2rxS12sMJiBlfDUB3jah7C/n5YpRYPl/81DBeEtsQ4DCu9nboYEiW98Ot8ro/HLjI2RyQUHGtCDM4a/y2YYAQMbN2OwleRTbFCG4NQEPVhus47mwGbfUjq6PA40rj+QDbjxgqvuDFMptR7eVzYYahQnHgVHdFflgRxGPT9q/mrxynmy5B7L2jvxj7UOFT4+ql6XBDviIGYI2eXLUkTS9PlHpMGFzg7lHYZZsfOnh3GWgxYYcpmxj7s2SvcIl1azGamc1P61PnIxNOO486sPU1tbGe7l48a4Oz9WzgPdRddEFRAXdjEp0F8X0yB6rgENSW3DVSDRFA3riboE3GCOycNGGspJX35xMiCNBz7bQPL84vLTe+BSgw6utoB3sc7iIFU/2NPvM9WHiZoE7k0h6cdedCguc3dUIGwCclYPaRycuVgQg1tZJrCH6qnTZG0FYFMcn4P2tpsrEDtmKz4/ZhKDv4h4nWUBnhkLxe2UBsxYBLckff6XHM0tTVJ9OVpLNObcBOePcvl+90kgqvlu6SyezgPO8cxtBQE7lUO9zfh/pfT33hSMfxd6EMN3cOPwD57YJysfzmSxX/RL/yi+jmHpTb8O9c6zVJlVxl4wzRCV7qCWHGByeQ1KK1QkqRCSGRjqCeTDEjf6d3J5OV8Xs3n869v1mY/meTKZZe+uIQ75z2sCUiRt1SPlo5BpD6Pvhpee2NvvRvxcJl99mDWfaLcUvqMG4g9az2m8GdkcEEp0FHShogQ12JcUPXGbRti4GMoqYLOk4LJZGwDsRclsJp2Op/OUvrttJRTyLtGB3ecq5fT+XSOX2jndMYK4RmbqapwumJ20XddZOUKao3T0f8nf5lfupikNeHEyBsSOOEsI3Ax7lmq4bjrviKAwxfu/d9t7kLiQp9k1nnjglJvpsRDIdNrXHzZ0UdvWOGibL1VhU1MojcPh7VJdMV+GFScuQcX16sKd4adFjZTbu2S/q9xsTE+0XfK9XxZFuoL+IGPgCeTKUIT9to8xvd6wgpvaX/y+aGb/6fD+uYj4CfCKLrDaqiwIVMT50KNL8+spU5O1B7tb909x0345vwSh+EzlYSXjA==
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get State Root at Specified Height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{network}/stateRoot/{height}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"network","in":"path","description":"The network (mainnet or testnet)","required":true,"schema":{"type":"string","enum":["mainnet","testnet"]}},{"name":"height","in":"path","description":"The block height","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The state root of the canonical Aleo blockchain at a given block height.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string"}},"title":"StateRootResponse"}}}},"404":{"description":"State Root not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      
