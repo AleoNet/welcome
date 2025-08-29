@@ -4,16 +4,19 @@ servers:
     description: Mainnet API Endpoint
   - url: https://api.explorer.provable.com/v1/testnet
     description: Testnet API Endpoint
+  - url: https://api.explorer.provable.com/v1/canary
+    description: Canary API Endpoint
 info:
   description: |
     The Provable API is designed to provide users with access to the Aleo blockchain through RESTful endpoints that allow one to query the network for block level information, transactions, transitions, and more. Developers can easily interact directly with Aleo through both retrieving data as well as broadcasting transactions.
     
     ## API Base URLs
 
-    | Environment | URL |
-    |-------------|-----|
-    | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
-    | Testnet API | https://api.explorer.provable.com/v1/testnet |
+    | Environment  | URL                                         |
+    |--------------|---------------------------------------------|
+    | Mainnet API  | https://api.explorer.provable.com/v1/mainnet |
+    | Testnet API  | https://api.explorer.provable.com/v1/testnet |
+    | Canary API   | https://api.explorer.provable.com/v1/canary  |
 
     ## Rate Limiting
     
