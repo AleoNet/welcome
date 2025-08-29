@@ -1,27 +1,19 @@
 openapi: 3.0.0
 servers:
-  - url: https://api.explorer.provable.com/v1
-    description: API Endpoint
+  - url: https://api.explorer.provable.com/v1/mainnet
+    description: Mainnet API Endpoint
+  - url: https://api.explorer.provable.com/v1/testnet
+    description: Testnet API Endpoint
 info:
   description: |
     The Provable API is designed to provide users with access to the Aleo blockchain through RESTful endpoints that allow one to query the network for block level information, transactions, transitions, and more. Developers can easily interact directly with Aleo through both retrieving data as well as broadcasting transactions.
     
     ## API Base URLs
 
-    The base URL for all endpoints is:
-
-    ```
-    https://api.explorer.provable.com/v1
-    ```
-
-    The `{network}` parameter (such as `mainnet` or `testnet`) should be included in the path of each endpoint to specify the network.
-
-    The table below provides example URLs for different environments:
-
-    | Environment | Example URL                                 |
-    |-------------|---------------------------------------------|
-    | Mainnet     | https://api.explorer.provable.com/v1/mainnet |
-    | Testnet     | https://api.explorer.provable.com/v1/testnet  |
+    | Environment | URL |
+    |-------------|-----|
+    | Mainnet API | https://api.explorer.provable.com/v1/mainnet |
+    | Testnet API | https://api.explorer.provable.com/v1/testnet |
 
     ## Rate Limiting
     
@@ -60,15 +52,13 @@ x-tagGroups:
       - programs
       - transactions
 paths:
-  /{network}/block/latest:
+  /block/latest:
     get:
       tags:
         - blocks
       summary: Get Latest Block
       description: Retrieves the latest block from the Aleo blockchain.
       operationId: getLatestBlock
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: >
@@ -82,15 +72,13 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/latest/block:
+  /latest/block:
     get:
       tags:
         - blocks
       summary: Get Latest Block (Alternative)
       description: Returns the latest block (alternative endpoint)
       operationId: getLatestBlockAlt
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: >
@@ -104,15 +92,13 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/block/height/latest:
+  /block/height/latest:
     get:
       tags:
         - blocks
       summary: Get Latest Block Height
       description: Retrieves the latest block height from the Aleo blockchain.
       operationId: getLatestHeight
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
@@ -124,15 +110,13 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/latest/height:
+  /latest/height:
     get:
       tags:
         - blocks
       summary: Get Latest Block Height (Alternative)
       description: Retrieves the latest block height from the Aleo blockchain.
       operationId: getLatestHeightAlt
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
@@ -144,15 +128,13 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/block/hash/latest:
+  /block/hash/latest:
     get:
       tags:
         - blocks
       summary: Get Latest Block Hash
       description: Returns the latest block hash
       operationId: getLatestHash
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: Retrieves the latest block hash from the Aleo blockchain.
@@ -164,15 +146,13 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/latest/hash:
+  /latest/hash:
     get:
       tags:
         - blocks
       summary: Get Latest Block Hash (Alternative)
       description: Retrieves the latest block hash from the Aleo blockchain.
       operationId: getLatestHashAlt
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: A block hash of the latest block from the canonical Aleo blockchain.
@@ -184,7 +164,7 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/find/blockHash/{transactionID}:
+  /find/blockHash/{transactionID}:
     get:
       tags:
         - blocks
@@ -192,7 +172,6 @@ paths:
       description: Retrieves the block hash associated with the given Transaction ID.
       operationId: findBlockHash
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: transactionID
           in: path
           description: The transaction ID
@@ -210,7 +189,7 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/block/{heightOrHash}:
+  /block/{heightOrHash}:
     get:
       tags:
         - blocks
@@ -218,7 +197,6 @@ paths:
       description: Retrieves the latest block from the Aleo blockchain via the block's height or blockhash.
       operationId: getBlock
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: heightOrHash
           in: path
           description: Block height (integer) or block hash (string)
@@ -240,7 +218,7 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/block/{heightOrHash}/transactions:
+  /block/{heightOrHash}/transactions:
     get:
       tags:
         - blocks
@@ -248,7 +226,6 @@ paths:
       description: Retrieves all transactions for a block the block's height or blockhash.
       operationId: getBlockTransactions
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: heightOrHash
           in: path
           description: Block height (integer) or block hash (string)
@@ -268,7 +245,7 @@ paths:
           description: Block not found
         "500":
           description: Server error
-  /{network}/committee/latest:
+  /committee/latest:
     get:
       tags:
         - network
@@ -277,8 +254,6 @@ paths:
         Retrieves the latest committee from the Aleo blockchain. 
         The committee represents the Validator set at this given point in time.
       operationId: getLatestCommittee
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: >
@@ -292,7 +267,7 @@ paths:
           description: Committee not found
         "500":
           description: Server error
-  /{network}/latest/committee:
+  /latest/committee:
     get:
       tags:
         - network
@@ -300,8 +275,6 @@ paths:
       description: >
         Retrieves the latest committee from the Aleo blockchain. The committee represents the Validator set at this given point in time.
       operationId: getLatestCommitteeAlt
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: >
@@ -315,7 +288,7 @@ paths:
           description: Committee not found
         "500":
           description: Server error
-  /{network}/stateRoot/latest:
+  /stateRoot/latest:
     get:
       tags:
         - network
@@ -324,8 +297,6 @@ paths:
         Retrieves the latest state root from the Aleo blockchain. 
         The state root is the merkle root of all previous block hashes.
       operationId: getLatestStateRoot
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The state root of the canonical Aleo blockchain.
@@ -337,7 +308,7 @@ paths:
           description: State root not found
         "500":
           description: Server error
-  /{network}/latest/stateRoot:
+  /latest/stateRoot:
     get:
       tags:
         - network
@@ -346,8 +317,6 @@ paths:
         Retrieves the latest state root from the Aleo blockchain. 
         The state root is the merkle root of all previous block hashes.
       operationId: getLatestStateRootAlt
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The state root of the canonical Aleo blockchain.
@@ -359,7 +328,7 @@ paths:
           description: State root not found
         "500":
           description: Server error
-  /{network}/stateRoot/{height}:
+  /stateRoot/{height}:
     get:
       tags:
         - network
@@ -368,7 +337,6 @@ paths:
         Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes.
       operationId: getStateRootAtHeight
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: height
           in: path
           description: The block height
@@ -386,7 +354,7 @@ paths:
           description: State Root not found
         "500":
           description: Server error
-  /{network}/latest/totalSupply:
+  /latest/totalSupply:
     get:
       tags:
         - network
@@ -395,8 +363,6 @@ paths:
         Retrieves the latest total supply for the Aleo blockchain. 
         Note: This is only available for mainnet currently.
       operationId: getTotalSupply
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The latest total supply in credits, retrieved from the Aleo blockchain.
@@ -408,7 +374,7 @@ paths:
           description: Supply not found
         "500":
           description: Server error
-  /{network}/latest/circulatingSupply:
+  /latest/circulatingSupply:
     get:
       tags:
         - network
@@ -417,8 +383,6 @@ paths:
         Retrieves the latest circulating supply for the Aleo blockchain. 
         Note: This is only available for mainnet currently.
       operationId: getCirculatingSupply
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       responses:
         "200":
           description: The latest circulating supply in credits, retrieved from the Aleo blockchain.
@@ -430,7 +394,7 @@ paths:
           description: Supply not found
         "500":
           description: Server error
-  /{network}/find/transactionID/deployment/{programID}:
+  /find/transactionID/deployment/{programID}:
     get:
       tags:
         - programs
@@ -439,7 +403,6 @@ paths:
         Retrieves the Transaction ID associated to the deployment of the given Program.
       operationId: findProgramDeploymentTxId
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: programID
           in: path
           description: The program ID
@@ -457,7 +420,7 @@ paths:
           description: Transaction not found
         "500":
           description: Server error
-  /{network}/program/{programID}:
+  /program/{programID}:
     get:
       tags:
         - programs
@@ -465,7 +428,6 @@ paths:
       description: Retrieves program details by Program ID.
       operationId: getProgram
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: programID
           in: path
           description: The program ID
@@ -490,7 +452,7 @@ paths:
           description: Program not found
         "500":
           description: Server error
-  /{network}/program/{programID}/{edition}:
+  /program/{programID}/{edition}:
     get:
       tags:
         - programs
@@ -499,7 +461,6 @@ paths:
         Retrieves program details by Program ID and specific edition.
       operationId: getProgramByEdition
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: programID
           in: path
           description: The program ID
@@ -530,7 +491,7 @@ paths:
           description: Program not found
         "500":
           description: Server error
-  /{network}/program/{programID}/mappings:
+  /program/{programID}/mappings:
     get:
       tags:
         - programs
@@ -540,7 +501,6 @@ paths:
         be queried through additional endpoints.
       operationId: getProgramMappings
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: programID
           in: path
           description: The program ID
@@ -558,7 +518,7 @@ paths:
           description: Program not found
         "500":
           description: Server error
-  /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}:
+  /program/{programID}/mapping/{mappingName}/{mappingKey}:
     get:
       tags:
         - programs
@@ -567,7 +527,6 @@ paths:
         Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/{programID}/mappings query.
       operationId: getMappingValue
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: programID
           in: path
           description: The program ID
@@ -599,7 +558,7 @@ paths:
           description: Program not found
         "500":
           description: Server error
-  /{network}/find/transactionID/{transitionID}:
+  /find/transactionID/{transitionID}:
     get:
       tags:
         - transactions
@@ -607,7 +566,6 @@ paths:
       description: Retrieves the Transaction ID associated with a Transition ID.
       operationId: findTransactionIdByTransition
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: transitionID
           in: path
           description: The transition ID
@@ -625,7 +583,7 @@ paths:
           description: Transaction not found
         "500":
           description: Server error
-  /{network}/find/transitionID/{inputOrOutputID}:
+  /find/transitionID/{inputOrOutputID}:
     get:
       tags:
         - transactions
@@ -635,7 +593,6 @@ paths:
         output IDs can be found via the associated field elements of an input or output.
       operationId: findTransitionId
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: inputOrOutputID
           in: path
           description: The input or output ID
@@ -653,7 +610,7 @@ paths:
           description: Transition not found
         "500":
           description: Server error
-  /{network}/transaction/{transactionID}:
+  /transaction/{transactionID}:
     get:
       tags:
         - transactions
@@ -661,7 +618,6 @@ paths:
       description: Retrieves the full transaction object given a Transaction ID.
       operationId: getTransaction
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: transactionID
           in: path
           description: The transaction ID (hex)
@@ -679,7 +635,7 @@ paths:
           description: Transaction not found
         "500":
           description: Server error
-  /{network}/transaction/confirmed/{transactionID}:
+  /transaction/confirmed/{transactionID}:
     get:
       tags:
         - transactions
@@ -687,7 +643,6 @@ paths:
       description: Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain.
       operationId: getTransactionConfirmed
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: transactionID
           in: path
           description: The transaction ID (hex)
@@ -705,7 +660,7 @@ paths:
           description: Transaction not found
         "500":
           description: Server error
-  /{network}/transaction/unconfirmed/{transactionID}:
+  /transaction/unconfirmed/{transactionID}:
     get:
       tags:
         - transactions
@@ -714,7 +669,6 @@ paths:
         Retrieves an unconfirmed transaction from the Aleo blockchain.
       operationId: getUnconfirmedTransaction
       parameters:
-        - $ref: '#/components/parameters/NetworkParam'
         - name: transactionID
           in: path
           description: The transaction ID (hex)
@@ -732,15 +686,13 @@ paths:
           description: Transaction not found
         "500":
           description: Server error
-  /{network}/transaction/broadcast:
+  /transaction/broadcast:
     post:
       tags:
         - transactions
       summary: Broadcast Transaction
       description: Broadcast a transaction to the Aleo blockchain.
       operationId: broadcastTransaction
-      parameters:
-        - $ref: '#/components/parameters/NetworkParam'
       requestBody:
         description: >
           To broadcast a transactions, the request body should follow the outlined json object below. Please be sure to specify the correct "type" of transaction. If you are broadcasting a transaction to deploy a program, use the type "deploy". All other transactions will be of type "execute".
@@ -770,17 +722,6 @@ paths:
         "500":
           description: Server error
 components:
-  parameters:
-    NetworkParam:
-      name: network
-      in: path
-      description: The network (mainnet or testnet)
-      required: true
-      schema:
-        type: string
-        enum:
-          - mainnet
-          - testnet
   schemas:
     BlockResponse:
       type: object
