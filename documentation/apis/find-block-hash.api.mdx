@@ -1,0 +1,71 @@
+---
+id: find-block-hash
+title: "Find Block Hash by Transaction ID"
+description: "Retrieves the block hash associated with the given Transaction ID."
+sidebar_label: "Find Block Hash by Transaction ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVk1vGzcQ/SuDyaUVtpJcJJc91amd1kAKBP442TrMkiMtY4rckFwpgrz/PRjuxl5Zbuug1WXFIfnmceZxhntMtIpY3mJlvbqPuChQc1TBNMl4hyVecgqGNxwh1Qx5FdQUa6AYvTKUWMPWpDpPr8yGHVwHcpGUAMDF2RQL9A0HkvGFxhKXxun3AvQnxRoLbCjQmhMHIbJHR2vGEtMTysUZFmiETUNJdhxSvK4Z0oFPLDDwl9YE1lim0HKBUdW8Jiz3mHaN4McUjFth1y1kcWy8ixxl/tf5XD6HPk7HR/fLUTCMg21tVB+AMY0tRSCtWUPyEgTlXWKXBJuaxhqVIzL7HMXB/pigrz6zShKfIPFLpqcXOLY2vXSQApNJVkwS2MvhTNh1MvV2/vb4VDkL4HyCpW+dxq7Ady+d/orDhgNwCD5kR2tOtZdcrjgzlLSUOJPMzqrvqZ3tD3LYYYExA/V5boPFEuuUmljOZtSYKX9trA8cpk3wG6osT5VfzzYnszUZ57KnQ15/9XY4/XQB50433riEXfFD2Iljegn7urf/J2xFjsLuCPr3bH6GvBCJL/1x8EXenwbgvMdE0BzNymVpgTg1mqGNHGJ/F0kpjlEmRZSnln0vVlWTcZDq4NtVDZfnV9fL1gIPHOSKUwKy1m/BO5b9X1oOu4ziOG19uIelD4PyLW/YgpAO66zlYqz/OIzMMCCnYe0DT+FM9omkIyhywBSN3YFxiQOpBNoEVsnu+qNk8t8ZVz7VEPqKZNwKNCUCirBla+VbBU9aUUwyOeYyvXN37s2bHL73FBluLj9GsT3AuduY4N2aXQJ4kAl47e/hzj38cvB7NvyXn+yHsYbhAX7kPmQCMBbqawEG0fcAIzm+GqBXdg5BDuwlJYaPZm0k9GK7yWqkwL2eBqlyELHAZPIOpEBzTFGMEFl5pyeTrJK2kbWTycl8Xszn88OVmnaTSU5ndmkHl7A11kLFwCJHxbpHeiQR21xNBbiypO6t6UVicinfAVVt5Kxz+fol+DZIRKbwwQcwTpqJ4Sgq9eCrRMbJ9tqsag4QHqnEAhrLorDApGrwbQJKoHkjpc8ojr+NQzmFO4cFSk3sL/vJdD6d41MlH1/8oYeQytV/aJOStau2aXyQEsZrMlKd/s5fLt6Nj2lNbgTywTgNfTOQwg3V7lkTf17C9k/d7P95IQy9LPHXNGssGSe9KFfa/dBdbvO7AQusRk+H8vCVsCiw9jHJ4v2+osg3wXadmHMdw/J2UeCGgpF45CakTZT/Gssl2cj/cMyfLocXxc/w4oPjxRMMRnLSBDZkWxlhgfe8O3ridIuuwJpJc8jU+jWnSnGTRruP3g7SOR778R/n19h13wCzQV8h
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find Block Hash by Transaction ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/blockHash/{transactionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the block hash associated with the given Transaction ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"transactionID","in":"path","description":"The transaction ID","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A block hash of the block in which the transaction was added to.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string"}},"title":"HashResponse"}}}},"404":{"description":"Block not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

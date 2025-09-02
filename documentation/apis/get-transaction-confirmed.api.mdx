@@ -1,0 +1,71 @@
+---
+id: get-transaction-confirmed
+title: "Get Transaction Confirmation Status"
+description: "Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain."
+sidebar_label: "Get Transaction Confirmation Status"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1v3DgM/SsEe2kH3pnJor3MabNJtgjQBYp8nJocODJnrEaWXImedDDxf19QdhJPknZTLNYXW7T0SFGPfNqh0Drh4gtKJJ/IiA0+4XWBJScTbaNjXOAZS7S84QRSMZjgVzbWpD8hCUmbIKyAYAQCUpHALSVI7bK2IlyChLz80HGApQvmxlRk/RQLDA3HDHda4gLXLBePSEe9Ny6xwIYi1SwcNeYdeqoZF+PYT4+xQKshNyQVPt3HRcV7QZ4ew9uKv7/DAiN/a23kEhcSWy4wmYprwsUOZduolyTR+jV23bVOTk3wiZP+/30+19e+p0MYbQHC8isb0cQJWW/9+qUcFkDOgfVNK6mA0Er/Qb6EFfOAodlSGPaiTqlpnDUZZfY1qefd88j7lZq+qIkW28cdObVORvOWITgmj11XoFhxajsaxXk27Bq7Tqe8n79/vu/xrn0QWIXWl9gV+OGlLJ1z3HAEjjHE7LZmqcLAgXzeUuECZ6Mzm5l7Psx2ewffYYEp4/XkaKPDBVYiTVrMZtTYKX9vXIgcp00MG1o6nppQzzYHs5qs99nhfnh/93Y4/HwKJ75sgvWCXfFL2MJJXsK+6O3/CduQp7h9Bn2UzU+Qr7UuVuGFE6sYPg/AeY1NUHKya9+XrDq1JUObOCa4tVIBGcMp/aCeQaoY2nUFZyfnF6vWAQ8xpL4nkHPhFoJnXf+t5bjNKJ7lNsQbWIXYg4HjDWs9rMLAv2Jcu2kY2WGgZVKHyFM41nVK9ASGPDAl67ZgvXAkI1DayEbctt9KDv4+4mWQCmLf67RISxICSnDLzul7GQOVhpLoz3Es0yt/5d+8yen7kxLD5dmnpLY7OPEbG4Ov2QvAnf6A1z53V/7ut73nyfBfHl0PYw7DHfxKPeQAYEzU1wIMpO8BRnR8NUDP7JyCnNgzEoZPtraaerVdZjZS5J5PA1U5KllgMvkA2s85SVIjJDbBl5NJZknb6NzJ5GA+L+bz+f7MkraTST7O7NINLuHWOgdLBlY6Gi57pIcgUtt3eNFKIHPjbE8Su1Jyb4GWbeLMc32HFYQ2akam8FeIYL1qj+WkLA0QlvcqUdl1xRHiQyipgMaxMiwymUpVAkig5I22Pms4/TFO5RSuPBaoPbEv9oPpfDrHx/Y+LvxBWchkTRi0VU/tvG2aELWFcU1Wu9OP/OUe3oQkNfkRyEeWPTkciwqcZ/F72sR2jyr3v98+BvkT/i6zxpH1qle5De8GBdq7H/V5eriTLPavH9cFViGJrtntlpT4MrquU3Pudbj4cl3ghqLVnGWhKm3S7xIXK3KJf5KIt2fDJeUd/OQm8+J2BiN5lYsNuVZHWOANb5/doLrrrsCKqeSYA+znHBrDjYxWP7t7qMY8CPjHkwvsun8A9wKXgA==
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Transaction Confirmation Status"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/transaction/confirmed/{transactionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"transactionID","in":"path","description":"The transaction ID (hex)","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A Transaction object containing confirmation status, all inputs, outputs, and fee object.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"boolean"}},"title":"ConfirmationResponse"}}}},"404":{"description":"Transaction not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

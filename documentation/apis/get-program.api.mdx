@@ -1,0 +1,71 @@
+---
+id: get-program
+title: "Get Program"
+description: "Retrieves program details by Program ID."
+sidebar_label: "Get Program"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVsFuIzcM/RVCe2mNqe0UuxefmjbpIsAWCLLJqcmB1tAebTTSLMVx1nDm3xfUjB07cdAEnctAlPj4RD2R2hjBZTKzf03DcclYJ3NXmJKSZdeIi8HMzBUJO1pRgmENlCTofIL5Gi4H08XZ2BQmNsSobhelmZklyTBtCtMgY01CrNE2JmBNZraNenFmCuM0WINSmecMrivaxc5Lmb63jqk0M+GWCpNsRTWa2cbIulHcJOzC0nRdsQtVk2CJgttI31vi9YtQF8H6tnwKt/UCF4ApNTEkOiCwQJ+OMZjH6AlDDrDA1suwtOvu1L1HSurw+3Sqv9e3nGLLlsDGkjTJNgahIOqDTeOdzRmffEvquHk1F4URJ14Nw6FcbbfTdV1XmI/Tjy9pbI83RIFFbENpusJ8Okb4K/GKGIg5suZd813FQQb5/KUyMzMZNjXZ7I6+M4VJ2buXRsvezEwl0qTZZIKNG9OPxkcmHjccVzj3NLaxnqxOJjW6EDL8IZl/ejucXl7AeSib6IIY1cI7sIWSHMO+7u3/C9tiwCPi+yubnyHfqV4X8bhELgfg7OMSlJTcMlAJElU+K1cStIk4wYOTCtBaSkknpSI49RRh7qO9txW6AFJxbJcVXJ1/vV60HmjgkEAqFEDv4wPEQOqfb09GCSQPke9hEbkHA08r8qCkuc7aLEAYQ0KrgzSM3DDAUEIdmcZwpn5aQhJYDECYnF+DC0KMVqB0TFb8ut9KJr9lPI9SAfd1yoUl5BuLCR7Ie/3POWJpMYlO7nMZ34bb8OFDTt+fmAhurr4ktT3CeVg5jqGmIACPOgFv/R5vw+NvB9+z4X986g/7GoZHeM99yARgX6hvBRhE3wPsyfHNAL2ycwpyYq9QCL642mnq1XaT1YhMvZ4GqRKrWGA0+gRaWilJUiMksjGUo1FWSdvo2tHoZDotptPp4coS16NRPs4c0g8h4cF5D3MCUjlaKnukHYnUzr+RFQWee7T33vUicQsV9xpw3ibKOtd/XEBsWTMyhr8jgwvaBhwlVWmEOBd0Qd0rt6yIgXdUUgGNJ1UYE9oKYiuAAiWttPQ5S+mP/VSO4VZbh9bE/rKfjKfj6WEN3138oSegzT1haHd6al/bpomsJYxqdFqdXouXK3YTk9QY9kA+k8BTCz8oP5unPvSeF8LQk4R+yKTx6II2lFw5N0OL2D1FTGFmT++Du8JUMYnObzZzTHTDvuvU3Ddy7RylS7qhp678KuM3tvmjbO9pfficWKFvdVmu1StkpyTeSeiXq+FF8Su8eO0cZTEYMaz3GWzZPeWtu+sKUxGWxJlSP39qLTWy5/niJaF72bXwz+fXput+AuYVe7U=
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Program"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/program/{programID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves program details by Program ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programID","in":"path","description":"The program ID","required":true,"schema":{"type":"string"}},{"name":"metadata","in":"query","description":"Include program metadata in response","required":false,"schema":{"type":"boolean","default":false}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The program source code.","content":{"application/json":{"schema":{"type":"string","title":"ProgramResponse"}}}},"404":{"description":"Program not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

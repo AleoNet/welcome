@@ -107,7 +107,7 @@ An Aleo program contains declarations of a [Program ID](#programid), [Imports](#
 Declarations are locally accessible within a program file.
 If you need a declaration from another program file, you must import it.
 
-### Program ID
+### Program ID {#programid}
 
 A program ID is declared as `{name}.{network}`.
 The first character of a `name` must be lowercase.

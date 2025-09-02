@@ -126,7 +126,7 @@ assert.eq checksum <EXPECTED_CHECKSUM>;  // Verify program code matches expected
 You may also refer to other program's metadata by qualifying the operand with the program name, like `Program::checksum(credits.aleo)`, `Program::checksum(foo.aleo)`. You will need to import the program in your Leo file to use this syntax.
 :::
 
-### `program_owner`
+### `program_owner` {#programowner}
 
 [Back to Top](#table-of-special-operands)
 

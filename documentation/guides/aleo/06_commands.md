@@ -22,7 +22,7 @@ You can print the list of commands by running `snarkvm --help`
 The Aleo private key, view key, and address will be printed to console.
 See [`concepts/accounts`](../../concepts/fundamentals/00_accounts.md) for more information.
 
-## `snarkvm new`
+## `snarkvm new` {#aleo-new}
 
 To create a new package, run:
 ```bash
@@ -40,7 +40,7 @@ package-name/
 └── main.leo # Your program file
 ```
 
-## `snarkvm build`
+## `snarkvm build` {#aleo-build}
 :::info
 This command is deprecated as of snarkVM `v0.14.5`. It will be removed in a future release.
 :::
@@ -54,7 +54,7 @@ To compile your program in offline mode run:
 snarkvm build --offline
 ```
 
-## `snarkvm run`
+## `snarkvm run` {#aleo-run}
 
 To run your Aleo program function run:
 ```bash
@@ -74,7 +74,7 @@ To run your Aleo program function to a specified endpoint run:
 snarkvm run {$FUNCTION} {$INPUTS} --endpoint {$ENDPOINT}
 ```
 
-## `snarkvm execute`
+## `snarkvm execute` {#aleo-execute}
 
 To execute your Aleo program function run:
 ```bash
@@ -94,14 +94,14 @@ To execute your Aleo program function to a specified endpoint run:
 snarkvm execute {$FUNCTION} {$INPUTS} --endpoint {$ENDPOINT}
 ```
 
-## `snarkvm clean`
+## `snarkvm clean` {#aleo-clean}
 
 To clean the Aleo package build directory run:
 ```bash
 snarkvm clean
 ```
 
-## `snarkvm update`
+## `snarkvm update` {#aleo-update}
 
 To update snarkVM to the latest version run:
 ```

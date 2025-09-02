@@ -47,7 +47,7 @@ Client library that encapsulates REST calls to publicly exposed endpoints of Ale
 
 <a name="new_AleoNetworkClient_new"></a>
 
-### AleoNetworkClient
+### AleoNetworkClient {#new_AleoNetworkClient_new}
 
 ```javascript
 new AleoNetworkClient(host)
@@ -70,7 +70,7 @@ let public_connection = new AleoNetworkClient("https://api.explorer.provable.com
 
 ## Methods
 
-### setHost
+### setHost {#AleoNetworkClient+setHost}
 
 <p>Set a new host for the networkClient</p>
 
@@ -94,7 +94,7 @@ let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable
 
 ---
 
-### setAccount
+### setAccount {#AleoNetworkClient+setAccount}
 
 <p>Set an account to use in networkClient calls</p>
 
@@ -118,7 +118,7 @@ networkClient.setAccount(account);
 
 ---
 
-### getAccount
+### getAccount {#AleoNetworkClient+getAccount}
 
 <p>Return the Aleo account used in the networkClient</p>
 
@@ -141,7 +141,7 @@ let account = networkClient.getAccount();
 
 ---
 
-### fetchData
+### fetchData {#AleoNetworkClient+fetchData}
 
 <p>Fetches data from the Aleo network and returns it as a JSON object.</p>
 
@@ -158,7 +158,7 @@ networkClient.fetchData(url) ⇒ Promise.<Type>
 
 ---
 
-### fetchRaw
+### fetchRaw {#AleoNetworkClient+fetchRaw}
 
 <p>Fetches data from the Aleo network and returns it as an unparsed string. This method should be used when it is desired to reconstitute data returned from the network into a WASM object.</p>
 
@@ -175,7 +175,7 @@ networkClient.fetchRaw(url) ⇒ Promise.<string>
 
 ---
 
-### findRecords
+### findRecords {#AleoNetworkClient+findRecords}
 
 <p>Attempt to find records in the Aleo blockchain.</p>
 
@@ -211,7 +211,7 @@ const records = await networkClient.findRecords(startHeight, undefined, true, ["
 
 ---
 
-### findUnspentRecords
+### findUnspentRecords {#AleoNetworkClient+findUnspentRecords}
 
 <p>Attempts to find unspent records in the Aleo blockchain.</p>
 
@@ -247,7 +247,7 @@ const records = await networkClient.findUnspentRecords(startHeight, undefined, [
 
 ---
 
-### getBlock
+### getBlock {#AleoNetworkClient+getBlock}
 
 <p>Returns the contents of the block at the specified block height.</p>
 
@@ -269,7 +269,7 @@ let block = await networkClient.getBlock(1234);
 
 ---
 
-### getBlockRange
+### getBlockRange {#AleoNetworkClient+getBlockRange}
 
 <p>Returns a range of blocks between the specified block heights.</p>
 

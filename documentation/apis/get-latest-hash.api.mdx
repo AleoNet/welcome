@@ -1,0 +1,63 @@
+---
+id: get-latest-hash
+title: "Get Latest Block Hash"
+description: "Returns the latest block hash"
+sidebar_label: "Get Latest Block Hash"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVU1v20gM/SsEezO0trNoLz5tu5vtFsgCRT5OTQ70iLamGc0oHMqp4fi/LzhSU6dO0RSrizQc8s0j9YbcodI64+ITLkNytxlvKqw5O/Gd+hRxgeesvcQM2jAEUs4KxRUayg1WmDoWMt8PNS5wzXpWnP4ZdoVzl2LmjIsd/j6f2+sIXzxv+AcnwEpSW7beBk7DhmvIxylW6FJUjmqg1HXBu0Jk9jkb8g6za7gl+9Jtx7jAtPzMTrHCToy2+oGXcO6DHvhlFR/XuN9XqF6DmSyf8zEZ3O9t6/X89XE67wrzmBRWqY817it881zaFywbFmCRJOWglrVJYwmNIWmDC5yVhGdWidlQG6wwl1j7azvsJeACG9UuL2Yz6vyUv3QhCcu0k7ShZeCpS+1sczJrycdYwJ9S+Xeww9uPH+A01l3yUXFf/RK2MXsO+3Kw/y9sR5FkewT9ZzF/h3xToY+rdFzvy4bh4whcYnyGmrNfR65BE9ihvmboM0uGe68NkHOcs20+Iz/QRlK/buD89OJy1QfgkYPpmBQohHQPKbLF3/Us24ISWe+T3MIqySjywBsOYKSlLfKtQIViJmeLPK78uKBYQ5uEp/CXxZmKMziKwJR92IKPykJOofbCTsN2SKWQ/8p4mbQBGa6dj2uoSQkowz2HYO+lJKodZbXNQy7T63gdX70q5XtHmeHq/Cyb7QFO48ZLii1HBXiwDXjp83AdH3578ny3/Mlj8XCoYXiAX7kPhQAcCvWlAKPoB4ADOb4YYFB2KUEp7Dkpw5lvvZXebFdFjSQ86GmUKouJBSaTNyB813PWbEbI7FKsJ5Oikr4z38nkZD6v5vP5U8+atpNJ+Z3lyDAeCfc+BFgysMnRcT0gPZLIfWmgBrwM5G6DH0TiVybuLdCyz1x0bu+0gtSLVWQKfycBH+96L56zqTRBWir5aOGNXzcsII9UcgVdYFOYMLkGUq9ACjVvrPV5x/mPw1JO4TpihdYTh8t+Mp1P5/iteR9e/HFskCsNP1JrDvbXLvquS2ItjFvy1p1+dF7p113K2lI8AHnPCsPwg2EKjDPwSSPafRtaPx2t4zRS/qKzLpCPNk1K49yN82Ec21jhGDLOiJsKm5TVHHa7JWW+krDfm7m0Ilx8uqlwQ+ItJVvtK2yYapYyVG55a0Vxjjurx4ZCb0SOZqy128e59f70Evf7/wCEithN
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Latest Block Hash"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/block/hash/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest block hash
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Retrieves the latest block hash from the Aleo blockchain.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string"}},"title":"HashResponse"}}}},"404":{"description":"Block not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      
