@@ -3,6 +3,7 @@ id: transaction_fees
 title: Transaction Fees
 sidebar_label: Transaction Fees
 ---
+[general tags]: # (fee, transactionfee, credit, microcredit, millicredit, basefee, priorityfee)
 
 # Transaction Fees
 

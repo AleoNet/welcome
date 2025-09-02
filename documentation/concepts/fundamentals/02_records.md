@@ -3,7 +3,7 @@ id: records
 title: Records
 sidebar_label: Records
 ---
-
+[general tags]: # (record, owner, data, nounce, version)
 
 A **record** is a fundamental data structure for encoding user assets and application state.
 

@@ -3,6 +3,7 @@ id: programs
 title: Programs
 sidebar_label: Programs
 ---
+[general tags]: # (program, programid, programinput, programoutput, programstate)
 
 A **program** is a fundamental data structure for representing application logic and application state.
 

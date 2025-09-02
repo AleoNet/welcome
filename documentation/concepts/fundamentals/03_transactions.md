@@ -3,6 +3,7 @@ id: transactions
 title: Transactions
 sidebar_label: Transactions
 ---
+[general tags]: # (transaction, transition, transactionstatus)
 
 A **transaction** is a fundamental data structure for publishing a new program or a set of state transitions on the ledger.
 On Aleo, a transaction is issued locally by a user using their Aleo private key, which corresponds to an on-chain Aleo account.
