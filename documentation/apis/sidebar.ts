@@ -13,6 +13,7 @@ const sidebar: SidebarsConfig = {
         type: "doc",
         id: "apis/blocks",
       },
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -77,6 +78,7 @@ const sidebar: SidebarsConfig = {
         type: "doc",
         id: "apis/network",
       },
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -104,12 +106,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "apis/get-state-root-at-height",
-          label: "Get State Root at Specified Height",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
           id: "apis/get-total-supply",
           label: "Get Total Supply",
           className: "api-method get",
@@ -129,6 +125,7 @@ const sidebar: SidebarsConfig = {
         type: "doc",
         id: "apis/programs",
       },
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -169,6 +166,7 @@ const sidebar: SidebarsConfig = {
         type: "doc",
         id: "apis/transactions",
       },
+      collapsed: false,
       items: [
         {
           type: "doc",
