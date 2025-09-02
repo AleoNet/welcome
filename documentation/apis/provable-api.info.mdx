@@ -33,10 +33,20 @@ The Provable API is designed to provide users with access to the Aleo blockchain
 
 ## API Base URLs
 
-| Environment | URL |
-|-------------|-----|
-| Mainnet API | https://api.explorer.provable.com/v1/mainnet |
-| Testnet API | https://api.explorer.provable.com/v1/testnet |
+The base URL for all endpoints is:
+
+```
+https://api.explorer.provable.com/v1
+```
+
+The `{network}` parameter (such as `mainnet` or `testnet`) should be included in the path of each endpoint to specify the network.
+
+The table below provides example URLs for different environments:
+
+| Environment | Example URL                                 |
+|-------------|---------------------------------------------|
+| Mainnet     | https://api.explorer.provable.com/v1/mainnet |
+| Testnet     | https://api.explorer.provable.com/v1/testnet  |
 
 ## Rate Limiting
 
