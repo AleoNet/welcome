@@ -1060,7 +1060,7 @@ transition control_flow(items: [u32; 5]) -> u32 {
 }
 ```
 
-**Important Limitation**: Leo currently executes all branches of conditional statements, then select the correct result. This differs from typical conditional execution where only one branch runs. This behavior can cause unexpected issues, especially with operations that can halt (like division by zero). [ARC-0004](https://github.com/ProvableHQ/ARCs/discussions/89) proposes flagged operations to address this limitation, enabling proper if-then-else semantics. More details can be found in the [Leo limitations documentation](../../guides/leo/02_leo_limitations.md#compiling-conditional-on-chain-code).
+**Important Limitation**: Leo currently executes all branches of conditional statements, then select the correct result. This differs from typical conditional execution where only one branch runs. This behavior can cause unexpected issues, especially with operations that can halt (like division by zero). [ARC-0004](https://github.com/ProvableHQ/ARCs/discussions/89) proposes flagged operations to address this limitation, enabling proper if-then-else semantics.
 
 ## Cross-Program Calls
 

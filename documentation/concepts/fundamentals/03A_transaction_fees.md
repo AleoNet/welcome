@@ -32,7 +32,16 @@ This is what you pay for executing program functions on the Aleo network.
 - There is no execution cost, because verifying the associated zero knowledge proof is cheap.
 
 ### Priority Fee
-Priority fees are optional fees which can help speed up the processing of your transaction during high traffic. They are not yet supported, but will soon be.
+Priority fees are optional fees that allow users to bid for higher transaction priority in the mempool. With the approval of [ARC-0005](https://github.com/ProvableHQ/ARCs/discussions/92), priority fees are now supported and effectively created a fee market for transaction ordering.
+
+The network maintains a priority queue for transactions that include a nonzero priority fee. This priority queue is processed before the standard transaction queue when sending transactions to the BFT consensus layer.
+
+:::note[notes on current design]
+1.  Priority fees for transactions already in the mempool cannot be updated. 
+2.  There is no protection against starvation: if the priority pool stays full enough, 
+transmissions from the standard queue will not be sent to the BFT. 
+3.  Batch building is not atomic w.r.t. the memory pool. 
+:::
 
 <!-- markdown-link-check-disable -->
 ### Estimating fees

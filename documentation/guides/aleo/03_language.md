@@ -475,10 +475,10 @@ finalize transfer_public_to_private:
 ```
 
 :::note
-Previously, a `finalize` function was executed on chain after the zero-knowledge proof of the execution of the associated function is verified;
-Upon success of the finalize function, the program logic was executed.  
-Upon failure of the finalize function, the program logic was reverted.  
-:::
+A `finalize` function is executed on chain after the zero-knowledge proof of the execution of the associated function is verified.
+If the finalize function succeeds, the program logic is executed.  
+If the finalize function fails, the program logic is reverted.  
+::: 
 
 ### Futures
 

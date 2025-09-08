@@ -462,6 +462,7 @@ The compiler will throw an error if the given input is smaller than 129 bits.
 | `U128`    | `Scalar` | `Address`, `Field`, `Group` |
 | `Scalar`  | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -495,6 +496,7 @@ The compiler will throw an error if the given input is smaller than 171 bits.
 | `U128`    | `Scalar` | `Address`, `Field`, `Group` |
 | `Scalar`  | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -528,6 +530,7 @@ The compiler will throw an error if the given input is smaller than 129 bits.
 | `U128`    | `Scalar` | `Address`, `Field`, `Group` |
 | `Scalar`  | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -561,6 +564,7 @@ The compiler will throw an error if the given input is smaller than 171 bits.
 | `U128`    | `Scalar` | `Address`, `Field`, `Group` |
 | `Scalar`  | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -586,6 +590,7 @@ The compiler will throw an error if the given `Struct` value exceeds the 64-bit 
 | `U16`     | `Scalar` | `Address`, `Field`, `Group` |
 | `U32`     | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -613,6 +618,7 @@ The compiler will throw an error if the given `Struct` value exceeds the 128-bit
 | `U32`     | `Scalar` | `Address`, `Field`, `Group` |
 | `U64`     | `Scalar` | `Address`, `Field`, `Group` |
 | `Struct`  | `Scalar` | `Address`, `Field`, `Group` |
+| `Array`   | `Scalar` | `Address`, `Field`, `Group` |
 
 ***
 
@@ -772,6 +778,7 @@ The compiler will throw an error if the given input is smaller than 129 bits.
 | `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 
 ***
 
@@ -789,6 +796,7 @@ The compiler will throw an error if the given input is smaller than 171 bits.
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -822,6 +830,7 @@ The compiler will throw an error if the given input is smaller than 129 bits.
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -855,6 +864,7 @@ The compiler will throw an error if the given input is smaller than 171 bits.
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -886,6 +896,7 @@ Performs a Keccak hash on `first`, storing a 256-bit digest in `destination`. Th
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -917,6 +928,7 @@ Performs a Keccak hash on `first`, storing a 384-bit digest in `destination`. Th
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -948,6 +960,7 @@ Performs a Keccak hash on `first`, storing a 512-bit digest in `destination`. Th
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -981,6 +994,7 @@ The compiler will throw an error if the given `Struct` value exceeds the 64-bit 
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1006,6 +1020,7 @@ The compiler will throw an error if the given `Struct` value exceeds the 128-bit
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1031,6 +1046,7 @@ Calculates a Poseidon hash with an input rate of 2, from an input in `first`, st
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1062,6 +1078,7 @@ Calculates a Poseidon hash with an input rate of 4, from an input in `first`, st
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1093,6 +1110,7 @@ Calculates a Poseidon hash with an input rate of 8, from an input in `first`, st
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1124,6 +1142,7 @@ Calculates a SHA3-256 hash, from an input in `first`, storing the 256-bit digest
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1154,6 +1173,7 @@ Calculates a SHA3-384 hash, from an input in `first`, storing the 384-bit digest
 #### Supported Types
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1185,6 +1205,7 @@ Calculates a SHA3-512 hash, from an input in `first`, storing the 512-bit digest
 
 | First     | Destination                                                                                               |
 |-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
@@ -1690,7 +1711,7 @@ sign.verify r0 r1 r2 into r3;
 
 | First       | Second    | Third     | Destination |
 |-------------|-----------|-----------|-------------|
-| `Signature` | `Address` | `Message` | `Boolean`   |
+| `Signature` | `Address` | Array of `Field` | `Boolean`   |
 
 ***
 
