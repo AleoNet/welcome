@@ -11,7 +11,7 @@ deployment, wallet functionality, and other use cases.
 
 **Kind**: global class  
 
-* [NetworkRecordProvider](#NetworkRecordProvider)
+* [NetworkRecordProvider](#networkrecordprovider)
     * _instance_
         * [.setAccount(account)](#setaccount)
         * [.findCreditsRecords(microcredits, unspent, nonces, searchParameters)](#findcreditsrecords)

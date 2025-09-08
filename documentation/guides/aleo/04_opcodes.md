@@ -10,9 +10,9 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | Name                         | Description                                           |
 |------------------------------|:------------------------------------------------------|
 | [abs](#abs)                  | Absolute value operation                              |
-| [abs.w](#absw)               | Wrapping absolute value operation                     |
+| [abs.w](#abs.w)               | Wrapping absolute value operation                     |
 | [add](#add)                  | Addition operation                                    |
-| [add.w](#addw)               | Wrapping addition operation                           |
+| [add.w](#add.w)               | Wrapping addition operation                           |
 | [and](#and)                  | AND operation                                         |
 | [assert.eq](#asserteq)       | Assert equality                                       |
 | [assert.neq](#assertneq)     | Assert non-equality                                   |
@@ -21,7 +21,7 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [cast](#cast)                | Cast between literals                                 |
 | [cast.lossy](#castlossy)     | Cast between literals with lossy truncation           |
 | [div](#div)                  | Division operation                                    |
-| [div.w](#divw)               | Wrapping division operation                           |
+| [div.w](#div.w)               | Wrapping division operation                           |
 | [double](#double)            | Double operation                                      |
 | [gt](#gt)                    | Greater than comparison                               |
 | [gte](#gte)                  | Greater than or equal to comparison                   |
@@ -32,7 +32,7 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [lte](#lte)                  | Less than or equal to comparison                      |
 | [mod](#mod)                  | Arithmetic modulo operation                           |
 | [mul](#mul)                  | Multiplication operation                              |
-| [mul.w](#mulw)               | Wrapping multiplication operation                     |
+| [mul.w](#mul.w)               | Wrapping multiplication operation                     |
 | [nand](#nand)                | `Boolean` NAND operation                              |
 | [neg](#neg)                  | Additive inverse operation                            |
 | [nor](#nor)                  | `Boolean` NOR operation                               |
@@ -40,10 +40,10 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [or](#or)                    | OR Operation                                          |
 | [position](#position)        | The position command                                  |
 | [pow](#pow)                  | Exponentiation operation                              |
-| [pow.w](#poww)               | Wrapping exponentiation operation                     |
+| [pow.w](#pow.w)               | Wrapping exponentiation operation                     |
 | [rand.chacha](#randchacha)   | Generates a random value within the `finalize` scope. |
 | [rem](#rem)                  | Remainder operation                                   |
-| [rem.w](#remw)               | Wrapping remainder operation                          |
+| [rem.w](#rem.w)               | Wrapping remainder operation                          |
 | [shl](#shl)                  | Shift left operation                                  |
 | [shl.w](#shlw)               | Wrapping shift left operation                         |
 | [shr](#shr)                  | Shift right operation                                 |
