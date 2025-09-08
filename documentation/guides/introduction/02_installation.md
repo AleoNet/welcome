@@ -101,5 +101,5 @@ To verify if you have snarkOS, open your terminal and type `snarkos`. You should
 We recommend starting with the [Quick Start Guide](01_quick_start.md). This guide will walk you through creating your first Aleo application, deploying it to the network, and executing program functions. This hands-on experience will give you a practical understanding of the Aleo platform's core features and workflow.
 :::
 
-You now have all of the tools to build and test Leo programs locally.  Before deploying to the Testnet, we recommend testing your program using a local network.  The following [guide](../leo/00_leo_testing.md) explains how to initialize and deploy programs to a local network.
+You now have all of the tools to build and test Leo programs locally.  Before deploying to the Testnet, we recommend testing your program using a local network.  The following [guide](https://docs.leo-lang.org/testing/devnet) explains how to initialize and deploy programs to a local network.
 
