@@ -19,7 +19,7 @@ The ProgramManager class is used to execute and deploy programs on the Aleo netw
   * [.setHeader(headerName, value)](#setheader)
   * [.removeHeader(headerName)](#removeheader)
   * [.checkFee()](#checkfee)
-  * [.checkFee(address, feeAmount)](#checkfeeaddress-feeamount)
+  * [.checkFee(address, feeAmount)](#checkfee)
   * [.verifyProgram(program)](#verifyprogram)
   * [.createProgramFromSource(program)](#createprogramfromsource)
   * [.creditsProgram()](#creditsprogram)

@@ -42,11 +42,11 @@ Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/gram
 
 The snarkVM CLI provides a suite of commands to make programming in Aleo instructions easy.
 
-* [snarkvm new](./06_commands.md#snarkvm-new)
-* [snarkvm build (deprecated)](./06_commands.md#snarkvm-build)
-* [snarkvm run](./06_commands.md#snarkvm-run)
-* [snarkvm clean](./06_commands.md#snarkvm-clean)
-* [snarkvm update](./06_commands.md#snarkvm-update)
+* [snarkvm new](./06_commands.md#aleo-new)
+* [snarkvm build (deprecated)](./06_commands.md#aleo-build)
+* [snarkvm run](./06_commands.md#aleo-run)
+* [snarkvm clean](./06_commands.md#aleo-clean)
+* [snarkvm update](./06_commands.md#aleo-update)
 
 [//]: # (5. [aleo node]&#40;./05_commands.md#5-aleo-node&#41;)
 [//]: # (6. [aleo deploy]&#40;./05_commands.md#6-aleo-deploy&#41;)

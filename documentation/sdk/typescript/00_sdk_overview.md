@@ -29,11 +29,11 @@ The Provable SDK provides the following functionality (Click to see examples):
 
 ## Table of Contents
 
-* [Installation](#Installation)
-* [Usage](#Usage)
-    * [Zero Knowledge Web App Examples](#Zero-Knowledge-Web-App-Examples)
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Zero Knowledge Web App Examples](#zero-knowledge-web-app-examples)
         * [Create Leo App](#create-leo-app)
-        * [provable.tools](#provabletools)
+        * [provable.tools](#provable-tools)
     * [Create An Aleo Account](#1-create-an-aleo-account)
     * [Execute Aleo Programs](#2-execute-aleo-programs)
         * [Aleo Programs](#21-aleo-programs)
@@ -228,7 +228,7 @@ await initializeWasm();
 const account = new Account();
 ```
 
-An example of how to initialize WebAssembly in a React app is shown in [Section 2.8](#28-React-Example)
+An example of how to initialize WebAssembly in a React app is shown in [Section 2.8](#28-react-example)
 
 ### 2.4 Local Program Execution
 A simple example of running the hello world program within the web browser is shown below:
@@ -330,7 +330,7 @@ Executing Aleo programs in zero knowledge requires two additional pieces of info
    program. These records are private by default and are used to manage updatable private state. One of the most clear
    usages of records is to the `credits` record in the `credits.aleo`. Credits records are one of two official ways of
    representing Aleo credits on the Aleo Network and are used to pay all transaction fees on the network. More information
-   on Records can be found in the [Records](#41-private-state-data--records) section below.
+   on Records can be found in the [Records](#41-private-state-data-records) section below.
 
 For this reason, all programs will need proving and verifying keys to operate and many functions in Aleo programs will
 require records as inputs. To simplify the process of managing keys and records, the Provable SDK provides two abstractions
