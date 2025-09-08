@@ -34,13 +34,13 @@ externalDocs:
   url: "https://aleo.org"
 tags:
   - name: blocks
-    description: Block-level information and operations
+    description: Block-level information
     x-displayName: Block Data
   - name: network
     description: Network and chain state information
     x-displayName: Network Data
   - name: programs
-    description: Program deployments and mappings
+    description: Program information and mappings
     x-displayName: Program Data
   - name: transactions
     description: Transaction operations and queries

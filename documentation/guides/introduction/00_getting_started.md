@@ -4,7 +4,7 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
-import FeatureCard from '@site/src/components/FeatureCard';
+import FeatureCard from '@site/src/components/FeatureCard/FeatureCard';
 
 ### Start Developing on Aleo
 
