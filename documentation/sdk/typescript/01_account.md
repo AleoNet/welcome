@@ -5,7 +5,7 @@ sidebar_label: Account
 
 <a name="Account"></a>
 
-## Overview
+## Overview {#Account}
 <p>Key Management class. Enables the creation of a new Aleo Account, importation of an existing account from
 an existing private key or seed, and message signing and verification functionality.</p>
 <p>An Aleo Account is generated from a randomly generated seed (number) from which an account private key, view key,
@@ -93,7 +93,7 @@ const myExistingAccount = new Account({privateKey: 'APrivateKey1zkp...'});
 
 <a name="Account+encryptAccount"></a>
 
-### encryptAccount
+### encryptAccount {#Account+encryptAccount}
 
 <p>Encrypt the account's private key with a password</p>
 
@@ -118,7 +118,7 @@ let ciphertext = account.encryptAccount("password");
 
 <a name="Account+decryptRecord"></a>
 
-### decryptRecord
+### decryptRecord {#Account+decryptRecord}
 
 <p>Decrypts a Record in ciphertext form into plaintext</p>
 
@@ -143,7 +143,7 @@ let record = account.decryptRecord("record1ciphertext");
 
 <a name="Account+decryptRecords"></a>
 
-### decryptRecords
+### decryptRecords {#Account+decryptRecords}
 
 <p>Decrypts an array of Records in ciphertext form into plaintext</p>
 
@@ -168,7 +168,7 @@ let record = account.decryptRecords(["record1ciphertext", "record2ciphertext"]);
 
 <a name="Account+ownsRecordCiphertext"></a>
 
-### ownsRecordCiphertext
+### ownsRecordCiphertext {#Account+ownsRecordCiphertext}
 
 <p>Determines whether the account owns a ciphertext record</p>
 
@@ -206,7 +206,7 @@ if account.ownsRecord(recordCipherText) {
 
 <a name="Account+sign"></a>
 
-### sign
+### sign {#Account+sign}
 
 <p>Signs a message with the account's private key.
 Returns a Signature.</p>
@@ -233,7 +233,7 @@ account.sign(message);
 
 <a name="Account+verify"></a>
 
-### verify
+### verify {#Account+verify}
 
 <p>Verifies the Signature on a message.</p>
 
@@ -261,7 +261,7 @@ account.verify(message, signature);
 
 <a name="Account.fromCiphertext"></a>
 
-### fromCiphertext
+### fromCiphertext {#Account.fromCiphertext}
 
 <p>Attempts to create an account from a private key ciphertext</p>
 

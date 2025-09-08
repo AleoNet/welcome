@@ -1,0 +1,64 @@
+---
+id: get-total-supply
+title: "Get Total Supply"
+description: "Retrieves the latest total supply for the Aleo blockchain.  Note: This is only available for mainnet currently."
+sidebar_label: "Get Total Supply"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVU1v20gM/SvE9GZoZWfRXnzadpstCnQXheOckhzoEW1NM5pROJRTw9F/X3CkpnbiYlP0sLqM5oOPbziP5N4IbpKZX5lAch/51twUpqJk2bXiYjBzsyBhR1tKIDWBR6EkIFHQQ+ra1u9gHTnvvfUUYeWjvbU1ulAC/BOF5rCsXQKXIAa/A9yi87jylM0adCGQgO2YKYjfldfBFCa2xKj+P1ZmbjYkS/V3kd2ZwjClNoZEycz35vfZTIdj0ssfUHUBLFPlJBXA48UqWHNsTt7AFMbGIBREXWDbemczr+mXpH72JtmaGtQ/2bVk5iauvpAVU5iW9RbiBpZMqfNycC4Ju7AxfV8YceJ1abjfYryc6XvdfD17/fx6w0kIUWAdu1CZvjBvTsXhgnhLDMQcOftqSOo4BlVJotRmbqZDrKZyFOaUjVUde9OxN3NTi7RpPp1i60r62vrIxGXLcasPWtrYTLdn0/FNzVMh/T2+9dvPH+E8VG10QUxf/BS2sjyFvRzWfwnbYkDePYP+My8/Qb4pjAvreFp4n0fgbOMSVJTcJlAFEkGduoqgS8QJ7p3UgNZSSrp5QoIgNcduU8Pi/GK57jzQyEHTEQXQ+3gPMZDa33XEu4wyZnPOsQwGnrbkQUlzkyVcgDCGhFYnaZy5cYKhgiYylfBe7VTJCSwGIEwu55EQoxWoHJMVvxuuksl/Y7yKUn9LMhc2UKEgYIJ78l7HFUesLCbRzUMu5XW4Dq9e5fC9w0RwufiUdO0BzsPWcQwNBQF40A146fdwHR5+O/qeTP/jU3s41DA8wM/kQyYAh0J9KcAo+gHgQI4vBhiUnUOQA7tAIfjkGqeh17XLrEZkGvQ0SpVYxQKTyRtguusoSdJFSGRjqCaTrJKu1bOTydlsVsxms+OTFe4mk/yc2aUfXcK98x5WBKRytFQNSI8kUpeLqAKvPNpb7waRuLWKewe46hJlnesY1xA71oiU8FdkcOGuc+woqUojxJWgC2peu01NDPxIJRXQelKFMaGtIXYCKFDRVkufs5T+OAxlCbk5aU0ckv2snJUz872AHyb+2DrQ5qIfsNED+mpaXiNrCaMGnVanH/nLBbuNSRoMByAfSCD3Q3is1Ec1aP+9Z/0vzXtscEJfZdp6dEG7U67D+7HfXJmBiR4+6Dg3haljEt3f71eY6JJ93+tyLmxmfnVTmC2yUwY66wtTE1bEuUXd0k5DbC21irxF3ymPZ11bi/djG/xwvjR9/y96Px1/
+sidebar_class_name: "get api-method"
+info_path: apis/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Total Supply"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/latest/totalSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest total supply for the Aleo blockchain.  Note: This is only available for mainnet currently.
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The latest total supply in credits, retrieved from the Aleo blockchain.","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string"}},"title":"SupplyResponse"}}}},"404":{"description":"Supply not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -107,7 +107,7 @@ For integer types, a constraint is added to check for underflow. For cases where
 
 ***
 
-### `abs.w`
+### `abs.w` {#abs.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
@@ -157,7 +157,7 @@ For integer types, a constraint is added to check for overflow. For cases where 
 
 ***
 
-### `add.w`
+### `add.w` {#add.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
@@ -652,7 +652,7 @@ For cases where wrapping semantics are needed for integer types, see the [div.w]
 
 ***
 
-### `div.w`
+### `div.w` {#div.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
@@ -1413,7 +1413,7 @@ For integer types, a constraint is added to check for overflow/underflow. For ca
 
 ***
 
-### `mul.w`
+### `mul.w` {#mul.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
@@ -1587,7 +1587,7 @@ For integer types, a constraint is added to check for overflow/underflow. For ca
 
 ***
 
-### `pow.w`
+### `pow.w` {#pow.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
@@ -1669,7 +1669,7 @@ For cases where wrapping semantics are needed for integer types, see the [rem.w]
 
 ***
 
-### `rem.w`
+### `rem.w` {#rem.w}
 
 [Back to Top](#table-of-standard-opcodes)
 
