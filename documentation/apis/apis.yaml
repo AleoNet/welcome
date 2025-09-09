@@ -73,6 +73,10 @@ paths:
                 $ref: '#/components/schemas/BlockResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/block:
@@ -80,7 +84,7 @@ paths:
       tags:
         - blocks
       summary: Get Latest Block (Alternative)
-      description: Returns the latest block (alternative endpoint)
+      description: Retrieves the latest block from the Aleo blockchain. (alternative endpoint)
       operationId: getLatestBlockAlt
       responses:
         "200":
@@ -93,6 +97,10 @@ paths:
                 $ref: '#/components/schemas/BlockResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /block/height/latest:
@@ -111,6 +119,10 @@ paths:
                 $ref: '#/components/schemas/HeightResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/height:
@@ -118,7 +130,7 @@ paths:
       tags:
         - blocks
       summary: Get Latest Block Height (Alternative)
-      description: Retrieves the latest block height from the Aleo blockchain.
+      description: Retrieves the latest block height from the Aleo blockchain. (alternative endpoint)
       operationId: getLatestHeightAlt
       responses:
         "200":
@@ -129,6 +141,10 @@ paths:
                 $ref: '#/components/schemas/HeightResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /block/hash/latest:
@@ -136,17 +152,21 @@ paths:
       tags:
         - blocks
       summary: Get Latest Block Hash
-      description: Returns the latest block hash
+      description: Retrieves the latest block hash from the Aleo blockchain.
       operationId: getLatestHash
       responses:
         "200":
-          description: Retrieves the latest block hash from the Aleo blockchain.
+          description: A block hash of the latest block from the canonical Aleo blockchain.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HashResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/hash:
@@ -154,7 +174,7 @@ paths:
       tags:
         - blocks
       summary: Get Latest Block Hash (Alternative)
-      description: Retrieves the latest block hash from the Aleo blockchain.
+      description: Retrieves the latest block hash from the Aleo blockchain. (alternative endpoint)
       operationId: getLatestHashAlt
       responses:
         "200":
@@ -165,6 +185,10 @@ paths:
                 $ref: '#/components/schemas/HashResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /find/blockHash/{transactionID}:
@@ -190,6 +214,10 @@ paths:
                 $ref: '#/components/schemas/HashResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /block/{heightOrHash}:
@@ -219,6 +247,10 @@ paths:
                 $ref: '#/components/schemas/BlockResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /block/{heightOrHash}/transactions:
@@ -246,6 +278,10 @@ paths:
                 $ref: '#/components/schemas/TransactionsResponse'
         "404":
           description: Block not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /committee/latest:
@@ -268,6 +304,10 @@ paths:
                 $ref: '#/components/schemas/CommitteeResponse'
         "404":
           description: Committee not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/committee:
@@ -289,6 +329,10 @@ paths:
                 $ref: '#/components/schemas/CommitteeResponse'
         "404":
           description: Committee not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /stateRoot/latest:
@@ -309,6 +353,10 @@ paths:
                 $ref: '#/components/schemas/StateRootResponse'
         "404":
           description: State root not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/stateRoot:
@@ -329,6 +377,10 @@ paths:
                 $ref: '#/components/schemas/StateRootResponse'
         "404":
           description: State root not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /stateRoot/{height}:
@@ -355,6 +407,10 @@ paths:
                 $ref: '#/components/schemas/StateRootResponse'
         "404":
           description: State Root not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/totalSupply:
@@ -375,6 +431,10 @@ paths:
                 $ref: '#/components/schemas/SupplyResponse'
         "404":
           description: Supply not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /latest/circulatingSupply:
@@ -395,6 +455,10 @@ paths:
                 $ref: '#/components/schemas/SupplyResponse'
         "404":
           description: Supply not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /find/transactionID/deployment/{programID}:
@@ -421,6 +485,10 @@ paths:
                 $ref: '#/components/schemas/TransactionIdResponse'
         "404":
           description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /program/{programID}:
@@ -453,6 +521,10 @@ paths:
                 $ref: '#/components/schemas/ProgramResponse'
         "404":
           description: Program not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /program/{programID}/{edition}:
@@ -492,6 +564,10 @@ paths:
                 $ref: '#/components/schemas/ProgramResponse'
         "404":
           description: Program not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /program/{programID}/mappings:
@@ -519,6 +595,10 @@ paths:
                 $ref: '#/components/schemas/MappingsResponse'
         "404":
           description: Program not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /program/{programID}/mapping/{mappingName}/{mappingKey}:
@@ -559,6 +639,10 @@ paths:
                 $ref: '#/components/schemas/MappingValueResponse'
         "404":
           description: Program not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /find/transactionID/{transitionID}:
@@ -584,6 +668,10 @@ paths:
                 $ref: '#/components/schemas/TransactionIdResponse'
         "404":
           description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /find/transitionID/{inputOrOutputID}:
@@ -611,6 +699,10 @@ paths:
                 $ref: '#/components/schemas/TransitionIdResponse'
         "404":
           description: Transition not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /transaction/{transactionID}:
@@ -636,6 +728,10 @@ paths:
                 $ref: '#/components/schemas/TransactionResponse'
         "404":
           description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /transaction/confirmed/{transactionID}:
@@ -661,6 +757,10 @@ paths:
                 $ref: '#/components/schemas/ConfirmationResponse'
         "404":
           description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /transaction/unconfirmed/{transactionID}:
@@ -687,6 +787,10 @@ paths:
                 $ref: '#/components/schemas/TransactionResponse'
         "404":
           description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
   /transaction/broadcast:
@@ -722,6 +826,10 @@ paths:
                 $ref: '#/components/schemas/BroadcastResponse'
         "404":
           description: Failed to post to route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         "500":
           description: Server error
 components:
@@ -729,70 +837,67 @@ components:
     BlockResponse:
       type: object
       properties:
-        result:
+        block_hash:
+          type: string
+        previous_hash:
+          type: string
+        header:
           type: object
           properties:
-            block_hash:
+            previous_state_root:
               type: string
-            previous_hash:
+            transactions_root:
               type: string
-            header:
+            finalize_root:
+              type: string
+            ratifications_root:
+              type: string
+            solutions_root:
+              type: string
+            subdag_root:
+              type: string
+            metadata:
               type: object
               properties:
-                previous_state_root:
+                network:
+                  type: integer
+                round:
+                  type: integer
+                height:
+                  type: integer
+                cumulative_weight:
                   type: string
-                transactions_root:
+                cumulative_proof_target:
                   type: string
-                finalize_root:
-                  type: string
-                ratifications_root:
-                  type: string
-                solutions_root:
-                  type: string
-                subdag_root:
-                  type: string
-                metadata:
-                  type: object
-                  properties:
-                    network:
-                      type: integer
-                    round:
-                      type: integer
-                    height:
-                      type: integer
-                    cumulative_weight:
-                      type: string
-                    cumulative_proof_target:
-                      type: string
-                    coinbase_target:
-                      type: integer
-                    proof_target:
-                      type: integer
-                    last_coinbase_target:
-                      type: integer
-                    last_coinbase_timestamp:
-                      type: integer
-                    timestamp:
-                      type: integer
-            authority:
+                coinbase_target:
+                  type: integer
+                proof_target:
+                  type: integer
+                last_coinbase_target:
+                  type: integer
+                last_coinbase_timestamp:
+                  type: integer
+                timestamp:
+                  type: integer
+        authority:
+          type: object
+          properties:
+            type:
+              type: string
+            subdag:
               type: object
               properties:
-                type:
-                  type: string
                 subdag:
                   type: object
                   properties:
-                    subdag:
-                      type: object
-                      properties:
-                        round:
-                          type: array
-                          items:
+                    round:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          batch_header:
                             type: object
                             properties:
-                              batch_header:
-                                type: object
-                                properties:
                                   batch_id:
                                     type: string
                                   author:
@@ -813,245 +918,25 @@ components:
                                       type: string
                                   signature:
                                     type: string
-                              signatures:
-                                type: array
-                                items:
-                                  type: string
-            ratifications:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  amount:
-                    type: integer
-            solutions:
-              type: object
-              properties:
-                version:
-                  type: integer
-            transactions:
-              type: array
-              items:
-                type: object
-                properties:
-                  status:
-                    type: string
-                  type:
-                    type: string
-                  index:
-                    type: integer
-                  transaction:
-                    oneOf:
-                      - title: deploy
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum: ["deploy"]
-                          id:
-                            type: string
-                          owner:
-                            type: object
-                            properties:
-                              address:
-                                type: string
-                              signature:
-                                type: string
-                            required: ["address", "signature"]
-                          deployment:
-                            type: object
-                            properties:
-                              edition:
-                                type: integer
-                              program:
-                                type: string
-                              verifying_keys:
-                                type: array
-                                items:
-                                  type: array
-                                  items:
-                                    oneOf:
-                                      - type: string
-                                      - type: array
-                                        items:
-                                          type: string
-                              program_owner:
-                                type: string
-                            required: ["edition", "program", "verifying_keys"]
-                          fee:
-                            type: object
-                            properties:
-                              transition:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  program:
-                                    type: string
-                                  function:
-                                    type: string
-                                  inputs:
-                                    type: array
-                                    items:
-                                      type: object
-                                      additionalProperties: true
-                                  outputs:
-                                    type: array
-                                    items:
-                                      type: object
-                                      additionalProperties: true
-                                  tpk:
-                                    type: string
-                                  tcm:
-                                    type: string
-                                  scm:
-                                    type: string
-                                  global_state_root:
-                                    type: string
-                                  proof:
-                                    type: string
-                              finalize:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    type:
-                                      type: string
-                                    mapping_id:
-                                      type: string
-                                    key_id:
-                                      type: string
-                                    value_id:
-                                      type: string
-                        required: ["type", "id", "owner", "deployment", "fee"]
-                      - title: execute
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum: ["execute"]
-                          id:
-                            type: string
-                          execution:
-                            type: object
-                            properties:
-                              transitions:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: string
-                                    program:
-                                      type: string
-                                    function:
-                                      type: string
-                                    inputs:
-                                      type: array
-                                      items:
-                                        type: object
-                                        properties:
-                                          type:
-                                            type: string
-                                          id:
-                                            type: string
-                                          value:
-                                            type: string
-                                    outputs:
-                                      type: array
-                                      items:
-                                        type: object
-                                        properties:
-                                          type:
-                                            type: string
-                                          id:
-                                            type: string
-                                          value:
-                                            type: string
-                                          checksum:
-                                            type: string
-                                          sender_ciphertext:
-                                            type: string
-                                    tpk:
-                                      type: string
-                                    tcm:
-                                      type: string
-                                    scm:
-                                      type: string
-                              global_state_root:
-                                type: string
-                              proof:
-                                type: string
-                          fee:
-                            type: object
-                            properties:
-                              transition:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  program:
-                                    type: string
-                                  function:
-                                    type: string
-                                  inputs:
-                                    type: array
-                                    items:
-                                      type: object
-                                      additionalProperties: true
-                                  outputs:
-                                    type: array
-                                    items:
-                                      type: object
-                                      additionalProperties: true
-                                  tpk:
-                                    type: string
-                                  tcm:
-                                    type: string
-                                  scm:
-                                    type: string
-                                  global_state_root:
-                                    type: string
-                                  proof:
-                                    type: string
-                              finalize:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    type:
-                                      type: string
-                                    mapping_id:
-                                      type: string
-                                    key_id:
-                                      type: string
-                                    value_id:
-                                      type: string
-                        required: ["type", "id", "execution", "fee"]
-            aborted_transaction_ids:
-              type: array
-              items:
+                          signatures:
+                            type: array
+                            items:
+                              type: string
+        ratifications:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
                 type: string
-            aborted_solution_ids:
-              type: array
-              items:
-                type: string
-    HeightResponse:
-      type: object
-      properties:
-        result:
-          type: integer
-    HashResponse:
-      type: object
-      properties:
-        result:
-          type: string
-    TransactionsResponse:
-      type: object
-      properties:
-        result:
+              amount:
+                type: integer
+        solutions:
+          type: object
+          properties:
+            version:
+              type: integer
+        transactions:
           type: array
           items:
             type: object
@@ -1079,7 +964,6 @@ components:
                             type: string
                           signature:
                             type: string
-                        required: ["address", "signature"]
                       deployment:
                         type: object
                         properties:
@@ -1099,7 +983,6 @@ components:
                                       type: string
                           program_owner:
                             type: string
-                        required: ["edition", "program", "verifying_keys"]
                       fee:
                         type: object
                         properties:
@@ -1132,20 +1015,6 @@ components:
                                 type: string
                               proof:
                                 type: string
-                          finalize:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                mapping_id:
-                                  type: string
-                                key_id:
-                                  type: string
-                                value_id:
-                                  type: string
-                    required: ["type", "id", "owner", "deployment", "fee"]
                   - title: execute
                     type: object
                     properties:
@@ -1200,10 +1069,10 @@ components:
                                   type: string
                                 scm:
                                   type: string
-                          global_state_root:
-                            type: string
-                          proof:
-                            type: string
+                                global_state_root:
+                                  type: string
+                                proof:
+                                  type: string
                       fee:
                         type: object
                         properties:
@@ -1236,93 +1105,642 @@ components:
                                 type: string
                               proof:
                                 type: string
-                          finalize:
+              finalize:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    mapping_id:
+                      type: string
+                    key_id:
+                      type: string
+                    value_id:
+                      type: string
+        aborted_transaction_ids:
+          type: array
+          items:
+            type: string
+        aborted_solution_ids:
+          type: array
+          items:
+            type: string
+    HeightResponse:
+      type: integer
+    HashResponse:
+      type: string
+    StateRootResponse:
+      type: string
+    TransactionsResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+          index:
+            type: integer
+          status:
+            type: string
+          finalize:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                key_id:
+                  type: string
+                value_id:
+                  type: string
+                mapping_id:
+                  type: string
+          transaction:
+            oneOf:
+              - title: execute
+                type: object
+                properties:
+                  id:
+                    type: string
+                  fee:
+                    type: object
+                    properties:
+                      proof:
+                        type: string
+                      transition:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          scm:
+                            type: string
+                          tcm:
+                            type: string
+                          tpk:
+                            type: string
+                          inputs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                type:
+                                  type: string
+                                value:
+                                  type: string
+                          outputs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                type:
+                                  type: string
+                                value:
+                                  type: string
+                          program:
+                            type: string
+                          function:
+                            type: string
+                      global_state_root:
+                        type: string
+                  type:
+                    type: string
+                  execution:
+                    type: object
+                    properties:
+                      proof:
+                        type: string
+                      transitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            scm:
+                              type: string
+                            tcm:
+                              type: string
+                            tpk:
+                              type: string
+                            inputs:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  type:
+                                    type: string
+                                  value:
+                                    type: string
+                            outputs:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  type:
+                                    type: string
+                                  value:
+                                    type: string
+                                  checksum:
+                                    type: string
+                                  sender_ciphertext:
+                                    type: string
+                            program:
+                              type: string
+                            function:
+                              type: string
+                      global_state_root:
+                        type: string
+              - title: deploy
+                type: object
+                properties:
+                  id:
+                    type: string
+                  fee:
+                    type: object
+                    properties:
+                      proof:
+                        type: string
+                      transition:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          scm:
+                            type: string
+                          tcm:
+                            type: string
+                          tpk:
+                            type: string
+                          inputs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                type:
+                                  type: string
+                                value:
+                                  type: string
+                          outputs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                type:
+                                  type: string
+                                value:
+                                  type: string
+                          program:
+                            type: string
+                          function:
+                            type: string
+                      global_state_root:
+                        type: string
+                  type:
+                    type: string
+                  owner:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                  deployment:
+                    type: object
+                    properties:
+                      edition:
+                        type: integer
+                      program:
+                        type: string
+                      verifying_keys:
+                        type: array
+                        items:
+                          type: array
+                          items:
+                            oneOf:
+                              - type: string
+                              - type: array
+                                items:
+                                  type: string
+
+    CommitteeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        starting_round:
+          type: integer
+        members:
+          type: object
+          properties:
+            address:
+              type: array
+              items:
+                type: object
+                properties:
+                  stake:
+                    type: integer
+                  open_for_delegation:
+                    type: boolean
+                  commission_rate:
+                    type: integer
+        total_stake:
+          type: integer
+    SupplyResponse:
+      type: integer
+    TransactionIdResponse:
+      type: string
+    ProgramResponse:
+      type: string
+    MappingsResponse:
+      type: array
+      items:
+        type: string
+
+    MappingValueResponse:
+      type: string
+    TransactionResponse:
+      oneOf:
+      - title: deploy
+        type: object
+        properties:
+          type:
+            type: string
+            enum: ["deploy"]
+          id:
+            type: string
+          owner:
+            type: object
+            properties:
+              address:
+                type: string
+              signature:
+                type: string
+          deployment:
+            type: object
+            properties:
+              edition:
+                type: integer
+              program:
+                type: string
+              verifying_keys:
+                type: array
+                items:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: string
+                      - type: array
+                        items:
+                          type: string
+              program_owner:
+                type: string
+          fee:
+            type: object
+            properties:
+              transition:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  program:
+                    type: string
+                  function:
+                    type: string
+                  inputs:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  outputs:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  tpk:
+                    type: string
+                  tcm:
+                    type: string
+                  scm:
+                    type: string
+                  global_state_root:
+                    type: string
+                  proof:
+                    type: string
+      - title: execute
+        type: object
+        properties:
+          type:
+            type: string
+            enum: ["execute"]
+          id:
+            type: string
+          execution:
+            type: object
+            properties:
+              transitions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    program:
+                      type: string
+                    function:
+                      type: string
+                    inputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                          value:
+                            type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                          value:
+                            type: string
+                          checksum:
+                            type: string
+                          sender_ciphertext:
+                            type: string
+                    tpk:
+                      type: string
+                    tcm:
+                      type: string
+                    scm:
+                      type: string
+                    global_state_root:
+                      type: string
+                    proof:
+                      type: string
+          fee:
+            type: object
+            properties:
+              transition:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  program:
+                    type: string
+                  function:
+                    type: string
+                  inputs:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  outputs:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  tpk:
+                    type: string
+                  tcm:
+                    type: string
+                  scm:
+                    type: string
+                  global_state_root:
+                    type: string
+                  proof:
+                    type: string
+    TransitionIdResponse:
+      type: string
+    ConfirmationResponse:
+      oneOf:
+        - title: deploy
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["deploy"]
+            id:
+              type: string
+            owner:
+              type: object
+              properties:
+                address:
+                  type: string
+                signature:
+                  type: string
+            deployment:
+              type: object
+              properties:
+                edition:
+                  type: integer
+                program:
+                  type: string
+                verifying_keys:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      oneOf:
+                        - type: string
+                        - type: array
+                          items:
+                            type: string
+                program_checksum:
+                  type: array
+                  items:
+                    type: string
+                program_owner:
+                  type: string
+            fee:
+              type: object
+              properties:
+                transition:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    program:
+                      type: string
+                    function:
+                      type: string
+                    inputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                          value:
+                            type: string
+                    outputs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          id:
+                            type: string
+                          value:
+                            type: string
+                    tpk:
+                      type: string
+                    tcm:
+                      type: string
+                    scm:
+                      type: string
+                global_state_root:
+                  type: string
+                proof:
+                  type: string
+        - title: execute
+          type: object
+          properties:
+            status:
+              type: string
+            type:
+              type: string
+              enum: ["execute"]
+            index:
+              type: integer
+            transaction:
+              type: object
+              properties:
+                type:
+                  type: string
+                id:
+                  type: string
+                execution:
+                  type: object
+                  properties:
+                    transitions:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          program:
+                            type: string
+                          function:
+                            type: string
+                          inputs:
                             type: array
                             items:
                               type: object
                               properties:
                                 type:
                                   type: string
-                                mapping_id:
+                                id:
                                   type: string
-                                key_id:
+                                value:
                                   type: string
-                                value_id:
+                          outputs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
                                   type: string
-                    required: ["type", "id", "execution", "fee"]
-
-    CommitteeResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            id:
-              type: string
-            starting_round:
-              type: integer
-            address:
-              type: object
-              properties:
-                stake:
-                  type: integer
-                open_for_delegation:
-                  type: boolean
-                commission_rate:
-                  type: integer
-            total_stake:
-              type: integer
-    StateRootResponse:
-      type: object
-      properties:
-        result:
-          type: string
-    SupplyResponse:
-      type: object
-      properties:
-        result:
-          type: string
-    TransactionIdResponse:
-      type: object
-      properties:
-        result:
-          type: string
-    ProgramResponse:
-      type: string
-    MappingsResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: string
-
-    MappingValueResponse:
-      type: object
-      properties:
-        result:
-          additionalProperties: true
-    TransactionResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          additionalProperties: true
-    TransitionIdResponse:
-      type: object
-      properties:
-        result:
-          type: string
-    ConfirmationResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
+                                id:
+                                  type: string
+                                checksum:
+                                  type: string
+                                value:
+                                  type: string
+                                sender_ciphertext:
+                                  type: string
+                          tpk:
+                            type: string
+                          tcm:
+                            type: string
+                          scm:
+                            type: string
+                    global_state_root:
+                      type: string
+                    proof:
+                      type: string
+                fee:
+                  type: object
+                  properties:
+                    transition:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        program:
+                          type: string
+                        function:
+                          type: string
+                        inputs:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                              id:
+                                type: string
+                              value:
+                                type: string
+                        outputs:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                              id:
+                                type: string
+                              value:
+                                type: string
+                        tpk:
+                          type: string
+                        tcm:
+                          type: string
+                        scm:
+                          type: string
+                    global_state_root:
+                      type: string
+                    proof:
+                      type: string
+            finalize:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  mapping_id:
+                    type: string
+                  key_id:
+                    type: string
+                  value_id:
+                    type: string
     BroadcastResponse:
-      type: object
-      properties:
-        result:
-          type: string
+      type: string
     ExecuteTransaction:
       type: object
       properties:
@@ -1356,10 +1774,6 @@ components:
                           type: string
                         value:
                           type: string
-                      required:
-                        - type
-                        - id
-                        - value
                   outputs:
                     type: array
                     items:
@@ -1371,33 +1785,16 @@ components:
                           type: string
                         value:
                           type: string
-                      required:
-                        - type
-                        - id
-                        - value
                   tpk:
                     type: string
                   tcm:
                     type: string
                   scm:
                     type: string
-                required:
-                  - id
-                  - program
-                  - function
-                  - inputs
-                  - outputs
-                  - tpk
-                  - tcm
-                  - scm
             global_state_root:
               type: string
             proof:
               type: string
-          required:
-            - transitions
-            - global_state_root
-            - proof
         fee:
           type: object
           properties:
@@ -1421,10 +1818,6 @@ components:
                         type: string
                       value:
                         type: string
-                    required:
-                      - type
-                      - id
-                      - value
                 outputs:
                   type: array
                   items:
@@ -1436,38 +1829,16 @@ components:
                         type: string
                       value:
                         type: string
-                    required:
-                      - type
-                      - id
-                      - value
                 tpk:
                   type: string
                 tcm:
                   type: string
                 scm:
                   type: string
-              required:
-                - id
-                - program
-                - function
-                - inputs
-                - outputs
-                - tpk
-                - tcm
-                - scm
             global_state_root:
               type: string
             proof:
               type: string
-          required:
-            - transition
-            - global_state_root
-            - proof
-      required:
-        - type
-        - id
-        - execution
-        - fee
     DeployTransaction:
       type: object
       properties:
@@ -1494,14 +1865,6 @@ components:
                     type: string
                   value:
                     type: string
-                required:
-                  - type
-                  - id
-                  - value
-          required:
-            - edition
-            - program
-            - verifying_keys
         fee:
           type: object
           properties:
@@ -1525,10 +1888,6 @@ components:
                         type: string
                       value:
                         type: string
-                    required:
-                      - type
-                      - id
-                      - value
                 outputs:
                   type: array
                   items:
@@ -1540,38 +1899,30 @@ components:
                         type: string
                       value:
                         type: string
-                    required:
-                      - type
-                      - id
-                      - value
                 tpk:
                   type: string
                 tcm:
                   type: string
                 scm:
                   type: string
-              required:
-                - id
-                - program
-                - function
-                - inputs
-                - outputs
-                - tpk
-                - tcm
-                - scm
             global_state_root:
               type: string
             proof:
               type: string
-          required:
-            - transition
-            - global_state_root
-            - proof
-      required:
-        - type
-        - id
-        - deployment
-        - fee
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        path:
+          type: string
+        method:
+          type: string
+        message:
+          type: string
     ApiResponse:
       type: object
       properties:
