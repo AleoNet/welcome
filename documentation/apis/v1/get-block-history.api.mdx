@@ -1,0 +1,71 @@
+---
+id: get-block-history
+title: "Get block history"
+description: "Returns block history for the specified mapping"
+sidebar_label: "Get block history"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VkuP2zYQ/iuDyaU1VNsboBedmrTbtEAKBJvdXmIfxtTYYpYiFXJkx/DqvwdDyRt7t2l3W6C8SHzMx2+G8zqg0CZh+QFfu2BuEy4LrDiZaFuxwWOJVyxd9AlWug+1TRLiHtYhgtQMqWVj15YraKhtrd9ggS1Falg4Ku4BPTWMJWb539huasECrUK3JDUWGPlTZyNXWErsuMBkam4IywPKvlVR64U3HLHvi3u4r9c9CypJHKTYd42qvQq+4gpVa8cbkvzfsFBFQlhg5/XEILOzUleRdrjs+6VeltrgEyfFfzmf6+fcdq9PbYYFmuCFvehBaltnDenB2cekpw+P2VKMpHJWuEmPtejzyHTrUGGJG5Zsf6mxxFm2+OxwYvh+NnKZHUb79Vhg4rg9PlYXHZZYi7SpnM2otVP+3LoQOU7bGLa0cjw1oZltL2YNWe/zhedK/zGsw6t3v8Olr9pgvaC+3DOwhZP8Ffb1sP6fsA15yq9xDv1zXn6AvFT3WofHL1uW5Y6it36z8H9yTDZ4uMjCNkHopFJPAvIV7KxzsGKouI1s8nIKwU/hnWNKDI3dRBIGCbB9meOqCZGBRw4pg9hGteAKjj4HJlScpgtfluXCX9cM70Y1jyQqTnbjuVJgFbYVQ5c4JlA3BjKGU9JNDeNXjsMQ4aYm60HqGLpNDVeX76/XnTthIzUJkHNhB8Fn1p86jvuM4ll2Id5mJYZ04XjLDtSEscm+XoBE8omMTtI4s+NENVXlp/CLyoVW2RrywJSs24PmgUhGoLKRjbj9oEomf2S8ClJDZImWt9ZvQMMYKMGOndPvKgaqDCXRzVMu04Vf+Bcvsvle68PcXL1NunYHl35rY/ANewG40w146rhb+LsfzsaD6T8MlYfTiII7eE50ZgJwGjZPBRhDcAA4CY4nAwxxlk2QDXulXv7WNlZy1Cz8TfZGijz40+iqHNVZYDL5ETSbc5Kki5DYBF9NJtlLulbPTiYX83kxn8/PT1a0n0zyc+Yr3XjlfSSyuqMZw7O7J5G61Uc2osArR+bW2cFJ7Fqdew+06hJnP9dvWEPoolpkCr+GCNZr5bGc1EsDhJWQ1fQAtd3UHCHeU0kFtEPoRyZTa7YAEqh4q4nYGk4/nZpyCguPBW6HJIMlXkzn0zkWKFacFoPTwB9rDJlcY8ZSqa/2vmvbEDWhckNWc+W37tMqi21I0pA/AXnDct4CPEygh6/V7V/0DGNhE/4ss9aR9dgXQ1I/jPXsw9BBYIHleSvxlU95xFsWWIckKnQ4rCjxTXR9r8s5WWH5YVnglqJVpXPdq2zS/wrLNbnEf6Pbd1djj/E9fIv3sXp7JbUl1+kMC7zl/YNGSEvX/3j10T79si+wZqo4Zu2H3VfGcCsnco96FK2H983Gm8tr7PsvCR6D9g==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get block history"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/block/{blockHeight}/history/{mapping}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns block history for the specified mapping
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"blockHeight","in":"path","required":true,"schema":{"type":"integer"}},{"name":"mapping","in":"path","required":true,"schema":{"type":"string","enum":["bonded","delegated","metadata","unbonding","withdraw"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Block history","content":{"application/json":{"schema":{"type":"array","items":{"type":"string"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

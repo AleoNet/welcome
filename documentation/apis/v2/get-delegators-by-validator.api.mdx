@@ -1,0 +1,71 @@
+---
+id: get-delegators-by-validator
+title: "Get delegators by validator"
+description: "Returns delegators for the specified validator"
+sidebar_label: "Get delegators by validator"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1z0zgQ/1d2xAtknI/rwcPl6QoUphzcMGk73Aztw0bexKKyZKR1iifN/36zst0kpHDAvTYvjqTV7uqn337Ya5VT1MFUbLxTUzUjroOLkJOlJbIPERY+ABcEsSJtFoZyWKE1uSyqTDEuo5p+VC98WRpmInWVqQoDlsQUZGmtHJakpmp3mxFjFXKhMhXoc20C5WrKoaZMRV1QiWq6VtxUsjFyMG6pNpsrEY6Vd5GirB9NJvLYP8LLres5MqpMae+YHIsoVpU1GkV0/CmK/PrQHoaAjTjJVMb7/NhsNpl6ep/x55jDjD7XFBmGcOrSmcG4quYMSrQLH0rKYQtQ1qNpvAMKwYf4Cx77+SfSrDJVBV9RYNPiExm5ji98TjuyxjEtKahNptiUFBnL6vCQmRJXkdVU5cg0FFHZku7sEJJMlcSFz7+xFCMu6T4kxQe2MnUiZ591t6t6iJ8eQvy3Z3jla5fDEGYUfR00gfMMC5l8AO8OvKOjQ/AuXBW8FpVzS3Di2HADQ3heR+MoRrB+afQDJb+H6h+HqJ57D+/QNX3oR6EmMoE1peHW9wf8En7P7suap44pOLRwRmFFAdJGGMKx5hotxHa2pWIGtaMvFWmmHBZobB3ogZ87+P5+iK/AajTBhcMVGptifwjnVFY+YGgSwLJuYqwpwmPnc4LYOG3cMoMFIdeBoN7ufvIAOPV9QK9ULSmdLhlXY903RONtLzVe3/VAG5Wpltdtj1QHq6aqYK7idDzGyozoS2V9oDCqgl8J6CPty/HqaFyicS7Z2r/ld+08HL8/hROXV944Vpvsp3QzRb5P93k7/790a3QYmgPVL9L0V5qvBB1dB8PNmRCp5cqnG965IDGqunZRxnPCQNJctn9e9dx48+H8wOibD+fA/ppcam+x5oIcdxROFOp8P67MX9Ts9obtRNfBFoR5Mtm1uP8M33cbh8fvT4et5L5lOec1NcluL9wHYExsM27h76kxBW3lRYmRLj2apaMc2IN4bHKCOlKIcGO4ANRS6WVR+vdjSx7m1utrXaBxwEXw9bKA2cnZ+aK2QB34EbhABrTW34B3JPs/1xSapMUR3/hwndxPysDSiiyI04K38S4DDugiahnEbmS6AbocSh9oBC9ln2SCCBodEEZjG5DID6gZchNIs23aoyTne4/nngsIxMHQyrhlavMBI9yQtfKcB4+5xiiVd8+X0aW7dI8eJfieYyS4mL2NMncLJ25lgnclOQa4lQX40d/tpbsd7v2+Gv7HT/bDbvDCLfxMIkgOwG6E/qiCLtpbBTtx+MMK2pBOECRgU9Pztmt6ZO4isREDtXzqqEpByAKDwTMIfcdUUYBI2rt8MEgsqSuRHQx+m0yyyWSyL5ljMxik69zrs+DGWAtzAhI6aspbTXdOxDoVIVE8t6ivrWlJYhZC7gZwXkdKPJenX4CvgyAyglc+gHHyomooCks9+DmjcbK9MMuCAoQ7V2IGlSVhWCDUBfiaARlyWvWR/uculCO4dCpTUgzaYD8aTUYTtS08u4HflV7UKRd2iUdu7ayuKh8kd1OJRtLyt+ylNFP5yCW6HSWviXdf/OfN3pv+Xjpab8v/L3wzaFMp0xceVxZNyripkKy78vlR3ZXPZLlXrDI13Wq6ylThI4v4ej3HSBfBbjYynfKVmn68ytQKg5Fzpyqbm/Tik6vpAm2k7xzq8az7KvEEvuVxXxGcJPkV2lpGKlPXUjB2vnZsrjZZXynEiXb9WGuqeGfnQRMlRfCuuXh9cq42m38BYrEfLQ==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get delegators by validator"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/committee/delegators/{validator}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns delegators for the specified validator
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"validator","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Delegators data","content":{"application/json":{"schema":{"type":"array","items":{"type":"string"}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

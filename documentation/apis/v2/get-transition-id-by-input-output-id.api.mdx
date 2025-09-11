@@ -1,0 +1,71 @@
+---
+id: get-transition-id-by-input-output-id
+title: "Get transition ID by input/output ID"
+description: "Returns the transition ID for the specified input or output ID"
+sidebar_label: "Get transition ID by input/output ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yCXRUI+6zaE61YmdjNKk8fgx6Uzs6azAlYgYBBhgKUcj6793FqRsylLSZJqjeSEJ7Asf9gWsVE5RB1Ox8U6N1SlxHVwELgg4oItGJmByBDMf0misSJuZoRyMq2oGH8DXLF+TI5UpxnlU44/qJPh5wDKqq0xVGLAkpiAzK+WwJDVWif19eJ+YJ7nKlBELKuRCZSrQ59oEytWYQ02ZirqgEtV4pXhZCXvkYNxcrddXQhwr7yJFmT8YjeS1va7z7lpUprR3TI6FEKvKGo0yN/wUhXq1q81PP5Fmlakq+IoCm0bXPUT/mHyfcfJk6rd9Jr3AHE7pc02RoQ8Tt0BrWlAzKNHOfCgph3vwMkgkyVKgEHyIP28lkZHr+NLn1KE1jmlOQa0zxaakyFhWu6vMlJiKrMYqR6a+kApL2sldTDJVEhd+H1wyFSPOaR+UYgNbGTqWtZ+2e642EP+2C/FfnuGVr10OfTil6OugCZxnmMngI3h34B0c7IJ34argtYicWoJjx4aX0IcXdTSOYgTr50Y/uuS3UP19TyLyHt6hW25CP4prIhNYUxpubH/EL+H3fF/WnDim4NDCGYUFBUiM0IdDzTVaiM1o44oZ1I6+VKSZcpihsXWgR//s4PvrLr4Cq9EEFw4XaGyK/T6cU1n5gGGZAJZ5E2NNEZ46nxPEpdPGzTOYEXIdCOp77mePgDeAd4SqOaXVJeVqWLW90nBmXD687ykmR8PVgy5prTLV+HjTS9XBqrEqmKs4Hg6xMgP6UlkfKAyq4BeyAQPty+HiYFiicS7p3d7xd804HJ5M4NjllTeO1Tr7IdlMkffJPm/G/5dsjQ7Dckf0yzT8QPKVoKPrYHh5Jk7V+M2nG+5slihVbUMp/1PCQEFl7cerjZ+8+XC+o/TNh3Ngf00utcNYc0GOW3dO7tTafliZP2nZUYrNQNvjFoR5Utm2wn/3T1rG/uHJpN9QbmuWdV7TMundEG+CMSbPM27m99Sbgu7pRYiJkFM0c0c5sAex2OQEdaQQ4cZwAail6suk9PuHljxMrdfXukDjgIvg63kBp8dn57PaArXgy5kBGdBafwPekfB/rikskxRHfOPDdTI/CQNLC7IgRgvexrusOXCglp+YdY4fMQN0OZQ+0ACOhE+yQgSNDgijsUuQLBBQM+QmkGa7bJaSjN9YPPVcQCAOhhbGzSFHRsAIN2StvKfBY64xShXesmVw6S7dkycJvhcYCS5O30YZu4VjtzDBu5IcA9zKBHzvc3vpbvtbz4Pf/3iEH7rBC7fwI4kgGQDdCP1eAW20NwI6cfjdApqQThAkYFMD9LZtgGTsInkjBmr8qXVVCuIs0Os9h7DpnioKEEl7l/d6yUvqSmh7vV9Go2w0Gm1T5rjs9dJ2bvVccGOshSkBiTtqyhtJd0bEOhUkETy1qK+taZzEzMS5l4DTOlLyc3n7Gfg6CCIDeOUDGCdHWUNRvNSDnzIaJ+yFmRcUINyZEjOoLImHBUJdyMEakCGnxSbS/+hCOYBLpzIlxaAJ9oPBaDBS90WoG/htGUadcmGbeGTXzuqq8kFyN5VoJC1/TV9KM5WPXKLrCHlN/OCuYLpszrHD7s3AVl5a3fcEP+HOocmxTF94WFk0KRWnCrNqa+xHtamx0gmYdPbr1lmVqfHD+4irTBU+sjCvVlOMdBHsei3DKa2p8cerTC0wGIEnFePcpLNSrsYztJG+seSnp+31xjP4mv2bwuGkFizQ1vKnMnUtdWXn8mR9tc42ZUVMaagOtaaKO/w73ZdUzLuu5PXxuVqv/wVFMEJz
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get transition ID by input/output ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/programs/find/transitionID/{inputOrOutputId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the transition ID for the specified input or output ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"inputOrOutputId","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Transition ID","content":{"application/json":{"schema":{"type":"object","properties":{"transition_id":{"type":"string"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,64 @@
+---
+id: get-circulating-supply
+title: "Get circulating supply"
+description: "Retrieves the latest circulating supply for the Aleo blockchain.  Note: This is only available for mainnet currently."
+sidebar_label: "Get circulating supply"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVt9v20YM/leI65uhyk7RvuhpXZYVBbohSNK9xMFAn2jrmtOdwqOcGo7/94EnJXUSd0uxAdOLdD/I+0h9/HhbI7hKpro0533X+Y25KkxNybLrxMVgKnNGwo7WlEAaAo9CScA6tr1HcWEFKRvCMnLe8d5ThIWP9to26EIJ8HsUquCicQlcghj8BnCNzuPCUzZr0YVAArZnpiB+U86DKUzsiFFRfKxNZVYkx99OHdEWhil1MSRKptqaN7OZvh4HcPG3sF0Ay1Q7SQXwGGoNS47twWhMYWwMQkH0IOw672zGOP2S9LStSbahFvVLNh2ZysTFF7JiCtOxRiRuwLqH5c8By55NEnZhZXb6M6xr0ae9RReEVsRml5/CvJ29fR71kCAIUWAZ+1D/d8CToPTpONZ0CFNhxLWUBNvueTyFWUZuUUxlahR6rVvVpENpDkbfkjSx/s5SSriiA2sZg3idOmGOfDZSxAzpeneIJOfEa2Ig3Z893J+svDP3CM3UHqBgyrZaRFvTszeVaUS6VE2n2LmSvnY+MnHZcVwr5Usb2+n6aDqy3jwtuN/Ganh/+hFOQt1FF8Tsih/yrWw/5PtimP9Xvi0G5M0z18d5+onnq8K4sIzP811V1S1ycGE1D38QJxcDHGVjlYhelB41YKjh1nkPC4KaOiabp1OMoYRTT5gIWrdiFAKJsH4zyElkAhoxpOzEtRoF1XAvF2BjTamch6qq5kEl4nQM8x5ETcmtAtXqWI1dTdAn4gS3ThpAayklXTwgEyANx37VwNnJ+cWy93topEEB9D7eQgwZ9U1PvMleAslt5OscRHYGntbkQVOoZeNiKEAYQ0KrgzSO3DjQSDX4En5ROy3aBBYDECaXtU6I0QrUjsmK3wyhZPD3iBdRmnshVJmsURAwwS15r+8FR6wtpqyh+1jKeZiHV69y+n7WH/P57FPSuTs4CWvHMbQUBOBOF+Clz9083L1+9DwZ/sOj9rBfUXAHP1KdGQDsl81LHYwlODjYK44XOxjqLKcgJ/ZMWf7JtU5y1czD58xGZBr4NFKVWMkCk8k7YLrpKUnSSUhkY6gnk8ySvtO9k8nRbFbMZrPHO2vcTCb5d+Yj/XjkQyWS0tGO5dk/gEh97hfqeOHRXns3kMQtldwbwEWfKPNc33EJsWfNSAm/RgYXbnrHjpKyNEJcCDqVB2jcqiEGfoCSCuiG0mdC26haAArUtFYhdpbST/upLCFfJtaDyJjKHJWzcma+9Yj9wh+7JNrcJQO2ukH/mop9ZBVUatGpVn7vvNw9upikxbDn5AMdun48VdHttyb9P168xn4q9FWmnUcXtN/mDrEdG+Gled4IrwrTxCS6uN0uMNFn9rudTmeFM9XlVWHWyE6P19GuMA1hTZw75zVtNNfWUqdpXqPvFcSzm4r2lIfm/OHkwux2fwEElb2Q
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get circulating supply"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/circulatingSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest circulating supply for the Aleo blockchain.  Note: This is only available for mainnet currently.
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The latest circulating supply in credits, retrieved from the Aleo blockchain.","content":{"application/json":{"schema":{"type":"object","properties":{"circulating_supply":{"type":"string"},"decimals":{"type":"integer"}}}}}},"404":{"description":"Supply not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

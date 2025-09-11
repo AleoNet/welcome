@@ -1,0 +1,71 @@
+---
+id: get-committee-by-height
+title: "Get committee by height"
+description: "Returns committee information at the specified height"
+sidebar_label: "Get committee by height"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVt9vGzcM/lcI9WUzbrZTYC/3tK7LigEdUKTpXuogoCXap0YnXSmeU8Px/15Qd3adJl3TTS93kshPpPTxx844ypZ9Jz5FU5sLkp5jBpva1osQgY+rxC3qPqCANAS5I+tXnhw05NeNmMoIrrOp35uXBz1zVZkOGVsSYt3amYgtmdocdbwe2KE0pjJMH3vP5Ewt3FNlsm2oRVPvjGw71crCPq7Nfn+lwrlLMVPW/efzuX7uu3E0AxwKmsrYFIWiqCR2XfC2ODT7kFV89/C4tPxAVo3sOHXE4ofDvHvEpMpkQRYf19ec+ngq4qPQmlhlWmqX5Sa+d8ZuB+gcU86w35+IIzNu9dqE2ifAZMEbetyU1FG8XiW+dhRojcOdHQWXKQXCqIKFBTn7FK8Z5VG0MiojSTBcf/PMg1hL0iRnarOmYrE+fm1mR7bNdgM79qYymXhzoE7PQZkj0uV6NsPOT+lTFxITTztOG1wGmtrUzjZnsxZ9jAX9PiX+HtbhxZu/4Dy6LvkoZl/9ELZQlsewL4f1/4VtMSJvH0C/LMtfIV9p8KzSQ97XdX2LHH1cL+I/xPpycFaUfYbUi0MhBxgd3PoQYEngqGOyZTmnFKfwJhBmgtav9clBEmyewyoxtIkJaLQhFxDfqhfk4BCRYJOjPF3Euq4X8bIheDO6eTDCUfbrSE6BVdk7gj4TZ7j10gBaq8SXVBLNi0AJliHZG9ugjyANp37dwMX528tVH06skQYFMIR0CykWqz/2xNuCEkluE98UJwoYBNpQOM1sFQhjzGh1kseZHyfqqTo/hT9UT4Msg8UIhNmHLSjLGa2A80xWwnZwpRh/sHiZpAEmYU8bH9clLQFmuKUQ9LvkhM5i1ixyz5bpIi7is2fl+n7Xh3l38Trr2h2cx43nFFuKAnCnG/DUcbeId7/cG19NvzNUH04jCu7gR6KzGACnYfNUgDEEB4CT4HgywBBn5QrKxV4oy1/71kuJmkV8V9iITAOfRqoSK1lgMvkVtFZRlqyLkMmm6CaTwpK+U9nJ5Gw+r+bz+X1Jh9vJpDxnOTKMRx4jkZSOdgzP/mhE7kt+V+BlQHsT/EASv1JybwGXfabCc/2mFaSe9Uam8Gdi8FHrqqesLE2QloJe0wM0ft0QAx9NyRV0Q+gzoW00W2i9d7TRROwt5d9Or3IKi2gqsxmSjKnN2XQ+nWsn4CVo7j8N/LEAoy0FeOwD9NXe9l2XWBMqteg1V37rPKPlo0tZWownIK9ITnqV5fZLR3IvMe6+NAD/vcUZaprQJ5l1AX2pkCXB78ZC9t4cMU1l6lHzqjJNyqLbu90SM73jsN/rcklRpn5/VZkNsldXS7VzPuu/M/UKQ6Z/8eWni7Fv+hm+ZeGhe4haWzYYep2ZytzQ9ksztr/aV6YhdMTFgmHzhbXUyYnag9ZJK9Gxpr86vzT7/Wcc7I+e
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get committee by height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/committee/{height}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns committee information at the specified height
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"height","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Committee data","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"starting_round":{"type":"integer"},"members":{"type":"object","properties":{"{{ address }}":{"type":"array","items":{"type":"object","properties":{"stake":{"type":"integer"},"open_for_delegation":{"type":"boolean"},"commission_rate":{"type":"integer"}}}}}},"total_stake":{"type":"integer"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,63 @@
+---
+id: get-latest-height
+title: "Get latest block height"
+description: "Retrieves the latest block height from the Aleo blockchain."
+sidebar_label: "Get latest block height"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVk1z2zgM/SsY9uZRZafTXnTatpvtdiY700nTvdQ5wBRssaFIBYScehz99x1QSuok7m671UXiBx4eQTxAeyO4Sab6bN74aK+SuSxMTcmy68TFYCpzTsKOtpRAGgKPQklgpZuhIbdpBNYc27z42lMcl2yDLpSmMLEjRkV6X5vKbEjOMsCf2dIUhil1MSRKptqbF4uFvh76vzjutQBXUgniOohryP4K4Ilr/a+cbAxCQdQVdp13NhOcf0nqb2+SbahF/ZJdR6YyLghtiE1hxInXmZH++cTdDMMwFObl4uVT9jmqEKLAOvah/h/e4+oLWQ1VxxpMcWOskqD06W2s6QjTQam2lATb7mA5CbuwMYVZR25RTGVqFHquW9WkQ2me7h4K05I0sf7OUkq4oSNrw7dwnTJHfhStV8fu+iPxlhhI92eEO8+aOeaOoZnn+5yPiTAfk8MUJmVrTea96dmbyjQiXarmc+xcSV87H5m47DhuceWptLGdb0/mLboQMvxDMn+N8/D6w3s4DXUXXRAzFD+FrcyOYV+M87+EbTEg755Av83Tj5AvC+PCOj6NeFVVN8jBhc0y/E2cXAxwko1dgtiLJkgNGGq4cd7DiqCmjsnm6RRjKOGDJ0wErdswCoFE2L6AdWRoIxPQxCFlENfqKaiGO92DjTWlchmqqloG1fqH6Zh3JGpKbhOoVmA1djVBn4gT3DhpAK2llHTxiNpBGo79poHz048X694fsJEGBdD7eAMxZNbXPfEuowSSm8hX+RBjzfG0JQ8aQhWOi6EAYQwJrQ7SNHLTQE+qhy/hd7VT2SawGIAwOb8DlSmjFagdkxW/G4+Syd8xXkVp7uqZCxuoURAwwQ15r+8VR6wtJtHFQy7lMizDs2c5fG/0Yj6dnyWdu4XTsHUcQ0tBAG51AX70uV2G2+cPnkfD/3jUHg4VBbfwM+rMBOBQNj8KMElwBDgQxw8DjDrLIciBPdcsP3Otk6yaZfiUsxGZxnyaUpVYkwVms1fAdN1TkqSTkMjGUM9mOUv6TvfOZieLRbFYLB7urHE3m+XrzC795PJeiaTpaCd59vckUp87hgKvPNor78YkcWtN7h3gqk+U81zfcQ2xZ41ICX9EBheue8eOkmZphLgSdFoeoHGbhhj4nkoqoBulz4S20WoBKFDTVguxs5R+OwxlCctgCrMdi4ypzEm5KBcHTfVQ+FOfRJv7ZMBWN+itfey7LrIWVGrRaa38nr/cP7qYpMVwAPKO5NjvxOMyuv/Wp3/xD2hqi0JfZd55dEHbZi7z+6mffTbZwhTmnsvU0y4L08QkumW/X2GiT+yHQadzsTLV58vCbJGdHlpHg2JgTZyb4BXtNGzWUqegW/S9Unny26Ht4b7Tvju9MMPwD03VeSg=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get latest block height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/block/height/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest block height from the Aleo blockchain.
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.","content":{"application/json":{"schema":{"type":"integer","title":"HeightResponse"}}}},"404":{"description":"Block not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

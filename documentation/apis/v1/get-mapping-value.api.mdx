@@ -1,0 +1,72 @@
+---
+id: get-mapping-value
+title: "Get mapping value"
+description: "Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/{programID}/mappings query."
+sidebar_label: "Get mapping value"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVktz2zYQ/is7yKXVMJKcSS481U3cTCZJx+M4uVg+rICViJgEGGBJRyPzv3cWpFTKj9RJO+2UFxJL4MO+vt3dKsZ1VPmFOg1+HbCK6jJThqIOtmbrncrVGXGw1FIEhArr2ro1tFg2BGvbkgMuCBxWBH6Vvnd70Jm0xhi9tshk4Io2UzgXWYu2xGW53x1h5QPgAFn3yoBGB0sCv2S0jgy0FhPkbNgw2w4fb151sz3Sl4bCZrpwKlO+poBixxujcrUmft9v+iT6q0zVGLAipiA+2CoxQ+VqD6oyZcUFNXKhMhXoS2MDGZVzaChTURdUocq3ije1HIwcrFurrsv2WINWv8vqH0N7S5sfBruUzbH2LlKU/8/mc3kdxvx4H0W//EyaoaYgMRAJ+xSDQC2V6BisW/lQJS8DF8jp7y6ChS9NBLDudioM+H2YtHdMjkUPrOvS6oQ2+xxFme2DxmSKLZciGIf1bLBOdV3XZer5/Pld+4ZsB+cZVr5x5geU6D0jSRQkzdj2/oyM3MSX3tBor3VMawqqE5UrioxVfZ89vSdVrgwyPZWtciTF+G4oM1URF9488CtGXNO96bR320kIPtzy14v78uEDhZYCkOxPCLubhVNqp6H6Fi9n2xEVuv3qLW06lamYLuhZ2IRS5apgrmM+m2Ftp/S1Ln2gMK2Db6VsTLWvZu3RrELrXNLgUN/3vRyOT9/AiTO1t46V8Og7sJki34d93sv/FrZGh2FzB/plEt9CvhSmr/zdoOR5fo1BOLlwnyhEIeBROmwj+IZNIpqU4WtbllJIDdWBdBJH790UTkvCSFDZdUAmoXb7LFXiygcCGnSICcRWYgUZ2JUP0N5QnC5cnucLJ2X9dDBzp4ShaNdSuNlLRWitIWgihQjXlgtArSnGXUE5LsnDsvT6SheYCkbwzbqAs5MP56umHGmTqgyWpb8G75LWqeT3nYj42oerZEQCg1IK1bhKZcABXUQtizis7LAQS8X4KbySc8LsmPoQYbTlBoTJATWDsYE0l5velKT8TuOl5wJC3zalYhpkBIxwTWUp72XwaDRGTuV0pMt04RbuyZPkvl8lMB/P3kWR3cCJa23wriLHADfyAx773CzczdOD59byLx45D2NGwQ18DzuTAjCmzWMBBgr2ACNyPBqg51lyQXLsmWT5O1tZTqxZuI8pGzFQn09DqlKQZIHJ5AVIY6XIUYQQSXtnJpOUJU0teyeTo/k8m8/nhzsNbiaTFM50ZTlcuWciSTrqgZ7NXonY9O2WhQmor0rbJ4lNo9UGcNlESnkub78C3wTxyBR+8wGskyHAUpQs9cPYJMcLuy4oQNirEjOoe+oHQl1ItQBkMNRKIbaa4i9jV04htem2LzIqV0fT+XQ+6r9j4g+tFHVqpcPgIlH70NS1D1JQqUIrtfKh+1KLqX3kCt0I5DXx4QR6u4Bu/2zi/+uxdejYTF95VpdonXT01F62Q6u92A2pKlP5eF4d4ER8OHrmo9nxMlOFjyww2+0SI30MZdeJOCmh8ovLTLUYrNiaerKxUb6NyldYRvqG3386G0bRn+EhSwYhOumAfSBzpTJ1RZuD6Vua6r948dhf/83VEpvusstUQWgoJM/3G461pppHR++MqDIn7Key1yfnquv+ALwdyow=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get mapping value"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/program/{programID}/mapping/{mappingName}/{mappingKey}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/\{programID\}/mappings query.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programID","in":"path","required":true,"schema":{"type":"string"}},{"name":"mappingName","in":"path","required":true,"schema":{"type":"string"}},{"name":"mappingKey","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A mapping object pertaining to the revelant information that the program holds  in the associated mapping.\n","content":{"application/json":{"schema":{"type":"string","title":"MappingValueResponse"}}}},"404":{"description":"Program not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

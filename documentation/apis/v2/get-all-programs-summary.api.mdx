@@ -1,0 +1,63 @@
+---
+id: get-all-programs-summary
+title: "Get all programs summary"
+description: "Returns a summary of all programs"
+sidebar_label: "Get all programs summary"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1v2zYQ/1cO7MtmyB/L1of5aW6XFunaIUgcdEATFGfqbLGhSJU8OjWc/O/DUXJiJ+6Wdm9D9CLzdPzd8af7kteqpKiDadh4p8bqhDgFFwEhprrGsAI/B7QWmuAXAeuoCsW4iGr8QR1vRBeFChQb7yJFNV6rg9FIbrvIkxAwo3VInQFDAqm9Y3Isu7BprNEou4afomxdq6grqlF+8aohNVYoYKpQhqmOW3I/+0SaVaGa4BsKbFqHOpMfTbmlGzkYt1A3hZpZry8/VmQWFW8pGMe0oHCnwaamyFg3+5U2VvyVo7DHUHsV6pd99LzAEk7oc6LI0Icjt0RrSjCuSVxAjXbuQ00lNBiwJqYQC8gqmSigEHz4HiK/Qlhk5BRf+pL2H3UfE90xCyWuIquxKpGpL6qZHeRqL/s1ceX3v5iaYsQF7eNSfGArokM5+0kXf2pD8S8PKf7TM7zyyZXQhxOKPgVN4DzDXIRP5N2Sd3DwkLwz1wSvBXJmCQ4dG15BH16kaBzFCNYvjH4KyX9i9deHrE69h3foVpvUjxKayATW1IZb35/4y/w931c1jxxTcGjhlMKSAuSN0IeJ5oQWYittQ7GA5OhLQ5qphDkam8J39Z7/Lb8/P+RXaDWa4MzhEo3Nud+HKdWNDzIcxO65iTFRhB+cLwniymnjFgXMCTkFgnS3+8cnwlvCt0DVgvLpsnE13Exaw24CU4Vq41iGrrVKwaqxqpibOB4OsTED+tJYHygMmuCXQvJA+3q4PBjWaJzL2Ltv9V0rh8nxERy6svHGsbopvgmbKfI+7Gkr/0/YGl177l3ol1l8D/lC2NEpGF6dSuC0sfHpanuQE6PCYn6uxmpGGCioovvxahMLb95PHxh9834K7C/JwdwHwMQVOe5Cthv6su+TxvxBq+0RtRUUyghMRVhmkw6zC3/1j7uN/cnxUb/VvDcwHx/BJa2y3Y3yJuFiji7j5n5PT6noTl9ATISSolk4KoG9zN9LUxKkSCHCleEKUEtnl4dcEUwsecgTr67QOOAq+LSo4OTwdDpPFqgjPwJXyPJ14K/AO5L9nxOFVUZxxFc+XGb3MxhYWpIFcVr4Nt4VwAFdRC2L2K1Mt0BXQu0DDeB32SeZH0GjA8Jo7Aok0wNqhtIE0mxX7VGy8xuPZ54rCMTB0NK4BZTICBjhiqyV+yx4LDVG6bQ7vgzO3bl79izT9wIjwdnJ2yiyazh0SxO8q8kxwLU8gMde1+fuur9z3Vv+yyX7YTt54Rq+pRBkB2A7Qx8L0GV7C7CVh48GaFM6U5CJzUPO227IEdlZjkYM1MZTF6oUJFig13sOYTMhNRQgkvau7PVylKRGdHu9n0ajYjQa7WqWuOr18uvcmavgylgLMwKScNRUtki3TsSUm44AzyzqS2vaIDFzCe4V4CxFynEudz8Hn4IwMoBXPoBxn5ORT1uJUg9+xmicbK/MoqIA4daVWEBjSSIsEOoKfGJAhpKWm0z/bZvKAZw7VShpBm2yHwxGg5G6azTbid+1WtS5FnaFR97aaWoaH6R2U41GyvLX7OUy0/jINbotkNfEO38KwF2r2qlF67te/7h/FtrSyfSFh41Fkytsbhzrrj1+UFvqG6sXhap8ZHm6Xs8w0lmwNzcizuVIjT9cFGqJwcixZHVTbAqydNRLqdtqojU1wskSbWoL+L3ZRHrNbc9+fThVNzd/A/zo+eY=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all programs summary"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/programs/summary"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a summary of all programs
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Array of program summaries","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"program_id":{"type":"string"},"block_height":{"type":"integer"},"block_timestamp":{"type":"integer"},"program_owner":{"type":"string"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

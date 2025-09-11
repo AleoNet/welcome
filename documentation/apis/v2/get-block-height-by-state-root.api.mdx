@@ -1,0 +1,71 @@
+---
+id: get-block-height-by-state-root
+title: "Get block height by state root"
+description: "Returns the block height for the specified state root"
+sidebar_label: "Get block height by state root"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yCXRUI+6yaE61U6d1GnSycj2pDOxDytwJSIGAQZYyNHI+u+dBSlbipzUaXs0LySAfeHDvsCVKinqYBo23qmxmhCn4CJwRTC1Xl9BRWZeMcx8yJOxIW1mhkqIjEwQvGdVKMZ5VOOP6kh4orosVIMBa2IKMr9SDmtSY5WZJi2PEYUNcqUKFehzMoFKNeaQqFBRV1SjGq8UL5uWMRg3V+v1pRDHxrtIUdYPRiN57W7jaMt0VSjtHZNjocOmsUaj0A0/RSFe7Svz00+khbEJvqHAplXVybujM45pTkGt81Oo5/fagiVM6HOiyNCHE7dAa0owrklcQI125kNNJdzhVUAmyTYCheBD/P/2IAeQ4ktf0n37KBSbmiJj3exjXygxFVmNVYlMfSEVlnyE+ydVqJq48uU3lmLEOd13wGIDW5k6lr1PusNWG4if70P8p2d45ZMroQ8Tij4FTeC8eG1y5SN4t+AdHOyDd+6a4LWInFqCY8eGl9CHoxSNoxjB+rnRjy75PVR/2Uf1zHt4h265Cf0orikJ05racGv7I34Zvxf3Zc0TxxQcWjilsKAAmRH6cKg5oYXYzrauWEBy9KUhzVTCDI1NgR79cwvfn/fxFViNJjh3uEBjc+z34YzqxgcMywywrJsYE0V46nxJEJdOGzcvYEbIKRCkO+5nj4C3gG8JVXPKu8vK1TA3VHE4M65sv3/PDcVwddsVrVWhWtduu6YUrBqrirmJ4+EQGzOgL431gcKgCX4huA+0r4eLg2GNxrmsbveg37XzcPj+BI5d2XjjWK2LH5LNFPk+2Wft/H+SrdFhWO6Jfpmnv5J8KejoFAwvT8WXWnf5dL3dk4lS1TWQMp4SBgqq6D5ebdzjzYezPaVvPpwB+ytyud3FxBU57rw4e1Fn+2Fj/qDlllJsJ7qetiIss8qu6f2r/75j7B++P+m3lLuaZZ9XtMx6N8SbGIzZ4Yyb+XvKTEV39CLERCgpmrmjEtiDWGxKghQpRLg2XAFqKfayKP38oSXfdvq6QuOAq+DTvILJ8enZLFmgDny5EiADWuuvwTsS/s+JwjJLccTXPlxl89trg6UFWRCjBW/jXQEc0EXUMojdyHQDdCXUPtAAfhM+SQYRNDogjMYuQYI/oGYoTSDNdtluJRu/sXjquYJAHAwtjJtDiYyAEa7JWnlPg8dSY5Tiu2PL4MJduCdPMnxHGAnOJ2+jzN3AsVuY4F1NjgFuZAEe+txcuJv+zvPV8B8e4Yft4IUb+JFEkA2A7Qh9qIAu2lsBW3H4YAFtSGcIMrC573nb9T0yd569EQO1/tS5KgVxFuj1XkDYNE0NBYikvSt7vewlqRHaXu+n0agYjUa7lCUue718nDutFlwba2FKQOKOmspW0q0RMeU6JIKnFvWVNa2TmJk49xJwmiJlP5e3n4FPQRAZwCsfwDi5uhqK4qUe/JTROGGvzLyiAOHWlFhAY0k8LBDqCnxiQIaSFptI/3UbygFcOFUoKQZtsB8MRoORuqs924HfVV/UORd2iUdO7TQ1jQ+Su6lGI2n5W/pymml85BrdlpDXxLu/AqbL3bv/TkZa3TUB//5nQptUmb7wsLFocu7NJWXV1dKPqq2lUu9NvuFt1VNVqPHdf4bLQlU+svCsVlOMdB7sei3TOX2p8cfLQi0wGIEhF93S5KtQqcYztJG+s8Gnk+63xTP4ltmbAuEk5y/QJhmpQl1J/dj6HbK+XBebwiFGtOuHWlPDW5x7bZXUxNt24/XxmVqv/waRISoZ
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get block height by state root"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/find/blockHeight/{stateRoot}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the block height for the specified state root
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"stateRoot","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Block height","content":{"application/json":{"schema":{"type":"object","properties":{"height":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

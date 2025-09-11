@@ -1,0 +1,71 @@
+---
+id: get-state-path-by-commitment
+title: "Get state path by commitment"
+description: "Returns the state path for the specified commitment"
+sidebar_label: "Get state path by commitment"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1z0zgQ/1d2xAtknI/rwcPl6VquMOWA6aTtcDO0Dxt5E4vKkpHWKZ40//vNyk7rkMIB99q8OFrvl37aL3mtcoo6mIqNd2qqZsR1cBG4IIiMTFAhF7DwoSVVpM3CUA7al6XhkhyrTPmKAoqGk1xN1ZL4TERPkYuj5mWfkXEZ1fSjOrJeX0d1lakKA5bEFIS+Vg5LUlO1o92IY+KGylSgz7UJlKsph5oyFXVBJarpWnFTiWTkYNxSbTZXwhwr7yJFeX8wmchjd7tnd1tUmdLesVicrhVWlTU6bWn8KQrr+jumNptMPX9I/RHmMKPPNUWGIZy4FVqTg3FVzRmUaBc+lJTDPQYZJJZkGCgEH+IvOObnn0gLclWQk2HTIiDnWceXPqcer3FMSwpqkyk2JUXGstrfY6bEVWQ1VTkyDYVVRBJy+4hkqiQufP6NVzHikh4CUnxgK6Rj2fusO787iJ/vQ/zeM7zytcthCDOKvg6awHmGhRAfwbsD7+BgH7wLVwWvReXcEhw7NtzAEI7qaBzFCNYvjX4Mye+h+sc+qufewzt0zTb1o4Sm1BlrSsOt74/4JfxePFQ1TxxTcGjhjMKKAiRBGMKh5hotxJbahmIGtaMvFWmmHBZobB3oMT57+P7+QNOjsDKa4MLhCo1NuT+EcyorHzA0CWB5b2KsKcJT53OC2Dht3DKDBSHXgaC+l372CHgLeE+pTEFqa1yN52ngGS+My8dxOxyN1/dzzkZlqo3sdhCqg1VTVTBXcToeY2VG9KWyPlAYVcGvBPaR9uV4dTAu0TiXrO2e87uWDoenJ3Ds8sobx2qT/ZRupsgP6T5v6f9Lt0aHodlT/TKRv9J8JejoOhhuziSU2mj5dMO9IxKjqhsJZT0nDBRU1v15tY2ONx/O94y++XAO7K/JpVEXay7IcRfEKYg63w8r8zc1PaPYEroptSDMk8lujv1neNoJDg9PT4Yt565l2ec1NcnulnmbgjHFm3EL/0CXKeieX5SYCDlFs3SUA3sQj01OUEcKEW4MF4Baer28lFn+0JKHFJe6QOOAi+DrZQGz47PzRW2BOvDlMoAMaK2/Ae9I5D/XFJqkxRHf+HCd3E/KwNKKLIjTgrfxLgMO6CJqWcRuZboFuhxKH2gEf4mc1IIIGh0QRmMbkNwPqBlyE0izbdqtJOe3Hs89FxCIg6GVcUvIkREwwg1ZK8958JhrjNJ7d3wZXbpL9+RJgu8II8HF7G0U2i0cu5UJ3klqAtzKC/jR3+2lux3u/L5a/sdP5KGfvHALP1MIkgPQz9AfVdBle6ugl4c/rKBN6QRBAjaNPW+7sUdoFykaMVAbT12oUpBggcHgBYTtzFRRgEjau3wwSFFSV8I7GPw2mWSTyWSXM8dmMEjHuTNpwY2xFuYEJOGoKW813TkR69SGRPHcor62pg0Ss5DgbgDndaQU5/L0C/B1EERG8MoHME4uo4aiRKkHP2c0TsQLsywoQLhzJWZQWZIIC4S6AF8zIENOq22m/9mHcgSXTmVKmkGb7AejyWii7ltPP/G75os61cKu8MipndVV5YPUbirRSFn+lr1UZiofuUTXU/KauP8RYN7s3vp36tH6fgL4xY8IXUFl+sLjyqJJdTe1k3XXRj+qto1KqzfpcnfXSlWmpj1tV5kqfGQRWa/nGOki2M1GyKlyqenHq0ytMBhBIPXb3KRLUK6mC7SRvrO7p7PuG8Qz+JbX297gpNyv0NayUpm6ltbR/7ixudpk26YhXrQMh1pTxT3RvYlK+uHdpPH6+FxtNv8CLXMoPw==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get state path by commitment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/find/statePath/{commitment}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the state path for the specified commitment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"commitment","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"State path","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

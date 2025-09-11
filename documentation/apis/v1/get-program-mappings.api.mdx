@@ -1,0 +1,72 @@
+---
+id: get-program-mappings
+title: "Get program mappings"
+description: "Retrieves mappings for a given program by Program ID. These mappings can then  be queried through additional endpoints."
+sidebar_label: "Get program mappings"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVk1z20YM/SuYzaXVMJKcSS481U3cjGeSmYxj9xL5AHEhcmNyl8GCcjQy/3sHS0qWYrt12kN1ofbr7QMWD8DWCJbR5F/MJw4lYxPNdWYsxYJdKy54k5sLEna0pggNtq3zZYRVYEAo3Zo8tMNBWG5gxIDzd1O4rCjS/YkCPUhFHmBJ8K0jdmRBKg5dWQFa6/QyrIG8bYPzEqcLbzITWmLUpXNrclOSjFd8HHFNZlpkbEiI1Yyt8diQyc3I6vydyYxTK1qUymSG6VvnmKzJhTvKTCwqatDkWyObVg9GYedL0/fXujm2wUeKuv5qPtfPsW9OPSAzbiCsjr0jFR37Z2oyUwQv5EVhsG1rVyTTZl+jYm0fcknQaoBQEx/hmBlxUuvMzh8XI2PT932fmdfz1w85717JB4FV6Lz9F8zC8isVot5nfSJxg4+ioHTxbbB0sNd5oZJ4oNtQFGzah8ZkZhW4QTG5sSj0UrfqkfRuj5nekFTBPrEUI5b02Kveu+yMOfAP/nrz2Bt/Jl4TA+n+hLC7WePR7Bia2fjQs+0+9vpZcx+nMcEMQdpxbXJTibQxn82wdVP63taBiacthzUua5oWoZmtT2YNOu/TPcesPg7zcPrpHM5G0Zg++ylsoSiPYV8O8/8Ju0CPvHkA/TZN/4B8rRpdhYeuz/P8Ftk7Xy78n8TRBQ8n6bCLEDrRSLGA3sKtq2tNLZZapiJNxxD8FD7VhJqIXMkoBBJg/SoptAlM9+kmgbhGrSALO+FDESxpKsrzfOEvK9IUl8zckbAUXek1lwVV+tpZgi4SR7h1UgEWBcWoi5oQTmsKsKxDcVNU6Pw+/12cfb5cdQfJD6RCAazrcAvBJ9aaMzcJxZPcBr5JRiQwqGlNNagLVUEu+AyE0UcsdBDHkRsHaqkaP4V3ek71O+RnwujqDaheGQsB65gKqTeDKYn8jvEySAU8FAbnS7AoCBjhlupav0sOaAuMoouHXKYLv/AvXiT3/a4Pc3XxIercHZz5tePgG/ICcKcL8Nzf3cLfvTz6/TD8h5+eh0NFwR38jDoTATiUzXMBRgkOAAfieDbAoLPkguTYC43yD65xklSz8FcpGpFpiKcxVIk1WGAyeQNaEilK1EmIVARvJ5MUJV2reyeTk/k8m8/nxzstbiaT9Jzpynq8cq9E0nAsRnl2exKxS6VDgZc1Fje1G4LErTS4N4DLLlKKc/2GFYSO1SNT+CMwOK/l21HUKA0QloJO0wNUrqyIgfdUYgbtIH0mLCrNFoACltaaiF1B8bdDV04h9RvrIcmY3JxM59O5uS8Xh8IfCyYWqWCOHYe+2ueubQNrQqUGnebKp+5LhaQNURr0ByDvSfYN1UHtOMqK2/tq/b/2ZmNpFfous7ZG57X0pgqxHWvil10bZjKTH3Zke9OuM1OFKLp1u11ipCuu+16nU74z+ZfrzKyRnfotlU7rov63Jl9hHelvfPPLxdjr/QpPsd31WV4L1RrrTkcmMze0Oeoh++s+MxWhJU4khvXToqBWDk4+aJ20su27hfdnl6bv/wIRt/L/
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get program mappings"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/program/{programID}/mappings"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves mappings for a given program by Program ID. These mappings can then  be queried through additional endpoints.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programID","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"An array of mappings for the given program.","content":{"application/json":{"schema":{"type":"array","items":{"type":"string"},"title":"MappingsResponse"}}}},"404":{"description":"Program not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

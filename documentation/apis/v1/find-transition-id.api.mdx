@@ -1,0 +1,72 @@
+---
+id: find-transition-id
+title: "Find transition ID"
+description: "Retrieves the Transition ID associated with a given input our output ID. Input and  output IDs can be found via the associated field elements of an input or output."
+sidebar_label: "Find transition ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVktz2zYQ/is7yKXVMJScSS881Y2djmbSScZxeol8WAErETEIMMBSjkbmf+8sSNv0q03aU3khuVh8+Haxr4Ni3CZVfVbnEX1CzTb4pC4KZSjpaFv5V5U6I46WdpSAa4Ksa2UJlieAKQVtkcnAleUaELZ2Rx6sbzuG0EUIHcvn8qSEZRaiN3AnTaDRw5pgEzpvYGcxnzLB3VhyBshRQ54ThA3gLf4NfLnyqlChpYjCbGlUpTbWmzuyS6MK1WLEhpiiWH1QHhtSlcpY7+P7jLQ8UYWyYnaLXKtCRfra2UhGVRw7KlTSNTWoqoPifSvbE0frt6rvL0Q5tcEnSrL+arGQ131nntcEPHVhqQqlg2fyLNrYts7qbMX8S5Ith2ePLBRbdiKY2nk2clB93/eFer14/QSLOwY+8OD7f8EjrL+QZnFsFN+zHQxPjNylN8HQRNd6pi1F1QvrhhJj0z5l0ibEBllVyiDTS1GVLfkyHvu8UA1xHcwzSynhlp66qjvPncYY4gOX/fLUxX2kuKMIJPoZ4eZktaXsgsxQzSXs5nc3vDyZHx4EWK8KlTLaEIZddKpSNXObqvkcW1vSt9aFSLFsY9jh2lGpQzPfHc0btN7n4+6T+2OQw/GHJZx60wbrWfXFD2EzJX4K+3yQ/ydsjR7j/hH0myx+gHwh+bcJj2+gqqorjN767cr/STFJ9B7lzTZJHTC5XEh5ubLOSU0x1EbSWZxC8CV8cISJoLHbiEzAAXavYBMiNCES0MghZRDbiBVk4CapQQdDqVz5qqpWXhL5w2jmDQlDyW49GQGWzdYQdIliGouj1pSSLEqJO3YUYO2CvtQ1Wg9cx9Btazg7/Xi+6dyEDdfIgM6FKwg+s/7aUdxnFE98FeJlNiKDgaMdORAXSiLZ4Iuh4Iz1vZiUn1RkS8X4Ek5kn6TxUJIJk3V7kLSNqBmMjaTZ7QdTMvkbxuvANcShS1i/BYOMgAmuyDl5r2NAozGxLE65lCu/8i9eZPf9Jhfz6exdEtk1nPqdjcFLzQe4lgX43ud65a9f3nse/P7DI/thmlFwDT+SnZkATNPmewHGFBwAJsnx3QBDnmUXZMeeSZS/s43lnDUr/ylHI0Ya4mkMVYoSLDCb/QLS7ihxEiEk0sGb2SxHSdeK7mx2tFgUi8XivqbB/WyWrzMf6cYjbzORJBz1mJ7dLYnU5Q4iwGuH+tLZIUjsRoJ7D7juEuU4l3fY5Ini+MOyhLchgvXSmi0lidIAYc1opTxAbbc1RYi3VFIB7ZD6kVDXUi0AGQztpBBbTenXqStLyPPEbigyqlJH5aJcTPrtNPHHvok6981xppBb+9i1bYhSUKlBK7XyufNyP2lD4gb9BOSt9eb+sPCwgh7uWvb/Z0wbmzHTN563Dq2XZp2byWHsop/z8Caqkz6qClU9HNUuClWHxLLjcFhjok/R9b2Ic4VU1eeLQu0wWvF0brbGJvk2qtqgS/Q3/vzpbJz8fobnSI9C9NLadug6+VOFuqT9E3Nlf9EXqiY0FDOVQetYa2p5sv/R5CUd8XbY+P30XPX9X5+XDc0=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find transition ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/transitionID/{inputOrOutputID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the Transition ID associated with a given input our output ID. Input and  output IDs can be found via the associated field elements of an input or output.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"inputOrOutputID","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The transition ID.","content":{"application/json":{"schema":{"type":"string","title":"TransitionIdResponse"}}}},"404":{"description":"Transition not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

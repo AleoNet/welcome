@@ -1,0 +1,64 @@
+---
+id: get-total-supply
+title: "Get total supply"
+description: "Retrieves the latest total supply for the Aleo blockchain.  Note: This is only available for mainnet currently."
+sidebar_label: "Get total supply"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1v2zYQ/1cO7MtmyI6XtQ/z09IuLdK1RZE46IAmGM7U2WJDkSp5dCo4/t+Ho+TETtytxQbsJXqRdeR98KfffcgrVVLUwTRsvFMTdUocDC0pAlcEFpkiA3tGCzE1jW1h7kNeO7LkYWa9vtIVGjcCeOeZJjCtTAQTwTvbAi7RWJxZymo1GueIQacQyLFtR3DhVKF8QwElgJNSTdSCeCoOz7I/VSjGRVSTj6oXXBYqUGy8ixTVZKUOx2O57Z5juh1yiYyqUNo7JseyGZvGGp19HnyKorFSUVdUo/zitiE1UX72iTSrQjVBImTT+cto/NmZ3tptHNOCgloXqiRtarRx32q+CvV0X9DPsYRT+pwE8yGcuCVaU4JxTeICarRzH2oqocGANTGFWEDeks8BFIIP8b87Z2TkFF/4kvafkk1NkbFutpYjB+MWqlASKrKaqBKZhrJVVBrk6uHudaFq4sqXX1mKERe0Zy3HwFZEx3L2054VagPx04cQv/MML31yJQzhlKJPQRM4zzAX4SN4t+AdHj4E79w1wWsxKRl97NhwC0N4nqJxFCNYvzD6kZJ/h+ov+0qVh7fo2k3qR6EmMoE1teEu9kf8Mn7P9lXNE8cUHFo4o7CkAFkRhnCkOUkP6KQdFQtIjr40pJlKmKOxKdAjP7fw/fkhvgKr0QTn7q6bD2FKdeMDhjYDLOsmxkQRfnC+JIit08YtCpgTcgoE6U77x0fAO8C3jMrUozbO1QHvDEAdhWUGWqkUrJqoirmJk4MDbMyIvjTWBwqjJvil4DvSvj5YHh7045Yq7r3Qt/0YdvT+BI5d2XjjWK2L77Itc+E+29NO/q9sa3QY2gemX2TxPcuXgo5OwXB7JpzpaPHpmrfehTgVFPO6mqgZYaCgiv7Hyw0NXn+YPnD6+sMU2F+RywMsJq7Icc/WzJY+9qPG/E7b4yB2gkIZMVMRltmlwxzCH8P3veLw6P3JsNu561nOeUXdvL3ZvMm1mIll3NzvaScV3e0XIyZCSdEsHJXAHiRiUxKkSCHCteEKUEtTl8U9gz1wFXxaVHB6fDadJwvUgy+fCMiA1vpr8I5E/3Oi0GYrjvjah6scfjYGlpZkQYIWvI13BXBAF1HLQ+yfTP+AroTaBxrBb6InSR9BowPCaGwLkuQBNUNpAmm2bXeUHPwm4pnnCkL3RWPcIn8HAEa4JmvlPgseS41RmuxOLKMLd+GePMnwPcdIcH76JorsBo7d0gTvanIMcCML8K3XzYW7Ge5c9x7/4RJ92E5euIHvKQQ5ANjO0G810Gd7Z2ArD7/ZQJfSGYIMbJ5v3vTzjcjOMxsxUMennqoUhCwwGDyDsBmOGgoQSXtXDgaZJamRvYPBT+NxMR6Pd3eW2A4G+XXujFRwbayFGQEJHTWVnaXbIGLK/UYMzyzqK2s6kpi5kLsFnKVImedy93PwKQgiI3jpAxj3OZlgKApLPfgZo3GiXplFRQHCbSixgMaSMCwQ6gp8YkCGkpabTP91G8r+e1maQZfsh6PxaKzuesx24vddFnWuhX3hkbcmfcUHqd1Uo5Gy/DV/ucw0PnKNbsvIK9r9T+B+7Vrdtff/5w+FvgYzfeGDxqLJpTp3oFXfYj+q7RZ7WajKRxbxajXDSOfBrtcizgVNTT5eFmqJwYhneVoXm5IuPflKKr860poaQXWJNnUt4N5gI93qtuG/Op6q9fovkv4Rzw==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get total supply"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/totalSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest total supply for the Aleo blockchain.  Note: This is only available for mainnet currently. 
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Total supply data","content":{"application/json":{"schema":{"type":"object","properties":{"total_supply":{"type":"integer"},"decimals":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

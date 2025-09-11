@@ -1,0 +1,64 @@
+---
+id: get-latest-committee
+title: "Get latest committee"
+description: "Retrieves the latest committee from the Aleo blockchain.  The committee represents the Validator set at this given point in time."
+sidebar_label: "Get latest committee"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v20gM/SvE7M1QbadoLzptt5stCnSBIv241EFAS7Q1zWhGJSmnhpP/vuDITpTERVPsHlYXWyPOm0cOH8mdU1yLK7+416ltvSqROy9cTVKx79Sn6Ep3RsqeNiSgDUFAJVGoDvaw4tTmL68CJViGVF1WDfo4BfjY0MiQqWMSijoAfcbga9TEIKSACtp4gbXfUIQu+ajgI6hvabqIrnCpI0Zj9LZ2pVuTvstE7ngXjkm6FIXElTv3fD63n/uuGKFVH8KIVVp+pcr8iYo++rgevPSikFawOZCUAkTxkmrANvVRC4BlirXZi6JSARjrAVbEpwiMumdu0BTV2GDXBV9lN2ZfxSjtnFQNtWj/dNuRK93AyBWuY3Na/eCQr0c2ouzj2t0UThRZfVxfcOrj2MRHpTWx2bTULonl52dgXTPJ2BCZcesK55XaJwDkGB0nkTqKF6vEFzUFWuNwI7eGy5QCYTTDuyBeWBCPoeWncJoUw8UPzzQLr8HWbtPkbJ8jbkB4MX/xOEtujSEmhVWO6392jZYtvbxO9Q/CZBkvim33+LYLt0rcorrS1aj0zExtS4faHM2NlrRJx9OmJRFc05Fvo6idMid+ELGXx3T1gXhDDGT2GeFwsgnVHRi62a3sZkMZcYWTvNVq0M71HFzpGtVOytkMOz+l711ITDztOG1wGWhapXa2OZm16GPM2PeZ/D2sw6v3b+E01rmQuJvil7CN2THsj8P6v8KuMCJvH0G/zssPkM8L5+MqPQ53WZZXyFasFvEzca43J3mzF0i9WnbUuSBd+RBgSVBb7a3ysqQUp/A+EApB69emMdAEm+ewSgxtYgLac5AM4lvzgmo4FFioUk0yXcSyLBfRiur7vZsHEjWJX0eqDdg2+5qgF2KBK68NYFWRiH080jhAG079uoGz0w8fV30YsdEGFTCEdAUpZtbfeuJtRomkV4kvsxMZDAJtKICF0FTjUyxAGaNgZS+yf/P7F/PUnJ/Cn7bPNCtQYQRC8WELplHGSqH2TJWG7eBKJn9gvEzaAA/90lpDjYqAAlcUgv0uOWFdoWjuMyMu00VcxN9+y+H7wy7m09k7sbVrOI0bzym2FBXg2j7AU5/rRbx+du958PqTx/bDWFFwDb+izkwAxrJ5KsBeggPASBxPBhh0lkOQA3tmWf7Ot16zahbxU85GZBryaZ+qxJYsMJm8BKZvPYmKLYJQlWI9meQs6TuznUxO5vNiPp/ft6xxO5nk68xHhv2Rt0okS8dqL8/+loT0wxyipgSsLm0AsW1+Zcm9BVz2QjnP7TetIPVsEZnCX4nBx2+9Z09iWZogLQ+zTOPXDXEeRgYqUkA3SJ8Jq8aqhc1eNW2sEPuK5PdxKKeQR5jNUGRc6U6m8+nc3bWIsfD3TRKr3CQjtmZgt/ah77rEVlCpRW+18kfn5ebRJdEW4wjkDemjwfNhDd3ddej/yci6b6xK33XWBfR5usm9YrfviF/c2J19TzwvXJNE7etut0ShTxxubmw5FztXfjkv3AbZW9Ds7aZwDWFNnJvoJW0t7FVFnUV8g6HPg9zDmcXay22bfnP60d3c/AMDLjDZ
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get latest committee"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/committee/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest committee from the Aleo blockchain.  The committee represents the Validator set at this given point in time.
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The full committee object containing the list of validators, staked amount,  bonding state, and commission rate.\n","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"starting_round":{"type":"integer"},"members":{"type":"object","properties":{"address":{"type":"array","items":{"type":"object","properties":{"stake":{"type":"integer"},"open_for_delegation":{"type":"boolean"},"commission_rate":{"type":"integer"}}}}}},"total_stake":{"type":"integer"}},"title":"CommitteeResponse"}}}},"404":{"description":"Committee not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

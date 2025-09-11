@@ -1,0 +1,63 @@
+---
+id: get-node-address
+title: "Get node address"
+description: "Returns the address of the current node, requires JWT authentication."
+sidebar_label: "Get node address"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yKXVUI+6yaE61UmdjNOkk7HlSWdsH1bgSkQMAgywlMOR+d87C1KyZCtt0vZoXiiAi28XH/YFrVVOUQdTsfFOTdUZcR1cBC4IMM8DxQh+kYa6DoEcg/M5ZRDoc20CRXj7cQZYc0GOjUaBGalMMS6jml6q98TB6KiuMxVJ18Fwo6aXa/XpltX08rq9zlSgWHkXKarpWh1NJvLaN+oPn2+tUZnS3jE5FjmsKttrHX+KIrxWURdUovzipiI1VZGDcUvVtm2bqeeHFLzEHM7oc02RYQinboXW5GBcVXMGJdqFDyXlUGHAkphCzCCJJMVAIfjwbwzz80+kWWWqCr6iwKbjIDJyHV/5nHZkjWNaUlBtptiUFBnL6vEeMyWmIqupypFpKKKypEIuDjCSqZK48PlXPsWISzpEpNjAVqZOZO9n/QluKX5+6AwZXvva5TCEM4q+DprAeYaFTD6RtyXv6OgxeReuCl4L5NwSnDg23MAQXtbROIlQ65dGP7nk37H6y2NWZ97De3TNJvSjuCYygTWl4c72J/4Sfy8OZc1TxxQcWjinsKIAaSEM4VhzjRZiN9u5Yga1oy8VaaYcFmhsHejJP3f4/fkxv0Kr0QQXDldobIr9IcyorHzA0CSC5buJsaYIP0hhhtg4bdwygwUh14Ggvl/94xPhHeE7oGpJaXdJuRoLh+P7VqPz4ZhaljpYNVUFcxWn4zFWZkRfKusDhVEV/EoIHmlfjldH4xKNcwl3/0Tfd/Nw/OEUTlxeeeNYtdl3YTNFPoQ96+b/E7ZGh6F5BP0qTT9A3unozsVpOr9Ifd32MESpsJi+q6maEwYKKut/vN74wduPs0dKpa9kf0MOFj486DCTu/S2H1fmd2p2lGI3kSkjMAVhnlQ6TCb8OfzQLxwefzgddpL7mmWfN9QkvRvhTbDF5FnGLfyBelLQvbyAmAg5RbN0lAN7EItNTlBHChFuDReAWqq6fJQO+9iSh7n1+kYXaBxwEXy9LODs5Hy2qC1QT76058iA1vpb8I5k/eeaQpNQHPGtDzfJ/AQGllZkQYwWvo13GXBAF1HLIPYj0w/Q5VD6QCP4TdZJ1EfQ6IAwGtuARHlAzZCbQJpt020lGb+xeO65gCC9P62MW0KOjIARbslaec+Dx1xjlCq7Z8voyl25Z88SfS8xElycvYsydwcnbmWCd6XcQeBOPsC3PndX7m649zwY/sMj62E3eOEOvicRJANgN0K/FaCP9g5gJw6/GaAL6URBIjY1OO/6BkfmLpI3YqDOn3pXpSDOAoPBi3TTS91RRQEiae/ywSB5SV2J7GDw02SSTSaTfckcm8EgHedeTwW3xlqYE5C4o6a8Q9oaEetUcAR4blHfWNM5iUmX0AZwXkdKfi5vvwBfB2FkBK99AOPkVmooipd68HNG42R5YZYFBQhbU2IGlSXxsECoC/A1AzLktNpE+q+7VI7gyqlMSTHogv1oNBlN1H2R2Q38vsyiTrmwTzxyaud1VfkguZtKNJKWv6YvpZnKRy7R7YC8oe7+vXMb3stB6/v6/v9d5bu0yvSFx5VFk7JvKirrvmxeKgFSmdpYdZ2pwke54av1eo6RLoJtW5lOaUpu/plaYTCy3fQ/QLZJ1FJpbySfq2OtqRKuVmjrLrE/6FekBm3r+JsTqSFi/k4teFBwEvqmTLhmB3u97iRmUnHaVmW9EakCqfa6bdu/AIo876U=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get node address"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/node/address"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the address of the current node, requires JWT authentication.
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Node address","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
