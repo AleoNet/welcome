@@ -178,12 +178,6 @@ const sidebar: SidebarsConfig = {
           label: "Get delegators by validator",
           className: "api-method get",
         },
-        {
-          type: "doc",
-          id: "apis/v2/get-consensus-version",
-          label: "Get consensus version",
-          className: "api-method get",
-        },
       ],
     },
     {
@@ -346,6 +340,22 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "apis/v2/get-all-peer-metrics",
           label: "Get all peer metrics",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Network",
+      link: {
+        type: "doc",
+        id: "apis/v2/network",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "apis/v2/get-consensus-version",
+          label: "Get consensus version",
           className: "api-method get",
         },
       ],

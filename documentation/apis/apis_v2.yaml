@@ -57,6 +57,9 @@ tags:
   - name: Metrics
     description: Metrics and analytics endpoints
     x-displayName: Metrics
+  - name: Network
+    description: Network-related endpoints
+    x-displayName: Network
   - name: Programs
     description: Program-related endpoints
     x-displayName: Program
@@ -1718,7 +1721,7 @@ paths:
       summary: Get consensus version
       description: Returns the current consensus version
       tags:
-        - Committee
+        - Network
       responses:
         '200':
           description: Consensus version
