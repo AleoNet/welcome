@@ -1,0 +1,71 @@
+---
+id: create-database-backup
+title: "Create database backup"
+description: "Creates a backup of the database at the specified path, requires JWT authentication."
+sidebar_label: "Create database backup"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIIK1l1m0N1qpM6gNOkNfxACthGMeKOtIy55IYcyhHk/e/FcFe2ZDlp0qI367LiYx78OMNvyJUqKepgGjbeqYl6HQiZIiBMUV+nBvwMuCIokXGKkQA5t2ND2swMldAgVwUE+pRMoAhvP5wBJq7IsdEoWkeqUIzzqCYX6j1xMDqqq0JF0ikYXqrJxUp9vGE1ubhqrwrVYMCamELMIw5rUhMlVlShjPj4KVFYqkL1Nks14ZCoUFFXVKOarBQvGxGKHIybq1bUBoqNd5GijO+Px/LZXvqrbsE6I1BCTFpTjLNkrRjT3jE5FjFsGtuvbe9jFNnVrm0//UiaVdu2baF+etxeCSf0KVFkGMKRW6A1JRjXJC6gRjvzoc74rvEoIE/JhoFC8CH+e8cK1QTfUGDTQRIZOcXXvqSNucYxzSmotlBsaoqMdbOLb6HEVWQ1USUyDWWqiOQ9292NQtXElS+/MBQjzumxTRQf2ErXoaz9pN/QO4h/2oX4d8/wxidXwhBOKPoUNIHzDDPpfALvDrz9/V3wzl0TvKQATi3BoWPDSxjCqxSNoxjB+rnRTyH5NVR/3kX1zHt4j265Tv0ooYlMYE1tuPP9Cb+M38vHTs0jxxQcWjilsKAAWRCGcKA5oYXY9XahWEBy9LkhLef5DI1NgZ7icwPfH3fxFViNJjh3uEBjc+4P4YzqxgcMywywjJsYE0V47nxJEJdOGzcvYEbIKRCke+kXT4B3gG8oVY2PeXnZutorp3915ZaSukgiuCt+UrBqoirmJk729rAxI/rcWB8ojJrgFwLvSPt6b7G/V6NxjkTp9n6+7/rh4PgIDl3ZeONYtcV36WaK/Jjus67/P+nW6DBXcw/q0Nz9QPNG1XgqIdNFRa4d77ZCjKq+FpT2lDBQUEX/5806Ct5+ONsxKrUr+2tyMPPhQRWbg6X3/aAxv9Fywyh2HX19WhGW2WRfu/45PO4FhwfHR8Nu5rZlWec1LbPd9eR1qsUcV8bN/CNsUtH9fFFiIpQUzdxRCexBPDYlQYoUItwYrgBzWSuDUscfWPIwtV5f6wqNA66CT/MKTg5Pz2bJAvXgR+AKGdBafwPekcjnOjxrccQ3Plxn97MysLQgC+K04G28K4ADuohaGrFvmb6BroTaBxrBryInOR9BowPCaOwSJMcDaobSBNJsl91SsvNrj6eeKwhyv6CFcfN8YwGMcEPWyncaPJYao3Dsli+jS3fpnj3L8L2SK875ybsofbdw6BYmeFeTY4BbGYBv/d1eutvh1u9B8x9+Ig+byQu38D0HQXYANjP0WxX02d4p2MjDb1bQpXSGIAOby5t3fXkjfec5GjFQF099qFKQYIHB4GW+TebaqKEAkbR35WCQoyQ1Mncw+GE8Lsbj8fbMEpeDQd7OrYoKboy1MCUgCUdNZafpzomYMt2I4qlFfW1NFyQmX32XgNMUKce5fP0MfAqCyAje+ADGyS3UUJQo9eCnjMaJeGXmFQUId67EAhpLEmGBUFfgE8t1uqTFOtN/2YRyBJdOFUrIoEv2/dF4NFb3FLOZ+D3Jos5nYX/wyK6dpqbxQc5uqtHIsfwle/mYEWKq0W0o6V4E7h8A7ohq6yRa3XP8//aG0J21TJ95r7Fo8pGcmWbVE+mFuifSq0JVQrKTC7VaidXzYNtWurvnA6HX0uS7TakmM7SRvrKk5yf9W8ML+JIn18II63eKBdokUzJnLTAYsZNfOIo1PYgDncyB1tTwhtROjSRa7mqH4z9OhboEoA0KesBzWf2andxyQ/lq1c04E6JrW7X2PBOfaq/atv0bIkg/vg==
+sidebar_class_name: "post api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create database backup"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/db_backup"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Creates a backup of the database at the specified path, requires JWT authentication.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"path","in":"query","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Backup created successfully","content":{"application/json":{"schema":{"type":"object"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

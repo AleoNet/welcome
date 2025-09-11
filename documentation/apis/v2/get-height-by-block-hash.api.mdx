@@ -1,0 +1,71 @@
+---
+id: get-height-by-block-hash
+title: "Get height by block hash"
+description: "Returns the block height for the specified block hash"
+sidebar_label: "Get height by block hash"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yCXRUI+6yaE61U6dxGnTyfgx6UziwwpciYhBgAEWcjiy/ntnQcqWIidN2h7Ni4TFvvBhX+RKlRR1MA0b79RUnRKn4CJwRTCzXl9BRWZRMcx9yMTYkDZzQ+VmG2OlCuUbCig6Tko1VQviV1nsqD0SrlcdE+Miqul7lWlRXRaqwYA1MQWhr5TDmtRU9TqNONQgy/9An5IJVKoph0SFirqiGtV0pbhtRCZyMG6h1utLYY6Nd5Gi7B9MJvKze8yjraOpQmnvmBwLHzaNNTofZfwxCvNq35iffSQtgk2Qg7PpTPX67viMY1pQUOv8FOrpvb5gCaf0KVFkGMKJW6I1JRjXJC6gRjv3oaYS7qAqILNkH4FC8CH+f2eIjJzic1/SfecoFJuaImPd7GNfKHEVWU1ViUxDYRWRfIX7N1Womrjy5Ve2YsQF3XfB4gNbIR3L2U/7y1YbiJ/uQ/ynZ3jhkythCKcUfQqawHmJ6uTKB/BuwTs42AfvwjXBa1E5swTHjg23MISjFI2jGMH6hdEPIfktVH/ZR/Xce3iDrt2kfpTQRCawpjbc+f6AX8bv2X1V88QxBYcWzigsKUAWhCEcak5oIXbULhQLSI4+N6SZSpijsSnQQ3xu4fvzPr4Cq9EEFw6XaGzO/SGcU934gKHNAMu+iTFRhMfOlwSxddq4RQFzQk6BIN1JP3kAvAN8S6kMSmpjXI3zRBXHc+PKcdXPTzI6jVcyEa1Vobqw7oalFKzMSsxNnI7H2JgRfW6sDxRGTfBLwXykfT1eHoxrNM5lU7uX/Kajw+HbEzh2ZeONY7Uufkg3U+T7dJ939P+kW6PD0O6pfp7JX2i+FHR0CobbM4mjLlQ+Xm/PY2JU9cOjrGeEgYIq+j8vNqHx+t35ntHX786B/RW5PApj4ooc9xGcI6j3/bAxv1O7ZRQ7Qj/PVoRlNtnPun8N3/aCw8O3J8OOc9eynPOK2mx3w7zJv5iDzbi5v6fFVHTHL0pMhJKiWTgqgT2Ix6YkSJFChGvDFaCWRi+bMusfWvLdmK8rNA64Cj4tKjg9PjufJwvUgy+vC8iA1vpr8I5E/lOi0GYtjvjah6vsfvfOYGlJFsRpwdt4VwAHdBG1LGK/Mv0CXQm1DzSC30ROCkEEjQ4Io7EtSOIH1AylCaTZtt1RsvMbj2eeKwjEwdDSuAWUyAgY4Zqsld9Z8FhqjNJ4d3wZfXAf3KNHGb4jjAQXp39Eod3AsVua4F1NjgFuZAO+97n54G6GO88Xy394RB62kxdu4EcKQXYAtjP0exX02d4p2MrD71bQpXSGIAObZ54/+plHaBc5GjFQF099qFKQYIHB4BmEzcDUUIBI2rtyMMhRkhrhHQx+mkyKyWSyy1liOxjk69wZs+DaWAszApJw1FR2mm6diCn3IFE8s6ivrOmCxMwluFvAWYqU41x+/Rx8CoLICF74AMbJa6uhKFHqwc8YjRPxyiwqChBuXYkFNJYkwgKhrsAnBmQoabnJ9F+3oRzBB6cKJc2gS/aD0WQ0UXd9Zzvx+86LOtfCvvDIrZ2lpvFBajfVaKQsf81eLjONj1yj21LyknjzgWDW7n4R2KlFq7vW/68/MfTllOkzjxuLJlfd3ExWfQd9r7oOKl3e5Pe67S6qCjXNqi4LVfnIwr9azTDSRbDrtZBz0VLT95eFWmIwcvjcakuTX35KNZ2jjfSNwz0+7T9UPIGvubxpC04q/RJtkpUq1JV0je7bx/pyXWw6hdjvtg61poa3hPZmKGmCt7PFy+NztV7/DVOhLJ8=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get height by block hash"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/find/heightByHash/{hash}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the block height for the specified block hash
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"hash","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Block height","content":{"application/json":{"schema":{"type":"object","properties":{"height":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

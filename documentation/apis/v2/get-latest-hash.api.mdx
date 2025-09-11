@@ -1,0 +1,63 @@
+---
+id: get-latest-hash
+title: "Get latest block hash"
+description: "Retrieves the latest block hash from the Aleo blockchain."
+sidebar_label: "Get latest block hash"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yKXVUI+6yaE6VU6d1GmS8fgx6UzswwpciYhBAAGWcjSy/ntnQcqWLaVNJj2aF4oAdvHh47cPaqVKSjqawMY7NVanxNHQghJwRWCRKTFMrdfXUGGqYBZ9nacmlnw7oSs0bqAK5QNFFD/HpRqrOfHbbP4npkoVinGe1PijOhSbpK4KFSkF7xIlNV6pg9FIbg/RTLa39rNdTHdwNDrvjEa7D5j2jsmx+McQrNEZ5fBTkk1WKumKapRfvAykxspPP5FmVagQ5UxsWoiCYmtV4mjcXK3zVajn+w5wiCWc0udGEPfh2C3QmhKMCw0XUKOd+VhTCQEj1sQUUwF5SQYIFKOP6f87QGLkJr30JW2tNY5pTlGtC8WmpsRYh91TFkqgIquxKpGpL0vFJCDv46RQNXHly69MpYRz2kelYGArQ0dy9tNOIWpD8fNdit97hle+cSX04ZSSb6ImcJ5hJoNP5N2Rd3CwS96FC9FrcTm1BEeODS+hD4dNMo5SAuvnRj9J8t9Y/W2X1XPv4R265Sb0k0gTmcCa2nCL/Ym/zN+LfVnz2DFFhxbOKC4oQjaEPkw0N2ghtaOtFAtoHH0JpJlKmKGxTaQnfW7x++suv0Kr0QQXDhdobI79PpxTHXzEuMwEy7xJqaEEPzlfEqSl08bNC5gRchMJmnvrn58IbwnfcioNkNpsroa5I0nDtnsZVm1P1CpZ2qKVaqJVY1UxhzQeDjGYAX0J1keKgxD9QmgeaF8PFwfDGo1z2fvD9/quHYfJyTEcuTJ441iti+/yLfD2+T5vx3/It0aHcbnj+mUefuT5StjRTTS8PBPptOr4dMNbr0Q2FRbzvBqrKWGkqIrux6uNGt58ON/Z9M2Hc2B/TQ5mPgI2XJHjTrRZNB32STB/0XJrU2wHCmXETUVY5i0dZgh/9086w/7k5LjfrnzU1J4cwzUt876bxZuQS1lfxs38nqpS0f16cWISlJTM3FEJ7EEQm5KgSRQT3BiuALXUdpnc07IDV9E38wpOj87OZ40F6siX3h8Z0Fp/A96R2H9uKC6zF0d84+N1ht824ZYWZEFAC9/GuwI4okuo5SF1T6Z7QFdC7SMN4A+xk9hP0r4DYTJ2CRLrETVDaSJptsv2KBn8BvHUcwWx/VQxbg4lMgImuCFr5T6NHkuNSWrtAyyDS3fpnj3L9B1iIrg4fZtk7BaO3MJE72pyDHArE/Ct1+2lu+0/uB49/scl9rAdvHAL35MIMgDYjtBvddBFe+tgKw6/2UEb0pmCTGxuc952bY6MXWQ1YqRWT51UKYpYoNd7AXHTIwWKkEh7V/Z6WSVNkLW93i+jUTEajR6uLHHZ6+XX+aCzghtjLUwJSOSoqWw93YFITS474nhqUV9b04rE5I/LJeC0SZR1Lnc/A99EYWQAr3wE4z43JhpKolIPfsponJhXZl5RhHgHJRUQLInCIqGuwDcMyFDSYhPpv29TOYBLpwolxaAN9oPBaDBS96VmO/C7Yos658Iu8chbO2tC8FFyN9VoJC1/bb+cZoJPXKPbcvKaePeb/3ECW92X+h/6u6DLp0xfeBgsmpx2czVZdVXzo2qrpipU61oV7Uf4VaEqn1hWrFZTTHQR7XotwzlPqfHHq0ItMBo5rzyti02mllJ7LQldTbSmIC4XaJs2sz9qW6QI3ZXz10fnar3+B1iH8ew=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get latest block hash"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/latest/hash"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest block hash from the Aleo blockchain.
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A block hash of the latest block from the canonical Aleo blockchain.","content":{"application/json":{"schema":{"type":"object","properties":{"hash":{"type":"string"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

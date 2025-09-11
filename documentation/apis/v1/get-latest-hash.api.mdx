@@ -1,0 +1,63 @@
+---
+id: get-latest-hash
+title: "Get latest block hash"
+description: "Retrieves the latest block hash from the Aleo blockchain."
+sidebar_label: "Get latest block hash"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVktz2zgM/isY9uZRbafTXnTatpvtdiY7k8ljL3UOMAVbbChSISCnHkf/vQNKSZ04nU23ukgEgQ8fQTy0M4JrNuUX88FHe83mqjAVsU2uFReDKc0ZSXK0IQapCTwKscBSlaFGrmGVYpO33nuKw4at0YWpKUxsKaHifK5MadYkJ9n8b+TaFCYRtzEwsSl35s18rq/Hvt/vO4qrQwYPzi2GGJxF/xwNG4NQEMXHtvXOZk6zr6xOdoZtTQ3ql2xbMqVhSS6sTWHEiVeBEj4b2Zq+7/vCvJ2/PeSbYwghCqxiF6r/4Touv5IVU5g2afDEDdFhQen4Y6xoT9cFoTUl0yvRhliwaZ87xSqmBsWUpkKh16qqJi1KfajdF6YhqWP1ky1mXNMze/2PYB2nFNOTaL177nbPKW0oAal+Rrj3rJli7hmaWb7MmebAbLh8UxjOtpq4O9Mlb0pTi7RczmbYuil9a31MlKZtihtcepra2Mw2R7MGXQgZ/DGVfwY5vD/9DMehaqMLYvril7CV2XPYF4P8t7AtBkzbA+iPWfwE+aowLqziYbzLsrzFFFxYL8K/lNjFAEfZ2DHETjQ9KsBQwa3zHpYEFbWJbBZzjGEKp56QCRq3TigEEmHzBlYxQRMTAY0cOIO4Rk9BFdzXOdhYEU8XoSzLRbioCU7HY96TqIjdOlClwGrsKoKOKTHcOqkBrSVm3Xym34DUKXbrGs6Ozy9Wnd9jIzUKoPfxFmLIrG86StuMEkhuY7rOhxh6iqcNedAQatm4GAqQhIHR6oLHlRsXelI9/BT+VDstWtZuBITs/Ba0SBNagcolsuK3w1Ey+XvGyyg1pKHPurCGCgUBGW7Je30vU8TKIotu7nOZLsIivHqVw/dBL+by7IRVdgfHYeNSDA0FAbjTDXjpc7cId68fPU+W//GoPexXFNzBr1RnJgD7ZfNSgLEEB4C94ngxwFBnOQQ5sGea5SeucZKrZhEuczZioiGfxlSlpMkCk8k7SHTTEQurEJhsDNVkkrOka1V3Mjmaz4v5fP5Ys8LtZJKvM7v0o8uHSiRNRzuWZ/dAgrs8LxR46dFeezckicuzcgu47Jhynus7riB2SSMyhb9iAhduOpccsWZphLgUdNoeoHbrmhKkBypcQDuUfiK0tXYLQIGKNtqInSX+Yz+UU1gEU5jN0GRMaY6m8+l8b6DuF/44JdHmKRmwUQW9tfOubWPShkoNOu2VP/OXp0cbWRoMeyCfSA5/WJ420d2PGf1b/zrjQBT6JrPWows6MHOL342T7IvJFqYwI49xml0Vpo4sqrDbLZHpMvm+V3FuU6b8clWYDSanx9VVX5iasKKUx981bTVg1lKrsdqg75TIwe+GDoaHCfvp+ML0/Xedl2+B
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get latest block hash"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/block/hash/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest block hash from the Aleo blockchain.
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A block hash of the latest block from the canonical Aleo blockchain.","content":{"application/json":{"schema":{"type":"string","title":"HashResponse"}}}},"404":{"description":"Block not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

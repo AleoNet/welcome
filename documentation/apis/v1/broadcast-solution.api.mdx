@@ -1,0 +1,71 @@
+---
+id: broadcast-solution
+title: "Broadcast solution"
+description: "Broadcasts a solution to the network"
+sidebar_label: "Broadcast solution"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVk1vGzkM/SuEejOmtlNgL3PaZJsFCnSxQT72EhsBLTEeNRppSmnsGI7/+4KasTNu0m2C1cFjURRFUo982ipDUbNtkg1eleqMAxqNMUVAiMG1IocUIFUEntI68IMqVMJlVOWtuuo1opoXiul7SzGdBbNR5TZPLZNRZeKWCqWDT+STLGHTOKtRdk6+RTl4q6KuqEb5lzYNqVKFxTfSSRWq4dAQJ0tRVhvkZNHd7Z379Y695p01A+WY2Pql2hWKmqCruwpj9eoyGsMU46trOrQ+EQ/WrE+0JFa73U7SxEtKr64Wg/zcvgzqsHe+23XKsQk+dgF9mk7lc3xz+6uAL5/V+5O9D6k7raZUBaNK1YSY84mpUqWa7N2bLPYwUYWKxCtigcNWtexUqaqUmlhOJtjYMT02LjDxuOGwwoWjsQ71ZHUyqdF6T2LgOI6/OjmcXnyBc2+aYH1Su+JdthPF9Jrt607+v2xr9MibF6b/yOIfLM8LJRm/fC6M80esG0c/A/IRVPeXcozQZ+kBmM+iAx6nA/TJf+vvw0vMlGW5RvbWL2f+H+Io8DnJMdgIoU0GExlAb2BtnYMFgaGGSWdxDMGP4cIRRoLaLhkTSadYfYL7wFAHJqA+FTEbsbUkkwzs0Qw6GIrjmS/LcuavK4KLPtt7JwxFu/RkxLBstoagjcQR1jZVgFpTjPv+dOoowMIF/aArtB5SxaFdVnB5fnV937qBN6nCBOhcWEPw2evvLfFm2OVyENkYOFqRA0kh17mOCkiMPqLOva+f2X4ikUrwY/gs+6QTRdDogTBatwHpAYw6gbFMOrlNF0p2fu/xIqQKmBJbWlm/BIMJASOsyTn5HupPFoe+jGd+5j98yOk7k4u5ufwaRfYE535lOfiafAJ4kgV463ia+aePR+OH6S+G7IdhYcMTvKdJZAdgWL1vNdB3gs7AoEbfbKAr95yCnNhLQflXW9uUq2bmbzIakanDUw9VYgELjEa/QU+LUYQQSQdvRqOMkrYR3dHoZDotptPpsabBzWiUrzMf6fojD5VIAkfdl2d7cCK2mQTF8MKhfnC2A4m9F3BvABdtpIxz+YZ7CC1LRsbwZ2CwXjjJUhSUBgiLhFbaA1R2WREDH1yJBTRd6TOhrqRbACYwtBI+sJri78NUjmEmpLbqmowq1cl4Op4Kzdkk7VANC7/nL9SZvzzWoiC3dtU2TWDp61SjlZb9s/Mywwp71egHRg7PGxgw7VFP3D5T55sfQx2FJnpMk8ah9fIyyIyy7ZnzVg2Oe+bOeaEqIdjyVm23C4x0w263E3HuRqq8nRdqhWwlKpntClURGmnwt1v1QBshns7dj9fihai7Vrx5wfpCc92OU62pSf+pOx+8AS7+vroWt/tnXR2M7GFcqyL/lkoVKjTdM1DefSLbKod+2eJSdDubMv4FYLecmA==
+sidebar_class_name: "post api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Broadcast solution"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/solution/broadcast"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Broadcasts a solution to the network
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"partial_solution":{"type":"object","properties":{"solution_id":{"type":"string"},"epoch_hash":{"type":"string"},"address":{"type":"string"},"counter":{"type":"integer"}}},"target":{"type":"integer"}},"required":["partial_solution","target"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Solution ID","content":{"application/json":{"schema":{"type":"string"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,63 @@
+---
+id: get-latest-height
+title: "Get latest block height"
+description: "Retrieves the latest block height from the Aleo blockchain."
+sidebar_label: "Get latest block height"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yKXVUI+6yaE61U6d1GnSyfgx6UzswwpciYhBAAGWcjiy/ntnQcqRbCVNJj2aF4oAdvHh47cPaqVKSjqawMY7NVWnxNHQkhJwRWCRKTHMrNfXUJFZVAzz6Os8eWjJd1O6QuNGqlA+UETxdFKqqVoQv84O/syWqlCMi6Sm79WRWCV1VahIKXiXKKnpSh1MJnLbRXS+H0cBZkQjYBPAzyEjKCD26MuvotTeMTmWrTAEa3SGPP6QZL+VSrqiGuUXt4HUVPnZB9ICP0Q5IJsObYdja51xTAuKap2vQj3dd5wjLOGUPjZyniGcuCVaU4JxoeECarRzH2sqIWDEmphiKiAvyRiBYvQx/X9nSIzcpOe+pH3nKBSbmhJjHbamE0fjFqpQAhVZTVWJTENZKiYBuXq4el2omrjy5RemUsIF7ZnLGNjK0LGc/bTXi9pQ/PQhxX97hhe+cSUM4ZSSb6ImcJ5hLoOP5N2Rd3DwkLwLF6LX4nJmCY4dG25hCEdNMo5SAusXRj9K8mus/rYniXkPb9C1m9BPIk1kAmtqwx32R/4yf8/2Zc0TxxQdWjijuKQI2RCGcKi5QQupG+2kWEDj6FMgzVIH0Ngm0qM+t/j99SG/QqvRBBcOl2hsjv0hnFMdfMTYZoJl3qTUUIKfnC8JUuu0cYsC5oTcRILms/XPj4R3hG85lYZIbTZX49yUpHHX24yrTY/UaVnapJVqolVTVTGHNB2PMZgRfQrWR4qjEP1SiB5pX4+XB+MajXPZ/+6bfdONw+HbEzh2ZfDGsVoX3+VbAO7zfd6N/5BvjQ5j+8D18zx8z/OVsKObaLg9E/F0+vhws92EyabCYp5XUzUjjBRV0f94sdHDq3fnDzZ99e4c2F+Tg7mPgA1X5LiXbZZNj/0wmL+o3doUu4FCGXFTEZZ5S4cZwj/Dt73h8PDtybBbubuznPOa2rzvZvEm6FJWmHFzv785vlsvTkyCkpJZOCqBPQhiUxI0iWKCG8MVoJbqLpN72mPgKvpmUcHp8dn5vLFAPfnyPYAMaK2/Ae9I7D82FNvsxRHf+Hid4XdNuqUlWRDQwrfxrgCO6BJqeUj9k+kf0JVQ+0gj+EPsJPoTaHRAmIxtQaI9omYoTSTNtu2OksFvEM88V5sPAOMWUCIjYIIbslbus+ix1Jik2u5gGV26S/fkSabvCBPBxenrJGO3cOyWJnpXk2OAW5mAb71uL93tcOe69/gfl9jDdvDCLXxPIsgAYDtCv9VBH+2dg604/GYHXUhnCjKxudF53Tc6MnaR1YiROj31UqUoYoHB4BnETZcUKEIi7V05GGSVNEHWDga/TCbFZDLZXVliOxjk17nTW8GNsRZmBCRy1FR2nu5ApCYXHnE8s6ivrelEYuYi7hZw1iTKOpe7n4NvojAyghc+gnEfGxMNJVGpBz9jNE7MK7OoKEK8g5IKCJZEYZFQV+AbBmQoabmJ9N+3qRzBpVOFkmLQBfvBaDKaqM/FZjvw+3KLOufCPvHIWztrQvBRcjfVaCQtf2m/nGaCT1yj23Lyknjf9/f9FLb6XO5/8E+EPqcyfeJxsGhy6s0VZdXXzveqq52qUJ1zVWy+xq8KVfnEsma1mmGii2jXaxnO2UpN318VaonRyKnlaV1s8rUU3GtJ6+pQawridIm26fL7vfZFStFdWX95fK7W638Buwv7kw==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get latest block height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/latest/height"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest block height from the Aleo blockchain.
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.","content":{"application/json":{"schema":{"type":"object","properties":{"height":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

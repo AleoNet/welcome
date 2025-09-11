@@ -1,0 +1,63 @@
+---
+id: get-apy-last-24-hours
+title: "Get apy last 24 hours"
+description: "Returns last 24 hours APY data"
+sidebar_label: "Get apy last 24 hours"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01z2zYQ/Ss7yKXVUB91k0N1qpM6GadJx+OPSTuxDytwJSIGAQRYyubI+u+dBSlbsp3Waa/mhcIC+7B4fLsLrVRJSUcT2HinpuqYuIkugcXEsPcSKt/EBPtHf0GJjKpQjIukpp/VR+JodFIXhYqUgneJkpqu1N5kIq9d1A/fQtPeMTkWDwzBGo3iMf6SxG2lkq6oRvnFbSA1VcYxLSiq9Xq9LtTLx/Z6jSUc09eGEsMQDt0SrSnBuNBwATXauY81lRAwYk1MMRWQl+SdgWL0Mf2HyPzsC2lWhQrRB4psOjoSIzfpjS/psVMUik1NibEOW9OJo3ELVSgJFVlNVYlMQ1kqLgG5erh6XaiauPLlN6ZSwgU9MpdjYCumAzn7cf8xbyl++ZDiPzzDW9+4EoZwTMk3URM4zzAX4zN5t+Tt7T0k78yF6LVAzizBgWPDLQzhdZOMo5TA+oXRz5L8J1Z/ecjqqffwEV27Sf0k0kQmsKY23MX+zF/m79VjVfPQMUWHFk4oLilCdoQh7Gtu0ELqrJ0UC2gcXQfSTCXM0dgm0rM+t/j9+SG/QqvRBGcOl2hszv0hnFIdfMTYZoJl3qTUUIIfnC8JUuu0cYsC5oTcRILmzvvHZ8I7wrdA1YLy6fLmalx3V5QxhlYVqpOw3F1WqolWTVXFHNJ0PMZgRnQdrI8URyH6pfA70r4eL/fGNRrnMuzuB/3Y2WH/6BAOXBm8cazWxXdhMyV+DPu0s/8vbI0OY/sA+k0230O+EHZ0Ew23J6KZThZfrnjrW8imwmKeV1M1I4wUVdH/eLuRwftPpw82ff/pFNhfkoO5j4ANV+S4V2tWSx/7fjC/U7u1KXaGQhmBqQjLvKXDHMKfw6Pecbh/dDjsVu7uLOe8pDbvu1m8ybWUhWXc3D/STiq6Wy8gJkFJySwclcAeJGJTEjSJYoIrwxWglqYuk1wR7FvyMLNeX+oKjQOuom8WFRwfnJzOGwvUk5+AK2RAa/0VeEfi/7Wh2GYUR3zl42UOP4OBpSVZkKCFb+NdARzRJdQySP3I9AN0JdQ+0gh+Ez9J+gQaHRAmY1uQJI+oGUoTSbNtu6Pk4DcRzzxXECWVaGncIt/cARNckbXynkWPpcYkTXYnltG5O3cvXmT6XmMiODv+kMR2AwduaaJ3NTkGuJEJeOpzc+5uhjvPveG/POIP28kLN/A9hSAHANsZ+lSAPts7gK08fDJAl9KZgkxsvt986O83YjvLasRInZ56qVIUscBg8Ari5nIUKEIi7V05GGSVNEHWDgY/TSbFZDLZXVliOxjkz7lzpYIrYy3MCEjkqKnskG6DSE3uNwI8s6gvrelEYuYi7hZw1iTKOpe3n4NvojAygrc+gnFfGxMNJVGpBz9jNE7cK7OoKEK8DSUVECyJwiKhrsA3DMhQ0nKT6b9uUzmCc6cKJc2gS/a90WQ0UXc9Zjvx+y6LOtfCvvDIVztpQvBRajfVaKQsf2u/XGaCT1yj2wJ5RwwY2t1/2vcL2Oquxz/hr3lXNJmueRwsmlxbc8tY9T3xs+p7oiqUdMWLQlU+sUysVjNMdBbtei3mXIPU9PNFoZYYjZxFRutiU4WljV5KsVb7WlMQIpZom65q37uLSIO57dHvDk7Vev03Kumt5A==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get apy last 24 hours"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/apy"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns last 24 hours APY data
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Last 24 hours APY data","content":{"application/json":{"schema":{"type":"integer"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

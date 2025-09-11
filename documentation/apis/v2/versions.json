@@ -1,0 +1,13 @@
+[
+  {
+    "version": "2.0.0",
+    "label": "v2.0.0",
+    "baseUrl": "/apis/v2/provable-api"
+  },
+  {
+    "version": "1.0.0",
+    "label": "v1.0.0",
+    "baseUrl": "/apis/v1/provable-api",
+    "downloadUrl": "https://raw.githubusercontent.com/AleoNet/welcome/refs/heads/master/documentation/apis/apis_v1.yaml"
+  }
+]

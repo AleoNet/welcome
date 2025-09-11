@@ -1,0 +1,72 @@
+---
+id: get-state-root-at-height
+title: "Get state root at specified height"
+description: "Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes."
+sidebar_label: "Get state root at specified height"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yCXRUI+6yaE61U6d1GnSycj2pDOxDytwJSIGAQZYytHI+u+dBUlZipTUmfbQg3mRuMQudj9++wBXKqeog6nYeKfGakIcDC0oAhcEFpkiQ2RkmnjPMAu+BIRYkTYzo2Fqvb4B79LqY0u+kegCjRvARUFbuqaxWVK4sQRBRH4GaC1UgRbG17E1V2AsKA6unMqUryig+HaWq7GaE5939o75dzLzglWmGOdRjT+qE1GP6jpTFQYsiSmIfKUclqTGqugUjIRaIRcqU4E+1yZQrsYcaspU1AWVqMYrxctKtIxjmlNQ6/W1rI6Vd5GiLDgajeRnF8FN0JsQJWqNzjuj0X6NEiADwtwsyHXhJy8HKlPaOybHsgdWlTU6ITH8FGWj1b6nfvqJtMRXBcGNTePm5hVsLY0cjJurdboy9fxQJCeYw4Q+10KBPpy5BVqTg3FVzRmUaGc+lJTDPdYZpCXJS6AQfIj/bRR1fOlzOvRuMsWmpMhYVvtRZkpcRVZjlSNTX5aKSmLAPiaZKokLn3/jUYw4p0NQig9sRXQqsU9aqqgO4uf7EP/pGV752uXQhwlFXwdN4CTRRPgI3ga8o6N98C5dFbwWk1NLcOrY8BL6cFJH4yhGsH5u9CMlv4fqLwfql/fwDt2yS/0o1JRyZk1puPH9Eb+E34tDVfPMMQWHFs4pLChAUoQ+HGuu0UJspA0VM6gdfalIM+UwQ2PrQI/83ML35318BVajCS4dLtDYlPt9uKCy8gHDMgEsz02MNUV46nxOEJdOGzfPYEbIdSCo77WfPQLeAL5lVCYt1W2uhmkwicPNIDFcNUPKWmWqIXQzZ9XBypjFXMXxcIiVGdCXyvpAYVAFvxC0B9qXw8XRsETjXNpk9/W+a+Rw/P4MTl1eeeNYrbMfsi1D6yHbF438X9nW6DAs90y/TOKvLF8LOroOhpfnwqCGJJ9utwcx2VS1U6fcTwkDBZW1f151pHjz4WJv0zcfLoD9DTmY+QBYc0GOW+4m7rS+H1fmD1pubYqNoB2EC8I8bdmOyX/137eK/eP3Z/1m5e7OEucNLdO+3eIu82KimXEzf3g43qwXIyZCTtHMHeXAHsRjkxPUkUKEW8MFoJYWLw8PnDGAi+DreQGT0/OLWW2BWvDlrCGTtbX+Frwj0f9cU1gmK4741oeb5H4zdFtakAVxWvA23mXAAV1ELTexvTPtDbocSh9oAL+JnpSAKCM+EEZjlyApH1Az5CaQZrtsQknOdx5PPRcQmuOWcXPIkREwwi1ZK7/T4DHXGKXl7vgyuHJX7smTBN8JRoLLydsosjs4dQsTvCvJMcCdPICHXndX7q6/c311+w+X6MN28sId/EghSA7AdoY+1ECb7Y2BrTx8sIEmpRMECdg07bxtpx2RXSY2YqCGTy1VKQhZoNd7AaEblSoKEEl7l/d6iSV1JWt7vZ9Go2w0Gu2uzHHZ66XXuTNgwa2xFqYEJHTUlDeWNk7EOnUfMTy1qG+saUhi0lFzCTitIyWey6+fga+DIDKAVz6AcXLeNRSFpR78lNE4US/MvKAAYeNKzKCyJAwLhLoAX7OcVnNadJn+6zaUA0gndmkGTbIfDUaDkbrvONuJ3/Zc1KkWtoVH3tp5XVU+SO2mEo2U5W/tl8pM5SOX6LaMvCbePn8jd18rKIfNB4CdqrS6b///u+8fbcFm+sLDyqJJdT21q1XbnT+qpjtLE9kc9DM1bmO9zlThI8u61WqKkS6DXa9FnMqhGn+8ztQCgxFYUxPPTTpQ5Wo8QxvpO2A9nbTfTp7Bt1ztGo6THrJAW8udytSN9KPug8z6ep11XUg8aB4ea00Vb6ntTWbSYDcTy+vTC7Ve/w05MIT6
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get state root at specified height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/stateRoot/{height}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"height","in":"path","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The state root of the canonical Aleo blockchain at a given block height.","content":{"application/json":{"schema":{"type":"object","properties":{"stateRoot":{"type":"string"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

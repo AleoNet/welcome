@@ -1,0 +1,71 @@
+---
+id: get-prover-solutions-by-address
+title: "Get prover solutions by address"
+description: "Returns solutions for the specified prover address"
+sidebar_label: "Get prover solutions by address"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yCXRUI+6zaE61UmdjNOk4/Fj0hnbk1mBKxExCDDAUg5H1n/vLEjZVKSkSXo1LxKA3cXi47cPYqVyijqYio13aqpOievgIkRva5mKMPcBuCCIFWkzN5RDFfySAmCeB4pRZYpxEdX0Up2khaiuM1VhwJJYRtPLlXJYkpqqBxUjm1XIhcpUoE+1CZSrKYeaMhV1QSWq6UpxU4la5GDcQq3X1yIcK+8iRVk/mEzkZ/sIrRcPJ1CZ0t4xORZZrCprNMrK+GMUhdXuhhgCNuIlUxl78372kTSrTFXBVxTYtG6YfI+zmZpZr28+FGQWBfcEjGNaUBAJqrwuPhQYi70GtK8dU9i7xhgWxHuXAt1iyPft2D6Z+m0fbi8wh1P6VFNkGMKxW6I1ORhX1ZxBiXbuQylv//7NZpBEEpZAIfjwM1h/BdPIyHV86XPaDx2bkiJjWe1CkClxFVlNVY5MQxEVlUS3fYCVxIXf/w5LihEXtI+M4gNbmTqSs592xFQbiH/bhfhvz/DK1y6HIZxS9HXQBM4zzGXyEbx78A4OdsG7cFXwWkzOLMGRY8MNDOFFHY2jGMH6hdGPlPwWqr/vonruPbxD12xCPwo1kQmsKQ23vj/il/B7vi9rHkuGdmjhjIKUnaQIQzjUXKOF2M62VMygdvS5Is2UwxyNrQM98rOH76+7+AqsRhNcOFyisSn2h3BOZeUDhiYBLOsmxpoiPHU+J4iN08YtMpgTch0I6gftZ4+At4D3jCppJTabq3Hb4MXxfQs1XnWd21plqqV029fVwaqpKpirOB2PsTIj+lxZHyiMxIjgPdK+HC8PxiUa59I22y/4XTsPhyfHcOTyyhvHap39kG2myPtsn7fz/8u2Roeh2TH9Mk1/Yfla0NF1MNycCYdamny87fdpsqnqmlwZzwgDBZV1f15taPHm/fnOpm/enwP7G3KpK8eaC3LcsTexp/P9sDJ/UdNvaNuJru8uCPO0ZdeW/zM86RSHhyfHw1Zye2c55w01ad+N8Cb2YiKacXO/p7wU9CAvRkyEnKJZOMqBffqWMDlBHSlEuDVcAGop8rIonx2HljykTloXaBxwEXy9KOD06Ox8XlugDvwIXCADWutvwTsS/U81hSZZccS3Ptwk95MxsLQkC+K04G28y4ADuog6Mb4bmW6ALofSBxrBn6InSSCCRgeE0dgGJOgDaobcBNJsm/YoyfmNxzPPBQTiYGhp3AJyZASMcEvWyu8seMw1Rim6W76MrtyVe/IkwfcCI8HF6dsoc3dw5JYmeFeSY4A7WYDvfe6u3N1w6/li+B+P6EM/eOEOfiQRJAegH6Hfa6CL9tZALw6/20Ab0gmCBGzqd952/Y7MXSQ2YqCWTx1VKQhZYDB4DmHTLFXypUnau3wwSCypK5EdDH6ZTLLJZLItmWMzGKTXudViwa2xFmYEJHTUlLeW7p2Idao/YnhmUd9Y05LEzIXcDeCsjpR4Lr9+Dr4OgsgIXvkAxsnntaEoLPXgZ4zGiXphFgUFCPeuxAwqS8KwQKgL8DUDMuS03ET6H30oR3DlVKakGLTBfjCajCbqoeb0A7+ruqhTLuwSj7y1s7qqfJDcTSUaSctf2y+lmcpHLtH1jLwm3lxJPNxazJre/cRWSlo9VP+fvO1oUyrTZx5XFk3KvKmgrLoKeqm6Cip5vncNMd0Yuc5U4SOL5Go1w0gXwa7XMp1SlppeXmdqicHI0VOhzU367MnVdI420jfO9PS0u055Bl9zdlMUnOT5JdpaRipTN1Iz7i9p1tfrbFMqxIV29VBrqrint9NASRW8byxeH52r9fpfij5fWg==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get prover solutions by address"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/provers/solutions/{address}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns solutions for the specified prover address
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"address","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Prover solutions","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"block_height":{"type":"integer"},"epoch_hash":{"type":"string"},"counter":{"type":"string"},"target":{"type":"string"},"reward":{"type":"integer"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

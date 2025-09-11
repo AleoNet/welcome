@@ -1,0 +1,63 @@
+---
+id: get-monthly-apy-breakdown
+title: "Get monthly apy breakdown"
+description: "Returns monthly APY breakdown data"
+sidebar_label: "Get monthly apy breakdown"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtzGzcM/isY5tJqVo+6yaE61UmdjNOk4/Fj0k7sA8SFtIy5JENi5ezI+u8dcFe25EfrtFfvZUWQAIFvPwCkVqqkpKMJbLxTU3VM3ESXoPaOK9vC/tFfMIuEl6W/clAioyoU4yKp6Wf1kTgandRFoSKl4F2ipKYrtTeZyGvX8seHLKpCae+YHIsChmCNRlEYf0mitVJJV1Sj/OI2kJoqjBFbVSjDVKctuZ99Ic2qUCH6QJFN50sOZGtZ4mjcQq0LhaHdkhvHtKCo1t1TqJcPBfEaSzimrw0lhiEcuiVaU4JxoeECarRzH2sqIWDEmphiKiAvyTEBxehj+g8xPxJbYuQmvfElPRRIodjUlBjrcD/+QomryGqqSmQaylJRCfgIWjVx5ctHplLCBT0wl31gK6IDif24Z4naQPzyPsR/eIa3vnElDOGYkm+iJnCeYS7CZ/BuwNvbuw/emQvRazE5swQHjg23MITXTTKOUgLrF0Y/U/KfUP3lPqqn3sNHdO0m9ZNQE5nAmtpw5/szfhm/Vw9VzUPHFB1aOKG4pAhZEYawr7lBC6mTdlQsoHH0LZBmKmGOxjaRnvm5he/P9/EVWI0mOHO4RGNz7g/hlOrgI8Y2AyzzJqWGEvzgfEmQWqeNWxQwJ+QmEjS32j8+A94BvmVULShHlzdX47o7+4wxtOP+sKQK1VFZDkcr1USrpqpiDmk6HmMwI/oWrI8URyH6peA80r4eL/fGNRrnsvk7Z6ZODvtHh3DgyuCNY7Uuvss2U+KHbJ928v9lW6PD2N4z/SaL71i+EHR0Ew23J8Kdjh5frnjrm8imgmKeV1M1I4wUVdH/eLuhw/tPp/c2ff/pFNhfkoO5j4ANV+S4Z21mTe/7fjC/0/bJDztBoYyYqQjLvKXD7MKfw6Necbh/dDjsVu7uLHFeUpv33Sze5FzKBDNu7h9oKxXdrhcjJkFJySwclcAexGNTEjSJYoIrwxWgluYuk1wR7FvyMLNeX+oKjQOuom8WFRwfnJzOGwvUg5+AK2RAa/0VeEei/7Wh2GYrjvjKx8vsfjYGlpZkQZwWvI13BXBEl1DLIPUj0w/QlVD7SCP4TfQk+RNodECYjG1Bkj2iZihNJM227ULJzm88nnmuIEpK0dK4Rb5oACa4ImvlPYseS41Jmu2OL6Nzd+5evMjwvcZEcHb8IYnsGg7c0kTvanIMcC0T8NTn+txdD3eeO8N/eUQftpMXruF7CkF2ALYz9KkG+mzvDGzl4ZMNdCmdIcjA5nPOh/6cI7KzzEaM1PGppypFIQsMBq8gbg5JgSIk0t6Vg0FmSRNk7WDw02RSTCaT3ZUltoNB/pw7Ryu4MtbCjICEjprKztKNE6nJfUcMzyzqS2s6kpi5kLsFnDWJMs/l7efgmyiIjOCtj2Dc18ZEQ0lY6sHPGI0T9cosKooQb1xJBQRLwrBIqCvwDQMylLTcZPqv21CO4Fwut9IMumTfG01GE3Xba7YTv++2qHMt7AuPfLWTJgQfpXZTjUbK8mP75TITfOIa3ZaRd8Q3V3kM7c7Fe6cYrW77/RP/A+iKJ9M3HgeLJtfY3DpWfY/8rPoeqbq7dqE2ffKiUJVPLEtWqxkmOot2vRZxrkpq+vmiUEuMRqKT0brY1GVprJdSvtW+1hQEmiXapqvjd04p0nJuuve7g1O1Xv8NXQbbRw==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get monthly apy breakdown"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/apy/monthly"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns monthly APY breakdown data
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Monthly APY breakdown","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"month":{"type":"string"},"apy":{"type":"integer"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

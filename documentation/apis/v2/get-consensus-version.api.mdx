@@ -1,0 +1,63 @@
+---
+id: get-consensus-version
+title: "Get consensus version"
+description: "Returns the current consensus version"
+sidebar_label: "Get consensus version"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV0tvGzcQ/isD5tIKK1l1k0N1quM6gdOkCPxACsRGMeKOtIy55GY4K0eQ9d+L4Uq2FCmt0169l10Oh8Phx28euzAlJcuuEReDGZkzkpZDAqkIbMtMQcDGkCikNsGMOKleYQSnyYw+muNY106EyFwXhik1qpvMaGEOh0N9bZs/3mPKxiAURJWxabyzqMoHn5KuWJhkK6pRv2TekBkZF4SmxGa5XC4L83zfNi+xhDP63FIS6MNpmKF3JbjQtFJAjX4SuaYSGmSsSYhTAVkl7wzEHDn9B8/i+BNZMYVpODbE4jokkqC06TiWtO8UhRFXUxKsm43pJOzC1BRGXUUxI1OiUF9VdUmDUu1qLwtTk1Sx/MZUSjilPXPZB/EqOtGzn63u8R7i57sQ/xEFXsU2lNCHM0qxZUsQosBEhU/g3YN3eLgL3mVoOFo1OfYEJ0GczKEPL9vkAqUEPk6dfaLkP6H6yy6qFzHCOwzzdegnpSYKgXe1k873J/wyfi/2Zc3TIMQBPZwTz4ghL4Q+HFlp0UPqpB0VC2gDfWnICpUwQedbpid+buD78y6+CquzBJcBZ+h8jv0+XFDdREaeZ4B13qXUUoIfQiwJ0jxYF6YFTAilZYL2YfWPT4B3gG8YNVPKp8ubm4P73uWvh4ajI7K2LwvTsjcjU4k0aXRwgI0b0JfGRyYeNBxnivLAxvpgdnhQowshG9++1nedHI7en8JJKJvogphl8V22hZLss33Ryf+XbYsBeb5j+jiLv7J8rejYlp3Mz5U5HTk+3crGjeimimKeNyMzJmRiU6w+Xq3J8ObDxc6mbz5cgMQbCjCJDNhKRUFWnM2cWfl+1Ljfab6xKXaCwjg1UxGWecuA2YU/++9XC/tH70/7neb2znrOG5rnfdfK64hLmV4uTOKeolLRg74acQlKSm4aqASJoB67kqBNxAlunVSAVku7TmoXfeQpwthHe2MrdAGk4thOKzg7Ob+YtB5oBb723CiA3sdbiIF0/eeWeJ6tBJLbyDfZ/WwMPM3IgzqteLsYChDGkNDqIK1GbjXAUEIdmQbwm67T0E9gMQBhcn4OGuqMVqB0TFb8vDtKdn7t8ThKBUzCjmYuTKFEQcAEt+S9vsccsbSYtNRu+TK4Clfh2bMM30tMBJdnb5PK7uAkzBzHUOt/BtzpBDz2ubsKd/2t56vhvzy6HjaDF+7gexJBdgA2I/SxBlbR3hnYiMNHG+hCOkOQgc1dzttVl6Oyy8xGZOr4tKIqsZIFer0XwOsWqSGGRDaGstfLLGkb1e31fhoOi+FwuK1Z4rzXy9e51VjBrfMexgSkdLRUdpbunUhtrjpqeOzR3njXkcRNlNxzwHGbKPNc33ECsWVFZACvIoMLn1vHjpKyNEIcC7qgyys3rYiB711JBTSelGFMaCuIrQAKlDRbR/qvm1AO4ErrwboyjMzhYDgYmodKsxn4q1qLNufCVeLRWztvmyay5m6q0Wla/tZ+Oc00MUmNYcPIa9r/j72ViBYPlf7xP+ld7hT6IgeNR5dTbK4ci1WB/Gh2C+R1YaqYRCcXizEmumS/XKo4pyMz+nhdmBmy02PpaFmsE7JW1BvN2+bIWmoUkxn6tkvgXzUnWmvui/brkwuzXP4NCcy9YQ==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get consensus version"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/consensus_version"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the current consensus version
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Consensus version","content":{"application/json":{"schema":{"type":"integer"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

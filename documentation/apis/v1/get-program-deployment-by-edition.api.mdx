@@ -1,0 +1,71 @@
+---
+id: get-program-deployment-by-edition
+title: "Get program deployment by edition"
+description: "Returns the deployment transaction ID for the specified program edition"
+sidebar_label: "Get program deployment by edition"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VktvGzcQ/isD5tIKG0kOksuemsZuYCAFDD96iYxiRI60jLnkhpyVI8j678FwV/IqctoYDboXiY/55sH5ZmajGJdJlR/VdUSfULMNPqnbQhlKOtpG1qpUl8Rt9Am4IjDUuLCuyTPwoxCcn8IixHwjNaTtwpKBJoZlxBrI2IxUqAYj1sQURetGeaxJlaq/d25UoawobJArVahIn1sbyaiSY0uFSrqiGlW5UbxuRDBxtH6ptttij/Wo61lI1jMtKart9lZupyb4REkuvJpO5ecwIqffi4IqlA6eybMIYdM4q1HOJp+SSG6OVYf5J9IswYmhoci20zvA/duap5yWr1Cvp6+P7bvoI+8DwyK03vw8uxIjt+ldMPRU+ArFtqbEWDfHJhdqEWKNrEplkOmlXBWR/EjHDhaqJq7CU77LUUq4pCeTQbFlJ1tnMYZ42b+m6uL15qn3vKK4oggk9zPCTrNaUg5BtlBNFtabyeBlzk8nj4SYbPaJvJ1s+kTcqkKljN6lfBudKlXF3KRyMsHGjulL40KkOG5iWOHc0ViHerI6mdRovc/qD439s9uHtxfncOZNE6xnJRR4BjZT4qewr7v9/4St0WNcH0G/y9vfIN8KTxfh+EXKsrzH6K1fzvxfFJPQ6yQL2wShZUkgA+gN3FvnYJ4rUySdt1MIfgwXjjAR1HYZkQk4wOpVrlJ1iATU25AyiK3FCzKw4z7oYCiNZ74sy5m/rgguejd3RhhKdunJCLAIW0PQJooJ7i1XgFpTSnIoRfGtowBzF/SdrtB64CqGdlnB5dnV9aJ1A2u4QgZ0LtxD8Nnqzy3FdUbxxPch3mUnMhg4WpEDCaEQywZfDAtS6le2X4in4vwYTkVOaJ1AowfCZN0ahMYRNYOxkTS7dedKNn5n8TxwBZE4WlpZvwSDjIAJ7sk5+Z3HgEZjYjkc2jKe+Zl/8SKH73d5mJvLD0n2HuDMr2wMPtdTeJAD+NHvYeYfXh583yz/5RN5GDIKHuA57MwGwJA2PwrQU7ADGJDjhwE6nuUQ5MBeSpZ/sLXlzJqZv8nZiJG6fOpTlaIkC4xGb0DaIiVOsgmJdPBmNMpZ0jZydzQ6mU6L6XR6eNPgejTKz5lVul7lnokk6ah7erZ7I1KbO4oAzx3qO2e7JLELSe414LxNlPNcfsMCQhslImP4I0SwXlq4pSRZGiDMGa2UB6jssqIIcW9KKqDpqB8JdSXVApDB0EoKsdWUfhuGcgwzGRdWXZFRpToZT8dT9dhFhsTv+yjq3Ef7mUNe7aptmhCloFKNVmrl9/Tl/tKExDX6Ach74v3ANBiy5uvB+HRQIjePHf0nTmh9M2X6wpPGofXSbHPx3/Rd8KOSLihXh30wW7dTrApVDoe6cod/W6gqJBaQzWaOiW6i225lOxc5VX68LdQKo5Vg5X5pbJL/RpULdIn+IQa/XPZD3q/wPT/6TfTSnVboWlmpQt3R+mAMlYb3PyreRWd7uy1URWgoZt+707daU8MDuaPpTbrofmB5f3atttuvmtUXAw==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get program deployment by edition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/transactionID/deployment/{programId}/{edition}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the deployment transaction ID for the specified program edition
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programId","in":"path","required":true,"schema":{"type":"string"}},{"name":"edition","in":"path","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Deployment transaction ID","content":{"application/json":{"schema":{"type":"object","properties":{"transaction_id":{"type":"string"}}}}}},"404":{"description":"Program not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      
