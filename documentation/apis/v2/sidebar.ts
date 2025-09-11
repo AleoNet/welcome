@@ -655,7 +655,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "apis/v2/find-transition-id-alt",
-          label: "Find transition ID (alternative)",
+          label: "Find transition ID",
           className: "api-method get",
         },
         {

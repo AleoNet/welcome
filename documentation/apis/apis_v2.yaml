@@ -1408,10 +1408,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /find/transitionID/{input_or_output_id}:
     get:
-      summary: Find transition ID (alternative)
+      summary: Find transition ID
       description: >
         Retrieves the Transition ID associated with a given input our output ID. Input and 
-        output IDs can be found via the associated field elements of an input or output. (alternative endpoint)
+        output IDs can be found via the associated field elements of an input or output.
       operationId: findTransitionIdAlt
       tags:
         - Transitions
@@ -2951,27 +2951,33 @@ paths:
           schema:
             type: object
             properties:
-              commitments:
-                type: array
-                items:
-                  type: string
-              start:
+              block_height:
                 type: integer
-              end:
-                type: integer
-              program:
+              checksum:
                 type: string
-              records:
-                type: array
-                items:
-                  type: string
-              functions:
-                type: array
-                items:
-                  type: string
-              results_per_page:
+              commitment:
+                type: string
+              record_ciphertext:
+                type: string
+              function_name:
+                type: string
+              nonce:
+                type: string
+              output_index:
                 type: integer
-              page:
+              owner:
+                type: string
+              program_name:
+                type: string
+              record_name:
+                type: string
+              transaction_id:
+                type: string
+              transition_id:
+                type: string
+              transaction_index:
+                type: integer
+              transition_index:
                 type: integer
         - name: response_filter
           in: query
@@ -2980,33 +2986,33 @@ paths:
             type: object
             properties:
               block_height:
-                type: boolean
+                type: integer
               checksum:
-                type: boolean
+                type: string
               commitment:
-                type: boolean
+                type: string
               record_ciphertext:
-                type: boolean
+                type: string
               function_name:
-                type: boolean
+                type: string
               nonce:
-                type: boolean
+                type: string
               output_index:
-                type: boolean
+                type: integer
               owner:
-                type: boolean
+                type: string
               program_name:
-                type: boolean
+                type: string
               record_name:
-                type: boolean
+                type: string
               transaction_id:
-                type: boolean
+                type: string
               transition_id:
-                type: boolean
+                type: string
               transaction_index:
-                type: boolean
+                type: integer
               transition_index:
-                type: boolean
+                type: string
       responses:
         '200':
           description: Encrypted records
@@ -3546,10 +3552,10 @@ components:
                                   type: string
                                 scm:
                                   type: string
-                                global_state_root:
-                                  type: string
-                                proof:
-                                  type: string
+                          global_state_root:
+                            type: string
+                          proof:
+                            type: string
                       fee:
                         type: object
                         properties:
@@ -4226,8 +4232,10 @@ components:
       type: string
     MappingValueResponse:
       type: string
+      title: metadata=false
     MappingValueWithMetadataResponse:
       type: object
+      title: metadata=true
       properties:
         data:
           type: string
