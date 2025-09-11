@@ -907,6 +907,14 @@ paths:
       operationId: broadcastTransaction
       tags:
         - Transactions
+      parameters:
+        - name: check_transaction
+          in: query
+          description: Whether to check the transaction and receive a confirmation of receival (not approval) after broadcasting
+          required: false
+          schema:
+            type: boolean
+            default: false
       requestBody:
         description: >
           To broadcast a transactions, the request body should follow the outlined json object below. Please be sure to specify the correct "type" of transaction. If you are broadcasting a transaction to deploy a program, use the type "deploy". All other transactions will be of type "execute".
