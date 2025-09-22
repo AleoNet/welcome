@@ -5,8 +5,6 @@ sidebar_label: Overview
 ---
 
 
-<a href="https://www.npmjs.com/package/@provablehq/sdk"> <img alt="Provable SDK" src="https://img.shields.io/npm/l/%40provablehq%2Fsdk?label=NPM%20-%20Aleo%20SDK&labelColor=green&color=blue" /></a>
-
 ## Tools for Building Zero Knowledge Web Apps
 
 The Provable SDK is a collection of JavaScript libraries for building zero knowledge web applications in both the browser
