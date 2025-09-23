@@ -1,7 +1,7 @@
 ---
 id: aleo_credit_transfers
 title: Aleo Credit Transfers
-sidebar_label: 4. Aleo Credit Transfers
+sidebar_label: Aleo Credit Transfers
 ---
 
 ## Transfer Aleo Credits

@@ -1,7 +1,7 @@
 ---
 id: getting_started
 title: Getting Started
-sidebar_label: 1. Getting Started
+sidebar_label: Getting Started
 ---
 
 import Tabs from '@theme/Tabs';
@@ -68,7 +68,7 @@ If you are using `Node.js` as your framework, the Provable SDK requires a minimu
 
 
 ## Network Selection
-The Provable SDK contains modules for interacting with both the Mainnet and Testnet networks. The Mainnet and Testnet networks are NOT interoperable so it is required to explicitly select the desired network. Any transactions built for the Mainnet network will not be valid on the Testnet network and vice versa.
+The Provable SDK contains modules for interacting with both the Mainnet and Testnet networks. The Mainnet and Testnet networks are **NOT** interoperable so it is required to explicitly select the desired network. Any transactions built for the Mainnet network will not be valid on the Testnet network and vice versa.
 
 The following import syntax is used to select the desired network:
 

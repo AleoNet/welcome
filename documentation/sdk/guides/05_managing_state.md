@@ -1,7 +1,7 @@
 ---
 id: managing_state
 title: Managing Public and Private State
-sidebar_label: 5. Managing State
+sidebar_label: Managing State
 ---
 ## Private State: Records
 Records in are analogous to concept of [UTXOs](https://en.wikipedia.org/wiki/Unspent_transaction_output). When a record is
