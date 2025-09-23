@@ -77,6 +77,10 @@ const tx_id_3 = await programManager.networkClient.submitTransaction(tx_3);
 const tx_4 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2);
 const tx_id_4 = await programManager.networkClient.submitTransaction(tx_4);
 
+/// Send a public transfer from the transaction signer's address / original transaction initiator.
+const tx_5 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2);
+const tx_id_5 = await programManager.networkClient.submitTransaction(tx_5);
+
 
 // Generally the transaction will need 1-3 blocks (3-9 seconds) to be confirmed on the network. When that time has 
 // elapsed the following function can be used to get the transaction details.
@@ -84,8 +88,7 @@ const transaction1 = await programManager.networkClient.getTransaction(tx_id);
 const transaction2 = await programManager.networkClient.getTransaction(tx_id_2);
 const transaction3 = await programManager.networkClient.getTransaction(tx_id_3);
 const transaction4 = await programManager.networkClient.getTransaction(tx_id_4);
-
-
+const transaction5 = await programManager.networkClient.getTransaction(tx_id_5);
 ```
 
 Alternatively, we can just call the `transfer()` method to build and broadcast the transaction in one call:
@@ -110,12 +113,16 @@ const tx_id_3 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_pr
 /// Create a private record from a public balance
 const tx_id_4 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2);
 
+/// Send a public transfer from the transaction signer's address / original transaction initiator.
+const tx_id_5 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2);
+
 // Generally the transaction will need 1-3 blocks (3-9 seconds) to be confirmed on the network. When that time has 
 // elapsed the following function can be used to get the transaction details.
 const transaction1 = await programManager.networkClient.getTransaction(tx_id);
 const transaction2 = await programManager.networkClient.getTransaction(tx_id_2);
 const transaction3 = await programManager.networkClient.getTransaction(tx_id_3);
 const transaction4 = await programManager.networkClient.getTransaction(tx_id_4);
+const transaction5 = await programManager.networkClient.getTransaction(tx_id_5);
 ```
 
 ## Checking Public Balances
