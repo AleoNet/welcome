@@ -4,53 +4,6 @@ title: Executing Programs
 sidebar_label: Executing Programs
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-## Aleo Programs
-
-Aleo programs provide the ability for users to make any input or output of a program private and prove that the program
-was run correctly. Keeping program inputs and outputs private allows developers to build privacy into their applications.
-
-Zero-knowledge programs are written in one of two languages:
-1. [Leo](https://docs.leo-lang.org): A high level, developer friendly language for developing
-   zero knowledge programs.
-2. [Aleo Instructions](../../guides/aleo/00_aleo_overview.md): A low level language that provides developers fine
-   grained control over the execution flow of zero knowledge programs. Leo programs are compiled into Aleo Instructions
-   under the hood.
-
-
-
-<Tabs defaultValue="leo"
-values={[
-  { label: 'Leo', value: 'leo' },
-  { label: 'Aleo Instructions', value: 'aleo_instructions' },
-]}>
-<TabItem value="leo">
-```leo
-// A simple program adding two numbers together
-program helloworld.aleo {
-  transition hello(public a: u32, b: u32) -> u32 {
-      let c: u32 = a + b;
-      return c;
-  }
-}
-```
-</TabItem>
-<TabItem value="aleo_instructions">
-```aleo
-program helloworld.aleo;
-
-// The Leo code compiles to the following Aleo instructions
-function hello:
-    input r0 as u32.public;
-    input r1 as u32.private;
-    add r0 r1 into r2;
-    output r2 as u32.private;
-```
-</TabItem>
-</Tabs>
-
 
 ## Program Execution Model
 
@@ -90,68 +43,46 @@ graph LR
 ```
 
 ## Executing Programs
-:::note
-If you haven't already, check out the [Getting Started](./01_getting_started.md) guide.  Specifically, you'll need to import the correct version of the SDK (Mainnet vs. Testnet) for the your desired network and initialize WebAssembly.
-:::
 
-There are two main methods for building general execution transactions: `execute` and `buildExecutionTransaction`. Calling `execute` will build and submit the transaction to the Aleo network, while `buildExecutionTransaction` will only build the transaction and return it to the caller within Javascript.
+There are two main methods for building general execution transactions: `execute()` and `buildExecutionTransaction()`. Calling `execute()` will build and submit the transaction to the Aleo network, while `buildExecutionTransaction()` will only build the transaction and return it to the caller within Javascript.
 
 Let's walk through an example:  
 
-### Imports and WebAssembly
+### Setup
 
-As mentioned earlier, you'll first need to import the necessary classes from the correct Provable SDK package and initialize Webassembly.
+Similar to the [Deploying Programs](./03_deploy_programs.md) guide, you'll need to initialize some fundamental objects if you haven't already done so:
 
 ```typescript
-import { Account, AleoNetworkClient, initThreadPool, NetworkRecordProvider, ProgramManager, AleoKeyProvider } from '@provablehq/sdk/mainnet.js';
+import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk/mainnet.js';
 
 // If the threadpool has not been initialized, do so (this step can be skipped if it's been initialized elsewhere). 
 await initThreadPool();
-```
 
-You'll also need to initialize an `Account` object with the desired private key:
-```typescript
 const account = new Account({ privateKey: 'APrivateKey1...'});
-```
 
-### `AleoNetworkClient`
-
-Next, you'll need to initialize `AleoNetworkClient:
-```typescript
 // Create a network client to connect to the Aleo network.
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
-```
-`AleoNetworkClient` is a library that encapsulates REST calls to publicly exposed endpoints of Aleo nodes. The methods provided in this allow users to query public information from the Aleo blockchain and submit transactions to the network. `
 
-
-### `AleoKeyProvider`
-You'll also need to initialize `AleoKeyProvider`:
-```typescript
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs.
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache = true;
-```
-Since each function in a program has a proof associated with it, each function in a program has something called a proving key and verifying key. These keys are cryptographic material that uniquely identifies the structure of the function and are required to build the proof and verify the proof respectively. The SDK provides an interface called the `KeyProvider` to enable developers to define easy ways to retrieve these keys.  If an execution in the SDK does not have the keys, it will generate them. However, generating them is a computationally expensive process, and significantly slows down the execution process if they need. It is wise for developers to store/cache them for re-use when possible. 
 
-The default implementation of the `KeyProvider` interface is the `AleoKeyProvider`. This implementation allows users to specify an optional HTTP url where the keys may be found and an in-memory cache for proving and verifying keys. However, developers can implement their own `KeyProvider` to store keys in places such as CDNs, databases, local file systems, etc.
-
-### `ProgramManager`
-Using the `AleoNetworkClient` and `AleoKeyProvider` objects, we can initialize the `ProgramManager` object and set the account that transactions will be signed by:
-
-```typescript
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers.
 const programManager = new ProgramManager(networkClient, keyProvider);
 
 // Set the account for the program manager.
 programManager.setAccount(account);
 ```
+If you're confused on any of the above code, head back to the previous guide for a more detailed explanation.
 
 ### Build the Transaction
-Finally, we can use the build and submit the transaction, and await the results:
+In addition to the above setup, you'll likely want define a key search parameter to find the correct proving and verifying keys for the program if they are stored in a memory cache:
 ```typescript
-// Provide a key search parameter to find the correct key for the program if they are stored in a memory cache
 const keySearchParams = { cacheKey: "betastaking.aleo:stake_public" };
+```
 
+Once everything's been intialized, we can build and submit the transaction, and await the results:
+```typescript
 // Execute the program using the options provided inline and get the transaction.
 const tx = await programManager.buildExecutionTransaction({
     programName: "betastaking.aleo",
@@ -184,7 +115,6 @@ const transaction_id = await programManager.execute(
 
 const transaction = await programManager.networkClient.getTransaction(transaction_id);
 ```
-
 
 
 ## Local Program Execution
