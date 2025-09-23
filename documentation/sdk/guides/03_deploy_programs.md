@@ -69,7 +69,7 @@ Let's walk through an example:
 As mentioned earlier, you'll first need to import the necessary classes from the correct Provable SDK package and initialize Webassembly if you haven't done so already.
 
 ```typescript
-import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk/mainnet.js';
+import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk';
 
 // If the threadpool has not been initialized, do so (this step can be skipped if it's been initialized elsewhere). 
 await initThreadPool();

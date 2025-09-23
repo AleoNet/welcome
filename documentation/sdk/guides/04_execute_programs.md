@@ -53,24 +53,18 @@ Let's walk through an example:
 Similar to the [Deploying Programs](./03_deploy_programs.md) guide, you'll need to initialize some fundamental objects if you haven't already done so:
 
 ```typescript
-import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk/mainnet.js';
+import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk';
 
 // If the threadpool has not been initialized, do so (this step can be skipped if it's been initialized elsewhere). 
 await initThreadPool();
 
 const account = new Account({ privateKey: 'APrivateKey1...'});
-
-// Create a network client to connect to the Aleo network.
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
-// Create a key provider that will be used to find public proving & verifying keys for Aleo programs.
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache = true;
 
-// Initialize a program manager to talk to the Aleo network with the configured key and record providers.
 const programManager = new ProgramManager(networkClient, keyProvider);
-
-// Set the account for the program manager.
 programManager.setAccount(account);
 ```
 If you're confused on any of the above code, head back to the previous guide for a more detailed explanation.
@@ -101,7 +95,7 @@ const transaction_id = await programManager.networkClient.submitTransaction(tx);
 const transaction = await programManager.networkClient.getTransaction(transaction_id);
 ```
 
-Alternatively, we can just call the `execute` method to build and broadcast the transaction in one call:
+Alternatively, we can just call the `execute()` method to build and broadcast the transaction in one call:
 
 ```typescript
 const transaction_id = await programManager.execute(
@@ -127,7 +121,7 @@ When the developer simply wants see the output of a function without the computa
 When run in this fashion, the program will execute and return the outputs of the function without generating a proof. This can be useful for testing a function in development.
 
 ```typescript
-import { Account, ProgramManager } from '@provablehq/sdk/mainnet.js';
+import { Account, ProgramManager } from '@provablehq/sdk';
 
 /// Create the source for the "hello world" program
 const program = "program helloworld.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
@@ -152,7 +146,7 @@ This approach is will not work for any function that has an async future defined
 :::
 
 ```typescript
-import { Account, AleoKeyProvider, ProgramManager, ProvingKey, VerifyingKey } from '@provablehq/sdk/mainnet.js';
+import { Account, AleoKeyProvider, ProgramManager, ProvingKey, VerifyingKey } from '@provablehq/sdk';
 
 /// Initialize the key provider and network client.
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
