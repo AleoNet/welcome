@@ -38,13 +38,11 @@ yarn build:all
 
 ## Configuration
 
-### Ensure compatibility with ES modules
+### Ensure Compatibility with ES Modules
 In your project's `package.json`, ensure that the following line is added above `scripts`:
 
 ```json
-{
   "type": "module",
-}
 ```
 
 ### Top-Level Await

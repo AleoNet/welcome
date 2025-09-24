@@ -4,8 +4,6 @@ title: Transferring Credits
 sidebar_label: Transferring Credits
 ---
 
-## Transfer Aleo Credits
-
 The official currency of Aleo Network are called Aleo Credits. All fees paid for transactions, as well as rewards for staking
 and mining, are in the form of Aleo Credits. Please refer to the [Fundamentals](../../concepts/fundamentals/08_credits.md) for more information.
 
@@ -23,6 +21,7 @@ The base unit for Aleo Credits is the microcredit.  All functions expect and wil
 :::
 
 
+## Transfer Aleo Credits
 
 ### Setup
 
@@ -96,28 +95,17 @@ Alternatively, we can just call the `transfer()` method to build and broadcast t
 ```typescript
 const RECIPIENT_ADDRESS = "aleo1...";
 
-// Send a completely private transfer
 const tx_id = await programManager.transfer(
     amount : 1, 
     recipient: RECIPIENT_ADDRESS, 
     transferType: "transfer_private", 
     fee: 0.2
 );
-
-/// Send public transfer to another user
 const tx_id_2 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public", 0.2);
-
-// Send a public transfer to another user using a private record as input
 const tx_id_3 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_private_to_public", 0.2);
-
-/// Create a private record from a public balance
 const tx_id_4 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2);
-
-/// Send a public transfer from the transaction signer's address / original transaction initiator.
 const tx_id_5 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2);
 
-// Generally the transaction will need 1-3 blocks (3-9 seconds) to be confirmed on the network. When that time has 
-// elapsed the following function can be used to get the transaction details.
 const transaction1 = await programManager.networkClient.getTransaction(tx_id);
 const transaction2 = await programManager.networkClient.getTransaction(tx_id_2);
 const transaction3 = await programManager.networkClient.getTransaction(tx_id_3);
@@ -125,17 +113,18 @@ const transaction4 = await programManager.networkClient.getTransaction(tx_id_4);
 const transaction5 = await programManager.networkClient.getTransaction(tx_id_5);
 ```
 
-## Checking Public Balances
+## Checking Balances 
+### Public Balances
 A public balance of any address can be checked with `getMappingValue()` function of the `NetworkClient`.
 
 ```typescript
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const USER_ADDRESS = "aleo1...";
-const public_balance = networkClient.getMappingValue("credits.aleo", USER_1_ADDRESS);
+const public_balance = networkClient.getMappingValue("credits.aleo", USER_ADDRESS);
 ```
 
 
-## Check Private Balances
+### Private Balances
 The private balance of an address is the sum of all unspent credits records owned by the address. Check out the [next guide](./06_managing_state.md) for more information regarding record finding.
 
 

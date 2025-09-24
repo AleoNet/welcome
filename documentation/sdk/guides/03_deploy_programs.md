@@ -58,7 +58,7 @@ If the program name is available and the fee is sufficient, the program will be 
 Programs can be deployed to either the Aleo Testnet or Mainnet. It is highly recommended that developers test their programs on the Testnet before deploying them to Aleo Mainnet.
 
 :::note
-If you haven't already, check out the [Getting Started](./01_getting_started.md) guide.  Specifically, you'll need to import the correct version of the SDK (Mainnet vs. Testnet) for the your desired network and initialize WebAssembly.
+If you haven't already, check out the [Getting Started](./01_getting_started.md) guide.  Specifically, read the sections on the different versions of the SDK (Mainnet vs. Testnet) and initializing WebAssembly.
 :::
 When ready to deploy a program, the Aleo Instructions source code must be imported into the JS/TS environment as a string. If the program is written in Leo it must first be compiled to Aleo Instructions. Once the source code is available with JS/TS, it can be deployed using the `ProgramManager`. 
 
@@ -66,7 +66,7 @@ Let's walk through an example:
 
 ### Imports and WebAssembly
 
-As mentioned earlier, you'll first need to import the necessary classes from the correct Provable SDK package and initialize Webassembly if you haven't done so already.
+You'll first need to import the necessary classes from the correct Provable SDK package and initialize Webassembly if you haven't done so already.
 
 ```typescript
 import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk';

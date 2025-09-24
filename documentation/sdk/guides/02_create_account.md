@@ -45,16 +45,8 @@ Alternatively, if you already having an existing account, then an `Account` obje
 
 ```typescript
 import { Account } from '@provablehq/sdk';
-import { PrivateKey } from './wasm';
 
-// From a private key derived from its string representation
-const privateKey2 = PrivateKey.fromString('APrivateKey1...');
-const account2 = new Account({
-    privateKey: privateKey2,
-});
-
-// Directly from a private key string
-const account3 = new Account({
+const account = new Account({
     privateKey: 'APrivateKey1...',
 });
 ```
@@ -62,8 +54,7 @@ const account3 = new Account({
 The SDK also provides a feature to encrypt your private key with a plaintext password, as well as a shortcut to initialize an `Account` object with the private key ciphertext and the corresponding password:
 
 ```typescript
-import { Account } from '@provablehq/sdk';
-import { PrivateKey } from './wasm';
+import { Account, PrivateKey } from '@provablehq/sdk';
 
 // From a newly generated encrypted private key
 const password = 'password';
@@ -71,7 +62,7 @@ const ciphertext = PrivateKey.newEncrypted(password);
 const account = Account.fromCiphertext(ciphertext, password);
 
 // From the encryption of an existing private key
-const privateKey = PrivateKey.fromString('APrivateKey1...');
+const privateKey = PrivateKey.from_string('APrivateKey1...');
 const existingPassword = 'existingPassword';
 const existingCiphertext = privateKey.toCiphertext(existingPassword);
 const existingAccount = Account.fromCiphertext(existingCiphertext, existingPassword);
