@@ -1,6 +1,6 @@
 ---
 id: create_account
-title: Create an Aleo Account
+title: Creating Aleo Accounts
 sidebar_label: Creating Accounts
 ---
 ## Account Keys
