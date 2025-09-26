@@ -1,7 +1,7 @@
 ---
-id: network_communication
-title: Communicating with the Aleo Network
-sidebar_label: Aleo Network Communication
+id: querying_network
+title: Querying the Aleo Network
+sidebar_label: Querying the Network
 ---
 
 Communication with the Aleo network is done through the `AleoNetworkClient` class. This class provides methods to query
