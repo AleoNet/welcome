@@ -272,7 +272,7 @@ import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeyS
 
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 
 // Define an account which will execute the transaction on-chain
 const account = new Account({ privateKey: private_key });
@@ -360,7 +360,7 @@ import { Account, AleoNetworkClient, NetworkRecordProvider, ProgramManager, KeyS
 
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 
 // Create a record provider that will be used to find records and transaction data for Aleo programs
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
