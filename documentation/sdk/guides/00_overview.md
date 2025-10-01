@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Aleo allows users to privately transact through zero-knowledge enhanced programs. The Provable SDK is a collection of JavaScript libraries that provides the power to use these programs within the browser and all other levels of the web stack to build privacy-preserving applications.
+The core `sdk/` library offers a wide variety of features to help streamline the development process on Aleo, including account management, program deployment, function execution, Aleo Credit transfers, program state management, and network queries.
 
 ## Table of Contents
 
@@ -24,4 +24,6 @@ Aleo allows users to privately transact through zero-knowledge enhanced programs
 
 ## Further Documentation
 
-API documentation for the SDK can be found in the [API Specification](../typescript/00_sdk_overview.md) section.
+API documentation for the SDK can be found in the [API Specification](../../category/api-specification) section.
+
+Additi
