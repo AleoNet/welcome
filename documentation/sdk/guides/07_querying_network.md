@@ -290,4 +290,4 @@ deepStrictEqual(programMappings, expectedMappings);
 ```
 
 A full list of methods provided by the `AleoNetworkClient` class and usage examples can be found in the
-[Network Client API documentation](../../sdk/typescript/02_aleo_network_client.md).
+[Network Client API documentation](../../sdk/api-specification/02_aleo_network_client.md).

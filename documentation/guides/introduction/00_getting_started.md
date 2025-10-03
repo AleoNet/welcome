@@ -120,7 +120,7 @@ Learn the key concepts behind privacy preserving development with Aleo.
   <FeatureCard
     title="Transfers"
     description="Understand how private transfers work in Aleo."
-    link="/concepts/fundamentals/transfers"
+    link="/concepts/fundamentals/credits"
   />
   <FeatureCard
     title="Fees"
