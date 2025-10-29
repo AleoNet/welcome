@@ -137,7 +137,7 @@ const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v
 networkClient.setAccount(account);
 
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 

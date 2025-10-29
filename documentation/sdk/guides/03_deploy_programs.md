@@ -95,7 +95,7 @@ You'll also need to initialize `AleoKeyProvider`:
 ```typescript
 // Create a key provider that will be used to find public proving & verifying keys for Aleo programs.
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 ```
 Since each function in a program has a proof associated with it, each function in a program has something called a proving key and verifying key. These keys are cryptographic material that uniquely identifies the structure of the function and are required to build the proof and verify the proof respectively. The SDK provides an interface called the `KeyProvider` to enable developers to define easy ways to retrieve these keys.  If an execution in the SDK does not have the keys, it will generate them. However, generating them is a computationally expensive process, and significantly slows down the execution process if they need. It is wise for developers to store/cache them for re-use when possible. 
 
