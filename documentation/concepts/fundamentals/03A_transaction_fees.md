@@ -70,23 +70,33 @@ Or use `leo execute` to estimate the execution fees for your transaction.
 leo execute main 1u32 2u32 --endpoint https://api.explorer.provable.com/v1 --network testnet 
 ```
 
-This method works without needing to fund the private key and it will look something like this:
+This method works without needing to fund the private key and will look something like below:  
+**Deployment**
 ```bash
-Base execution cost for 'lottery_test' is 0.041048 credits.
+📊 Deployment Summary for helloworld.aleo
+──────────────────────────────────────────────
+  Total Variables:      16,995
+  Total Constraints:    12,927
+  Max Variables:        2,097,152
+  Max Constraints:      2,097,152
 
-+---------------------+----------------+
-| lottery_test        | Cost (credits) |
-+---------------------+----------------+
-| Transaction Storage | 0.001338       |
-+---------------------+----------------+
-| On-chain Execution  | 0.039710       |
-+---------------------+----------------+
-| Priority Fee        | 0.000000       |
-+---------------------+----------------+
-| Total               | 0.041048       |
-+---------------------+----------------+
-
-Your current public balance is 7.401737 credits.
-
-✅ Successful dry run execution for 'lottery_test.aleo'
+💰 Cost Breakdown (credits)
+  Transaction Storage:  0.879000
+  Program Synthesis:    0.029922
+  Namespace:            1.000000
+  Constructor:          0.002000
+  Priority Fee:         0.000000
+  Total Fee:            1.910922
+──────────────────────────────────────────────
+```
+**Execution**
+```bash
+📊 Execution Summary for helloworld.aleo
+──────────────────────────────────────────────
+💰 Cost Breakdown (credits)
+  Transaction Storage:  0.001321
+  On‑chain Execution:   0.000000
+  Priority Fee:         0.000000
+  Total Fee:            0.001321
+──────────────────────────────────────────────
 ```
