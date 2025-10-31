@@ -20,16 +20,22 @@ A **transaction fee** is a fee that is required in order to process a transactio
 ### Deployment Base Fee
 This is what you pay for deploying a program to the Aleo network. Deployment fees consist of the following parts:
 
-- There is a size cost, determined by the amount of raw bytes of your program.
-- There is a namespace cost, the smaller your program name the more you pay. There is no namespace cost if your program name is 10 characters or longer.
-- There is a synthesize cost to process your program. The more complicated operations which your program has, the more time it takes for the network to convert this to a circuit to create zero knowledge proofs for.
+- **Storage Cost**: Determined by the amount of raw bytes of your program. The cost is calculated as `size_in_bytes × DEPLOYMENT_FEE_MULTIPLIER`, where `DEPLOYMENT_FEE_MULTIPLIER` is currently 1 millicredit per byte.
+- **Namespace Cost**: The smaller your program name, the more you pay. There is no namespace cost if your program name is 10 characters or longer.
+- **Synthesis Cost**: To process your program into a circuit for zero knowledge proofs. The cost is based on the number of variables and constraints: `(num_variables + num_constraints)`.
+- **Constructor Cost**: The operations performed in the program's constructor are also accounted for in the deployment fee. The constructor currently has a 100× fee multiplier compared to the finalize cost.
 
 ### Execution Base Fee
 This is what you pay for executing program functions on the Aleo network.
 
-- There is a size cost, determined by the amount of raw bytes of your program. A quadratic fee kicks in above 5 KB.
-- There is a finalize cost, determined by the amount of operations in your function's finalize scope.
-- There is no execution cost, because verifying the associated zero knowledge proof is cheap.
+- **Execution Cost**: Determined by the amount of raw bytes of your execution transaction. For transactions smaller than 5,000 bytes (5 KB), the cost is linear: `size_in_bytes`. For larger transactions, a quadratic penalty applies: `size_in_bytes² / 5000`. This quadratic formula discourages excessively large transactions.
+- **Finalize Cost**: Based on the operations performed in your function's finalize scope. Each operation has a specific cost in microcredits, including:
+  - Mapping operations (get, set, remove, contains)
+  - Hash operations (different costs for different hash functions)
+  - Cryptographic operations (ECDSA verification, etc.)
+  - Arithmetic and logical operations
+  - These per-operation costs vary depending on the consensus fee version.
+- **Proof Verification**: There is minimal execution cost for proof verification, as verifying zero knowledge proofs is computationally cheap. The expected proof size is included in the cost calculation.
 
 ### Priority Fee
 Priority fees are optional fees that allow users to bid for higher transaction priority in the mempool. With the approval of [ARC-0005](https://github.com/ProvableHQ/ARCs/discussions/92), priority fees are now supported and effectively created a fee market for transaction ordering.
@@ -45,7 +51,7 @@ transmissions from the standard queue will not be sent to the BFT.
 
 <!-- markdown-link-check-disable -->
 ### Estimating fees
-The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs#L26). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use `leo cli` to estimate the fees for your transaction. Example as below:
+The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use `leo cli` to estimate the fees for your transaction. Example as below:
 <!-- markdown-link-check-enable -->
 
 First, generate a example program using `leo example`.
@@ -56,15 +62,15 @@ cd lottery
 
 Then use `leo deploy` to estimate the deployment fees for your transaction.
 ```bash
-leo deploy --network testnet --endpoint "https://api.explorer.provable.com/v1" --path .
+leo deploy --network testnet --endpoint https://api.explorer.provable.com/v1
 ```
 
-Or use `leo run` to estimate the execution fees for your transaction.
+Or use `leo execute` to estimate the execution fees for your transaction.
 ```bash
-leo execute play --program lottery_test.aleo --endpoint https://api.explorer.provable.com/v1 --dry-run --broadcast
+leo execute main 1u32 2u32 --endpoint https://api.explorer.provable.com/v1 --network testnet 
 ```
 
-This method works without needing to fund the private key in `.env` and it will look something like this:
+This method works without needing to fund the private key and it will look something like this:
 ```bash
 Base execution cost for 'lottery_test' is 0.041048 credits.
 

@@ -113,9 +113,9 @@ flowchart TD
         %% Deploy Path
         TYPE -->|Deploy| B2["📝 Leo Compilation<br/>Source → Aleo Bytecode"]
         B2 --> C2["🔧 Key Synthesis<br/>Generate Verifying Keys"]
-        C2 --> D2["✍️ Authorization<br/>Sign Deployment"]
-        D2 --> F2["💰 Fee Calculation<br/>Based on Program Size"]
-        F2 --> G2["📦 Deploy Transaction<br/>Assembly"]
+        C2 --> F2["💰 Fee Calculation<br/>Based on Program Size"]
+        F2 --> D2["✍️ Authorization<br/>Sign Deployment"]
+        D2 --> G2["📦 Deploy Transaction<br/>Assembly"]
         
         %% Execute Strategy 1: Local
         CHOOSE -->|Generate<br/>Locally| E1["⚙️ Local Execution<br/>Run VM & Generate Proofs"]
@@ -155,7 +155,7 @@ flowchart TD
         DECISION -->|Rejected| REJECTED["💸 Add Fees to Block<br/>ConfirmedTransaction::Rejected"]
         DECISION -->|Aborted| ABORTED["🚫 Transaction Aborted<br/>No Block Inclusion"]
         
-        ACCEPTED --> FINALIZE["🔄 Finalization<br/>State Updates"]
+        ACCEPTED --> FINALIZE["🔄 Finalize<br/>State Updates"]
         REJECTED --> FINALIZE
         FINALIZE --> CONSENSUS["🤝 Consensus Check<br/>AleoBFT"]
         CONSENSUS --> COMMIT["✅ Commit Block<br/>Once Quorum Reached"]
