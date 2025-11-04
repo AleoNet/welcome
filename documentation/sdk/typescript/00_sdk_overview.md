@@ -679,7 +679,7 @@ A full example of this implementation can be found [here](https://github.com/pro
 ### 3.1 Transfer Aleo Credits
 
 The official token of operation of the Aleo Network are Aleo credits. Aleo credits are used to pay all fees for program
-execution on the Aleo network. Please refer [here](../../concepts/fundamentals/08_transfers.md) for more information about Aleo credits. 
+execution on the Aleo network. Please refer [here](../../concepts/fundamentals/08_credits.md) for more information about Aleo credits. 
 
 The `transfer` functions can be used to transfer credits between users in the
 `ProgramManager` by specifying the transfer type as the third argument. Below is an example of how the SDK can be used to transfer Aleo credits.
@@ -1080,7 +1080,7 @@ Communication with the Aleo network is done through the `AleoNetworkClient` clas
 data from Aleo network nodes and submit transactions to the Aleo network.
 
 A full list of methods provided by the `AleoNetworkClient` class and usage examples can be found in the
-[Network Client API documentation](../../sdk/typescript/02_aleo_network_client.md).
+[Network Client API documentation](../api-specification/02_aleo_network_client.md).
 
 ## Further Documentation
 
