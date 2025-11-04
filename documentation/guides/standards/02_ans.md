@@ -232,7 +232,3 @@ transition claim_credits_public(receiver: address, name_hash: field, secret: [u1
 // @param amount: The amount of credits to be claimed.
 transition claim_credits_as_signer(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
 ```
-
-## Usage Example
-
-For a complete example of how the flow works, please refer to the [Usage Example with Aleo Name Service](../wallets/01_usage_example.md).
