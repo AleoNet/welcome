@@ -60,12 +60,9 @@ Write down your private key, view key, and public address in a safe place. Treat
 
 ### Faucet
 
-Once you have your account, use our faucet to get some Aleo credits. Our ecosystem wallets have faucets that you can use to get credits.
+Once you have your account, use the official faucet to get some Aleo credits: 
 
-* [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
-* [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
-* [Soter Wallet Faucet](https://faucetbeta.sotertech.io/)
-
+https://faucet.aleo.org/
 
 ### Leo & `helloworld`
 

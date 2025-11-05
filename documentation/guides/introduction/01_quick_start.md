@@ -33,16 +33,13 @@ prompted to create an Aleo account.
 
 * [Puzzle Wallet](https://puzzle.online/wallet)
 * [Fox Wallet](https://foxwallet.com/)
-* [Leo Wallet](https://www.leo.app/)
 * [Soter Wallet](https://sotertech.io/)
 
 ## 2. Seed Your Wallet With Testnet Credits
 
 ### 2.1 Get Credits from an Ecosystem Faucet
 
-To seed your wallet, you'll need to request credits from the faucet provided by the ecosystem wallets at:
-* [Puzzle Wallet Faucet](https://dev.puzzle.online/faucet)
-* [Leo Wallet Discord](https://www.leo.app/) (Scroll to bottom of the landing page to find Discord invite)
+To seed your wallet, you can request from the official faucet https://faucet.aleo.org/.
 
 The credits received from the faucet will be public credits, which means they are publicly visible on the Aleo network.
 
