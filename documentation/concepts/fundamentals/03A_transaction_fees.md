@@ -50,8 +50,8 @@ transmissions from the standard queue will not be sent to the BFT.
 :::
 
 <!-- markdown-link-check-disable -->
-### Estimating fees
-The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use `leo cli` to estimate the fees for your transaction. Example as below:
+### Estimating Fees
+The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
 <!-- markdown-link-check-enable -->
 
 First, generate a example program using `leo example`.
@@ -100,3 +100,27 @@ This method works without needing to fund the private key and will look somethin
   Total Fee:            0.001321
 ──────────────────────────────────────────────
 ```
+
+### Fees Visibility
+
+On Aleo, each transaction contains a dedicated fee transition. The fee may be provided by the sender or by a sponsor, and it can be paid either publicly or privately. The fee amounts themselves (base and optional priority) are always public, what differs is the on‑ledger visibility of the payer.
+
+#### Public fee payment
+Paid from a public `account`. The payer’s address and the total fee (base + priority) are visible on the ledger. The payer publicly signs the fee transition, and the amount is deducted from their public balance during `finalize`.
+:::warning[important]
+For public fees, the payer’s public `account` must have sufficient balance at verification time.
+:::
+
+#### Private fee payment
+Paid from a private `credits.record`. The payer’s address is not revealed, a private change record is produced. Only the fee amounts and a public link to the target transaction are disclosed. To keep a private transaction fully private, the fee should be paid privately.
+
+### Fee Sponsorship
+A separate party can provide the fee via an independent fee authorization that is combined with the sender’s execution authorization. Sponsors may pay publicly or privately. For maximum sender privacy a private‑sponsored fee is preferred, public sponsorship links the sponsor’s address to the target transaction ID.
+
+:::note
+Every fee transition carries a public field binding it to a specific deployment or execution ID, ensuring the fee is verifiably associated with the intended transaction.
+:::
+
+:::info[special case]
+All transactions require a base fee, except the transaction that contains only a single call to `credits.aleo/split` or `credits.aleo/upgrade` may omit the base fee (a priority fee may still be included). Any multi‑transition transaction requires a fee.
+:::

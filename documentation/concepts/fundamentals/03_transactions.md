@@ -357,7 +357,7 @@ const block = await net.getBlockByHash(res)
 console.log(block.header.metadata.height);
 ```
 
-### Parsing the Sender Address from transfer_public or transfer_public_as_signer Executions
+### Parsing the Sender Address from `transfer_public` or `transfer_public_as_signer` Executions
 
 Note that the sender address might be an externally owned account (EOA), i.e. owned by a user, or it might be the address of an Aleo program.
 
