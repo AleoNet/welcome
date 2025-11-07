@@ -1,12 +1,12 @@
 ---
-id: transfers
-title: Aleo Credit Transfers
-sidebar_label: Aleo Credits Transfers
+id: credits
+title: Aleo Credits
+sidebar_label: Aleo Credits
 ---
 ## Overview
 
-The official currency of Aleo Network are called `Aleo Credits`. All fees paid for transactions and rewards for staking
-and mining on the Aleo Network are transacted in Aleo Credits.
+The official currency of Aleo Network are called Aleo Credits. All fees paid for transactions, as well as rewards for staking
+and mining, are in the form of Aleo Credits.
 
 Unlike other popular Blockchains like Ethereum, there is no special `transfer` transaction type. Instead, a native
 program called [`credits.aleo`](https://explorer.provable.com/program/credits.aleo) governs transfers, usage, and ownership
@@ -14,11 +14,11 @@ of Aleo Credits. All value transfers on the Aleo Network are done by calling fun
 via `Execute` transactions. This enables users to send Aleo Credits privately, publicly, or a mix of both as well as
 initiate staking and other advanced on-chain operations with Aleo credits.
 
-Aleo Credits are denominated as either `credits` or `microcredits`, where the smallest unit is 1 microcredit (equal to 0.000001 credit). The `credits.aleo` program function parameters take amounts in microcredit. There is a denomination table [here](http://localhost:3000/concepts/fundamentals/transaction_fees#aleo-credits-denomination-table) for reference.
+Aleo Credits are denominated as either credits or microcredits, where the smallest unit is 1 microcredit (equal to 0.000001 credit). The `credits.aleo` program function parameters take amounts in microcredits. There is a denomination table [here](../fundamentals/03A_transaction_fees.md#aleo-credits-denomination-table) for reference.
 
 The same `credits.aleo` program also hosts all staking-related functions and states. For more information about staking functionality, please refer to the [Staking](../network/staking.md) documentation.
 
-A small selection of the credit transfer functions available in credits.aleo is visualized below:
+A small selection of the credit transfer functions available in `credits.aleo` is visualized below:
 
 ```mermaid
 graph
@@ -66,14 +66,11 @@ Private transfers or any functions involving records should use a **private key 
 When performing private transfers or any operations involving records, always ensure the recipient is a user account address (controlled by a private key) rather than a program address.
 :::
 
-##  Aleo credits
+## Public/Private Credits
 
-Aleo Credits are used to pay all fees on the network. They are also used to initiate staking, to bond in new validators,
-and are used as the currency to used to pay staking and mining rewards.
+There are two main ways to hold Aleo Credits on the network:
 
-There are two main ways to hold Aleo credits within credits.aleo:
-
-### Private balances via  `credits.aleo` records
+### Private Balances via  `credits` Records
 The first method is owning a `credits` record which enables a participant in the Aleo
 network to hold a private balance of Aleo credits.
 ```aleo
@@ -87,11 +84,9 @@ A user's total private credits balance will consist of all unspent `credits` rec
 application to scan the chain for records that belong to a user and determine which are spent and unspent in order
 to calculate the user's total private balance and private transaction history.
 
-### Public balances via `credits.aleo` account mappings
-The second method is by holding a `balance` in the `account` mapping in the `credits.aleo` program on the Aleo network.
-This mapping is an on-chain key-value store associated with the `credits.aleo` program that is maintained and updated
-by Aleo validators at each block. This public balance is visible to all participants in the network and is analogous to
-the account balances in Ethereum.
+### Public Balances via the `account` Mapping
+The second method is by holding a balance in the `account` mapping in the `credits.aleo` program on the Aleo network.
+This mapping is an on-chain key-value store that is maintained and updated by Aleo validators at each block. This public balance is visible to all participants in the network and is analogous to the account balances in Ethereum.
 
 ```aleo
 mapping account:
@@ -101,13 +96,12 @@ mapping account:
 
 The total public credits balance of a user is the value of the account mapping at the user's address. Users can hold both private and public balances simultaneously.
 
-## Transferring Aleo credits
-The `ProgramManager` allows transfers of Aleo credits via the `transfer` method. This function executes the `credits.aleo`
-program under the hood.
+## Transferring Aleo Credits
 
-There are four transfer functions available.
 
-### 1. `transfer_private`
+There are five transfer functions available within `credits.aleo`.
+
+### `transfer_private`
 
 Takes a `credits` record owned by the sender, subtracts an amount from it, and adds that amount
 to a new record owned by the receiver. This function is 100% private and does not affect the `account` mapping.
@@ -129,7 +123,7 @@ graph LR
     linkStyle default stroke:#f229e0,stroke-width:2px;
 ```
 
-### 2. `transfer_private_to_public`
+### `transfer_private_to_public`
 
 Takes a `credits` record owned by the sender, subtracts an amount from it, and adds
 that amount to the `account` mapping of the receiver. This function is 50% private and 50% public. It consumes a record
@@ -155,7 +149,7 @@ graph LR
     linkStyle default stroke:#f229e0,stroke-width:2px;
 ```
 
-### 3. `transfer_public`
+### `transfer_public`
 
 Subtracts an amount of `credits` stored in the `account` mapping of the `credits.aleo` program, and
 adds that amount to the `account` mapping of the receiver. This function is 100% public and does not consume or generate
@@ -191,7 +185,7 @@ graph LR
 The mapping key being modified is `intermediate_program.aleo`, which this is the "from" address in this transfer, not the transaction signer's address.
 :::
 
-### 4. `transfer_public_to_private`
+### `transfer_public_to_private`
 
 Subtracts an amount `credits` stored in the `account` mapping of the `credits.aleo program`
 and adds that amount to a new private record owned by the receiver. This function is 50% private and 50% public.
@@ -226,7 +220,7 @@ graph LR
 The mapping key being modified is same as `transfer_public`, where the "from" address in this transfer is the immediate caller of the function. Not the signer's address, if there is an intermediate program in between.
 :::
 
-### 5. `transfer_public_as_signer`
+### `transfer_public_as_signer`
 
 Similar to `transfer_public`, this function subtracts an amount of `credits` stored in the `account` mapping of the `credits.aleo` program, and adds that amount to the `account` mapping of the receiver. However, this function uses the signer's address as the sender instead of the caller's address, ensures that the "from" context is always the original transaction initiator. This function is 100% public and does not consume or generate any records.
 
@@ -263,7 +257,7 @@ The mapping key being modified is the transaction signer, which this is the "fro
 :::tip
 A program can use `transfer_public_from_signer` to receive funds from a user to itself, then use `transfer_public` to transfer funds from itself back to the user.
 :::
-
+<!-- 
 ## Leo code examples
 
 ### Transfer from transaction signer
@@ -364,4 +358,4 @@ const tx_id_4 = await programManager.transfer(1, myAddress, "transfer_public_to_
 // Check the value of the public balance and assert that it has been updated
 public_balance = programManager.networkClient.getMappingValue("credits.aleo", myAddress);
 assert(public_balance === 0);
-```
+``` -->

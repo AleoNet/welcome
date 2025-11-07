@@ -24,8 +24,6 @@ Once a token is registered, the tokens can be minted either publicly using `mint
 
 The token owner then can transfer the token either publicly using `transfer_public` or privately to a specific recipient using `transfer_private`. The token can also be converted from public to private using `transfer_public_to_private` or from private to public using `transfer_private_to_public`.
 
-For an example of how the flow works, please refer to the [Usage Example with Token Registry Program](../wallets/01_usage_example.md).
-
 ## Token Registry Program Data Structures
 
 ### Token Record

@@ -120,7 +120,7 @@ Learn the key concepts behind privacy preserving development with Aleo.
   <FeatureCard
     title="Transfers"
     description="Understand how private transfers work in Aleo."
-    link="/concepts/fundamentals/transfers"
+    link="/concepts/fundamentals/credits"
   />
   <FeatureCard
     title="Fees"
@@ -172,6 +172,5 @@ The following SDKs exist for building private web and full stack applications on
 | Rust            | [snarkVM](https://github.com/ProvableHQ/snarkVM)                               | Rust-Based Aleo Apps
 | TypeScript/Wasm | [Provable SDK](https://docs.explorer.provable.com/docs/sdk/92sd7hgph3ggt-overview) | Node.JS Aleo Apps & Aleo Browser Extensions |                      |  
 | TypeScript      | [Puzzle SDK](https://docs.puzzle.online/)                                      | Aleo Browser Dapps                          |
-| TypeScript      | [Leo Wallet Adapter](https://docs.leo.app/aleo-wallet-adapter)                 | Aleo Browser Dapps                          |
 
 
