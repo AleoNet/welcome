@@ -435,6 +435,27 @@ A set command that sets a value in a mapping, e.g. `set r0 into accounts[r0];`.
 
 A remove command that removes a key-value pair from a mapping, e.g. `remove accounts[r0];`.
 
+#### Reading external program's mapping value
+
+A program can also read an external program's mapping value. This enables your program to access and utilize data maintained by another program, making composability possible. e.g.:
+
+```aleo showLineNumbers
+// Import the external program whose mapping you want to read.
+import credits.aleo;
+program another_program.aleo;
+
+function main:
+    async main into r0;
+    output r0 as another_program.aleo/main.future;
+
+finalize main:
+    // Read value from 'account' mapping in the external 'credits.aleo' program for the specified key.
+    get credits.aleo/account[aleo1...] into r0;
+    // Read value from 'account' mapping in the external 'credits.aleo' program for the specified key,
+    // or use the default value 0u64 if the mapping does not exist.
+    get.or_use credits.aleo/account[aleo1...] 0u64 into r1;
+```
+
 ### Finalize
 
 A finalize is declared as `finalize {name}:`.  

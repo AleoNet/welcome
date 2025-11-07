@@ -62,7 +62,7 @@ const account = new Account({ privateKey: 'APrivateKey1...'});
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 
 const programManager = new ProgramManager(networkClient, keyProvider);
 programManager.setAccount(account);
@@ -151,7 +151,7 @@ import { Account, AleoKeyProvider, ProgramManager, ProvingKey, VerifyingKey } fr
 /// Initialize the key provider and network client.
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
-keyProvider.useCache = true;
+keyProvider.useCache(true);
 
 /// Define the program.
 const program = "program helloworld.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";

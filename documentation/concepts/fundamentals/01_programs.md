@@ -83,3 +83,9 @@ on Aleo, the user satisfies a series of programs encoded in [records](02_records
 
 Once a program is evaluated, its **program output** is produced, along with a zero-knowledge proof attesting to the
 validity of the output.
+
+## Limitation
+
+Currently there are limits imposed on every program deployment to ensure validators processing times and therefore block times remain consistent and low. The limitation details can be found [in the Leo documentation](https://docs.leo-lang.org/language/programs#limitations).
+
+Generally these limits involve the number of constraints and variables enforced by snarkVM. A large portion of them comes from hashing, which occurs silently under the hood for all arguments and return values in function calls. One way to reduce these counts is to minimize the passing of large structs, arrays, or integers (which are sometimes represented as bits).
