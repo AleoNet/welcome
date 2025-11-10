@@ -84,6 +84,7 @@ import helloworld_program from "../helloworld_[randomsuffix]/build/main.aleo?raw
 Let's dig in a little more. Navigate back to your Leo project and Add your private key to the `.env` in your new Aleo project. Replace the example private key with the one you saved above.
 
 ```bash
+ENDPOINT=https://api.explorer.provable.com/v1
 NETWORK=testnet
 PRIVATE_KEY=APrivateKey1zkp2FCZZ7ucNVx5hoofizpq18mvCZNKTpqKMTt1wTahmxSf
 ```
