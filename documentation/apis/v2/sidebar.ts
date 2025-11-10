@@ -144,8 +144,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "apis/v2/transition-id-by-input-output-id",
-          label: "Transition ID by input/output ID",
+          id: "apis/v2/find-transition-id-by-input-output-id",
+          label: "Find transition ID by input/output ID",
           className: "api-method get",
         },
         {
@@ -169,13 +169,25 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "apis/v2/get-mapping-value",
-          label: "Mapping value",
+          label: "Program mapping value",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "apis/v2/program-deployment-transaction",
+          label: "Program deployment transaction",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "apis/v2/program-deployment-by-edition",
+          label: "Program deployment by edition",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "apis/v2/historical-values-for-credits-aleo-mappings",
-          label: "Historical values for credits.aleo mappings",
+          label: "Historical values for `credits.aleo` mappings",
           className: "api-method get",
         },
         {
@@ -213,25 +225,25 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "apis/v2/total-supply-credits",
-          label: "Total Supply - Credits",
+          label: "Total supply - credits",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "apis/v2/get-total-supply",
-          label: "Total Supply - Microcredits",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "apis/v2/circulating-supply-microcredits",
-          label: "Circulating Supply - Microcredits",
+          label: "Total supply - microcredits",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "apis/v2/latest-circulating-supply-credits",
-          label: "Latest Circulating Supply - Credits",
+          label: "Latest Circulating supply - credits",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "apis/v2/circulating-supply-microcredits",
+          label: "Circulating supply - microcredits",
           className: "api-method get",
         },
       ],
@@ -270,26 +282,14 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "apis/v2/transaction-count-history",
-          label: "Transaction count history",
+          id: "apis/v2/transaction-metrics-daily",
+          label: "Transaction metrics daily",
           className: "api-method get",
         },
         {
           type: "doc",
           id: "apis/v2/latest-transaction-summary",
           label: "Latest transaction summary",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "apis/v2/program-deployment-transaction",
-          label: "Program deployment transaction",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "apis/v2/program-deployment-by-edition",
-          label: "Program deployment by edition",
           className: "api-method get",
         },
       ],

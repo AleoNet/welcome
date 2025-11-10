@@ -672,8 +672,8 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /metrics/transactions:
     get:
-      summary: Transaction count history
-      description: Returns transaction count history data
+      summary: Transaction metrics daily
+      description: Returns total transaction counts for each date
       tags:
         - Transactions
       responses:
@@ -729,61 +729,6 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /transactions/address/{address}:
-    get:
-      summary: Transactions by address
-      description: Returns transactions for the specified address with pagination
-      tags:
-        - Address
-      parameters:
-        - name: address
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 50
-            default: 20
-        - name: offset
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            default: 0
-      responses:
-        '200':
-          description: Paginated transaction list
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  address:
-                    type: string
-                  pagination:
-                    $ref: '#/components/schemas/Pagination'
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TransactionByAddress'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /program/{programID}:
     get:
       summary: Program by ID
@@ -824,7 +769,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /find/transitionID/{inputOrOutputID}:
     get:
-      summary: Transition ID by input/output ID
+      summary: Find transition ID by input/output ID
       description: Returns the transition ID for the specified input or output ID
       tags:
         - Programs
@@ -948,7 +893,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProgramDataResponse'
+                type: string
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -963,7 +908,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /program/{programID}/mapping/{mappingName}/{key}:
     get:
-      summary: Mapping value
+      summary: Program mapping value
       description: >
         Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/{programID}/mappings query.
       operationId: getMappingValue
@@ -1018,7 +963,7 @@ paths:
       summary: Program deployment transaction
       description: Returns the deployment transaction ID for the specified program
       tags:
-        - Transactions
+        - Programs
       parameters:
         - name: programID
           in: path
@@ -1052,7 +997,7 @@ paths:
       summary: Program deployment by edition
       description: Returns the deployment transaction ID for the specified program edition
       tags:
-        - Transactions
+        - Programs
       parameters:
         - name: programID
           in: path
@@ -1088,8 +1033,8 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /block/{height}/history/{mapping}:
     get:
-      summary: Historical values for credits.aleo mappings
-      description: Returns historical values for one of the following credits.aleo mappings at a given height
+      summary: Historical values for `credits.aleo` mappings
+      description: Returns historical values for one of the following `credits.aleo` mappings at a given height
       tags:
         - Programs
       parameters:
@@ -1375,6 +1320,73 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /tokens:
+    get:
+      summary: Token Details
+      description: Returns data on various tokens on the Aleo network.
+      operationId: getTokens
+      tags:
+        - DeFi
+      responses:
+        '200':
+          description: Token details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        token_id:
+                          type: string
+                        token_id_datatype:
+                          type: string
+                          nullable: true
+                        symbol:
+                          type: string
+                        display:
+                          type: string
+                        program_name:
+                          type: string
+                        decimals:
+                          type: integer
+                        total_supply:
+                          type: string
+                          nullable: true
+                        verified:
+                          type: boolean
+                        token_icon_url:
+                          type: string
+                        price:
+                          type: string
+                          nullable: true
+                        price_change_percentage_24h:
+                          type: string
+                        fully_diluted_value:
+                          nullable: true
+                        total_market_cap:
+                          type: string
+                          nullable: true
+                        volume_24h:
+                          type: string
+                          nullable: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /delegators/latest:
     get:
       summary: Latest delegators
@@ -1641,7 +1653,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /latest/totalSupply:
     get:
-      summary: Total Supply - Credits
+      summary: Total supply - credits
       description: >
         Retrieves the latest total supply of ALEO in credits.
       tags:
@@ -1670,7 +1682,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /totalSupply:
     get:
-      summary: Total Supply - Microcredits
+      summary: Total supply - microcredits
       description: >
         Retrieves the latest total supply of ALEO in microcredits.
       operationId: getTotalSupply
@@ -1700,61 +1712,23 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /tokens:
+  /latest/circulatingSupply:
     get:
-      summary: Token Details
-      description: Returns data on various tokens on the Aleo network.
-      operationId: getTokens
+      summary: Latest Circulating supply - credits
+      description: >
+        Retrieves the latest circulating supply of ALEO in credits. 
       tags:
-        - DeFi
+        - Supply
       responses:
         '200':
-          description: Token details
+          description: Number of tokens in credits.
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  pagination:
-                    $ref: '#/components/schemas/Pagination'
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        token_id:
-                          type: string
-                        token_id_datatype:
-                          type: string
-                          nullable: true
-                        symbol:
-                          type: string
-                        display:
-                          type: string
-                        program_name:
-                          type: string
-                        decimals:
-                          type: integer
-                        total_supply:
-                          type: string
-                          nullable: true
-                        verified:
-                          type: boolean
-                        token_icon_url:
-                          type: string
-                        price:
-                          type: string
-                          nullable: true
-                        price_change_percentage_24h:
-                          type: string
-                        fully_diluted_value:
-                          nullable: true
-                        total_market_cap:
-                          type: string
-                          nullable: true
-                        volume_24h:
-                          type: string
-                          nullable: true
+                  circulating_supply:
+                    type: number
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -1769,7 +1743,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /circulatingSupply:
     get:
-      summary: Circulating Supply - Microcredits
+      summary: Circulating supply - microcredits
       description: >
         Retrieves the latest circulating supply of ALEO in microcredits. 
       tags:
@@ -1798,23 +1772,49 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /latest/circulatingSupply:
+  /transactions/address/{address}:
     get:
-      summary: Latest Circulating Supply - Credits
-      description: >
-        Retrieves the latest circulating supply of ALEO in credits. 
+      summary: Transactions by address
+      description: Returns transactions for the specified address with pagination
       tags:
-        - Supply
+        - Address
+      parameters:
+        - name: address
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
       responses:
         '200':
-          description: Number of tokens in credits.
+          description: Paginated transaction list
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  circulating_supply:
-                    type: number
+                  address:
+                    type: string
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  transactions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TransactionByAddress'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -2496,86 +2496,6 @@ components:
             type: string
     UnconfirmedTransaction:
       oneOf:
-      - title: deploy
-        type: object
-        properties:
-          type:
-            type: string
-            enum: ["deploy"]
-          id:
-            type: string
-          owner:
-            type: object
-            properties:
-              address:
-                type: string
-              signature:
-                type: string
-          deployment:
-            type: object
-            properties:
-              edition:
-                type: integer
-              program:
-                type: string
-              verifying_keys:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '{{ function }}':
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          verifying_key:
-                            type: string
-                          certificate:
-                            type: string
-          fee:
-            type: object
-            properties:
-              transition:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  scm:
-                    type: string
-                  tcm:
-                    type: string
-                  tpk:
-                    type: string
-                  inputs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        type:
-                          type: string
-                        value:
-                          type: string
-                  outputs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        type:
-                          type: string
-                        value:
-                          type: string
-                  program:
-                    type: string
-                  function:
-                    type: string
-              global_state_root:
-                type: string
-              proof:
-                type: string
       - title: execute
         type: object
         properties:
@@ -2674,6 +2594,86 @@ components:
                 type: string
               proof:
                 type: string
+      - title: deploy
+        type: object
+        properties:
+          type:
+            type: string
+            enum: ["deploy"]
+          id:
+            type: string
+          owner:
+            type: object
+            properties:
+              address:
+                type: string
+              signature:
+                type: string
+          deployment:
+            type: object
+            properties:
+              edition:
+                type: integer
+              program:
+                type: string
+              verifying_keys:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '{{ function }}':
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          verifying_key:
+                            type: string
+                          certificate:
+                            type: string
+          fee:
+            type: object
+            properties:
+              transition:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  scm:
+                    type: string
+                  tcm:
+                    type: string
+                  tpk:
+                    type: string
+                  inputs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        value:
+                          type: string
+                  outputs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        value:
+                          type: string
+                  program:
+                    type: string
+                  function:
+                    type: string
+              global_state_root:
+                type: string
+              proof:
+                type: string
     TransactionSummary:
       type: object
       properties:
@@ -2749,22 +2749,20 @@ components:
         has_previous:
           type: boolean
     ProgramDataResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        block_height:
-          type: integer
-        block_timestamp:
-          type: integer
-        transaction_id:
-          type: string
-        program_owner:
-          type: string
-        program:
-          type: string
-        edition:
-          type: integer
+      oneOf:
+        - type: string
+          title: metadata=false
+        - type: object
+          title: metadata=true
+          properties:
+            program:
+              type: string
+            edition:
+              type: integer
+            transaction_id:
+              type: string
+            program_owner:
+              type: string
     CommitteeResponse:
       type: object
       properties:
