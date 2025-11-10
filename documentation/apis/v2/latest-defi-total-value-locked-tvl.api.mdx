@@ -1,0 +1,63 @@
+---
+id: latest-defi-total-value-locked-tvl
+title: "Latest defi total value locked (TVL)"
+description: "Returns the latest DeFi TVL snapshot (mainnet only)"
+sidebar_label: "Latest defi total value locked (TVL)"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtuGzcQ/ZUB85IIq0vd5KF6qpPYhVOnCGw5KRAbwYg70jLmkgw5K0eQ9e/FcFe2bDltkr56X1a8HQ7PnrlQK1VS0tEENt6psTohbqJLwBWBRabE8JoODUzeH0NyGFLlGZ7WaJwjBu/s8pkqFOM8qfFHJVPVRaEipeBdoqTGK7U3Gsnr7j43oCUygo/QuNSE4CNTCY74ysdLqCklnJMqlPaOybHgYAjWaBSc4eckYCuVdEU1yi9eBlJjhTHiUhXKMNVpq99PP5NmVagQfaDIpjUxRM9ee/vJYU1b0xNH4+ZqXSj2jPbTAm2zPW4c05yiWrdPoZ4/dNaXWMIJfWmEzD4cuQVaU4JxoeECarQzH2sqIWDEmphiKiBPyWcEitHH9BMcfOOsiZGb9MqXDx6kUGxqSox12OWhUGIqshqrEpn6MlWWBOTqQdZq4sqX3xhqv+3uWLaBrXQdyNlPOjGpDcXPdyn+yzMc+saV0IcTSr6JmsB5hpl0PpJ3Q97e3i55Zy5ErwVyagkOHBteQh9eNsk4Sgmsnxv9KMl/Y/W3XVYn3sNbdMuN6yeRJjKBNbXh1vZH/jJ/Lx6KmkeOKTq0cEpxQRHyQujDvuYGLaS2t5ViAY2jr4G0ZI8ZGttEetTnFr+/7vIrtBpNcOZwgcZm3+/DhOrgI8ZlJljGTUoNJXjqfEmQlk4bNy9gRshNJGhuVz97JLwlfAtUzSmfLm+uhiXNzDCXEu9zJVGoVsZSPK1UE60aq4o5pPFwiMEM6GuwPlIchOgXwvFA+3q42Bt2BZgq7n3Ut11htv/uCA5cGbxxrNbFD2FL0fcQ9qTt/1/YGh3G5Q70q9x9D/lC2NFNNLw8Fd200vh8xVvfQzYVFvO4GqspYaSoiu7H4UYKbz5MdjZ982EC7C/JwcxHwIYrctwpNiums30/mD9puV1cth2FMgJTEZZ5y7Z2VH/333UL+/vvjvrtzLs7yzkvaZn33Uze+FvK4jJu5h9IKRXdzhcQk6CkZOaOSmAPYrEpCZpEMcGV4QpQS2KXQano9y15mFqvL3WFxgFX0TfzCk4OTiezxgJ15Ev9jwxorb8C70jWf2koLjPKpjwX8zMYWFqQBTFa+DbeFcARXUItjdS1TNdAV0LtIw3gtawTx0+g0QFhMnYJ4ugRNUNpImm2y/Yo2fiNxVPPFUTiaGhh3Ly9RmCCK7JW3tPosdSYJNHesWVw7s7dkyeZvpeYCM5OjpP0XcOBW5joXU2OAa5lAL73uT531/07z73mfzyyHradF67hRwJBNgC2PfR7ATpvbwG2/PC7AVqXzhRkYnONc9zVONJ3ltWIkVo9dVKlKGKBXu8FxE2BFChCIu1d2etllTRB5vZ6v4xGxWg0ujuzxGWvlz/nnbIKroy1MCUgkaOmskW6MSI1OecI8NSivrSmFYmZibiXgNMmUda5vP0MfBOFkQEc+gjGfWlMNJREpR78lNE4WV6ZeUUR4o0pqYBgSRQWCXUFvmFAhpIWG0//fZvKAZw7VShJBq2z7w1Gg5G6zTPbjt9lWtQ5FnaBR77aaXuHVoWiGo2E5W/tl8NM8IlrdFsgx+2dXxIV5EQF+c4L4uZUwtPJ++Nn9+PZ6jbt/+z/B21gZfrKw2DR5Pib08qqy50flZikuot4mz0vClX5xDK4Wk0x0Vm067V051ilxh8vCrXAaOTM0loXm2gt6fZSgrra15qCENbd7XfrFklEN/n8j4OJWq//AWN3818=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Latest defi total value locked (TVL)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/defi/totalValue"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the latest DeFi TVL snapshot (mainnet only)
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"DeFi TVL data or unsupported network message","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"protocol_name":{"type":"string"},"total_value":{"type":"integer"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

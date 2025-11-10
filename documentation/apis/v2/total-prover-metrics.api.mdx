@@ -1,0 +1,63 @@
+---
+id: total-prover-metrics
+title: "Total prover metrics"
+description: "Returns total prover metrics (prover count, rewards, solutions)"
+sidebar_label: "Total prover metrics"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIIq0fd5FCd6qRO4TQpDFtGCsRBMeKOtIy55IYcShFk/fdiuCtbspU2QXP0XqQl58Vvv3nsrlVJUQfTsPFOjdU5cQouAntGC03wCwpQEwejIzzt7rVPjgsItMRQxgKit0n04zNVKMZ5VOMP6iz4hXFz9bFQgWLjXaSoxmt1NBrJz77bya67zq4qlPaOybHIY9NYo1Hkh5+iKK1V1BXVKP941ZAaKz/9RJpVoZrgGwpsWpf5MH+31uOOuHFMcwpqU3QiW893IpGDHOJW4vaoh8zkq1DPD53wJZZwTp8TRYY+nLoFWlOCcU3iAmq0Mx9qKqHBgDUxhVhAFsknBgrBhx+ISGTkFF/5kr4Ch6kpMtbNQygKJaEiq7EqkakvoqLSIFcHgauJK19+ZStGnNOBvRwDW1k6kbOfdxRSW4ifP4T4T8/w2idXQh/OKfoUNIHzDDNZfATvFryjo4fgXbomeC0mp5bgxLHhFfThZYrGUYxg/dzoR0r+G6q/HKprHt6hW21TPwo1kQmsqQ23sT/il/F7cahqnjqm4NDCBQVpDVkR+nCsOaGF2K62VCwgOfrSkGYqYYbGpkCP/NzB9+eH+AqsRhNcOlygsTn3+zChuvEBwyoDLPsmxkQRnjpfEsSV08bNC5gRcgoE6U772SPgLeA7RtWc8umyczXspqlhN48M82ChCtWSWWantUrBqrGqmJs4Hg6xMQP60lgfKAxETZAeaF8PF0fDGo1z2cH+o33XrsPx2SmcuLLxxrHaFN9lmynyIduTdv1/2dboMKwemH6Vl+9Z/ijo6BQMry6EPS1BPi1556mIU0Ex76uxmhIGCqro/rzeEuLN+8kDp2/eT4D9NTmY+QCYuCLHHW8zb7rYjxvzB612nGK7UCgjZirCMrt0mEP4q3/WKfaPz077reS+ZznnNa2y363wNutipphxM3+gsVR0Jy9GTISSopk7KoF9HqVNSZAihQhLwxWglvYum1wRHFvyMLVeX+sKjQOugk/zCs5PLiazZIE68CNwhQxorV+CdyT6nxOFVbbiiJc+XOfwszGwtCALErTgbbwrgAO6iDqPzd2d6W7QlVD7QAP4TfQk/SNodEAYjV2BpHtAzVCaQJrtqj1KDn4b8dRzBUGSiuSFA0pkBIywJGvldxo8lhqjtNu9WAZX7so9eZLhe4mR4PL8bZS1GzhxCxO8q8kxwI1swLdeN1fupr933bv9j0v0YTd54Qa+pxDkAGA3Q7/VQJftrYGdPPxmA21KZwgysHnSedtNOrJ2mdmIgVo+dVSlIGSBXu8FhO2Y1FCASNq7stfLLEmNyPZ6P41GxWg02pcscdXr5ce5N1zB0lgLUwISOmoqW0u3QcSUO48YnlrU19a0JDEzIfcKcJoiZZ7Lr5+BT0EQGcBrH8C4z8kEQ1FY6sFPGY0T9crMK3mNvQ0lFtBYEoYFQl2BTwzIUNJim+m/7kI5gCunCiXNoE32o8FoMFJ33WY38bt+izrXwq7wyFO7SE3jg9RuqtFIWf6av1xmGh+5RrdjZHLgE8D9+rW+a/Y/4tNBW1SZvvCwsWhy7c0tZd11zw/qLpDt+3z3ai4fGiofWYTW6ylGugx2s5HlXK/U+MPHQi0wGDm33G2KbcWWlnsthV0da02NgLZAm9oKf2+CkWZ029l/P5mozeYf3uv+bQ==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Total prover metrics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/provers/total"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns total prover metrics (prover count, rewards, solutions)
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Total prover rewards","content":{"application/json":{"schema":{"type":"object","properties":{"total_provers":{"type":"integer"},"total_rewards":{"type":"string"},"total_solutions":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,63 @@
+---
+id: latest-block-summary
+title: "Latest block summary"
+description: "Returns a summary of the latest block"
+sidebar_label: "Latest block summary"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1vGzcM/1cI9WUzzh/L2of5aUmXDunaoUgcdEATFLSO9qnRSVeJcmo4/t8H6s6J3Thtur3mXs6iKJL346e8UiVFHUzDxjs1VqfEKbgICDHVNYYl+BlwRWCRKTJMrddXqlCM86jGH9SRrKO6LFSg2HgXKarxSh2MRvLalf1mS8RGvCqU9o7JsfBj01ijUfiHn6IcWqmoK6pRfvGyITVWGALKOcNUxy26n34izapQTfANBTatKVndx4rMvOItbuOY5hTUuthwYKy29iMH4+ayHb1NYtFH7ZN7QAQHdBH199haTWxqiox1s59Je+OmGOkjY5jTA5Ka4P3sGxxik2ErtOyisw7utTyFer7PP0dYwil9TuKkPpy4BVpTgnFN4gJqtDMfaiqhwYA1MYVYQGbJ/gIKwYf4H/z5gN8iI6f40pf0AOR7UOycVigxFVmNVYlMfWHNoCHvd3FNXPnyga0YcU579rYgPpZvP+0SQG0gfn4f4r89wyufXAl9OKXoU9AEzjPMhPgE3i14Bwf3wTt3TfBaRE4twbFjw0vow1GKxlGMYP3c6KeQ/Baqv91HdeI9vEW33KR+lNBEJrCmNtza/oRfxu/Fvqp54piCQwtnFBYUIB+EPhxqTmghttQ2FAtIjr40pJlKmKGxKdBTfG7h++t9fAVWownOHS7Q2Jz7fZhQ3fgg80ns9k2MiSL85HxJEJdOGzcvYEbIKRCku9M/PwFOmzlgI1TJGLFRroZ5TonDbkYbtrOfKlQbzDL4rVQKVo1VxdzE8XCIjRnQl8b6QGHQBL8QpAfa18PFwbBG41xWsOvaty0dDt+dwLErG28cq3XxQ7LFsn2yJy39f8nW6NoRdVf0y0z+SvKloKNTMLw8k+hpA+TT9fZ0JkoFxbyvxmpKGCioovvxahMQr99P7il9/X4C7K/IwcwHwMQVOe7ithsIs+2HjfmLltvjcksolBExFWGZVTrMJvzTf9cd7B++O+m3nLua5TuvaJn1bpg3WRdziBk383saS0V3/CLERCgpmrmjEtiDWGxKghQpRLg2XAFqae+yKVeOQ0u+vS3oCo0DroJP8wpOj88ms2SBOvAjcIUMaK2/Bu9Izn9OFJZZiiO+9uEqm99ePSwtyIIYLXgb7wrYmt9jtzLdAl0JtQ80gD/knKR/BI0OCKOxS5B0D6gZShNIs122n5KN31g89VxBIA6GFsbNoURGwAjXZK28p8FjqTFKu92xZXDhLtyzZxm+I4wE56dvotBu4NgtTPCuJscAN7IBj31uLtxNf+f5avmdR87DdvLCDfxIIcgGwHaGPlZAl+2tgK08fLSANqUzBBnYPOm86SYdoZ3naMRAbTx1oUpBggV6vRcQNmNSQwEiae/KXi9HSWqEt9f7ZTQqRqPRLmeJy14vu3NnuIJrYy1MCUjCUVPZSro1IqbceUTw1KK+sqYNEpNv5UvAaYqU41zefgY+BUFkAK98AOM+JxMMRYlSD37KaJwcr8y8ogDh1pRYQGNJIiwQ6gp8YkCGkhabTP99G8oBXDhVKGkGbbIfDEaDkbrrNtuJ3/Vb1LkWdoVHvHaWmsYHqd1Uo5Gy/JC+XGYaH7lGtyXkgX8UdurQ6q7ZP/7fjbZ0Mn3hYWPR5AqbG8eq65Ef2ru8DG93ers+eVmoykcWptVKbvLnwa7XQs5VSY0/XBZqgcHI18lqXWzqsjTWKynf6lBragSaBdrU1vGv5hRpObf9+8/jiVqv/wWAHyw2
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Latest block summary"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/blocks/summary/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a summary of the latest block
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Latest block summary","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"block_height":{"type":"integer"},"block_hash":{"type":"string"},"solution_count":{"type":"integer"},"transaction_count":{"type":"integer"},"block_timestamp":{"type":"integer"},"coinbase_target":{"type":"integer"},"proof_target":{"type":"integer"}},"title":"BlockSummary"}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

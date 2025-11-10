@@ -1,0 +1,63 @@
+---
+id: daily-puzzle-rewards
+title: "Daily puzzle rewards"
+description: "Returns daily puzzle rewards data"
+sidebar_label: "Daily puzzle rewards"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz20YM/iuYzaXVUI+6yaE61UmcjtOk4/Fj0pnY04GWkLjxcpfBgnIUWf+9g6VkS7HdOu3VvFDEYrHAxw8PamlKSpZdIy4GMzbHJC2HBCU6v4Cm/frVEzBdIZcqFDSFEZwlM/5ojjjOXZiZi8IwpSaGRMmMl2ZvNNLbruHX9xg0hbExCAVRfWwa7yyq/vBT0k1Lk2xFNeovWTRkxgaZcWEK44TqtCWPk09kxRSm4dgQi+tcKXGxpZSE1d9VYTo//tr4caMSWu9X3VWY5/fF8RJLOKbPLSWBPhyGOXpXggtNKwXU6KeRayqhQcaahDgVkFVyXEDMkf9L3A/ElwSlTa9iSVu6LgjNiDVOcTUlwbq5i0Jh1FUUMzYlCvVVNUODUt2LWU1SxfKBpZRwRvesZR/Eq+hAYz9eE8VsIH5+F+I/osCb2IYS+nBMKbZsCUIUmKrwCbwb8Pb27oJ3FhqOVk1OPMFBECcL6MPLNrlAKYGPM2efKPlPqP5yF9XTGOE9hsUm9ZNSE4XAu9pJ5/sTfhm/F/dVzcMgxAE9nBDPiSFvhD7sW2nRQ+qkHRULaAN9acgKlTBF51umJ35u4fvzXXwVVmcJzgLO0fmc+304pbqJjLzIAOu6S6mlBD+EWBKkRbAuzAqYEkrLBO3t7h+fAO8A3zJqZpSjy4ebYU3CzqZhN0sc34w0HZl1Qlqalr0Zm0qkSePhEBs3oC+Nj0w8aDjOFemBjfVwvjes0YWQD9h9te87OewfHcJBKJvogphV8V22hZLcZ/u0k/8v2xYD8uKO6VdZ/I3lC0XHtuxkcaLs6Qjy6Uq23ooeqijmdTM2E0ImNsX6x5sNId5+OL1z6NsPpyDxkgJMIwO2UlGQNW8zb9a+7zfud9qeDLETFMapmYqwzEcGzC782T9ab+zvHx32O83dkzXOS1rkczfKm6xLmWIuTOM9jaWiW3014hKUlNwsUAkSQT12JUGbiBNcOakArbZ3XZSKYN9ThImP9tJW6AJIxbGdVXB8cHI6bT3QGvwEUqEAeh+vIAbS/Z9b4kW2EkiuIl9m97Mx8DQnD+q04u1iKEAYQ0KrD2n95NYPGEqoI9MAXus+Tf8EFgMQJp37Nd0ZrUDpmKz4RRdKdn7j8SRKBaxJRfpZkb82ABNckfd6n3DE0mLSdrvjy+A8nIdnzzJ8LzERnB2/Syq7hoMwdxxDTUEArnUBHntdn4fr/s71zeO/XLoftpMXruF7CkF2ALYz9LEG1tneGdjKw0cb6FI6Q5CBzZPOu/Wko7KzzEZk6vi0piqxkgV6vRfAmzGpIYZENoay18ssaRvV7fV+Go2K0Wi0q1niotfLr3NnuIIr5z1MCEjpaKnsLN04kdrcedTwxKO99K4jiZsquReAkzZR5rne4xRiy4rIAN5EBhc+t44dJWVphDgRdEG3V25WEQPfuJIKaDwpw5jQVhBbARQoab7J9F+3oRzAeTCF0WbQJfveYDQYmdtus534636LNtfCdeHRt3bSNk1krd1Uo9Oy/NB5ucw0MUmNYcvIA1/eO3VoedvsH/cXQFc2hb7IsPHocnXNTWO57o8fzbo/ms3X9qZDXhSmiklUZbmcYKIz9quVinM9MuOPF4WZIzuNS59WxaYia0u91MJt9q2lRkGZo2+7Cv7NhKLN5qZz/3ZwalarvwG9k920
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Daily puzzle rewards"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/puzzleRewards"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns daily puzzle rewards data
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Daily puzzle rewards","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"day":{"type":"string"},"puzzle_rewards":{"type":null}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

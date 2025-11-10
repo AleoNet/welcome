@@ -1,0 +1,71 @@
+---
+id: find-transaction-by-transition-id
+title: "Find transaction by transition ID"
+description: "Returns the transaction ID for the specified transition"
+sidebar_label: "Find transaction by transition ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1z0zgQ/1d2xAtknI/rwcPl6Qptb8oBw7TpcDO0Dxt5E4vKkpHWKZ40//vNyk7rkMLB8dq8OF7tl37aL3mtcoo6mIqNd2qqzojr4CJwQcABXUQtK3B6BAsfEjlWpM3CUN4ymCSZKcZlVNOPanYvFdVVpioMWBJTkNW1cliSmqp70dMjlSkjtivkQmUq0OfaBMrVlENNmYq6oBLVdK24qUQ2cjBuqTabK2GOlXeRoqwfTCby2N3RbGcXKlPaOybHwolVZY1GWRt/isK+/o65zSZTzx8y8RJzOKPPNUWGIZy6FVqTg3FVzRmUaBc+lJTDPRIZJJZkGCgEH+L/cMzPP5Fmlakq+IoCmxaFyMh1fOVz6vEax7SkoDaZYlNSZCyr/T1mSlxFVlOVI9NQWEUkncw+IpkqiQuff2MpRlzSQ0CKD2yFdCx7P+vO8A7i5/sQv/MMJ752OQzhjKKvgyZwnmEhxEfw7sA7ONgH78JVwWtRObcEx44NNzCEl3U0jmIE65dGP4bk91D944HC4j28RddsUz9KaCITWFMabn1/xC/h9+KhqnnqmIJDC+cUVhQgCcIQDjXXaCG21DYUM6gdfalIM+WwQGPrQI/x2cP39318BVajCS4crtDYlPtDmFFZ+YChSQDLuomxpghPnc8JYuO0ccsMFoRcB4L6XvrZI+At4D2laklpd8m4Gi+My8e9uen0aLzujzoblak2sNtpqA5WTVXBXMXpeIyVGdGXyvpAYVQFvxLUR9qX49XBuETjXDK2e8xvWzocvj+FY5dX3jhWm+yndDNFfkj3rKX/km6NDkOzp/pVIn+l+UrQ0XUw3JxLJLXB8umGeyckRlU3Fcr7nDBQUFn352QbHK8/zPaMvv4wA/bX5NIwizUX5LiL4RRDne+Hlfmbmp5RbAndoFoQ5slkN8z+M3zfCQ4P358OW85dy7LPa2qS3S3zNgNjCjfjFv6BJlPQPb8oMRFyimbpZP72IB6bnKCOFCLcGC4AtbR6WZRp/dCSh7n1+loXaBxwEXy9LODs+Hy2qC1QB76M/MiA1vob8I5E/nNNoUlaHPGND9fJ/aQMLK3IgjgteBvvsv59IWa9y0HMAF0OpQ80giORk1IQQaMDwmhsA5L6ATVDbgJptk27leT81uO55wICcTC0Mm4JOTICRrgha+U5Dx5zjVFa744vo0t36Z48SfC9xEhwcfYmCu0Wjt3KBO9KcgxwKwvwo7/bS3c73Pl99fofP5GHfvLCLfxMIUgOQD9Df1RBl+2tgl4e/rCCNqUTBAnYNPW86aYeoV2kaMRAbTx1oUpBggUGgxcQtiNTRQEiae/ywSBFSV0J72Dw22SSTSaTXc4cm8EgHefOoAU3xlqYE5CEo6a81XTnRKxTFxLFc4v62po2SMxCgrsBnNeRUpzL0y/A10EQGcGJD2Cc3EcNRYlSD37OaJyIF2ZZUIBw50rMoLIkERYIdQG+ZkCGnFbbTP+zD+UILuXiLM2gTfaD0WQ0Ufedp5/4Xe9FnWphV3jk1M7rqvJBajeVaKQsf8teKjOVj1yi6yk5MS7fuevPm17ytnfmnaK0vp8CfuV7QVtZmb7wuLJoUgFOfWXdtdOPStqpsPYbqsrkw0Dv68FVpgofWfjX6zlGugh2sxFyql9q+vEqUysMRnBIXTc36SaUq+kCbaTvbO/pWfcx4hl8y+Vth3BS9Fdoa3lTmbqWBrL7nWNztcm2zUP8aFkOtaaKe8J7g5X0xbuB46/jmdps/gXXtyHC
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find transaction by transition ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/transactionID/{transitionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the transaction ID for the specified transition
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"transitionID","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Transaction ID","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

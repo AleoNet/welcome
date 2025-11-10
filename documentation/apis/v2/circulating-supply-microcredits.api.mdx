@@ -1,0 +1,64 @@
+---
+id: circulating-supply-microcredits
+title: "Circulating Supply - Microcredits"
+description: "Retrieves the latest circulating supply of ALEO in microcredits."
+sidebar_label: "Circulating Supply - Microcredits"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtv20YQ/iuDzaU1KFl1m0N1qpM6RdKkDfxACsRGMVqOxI2Xu8zsUI4g678Xs6Rs2nLaBM3RvFD7mMd+/OaxWpuSkmXXiIvBTM0xCTtaUgKpCDwKJQHr2LYexYUFpLZp/AriHA5fH/0JLkDtLEfLVDpJYzgPpjCCi2Sm781J3mwuCsOUmhgSJTNdm4PJRF93LT/fNVKioCmMjUEoiIpg03hnUUX2PySVW5tkK6pRf8mqITM1cfaBrJjCNBwbYnGd1cEp/u4MDGSSsAsLsylMSdbV6NNg0QWhBbHZ5KcwPz3k/zMs4Zg+tgrYCF6GJXpXggtNKwXU6OeRayqhQcaahDgVkLfkwwAxR07f7rBJUNr0PJb00DkKI66mJFg3uxgURl1FMVNTotBIt6pIg1I9iFhNUsXyM0sp4YIeWMs+iNepIz37cU8Qs4X4p12I/4gCL2IbShjBMaXYsiUIUWCuk4/g3YB3cLAL3lloOFpVOfMER0GcrGAEz9rkAqUEPi6cfaTkv6H68y6qpzHCGwyrbegnpSYKgXe1k873R/wyfk8fypovgxAH9HBCvCSGLAgjOLTSoofUzXZULKAN9KkhK1TCHJ1vmR75OcD3x118FVZnCc4CLtH5HPsjOKW6iYy8ygDrukuppQTfhVgSpFWwLiwKmBNKywTtrfT3j4B3gA+UmgXl02XjZn/QaPQNUGE6ImtTtDYtezM1lUiTpvv72LgxfWp8ZOJxw3GpKI9trPeXB/s1uhCy8ruf9U03D4dvX8JRKJvogphN8VW6tbV7SPdpN/+/dFsMyKsd1c/z9D3NF4qObdnJ6kSZ05Hjw5UMvogaVRTzupmaGSETm6L/8WJLhlfvTneMvnp3ChIvKcA8MmArFQXpOZs50/t+2LjfadgTYjdRGKdqKsIymwyYXfhr9LYXHB2+fTnqdt61rOe8pFW2u928jbiU6eXCPD5QVCq63a9KXIKSklsEKkEiqMeuJGgTcYIrJxWg1dKui9q3H3qKMPPRXtoKXQCpOLaLCo6PTk7nrQfqwdcuHwXQ+3gFMZDKf2yJV1lLILmKfJndz8rA05I8qNOKt4uhAGEMCa0OUj9y/QBDCXVkGsOvKqehn8BiAMLk/Ao01BmtQOmYrPhVd5Ts/NbjWZQKuLuU6M1ArwSACa7Ie33POGJpMeVrw9CX8Xk4D0+eZPieYSI4O36ddO4ajsLScQw1BQG41gX40uf6PFyP7jz3hv/xqDwMgxeu4WsSQXYAhhH6pQr6aO8UDOLwixV0IZ0hyMDmLud13+Xo3FlmIzJ1fOqpSqxkgb29p8DbFqkhhkQ2hnJvL7OkbXTv3t4Pk0kxmUzu7ixxtbeXP+edxgqunPcwIyClo6Wy03TjRGpz1VHFM4/20ruOJG6u5F4BztpEmef6jnOILSsiY3gRGVz42Dp2lJSlEeJM0AUVr9yiIga+cSUV0HhShjGhrSC2AihQ0nIb6b8MoexvyFoMumA/GE/GE3NbaYaB39datDkX9olHv5rWlciau6lGp2n5c/ZymmlikhrDQMnwtt0VKRjBm8FN/n4yW99W/W/1J0GXZYU+yX7j0eVknGvMui+l781uKb0oTBWT6OJ6PcNEZ+w3G53OictM318UZonsFAAdbYpt6tbae6kZ3hxaS42it0Tfdqn+XhujVemmvP92dGo2m38ABaD0dA==
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Circulating Supply - Microcredits"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/circulatingSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest circulating supply of ALEO in microcredits. 
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Circulating supply data","content":{"application/json":{"schema":{"type":"object","properties":{"circulating_supply":{"type":"string"},"decimals":{"type":"integer"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

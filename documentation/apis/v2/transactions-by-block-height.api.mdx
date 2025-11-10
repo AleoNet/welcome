@@ -1,0 +1,71 @@
+---
+id: transactions-by-block-height
+title: "Transactions by block height"
+description: "Returns all transactions in the specified block"
+sidebar_label: "Transactions by block height"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIIq0fd5lCdaqdO4TQpDFlGCsRGMNodaRlzyQ05lLOQ9d+L4a5syZbzaHv0XiSS8+LHeZErVVDIva5ZO6vGakIcvQ2AxgB7tAFzWQmgLXBJEGrK9VxTATPj8iuVKcZFUOMP6kjGQV1mqkaPFTF5mV8pixWpsSpJL0pWmdKip0YuVaY8fY7aU6HG7CNlKuQlVajGK8VNLVzaMi3Iq/X6UqhD7WygIAQHo5H87Jp/6D024OY7tqtM5c4yWRYGrGujc5SV4acgXKuHat3sE+VibO1dTZ51q3NH6h01ilbZGVMVvi1FF1s0gb22C7XO1Jxo38YzFRg5hr086RA+dtDuZW4pWFcUGKv6a0QlhnKvlq1tf2wX9xDV3i08Vh8f2120rYC966JEs5Gp6Z2ys1hV6Bu1br9M/bLvzI+wgAl9jhQY+nBil2h0AdrWkTOo0Mydr6iAO6/MIJEkFwDy3vn/0UXaw3rlikcOc99JdChkSkxFVmNVIFNfSBOyEiv7MK2IS7cf7opCwMW+k9qC+lj2PumCSm0g/uUhxH85htcu2gL6MKHgos8JrGOYy+QTeLfgHRw8BO/c1t7lInJmCI4ta26gD0cxaEshgHELnT+55NdQ/fUhqlPn4B3aZhP6QVwTmcDoSnNr+xN+Cb+X+7LmiWXyFg2ckV+Sh8QIfTjMOaKB0M62rphBtPSlppypgDlqEz09+ecWvj8/xFdg1TnBucUlapNivw9Tqmrn0TcJYFnXIUQK8Ny6giA0Ntd2kcGckKMniHfcL54AbwHfEqoWlHaXlKthamOGq7YdWg/v9YCtS7c9afRGWlLmOoyHQ6z1gL7Uxnnyg9q7peA9yF01XB4MK9TWJjW7B/yunYfD0xM4tkXttGW1zn5INlPgfbKn7fx/kp2jld7pvuhXafqe5EtBJ49ec3MmPtS6yafr7Z5SlKquQ5fxjNCTV1n35/XGLd68nz5Q+ub9FNhdkYW584CRS7LceW/XOybbD2v9JzXbnXU70V0aSsIiqeyuFH/3TzvG/uHpSb+lvHchOD2BK2qS3g3xJvZCcjRt525PeSnpjl6E6AAFBb2wVAA7EIt1QRAD+QDXmkvAXIq8LMpF6dCQa+9IeYnp8uRdXJQwOT6bzqMB6sAPwCWy3LfcNThLwv85km+SFEt87fxVMj8JA0NLMiBGC97a2WznrtONdDdAW0DlPA3gd+GTJBAgRwuEQZsGJOg95gyF9pSzadqtJOM3Fs8cl+CJvaaltgsokBEwwDUZI78z77DIMUjR3bFlcGEv7LNnCb4jDATnk7dB5m7g2C61d7YiywA3sgDf+91c2Jv+zndv+I1P+GE7eOEGfiQRJANgO0K/V0AX7a2ArTj8bgFtSCcIErCp33nb9Tsyd568ET21/tS5KnlxFuj1XoLfNEs1eQiUO1v0eslLYi20vd5Po1E2Go12KQtser10nDstFlxrY2BGQOKOORWtpFsjQkz1RwTPDOZXRrdOoufi3A3gLAZKfi6/bg4uekFkAK+dB23lbUCTvD2wAzdj1FbYS70oyYO/NSVkUBsSD/OEeQkuMiBDQctNpP+2DeUALqzKlBSDNtgPBqPBSN3VnO3A76ou5ikXdolHTu0s1rXzkrupQi1p+TF9Kc3ULnCFdkvIdPt5ZdZ08X37TLKTj1Z3pf/fPNG0yZTpCw9rgzrl3FRKVl3t/KA2tONbA3bK52WmShdYKFerGQY692a9lumUrNT4w2Wmlui1bDqV2EKnC0+hxnM0gb6yoeeT7hXoBTxm7KYcWMnwSzRRRipTV1ItNk9L68t1tqkRYkG7eJjnVPMW24POScrfbUfxx/FUrdf/ABEtnRQ=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Transactions by block height"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/block/{height}/transactions"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns all transactions in the specified block
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"height","in":"path","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Array of transactions","content":{"application/json":{"schema":{"type":"object","properties":{"transactions":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"fee":{"type":"integer"},"status":{"type":"string"},"block_height":{"type":"integer"},"block_timestamp":{"type":"integer"},"block_hash":{"type":"string"},"transaction_type":{"type":"string"},"program_id":{"type":"string"},"function_id":{"type":"string"}},"title":"TransactionSummary"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

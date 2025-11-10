@@ -1,11 +1,11 @@
 ---
-id: get-height-by-block-hash
-title: "Height by block hash"
-description: "Returns the block height for the specified block hash"
-sidebar_label: "Height by block hash"
+id: find-block-height-by-state-root
+title: "Find block height by state root"
+description: "Returns the block height for the specified state root"
+sidebar_label: "Find block height by state root"
 hide_title: true
 hide_table_of_contents: true
-api: eJztWEtz2zYQ/is7yCXRUI+6yaE61U6dxmnSyfgx6UziwwpciYhBgAEWcjiy/ntnQcqWIidN2h7NC4nF7mLxYV/gSpUUdTANG+/UVJ0Sp+AicEUws15fQUVmUTHMfcjE2JA2c0PlZhpjpQrlGwooOk5KNVUL4pdZ7Kg9Eq6XHRPjIqrpe5VpUV0WqsGANTEFoa+Uw5rUVPU6jRjUIMt3oE/JBCrVlEOiQkVdUY1qulLcNiITORi3UOv1pTDHxrtIUeYPJhN57W7zaGtrqlDaOybHwodNY43OWxl/jMK82l/Mzz6SFsEmyMbZdEv1+u74jGNaUFDr/BTq6b22YAmn9ClRZBjCiVuiNSUY1yQuoEY796GmEu6gKiCzZBuBQvAh/n97iIyc4nNf0n37KBSbmiJj3exjXygxFVlNVYlMQ2EVkXyE+ydVqJq48uVXpmLEBd13wGIDWyEdy95P+8NWG4if7kP8p2d44ZMrYQinFH0KmsB58erkygfwbsE7ONgH78I1wWtRObMEx44NtzCEoxSNoxjB+oXRDy75LVR/2Uf13Ht4g67dhH4U10QmsKY23Nn+gF/G79l9WfPEMQWHFs4oLClAFoQhHGpOaCF21M4VC0iOPjekmUqYo7Ep0IN/buH78z6+AqvRBBcOl2hsjv0hnFPd+IChzQDLvIkxUYTHzpcEsXXauEUBc0JOgSDdST95ALwDfEupNEpqs7gad/3DeCX9z1oVqnPirjVKwUpnxNzE6XiMjRnR58b6QGHUBL8UhEfa1+PlwbhG41xWvHukbzo6HL49gWNXNt44Vuvih3QzRb5P93lH/0+6NToM7Z7q55n8heZLQUenYLg9E6/pHOPj9Xb3JYuqvlWU8YwwUFBF//Fi4wiv3p3vLfrq3TmwvyKXG19MXJHj3l+zv/S2HzbmD2q3FsWO0HevFWGZl+w727+Gb3vB4eHbk2HHubuy7POK2rzuhnkTbTG7lnFzf09BqeiOX5SYCCVFs3BUAnsQi01JkCKFCNeGK0AtZV0mpbM/tOS7pl5XaBxwFXxaVHB6fHY+TxaoB18uB8iA1vpr8I5E/lOi0GYtjvjah6tsfndDsLQkC2K04G28K4ADuohaBrEfmX6AroTaBxrBbyInYR9BowPCaGwLEuYBNUNpAmm2bbeVbPzG4pnnCgJxMLQ0bgElMgJGuCZr5T0LHkuNUcrsji2jD+6De/Qow3eEkeDi9HUU2g0cu6UJ3tXkGOBGJuB7n5sP7ma483wx/IdH5GE7eOEGfiQRZANgO0K/V0Ef7Z2CrTj8bgVdSGcIMrC5w3nddzhCu8jeiIE6f+pdlYI4CwwGzyBs2qOGAkTS3pWDQfaS1AjvYPDTZFJMJpNdzhLbwSAf505TBdfGWpgRkLijprLTdGtETLniiOKZRX1lTeckZi7O3QLOUqTs5/L2c/ApCCIjeOEDGCeXVENRvNSDnzEaJ+KVWVQUINyaEgtoLImHBUJdgU8MyFDSchPpv25DOYIPThVKikEX7AejyWii7qrMduD3dRZ1zoV94pFTO0tN44PkbqrRSFr+2no5zTQ+co1uS0l3p4dZu3v338lDq7si/69/JvSplOkzjxuLJmfcXEhWfa18r27v7tMsdFmoykeWmdVqhpEugl2vhZxTk5q+vyzUEoORLeaCWpp8oSnVdI420je28fi0//nwBL5m3Cb5O8nnS7RJRqpQV1Ibuv8Z68t1sakHsn43dag1NbwltNcXSam77Rd+Pz5X6/XfDHgdRQ==
+api: eJztWEtz2zYQ/is7yCXRUI+6yaE61U7t1mnTycj2pDOJDytwJSIGAQZYyNHI+u+dBSlLipw0aXs0LxIW+8KHfZErVVLUwTRsvFNjNSFOwUXgimBqvb6Bisy8Ypj5kImxIW1mhkqIjEwQvGdVKMZ5VON36kRkorouVIMBa2IKQl8phzWpscpCk1bGiMEGuVKFCvQxmUClGnNIVKioK6pRjVeKl00rGIybq/X6Wphj412kKPtHo5H87B/jZMd1VSjtHZNj4cOmsUaj8A0/RGFeHRrz0w+kRbAJvqHApjXV6dvyGcc0p6DW+SnU8wd9wRIm9DFRZOjDuVugNSUY1yQuoEY786GmErZ4FZBZso9AIfgQ/78zyAWk+NKX9NA5CsWmpshYN4fYF0pcRVZjVSJTX1hFJF/h4U0VqiaufPmFrRhxTg9dsPjAVkincvZJd9lqA/HzQ4j/9AxnPrkS+jCh6FPQBM5L1CZXPoJ3D97R0SF4V64JXovKqSU4dWx4CX04SdE4ihGsnxv9GJJfQ/WnQ1QvvYfX6Jab1I8SmlIwrakNt74/4pfxe/FQ1Tx3TMGhhQsKCwqQBaEPx5oTWogttQ3FApKjTw1pphJmaGwK9BifO/j+eIivwGo0wZXDBRqbc78Pl1Q3PmBYZoBl38SYKMJT50uCuHTauHkBM0JOgSBtpZ89At4CvqNUzSmfLhtXw5lx5TBPVb/lSWK4uh+H1qpQbUy341IKVo1VxdzE8XCIjRnQp8b6QGHQBL8QwAfa18PF0bBG41y2s3/Dr1s6HL85h1NXNt44Vuviu3QzRX5I92VL/0+6NToMywPVLzP5M83Xgo5OwfDyQoKojZMPt7vDmBhV3eQo6ylhoKCK7s/ZJi5evb08MPrq7SWwvyGX51xMXJHjLnxz+HS+Hzfmd1ruGMWW0A2zFWGZTXbT7l/9N51g//jNeb/l3Lcs57yhZba7Yd4kX8yRZtzMP9BfKtryixIToaRo5o5KYA/isSkJUqQQ4dZwBaily8umDPLHlnw74usKjQOugk/zCianF5ezZIE68OVdABnQWn8L3pHIf0wUllmLI7714Sa7374vWFqQBXFa8DbeFcABXUQti9itTLdAV0LtAw3gF5GTKhBBowPCaOwSJOsDaobSBNJsl+1RsvMbj6eeKwjEwdDCuDmUyAgY4Zasld9p8FhqjNJ193wZvHfv3ZMnGb4TjARXkz+i0O7g1C1M8K4mxwB3sgHf+ty9d3f9veez5T88Ig+7yQt38D2FIDsAuxn6rQq6bG8V7OThNytoUzpDkIHNA88f3cAjtKscjRiojacuVClIsECv9wLCZlpqKEAk7V3Z6+UoSY3w9no/jEbFaDTa5yxx2evl69ybseDWWAtTApJw1FS2mu6diCk3IFE8tahvrGmDxMwkuJeA0xQpx7n8+hn4FASRAZz5AMbJO6uhKFHqwU8ZjRPxyswrChDuXYkFNJYkwgKhrsAnBmQoabHJ9J93oRzAe6cKJc2gTfajwWgwUtums5v4XdtFnWthV3jk1i5S0/ggtZtqNFKWv2Qvl5nGR67R7Sg5M67c/wgwXe6/9e+VpNW2/f/7zwhtVWX6xMPGosnFN/eUVddF3ynpolLVt31UFWq8/bBwXajKRxbW1WqKka6CXa+FnMuWGr+7LtQCg5Hj52ZbmvzuU6rxDG2kr5zr6aT7TvEMvuTtpjE4qfULtElWqlA30jd2vn+sr9fFpmGIE+3+sdbU8I7kwRwlvfB+vvj19FKt138DByUk3w==
 sidebar_class_name: "get api-method"
 info_path: welcome/documentation/apis/v2/provable-api
 custom_edit_url: null
@@ -22,13 +22,13 @@ import Heading from "@theme/Heading";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Height by block hash"}
+  children={"Find block height by state root"}
 >
 </Heading>
 
 <MethodEndpoint
   method={"get"}
-  path={"/height/{hash}"}
+  path={"/find/blockHeight/{stateRoot}"}
   context={"endpoint"}
 >
   
@@ -36,7 +36,7 @@ import Heading from "@theme/Heading";
 
 
 
-Returns the block height for the specified block hash
+Returns the block height for the specified state root
 
 <Heading
   id={"request"}
@@ -47,7 +47,7 @@ Returns the block height for the specified block hash
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"hash","in":"path","required":true,"schema":{"type":"string"}}]}
+  parameters={[{"name":"stateRoot","in":"path","required":true,"schema":{"type":"string"}}]}
 >
   
 </ParamsDetails>

@@ -1,0 +1,64 @@
+---
+id: total-supply-credits
+title: "Total Supply - Credits"
+description: "Retrieves the latest total supply of ALEO in credits."
+sidebar_label: "Total Supply - Credits"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01z2zYQ/Ss7yKXVUB91k0N1qpIqHadJmrHlSWdiT2cFrkTEIMAASzkcWf+9syBlU7bTJpMezYtEYPGweHz7ga3KKepgKjbeqak6IQ6GNhSBCwKLTJGBPaOFWFeVbcCvYPZ6/icYBzpQbjiOzp3KFOM6qukHdZrM1EWmAsXKu0hRTbfqaDKRn8Pd3tblkoJAsr8kF/ugKlPaOybHsg6ryhqNsm78McrirYq6oBLlHzcVqanyy4+kWWWqCr6iwKbdOrn/d+t+z9qlzdUuPZl6+pCDzzGHE/pUCwtDOHYbtCYH46qaMyjRrnwoKYcKA5bEFGIGySQ5ChSCD/H/O0hk5Dq+8Dn1bI1jWss5MsWmpMhYVr3pyMG4tcqUuIqspipHpqGYypIKubhvvctUSVz4/AtTMeKaHphLPrCVobmc/aRTgNpT/PQBDXiGl752OQzhhKKvgyZwnmElg4/k3ZB3dHSfvDNXBa8FcmkJ5o4NNzCE53U0jmIE69dGP0ry31j95T6rC+/hDbpmH/pRpIlMYE1puPX9kb/E37OHsuaxYwoOLZxS2FCAtBCGMNNcSyFpR1spZlA7+lyRZsphhcbWgR712eP35/v8Cq1GE5w53KCxKfaHsKCy8gFDkwiWeRNjTRF+cD4niI3Txq0zWBFyHQjq29U/PhLeEt4DVWtKp0ubq3HbCo1TL9G1OJlqlSxtz1bVwaqpKpirOB2PsTIj+lxZHyiMquA3QvNI+3K8ORqXaJxL6Iff9U07DrN3xzB3eeWNY7XLvglbvHwIe9GOfxe2RoehuQf9Ig3fQb4QdnQdDDenIp1WHR+vuPdJZFNhMc2rqVoSBgoq6/683Kvh1fvFvU1fvV+0TSOsfACsuSDHnWiTaDrfZ5X5g/ptH7YDmTICUxDmaUuHyYW/hu+6hcPZu+Nha3m4s5zzkpq07954H3Ix6cu4lX+gqhR0ay8gJkJO0awd5cAexGOTE9SRQoQrwwWgltouk9KNzyx5WFqvL3WBxgEXwdfrAk7mp4tVbYE68qV3Rwa01l+BdyTrP9UUmoTiiK98uEzuJzCwtCEL4rTwbbzLgAO6iFpeYvdmuhd0OZQ+0Ah+k3US+xE0OiCMxjYgsR5QM+QmkGbbtEdJzu89XnouILRXDePWkCMjYIQrslZ+l8FjrjFKrT3wZXTuzt2TJ4m+5xgJzk5eRxm7hrnbmOBdSY4BrmUCvva5PnfXw4Pnzut/PLIe+sEL1/AtiSA5AP0I/VqALtpbgF4cfjVAG9KJgkRsanNed22OjJ0lNWKgVk+dVCmIWGAweAZh3yNVFCCS9i4fDJJK6kpsB4OfJpNsMpkcWubYDAbpcx50VnBlrIUlAYkcNeUt0o0TsU5lR4CXFvWlNa1IzErE3QAu60hJ5/LrV+DrIIyM4KUPYNyn2gRDctFkD37JaJwsL8y6oADhxpWYQWVJFBYIdQG+ZkCGnDb7SP+1T+UI0h1YikEb7EejyWiibktNP/C7Yos65cIu8chXk7rig+RuKtFIWv7SfinNVD5yia4HskgX9bY8wRBetFfpuxlse1vrv+e+36ZTps88riyalHVTMdl2RfODavHEuFc2LzJV+Mgyv90uMdJZsLudDKckpaYfLjK1wWDksPK2y/ZpWurspWRzNdOaKkHeoK3btH6nZ5EKdFPLf58v1G73D7g8294=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Total Supply - Credits"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/latest/totalSupply"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the latest total supply of ALEO in credits.
+
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Number of tokens in credits.","content":{"application/json":{"schema":{"type":"object","properties":{"total_supply":{"type":"number"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

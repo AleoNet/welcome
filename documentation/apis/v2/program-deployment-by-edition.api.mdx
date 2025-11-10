@@ -1,0 +1,71 @@
+---
+id: program-deployment-by-edition
+title: "Program deployment by edition"
+description: "Returns the deployment transaction ID for the specified program edition"
+sidebar_label: "Program deployment by edition"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIYq0fd5lCd6sRO4TQpDFtGCsRGMeKOtIy55IaclbOQ9d+L4a7sVaSkCRr05L1IfMyDHz/ODLlSOUUdTMXGOzVR58R1cBG4IMipsr4pyTFwQBdRyyQ4PYa5D2lGrEibuaEcquAXAUug3CRNmWJcRDV5r6YPolFdZ6rCgCUxBRldKYclqYnq5E+PVaaMOFIhFypTgT7WJlCuJhxqylTUBZWoJivFTSWCkYNxC7VeZ/e6Hnz4Lk3GMS0oqPX6WmbHyrtIUSYcjsfys43U8ZfQUZnS3jE5FiGsKms0ytjoQxTJ1a5pP/tAmlUmMFQU2LR2e3r/Nvm+RcuXqV/2+fcCczinjzVFhgGcuiVak4NxVc0ZlGjnPpSycffbkUGaklwFCsGH+OOWEhm5ji99TvsQzxSbkiJjWe2uMlPiKrKaqByZBjJVRNK+7mKSqZK48PvgkqEYcUF7+aPYsJWuE1n7eUcAtYH4l12I//QMr3ztchjAOUVfB03gPMNcOh/Buwfv8HAXvEtXBa9F5cwSnDg23MAAXtTROIoRrF8Y/UjJr6H66y6qU+/hLbpmc/SjUBOZwJrScOv7I34Jv+f7ouapYwoOLVxQWFKAJAgDONJco4XY9rZUzKB29KkizZTDHI2tAz3ys4fvz7v4CqxGE1w6XKKx6ewPYEpl5QOGJgEs4ybGmiI8dT4niI3Txi0ymBNyHQjqB+lnj4C3gPeUqgWl1SXjajQ3Lh/1aonT49FDaTda3Zde69GqK53WKlMt1dsirQ5WTVTBXMXJaISVGdKnyvpAYVgFv5R9GGpfjpaHoxKNc8n89sa/bfvh6OwUTlxeeeNYSdH2HbqZIu/TPW37/5NujQ5Ds6P6Zer+TPO1oKPrYLi5EG619Plwy709E6OqqzKlPSMMFFTW/Xm1ocvrd9Mdo6/fTYH9DblUaGPNBTnuWJ1Y1fl+VJk/qOkZxbajK3wLwjyZ7OrivwZnneDg6Ox00M7ctizrvKEm2d1M3pzJmAho3NzvSTsFPcwXJSZCTtEsHOXAXq4HS5MT1JFChFvDBaCW5C+DcpM4suRhZr2+0QUaB1wEXy8KOD+5mM5rC9SBLzcTZEBr/S14RyL/sabQJC2O+NaHm+R+UgaWlmRBnBa8jXdZv1qPXct0DXQ5lD7QEI5FToJDBI0OCKOxDUgwCKgZchNIs23apSTnNx7PPBcQiIOhpXELyJERMMItWSu/s+Ax1xglGW/5MrxyV+7JkwTfC4wEl+dvovTdwYlbmuBdumzAnQzAt353V+5usPV91vyXT+Shf3jhDr4nECQHoH9Cv1VBd9pbBb1z+M0K2iOdIEjApjroTVcHSd9lYiMGavnUUZWCkAUODp5D2BRRFQWIpL3LDw4SS+pK5h4c/DQeZ+PxeHtmjs3BQdrOrdILbo21MCMgoaOmvNV070SsU14SxTOL+saaliRmLuRuAGd1pMRz+fVz8HUQRIbwygcwTu63hqKw1IOfMRon4oVZFBQg3LsSM6gsCcMCoS7A1wzIkNNyc9J/60M5hCu5S0syaA/74XA8HKuHXNQ/+F02Rp1iYRd4ZNcu6qryQWI3lWgkLH/JXgozlY9couspOeteGHqvErOm996wFZBWDzXBj3zSaKMs0yceVRZNCsYpx6y6ZPteSbKVqf10m7zbGFaZmvRfOyYb/deZKnxkUbJazTDSZbDrtXSnAKcm768ztcRgBKiUlnOTLk+5mszRRvoKBk/Pu9ePZ/CldWxSiJOssERbS0tl6kYyTO99RvLq/2h4g876ep1tMpqsvR090poq7snt1H+SrO/rot9Ppmq9/gfT1I+a
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Program deployment by edition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/transactionID/deployment/{programID}/{edition}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the deployment transaction ID for the specified program edition
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programID","in":"path","required":true,"schema":{"type":"string"}},{"name":"edition","in":"path","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Deployment transaction ID","content":{"application/json":{"schema":{"type":"object","properties":{"transaction_id":{"type":"string"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

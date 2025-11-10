@@ -33,42 +33,15 @@ externalDocs:
   description: Find out more about Aleo
   url: "https://aleo.org"
 tags:
-  - name: Auth
-    description: Auth-related endpoints
-    x-displayName: Auth
   - name: Blocks
     description: Block-related endpoints
-    x-displayName: Block
+    x-displayName: Blocks
   - name: Committee
     description: Committee-related endpoints
     x-displayName: Committee
-  - name: DeFi
-    description: DeFi-related endpoints
-    x-displayName: DeFi
-  - name: Delegated Proving
-    description: Delegated proving endpoints
-    x-displayName: Delegated Proving
-  - name: Delegators
-    description: Delegator-related endpoints
-    x-displayName: Delegators
-  - name: Earnings
-    description: Earnings-related endpoints
-    x-displayName: Earnings
-  - name: Metrics
-    description: Metrics and analytics endpoints
-    x-displayName: Metrics
-  - name: Network
-    description: Network-related endpoints
-    x-displayName: Network
   - name: Programs
     description: Program-related endpoints
-    x-displayName: Program
-  - name: Provers
-    description: Prover-related endpoints
-    x-displayName: Provers
-  - name: Record Scanner
-    description: Record scanner-related endpoints
-    x-displayName: Record Scanner
+    x-displayName: Programs
   - name: Solutions
     description: Solution-related endpoints
     x-displayName: Solutions
@@ -77,14 +50,23 @@ tags:
     x-displayName: Supply
   - name: Transactions
     description: Transaction-related endpoints
-    x-displayName: Transaction
-  - name: Transitions
-    description: Transition-related endpoints
-    x-displayName: Transitions
+    x-displayName: Transactions
+  - name: DeFi
+    description: DeFi-related endpoints
+    x-displayName: DeFi
+  - name: Staking
+    description: Staking-related endpoints
+    x-displayName: Staking
+  - name: Proving
+    description: Proving-related endpoints
+    x-displayName: Proving
+  - name: Address
+    description: Address-related endpoints
+    x-displayName: Address
 paths:
-  /blocks/latest:
+  /block/latest:
     get:
-      summary: Get latest block
+      summary: Latest block
       description: Retrieves the latest block from the Aleo blockchain.
       operationId: getLatestBlock
       tags:
@@ -110,9 +92,168 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /block/height/latest:
+    get:
+      summary: Latest block height
+      description: Retrieves the latest block height from the Aleo blockchain.
+      operationId: getLatestHeight
+      tags:
+        - Blocks
+      responses:
+        '200':
+          description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  height:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /block/hash/latest:
+    get:
+      summary: Latest block hash
+      description: Retrieves the latest block hash from the Aleo blockchain.
+      operationId: getLatestHash
+      tags:
+        - Blocks
+      responses:
+        '200':
+          description: A block hash of the latest block from the canonical Aleo blockchain.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /block/{height_or_hash}:
+    get:
+      summary: Block by height or hash
+      description: Returns a block by its height or hash
+      tags:
+        - Blocks
+      parameters:
+        - name: height_or_hash
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Block data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /find/blockHash/{txID}:
+    get:
+      summary: Find block hash by transaction ID
+      description: Returns the block hash containing the specified transaction
+      tags:
+        - Blocks
+      parameters:
+        - name: txID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Block hash
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /block/{height}/transactions:
+    get:
+      summary: Transactions by block height
+      description: Returns all transactions in the specified block
+      tags:
+        - Blocks
+      parameters:
+        - name: height
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Array of transactions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TransactionSummary'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /blocks:
     get:
-      summary: Get blocks in range
+      summary: Blocks in range
       description: Returns blocks within the specified range
       tags:
         - Blocks
@@ -148,163 +289,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /blocks/latest/height:
+  /stateRoot/latest:
     get:
-      summary: Get latest block height
-      description: Retrieves the latest block height from the Aleo blockchain.
-      operationId: getLatestHeight
-      tags:
-        - Blocks
-      responses:
-        '200':
-          description: The latest block height, i.e. tip of chain, retrieved from the Aleo blockchain.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  height:
-                    type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/latest/hash:
-    get:
-      summary: Get latest block hash
-      description: Retrieves the latest block hash from the Aleo blockchain.
-      operationId: getLatestHash
-      tags:
-        - Blocks
-      responses:
-        '200':
-          description: A block hash of the latest block from the canonical Aleo blockchain.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  hash:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/height/{height}:
-    get:
-      summary: Get block by height
-      description: Returns a block by its height
-      tags:
-        - Blocks
-      parameters:
-        - name: height
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Block data
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Block'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/hash/{hash}:
-    get:
-      summary: Get block by hash
-      description: Returns a block by its hash
-      tags:
-        - Blocks
-      parameters:
-        - name: hash
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Block data
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Block'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/find/blockHash/{tx_id}:
-    get:
-      summary: Get block hash by transaction ID
-      description: Returns the block hash containing the specified transaction
-      tags:
-        - Blocks
-      parameters:
-        - name: tx_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Block hash
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  hash:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/latest/stateRoot:
-    get:
-      summary: Get latest state root
+      summary: Latest state root
       description: >
         Retrieves the latest state root from the Aleo blockchain. 
         The state root is the merkle root of all previous block hashes.
@@ -333,37 +320,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /stateRoot/latest:
+  /stateRoot/{height}:
     get:
-      summary: Get latest state root (alternative)
-      description: >
-        Retrieves the latest state root from the Aleo blockchain. 
-        The state root is the merkle root of all previous block hashes. (alternative endpoint)
-      operationId: getLatestStateRootAlt
-      tags:
-        - Blocks
-      responses:
-        '200':
-          description: The state root of the canonical Aleo blockchain.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StateRootResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/stateRoot/{height}:
-    get:
-      summary: Get state root at specified height
+      summary: State root at specified height
       description: >
         Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes.
       operationId: getStateRootAtHeight
@@ -397,45 +356,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /stateRoot/{height}:
+  /find/blockHeight/{stateRoot}:
     get:
-      summary: Get state root at specified height (alternative)
-      description: >
-        Retrieves the latest stateRoot from a specific block on the Aleo blockchain. The stateRoot is the merkle root of all previous block hashes. (alternative endpoint)
-      operationId: getStateRootAtHeightAlt
-      tags:
-        - Blocks
-      parameters:
-        - name: height
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: The state root of the canonical Aleo blockchain at a given block height.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  stateRoot:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/find/blockHeight/{stateRoot}:
-    get:
-      summary: Get block height by state root
+      summary: Find block height by state root
       description: Returns the block height for the specified state root
       tags:
         - Blocks
@@ -467,44 +390,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /find/blockHeight/{state_root}:
+  /statePath/{commitment}:
     get:
-      summary: Find block height by state root (alternative)
-      description: Returns the block height for the specified state root (alternative endpoint)
-      operationId: findBlockHeightByStateRootAlt
-      tags:
-        - Blocks
-      parameters:
-        - name: state_root
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Block height
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  height:
-                    type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/find/statePath/{commitment}:
-    get:
-      summary: Get state path by commitment
+      summary: State path by commitment
       description: Returns the state path for the specified commitment
       operationId: getStatePathByCommitment
       tags:
@@ -534,26 +422,33 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /statePath/{commitment}:
+  /statePaths:
     get:
-      summary: Get state path by commitment (alternative)
-      description: Returns the state path for the specified commitment (alternative endpoint)
-      operationId: getStatePathByCommitmentAlt
+      summary: State paths for commitments
+      description: >
+        Returns state paths for the specified commitments.  
+        Example: `GET /<network>/statePaths?commitments=cm1,cm2,...`
       tags:
         - Blocks
       parameters:
-        - name: commitment
-          in: path
+        - name: commitments
+          in: query
           required: true
           schema:
-            type: string
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
       responses:
         '200':
-          description: State path
+          description: State paths
           content:
             application/json:
               schema:
-                type: string
+                type: array
+                items:
+                  type: string
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -566,9 +461,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /blocks/find/heightByHash/{hash}:
+  /height/{hash}:
     get:
-      summary: Get height by block hash
+      summary: Height by block hash
       description: Returns the block height for the specified block hash
       operationId: getHeightByBlockHash
       tags:
@@ -601,85 +496,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /height/{hash}:
-    get:
-      summary: Get height by block hash (alternative)
-      description: Returns the block height for the specified block hash (alternative endpoint)
-      operationId: getHeightByBlockHashAlt
-      tags:
-        - Blocks
-      parameters:
-        - name: hash
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Block height
-          content:
-            application/json:
-              schema:
-                type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /blocks/find/blockHistory/{blockHeight}/{mapping}:
-    get:
-      summary: Get block history
-      description: Returns block history for the specified mapping
-      tags:
-        - Blocks
-      parameters:
-        - name: blockHeight
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: mapping
-          in: path
-          required: true
-          schema:
-            type: string
-            enum:
-              - bonded
-              - delegated
-              - metadata
-              - unbonding
-              - withdraw
-      responses:
-        '200':
-          description: Block history
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /blocks/summary/latest:
     get:
-      summary: Get latest block summary
+      summary: Latest block summary
       description: Returns a summary of the latest block
       tags:
         - Blocks
@@ -704,46 +523,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /transactions/{transactionId}:
+  /find/transactionID/{transitionID}:
     get:
-      summary: Get transaction
-      description: Retrieves the full transaction object given a Transaction ID.
-      operationId: getTransaction
-      tags:
-        - Transactions
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A Transaction object containing all inputs, outputs, and fee object.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Transaction'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /transactions/find/transactionID/{transition_id}:
-    get:
-      summary: Get transaction by transition ID
+      summary: Find transaction by transition ID
       description: Returns the transaction ID for the specified transition
       tags:
         - Transactions
       parameters:
-        - name: transition_id
+        - name: transitionID
           in: path
           required: true
           schema:
@@ -767,47 +554,15 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /find/transactionID/{transition_id}:
+  /transaction/confirmed/{txID}:
     get:
-      summary: Find transaction ID by transition ID (alternative)
-      description: Retrieves the Transaction ID associated with a Transition ID. (alternative endpoint)
-      operationId: findTransactionIdByTransitionAlt
-      tags:
-        - Transactions
-      parameters:
-        - name: transition_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: The transactionID in which the transition is part of.
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /transactions/confirmed/{transactionId}:
-    get:
-      summary: Get transaction confirmation status
+      summary: Confirmed transaction
       description: Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain.
       operationId: getTransactionConfirmed
       tags:
         - Transactions
       parameters:
-        - name: transactionId
+        - name: txID
           in: path
           required: true
           schema:
@@ -831,16 +586,16 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /transactions/unconfirmed/{transactionId}:
+  /transaction/unconfirmed/{txID}:
     get:
-      summary: Get unconfirmed transaction
+      summary: Unconfirmed transaction
       description: >
         Retrieves an unconfirmed transaction from the Aleo blockchain.
       operationId: getUnconfirmedTransaction
       tags:
         - Transactions
       parameters:
-        - name: transactionId
+        - name: txID
           in: path
           required: true
           schema:
@@ -864,43 +619,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /transactions/block/{height_or_hash}:
-    get:
-      summary: Get transactions by block identifier
-      description: Returns all transactions in the specified block
-      tags:
-        - Transactions
-      parameters:
-        - name: height_or_hash
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Array of transactions
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TransactionSummary'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /transactions/broadcast:
+  /transaction/broadcast:
     post:
       summary: Broadcast transaction
       description: Broadcast a transaction to the Aleo blockchain.
@@ -951,10 +670,42 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /metrics/transactions:
+    get:
+      summary: Transaction count history
+      description: Returns transaction count history data
+      tags:
+        - Transactions
+      responses:
+        '200':
+          description: Transaction count history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    day:
+                      type: string
+                    count:
+                      type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /transactions/summary/latest:
     get:
-      summary: Get latest transaction summary
-      description: Returns a summary of the latest transaction
+      summary: Latest transaction summary
+      description: Returns information about the latest 1,000 transactions
       tags:
         - Transactions
       responses:
@@ -980,10 +731,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /transactions/address/{address}:
     get:
-      summary: Get transactions by address
+      summary: Transactions by address
       description: Returns transactions for the specified address with pagination
       tags:
-        - Transactions
+        - Address
       parameters:
         - name: address
           in: path
@@ -1033,117 +784,15 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /memoryPool/transmissions:
+  /program/{programID}:
     get:
-      summary: Get memory pool transmissions
-      description: Returns all unconfirmed transmissions in the memory pool
-      tags:
-        - Transactions
-      responses:
-        '200':
-          description: Memory pool transmissions
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /memoryPool/solutions:
-    get:
-      summary: Get memory pool solutions
-      description: Returns all unconfirmed solutions in the memory pool
-      tags:
-        - Solutions
-      responses:
-        '200':
-          description: Memory pool solutions
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /memoryPool/transactions:
-    get:
-      summary: Get memory pool transactions
-      description: Returns all unconfirmed transactions in the memory pool
-      tags:
-        - Transactions
-      responses:
-        '200':
-          description: Memory pool transactions
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /node/address:
-    get:
-      summary: Get node address
-      description: Returns the address of the current node, requires JWT authentication.
-      tags:
-        - Metrics
-      security:
-        - jwt: []
-      responses:
-        '200':
-          description: Node address
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /programs/{programId}:
-    get:
-      summary: Get program by ID
+      summary: Program by ID
       description: Returns program information by ID
       operationId: getProgram
       tags:
         - Programs
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1173,14 +822,84 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /programs/{programId}/latest_edition:
+  /find/transitionID/{inputOrOutputID}:
     get:
-      summary: Get latest edition of program
+      summary: Transition ID by input/output ID
+      description: Returns the transition ID for the specified input or output ID
+      tags:
+        - Programs
+      parameters:
+        - name: inputOrOutputID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transition ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transition_id:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /program/{programID}/mappings:
+    get:
+      summary: Program mappings
+      description: >
+        Retrieves mappings for a given program by Program ID. These mappings can then 
+        be queried through additional endpoints.
+      operationId: getProgramMappings
+      tags:
+        - Programs
+      parameters:
+        - name: programID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An array of mappings for the given program.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /program/{programID}/latest_edition:
+    get:
+      summary: Latest edition of program
       description: Returns the latest edition number for the specified program
       tags:
         - Programs
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1204,16 +923,16 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /programs/{programId}/{edition}:
+  /program/{programID}/{edition}:
     get:
-      summary: Get program by edition
+      summary: Program by edition
       description: >
         Retrieves program details by Program ID and specific edition.
       operationId: getProgramByEdition
       tags:
         - Programs
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1242,52 +961,16 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /programs/program/{programId}/mappings:
+  /program/{programID}/mapping/{mappingName}/{key}:
     get:
-      summary: Get program mappings
-      description: >
-        Retrieves mappings for a given program by Program ID. These mappings can then 
-        be queried through additional endpoints.
-      operationId: getProgramMappings
-      tags:
-        - Programs
-      parameters:
-        - name: programId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: An array of mappings for the given program.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /programs/program/{programId}/mapping/{mappingName}/{mappingKey}:
-    get:
-      summary: Get mapping value
+      summary: Mapping value
       description: >
         Retrieves a mapping value given the name of the mapping and the associated key. The available mappings for a given program can be obtained via the /program/{programID}/mappings query.
       operationId: getMappingValue
       tags:
         - Programs
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1297,7 +980,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: mappingKey
+        - name: key
           in: path
           required: true
           schema:
@@ -1330,135 +1013,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /program/{programId}/mapping/{mappingName}:
+  /find/transactionID/deployment/{programID}:
     get:
-      summary: Get all mapping values for a program mapping
-      description: >
-        Retrieves all mapping values for the specified program and mapping name, requires JWT authentication.
-      tags:
-        - Programs
-      security:
-        - jwt: []
-      parameters:
-        - name: programId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: mappingName
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: all
-          in: query
-          required: true
-          schema:
-            type: boolean
-            default: true
-        - name: metadata
-          in: query
-          required: false
-          schema:
-            type: boolean
-            default: false
-      responses:
-        '200':
-          description: All mapping values for the specified mapping name.
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/MappingValueResponse'
-                  - $ref: '#/components/schemas/MappingValueWithMetadataResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /programs/find/transitionID/{inputOrOutputId}:
-    get:
-      summary: Get transition ID by input/output ID
-      description: Returns the transition ID for the specified input or output ID
-      tags:
-        - Programs
-      parameters:
-        - name: inputOrOutputId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Transition ID
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  transition_id:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /find/transitionID/{input_or_output_id}:
-    get:
-      summary: Find transition ID
-      description: >
-        Retrieves the Transition ID associated with a given input our output ID. Input and 
-        output IDs can be found via the associated field elements of an input or output.
-      operationId: findTransitionIdAlt
-      tags:
-        - Transitions
-      parameters:
-        - name: input_or_output_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: The transition ID.
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /programs/program/{programId}/deployment:
-    get:
-      summary: Get program deployment transaction
+      summary: Program deployment transaction
       description: Returns the deployment transaction ID for the specified program
       tags:
         - Transactions
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1485,47 +1047,14 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /find/transactionID/deployment/{program_id}:
+  /find/transactionID/deployment/{programID}/{edition}:
     get:
-      summary: Get program deployment transaction (alternative)
-      description: >
-        Retrieves the Transaction ID associated to the deployment of the given Program. (alternative endpoint)
-      operationId: findProgramDeploymentTxId
-      tags:
-        - Transactions
-      parameters:
-        - name: program_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: The deployment transactionID for when the program was deployed on the Aleo blockchain.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionIdResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /programs/program/{programId}/edition/{edition}/deployment:
-    get:
-      summary: Get program deployment by edition
+      summary: Program deployment by edition
       description: Returns the deployment transaction ID for the specified program edition
       tags:
         - Transactions
       parameters:
-        - name: programId
+        - name: programID
           in: path
           required: true
           schema:
@@ -1557,31 +1086,38 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
-  /find/transactionID/deployment/{program_id}/{edition}:
+  /block/{height}/history/{mapping}:
     get:
-      summary: Get program deployment by edition (alternative)
-      description: Returns the transaction ID for the specified program ID and edition (alternative endpoint)
+      summary: Historical values for credits.aleo mappings
+      description: Returns historical values for one of the following credits.aleo mappings at a given height
       tags:
-        - Transactions
+        - Programs
       parameters:
-        - name: program_id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: edition
+        - name: height
           in: path
           required: true
           schema:
             type: integer
+        - name: mapping
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - bonded
+              - delegated
+              - metadata
+              - unbonding
+              - withdraw
       responses:
         '200':
-          description: Transaction ID
+          description: Block history
           content:
             application/json:
               schema:
-                type: string
+                type: array
+                items:
+                  type: string
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -1594,15 +1130,15 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /programs/summary:
+  /metrics/programs:
     get:
-      summary: Get all programs summary
-      description: Returns a summary of all programs
+      summary: Program metrics
+      description: Returns program metrics
       tags:
         - Programs
       responses:
         '200':
-          description: Array of program summaries
+          description: Program metrics
           content:
             application/json:
               schema:
@@ -1612,12 +1148,56 @@ paths:
                   properties:
                     program_id:
                       type: string
-                    block_height:
+                    calls:
                       type: integer
-                    block_timestamp:
-                      type: integer
-                    program_owner:
-                      type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /solution/broadcast:
+    post:
+      summary: Broadcast solution
+      description: Broadcasts a solution to the network
+      tags:
+        - Solutions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: object
+                properties:
+                  partial_solution:
+                    type: object
+                    properties:
+                      solution_id:
+                        type: string
+                      epoch_hash:
+                        type: string
+                      address:
+                        type: string
+                      counter:
+                        type: integer
+                  target:
+                    type: integer
+                required:
+                  - partial_solution
+                  - target
+      responses:
+        '200':
+          description: Solution ID
+          content:
+            application/json:
+              schema:
+                type: string
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -1632,7 +1212,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /committee/latest:
     get:
-      summary: Get latest committee
+      summary: Latest committee
       description: >
         Retrieves the latest committee from the Aleo blockchain. 
         The committee represents the Validator set at this given point in time.
@@ -1662,7 +1242,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /committee/{height}:
     get:
-      summary: Get committee by height
+      summary: Committee by height
       description: Returns committee information at the specified height
       tags:
         - Committee
@@ -1691,10 +1271,10 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /committee/delegators/{validator}:
+  /delegators/{validator}:
     get:
-      summary: Get delegators by validator
-      description: Returns delegators for the specified validator
+      summary: Delegators by validator address
+      description: Returns delegators for the specified validator address
       tags:
         - Committee
       parameters:
@@ -1724,34 +1304,9 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /consensus_version:
-    get:
-      summary: Get consensus version
-      description: Returns the current consensus version
-      tags:
-        - Network
-      responses:
-        '200':
-          description: Consensus version
-          content:
-            application/json:
-              schema:
-                type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /defi/totalValue:
     get:
-      summary: Get latest defi total value locked (TVL)
+      summary: Latest defi total value locked (TVL)
       description: Returns the latest DeFi TVL snapshot (mainnet only)
       tags:
         - DeFi
@@ -1781,27 +1336,33 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /db_backup:
-    post:
-      summary: Create database backup
-      description: Creates a backup of the database at the specified path, requires JWT authentication.
+  /tokens/details:
+    get:
+      summary: Token price history 
+      description: >
+        Returns price history for specified token ID and program. If program is not `token_registry.aleo` then `token_id` is not needed.
       tags:
-        - Metrics
-      security:
-        - jwt: []
+        - DeFi
       parameters:
-        - name: path
+        - name: program_id
           in: query
+          description: The program ID of the token contract. (Required)
           required: true
+          schema:
+            type: string
+        - name: token_id
+          in: query
+          description: Token ID (required if program_id is token_registry.aleo)
+          required: false
           schema:
             type: string
       responses:
         '200':
-          description: Backup created successfully
+          description: Token metadata and price history data
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/TokenDetailsResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -1816,27 +1377,17 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /delegators/latest:
     get:
-      summary: Get latest delegators
+      summary: Latest delegators
       description: Returns the latest delegators information
       tags:
-        - Delegators
+        - Staking
       responses:
         '200':
           description: Latest delegators data
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  '{{ validator }}':
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        delegator:
-                          type: string
-                        microcredits:
-                          type: integer
+                $ref: '#/components/schemas/DelegatorsResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -1851,10 +1402,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /earnings/{address}:
     get:
-      summary: Get earnings by address
+      summary: Earnings by address
       description: Returns earnings information for the specified address
       tags:
-        - Earnings
+        - Staking
       parameters:
         - name: address
           in: path
@@ -1887,10 +1438,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /metrics/puzzleRewards:
     get:
-      summary: Get daily puzzle rewards
+      summary: Daily puzzle rewards
       description: Returns daily puzzle rewards data
       tags:
-        - Metrics
+        - Proving
       responses:
         '200':
           description: Daily puzzle rewards
@@ -1917,44 +1468,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /metrics/puzzleRewards/monthly:
-    get:
-      summary: Get monthly puzzle rewards
-      description: Returns monthly puzzle rewards data
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Monthly puzzle rewards
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    month:
-                      type: string
-                    puzzle_rewards:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /metrics/apy:
     get:
-      summary: Get apy last 24 hours
+      summary: Apy last 24 hours
       description: Returns last 24 hours APY data
       tags:
-        - Metrics
+        - Staking
       responses:
         '200':
           description: Last 24 hours APY data
@@ -1974,187 +1493,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /metrics/apy/monthly:
-    get:
-      summary: Get monthly apy breakdown
-      description: Returns monthly APY breakdown data
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Monthly APY breakdown
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    month:
-                      type: string
-                    apy:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /metrics/programs/daily:
-    get:
-      summary: Get program metrics (last 30 days)
-      description: Returns program metrics for the last 30 days
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Program metrics (30 days)
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    day:
-                      type: string
-                    total_calls:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /metrics/programs:
-    get:
-      summary: Get program metrics (last 7 days)
-      description: Returns program metrics for the last 7 days
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Program metrics (7 days)
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    program_id:
-                      type: string
-                    calls:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /metrics/programs/allTime:
-    get:
-      summary: Get program metrics (all time)
-      description: Returns program metrics for all time
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Program metrics (all time)
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    program_id:
-                      type: string
-                    calls:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /metrics/program/{programId}/range/{days}:
-    get:
-      summary: Get program metrics in range
-      description: Returns program metrics for the specified range (30/60/90 days)
-      tags:
-        - Metrics
-      parameters:
-        - name: programId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: days
-          in: path
-          required: true
-          schema:
-            type: integer
-            enum:
-              - 30
-              - 60
-              - 90
-      responses:
-        '200':
-          description: Program metrics for specified range
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    day:
-                      type: string
-                    calls:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /metrics/provers/total:
     get:
-      summary: Get total prover rewards
-      description: Returns total prover rewards data
+      summary: Total prover metrics
+      description: Returns total prover metrics (prover count, rewards, solutions)
       tags:
-        - Metrics
+        - Proving
       responses:
         '200':
           description: Total prover rewards
@@ -2181,109 +1525,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /metrics/transactions:
-    get:
-      summary: Get transaction count history
-      description: Returns transaction count history data
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Transaction count history
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    day:
-                      type: string
-                    count:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /peers/count:
-    get:
-      summary: Get peer count
-      description: Returns the number of connected peers
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Number of connected peers
-          content:
-            application/json:
-              schema:
-                type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /peers/all:
-    get:
-      summary: Get all peers
-      description: Returns information about all connected peers
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Connected peers information
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-  /peers/all/metrics:
-    get:
-      summary: Get all peer metrics
-      description: Returns metrics for all connected peers
-      tags:
-        - Metrics
-      responses:
-        '200':
-          description: Peer metrics
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   /provers:
     get:
-      summary: Get all provers
+      summary: All provers
       description: Returns information about all provers
       tags:
-        - Provers
+        - Proving
       responses:
         '200':
           description: Array of provers
@@ -2314,10 +1561,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /provers/solutions/{address}:
     get:
-      summary: Get prover solutions by address
+      summary: Prover solutions by prover address
       description: Returns solutions for the specified prover address
       tags:
-        - Provers
+        - Proving
       parameters:
         - name: address
           in: path
@@ -2360,10 +1607,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /provers/rewards/total/{address}:
     get:
-      summary: Get total prover rewards by address
+      summary: Total prover rewards by address
       description: Returns total rewards for the specified prover address
       tags:
-        - Provers
+        - Proving
       parameters:
         - name: address
           in: path
@@ -2392,129 +1639,23 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /solutions/broadcast:
-    post:
-      summary: Broadcast solution
-      description: Broadcasts a solution to the network
-      tags:
-        - Provers
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-                type: object
-                properties:
-                  partial_solution:
-                    type: object
-                    properties:
-                      solution_id:
-                        type: string
-                      epoch_hash:
-                        type: string
-                      address:
-                        type: string
-                      counter:
-                        type: integer
-                  target:
-                    type: integer
-                required:
-                  - partial_solution
-                  - target
-      responses:
-        '200':
-          description: Solution ID
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /provers/solution/broadcast:
-    post:
-      summary: Broadcast solution (alternative)
-      description: Broadcasts a solution to the network (alternative endpoint)
-      tags:
-        - Provers
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-                type: object
-                properties:
-                  partial_solution:
-                    type: object
-                    properties:
-                      solution_id:
-                        type: string
-                      epoch_hash:
-                        type: string
-                      address:
-                        type: string
-                      counter:
-                        type: integer
-                  target:
-                    type: integer
-                required:
-                  - partial_solution
-                  - target
-      responses:
-        '200':
-          description: Solution ID
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /statePaths:
+  /latest/totalSupply:
     get:
-      summary: Get state paths for commitments
+      summary: Total Supply - Credits
       description: >
-        Returns state paths for the specified commitments.  
-        Example: `GET /<network>/statePaths?commitments=cm1,cm2,...`
+        Retrieves the latest total supply of ALEO in credits.
       tags:
-        - Blocks
-      parameters:
-        - name: commitments
-          in: query
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: false
+        - Supply
       responses:
         '200':
-          description: State paths
+          description: Number of tokens in credits.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: object
+                properties:
+                  total_supply:
+                    type: number
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -2529,16 +1670,15 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /totalSupply:
     get:
-      summary: Get total supply
+      summary: Total Supply - Microcredits
       description: >
-        Retrieves the latest total supply for the Aleo blockchain. 
-        Note: This is only available for mainnet currently. 
+        Retrieves the latest total supply of ALEO in microcredits.
       operationId: getTotalSupply
       tags:
         - Supply
       responses:
         '200':
-          description: Total supply data
+          description: Number of tokens in microcredits.
           content:
             application/json:
               schema:
@@ -2560,22 +1700,61 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /latest/totalSupply:
+  /tokens:
     get:
-      summary: Get total supply (alternative)
-      description: >
-        Retrieves the latest total supply for the Aleo blockchain. 
-        Note: This is only available for mainnet currently. (alternative endpoint)
-      operationId: getTotalSupplyAlt
+      summary: Token Details
+      description: Returns data on various tokens on the Aleo network.
+      operationId: getTokens
       tags:
-        - Supply
+        - DeFi
       responses:
         '200':
-          description: The latest total supply in credits, retrieved from the Aleo blockchain.
+          description: Token details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SupplyResponse'
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        token_id:
+                          type: string
+                        token_id_datatype:
+                          type: string
+                          nullable: true
+                        symbol:
+                          type: string
+                        display:
+                          type: string
+                        program_name:
+                          type: string
+                        decimals:
+                          type: integer
+                        total_supply:
+                          type: string
+                          nullable: true
+                        verified:
+                          type: boolean
+                        token_icon_url:
+                          type: string
+                        price:
+                          type: string
+                          nullable: true
+                        price_change_percentage_24h:
+                          type: string
+                        fully_diluted_value:
+                          nullable: true
+                        total_market_cap:
+                          type: string
+                          nullable: true
+                        volume_24h:
+                          type: string
+                          nullable: true
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -2590,10 +1769,9 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /circulatingSupply:
     get:
-      summary: Get circulating supply
+      summary: Circulating Supply - Microcredits
       description: >
-        Retrieves the latest circulating supply for the Aleo blockchain. 
-        Note: This is only available for mainnet currently. 
+        Retrieves the latest circulating supply of ALEO in microcredits. 
       tags:
         - Supply
       responses:
@@ -2622,20 +1800,21 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /latest/circulatingSupply:
     get:
-      summary: Get circulating supply (alternative)
+      summary: Latest Circulating Supply - Credits
       description: >
-        Retrieves the latest circulating supply for the Aleo blockchain. 
-        Note: This is only available for mainnet currently. (alternative endpoint)
-      operationId: getCirculatingSupplyAlt
+        Retrieves the latest circulating supply of ALEO in credits. 
       tags:
         - Supply
       responses:
         '200':
-          description: The latest circulating supply in credits, retrieved from the Aleo blockchain.
+          description: Number of tokens in credits.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SupplyResponse'
+                type: object
+                properties:
+                  circulating_supply:
+                    type: number
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -2650,10 +1829,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /transitions/{address}:
     get:
-      summary: Get transitions by address
+      summary: Transitions by address
       description: Returns transitions for the specified address
       tags:
-        - Transitions
+        - Address
       parameters:
         - name: address
           in: path
@@ -2690,514 +1869,6 @@ paths:
                       type: string
                     recipient_address:
                       type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /auth/register:
-    post:
-      summary: Register a new user and issues them an api key
-      description: Registers a new user and issues them an API key
-      tags:
-        - Auth
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-      responses:
-        '201':
-          description: User registered
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  consumer:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                  created_at:
-                    type: integer
-                  id:
-                    type: string
-                  key:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /prove:
-    post:
-      summary: Submit delegated proving request
-      description: Submit delegated proving request
-      tags:
-        - Delegated Proving
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                authorization:
-                  $ref: '#/components/schemas/Authorization'
-                fee_authorization:
-                  $ref: '#/components/schemas/Authorization'
-                broadcast:
-                  type: boolean
-      responses:
-        '201':
-          description: Delegated proving request submitted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DelegatedProvingResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/register:
-    post:
-      summary: Register a view key with the record scanner
-      description: Register a view key with the record scanner
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                view_key:
-                  type: string
-                start:
-                  type: integer
-      responses:
-        '200':
-          description: View key registered
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  uuid:
-                    type: string
-                  job_id:
-                    type: string
-                  status:
-                    type: string
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/status:
-    post:
-      summary: Get the status of a record scanner job
-      description: Get the status of a record scanner job
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: string
-      responses:
-        '200':
-          description: Record scanner job status
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  synced:
-                    type: boolean
-                  percentage:
-                    type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/records/sns:
-    post:
-      summary: Check if record serial numbers exist
-      description: Check if record serial numbers exist
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
-      responses:
-        '200':
-          description: Map of serial numbers to booleans representing whether or not they exist
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '{{ serial_number }}':
-                    type: boolean
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/records/tags:
-    post:
-      summary: Check if record tags exist
-      description: Check if record tags exist
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
-      responses:
-        '200':
-          description: Map of tags to booleans representing whether or not they exist
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '{{ tag }}':
-                    type: boolean
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/records/encrypted:
-    get:
-      summary: Get encrypted records
-      description: Get encrypted records
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      parameters:
-        - name: records_filter
-          in: query
-          required: false
-          schema:
-            type: object
-            properties:
-              block_height:
-                type: integer
-              checksum:
-                type: string
-              commitment:
-                type: string
-              record_ciphertext:
-                type: string
-              function_name:
-                type: string
-              nonce:
-                type: string
-              output_index:
-                type: integer
-              owner:
-                type: string
-              program_name:
-                type: string
-              record_name:
-                type: string
-              transaction_id:
-                type: string
-              transition_id:
-                type: string
-              transaction_index:
-                type: integer
-              transition_index:
-                type: integer
-        - name: response_filter
-          in: query
-          required: false
-          schema:
-            type: object
-            properties:
-              block_height:
-                type: integer
-              checksum:
-                type: string
-              commitment:
-                type: string
-              record_ciphertext:
-                type: string
-              function_name:
-                type: string
-              nonce:
-                type: string
-              output_index:
-                type: integer
-              owner:
-                type: string
-              program_name:
-                type: string
-              record_name:
-                type: string
-              transaction_id:
-                type: string
-              transition_id:
-                type: string
-              transaction_index:
-                type: integer
-              transition_index:
-                type: string
-      responses:
-        '200':
-          description: Encrypted records
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    commitment:
-                      type: string
-                    checksum:
-                      type: string
-                    block_height:
-                      type: integer
-                    program_name:
-                      type: string
-                    function_name:
-                      type: string
-                    output_index:
-                      type: integer
-                    owner:
-                      type: string
-                    record_ciphertext:
-                      type: string
-                    record_name:
-                      type: string
-                    record_nonce:
-                      type: string
-                    transaction_id:
-                      type: string
-                    transition_id:
-                      type: string
-                    transaction_index:
-                      type: integer
-                    transition_index:
-                      type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-  /scanner/records/owned:
-    post:
-      summary: Get owned records
-      description: Get owned records
-      tags:
-        - Record Scanner
-      security:
-        - provableApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                decrypt:
-                  type: boolean
-                filter:
-                  type: object
-                  properties:
-                    block_height:
-                      type: integer
-                    checksum:
-                      type: string
-                    commitment:
-                      type: string
-                    record_ciphertext:
-                      type: string
-                    function_name:
-                      type: string
-                    nonce:
-                      type: string
-                    output_index:
-                      type: integer
-                    owner:
-                      type: string
-                    program_name:
-                      type: string
-                    record_name:
-                      type: string
-                    transaction_id:
-                      type: string
-                    transition_id:
-                      type: string
-                    transaction_index:
-                      type: integer
-                    transition_index:
-                      type: integer
-                response_filter:
-                  type: object
-                  properties:
-                    block_height:
-                      type: integer
-                    checksum:
-                      type: string
-                    commitment:
-                      type: string
-                    record_ciphertext:
-                      type: string
-                    function_name:
-                      type: string
-                    nonce:
-                      type: string
-                    output_index:
-                      type: integer
-                    owner:
-                      type: string
-                    program_name:
-                      type: string
-                    record_name:
-                      type: string
-                    transaction_id:
-                      type: string
-                    transition_id:
-                      type: string
-                    transaction_index:
-                      type: integer
-                    transition_index:
-                      type: string
-                unspent:
-                  type: boolean
-                uuid:
-                  type: string
-                  required: true
-      responses:
-        '200':
-          description: Owned records
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    block_height:
-                      type: string
-                    commitment:
-                      type: string
-                    function_name:
-                      type: string
-                    output_index:
-                      type: integer
-                    owner:
-                      type: string
-                    program_name:
-                      type: string
-                    record_ciphertext:
-                      type: string
-                    record_plaintext:
-                      type: string
-                    record_name:
-                      type: string
-                    spent:
-                      type: boolean
-                    tag:
-                      type: string
-                    transaction_id:
-                      type: string
-                    transition_id:
-                      type: string
-                    transaction_index:
-                      type: integer
-                    transition_index:
-                      type: integer
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -3426,6 +2097,10 @@ components:
           properties:
             version:
               type: integer
+        aborted_solution_ids:
+          type: array
+          items:
+            type: string
         transactions:
           type: array
           items:
@@ -3613,10 +2288,6 @@ components:
                     value_id:
                       type: string
         aborted_transaction_ids:
-          type: array
-          items:
-            type: string
-        aborted_solution_ids:
           type: array
           items:
             type: string
@@ -4077,104 +2748,6 @@ components:
           type: boolean
         has_previous:
           type: boolean
-    DelegatedProvingResponse:
-      type: object
-      properties:
-        transaction:
-          type: object
-          properties:
-            type:
-              type: string
-            id:
-              type: string
-            execution:
-              type: object
-              properties:
-                transitions:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      program:
-                        type: string
-                      function:
-                        type: string
-                      inputs:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                            id:
-                              type: string
-                            value:
-                              type: string
-                      outputs:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                            id:
-                              type: string
-                            value:
-                              type: string
-                      tpk:
-                        type: string
-                      tcm:
-                        type: string
-                      scm:
-                        type: string
-                global_state_root:
-                  type: string
-                proof:
-                  type: string
-                fee:
-                  type: object
-                  properties:
-                    transition:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        program:
-                          type: string
-                        function:
-                          type: string
-                        inputs:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              type:
-                                type: string
-                              id:
-                                type: string
-                              value:
-                                type: string
-                        outputs:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              type:
-                                type: string
-                              id:
-                                type: string
-                              value:
-                                type: string
-                        tpk:
-                          type: string
-                        tcm:
-                          type: string
-                        scm:
-                          type: string
-                broadcast_result:
-                  type: string
     ProgramDataResponse:
       type: object
       properties:
@@ -5085,3 +3658,67 @@ components:
                   type: string
                 value_id:
                   type: string
+    TokenDetailsResponse:
+      type: object
+      properties:
+        token:
+          type: object
+          properties:
+            token_id:
+              type: string
+            token_id_datatype:
+              type: string
+            symbol:
+              type: string
+            display:
+              type: string
+            program_name:
+              type: string
+            decimals:
+              type: integer
+            total_supply:
+              type: string
+            verified:
+              type: boolean
+            token_icon_url:
+              type: string
+            price:
+              type: string
+            price_change_percentage_24h:
+              type: string
+            fully_diluted_value:
+              type: string
+            total_market_cap:
+              type: string
+            volume_24h:
+              type: string
+        price_history:
+          type: object
+          properties:
+            pagination:
+              $ref: '#/components/schemas/Pagination'
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  day:
+                    type: string
+                  price_usd:
+                    type: string
+                  volume_24h:
+                    type: string
+                  total_market_cap:
+                    type: string
+    DelegatorsResponse:
+      type: object
+      properties:
+        '{{ validator }}':
+          type: array
+          items:
+            type: object
+            properties:
+              delegator:
+                type: string
+              microcredits:
+                type: integer
