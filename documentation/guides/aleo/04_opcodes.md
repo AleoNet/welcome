@@ -54,6 +54,10 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [sub.w](#subw)               | Wrapping subtraction operation                        |
 | [ternary](#ternary)          | Ternary select operation                              |
 | [xor](#xor)                  | XOR operation                                         |
+| [serialize.bits](#serializebits) | Serialize value to bits array (Aleo variant bits) |
+| [serialize.bits.raw](#serializebitsraw) | Serialize value to bits array (raw bits) |
+| [deserialize.bits](#deserializebits) | Deserialize from bits array to value (Aleo variant bits) |
+| [deserialize.bits.raw](#deserializebitsraw) | Deserialize from bits array to value (raw bits) |
 
 ## Table of Cryptographic Opcodes
 | Name                             | Description                       |
@@ -4099,5 +4103,93 @@ xor r0 r1 into r2;
 | `U32`     | `U32`     | `U32`       |
 | `U64`     | `U64`     | `U64`       |
 | `U128`    | `U128`    | `U128`      |
+
+***
+
+### `serialize.bits` {#serializebits}
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Serializes a value into a bits array (boolean array), using Aleo variant bits. The input can be various types, and the output must be a boolean array.
+
+#### Example Usage
+
+```aleo
+serialize.bits r0 (u32) into r1 ([boolean; 32u32]);
+```
+
+#### Supported Types
+
+| Input | Destination |
+|-------|-------------|
+| `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`, `I64`, `I128`, `U8`, `U16`, `U32`, `U64`, `U128`, `[U8; N]`, `[U16; N]`, `[U32; N]`, `[U64; N]`, `[U128; N]`, `[I8; N]`, `[I16; N]`, `[I32; N]`, `[I64; N]`, `[I128; N]` | `[bool; M]` |
+
+***
+
+### `serialize.bits.raw` {#serializebitsraw}
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Serializes a value into a bits array (boolean array), using raw bits without Aleo variant bits. The input can be various types, and the output must be a boolean array.
+
+#### Example Usage
+
+```aleo
+serialize.bits.raw r0 (u32) into r1 ([boolean; 32u32]);
+```
+
+#### Supported Types
+
+| Input | Destination |
+|-------|-------------|
+| `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`, `I64`, `I128`, `U8`, `U16`, `U32`, `U64`, `U128`, `[U8; N]`, `[U16; N]`, `[U32; N]`, `[U64; N]`, `[U128; N]`, `[I8; N]`, `[I16; N]`, `[I32; N]`, `[I64; N]`, `[I128; N]` | `[bool; M]` |
+
+***
+
+### `deserialize.bits` {#deserializebits}
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Deserializes a bits array (boolean array) into a value, using Aleo variant bits. The input must be a boolean array, and the output can be various types.
+
+#### Example Usage
+
+```aleo
+deserialize.bits r0 ([boolean; 256u32]) into r1 as u8;
+```
+
+#### Supported Types
+
+| Input | Destination |
+|-------|-------------|
+| `[bool; N]` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`, `I64`, `I128`, `U8`, `U16`, `U32`, `U64`, `U128`, `[U8; M]`, `[U16; M]`, `[U32; M]`, `[U64; M]`, `[U128; M]`, `[I8; M]`, `[I16; M]`, `[I32; M]`, `[I64; M]`, `[I128; M]` |
+
+***
+
+### `deserialize.bits.raw` {#deserializebitsraw}
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Deserializes a bits array (boolean array) into a value, using raw bits without Aleo variant bits. The input must be a boolean array, and the output can be various types.
+
+#### Example Usage
+
+```aleo
+deserialize.bits.raw r5 ([boolean; 256u32]) into r6 ([u8; 32u32]);
+```
+
+#### Supported Types
+
+| Input | Destination |
+|-------|-------------|
+| `[bool; N]` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`, `I64`, `I128`, `U8`, `U16`, `U32`, `U64`, `U128`, `[U8; M]`, `[U16; M]`, `[U32; M]`, `[U64; M]`, `[U128; M]`, `[I8; M]`, `[I16; M]`, `[I32; M]`, `[I64; M]`, `[I128; M]` |
 
 ***
