@@ -237,7 +237,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "apis/v2/latest-circulating-supply-credits",
-          label: "Latest Circulating supply - credits",
+          label: "Latest circulating supply - credits",
           className: "api-method get",
         },
         {
