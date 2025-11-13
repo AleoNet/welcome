@@ -1,0 +1,63 @@
+---
+id: all-provers
+title: "All provers"
+description: "Returns information about all provers"
+sidebar_label: "All provers"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1v20YM/1eI68tmyI6XrQ/z09IuHdK1Q5APdEATDPSJtq453ak8yqng5H8feLITO3G3dHuNXmTxSB7vpx8/5KUpKVl2jbgYzMSckLQcErgwi1yjSgGnsRVA76HhuCBOpjCC82QmH80xx4ULc3NZGKbUxJAomcnS7I/Hett2fsCMHcTZhh8bg1AQ1cWm8c7mLfc+JTVYmmQrqlF/SdeQmRhUF6YwTqhOG/I4/URWTGEajg2xuD6MfqMNvSSs4d4WJkXf6l5p56pEQf8X0zVyuUujvwrz065zvsISTuhzS0lgCEdhgd6V4ELTSgE1eoWWSmiQsSYhTgVklR5uYo7/CZuvYJAEpU2vY0kbui4IzYnzUV1NSbBuHh+zMD0LzMSUKDRUVTVpUKqdsNUkVSy/spQSzmkXlhqDeBUd6tlPVkQya4h/egzxH1HgTWxDCUM4oRRbtgQhCsxU+AzeHXj7+4/BOw8NR6sup57gMIiTDobwqk0uUErg49zZZ0r+E6o/P0b1LEZ4j6Fbp35SaqIQeFc76WN/xi/j93JX1TwKQhzQwynxghiyIQzhwEqLHlIv7alYQBvoS0NWqIQZOt8yPfNzA98fH+OrsDpLcB5wgc7n3B/CGdVNZOQuA6zrLqWWEnwXYkmQumBdmBcwI5SWCdp76++fAe8B33Bq5pRPlzc3e/eDTk9fnZmWpmVvJqYSadJkbw8bN6IvjY9MPFIDxXZkY7232N+r0YWQXW6/zPe9HA6Oj+AwlE10Qcxt8U2+hZLs8n3Wy/+Xb4sBuXvk+nUWP/B8qejYlp10p8qXnhKfrmXjPeimimJeNxMzJWRiU6x+vFlT4O2Hs0ebvv1wBhKvKMAsMmArFQVZMTUzZRX7QeN+p25z2OwFhXHqpiIs85YBcwh/Do9XhsOD46Nhr/lg4D0+givq8r5r5XWepUwqnbN3tJKK7vXViUtQUnLzQCVIzPOzKwnaRJzg2kkFaLWh66JUBAeeIkx9tFe2QhdAKo7tvIKTw9OzWeuBVuAnkArzbB+vIQZS+88tcZe9BJLryFc5/OwMPC3Ib34cFCCMIaHNo/Tqya0eMJRQR6YR/Kp2mvAJLAYgTM53oAnOaAVKx2TFd/1RcvDriKdRKmASdqQfGlCiIGCCa/Je71OOWFpM2mC3YhldhIvw4kWG7xUmgvOTd0llN3AYFo5jqCkIwI0uwFOvm4twM9y6Hjz+y6X2sJm8cAPfUghyALCZoU91sMr23sFGHj7ZQZ/SGYIMbJ5t3q1mG5WdZzYiU8+nFVWJlSwwGLwEXg9GDTEksjGUg0FmSduo7mDww3hcjMfjbc0Su8Egv86tcQqunfcwJSClo6Wy93QXRGpzr1HHU4/2yrueJG6m5O4Ap22izHO9xxnElhWREbyJDC58bh070k9hiRCngi6oeeXmFTHwXSipgMaTMowJbQX5Y1mgpMU603/ZhHIEF8EURptBn+z7o/FobO77y2birzos2lwLV4VH39pp2zSRtXZTjU7L8tf2y2WmiUlqDJtOtj7nt8rP8r6rP/3/gL5iCn2Rvcajy4U194vlqhl+NGvty8JUMYmKlsspJjpnf3ur4lx6zOTjZWEWyE6PoE+3xbr4ave80hptDqylRs+/QN/2xfrB+KF95a4t/3Z4Zm5v/wYyG90p
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"All provers"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/provers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns information about all provers
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Array of provers","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"prover":{"type":"string"},"solutions":{"type":"string"},"total_rewards":{"type":"string"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

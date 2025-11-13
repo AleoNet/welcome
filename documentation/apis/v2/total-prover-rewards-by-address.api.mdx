@@ -1,0 +1,71 @@
+---
+id: total-prover-rewards-by-address
+title: "Total prover rewards by address"
+description: "Returns total rewards for the specified prover address"
+sidebar_label: "Total prover rewards by address"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIIq0fd5FCd6qRO4TQpDD+QArEPI+5Iy5hLbsihFEHWfy+Gu7KlSEkTpEfvZZfkvPhxXtyVKinqYBo23qmxOidOwUVgz2gh0AJDGWHqA3BFEBvSZmqohCb4OQXAsgwUoyoU4yyq8Qd1FvzcuJm6KVSDAWtiCrKwUg5rUmP1wGJEYYNcqUIF+pRMoFKNOSQqVNQV1ajGK8XLRtgiBxG7Xt8IcWy8ixRl/Wg0ktfuNi6z+Z2R3S5UobR3TI6FHpvGGo1CP/wYhWm1r9RPPpJmVagm+IYCm1ZlTPUhy+Qp1PND9rzEEs7pU6LI0IdTN0drSjCuSVxAjXbqQy2o3iNWQCbJ9gGF4MP/aT8jp/jKl7RFaxzTjIJaF4pNTZGxbvZ3WSgxFVmNVYlMfSEVlnyM+5gUqiaufPmVpRhxRoegFBvYytSJ7P28O3C1gfj5PsR/e4bXPrkS+nBO0aegCZxnmMrkI3j34B0d7YN35ZrgtYicWIITx4aX0IeXKRpHMYL1M6MfXfJbqP52KAt5eIduuQn9KK6JTGBNbbi1/RG/jN+LQ1nz1DEFhxYuKEgiz4zQh2PNCS3EdrZ1xQKSo88NaaYSpmhsCvTon1v4/rqPr8BqNMGVwzkam2O/D5dUNz5gWGaAZd3EmCjCU+dLgrh02rhZAVNCToEgPXA/ewS8BXxLqJpR3l1WroZtTxKHXVMyzI3WcNV1RWtVqNat254pBavGqmJu4ng4xMYM6HNjfaAwEEGC+UD7ejg/GtZonMuqdg/5XTsPx2encOLKxhvHal38kGymyIdkX7bzPyVbo8Ow3BP9Kk9/IflG0NEpGF5eiB+1rvJxwVvnI0pV10DKeEIYKKii+3i9cY037y/3lL55fwnsb8nljhcTV+S48+DsQZ3tx435i5ZbSrGd6HrairDMKruW95/+WcfYPz477beUu5pln7e0zHo3xJv4i9nZjJv6AyWmogd6EWIilBTNzFEJ7HMLbEqCFClEWBiuALUUelmUlv7YkoeJ9fpWV2gccBV8mlVwfnJxOU0WqAM/AlfIgNb6BXhHwv8pUVhmKY544cNtNj8LA0tzsiBGC97GuwI4oIuoZRC7kekG6EqofaAB/CF8kggiaHRAGI1dggR+QM1QmkCa7bLdSjZ+Y/HEcwWBOBiSGwiUyAgYYUHWynsSPJYaoxTeHVsG1+7aPXmS4XuJkeDq/G2UuTs4cXMTvKvJMcCdLMD3PnfX7q6/83wx/I9H+GE7eOEOfiQRZANgO0K/V0AX7a2ArTj8bgFtSGcIMrC553nb9Twyd5W9EQO1/tS5KgVxFuj1XkDYNEwNBYikvSt7vewlqRHaXu+X0agYjUa7lCUue718nDttFiyMtTAhIHFHTWUr6d6ImHINEsETi/rWmtZJzFScewk4SZGyn8vbT8GnIIgM4LUPYJxcXQ1F8VIPfsJonLBXZlbJ9fPelFhAY0k8LBDqCnxiQIaS5ptI/30bygFcO1UoKQZtsB8NRoOReqg724HfVV7UORd2iUdO7SI1jQ+Su6lGI2n5a/pymml85BrdlpBDd2mYLLfu/jspafXQAfzE34Q2rTJ95mFj0eTsm4vKqqukH1RXSfPPg80FPytShRpvRN0UqvKRhX61mmCkq2DXa5nOyUuNP9wUao7BCAi55JYmX4JKNZ6ijfSN3T09735aPIOvmbwpD04y/hxtkpEq1K1Uj/tfIeubdbEpGmJCu3qsNTW8xbfXTkk9vG8z/jy5VOv1v54JKtY=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Total prover rewards by address"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/provers/rewards/total/{address}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns total rewards for the specified prover address
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"address","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Total prover rewards","content":{"application/json":{"schema":{"type":"object","properties":{"sum":{"type":"string"}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

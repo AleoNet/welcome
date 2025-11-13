@@ -1,0 +1,72 @@
+---
+id: get-program-by-edition
+title: "Program by edition"
+description: "Retrieves program details by Program ID and specific edition."
+sidebar_label: "Program by edition"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzcQ/isD5pIIq0fd5FCdaidK4TQpDD+QArEPI+5Iy5hLbshZOQtZ/70Y7kqWIiVN2qIn67LikPPgx3mRS5VT1MFUbLxTY3VOHAwtKEIV/DxgCTkxGhth2sBZRzp9BehyiBVpMzMaKDfCPrh2KlO+ooAyPM3VWM2JO66TZtIuU5linEc1/qC6qahuMlVhwJKYgswslcOS1Fh1Vpy+UpkyYmCFXKhMBfpUm0C5GnOoKVNRF1SiGi8VN5UwRg7GzdVqlW1k0Ub/D0kyjmlOQa1WN7I6Vt5FirLgaDSSzy6ClwVtsIu+DppA+5wGKlPaOybHwoNVZY1OOA0/RmFcfmMPq1Wmnh9SdoI5nNOnmiJDH07dAq3Jwbiq5gxKtDMfSsrhAdsM0pKkGCgEH+I/MMxPP5JmlcnxVBTYtHhERq7jS5/TIfgyxaakyFhW+3vMlJiKrMYqR6a+LBWWdEj7iGSqJC58/pWpGHFOB51BsWErpIns/bw7zQ3Ez/ch/sMzvPa1y6EP59SdqPMMMyE+grcB7+hoH7wrVwWvReTUEkwcG26gDyd1NI5iBOvnRj+65LdQ/eVAivEe3qFr1qEfxTWRCawpDbe2P+KX8HtxKGueOqbg0MIFhQUFSIzQh2PNNVqILbV1xQxqR58r0kw5zNDYOtCjf27h+/M+vgKr0QRXDhdobIr9PlxSWfmAoUkAy7yJsaYIT53PCWLjtHHzDGaEXAeC+oH72SPgLeBbQqW1Umvlati1HMPlpmNaDZddx7NSmWqduu2t6mDVWBXMVRwPh1iZAX2urA8UBlXwC0F8oH05XBwNSzTOJUW7R/yupcPx2SlMXF5541hJr/UDspkiH5J92dL/lWyNDkOzJ/plIn8h+UbQ0XUw3FyIF7WO8vGOt05HlKquOZTxlDBQUFn35/XaMd68v9xT+ub9JbC/JQczHwBrLshx57/JfzrbjyvzOzVbSrEldP1qQZgnlV07+2f/rGPsH5+d9tuVu5pln7fUJL3rxevoi8nVjJv5wz3sZr0IMRFyimbuKAf20t8uTE5QRwoR7gwXgFrKvExyQXBsycPUen2rCzQOuAi+nhdwPrm4nNUWqAM/AhfIgNb6O/COhP9TTaFJUhzxnQ+3yfwkDCwtyIIYLXgb7zLggC6ilkHsRqYbyCWl9IEG8Er4JA1E0OiAMBrbgIR9QM2Qm0CabdNuJRm/tnjquYDQ3oqMm0OOjIAR7sha+U6Dx1xjlLK7Y8vg2l27J08SfCcYCa7O30ah3cPELUzwriTHAPcyAd/7u7929/2d3xfDv/kJP2wHL9zDjySCZABsR+j3CuiivRWwFYffLaAN6QRBAjZ1PG+7jkdoV8kbMVDrT52rUhBngV7vBYR1u1RRgEjau7zXS15SV7K21/tpNMpGo9HuyhybXi8d506TBXfGWpgSkLijpryVtDEi1qkCieCpRX1rTeskZibO3QBO60jJz+XrZ+DrIIgM4LUPYJxcSw1F8VIPfsponLAXZl5QgLAxJWZQWRIPC4S6AF8zIENOi3Wk/7oN5QDSNV2KQRvsR4PRYKQeqs524Hd1F3XKhV3ikVO7qKvKB8ndVKKRtPw1fSnNVD5yiW5LyPotYdrAw718JwstH0r+f/As0aVUps88rCyalHlTQVl2NfTD+rFBZWq8/e4wXht4k6nCR5aly+UUI10Fu1oJOeUsNf5wk6kFBiN7T5U2N+nmk6vxDG2kb+zw6Xn3DvEMvmbtuio4SfQLtLWMVKZupWhsvZRIqfwfFa/RWd2ssnWRkr23s8daU8VbfHvNm9TfTVPz2+RSrVZ/AXv+atM=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Program by edition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/program/{programID}/{edition}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves program details by Program ID and specific edition.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"programID","in":"path","required":true,"schema":{"type":"string"}},{"name":"edition","in":"path","required":true,"schema":{"type":"integer"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The program source code.","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

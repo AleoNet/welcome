@@ -1,0 +1,71 @@
+---
+id: find-transaction-id-by-transition
+title: "Find transaction ID by transition ID"
+description: "Retrieves the Transaction ID associated with a Transition ID."
+sidebar_label: "Find transaction ID by transition ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVktz2zgM/isY9rLrUW2n01502rZJdzLTnemkyV7qHGAStthIpEpATj2O/vsOaCWR89htt7pIAsGPH0C8dkZwzab8Ys4TBkYrPgY2l4VxxDb5Vv9Nac5IkqcNMUhFMNKF02NA5mg9Cjm49lIB7hX8sD41hYktJdT/U2dKs/LBjTBO3bvt/Q5TmBYTNiSUlNnOBGzIlEbuVE6PTWG88mpRKlOYRN86n8iZUlJHhWFbUYOm3BnZtrqXJfmwNn1/qcrcxsDEuv5qPtfXobXnFYGM+B2DD3BdeVtl8++JgGdoMQnElVppYxAKooDYtrW32eTZV1bU3bOsCiNeahUcOOVs4Gn6vu8L83r++gmmo5sIUWAVu+D+B5O4/EpW1PVJr0r83jssKB2/j45Guj4IrSmZXnk3xIJN+5RRq5gaFFMah0IvVVW35Bt7fDGFaUiq6J5ZYsY1PXWf9747SSmmBz5789Ttfqa0oQSk+hnh9mSzpuyCzNDMNEpnB2Ew241jsDeF4Yy1D9Mu1aY0lUjL5WyGrZ/S97aOidK0TXGDy5qmNjazzdGsQR9CPuyQ2l97Obz9dAonwbXRBzF98VPYQixPYZ/v5b+EbTFg2j6Cfp/FD5AvNUVX8bH/y7K8xhR8WC/C35RYY/cob/YMsROXKwkGrSZ1DUsCR20im8UcY5jCp5qQCRq/TigEEmHzClYxQRMTAQ0cOIP4Rq0gB7d5DzY64ukilGW5CJrrnwYzb0k4Yr8O5BRYN3tH0DElHuqbtcSsi1oN3tYUYVlHe2Ur9AGkSrFbV3B28vl81dUjNlKhANZ1vIYYMutvHaVtRgkk1zFdZSMyGNS0oRrUhZpGPoZiXJO4GJUhLrKlavwUjnWfJjGDxQCE7OstaNImtALOJ7JSb/emZPK3jJdRKkj7Su/DGhwKAjJcU13re5kiOossujjmMl2ERXjxIrvvnV7MxdlHVtkNnISNTzE0FATgRhfgR5+bRbh5efA8+P2PR/fDOKPgBn4mOzMBGKfNjwIMKbgHGCXHDwPs8yy7IDv2TKP8o2+85KxZhIscjZhoH09DqFLSYIHJ5A1oRyQWViEw2RjcZJKjpGtVdzI5ms+L+Xx+qOlwO5nk68xH1sORd5lIGo52SM/ujgR3uX8o8LJGe1X7fZD4lQb3FnDZMeU413dcQeySemQKH2ICH7R7e2KN0ghxKei1PEDl1xUlSHdUuIB2n/qJ0FZaLQAFHG20EHtL/MfYlVNY6Dix2RcZU5qj6Xw6H/XbceIPXRNt7prDzKG39rlr25i0oFKDXmvlc+flbtJGlgbDCOSDD26cLzozLbfjMSIPNAdVcnffwn95+Bp6ptB3mbU1+qA9NVf93dDsvuSRTFXH7c4UOk+Nhq7LwlSRRfV3uyUyXaS671WcC5kpv1wWZoPJq0NyT3Se9duZcoU1078Y+dvZMMP9Ds9RHoQYtANtsO70zxTmirYPx8P+si9MRegoZR57lbfWUiujzY9mI+1ad+PAnyfnpu//AT4B11A=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Find transaction ID by transition ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/find/transactionID/{transitionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the Transaction ID associated with a Transition ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"transitionID","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"The transactionID in which the transition is part of.","content":{"application/json":{"schema":{"type":"string","title":"TransactionIdResponse"}}}},"404":{"description":"Transaction not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

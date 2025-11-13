@@ -1,0 +1,63 @@
+---
+id: latest-transaction-summary
+title: "Latest transaction summary"
+description: "Returns information about the latest 1,000 transactions"
+sidebar_label: "Latest transaction summary"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1v2zYQ/1cO7MtmyB/N1of5aWmXDunaoUgcdEATFGfqbLGhSJU8OjUS/+/DUXIiJ27Xrq/Ri6Tj3fH4u0/pWpUUdTANG+/UVJ0Qp+AiGLfwoUahAs59YuCKwCJTZHhaTCYT4IAuohaWqArFuIxq+l7N+uSLQgWKjXeRoppeq4PJRG67e75utfb0QUx1jWGtCqW9Y3IsUtg01uhs0/hjFNFrFXVFNcoTrxtSU4UhoMgZpjr26H7+kTSrQjXBNxTYtAaZsscTORi3VJtCLYh6dOOYlhRkITJyintl5tbryw8VmWXF+4VbDjY1Rca6+RpThbHau0sPpQ/t4h6mJvhlwPrDl06XXKtg77psYtgKqefL084jG7kK9es+Rz7HEk7oUxJvDuHYrdCaEoxrEhdQo5WQohIaDFgTU4gFZJY2zCgEH+L/cPkXXNu66oUvv+DKfX7oMChUG/1qqkpkGgprxhV5v1dq4srvB7umGHG5z089oI/k7CddpqgtxL8+hPhvz/DSJ1fCEE4o+hQ0gfMMCyE+gncL3sHBQ/DOXBO8FpVzS3Dk2PAahvA8ReMoRrB+afRjSH4N1d8eojrzHt6gW29TP0poIhNYUxtubX/EL+P3bF/VPHZMwaGFUworCpAFYQiHmhNaiC21DcUCkqPPDWmmEhZobAr0GJ89fH95iK/AajTBmcMVGptzfwgzqhsfMKwzwLJuYkwU4SfnS4K4dtq4ZQELQk6BIN1J//wIOG3ngK1StaR8ury5Gvdnw3E3zI3b6VEVqg1pmRavVQpWTVXF3MTpeIyNGdHnxvpAYdQEvxK8R9rX49XBuEbjXN5m18FvWjocvj2GI1c23jhWm+K7dItl+3TPWvoP6dbo2ll2V/WLTL6n+ULQ0SkYXp9KDLVh8vGqP1HKpoJiXldTNScMFFTRPbzchsWrd7MHm756NwP2l+Rg4QNg4oocd9HbTY7Z9sPG/EXr/lzdEgplRE1FWOYtHWYT/hm+7QSHh2+Phy3n7s5yzkta5323zNvciznQ5JtjT3up6I5flJgIJUWzdFQCexCLTUmQIoUIV4YrQC1NXhblo+XQkoc8VesKjQOugk/LCk6OTmeLZIE68CNwhQxorb8C70jkPyUK66zFEV/5cJnNz8rA0ops/0Op2Pkk6t5M94KuhNoHGsEfIidFIIJGB4TR2DVI0gfUDKUJpNmu26Nk47cWzz1XEIiDoZVxSyiRETDCFVkr93nwWGqM0nR3bBmdu3P35EmG7zlGgrOT11FoN3DkViZ4V5NjgBtZgG+9bs7dzXDnuvf6H5fIQz954Qa+pxBkA6Cfod+qoMv2VkEvD79ZQZvSGYIMbJ53XnfzjtDOcjRioDaeulClIMECg8EzCNthqaEAkbR35WCQoyQ1wjsYPJ1M8nf2DmeJ68Egu3NnxIIrYy3MCUjCUVPZaro1Iqbcf0Tx3KK+tKYNErOQ4F4DzlOkHOdy9wvwKQgiI3jpAxj3KZlgSH4LsAc/ZzROxCuzrChAuDUlFtBYkggLhLoC+XGADCWttpn+ex/KEZw7VShpBm2yH4wmo4m66zn9xO+6LupcC7vCI147TU3jg9RuqtFIWf7SfrnMND5yja6n5Ks/IHaq0fVd4/+RXyVtSWX6zOPGosmVNzeU666Dvlf3RO7s6broRaEqH1lYr6/nGOks2M1GyLlmqen7i0KtMBg5u7xtim3VlrZ7KcVdHWpNjQC3QpvaKn9vlpGGdNvj/zyaqc3mXzHSUPI=
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Latest transaction summary"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/transactions/summary/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns information about the latest 1,000 transactions
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Latest transaction summary","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"fee":{"type":"integer"},"status":{"type":"string"},"block_height":{"type":"integer"},"block_timestamp":{"type":"integer"},"block_hash":{"type":"string"},"transaction_type":{"type":"string"},"program_id":{"type":"string"},"function_id":{"type":"string"}},"title":"TransactionSummary"}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

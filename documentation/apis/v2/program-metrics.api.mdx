@@ -1,0 +1,63 @@
+---
+id: program-metrics
+title: "Program metrics"
+description: "Returns program metrics"
+sidebar_label: "Program metrics"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWE1z2zYQ/Ss7yKXVUB91k0N1qpM6HadJx+OPSWfiTGcFrkTEIIAASzkcWf+9syBlS5GSJu3VvFBcLB4Wj293Qa1USUlHE9h4p6bqnLiJLkGIfhGxhpo4Gp1UoRgXSU3fqbNuJKn3hYqUgneJkpqu1NFkIrddvLM9HO0dk2NxxRCs0Siu4w9J/Fcq6YpqlF/cBlJThTFiqwplmOq0ZfezD6RZFSpEHyiy6aLoA//blFu+iaNxC7UulEZrt1GMY1pQVOvuKtTTQ7t4jiWc08eGEsMQTt0SrSnBuNBwATXauY81lRAwYk1MMRWQXfLWgGL08b9s/QtbTIzcpBe+pEMbKRSbmhJjHfYZKJSEiqymqkSmobjKlIBcHeSrJq78YSprSgkXdGAsx8BWTCey9/NeJmpD8dN9iv/0DC9940oYwjkl30RN4DzDXIyP5N2Td3S0T96VC9FrgZxZghPHhlsYwvMmGUcpgfULox8l+TVWf9ln9dJ7eIOu3aR+EmkiE1hTG+5if+Qv8/fsUNU8dUzRoYULikuKkCfCEI41N2ghddZOigU0jj4F0kwlzNHYJtKjPrf4/XmfX6HVaIIrh0s0Nuf+EC6pDj5ibDPBMm5SaijBD86XBKl12rhFAXNCbiJB8zD7x0fCO8K3QNWC8u7y4mrcn2PGYXMKKlSnYzkbrVQTrZqqijmk6XiMwYzoU7A+UhyF6JdC8kj7erw8GtdonMvYu2/1TWeH47NTOHFl8MaxWhffhc2U+BD2ZWf/X9gaHcZ2D/pFNn+G/F7Y0U003F6IcDptfLjlrRciiwqLeVxN1YwwUlRF/+PlRguv3l7uLfrq7SWwvyEHcx8BG67IcS/ZLJk+9uNg/qB2+1DZGQplBKYiLPOSDnMIfw3P+onD47PTYee5u7Ls84bavO7GeZNwKavLuLk/0FMqevAXEJOgpGQWjkpgL+fupSkJmkQxwa3hClBLZ5dBrgiOLXmYWa9vdIXGAVfRN4sKzk8uLueNBerJT8AVMqC1/ha8I5n/saHYZhRHfOvjTQ4/g4GlJVmQoIVv410BHNEl1PKQ+ifTP6ArofaRRvCbzJPMT6DRAWEytgXJ9IiaoTSRNNu220oOfhPxzHMFUfKJlsYtoERGwAS3ZK3cZ9FjqTFJp92JZXTtrt2TJ5m+55gIrs5fJ7HdwYlbmuhdTY4B7mQAvvW6u3Z3w53rs8d/uWQ+bCcv3MH3FIIcAGxn6LcC9NneAWzl4TcDdCmdKcjE5kPO6/6QI7arrEaM1OmplypFEQsMBs8gbk5IgSIk0t6Vg0FWSRPEdzD4aTIpJpPJrmeJ7WCQX+fOuQpujbUwIyCRo6ayQ7oPIjW56QjwzKK+saYTiZmLuFvAWZMo61zufg6+icLICF76CMZ9bEw0lESlHvyM0TiZXplFRRHifSipgGBJFBYJdQW+YUCGkpabTP91m8oRXDtVKGkGXbIfjSajiXpoNNuJ37da1LkW9oVH3tpFE4KPUrupRiNl+Uvr5TITfOIa3RbI/if3TglaPbT4r33td3WS6ROPg0WTy2nuEqu+F75TD95h6z+ByieW0dVqhomuol2vxZxrj5q+e1+oJUYje5CndbGpvtI+b6RIq2OtKQgBS7RNV60/O4hIY7lv0L+fXKr1+h+zM89L
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Program metrics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/programs"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns program metrics
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Program metrics","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"program_id":{"type":"string"},"calls":{"type":"integer"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

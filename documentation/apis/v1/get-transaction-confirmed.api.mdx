@@ -1,0 +1,71 @@
+---
+id: get-transaction-confirmed
+title: "Get transaction confirmation status"
+description: "Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain."
+sidebar_label: "Get transaction confirmation status"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWFtv2zYU/isH3MtmqLZTtC96WpZmRYEOK9J0L3EQHJNHFhuJVEnKruf4vw+Hkh3ZkXNBU6ADqhdbpHj48eO5r0TAmRfphTh3aDzKoK3x4jIRirx0uuJ3kYozCk7TnDyEnEBak2lXIk+CDxhqDzYDhHArBEKOARbowdfTUodACoKNy48LsjAtrLyWOWozFImwFbko7p0SqZhR6MA5aXYjJRJRocOSAjnGvBIGSxKp6Gz77o1IhGbIFYZcJMLRl1o7UiINrqZEeJlTiSJdibCseLEPTpuZWK8v+WNfWePJ8/zL8Zh/dok4hg4ysNPPJAPzEVAbbWZ91CSARQHaVHXwCdg6NH/QKMiIWhlMAoshE3hTrKpCyyhl9NnzzqsOcmvo7ywSEHQo+BCKqsIuRbI5VCOUCXNMbdDNkZrZ/aMngkxdshK0Yi7XidCqh6NE2IUh15k5sBEq5cj7XhFezwyG2vUgWa/XSQuibJm4fx9SurmY7YfaBJqR440qZ2cOy14Qc3I6W2ozu7qmZRcnOodMpA5U3jveuYQ94Q/KulW5eOAW55XMSV77unwEmq2E29X7N9OlNCN6mMtoRft0Hvj2gHbcx3hWG7kn/HaysY5HHPxJin1YjedY1P36xzremOgPgiZU172Lguzn2feOs6RZYadYXLFXoitnbTh0hzbrBxNVu/U49JVkHehBl9P4wP4TPOCNNltEd2QUfe038473f/6raTA8TvTWfr5BdX4a1nOi6fGoD0NNhCejyF1JXeXkAn3tM5Rntc1nMM6fTv4H18X/j5MXmTZY6H/pO5BTYlVx1nWApGtaHpqK/PVPxucy2camk04Sftam9C3Rr8av7ib13ZTe2ACZrY16SkL+mBB4YlWXkm4A0yX5gGXVFwwzywfhFB8DveBP4/1xcdPLL4Xc9hNYkvc461XBW+pOnbNuj7PXfYXQR3JzckD8fZSw2ZmrN7FBKEad6DySm0putNop2daCfS7La8q62hUiFXkIlU9HI6z0kL5WhXXkhpWzc5wWNJS2HM2PRiVqY+KGu/D+asbh+MM7ODWqstqEmJo/QXYgH/pknzfj3yRbokG3vCP6JA7vSb5k15nZu3eQpukCHdedE/MPOc/6exQXa8+FJquMioXmQhcFTAkUVY5kHPbWmiF8KAg9QalnDgNxhT5/CZl1UFpHQC0GH4Xokk9BCjZlMkiryA8nJk3TiTnPCT60x9yAUMTVXlP682KtCGpPzsNChxxQSvL+QF8AQu5sPcvh7PTjeVYXHTSxt4BFYRdgTUT9pSa3jFIMhYV11/EQURgUNCcuwBtT0tYk3UaFb990+8In5cMP4Q2vY0P2INEAodfFEthwHcoASjuSoVg2R4ngN4inNuTgmp4JdwUUBgT0sKCi4N+ps6gk+sCTXSzDiZmYX36J9P3BF/Pp7L3nsRs4NXPtrOG6GOCGJ+Cxz83E3LzYefZeH3h4PXQtCm7gKdYZAUDXbB4roDXBRkDHOB4toLGzSEEk9oy1/L0udYhWMzGfojaio0afWlUlx8oCg8Fr4AYS+eB5EDxJa9RgELWkrvjbweBoPE7G4/HulwqXg0G8zrhl0W65tURidZStedZbEL5uWkqBLQHldaEbJdEZK/cScFp7inrOvzYDWztmZAh/WgfacLNLk2cttWCnm7ZUrmc5OXBbKD6BqjF9Ryhz9haAARTN2RFrSf73LpVDmBgRuya+cT1Hw/FwLG7jRtfw28iJMkbOtkfHt/axrirr2KFSibqIfav+/ZrOhvWhRNMR8pbCTo+xp9u271JXt1H8u3cx27DKFcOoKlAbDrsxKKzaeHixU61Gnra9zXS3jXmZiNz6wGtWqyl6+uSK9ZqHo68T6cUlJ0VOM2cxbCrt+b8SaYaFp3uI+PWs7Yr+Bodgb/I+w0GqzV2FiBnanY7rmiv0nFBxA+pi1X5zLCVVobP6Tg7FkW2bNrw9PRfr9X83Y9KV
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v1/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get transaction confirmation status"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/transaction/confirmed/{transactionID}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the confirmation status of a transaction that was submitted to the Aleo blockchain.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"transactionID","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A Transaction object containing confirmation status, all inputs, outputs, and fee object.","content":{"application/json":{"schema":{"oneOf":[{"title":"deploy","type":"object","properties":{"type":{"type":"string","enum":["deploy"]},"id":{"type":"string"},"owner":{"type":"object","properties":{"address":{"type":"string"},"signature":{"type":"string"}}},"deployment":{"type":"object","properties":{"edition":{"type":"integer"},"program":{"type":"string"},"verifying_keys":{"type":"array","items":{"type":"array","items":{"oneOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]}}},"program_checksum":{"type":"array","items":{"type":"string"}},"program_owner":{"type":"string"}}},"fee":{"type":"object","properties":{"transition":{"type":"object","properties":{"id":{"type":"string"},"program":{"type":"string"},"function":{"type":"string"},"inputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"value":{"type":"string"}}}},"outputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"value":{"type":"string"}}}},"tpk":{"type":"string"},"tcm":{"type":"string"},"scm":{"type":"string"}}},"global_state_root":{"type":"string"},"proof":{"type":"string"}}}}},{"title":"execute","type":"object","properties":{"status":{"type":"string"},"type":{"type":"string","enum":["execute"]},"index":{"type":"integer"},"transaction":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"execution":{"type":"object","properties":{"transitions":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"program":{"type":"string"},"function":{"type":"string"},"inputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"value":{"type":"string"}}}},"outputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"checksum":{"type":"string"},"value":{"type":"string"},"sender_ciphertext":{"type":"string"}}}},"tpk":{"type":"string"},"tcm":{"type":"string"},"scm":{"type":"string"}}}},"global_state_root":{"type":"string"},"proof":{"type":"string"}}},"fee":{"type":"object","properties":{"transition":{"type":"object","properties":{"id":{"type":"string"},"program":{"type":"string"},"function":{"type":"string"},"inputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"value":{"type":"string"}}}},"outputs":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"id":{"type":"string"},"value":{"type":"string"}}}},"tpk":{"type":"string"},"tcm":{"type":"string"},"scm":{"type":"string"}}},"global_state_root":{"type":"string"},"proof":{"type":"string"}}}}},"finalize":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"mapping_id":{"type":"string"},"key_id":{"type":"string"},"value_id":{"type":"string"}}}}}}],"title":"ConfirmationResponse"}}}},"404":{"description":"Transaction not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

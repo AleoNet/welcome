@@ -1,0 +1,63 @@
+---
+id: transaction-metrics-daily
+title: "Transaction metrics daily"
+description: "Returns total transaction counts for each date"
+sidebar_label: "Transaction metrics daily"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtz2zYQ/is7yKXVUI+6yaE61UmdjtMkk7HlSWfiHFbgSkQMAgywkKOR9d87C1I2ZSttkl7NC0VgX/j47YPaqJKiDqZh452aqjPiFFwE9owWOKCLqGUPtE+OIyx8AEJdQYlMqlCMy6imH9TsTjSqj4UKFBvvIkU13aijyURu+65m941DZSL7sFaF0t4xORYlbBprNIrY+FMUzY2KuqIa5RevG1JThSGg6BmmOvbW/fwTaVaFaoJvKLBp4ylx3ROKHIxbqq24Ta3Tbsc4piUFtW2vQj09dJDnWMIZfU4UGYZw6lZoTQnGNYkLqNEufKiphAYD1sQUYgFZJJ8JKAQf4g+c+Stni4yc4gtf0qGDFIpNTZGxbh4iUCgJFVlNlbzdoYiKSoNcHcSrJq58+ZWtGHFJB/ZyDGxl6UTOftYxRe0gfvoQ4ree4aVProQhnFH0KWgC5xkWsvgI3i14R0cPwbtwTfBaTM4twYljw2sYwvMUjaMYwfql0Y+U/DdUfztQvryHN+jWu9SPQk1kAmtqw23sj/hl/J4dqpqnjik4tHBOYUUBsiIM4VhzQguxXW2pWEBy9KUhzVTCAo1NgR752cP314f4CqxGE1w4XKGxOfeHMKO68QHDOgMs+ybGRBF+cr4kiGunjVsWsCDkFAjSnfbPj4C3gPeMqiXl02XnalwTB6PjmPvDUKFaLsuYtFEpWDVVFXMTp+MxNmZEXxrrA4VRE/xKgB5pX49XR+MajXPZ/v6bfdOuw/G7UzhxZeONY7Utvss2U+RDtmft+v+yrdFhnuL2Tb/Iy/csfxR0dAqG1+dCnpYfn677U5g4FRTzvpqqOWGgoIrux8sdH169nz1w+ur9DNhfkcuDKyauyHFH20ybLvbjxvxF/aEQ24VCGTFTEZbZpcMcwt/Dd53i8Pjd6bCV3Pcs57yidfa7E94lXcwMM27hD/SViu7kxYiJUFI0S0clsAeJ2JQEKVKIcG24AtTS3WWTK4JjSx7m1usrXaFxwFXwaVnB2cn5bJEsUAd+BK6QAa311+Adif7nRGGdrTjiax+ucvjZGFhakQUJWvA23hX974PYPZnuAV0JtQ80gj9ET7I/gkYHhNHYNUi2B9QMpQmk2a7bo+TgdxHPPVcQJKdoZdxSPjkQMMI1WSv3efBYaozSbfdiGV26S/fkSYbvOUaCi7PXUdZu4MStTPCuJscAN7IB33rdXLqb4d517/E/LtGHfvLCDXxPIcgBQD9Dv9VAl+2tgV4efrOBNqUzBBnYPOi87gYdWbvIbMRALZ86qlIQssBg8AzCbkpqKEAk7V05GGSWpEZkB4NfJpNiMpnsS5a4Hgzy69ybreDaWAtzAhI6aipbS7dBxJQbjxieW9RX1rQkMQsh9xpwniJlnsvdL8CnIIiM4KUPYNznZIKhKCz14OeMxol6ZZYVBQi3ocQCGkvCsJA/in1iQIaSVrtM/70P5QgunSqUNIM22Y9Gk9FE3TWbfuJ37RZ1roVd4ZG3dp6axgep3VSjkbL8NX+5zDQ+co2uZ6T/5d21LCjR2AdFbHPX8H/gn4G2kDJ94XFj0eR6m9vIpmuYH1TnXaTv/X9Q+cgisdnMMdJFsNutLOcCpaYfPhZqhcHIQeVpW+xKtPTYK6nk6lhragSlFdrUlvR7E4t0n9tO/ufJTG23/wA1IupW
+sidebar_class_name: "get api-method"
+info_path: welcome/documentation/apis/v2/provable-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Transaction metrics daily"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/metrics/transactions"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns total transaction counts for each date
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Transaction count history","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"day":{"type":"string"},"count":{"type":"integer"}}}}}}},"400":{"description":"Bad Request - Invalid input, malformed parameters, validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"404":{"description":"Not Found - Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"422":{"description":"Unprocessable Entity - Business logic validation errors","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"429":{"description":"Too Many Requests - Rate limiting","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error - Actual server errors, unexpected failures","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}},"503":{"description":"Service Unavailable - Temporary service issues (node syncing, feature unavailable)","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"integer"},"timestamp":{"type":"string","format":"date-time"},"path":{"type":"string"},"method":{"type":"string"},"message":{"type":"string"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
