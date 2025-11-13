@@ -79,6 +79,33 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [hash.sha3_256](#hashsha3_256)   | 256-bit input SHA3 hash           |
 | [hash.sha3_384](#hashsha3_384)   | 384-bit input SHA3 hash           |
 | [hash.sha3_512](#hashsha3_512)   | 512-bit input SHA3 hash           |
+| [hash.bhp256.raw](#hashbhp256raw)       | 256-bit input BHP hash (raw bits)            |
+| [hash.bhp512.raw](#hashbhp512raw)       | 512-bit input BHP hash (raw bits)            |
+| [hash.bhp768.raw](#hashbhp768raw)       | 768-bit input BHP hash (raw bits)            |
+| [hash.bhp1024.raw](#hashbhp1024raw)     | 1024-bit input BHP hash (raw bits)           |
+| [hash.keccak256.raw](#hashkeccak256raw) | 256-bit input Keccak hash (raw bits)         |
+| [hash.keccak384.raw](#hashkeccak384raw) | 384-bit input Keccak hash (raw bits)         |
+| [hash.keccak512.raw](#hashkeccak512raw) | 512-bit input Keccak hash (raw bits)         |
+| [hash.ped64.raw](#hashped64raw)         | 64-bit input Pedersen hash (raw bits)        |
+| [hash.ped128.raw](#hashped128raw)       | 128-bit input Pedersen hash (raw bits)       |
+| [hash.psd2.raw](#hashpsd2raw)           | Poseidon hash with input rate 2 (raw bits)   |
+| [hash.psd4.raw](#hashpsd4raw)           | Poseidon hash with input rate 4 (raw bits)   |
+| [hash.psd8.raw](#hashpsd8raw)           | Poseidon hash with input rate 8 (raw bits)   |
+| [hash.sha3_256.raw](#hashsha3_256raw)   | 256-bit input SHA3 hash (raw bits)           |
+| [hash.sha3_384.raw](#hashsha3_384raw)   | 384-bit input SHA3 hash (raw bits)           |
+| [hash.sha3_512.raw](#hashsha3_512raw)   | 512-bit input SHA3 hash (raw bits)           |
+| [hash.keccak256.native](#hashkeccak256native) | 256-bit input Keccak hash (outputs bit array)         |
+| [hash.keccak256.native.raw](#hashkeccak256nativeraw) | 256-bit input Keccak hash (raw bits, outputs bit array)         |
+| [hash.keccak384.native](#hashkeccak384native) | 384-bit input Keccak hash (outputs bit array)         |
+| [hash.keccak384.native.raw](#hashkeccak384nativeraw) | 384-bit input Keccak hash (raw bits, outputs bit array)         |
+| [hash.keccak512.native](#hashkeccak512native) | 512-bit input Keccak hash (outputs bit array)         |
+| [hash.keccak512.native.raw](#hashkeccak512nativeraw) | 512-bit input Keccak hash (raw bits, outputs bit array)         |
+| [hash.sha3_256.native](#hashsha3_256native)   | 256-bit input SHA3 hash (outputs bit array)           |
+| [hash.sha3_256.native.raw](#hashsha3_256nativeraw)   | 256-bit input SHA3 hash (raw bits, outputs bit array)           |
+| [hash.sha3_384.native](#hashsha3_384native)   | 384-bit input SHA3 hash (outputs bit array)           |
+| [hash.sha3_384.native.raw](#hashsha3_384nativeraw)   | 384-bit input SHA3 hash (raw bits, outputs bit array)           |
+| [hash.sha3_512.native](#hashsha3_512native)   | 512-bit input SHA3 hash (outputs bit array)           |
+| [hash.sha3_512.native.raw](#hashsha3_512nativeraw)   | 512-bit input SHA3 hash (raw bits, outputs bit array)           |
 | [sign.verify](#signverify)       | Verify a Schnorr signature        |
 | [ecdsa.verify.digest](#ecdsaverifydigest)       | Verify an ECDSA signature with pre-computed digest         |
 | [ecdsa.verify.digest.eth](#ecdsaverifydigesteth)       | Verify an ECDSA signature with pre-computed digest (Ethereum 20-byte address)        |
@@ -1451,6 +1478,1044 @@ hash.sha3_512 r0 into r1 as scalar;
 | `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
 | `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.bhp256.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Bowe-Hopwood-Pedersen hash on inputs of 256-bit chunks in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 129 bits.
+
+#### Example Usage
+
+```aleo
+hash.bhp256.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.bhp512.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Bowe-Hopwood-Pedersen hash on inputs of 512-bit chunks in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 171 bits.
+
+#### Example Usage
+
+```aleo
+hash.bhp512.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.bhp768.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Bowe-Hopwood-Pedersen hash on inputs of 768-bit chunks in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 213 bits.
+
+#### Example Usage
+
+```aleo
+hash.bhp768.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.bhp1024.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Bowe-Hopwood-Pedersen hash on inputs of 1024-bit chunks in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given input is smaller than 255 bits.
+
+#### Example Usage
+
+```aleo
+hash.bhp1024.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.keccak256.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 256-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.keccak256.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.keccak384.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 384-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.keccak384.raw r0 into r1 as field;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.keccak512.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 512-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.keccak512.raw r0 into r1 as field;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.ped64.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Pedersen hash up to a 64-bit input in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given `Struct` value exceeds the 64-bit limit.
+
+#### Example Usage
+
+```aleo
+hash.ped64.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.ped128.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Computes a Pedersen hash up to a 128-bit input in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+The compiler will throw an error if the given `Struct` value exceeds the 128-bit limit.
+
+#### Example Usage
+
+```aleo
+hash.ped128.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.psd2.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a Poseidon hash with an input rate of 2, from an input in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.psd2.raw r0 into r1 as group;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.psd4.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a Poseidon hash with an input rate of 4, from an input in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.psd4.raw r0 into r1 as group;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.psd8.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a Poseidon hash with an input rate of 8, from an input in `first`, storing the hash in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.psd8.raw r0 into r1 as address;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.sha3_256.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-256 hash, from an input in `first`, storing the 256-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.sha3_256.raw r0 into r1 as field;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.sha3_384.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-384 hash, from an input in `first`, storing the 384-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.sha3_384.raw r0 into r1 as group;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.sha3_512.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-512 hash, from an input in `first`, storing the 512-bit digest in `destination`. This variant uses raw bit form without Aleo variant bits. The produced hash will always be an arithmetic (`U8`, `U16`, `U32`, `U64`, `U128`, `I8`, `I16`, `I32`,`I64`,`I128`, `Field`, `Group`, or `Scalar`) or `Address` value, as specified via `as` at the end of the instruction.
+
+#### Example Usage
+
+```aleo
+hash.sha3_512.raw r0 into r1 as scalar;
+```
+
+#### Supported Types
+
+| First     | Destination                                                                                               |
+|-----------|:----------------------------------------------------------------------------------------------------------|
+| `Array`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Address` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Boolean` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Field`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Group`   | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `I128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U8`      | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U16`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U32`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U64`     | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `U128`    | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Scalar`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+| `Struct`  | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`,`I64`,`I128`, `U8`, `U16`, `U32`, `U64`, `U128` |
+
+***
+
+### `hash.keccak256.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 256-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 256]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak256.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 256]` |
+| `Address` | `[bool; 256]` |
+| `Boolean` | `[bool; 256]` |
+| `Field`   | `[bool; 256]` |
+| `Group`   | `[bool; 256]` |
+| `I8`      | `[bool; 256]` |
+| `I16`     | `[bool; 256]` |
+| `I32`     | `[bool; 256]` |
+| `I64`     | `[bool; 256]` |
+| `I128`    | `[bool; 256]` |
+| `U8`      | `[bool; 256]` |
+| `U16`     | `[bool; 256]` |
+| `U32`     | `[bool; 256]` |
+| `U64`     | `[bool; 256]` |
+| `U128`    | `[bool; 256]` |
+| `Scalar`  | `[bool; 256]` |
+| `Struct`  | `[bool; 256]` |
+
+***
+
+### `hash.keccak256.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 256-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 256]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak256.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 256]` |
+| `Address` | `[bool; 256]` |
+| `Boolean` | `[bool; 256]` |
+| `Field`   | `[bool; 256]` |
+| `Group`   | `[bool; 256]` |
+| `I8`      | `[bool; 256]` |
+| `I16`     | `[bool; 256]` |
+| `I32`     | `[bool; 256]` |
+| `I64`     | `[bool; 256]` |
+| `I128`    | `[bool; 256]` |
+| `U8`      | `[bool; 256]` |
+| `U16`     | `[bool; 256]` |
+| `U32`     | `[bool; 256]` |
+| `U64`     | `[bool; 256]` |
+| `U128`    | `[bool; 256]` |
+| `Scalar`  | `[bool; 256]` |
+| `Struct`  | `[bool; 256]` |
+
+***
+
+### `hash.keccak384.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 384-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 384]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak384.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 384]` |
+| `Address` | `[bool; 384]` |
+| `Boolean` | `[bool; 384]` |
+| `Field`   | `[bool; 384]` |
+| `Group`   | `[bool; 384]` |
+| `I8`      | `[bool; 384]` |
+| `I16`     | `[bool; 384]` |
+| `I32`     | `[bool; 384]` |
+| `I64`     | `[bool; 384]` |
+| `I128`    | `[bool; 384]` |
+| `U8`      | `[bool; 384]` |
+| `U16`     | `[bool; 384]` |
+| `U32`     | `[bool; 384]` |
+| `U64`     | `[bool; 384]` |
+| `U128`    | `[bool; 384]` |
+| `Scalar`  | `[bool; 384]` |
+| `Struct`  | `[bool; 384]` |
+
+***
+
+### `hash.keccak384.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 384-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 384]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak384.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 384]` |
+| `Address` | `[bool; 384]` |
+| `Boolean` | `[bool; 384]` |
+| `Field`   | `[bool; 384]` |
+| `Group`   | `[bool; 384]` |
+| `I8`      | `[bool; 384]` |
+| `I16`     | `[bool; 384]` |
+| `I32`     | `[bool; 384]` |
+| `I64`     | `[bool; 384]` |
+| `I128`    | `[bool; 384]` |
+| `U8`      | `[bool; 384]` |
+| `U16`     | `[bool; 384]` |
+| `U32`     | `[bool; 384]` |
+| `U64`     | `[bool; 384]` |
+| `U128`    | `[bool; 384]` |
+| `Scalar`  | `[bool; 384]` |
+| `Struct`  | `[bool; 384]` |
+
+***
+
+### `hash.keccak512.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 512-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 512]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak512.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 512]` |
+| `Address` | `[bool; 512]` |
+| `Boolean` | `[bool; 512]` |
+| `Field`   | `[bool; 512]` |
+| `Group`   | `[bool; 512]` |
+| `I8`      | `[bool; 512]` |
+| `I16`     | `[bool; 512]` |
+| `I32`     | `[bool; 512]` |
+| `I64`     | `[bool; 512]` |
+| `I128`    | `[bool; 512]` |
+| `U8`      | `[bool; 512]` |
+| `U16`     | `[bool; 512]` |
+| `U32`     | `[bool; 512]` |
+| `U64`     | `[bool; 512]` |
+| `U128`    | `[bool; 512]` |
+| `Scalar`  | `[bool; 512]` |
+| `Struct`  | `[bool; 512]` |
+
+***
+
+### `hash.keccak512.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Performs a Keccak hash on `first`, storing a 512-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 512]`.
+
+#### Example Usage
+
+```aleo
+hash.keccak512.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 512]` |
+| `Address` | `[bool; 512]` |
+| `Boolean` | `[bool; 512]` |
+| `Field`   | `[bool; 512]` |
+| `Group`   | `[bool; 512]` |
+| `I8`      | `[bool; 512]` |
+| `I16`     | `[bool; 512]` |
+| `I32`     | `[bool; 512]` |
+| `I64`     | `[bool; 512]` |
+| `I128`    | `[bool; 512]` |
+| `U8`      | `[bool; 512]` |
+| `U16`     | `[bool; 512]` |
+| `U32`     | `[bool; 512]` |
+| `U64`     | `[bool; 512]` |
+| `U128`    | `[bool; 512]` |
+| `Scalar`  | `[bool; 512]` |
+| `Struct`  | `[bool; 512]` |
+
+***
+
+### `hash.sha3_256.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-256 hash, from an input in `first`, storing the 256-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 256]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_256.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 256]` |
+| `Address` | `[bool; 256]` |
+| `Boolean` | `[bool; 256]` |
+| `Field`   | `[bool; 256]` |
+| `Group`   | `[bool; 256]` |
+| `I8`      | `[bool; 256]` |
+| `I16`     | `[bool; 256]` |
+| `I32`     | `[bool; 256]` |
+| `I64`     | `[bool; 256]` |
+| `I128`    | `[bool; 256]` |
+| `U8`      | `[bool; 256]` |
+| `U16`     | `[bool; 256]` |
+| `U32`     | `[bool; 256]` |
+| `U64`     | `[bool; 256]` |
+| `U128`    | `[bool; 256]` |
+| `Scalar`  | `[bool; 256]` |
+| `Struct`  | `[bool; 256]` |
+
+***
+
+### `hash.sha3_256.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-256 hash, from an input in `first`, storing the 256-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 256]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_256.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 256]` |
+| `Address` | `[bool; 256]` |
+| `Boolean` | `[bool; 256]` |
+| `Field`   | `[bool; 256]` |
+| `Group`   | `[bool; 256]` |
+| `I8`      | `[bool; 256]` |
+| `I16`     | `[bool; 256]` |
+| `I32`     | `[bool; 256]` |
+| `I64`     | `[bool; 256]` |
+| `I128`    | `[bool; 256]` |
+| `U8`      | `[bool; 256]` |
+| `U16`     | `[bool; 256]` |
+| `U32`     | `[bool; 256]` |
+| `U64`     | `[bool; 256]` |
+| `U128`    | `[bool; 256]` |
+| `Scalar`  | `[bool; 256]` |
+| `Struct`  | `[bool; 256]` |
+
+***
+
+### `hash.sha3_384.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-384 hash, from an input in `first`, storing the 384-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 384]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_384.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 384]` |
+| `Address` | `[bool; 384]` |
+| `Boolean` | `[bool; 384]` |
+| `Field`   | `[bool; 384]` |
+| `Group`   | `[bool; 384]` |
+| `I8`      | `[bool; 384]` |
+| `I16`     | `[bool; 384]` |
+| `I32`     | `[bool; 384]` |
+| `I64`     | `[bool; 384]` |
+| `I128`    | `[bool; 384]` |
+| `U8`      | `[bool; 384]` |
+| `U16`     | `[bool; 384]` |
+| `U32`     | `[bool; 384]` |
+| `U64`     | `[bool; 384]` |
+| `U128`    | `[bool; 384]` |
+| `Scalar`  | `[bool; 384]` |
+| `Struct`  | `[bool; 384]` |
+
+***
+
+### `hash.sha3_384.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-384 hash, from an input in `first`, storing the 384-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 384]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_384.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 384]` |
+| `Address` | `[bool; 384]` |
+| `Boolean` | `[bool; 384]` |
+| `Field`   | `[bool; 384]` |
+| `Group`   | `[bool; 384]` |
+| `I8`      | `[bool; 384]` |
+| `I16`     | `[bool; 384]` |
+| `I32`     | `[bool; 384]` |
+| `I64`     | `[bool; 384]` |
+| `I128`    | `[bool; 384]` |
+| `U8`      | `[bool; 384]` |
+| `U16`     | `[bool; 384]` |
+| `U32`     | `[bool; 384]` |
+| `U64`     | `[bool; 384]` |
+| `U128`    | `[bool; 384]` |
+| `Scalar`  | `[bool; 384]` |
+| `Struct`  | `[bool; 384]` |
+
+***
+
+### `hash.sha3_512.native`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-512 hash, from an input in `first`, storing the 512-bit digest as a bit array in `destination`. This variant performs the underlying hash returning a bit array `[bool; 512]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_512.native r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 512]` |
+| `Address` | `[bool; 512]` |
+| `Boolean` | `[bool; 512]` |
+| `Field`   | `[bool; 512]` |
+| `Group`   | `[bool; 512]` |
+| `I8`      | `[bool; 512]` |
+| `I16`     | `[bool; 512]` |
+| `I32`     | `[bool; 512]` |
+| `I64`     | `[bool; 512]` |
+| `I128`    | `[bool; 512]` |
+| `U8`      | `[bool; 512]` |
+| `U16`     | `[bool; 512]` |
+| `U32`     | `[bool; 512]` |
+| `U64`     | `[bool; 512]` |
+| `U128`    | `[bool; 512]` |
+| `Scalar`  | `[bool; 512]` |
+| `Struct`  | `[bool; 512]` |
+
+***
+
+### `hash.sha3_512.native.raw`
+
+[Back to Top](#table-of-standard-opcodes)
+
+#### Description
+
+Calculates a SHA3-512 hash, from an input in `first`, storing the 512-bit digest as a bit array in `destination`. This variant uses raw bit form without Aleo variant bits and performs the underlying hash returning a bit array `[bool; 512]`.
+
+#### Example Usage
+
+```aleo
+hash.sha3_512.native.raw r0 into r1;
+```
+
+#### Supported Types
+
+| First     | Destination |
+|-----------|-------------|
+| `Array`   | `[bool; 512]` |
+| `Address` | `[bool; 512]` |
+| `Boolean` | `[bool; 512]` |
+| `Field`   | `[bool; 512]` |
+| `Group`   | `[bool; 512]` |
+| `I8`      | `[bool; 512]` |
+| `I16`     | `[bool; 512]` |
+| `I32`     | `[bool; 512]` |
+| `I64`     | `[bool; 512]` |
+| `I128`    | `[bool; 512]` |
+| `U8`      | `[bool; 512]` |
+| `U16`     | `[bool; 512]` |
+| `U32`     | `[bool; 512]` |
+| `U64`     | `[bool; 512]` |
+| `U128`    | `[bool; 512]` |
+| `Scalar`  | `[bool; 512]` |
+| `Struct`  | `[bool; 512]` |
 
 ***
 
