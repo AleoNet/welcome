@@ -1714,7 +1714,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /latest/circulatingSupply:
     get:
-      summary: Latest Circulating supply - credits
+      summary: Latest circulating supply - credits
       description: >
         Retrieves the latest circulating supply of ALEO in credits. 
       tags:
