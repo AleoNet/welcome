@@ -3,6 +3,7 @@ id: accounts
 title: Accounts
 sidebar_label: Accounts
 ---
+[general tags]: # (account, privatekey, viewkey, address)
 
 An **Aleo account** is composed of an [account private key](#account-private-key), [account view key](#account-view-key),
 and an [account address](#account-address).
