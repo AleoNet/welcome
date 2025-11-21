@@ -1883,17 +1883,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
 components:
-  securitySchemes:
-    jwt:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: JWT token for authentication
-    provableApiKey:
-      type: apiKey
-      in: header
-      name: X-Provable-API-Key
-      description: API key for Provable services
   responses:
     BadRequest:
       description: Bad Request - Invalid input, malformed parameters, validation errors
