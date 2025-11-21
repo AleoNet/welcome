@@ -41,3 +41,93 @@ To run an Aleo client node:
 
 By running a client node, you contribute to the decentralization and robustness of the Aleo network while gaining direct access to its data and functionality.
 
+
+## How to get the ledger data
+
+### Option 1 –  Sync entire folder with `gcloud cp`
+
+Blind copy – copies everything, even if already present. Requires Google Cloud SDK
+
+- **Mainnet**  
+  ```sh
+  gcloud storage cp -r gs://snarkos-mainnet/uncompressed/ledger-0 {local-ledger-path}
+  ```
+- **Testnet**  
+  ```sh
+  gcloud storage cp -r gs://snarkos-testnet/uncompressed/ledger-1 {local-ledger-path}
+  ```
+- **Canary**  
+  ```sh
+  gcloud storage cp -r gs://snarkos-canary/uncompressed/ledger-2 {local-ledger-path}
+  ```
+
+---
+
+### Option 2 – Sync only missing or updated files with `gcloud rsync`
+
+Smart sync – only copies changes, optionally deletes outdated files. Requires Google Cloud SDK
+
+- **Mainnet**  
+  ```sh
+  gcloud storage rsync gs://snarkos-mainnet/uncompressed/ledger-0 {local-ledger-path}
+  ```
+- **Testnet**  
+  ```sh
+  gcloud storage rsync gs://snarkos-testnet/uncompressed/ledger-1 {local-ledger-path}
+  ```
+- **Canary**  
+  ```sh
+  gcloud storage rsync gs://snarkos-canary/uncompressed/ledger-2 {local-ledger-path}
+  ```
+
+**Useful flags:**
+
+- `--recursive` → copy all subdirectories
+- `--delete-unmatched-destination-objects` → remove local files that don’t exist in the source (ensures a clean mirror)
+
+---
+
+### Option 3 – Download the entire ledger from scratch with `wget`
+
+- **Mainnet**  
+  ```sh
+  wget -c https://storage.googleapis.com/snarkos-mainnet/latest.tar -O {local-ledger-path}
+  ```
+- **Testnet**  
+  ```sh
+  wget -c https://storage.googleapis.com/snarkos-testnet/latest.tar -O {local-ledger-path}
+  ```
+- **Canary**  
+  ```sh
+  wget -c https://storage.googleapis.com/snarkos-canary/latest.tar -O {local-ledger-path}
+  ```
+
+---
+
+### Option 4 –  Download the entire ledger with `aria2` (multi-connection, parallel download)
+
+Install first: `sudo apt install -y aria2` on Ubuntu, `brew install aria2` on macOS
+
+- **Mainnet**  
+  ```sh
+  aria2c -x 16 -s 16 -c https://snapshots.provable.com/mainnet/latest.tar
+  ```
+- **Testnet**  
+  ```sh
+  aria2c -x 16 -s 16 -c https://snapshots.provable.com/testnet/latest.tar
+  ```
+- **Canary**  
+  ```sh
+  aria2c -x 16 -s 16 -c https://snapshots.provable.com/canary/latest.tar
+  ```
+
+:::warning[Deprecated alternative sources]
+- **Mainnet** → https://ledger.aleo.network/mainnet/snapshot/latest.txt  
+- **Testnet** → https://ledger.aleo.network/testnet/snapshot/latest.txt  
+- **Canary** → https://ledger.aleo.network/canary/snapshot/latest.txt
+:::
+
+
+
+
+
