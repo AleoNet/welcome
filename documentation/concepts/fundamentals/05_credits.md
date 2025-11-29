@@ -3,23 +3,53 @@ id: credits
 title: Aleo Credits
 sidebar_label: Aleo Credits
 ---
-## Overview
-
-The official currency of Aleo Network are called Aleo Credits. All fees paid for transactions, as well as rewards for staking
+Aleo Credits are the official token of the Aleo network . All fees paid for transactions, as well as rewards for staking
 and mining, are in the form of Aleo Credits.
 
 Unlike other popular Blockchains like Ethereum, there is no special `transfer` transaction type. Instead, a native
 program called [`credits.aleo`](https://explorer.provable.com/program/credits.aleo) governs transfers, usage, and ownership
-of Aleo Credits. All value transfers on the Aleo Network are done by calling functions in the `credits.aleo` program
-via `Execute` transactions. This enables users to send Aleo Credits privately, publicly, or a mix of both as well as
-initiate staking and other advanced on-chain operations with Aleo credits.
+of Aleo Credits. This program also hosts all functions related to [Staking](../network/staking.md).
 
-Aleo Credits are denominated as either credits or microcredits, where the smallest unit is 1 microcredit (equal to 0.000001 credit). The `credits.aleo` program function parameters take amounts in microcredits. There is a denomination table [here](../fundamentals/03A_transaction_fees.md#aleo-credits-denomination-table) for reference.
+Aleo Credits come in several denominations:
 
-The same `credits.aleo` program also hosts all staking-related functions and states. For more information about staking functionality, please refer to the [Staking](../network/staking.md) documentation.
+|Unit|Value (microcredits)|
+|:-:|:-:|
+|`microcredit`|1|
+|`millicredit`|1,000|
+|`credit`|1,000,000 |
 
-A small selection of the credit transfer functions available in `credits.aleo` is visualized below:
 
+All corresponding function parameters in the `credits.aleo` program take amounts in microcredits.
+
+
+## Holding Credits
+
+There are two main ways to hold Aleo Credits on the network:
+
+### Private Balances via  `credits` Records
+The first method is owning `credits` records which contain some **private** balance.
+```aleo
+record credits:
+    owner as address.private;
+    microcredits as u64.private;
+```
+
+A user's total private credits balance will consist of all unspent `credits` records owned by the user with a non-zero `microcredits` value. These records are analogous to UTXOs in Bitcoin. It is generally the responsibility of a wallet application to scan the chain for records that belong to a user and determine which are spent and unspent in order to calculate the user's total private balance and private transaction history.
+
+### Public Balances via the `account` Mapping
+The second method is by holding a public balance in the `account` mapping in the `credits.aleo` program on the Aleo network. This mapping is an on-chain key-value store that is maintained and updated by Aleo validators at each block. This public balance is visible to all participants in the network and is analogous to the account balances in Ethereum.
+
+```aleo
+mapping account:
+    key owner as address.public;
+    value microcredits as u64.public;
+```
+
+The total public credits balance of a user is the value of the account mapping at the user's address. Users can hold both private and public balances simultaneously.
+
+## Transferring Credits
+
+All value transfers on the Aleo Network are done by calling functions in the `credits.aleo` program via execution transactions. The `credits.aleo` program offers five different functions for transferring Aleo Credits based on the level of access and privacy needed:
 ```mermaid
 graph
     subgraph credits["program credits.aleo"]
@@ -66,40 +96,6 @@ Private transfers or any functions involving records should use a **private key 
 When performing private transfers or any operations involving records, always ensure the recipient is a user account address (controlled by a private key) rather than a program address.
 :::
 
-## Public/Private Credits
-
-There are two main ways to hold Aleo Credits on the network:
-
-### Private Balances via  `credits` Records
-The first method is owning a `credits` record which enables a participant in the Aleo
-network to hold a private balance of Aleo credits.
-```aleo
-record credits:
-    owner as address.private;
-    microcredits as u64.private;
-```
-
-A user's total private credits balance will consist of all unspent `credits` records owned by the user with a non-zero
-`microcredits` value. These records are analogous to UTXOs in Bitcoin. It is generally the responsibility of a wallet
-application to scan the chain for records that belong to a user and determine which are spent and unspent in order
-to calculate the user's total private balance and private transaction history.
-
-### Public Balances via the `account` Mapping
-The second method is by holding a balance in the `account` mapping in the `credits.aleo` program on the Aleo network.
-This mapping is an on-chain key-value store that is maintained and updated by Aleo validators at each block. This public balance is visible to all participants in the network and is analogous to the account balances in Ethereum.
-
-```aleo
-mapping account:
-    key owner as address.public;
-    value microcredits as u64.public;
-```
-
-The total public credits balance of a user is the value of the account mapping at the user's address. Users can hold both private and public balances simultaneously.
-
-## Transferring Aleo Credits
-
-
-There are five transfer functions available within `credits.aleo`.
 
 ### `transfer_private`
 

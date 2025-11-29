@@ -1,8 +1,12 @@
 ---
-id: overview
+id: aleovm
 title: Aleo Virtual Machine (AVM)
-sidebar_label: Aleo Virtual Machine (AVM)
+sidebar_label: Execution
 ---
+
+The snarkVM library allows users to write and execute transactions in an efficient, yet privacy-preserving manner by leveraging zero-knowledge succinct non-interactive arguments of knowledge (zk-SNARKs) and encryption.
+
+This creates an off-chain, trustless computing environment, where programs are executed privately, securely and with unlimited runtime.
 
 The Aleo Virtual Machine (AVM) is a computational platform integral to the Aleo blockchain, designed to run privacy-focused applications. It operates as a stack machine that executes queued instructions. Its primary function is to construct arithmetic circuits described as Rank-1 Constraint System (R1CS), from each instruction in a function.
 

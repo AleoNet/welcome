@@ -4,10 +4,14 @@ title: Consensus
 sidebar_label: Consensus
 ---
 
-## Overview
-Aleo Network employs a unique consensus mechanism known as [AleoBFT](../specifications.md#aleobft) to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
 
-Aleo Network is run and maintained by three groups of participants:  
+SnarkOS is a decentralized operating system for zero-knowledge applications. This code forms the backbone of Aleo network, which verifies transactions and stores the encrypted state of applications in a publicly-verifiable manner.
+
+The network client has to take care of verifying the transactions computed off chain using snarkvm, allowing all snarkOS nodes to reach consensus and to store the private and non private state in Aleo's distributed ledger.
+
+The Aleo network employs a unique consensus mechanism known as [AleoBFT](../specifications.md#aleobft) to achieve a secure and resilient consensus system with instant finality for block confirmation. This mechanism combines proof-of-stake (POS) to ensure that validators are rewarded for maintaining the overall system integrity and performance.
+<!-- 
+The Aleo Network is run and maintained by three groups of participants:  
 - **Stakers** - Delegate staked Aleo Credits (AC) to help onboard more validators and participate in consensus on the Network.  
 - **Provers** - Utilize specialized hardware to generate proofs and solve coinbase puzzles, contributing to the security of the network.
 - **Validators** - Validate transactions by verifying zero knowledge (ZK) proofs and actively participate in the consensus process on the network.
@@ -24,7 +28,7 @@ Learn more about **provers** at [here](./provers.md).
 
 Validators play a crucial role in securing the network through AleoBFT (to be discussed further below) and must have at least 10 million AC of stakes to get started. The main function of validators is to verify ZK proofs and validate transactions before including them in a confirmed block.
 
-Learn more about **validators** at [here](./validators.md).   
+Learn more about **validators** at [here](./validators.md).    -->
 
 
 

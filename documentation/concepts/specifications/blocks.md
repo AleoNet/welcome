@@ -1,39 +1,23 @@
 ---
 id: blocks
-title: Blocks
+title: Block Format
 sidebar_label: Blocks
 ---
 
-A **block** is a fundamental data structure for organizing Aleo [transactions](03_transactions.md) over time.
-
-## Components of a Block
-
-An Aleo block is serialized in the following format:
-
+## Block
 
 |    Parameter     |  Type  |                                        Description                                        |
 |:----------------:|:------:|:-----------------------------------------------------------------------------------------:|
 |   `block_hash`   | string |                                   The hash of the block                                   |
 | `previous_hash`  | string |                              The hash of the previous block                               |
-|     `header`     | object |                                  The header of the block                                  |
-|  `transactions`  | array  |                               The transactions in the block                               |
-| `ratificactions` | array  |                    The ratifications for proving rewards in the block                     |
+|     `header`     | object |                                  The [header](#block-header) of the block                                  |
+|  `transactions`  | array\<`Transaction`\>  |                               The [transactions](./transactions.md) in the block                               |
+| `ratifications`  | array  |                    The ratifications for proving rewards in the block                     |
 |    `coinbase`    | string | The coinbase puzzle solution constructed by accumulating the individual prover solutions. |
 |   `signature`    | string |                                The signature for the block                                |
 
-#### Transactions
 
-The [**transactions**](./03_transactions.md) are a list of all transactions that are included in the specified block.
-
-#### Block Header
-
-The **block header** contains components that summarize the state of the specified block,
-as well as the state of the ledger at this point in history. See the [components of a block header](#components-of-a-block-header)
-for more details.
-
-## Components of a Block Header
-
-An Aleo block header is serialized in the following format:
+### Block Header
 
 |          Parameter           |  Type  |                                   Description                                   |
 |:----------------------------:|:------:|:-------------------------------------------------------------------------------:|
@@ -42,9 +26,9 @@ An Aleo block header is serialized in the following format:
 |       `finalize_root`        | string | The Merkle root representing the on-chain finalize including the current block. |
 |     `ratifications_root`     | string |          The Merkle root representing the ratifications in the block.           |
 | `coinbase_accumulator_point` | string |                  The accumulator point of the coinbase puzzle.                  |
-|          `metadata`          | object |                           The metadata of the block.                            |
+|          `metadata`          | object |                           The [metadata](#metadata) of the block.                            |
 
-#### Metadata
+### Metadata
 
 |           Parameter            | Type |                       Description                        |
 |:------------------------------:|:----:|:--------------------------------------------------------:|

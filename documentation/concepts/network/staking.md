@@ -3,13 +3,12 @@ id: staking
 title: Staking
 sidebar_label: Staking
 ---
-## What is staking?
 
 **Staking** is an economic security mechanism used to secure decentralized networks that rely on **Proof of Stake (PoS)** as their consensus mechanism. Unlike **Proof of Work (PoW)**, where miners compete to solve cryptographic puzzles in order to add new blocks, PoS selects validators at random for each block to confirm transactions and validate block data. This approach replaces competitive mining with a randomized, stake-based selection process, where validators earn rewards based on their participation rather than computational power.
 
 To become a validator and participate in consensus, **a minimum stake of 10,000,000 ACs is required**. This ensures that the network is economically secured by validators with a significant investment in the system. However, not everyone has the resources to meet this threshold individually. Staking allows users to delegate their ACs to support validators, helping them become active participants in the consensus process while sharing in the rewards.
 
-## How to become a staker?
+<!-- ## How to become a staker?
 
 Stakers are individuals or organizations who lock up or delegate Aleo Credits (ACs) to support validators in participating in consensus on the network. In return, they earn rewards proportional to the amount of ACs they have staked, reflecting their contribution to network security. This allows users who do not run validator nodes to still participate in the consensus process and receive staking rewards. Stakers are sometimes refer as delegators because they delegate their stakes to validators.
 
@@ -17,9 +16,8 @@ Anyone holding ACs can become a staker. **[Native staking](#native-staking) is a
 
 :::warning[disclaimer]
 The community tools are developed by third parties within the Aleo ecosystem. Aleo does not endorse, review, or audit these tools, and users are solely responsible for their use.
-:::
+::: -->
 
-## Native Staking
 
 Native staking enables token holders to interact on-chain and stake their Aleo Credits (ACs) directly, without the need to rely on third-party programs or custodial services. The native staking functions are made available in the `credits.aleo` program, the same program that host every Aleo Credit. There are staking rules enforced in the `credits.aleo` program:
 
@@ -30,7 +28,7 @@ Native staking enables token holders to interact on-chain and stake their Aleo C
 
 The source code in Aleo Instructions can be found [here](https://github.com/ProvableHQ/snarkVM/blob/staging/synthesizer/program/src/resources/credits.aleo).
 
-### Function glossary
+## Function Glossary
 
 | Function | Caller | Purpose |
 |----------|---------------|---------|
@@ -39,11 +37,11 @@ The source code in Aleo Instructions can be found [here](https://github.com/Prov
 | `unbond_public` | Validator or Staker | Starts the unbonding timer for some or all of the bonded amount |
 | `claim_unbond_public` | Anyone | After the timer has expired, transfers the unbonded amount to the staker's withdrawal address |
 
-### Staking related mappings
+## Staking-related Mappings
 
 The staking system in Aleo uses several key mappings to track validator and delegator states:
 
-#### `committee`
+### `committee`
 Contains the active validator set with their committee state:
 - Whether the validator is open to new stakers (`is_open`)
 - The commission percentage (0-100) that the validator keeps from rewards
@@ -64,7 +62,7 @@ struct committee_state:
     commission as u8;
 ```
 
-#### `delegated`
+### `delegated`
 Tracks the total amount of microcredits bonded to each validator address (including both self-bonded and delegator bonds). This mapping is used to determine if a validator meets the minimum 10 million credits threshold to join the committee.
 
 ```aleo
@@ -77,7 +75,7 @@ mapping delegated:
     value as u64.public;
 ```
 
-#### `metadata`
+### `metadata`
 Stores global staking statistics:
 - `metadata[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc]` - Number of active committee members
 - `metadata[aleo1qgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqanmpl0]` - Number of delegators (capped at 100,000)
@@ -95,7 +93,7 @@ mapping metadata:
     value as u32.public;
 ```
 
-#### `bonded`
+### `bonded`
 Maps each staker's address to their bond state, which includes:
 - The validator address they're bonded to
 - The amount of microcredits currently bonded
@@ -116,7 +114,7 @@ struct bond_state:
     microcredits as u64;
 ```
 
-#### `unbonding`
+### `unbonding`
 Tracks stakers who have initiated the unbonding process:
 - The amount of microcredits currently unbonding
 - The block height when unbonding will be complete (360 blocks from initiation)
@@ -137,7 +135,7 @@ struct unbond_state:
     height as u32;
 ```
 
-#### `withdraw`
+### `withdraw`
 Maps each staker's address to their withdrawal address, which is where rewards and unbonded amounts are sent.
 
 ```aleo
@@ -149,7 +147,7 @@ mapping withdraw:
     value as address.public;
 ```
 
-### Becoming or topping-up as a validator
+## Becoming a Validator
 
 To become a validator or top-up the self-bonded stake, execute the `bond_validator` function using the validator address:
 
@@ -178,11 +176,11 @@ What happens on-chain:
 3. `delegated[validator]` is updated (self-bond counts towards total delegation).
 4. If the total delegation is ≥ 10 millions ACs and the validator was not in `committee` yet, they are added and `metadata[committee_size]` is incremented. (Subjected to network maximum committee size that can be increased with protocol upgrades)
 
-### Delegating to a validator
+## Delegating to a Validator
 
 If you are not running a validator, you can still participate in the network by delegating your Aleo Credits to a validator and earn rewards based on their performance.
 
-#### Choosing a validator
+### Choosing a Validator
 
 Before you delegate, inspect the candidate validator's on-chain stats. You can query `committee`, `delegated`, and `bonded` mappings via [API endpoints](https://docs.explorer.provable.com/docs/api-reference/vz155069d5xy3-introduction) or block explorers to learn:
 
@@ -196,7 +194,7 @@ A healthy validator typically has:
 * At least 10 millions ACs total stake (otherwise it is not in the committee and earns no block rewards).
 * Consistent uptime / performance (check explorers).
 
-#### Steps to delegate
+### Steps to Delegate
 
 1. Decide the amount you want to delegate (≥ 10 000 AC).
 :::warning[important]
@@ -240,7 +238,7 @@ The validator must be open (`committee_state.is_open = true`) and not in the unb
 Each address can be bonded to one validator at a time. Staker may bond to a new validator only after the previous bond has fully unbonded and the ACs has been claimed. Or simply use a new address.
 :::
 
-### Withdrawing stake
+## Withdrawing Stake
 
  Stakers can withdraw bonded ACs at any time, provided the remaining bonded balance stays ≥ 10 000. Any withdrawal that takes the bonded balance below 10 000 ACs immediately triggers a full unbond.
  
@@ -265,7 +263,7 @@ Called either by the staker's withdrawal address or the validator's withdrawal a
 * If unbonding causes the validator's total stake to drop below 10 millions ACs or self-bond below 100 ACs, the validator is removed from the committee.
 * The amount begins a 360-block cooldown stored in `unbonding[staker]`.
 
-#### Claiming unbonded stake
+### Claiming Unbonded Stake
 
 To claim your unbonded stake, make sure the 360 blocks cooldown has passed, then you can use the [Leo CLI](https://docs.leo-lang.org/cli/execute) as follows:
 
@@ -282,14 +280,3 @@ function claim_unbond_public:
 * Anyone can trigger this once `block.height ≥ unbonding[staker].height`.
 * The unbonded amount is transferred to the staker's withdrawal address (`account[withdrawal]`).
 * The corresponding `unbonding` entry is cleared. If the staker has no remaining bond, their withdrawal address is also removed.
-
-
-## Liquid Staking
-
-Liquid staking is an innovative approach that allows users to stake their Aleo Credits (ACs) while maintaining liquidity. Instead of locking up your ACs, you receive a liquid staking token (stToken) that represents your staked position. This enables you to participate in staking while still being able to use your tokens in other DeFi activities. Liquid staking platforms allow users to stake with less than 10,000 ACs, making staking more accessible to everyone.
-
-Currently available liquid staking platforms:
-- [Beta Staking](https://betastaking.com/)
-- [Staking.xyz](https://www.staking.xyz/)
-- [PONDO](https://www.pondo.xyz/)
-- [LSP Finance](https://www.lsp.finance/)
