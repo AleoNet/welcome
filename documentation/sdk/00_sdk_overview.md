@@ -44,6 +44,9 @@ You can start with a template by running
 npm create leo-app@latest
 ```
 
+## Delegated Proving
 
+Provable offers a delegated proving service to accelerate transactions to the Aleo network. Instead of generating proofs locally (which can be resource-intensive), developers can offload the proving work to Provable's infrastructure.
 
+Check out the [Delegated Proving Guide](./delegate-proving/00_delegate_proving.md) to learn how to integrate this service into your application.
 
