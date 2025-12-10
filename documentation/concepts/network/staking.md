@@ -77,6 +77,10 @@ mapping delegated:
     value as u64.public;
 ```
 
+:::note
+**Prebond** microcredits is the condition where a delegator has attempted to bond to a validator address that is not yet included in the active committee set. In this case, the delegator's credits are locked up, and the delegator does not actively participate in staking rewards or voting.
+:::
+
 #### `metadata`
 Stores global staking statistics:
 - `metadata[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc]` - Number of active committee members
