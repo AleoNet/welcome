@@ -5,9 +5,9 @@ sidebar_label: Delegated Proving
 ---
 
 # Introduction
-Provable offers a delegated proving service in order to accelerate transactions to the Aleo network.  This code snippet demonstrates how to use the Provable SDK to submit a proving request for a transaction that sends public Aleo credits to another Aleo account.
+Provable offers a proof delegation service that accelerates the transaction generation time. This code snippet demonstrates how to use the Provable SDK to submit a proving request for a transaction that sends public Aleo credits to another Aleo account.
 
-## Obtain an API key
+## Obtain an API Key
 (official API documentation: https://docs.explorer.provable.com/docs/api-reference/ppvrqeqo7tis5-register-a-new-user-and-issues-them-an-api-key)
 You will need an API key in order to use the delegated proving service.  
 
@@ -16,7 +16,7 @@ Obtain a Provable API key using the following curl request:
 curl -X POST -H "Content-Type: application/json" -d '{"username": "ENTER_USERNAME_HERE"}' https://api.explorer.provable.com/v2/mainnet/auth/register
 ```
 
-## Using the Provable SDK
+## Using the Delegated Proving Service in the Provable SDK
 The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the API key, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
 ```typescript
 import { Account, AleoKeyProvider, AleoNetworkClient, CREDITS_PROGRAM_KEYS, initThreadPool, NetworkRecordProvider, ProgramManager } from '@provablehq/sdk/testnet.js';
