@@ -51,7 +51,7 @@ transmissions from the standard queue will not be sent to the BFT.
 
 <!-- markdown-link-check-disable -->
 ### Estimating Fees
-The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). If you want to quickly estimate fees using a website, [provable.tools](https://www.provable.tools/develop) has some limited support. Or you can also use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
+The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). You can use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
 <!-- markdown-link-check-enable -->
 
 First, generate a example program using `leo example`.

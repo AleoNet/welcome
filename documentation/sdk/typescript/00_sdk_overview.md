@@ -20,20 +20,12 @@ and node.js.
 Aleo provides the ability to run programs in zero knowledge. The Provable SDK provides the tools to use these programs
 within the browser and all other levels of the web stack to build privacy preserving applications.
 
-The Provable SDK provides the following functionality (Click to see examples):
-1. [Aleo account management](https://provable.tools/account)
-2. [Web-based program execution and deployment](https://provable.tools/develop)
-3. [Aleo credit transfers](https://provable.tools/transfer)
-4. [Management of program state and data](https://provable.tools/record)
-5. [Communication with the Aleo network](https://provable.tools/rest)
-
 ## Table of Contents
 
 * [Installation](#installation)
 * [Usage](#usage)
     * [Zero Knowledge Web App Examples](#zero-knowledge-web-app-examples)
         * [Create Leo App](#create-leo-app)
-        * [provable.tools](#provable-tools)
     * [Create An Aleo Account](#1-create-an-aleo-account)
     * [Execute Aleo Programs](#2-execute-aleo-programs)
         * [Aleo Programs](#21-aleo-programs)
@@ -91,12 +83,6 @@ templates in common web frameworks such as React that can be used as a starting 
 
 Developers can get started immediately with create-react-app by running:
 `npm create leo-app@latest`
-
-### Provable Tools
-
-Additionally, the SDK powers [provable.tools](https://provable.tools) - a React app that provides a graphical interface for most
-of the functionality provided by the SDK and can be used as a reference for usage of the SDK. Source code for provable.tools
-can be found [in the SDK repo here](https://github.com/provablehq/sdk/tree/testnet3/website)
 
 ## 1. Create an Aleo Account
 

@@ -15,8 +15,6 @@ To protect user *assets* and *record data*, one should **never disclose their ac
 third parties. For real-world applications on Aleo, users should derive a compute key from their account private key to
 allow third parties to *trustlessly* run applications and generate transactions on a user's behalf.
 
-Generate a new Aleo account [here](https://provable.tools).
-
 ## Account Private Key
 
 An account private key is constructed from a randomly-sampled **account seed**. This account seed is used to generate:

@@ -96,24 +96,3 @@ await initThreadPool();
 
 // Perform further program logic...
 ```
-
-
-
-
-<!--
-
-## Zero Knowledge Web App Examples
-
-### Create Leo App
-A set of fully functional examples of zero knowledge web apps can be found in
-[create-leo-app](https://github.com/ProvableHQ/sdk/tree/testnet3/create-leo-app ). Create-leo-app provides several web-app
-templates in common web frameworks such as React that can be used as a starting point for building zero knowledge web apps.
-
-Developers can get started immediately with create-react-app by running:
-`npm create leo-app@latest`
-
-### Provable Tools
-
-Additionally, the SDK powers [provable.tools](https://provable.tools) - a React app that provides a graphical interface for most
-of the functionality provided by the SDK and can be used as a reference for usage of the SDK. Source code for provable.tools
-can be found [in the SDK repo here](https://github.com/provablehq/sdk/tree/testnet3/website) -->

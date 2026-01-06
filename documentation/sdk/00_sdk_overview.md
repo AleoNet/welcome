@@ -5,8 +5,6 @@ sidebar_label: Overview
 ---
 Aleo allows users to privately transact through zero-knowledge enhanced programs. The [Provable SDK](https://github.com/provablehq/sdk) is a collection of JavaScript/Typescript libraries that provides the power to use these programs within the browser and all other levels of the web stack to build privacy-preserving applications.  
 
-If you'd just like to try out the Provable SDK without installing any packages, check out to [provable.tools](https://www.provable.tools/).
-
 The SDK consists of three main libraries:
 
 ## [`sdk`](https://github.com/provablehq/sdk/tree/mainnet/sdk)

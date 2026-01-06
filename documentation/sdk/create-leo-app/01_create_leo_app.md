@@ -151,7 +151,4 @@ git push -u origin main
 
 4. Similarly, we deployed the `helloworld` program, again using the WASM + web workers abstraction layer but you can also deploy programs on-chain using [snarkOS](https://developer.aleo.org/concepts/network/zkcloud/snarkos), the data availability layer or blockchain / distributed ledger.
 
-5. During the tutorial you navigated to [provable.tools](https://provable.tools), which is the graphical interface to our SDK, which serves as an abstraction layer of snarkOS and snarkVM. You’ll find you can perform similar actions (compiling, executing, deploying) on provable.tools. 
-
-
-6. The entire React template along with the WASM and web workers can also be considered an abstraction layer of snarkOS and snarkVM.
+5. The entire React template along with the WASM and web workers can also be considered an abstraction layer of snarkOS and snarkVM.
