@@ -291,9 +291,3 @@ function claim_unbond_public:
 ## Liquid Staking
 
 Liquid staking is an innovative approach that allows users to stake their Aleo Credits (ACs) while maintaining liquidity. Instead of locking up your ACs, you receive a liquid staking token (stToken) that represents your staked position. This enables you to participate in staking while still being able to use your tokens in other DeFi activities. Liquid staking platforms allow users to stake with less than 10,000 ACs, making staking more accessible to everyone.
-
-Currently available liquid staking platforms:
-- [Beta Staking](https://betastaking.com/)
-- [Staking.xyz](https://www.staking.xyz/)
-- [PONDO](https://www.pondo.xyz/)
-- [LSP Finance](https://www.lsp.finance/)
