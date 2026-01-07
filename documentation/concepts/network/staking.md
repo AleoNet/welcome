@@ -224,10 +224,6 @@ function bond_public:
     input r2 as u64.public;
 ```
 
-:::tip
-[Staking.xyz](https://www.staking.xyz/stake?network=aleo&currency=ALEO&stakingType=native) also provides an interface to `bond_public`. 
-:::
-
 After the transaction is finalized you will start to accrue a share of the validator's block rewards proportionally to your stake. You may top up your bond at any time, in any amount.
 
 On-chain effects:
