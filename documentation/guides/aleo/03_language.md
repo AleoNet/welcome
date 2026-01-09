@@ -620,6 +620,17 @@ The `block.height` command must be called within a finalize block.
 assert.eq block.height 100u64;
 ```
 
+#### block.timestamp
+
+The `block.timestamp` command returns the unix timestamp of the current block within the finalize scope.  
+This can be useful for managing time-based access control to a program.  
+The `block.timestamp` command must be called within a finalize block.  
+The type returned is `i64`.
+
+```aleo
+assert.eq block.timestamp 1767976339i64;
+```
+
 #### network.id
 
 The `network.id` command returns the ID of the network on which the program is executed.  
