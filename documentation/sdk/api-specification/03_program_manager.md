@@ -17,8 +17,8 @@ The ProgramManager class is used to execute and deploy programs on the Aleo netw
   * [.setHost(host)](#sethost)
   * [.setRecordProvider(recordProvider)](#setrecordprovider)
   * [.setHeader(headerName, value)](#setheader)
+  * [.setInclusionProver(provingKey)](#setinclusionprover)
   * [.removeHeader(headerName)](#removeheader)
-  * [.checkFee()](#checkfee)
   * [.checkFee(address, feeAmount)](#checkfee)
   * [.verifyProgram(program)](#verifyprogram)
   * [.createProgramFromSource(program)](#createprogramfromsource)
@@ -26,30 +26,37 @@ The ProgramManager class is used to execute and deploy programs on the Aleo netw
   * [.synthesizeKeys(program, function_id, inputs, privateKey)](#synthesizekeys)
   * [.verifyExecution(executionResponse, blockHeight, imports, importedVerifyingKeys)](#verifyexecution)
   * [.run(program, function_name, inputs, proveExecution, imports, keySearchParams, provingKey, verifyingKey, privateKey, offlineQuery)](#run)
-  * [.buildDeploymentTransaction](#builddeploymenttransaction)
-  * [.deploy](#deploy)
-  * [.buildExecutionTransaction](#buildexecutiontransaction)
-  * [.execute](#execute)
-  * [.buildAuthorization](#buildauthorization)
-  * [.buildAuthorizationUnchecked](#buildauthorizationunchecked)
-  * [.buildFeeAuthorization](#buildfeeauthorization)
-  * [.provingRequest](#provingrequest)
-  * [.join](#join)
-  * [.split](#split)
-  * [.buildTransferTransaction](#buildtransfertransaction)
-  * [.buildTransferPublicTransaction](#buildtransferpublictransaction)
-  * [.buildTransferPublicAsSignerTransaction](#buildtransferpublicassignertransaction)
-  * [.transfer](#transfer)
-  * [.buildBondPublicTransaction](#buildbondpublictransaction)
-  * [.bondPublic](#bondpublic)
-  * [.buildBondValidatorTransaction](#buildbondvalidatortransaction)
-  * [.bondValidator](#bondvalidator)
-  * [.buildUnbondPublicTransaction](#buildunbondpublictransaction)
-  * [.unbondPublic](#unbondpublic)
-  * [.buildClaimUnbondPublicTransaction](#buildclaimunbondpublictransaction)
-  * [.claimUnbondPublic](#claimunbondpublic)
-  * [.buildSetValidatorStateTransaction](#buildsetvalidatorstatetransaction)
-  * [.setValidatorState](#setvalidatorstate)
+  * [.buildDeploymentTransaction(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#builddeploymenttransaction)
+  * [.buildUpgradeTransaction(options)](#buildupgradetransaction)
+  * [.deploy(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#deploy)
+  * [.buildExecutionTransaction(options)](#buildexecutiontransaction)
+  * [.buildTransactionFromAuthorization(options)](#buildtransactionfromauthorization)
+  * [.execute(options)](#execute)
+  * [.buildAuthorization(options)](#buildauthorization)
+  * [.buildAuthorizationUnchecked(options)](#buildauthorizationunchecked)
+  * [.buildFeeAuthorization(options)](#buildfeeauthorization)
+  * [.provingRequest(options)](#provingrequest)
+  * [.estimateFeeForAuthorization(options)](#estimatefeeforauthorization)
+  * [.estimateExecutionFee(options)](#estimateexecutionfee)
+  * [.join(recordOne, recordTwo, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey, offlineQuery)](#join)
+  * [.split(splitAmount, amountRecord, privateKey, offlineQuery)](#split)
+  * [.buildTransferTransaction(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#buildtransfertransaction)
+  * [.buildTransferPublicTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublictransaction)
+  * [.buildTransferPublicAsSignerTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublicassignertransaction)
+  * [.transfer(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#transfer)
+  * [.buildBondPublicTransaction(validator_address, withdrawal_address, amount, options)](#buildbondpublictransaction)
+  * [.bondPublic(validator_address, withdrawal_address, amount, options)](#bondpublic)
+  * [.buildBondValidatorTransaction(validator_address, withdrawal_address, amount, commission, options)](#buildbondvalidatortransaction)
+  * [.bondValidator(validator_address, withdrawal_address, amount, commission, options)](#bondvalidator)
+  * [.buildUnbondPublicTransaction(staker_address, amount, options)](#buildunbondpublictransaction)
+  * [.unbondPublic(staker_address, amount, options)](#unbondpublic)
+  * [.buildClaimUnbondPublicTransaction(staker_address, options)](#buildclaimunbondpublictransaction)
+  * [.claimUnbondPublic(staker_address, options)](#claimunbondpublic)
+  * [.buildSetValidatorStateTransaction(validator_state, options)](#buildsetvalidatorstatetransaction)
+  * [.setValidatorState(validator_state, options)](#setvalidatorstate)
+  * [.buildDevnodeExecutionTransaction(options)](#builddevnodeexecutiontransaction)
+  * [.buildDevnodeDeploymentTransaction(options)](#builddevnodedeploymenttransaction)
+  * [.buildDevnodeUpgradeTransaction(options)](#builddevnodeupgradetransaction)
 
 ## Constructor
 
@@ -67,6 +74,133 @@ host | `string` | *A host uri running the official Aleo API*
 keyProvider | `FunctionKeyProvider` | *A key provider that implements FunctionKeyProvider interface*
 recordProvider | `RecordProvider` | *A record provider that implements RecordProvider interface*
 
+## Options
+
+Many ProgramManager methods accept options objects as parameters. This section describes the available options interfaces.
+
+### DeployOptions
+
+Options for deploying and upgrading programs on the Aleo network.
+
+Property | Type | Description
+--- | --- | ---
+__program__ | `string` | *The program source code to be deployed.*
+__priorityFee__ | `number` | *The priority fee to be paid for the transaction.*
+__privateFee__ | `boolean` | *If true, uses a private record to pay the fee; otherwise, uses the account's public credit balance.*
+__recordSearchParams?__ | `RecordSearchParams` | *Optional parameters for searching for a record to pay the execution transaction fee.*
+__feeRecord?__ | `string \| RecordPlaintext` | *Optional fee record to use for the transaction.*
+__privateKey?__ | `PrivateKey` | *Optional private key to use for the transaction.*
+
+---
+
+### ExecuteOptions
+
+Options for executing a transaction on the Aleo network.
+
+Property | Type | Description
+--- | --- | ---
+__programName__ | `string` | *The name of the program containing the function to be executed.*
+__functionName__ | `string` | *The name of the function to execute within the program.*
+__priorityFee__ | `number` | *The priority fee to be paid for the transaction.*
+__privateFee__ | `boolean` | *If true, uses a private record to pay the fee; otherwise, uses the account's public credit balance.*
+__inputs__ | `string[]` | *The inputs to the function being executed.*
+__recordSearchParams?__ | `RecordSearchParams` | *Optional parameters for searching for a record to pay the execution transaction fee.*
+__keySearchParams?__ | `KeySearchParams` | *Optional parameters for finding the matching proving and verifying keys for the function.*
+__feeRecord?__ | `string \| RecordPlaintext` | *Optional fee record to use for the transaction.*
+__provingKey?__ | `ProvingKey` | *Optional proving key to use for the transaction.*
+__verifyingKey?__ | `VerifyingKey` | *Optional verifying key to use for the transaction.*
+__privateKey?__ | `PrivateKey` | *Optional private key to use for the transaction.*
+__offlineQuery?__ | `OfflineQuery` | *Optional offline query if creating transactions in an offline environment.*
+__program?__ | `string \| Program` | *Optional program source code to use for the transaction.*
+__imports?__ | `ProgramImports` | *Optional programs that the program being executed imports.*
+__edition?__ | `number` | *Optional edition of the program.*
+
+---
+
+### AuthorizationOptions
+
+Options for building an Authorization for a function.
+
+Property | Type | Description
+--- | --- | ---
+__programName__ | `string` | *Name of the program containing the function to build the authorization for.*
+__functionName__ | `string` | *Name of the function to build the authorization for.*
+__inputs__ | `string[]` | *The inputs to the function.*
+__programSource?__ | `string \| Program` | *Optional source code for the program to build an execution for.*
+__privateKey?__ | `PrivateKey` | *Optional private key to use to build the authorization.*
+__programImports?__ | `ProgramImports` | *Optional programs the program imports.*
+__edition?__ | `number` | *Optional edition of the program.*
+
+---
+
+### FeeAuthorizationOptions
+
+Options for building a fee authorization.
+
+Property | Type | Description
+--- | --- | ---
+__deploymentOrExecutionId__ | `string` | *The id of a previously built Execution or Authorization.*
+__baseFeeCredits__ | `number` | *The number of Aleo Credits to pay for the base fee.*
+__priorityFeeCredits?__ | `number` | *Optional number of Aleo Credits to pay for the priority fee.*
+__privateKey?__ | `PrivateKey` | *Optional private key to specify for the authorization.*
+__feeRecord?__ | `RecordPlaintext` | *A record to specify to pay the private fee. If specified, a fee_private authorization will be built.*
+
+---
+
+### ExecuteAuthorizationOptions
+
+Options for executing a transaction from an authorization.
+
+Property | Type | Description
+--- | --- | ---
+__programName__ | `string` | *The name of the program containing the function to be executed.*
+__authorization__ | `Authorization` | *The authorization to execute.*
+__feeAuthorization?__ | `Authorization` | *Optional fee authorization.*
+__keySearchParams?__ | `KeySearchParams` | *Optional parameters for finding the matching proving and verifying keys for the function.*
+__provingKey?__ | `ProvingKey` | *Optional proving key to use for the transaction.*
+__verifyingKey?__ | `VerifyingKey` | *Optional verifying key to use for the transaction.*
+__offlineQuery?__ | `OfflineQuery` | *Optional offline query if creating transactions in an offline environment.*
+__program?__ | `string \| Program` | *Optional program source code to use for the transaction.*
+__imports?__ | `ProgramImports` | *Optional programs that the program being executed imports.*
+
+---
+
+### ProvingRequestOptions
+
+Options for building a proving request.
+
+Property | Type | Description
+--- | --- | ---
+__programName__ | `string` | *The name of the program containing the function to be executed.*
+__functionName__ | `string` | *The name of the function to execute within the program.*
+__priorityFee__ | `number` | *The priority fee to be paid for the transaction.*
+__privateFee__ | `boolean` | *If true, uses a private record to pay the fee; otherwise, uses the account's public credit balance.*
+__inputs__ | `string[]` | *The inputs to the function being executed.*
+__baseFee?__ | `number` | *Optional base fee to be paid for the transaction.*
+__recordSearchParams?__ | `RecordSearchParams` | *Optional parameters for searching for a record to pay the execution transaction fee.*
+__feeRecord?__ | `string \| RecordPlaintext` | *Optional fee record to use for the transaction.*
+__privateKey?__ | `PrivateKey` | *Optional private key to use for the transaction.*
+__programSource?__ | `string \| Program` | *Optional program source code to use for the transaction.*
+__programImports?__ | `ProgramImports` | *Optional programs that the program being executed imports.*
+__broadcast?__ | `boolean` | *Whether to broadcast the Transaction generated by the remote prover to the Aleo network.*
+__unchecked?__ | `boolean` | *Whether to skip input validation.*
+__edition?__ | `number` | *Optional edition of the program.*
+
+---
+
+### FeeEstimateOptions
+
+Options for estimating execution fees.
+
+Property | Type | Description
+--- | --- | ---
+__programName__ | `string` | *The name of the program containing the function to estimate the fee for.*
+__functionName?__ | `string` | *Optional name of the function to execute within the program to estimate the fee for.*
+__program?__ | `string \| Program` | *Optional program source code to use for the fee estimate.*
+__imports?__ | `ProgramImports` | *Optional programs that the program imports.*
+__edition?__ | `number` | *Optional edition of the program to estimate the fee for.*
+__authorization?__ | `Authorization` | *Optional authorization to estimate the fee for.*
+
 ## Methods
 
 ### checkFee
@@ -74,8 +208,13 @@ recordProvider | `RecordProvider` | *A record provider that implements RecordPro
 Check if the fee is sufficient to pay for the transaction
 
 ```javascript
-programManager.checkFee()
+programManager.checkFee(address, feeAmount)
 ```
+
+Parameters | Type | Description
+--- | --- | ---
+__address__ | `string` | *The address of the account paying the fee*
+__feeAmount__ | `bigint` | *The fee amount in microcredits*
 
 ---
 
@@ -107,7 +246,7 @@ setKeyProvider(keyProvider)
 
 Parameters | Type | Description
 --- | --- | ---
-__keyProvider__ | `FunctionKeyProvider` | **
+__keyProvider__ | `FunctionKeyProvider` | *The key provider to use for the program manager*
 
 ---
 
@@ -139,7 +278,7 @@ setRecordProvider(recordProvider)
 
 Parameters | Type | Description
 --- | --- | ---
-__recordProvider__ | `RecordProvider` | **
+__recordProvider__ | `RecordProvider` | *The record provider to use for the program manager*
 
 ---
 
@@ -168,6 +307,37 @@ const programManager = new ProgramManager("https://api.explorer.provable.com/v1"
 
 // Set the value of the `Accept-Language` header to `en-US`
 programManager.setHeader('Accept-Language', 'en-US');
+```
+
+---
+
+### setInclusionProver
+
+
+
+Set the inclusion prover into the wasm memory. This should be done prior to any execution of a function with a private record.
+
+```javascript
+setInclusionProver(provingKey)
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__provingKey__ | `ProvingKey` | *Optional proving key to use for inclusion proofs*
+
+#### Examples
+
+```javascript
+import { ProgramManager, AleoKeyProvider } from "@provablehq/sdk/mainnet.js";
+
+const keyProvider = new AleoKeyProvider();
+keyProvider.useCache(true);
+
+// Create a ProgramManager
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
+
+// Set the inclusion keys using keys from keyProvider.
+programManager.setInclusionProver();
 ```
 
 ---
@@ -252,6 +422,53 @@ setTimeout(async () => {
 
 ---
 
+### buildUpgradeTransaction
+
+
+
+Builds an upgrade transaction for an existing program on the Aleo network.
+
+```javascript
+buildUpgradeTransaction(options) ► Promise.<Transaction>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`DeployOptions`](#deployoptions) | *The options for the upgrade transaction.*
+__*return*__ | `Promise.<Transaction>` | *The transaction object*
+
+#### Examples
+
+```javascript
+/// Import the mainnet version of the sdk.
+import { AleoKeyProvider, ProgramManager, NetworkRecordProvider } from "@provablehq/sdk/mainnet.js";
+
+// Create a new NetworkClient, KeyProvider, and RecordProvider
+const keyProvider = new AleoKeyProvider();
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+keyProvider.useCache(true);
+
+// Initialize a program manager with the key provider to automatically fetch keys for upgrades
+const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+programManager.setAccount(Account);
+
+// Define a fee in credits
+const priorityFee = 0.0;
+
+// Create the upgrade transaction.
+const tx = await programManager.buildUpgradeTransaction({program: program, priorityFee: priorityFee, privateFee: false});
+await programManager.networkClient.submitTransaction(tx);
+
+// Verify the transaction was successful
+setTimeout(async () => {
+ const transaction = await programManager.networkClient.getTransaction(tx.id());
+ assert(transaction.id() === tx.id());
+}, 20000);
+```
+
+---
+
 ### deploy
 
 
@@ -314,7 +531,7 @@ buildExecutionTransaction(options) ► Promise.<Transaction>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `ExecuteOptions` | *The options for the execution transaction.*
+__options__ | [`ExecuteOptions`](#executeoptions) | *The options for the execution transaction.*
 __*return*__ | `Promise.<Transaction>` | *- A promise that resolves to the transaction or an error.*
 
 #### Examples
@@ -353,6 +570,63 @@ setTimeout(async () => {
 
 ---
 
+### buildTransactionFromAuthorization
+
+
+
+Builds a transaction from an existing authorization for submission to the Aleo network.
+
+```javascript
+buildTransactionFromAuthorization(options) ► Promise.<Transaction>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`ExecuteAuthorizationOptions`](#executeauthorizationoptions) | *The options for building the transaction from an authorization.*
+__*return*__ | `Promise.<Transaction>` | *A promise that resolves to the transaction or an error.*
+
+#### Examples
+
+```javascript
+/// Import the mainnet version of the sdk.
+import { AleoKeyProvider, ProgramManager, NetworkRecordProvider } from "@provablehq/sdk/mainnet.js";
+
+// Create a new NetworkClient, KeyProvider, and RecordProvider.
+const keyProvider = new AleoKeyProvider();
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+keyProvider.useCache(true);
+
+// Initialize a ProgramManager with the key and record providers.
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+
+// First build an authorization
+const authorization = await programManager.buildAuthorization({
+  programName: "credits.aleo",
+  functionName: "transfer_public",
+  inputs: [
+    "aleo1vwls2ete8dk8uu2kmkmzumd7q38fvshrht8hlc0a5362uq8ftgyqnm3w08",
+    "10000000u64",
+  ],
+});
+
+// Build a fee authorization
+const feeAuthorization = await programManager.buildFeeAuthorization({
+  deploymentOrExecutionId: authorization.id(),
+  baseFeeCredits: 0.1,
+});
+
+// Build the transaction from the authorization
+const tx = await programManager.buildTransactionFromAuthorization({
+  programName: "credits.aleo",
+  authorization: authorization,
+  feeAuthorization: feeAuthorization,
+});
+
+await programManager.networkClient.submitTransaction(tx.toString());
+```
+
+---
+
 ### buildAuthorization
 
 
@@ -365,7 +639,7 @@ buildAuthorization(options) ► Promise.<Authorization>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `AuthorizationOptions` | *The options for building the Authorization*
+__options__ | [`AuthorizationOptions`](#authorizationoptions) | *The options for building the Authorization*
 __*return*__ | `Promise.<Authorization>` | *A promise that resolves to an Authorization or throws an Error.*
 
 #### Examples
@@ -407,7 +681,7 @@ buildAuthorizationUnchecked(options) ► Promise.<Authorization>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `AuthorizationOptions` | *The options for building the Authorization*
+__options__ | [`AuthorizationOptions`](#authorizationoptions) | *The options for building the Authorization*
 __*return*__ | `Promise.<Authorization>` | *- A promise that resolves to an Authorization or throws an Error.*
 
 #### Examples
@@ -449,7 +723,7 @@ provingRequest(options) ► Promise.<ProvingRequest>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `ProvingRequestOptions` | *The options for building the proving request*
+__options__ | [`ProvingRequestOptions`](#provingrequestoptions) | *The options for building the proving request*
 __*return*__ | `Promise.<ProvingRequest>` | *- A promise that resolves to the transaction or an error.*
 
 #### Examples
@@ -495,8 +769,8 @@ buildFeeAuthorization(options) ► Promise.<Authorization>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `FeeAuthorizationOptions` | *The options for building the Authorization.*
-__*return*__ | `Promise.<Authorization>` | *- A promise that resolves to an Authorization or throws an Error.*
+__options__ | [`FeeAuthorizationOptions`](#feeauthorizationoptions) | *The options for building the Authorization.*
+__*return*__ | `Promise.<Authorization>` | *A promise that resolves to an Authorization or throws an Error.*
 
 #### Examples
 
@@ -513,18 +787,98 @@ keyProvider.useCache(true);
 const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 
 // Build a credits.aleo/fee_public `Authorization`.
-const feePublicAuthorization = await programManager.authorizeFee({
+const feePublicAuthorization = await programManager.buildFeeAuthorization({
   deploymentOrExecutionId: "2423957656946557501636078245035919227529640894159332581642187482178647335171field",
   baseFeeCredits: 0.1,
 });
 
 // Build a credits.aleo/fee_private `Authorization`.
 const record = "{ owner: aleo1j7qxyunfldj2lp8hsvy7mw5k8zaqgjfyr72x2gh3x4ewgae8v5gscf5jh3.private, microcredits: 1500000000000000u64.private, _nonce: 3077450429259593211617823051143573281856129402760267155982965992208217472983group.public }";
-const feePrivateAuthorization = await programManager.authorizeFee({
+const feePrivateAuthorization = await programManager.buildFeeAuthorization({
   deploymentOrExecutionId: "2423957656946557501636078245035919227529640894159332581642187482178647335171field",
   baseFeeCredits: 0.1,
   feeRecord: record,
 });
+```
+
+---
+
+### estimateFeeForAuthorization
+
+
+
+Estimate the fee for an authorization.
+
+```javascript
+estimateFeeForAuthorization(options) ► Promise.<bigint>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`FeeEstimateOptions`](#feeestimateoptions) | *Options for the fee estimate.*
+__*return*__ | `Promise.<bigint>` | *Execution fee in microcredits for the authorization.*
+
+#### Examples
+
+```javascript
+import { AleoKeyProvider, ProgramManager } from "@provablehq/sdk/mainnet.js";
+
+// Initialize a program manager with the key provider to automatically fetch keys for executions.
+const keyProvider = new AleoKeyProvider();
+keyProvider.useCache(true);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
+
+// Build an authorization first
+const authorization = await programManager.buildAuthorization({
+  programName: "credits.aleo",
+  functionName: "transfer_public",
+  inputs: [
+    "aleo1vwls2ete8dk8uu2kmkmzumd7q38fvshrht8hlc0a5362uq8ftgyqnm3w08",
+    "10000000u64",
+  ],
+});
+
+// Estimate the fee for the authorization.
+const baseFeeMicrocredits = await programManager.estimateFeeForAuthorization({
+  programName: "credits.aleo",
+  authorization: authorization,
+});
+const baseFeeCredits = Number(baseFeeMicrocredits) / 1000000;
+```
+
+---
+
+### estimateExecutionFee
+
+
+
+Estimate the execution fee for an Aleo function.
+
+```javascript
+estimateExecutionFee(options) ► Promise.<bigint>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`FeeEstimateOptions`](#feeestimateoptions) | *Options for the fee estimate.*
+__*return*__ | `Promise.<bigint>` | *Execution fee in microcredits for the function.*
+
+#### Examples
+
+```javascript
+import { AleoKeyProvider, ProgramManager } from "@provablehq/sdk/mainnet.js";
+
+// Initialize a program manager with the key provider to automatically fetch keys for executions.
+const keyProvider = new AleoKeyProvider();
+keyProvider.useCache(true);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
+
+// Get the base fee in microcredits.
+const baseFeeMicrocredits = await programManager.estimateExecutionFee({
+  programName: "credits.aleo",
+  functionName: "transfer_public",
+});
+const baseFeeCredits = Number(baseFeeMicrocredits) / 1000000;
 ```
 
 ---
@@ -541,7 +895,7 @@ execute(options) ► Promise.<string>
 
 Parameters | Type | Description
 --- | --- | ---
-__options__ | `ExecuteOptions` | *The options for the execution transaction.*
+__options__ | [`ExecuteOptions`](#executeoptions) | *The options for the execution transaction.*
 __*return*__ | `Promise.<string>` | *- The transaction id*
 
 #### Examples
@@ -730,7 +1084,7 @@ __program__ | `string` | *The program source code to synthesize keys for*
 __function_id__ | `string` | *The function id to synthesize keys for*
 __inputs__ | `Array.<string>` | *Sample inputs to the function*
 __privateKey__ | `PrivateKey` | *Optional private key to use for the key synthesis*
-__*return*__ | `Promise.<FunctionKeyPair>` | **
+__*return*__ | `Promise.<FunctionKeyPair>` | *The synthesized function proving and verifying keys*
 
 ---
 
@@ -1164,7 +1518,7 @@ Parameters | Type | Description
 --- | --- | ---
 __staker_address__ | `string` | *Address of the staker who is unbonding the credits*
 __amount__ | `number` | *Amount of credits to unbond.*
-__options__ | `ExecuteOptions` | *Options for the execution*
+__options__ | [`ExecuteOptions`](#executeoptions) | *Options for the execution*
 __*return*__ | `Promise.<string>` | *The transaction id*
 
 #### Examples
@@ -1251,7 +1605,7 @@ claimUnbondPublic(staker_address, options) ► Promise.<string>
 Parameters | Type | Description
 --- | --- | ---
 __staker_address__ | `string` | *Address of the staker who is claiming the credits*
-__options__ | `ExecuteOptions` | **
+__options__ | [`ExecuteOptions`](#executeoptions) | *Options for the execution*
 __*return*__ | `Promise.<string>` | *The transaction id*
 
 #### Examples
@@ -1300,7 +1654,7 @@ buildSetValidatorStateTransaction(validator_state, options) ► Promise.<Transac
 
 Parameters | Type | Description
 --- | --- | ---
-__validator_state__ | `boolean` | **
+__validator_state__ | `boolean` | *Whether to set the validator state to open (true) or closed (false)*
 __options__ | `Partial.<ExecuteOptions>` | *Override default execution options*
 __*return*__ | `Promise.<Transaction>` | *The transaction object*
 
@@ -1352,7 +1706,7 @@ setValidatorState(validator_state, options) ► Promise.<string>
 
 Parameters | Type | Description
 --- | --- | ---
-__validator_state__ | `boolean` | **
+__validator_state__ | `boolean` | *Whether to set the validator state to open (true) or closed (false)*
 __options__ | `Partial.<ExecuteOptions>` | *Override default execution options*
 __*return*__ | `Promise.<string>` | *The transaction id*
 
@@ -1475,4 +1829,146 @@ verifyProgram(program)
 Parameters | Type | Description
 --- | --- | ---
 __program__ | `string` | *The program source code*
+
+---
+
+### buildDevnodeExecutionTransaction
+
+
+
+Builds an execution transaction with placeholder proofs for use with a local devnode. `getOrInitConsensusVersionTestHeights` must be called with development heights prior to invoking this method for it to work properly.
+
+```javascript
+buildDevnodeExecutionTransaction(options) ► Promise.<Transaction>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`ExecuteOptions`](#executeoptions) | *The options for the execution transaction.*
+__*return*__ | `Promise.<Transaction>` | *A promise that resolves to the transaction or an error.*
+
+#### Examples
+
+```javascript
+/// Import the mainnet version of the sdk.
+import { ProgramManager, NetworkRecordProvider, getOrInitConsensusVersionTestHeights } from "@provablehq/sdk/mainnet.js";
+
+// Initialize the development consensus heights in order to work with a local devnode.
+getOrInitConsensusVersionTestHeights("0,1,2,3,4,5,6,7,8,9,10,11");
+
+// Create a new NetworkClient and RecordProvider
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+
+// Initialize a program manager
+const programManager = new ProgramManager("http://localhost:3030", undefined, recordProvider);
+programManager.setAccount(account);
+
+// Build and execute the transaction
+const tx = await programManager.buildDevnodeExecutionTransaction({
+  programName: "hello_hello.aleo",
+  functionName: "hello_hello",
+  priorityFee: 0.0,
+  privateFee: false,
+  inputs: ["5u32", "5u32"],
+});
+
+// Submit the transaction to the network
+await programManager.networkClient.submitTransaction(tx.toString());
+```
+
+---
+
+### buildDevnodeDeploymentTransaction
+
+
+
+Builds a deployment transaction with placeholder certificates and verifying keys for each function in the program. Intended for use with a local devnode. `getOrInitConsensusVersionTestHeights` must be called with development heights prior to invoking this method for it to work properly.
+
+```javascript
+buildDevnodeDeploymentTransaction(options) ► Promise.<Transaction>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`DeployOptions`](#deployoptions) | *The options for the deployment transaction.*
+__*return*__ | `Promise.<Transaction>` | *The transaction object*
+
+#### Examples
+
+```javascript
+/// Import the mainnet version of the sdk.
+import { ProgramManager, NetworkRecordProvider, getOrInitConsensusVersionTestHeights } from "@provablehq/sdk/mainnet.js";
+
+// Initialize the development consensus heights in order to work with a local devnode.
+getOrInitConsensusVersionTestHeights("0,1,2,3,4,5,6,7,8,9,10,11");
+
+// Create a new NetworkClient and RecordProvider
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+
+// Initialize a program manager with the record provider
+const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
+const programManager = new ProgramManager("http://localhost:3030", undefined, recordProvider);
+programManager.setAccount(Account);
+
+// Define a fee in credits
+const priorityFee = 0.0;
+
+// Create the deployment transaction.
+const tx = await programManager.buildDevnodeDeploymentTransaction({program: program, priorityFee: priorityFee, privateFee: false});
+await programManager.networkClient.submitTransaction(tx);
+
+// Verify the transaction was successful
+setTimeout(async () => {
+ const transaction = await programManager.networkClient.getTransaction(tx.id());
+ assert(transaction.id() === tx.id());
+}, 20000);
+```
+
+---
+
+### buildDevnodeUpgradeTransaction
+
+
+
+Builds an upgrade transaction with placeholder certificates and verifying keys for use with a local devnode. `getOrInitConsensusVersionTestHeights` must be called with development heights prior to invoking this method for it to work properly.
+
+```javascript
+buildDevnodeUpgradeTransaction(options) ► Promise.<Transaction>
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__options__ | [`DeployOptions`](#deployoptions) | *The options for the upgrade transaction.*
+__*return*__ | `Promise.<Transaction>` | *The transaction object*
+
+#### Examples
+
+```javascript
+/// Import the mainnet version of the sdk.
+import { ProgramManager, NetworkRecordProvider, getOrInitConsensusVersionTestHeights } from "@provablehq/sdk/mainnet.js";
+
+// Initialize the development consensus heights in order to work with a local devnode.
+getOrInitConsensusVersionTestHeights("0,1,2,3,4,5,6,7,8,9,10,11");
+
+// Create a new NetworkClient and RecordProvider
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+
+// Initialize a program manager with the record provider
+const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
+const programManager = new ProgramManager("http://localhost:3030", undefined, recordProvider);
+programManager.setAccount(Account);
+
+// Define a fee in credits
+const priorityFee = 0.0;
+
+// Create the upgrade transaction.
+const tx = await programManager.buildDevnodeUpgradeTransaction({program: program, priorityFee: priorityFee, privateFee: false});
+await programManager.networkClient.submitTransaction(tx);
+
+// Verify the transaction was successful
+setTimeout(async () => {
+ const transaction = await programManager.networkClient.getTransaction(tx.id());
+ assert(transaction.id() === tx.id());
+}, 20000);
+```
 

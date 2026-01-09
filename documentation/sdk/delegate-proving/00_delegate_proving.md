@@ -18,6 +18,14 @@ curl -X POST -H "Content-Type: application/json" -d '{"username": "ENTER_USERNAM
 
 ## Using the Delegated Proving Service in the Provable SDK
 The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the API key, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
+
+:::tip[Estimating Fees]
+Before submitting a proving request, you can estimate the required fees using the SDK's fee estimation methods:
+- [`estimateExecutionFee`](/sdk/api-specification/program_manager#estimateexecutionfee) - Estimate the execution fee for an Aleo function
+- [`estimateFeeForAuthorization`](/sdk/api-specification/program_manager#estimatefeeforauthorization) - Estimate the fee for an authorization
+
+This helps ensure you set the correct `baseFee` value in your proving request.
+:::
 ```typescript
 import { Account, AleoKeyProvider, AleoNetworkClient, CREDITS_PROGRAM_KEYS, initThreadPool, NetworkRecordProvider, ProgramManager } from '@provablehq/sdk/testnet.js';
 
@@ -42,10 +50,11 @@ async function delegatedProvingExample() {
 
 
     // Build a proving request for the "transfer_public" function of "credits.aleo".
+    // Note: You can estimate the baseFee using estimateExecutionFee() or estimateFeeForAuthorization()
     const provingRequest = await programManager.provingRequest({
         programName: "credits.aleo",
         functionName: "transfer_public",
-        baseFee: 0.2,
+        baseFee: 0.2, // Consider using estimateExecutionFee() to determine the correct fee
         priorityFee: 0,
         privateFee: false,
         inputs: [

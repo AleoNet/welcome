@@ -51,7 +51,15 @@ transmissions from the standard queue will not be sent to the BFT.
 
 <!-- markdown-link-check-disable -->
 ### Estimating Fees
-The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). You can use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
+The fee determination logic is defined in [a file called cost.rs](https://github.com/ProvableHQ/snarkVM/blob/mainnet/synthesizer/process/src/cost.rs). There are multiple ways to estimate fees for your transactions:
+
+#### Using the SDK
+You can use the SDK's ProgramManager to estimate fees programmatically:
+- [`estimateExecutionFee`](/sdk/api-specification/program_manager#estimateexecutionfee) - Estimate the execution fee for an Aleo function
+- [`estimateFeeForAuthorization`](/sdk/api-specification/program_manager#estimatefeeforauthorization) - Estimate the fee for an authorization
+
+#### Using Leo CLI
+You can also use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
 <!-- markdown-link-check-enable -->
 
 First, generate a example program using `leo example`.
