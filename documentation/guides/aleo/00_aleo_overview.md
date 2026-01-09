@@ -34,23 +34,10 @@ Read the full list of supported [AVM opcodes](./04_opcodes.md).
 
 ## Formal Language Documentation
 
-Check your program or compiler implementation against the [Aleo instructions grammar](./07_grammar.md).
+Check your program or compiler implementation against the [Aleo instructions grammar](./06_grammar.md).
 
 Study the formal [ABNF grammar specification](https://github.com/ProvableHQ/grammars) for the full formal syntax of Aleo instructions.
 
-## Command Line Interface Documentation
-
-The snarkVM CLI provides a suite of commands to make programming in Aleo instructions easy.
-
-* [snarkvm new](./06_commands.md#aleo-new)
-* [snarkvm build (deprecated)](./06_commands.md#aleo-build)
-* [snarkvm run](./06_commands.md#aleo-run)
-* [snarkvm clean](./06_commands.md#aleo-clean)
-* [snarkvm update](./06_commands.md#aleo-update)
-
-[//]: # (5. [aleo node]&#40;./05_commands.md#5-aleo-node&#41;)
-[//]: # (6. [aleo deploy]&#40;./05_commands.md#6-aleo-deploy&#41;)
-
 ## Additional Material
 
-Install Aleo instructions for your favorite code [**editor**](./08_tooling.md).
+Install Aleo instructions for your favorite code [**editor**](./07_tooling.md).
