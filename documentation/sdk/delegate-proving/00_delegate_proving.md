@@ -29,8 +29,8 @@ The following template code will generate a proving request and send it to the d
 
 :::tip[Estimating Fees]
 Before submitting a proving request, you can estimate the required fees using the SDK's fee estimation methods:
-- [`estimateExecutionFee`](/sdk/api-specification/program_manager#estimateexecutionfee) - Estimate the execution fee for an Aleo function
-- [`estimateFeeForAuthorization`](/sdk/api-specification/program_manager#estimatefeeforauthorization) - Estimate the fee for an authorization
+- [`estimateExecutionFee`](../api-specification/03_program_manager.md#estimateexecutionfee) - Estimate the execution fee for an Aleo function
+- [`estimateFeeForAuthorization`](../api-specification/03_program_manager.md#estimatefeeforauthorization) - Estimate the fee for an authorization
 
 This helps ensure you set the correct `baseFee` value in your proving request.
 :::

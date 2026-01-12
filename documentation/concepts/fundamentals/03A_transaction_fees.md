@@ -55,8 +55,8 @@ The fee determination logic is defined in [a file called cost.rs](https://github
 
 #### Using the SDK
 You can use the SDK's ProgramManager to estimate fees programmatically:
-- [`estimateExecutionFee`](/sdk/api-specification/program_manager#estimateexecutionfee) - Estimate the execution fee for an Aleo function
-- [`estimateFeeForAuthorization`](/sdk/api-specification/program_manager#estimatefeeforauthorization) - Estimate the fee for an authorization
+- [`estimateExecutionFee`](../../sdk/api-specification/03_program_manager.md#estimateexecutionfee) - Estimate the execution fee for an Aleo function
+- [`estimateFeeForAuthorization`](../../sdk/api-specification/03_program_manager.md#estimatefeeforauthorization) - Estimate the fee for an authorization
 
 #### Using Leo CLI
 You can also use [`Leo CLI`](https://docs.leo-lang.org/cli/cli_overview) to estimate the fees for your transaction. Example as below:
