@@ -3,7 +3,6 @@
     <a href="https://aleo.org"> <img alt="Website" src="https://img.shields.io/badge/Aleo.org-online-blue"></a>
     <a href="https://discord.gg/aleo"><img src="https://img.shields.io/discord/700454073459015690?logo=discord"/></a>
     <a href="https://twitter.com/aleohq"><img src="https://img.shields.io/twitter/follow/aleohq?style=social"/></a>
-    <a href="https://GitHub.com/provablehq/welcome"><img src="https://img.shields.io/badge/contributors-29-ee8449"/></a>
 </p>
 
 ## 🎉 Welcome to Aleo.
@@ -11,14 +10,13 @@
 This repository serves as a guide for getting started with building on Aleo. Here is a quick summary of the key components:
 
 - [📖 Aleo Developer Docs](https://developer.aleo.org) - Developer documentation for Aleo.
-- [📡 SnarkOS](http://snarkos.org) - A decentralized operating system for private applications.
-- [⚙️ SnarkVM](https://snarkvm.org) - A virtual machine for zero-knowledge proofs.
-- [🦁 Leo](https://leo-lang.org) - A programming language for zero-knowledge proofs.
+- [📡 SnarkOS](http://snarkos.org) - A decentralized operating system for privacy preserving applications.
+- [⚙️ SnarkVM](https://snarkvm.org) - A virtual machine to run privacy preserving decentralized applications on Aleo.
+- [🦁 Leo](https://leo-lang.org) - A programming language for creating ≈ privacy preserving decentralized applications on Aleo.
 - [📖 Leo Developer Docs](https://docs.leo-lang.org) - Developer documentation for the Leo programming language.
 - [🛝 Leo Playground](http://play.leo-lang.org) - A browser interface to the Leo compiler for rapid ZK development and testing.
-- [🧰 Provable SDK](https://provable.tools) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
-- [🔭 Aleo Explorer](https://aleo.network) - Validate and broadcast on Aleo Testnet III
-- [🔎 Amareleo](https://amareleo.com) - An open-source toolset for Leo developers
+- [🧰 Provable SDK](https://github.com/ProvableHQ/sdk) - A Software Development Kit (SDK) for interacting with privacy preserving decentralized applications on Aleo.
+- [🔭 Provable Explorer](https://explorer.provable.com) - View and analyze Aleo transactions on-chain in real time.
 
 
 

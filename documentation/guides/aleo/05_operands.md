@@ -10,6 +10,7 @@ The following lists show the special operands supported by Aleo instructions.
 | Name                         | Description                                           |
 |------------------------------|:------------------------------------------------------|
 | [block.height](#blockheight) | Returns height of the block within the finalize scope |
+| [block.timestamp](#blocktimestamp) | Returns the unix timestamp of the current block within the finalize scope |
 | [self.signer](#selfsigner)   | Returns the user address that originated the transition |
 | [self.caller](#selfcaller)   | Returns the address of the immediate caller of the program |
 | [network.id](#networkid)     | Returns the ID of the network on which the program is executed |
@@ -49,11 +50,28 @@ assert.eq network.id 0u64;  // For mainnet
 
 Returns the height of the block within the finalize scope.  
 The `block.height` command must be called within a finalize block.
+The type returned is `u64`.
 
 #### Example Usage
 
 ```aleo
 assert.eq block.height 100u64;
+```
+
+### `block.timestamp` {#blocktimestamp}
+
+[Back to Top](#table-of-special-operands)
+
+#### Description
+
+Returns the unix timestamp of the current block within the finalize scope.  
+The `block.timestamp` command must be called within a finalize block.  
+The type returned is `i64`.
+
+#### Example Usage
+
+```aleo
+assert.eq block.timestamp 1767976339i64;
 ```
 
 ### `self.signer`

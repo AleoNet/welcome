@@ -124,6 +124,7 @@ operand = literal
         / "self.caller"
         / "self.signer"
         / "block.height"
+        / "block.timestamp"
 literal = arithmetic-literal
         / address-literal
         / boolean-literal

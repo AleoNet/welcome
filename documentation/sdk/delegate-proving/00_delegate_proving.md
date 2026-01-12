@@ -7,29 +7,45 @@ sidebar_label: Delegated Proving
 # Introduction
 Provable offers a proof delegation service that accelerates the transaction generation time. This code snippet demonstrates how to use the Provable SDK to submit a proving request for a transaction that sends public Aleo credits to another Aleo account.
 
-## Obtain an API Key
-(official API documentation: https://docs.explorer.provable.com/docs/api-reference/ppvrqeqo7tis5-register-a-new-user-and-issues-them-an-api-key)
-You will need an API key in order to use the delegated proving service.  
+## Obtain an API Key and JWT Token
+You will need an API key and JWT token in order to use the delegated proving service. Follow these steps:
 
-Obtain a Provable API key using the following curl request:
+### 1. Register consumer to get a key:
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"username": "ENTER_USERNAME_HERE"}' https://api.explorer.provable.com/v2/mainnet/auth/register
+curl -X POST -H "Content-Type: application/json" -d '{"username": "<your_username>"}' https://api.provable.com/consumers
 ```
 
+### 2. Get a JWT:
+```bash
+curl -X POST -H "X-Provable-API-Key: <your_key>" https://api.provable.com/jwts/<your_consumer_id>
+```
+The token will be in the `Authorization` header of the response.
+
+### 3. Use the JWT for proving requests:
+For all requests to the prover, you will need to set your JWT as the `Authorization` header of the request.
+
 ## Using the Delegated Proving Service in the Provable SDK
-The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the API key, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
+The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the JWT token, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
+
+:::tip[Estimating Fees]
+Before submitting a proving request, you can estimate the required fees using the SDK's fee estimation methods:
+- [`estimateExecutionFee`](../api-specification/03_program_manager.md#estimateexecutionfee) - Estimate the execution fee for an Aleo function
+- [`estimateFeeForAuthorization`](../api-specification/03_program_manager.md#estimatefeeforauthorization) - Estimate the fee for an authorization
+
+This helps ensure you set the correct `baseFee` value in your proving request.
+:::
 ```typescript
 import { Account, AleoKeyProvider, AleoNetworkClient, CREDITS_PROGRAM_KEYS, initThreadPool, NetworkRecordProvider, ProgramManager } from '@provablehq/sdk/testnet.js';
 
 await initThreadPool();
 
-const apiKey = "YOUR_API_KEY";
-const endpoint = "https://api.explorer.provable.com/v2/testnet";
+const jwtToken = "YOUR_JWT_TOKEN"; // Obtained from step 2 above
+const endpoint = "https://api.provable.com/prove/testnet/prove";
 
 
 async function delegatedProvingExample() {
-	// Create a temporary account for the execution of the program
-	const account = new Account({privateKey: "YOUR_PRIVATE_KEY"});
+    // Create a temporary account for the execution of the program
+    const account = new Account({privateKey: "YOUR_PRIVATE_KEY"});
 
     // Create a key provider in order to re-use the same key for each execution
     const keyProvider = new AleoKeyProvider();
@@ -42,10 +58,11 @@ async function delegatedProvingExample() {
 
 
     // Build a proving request for the "transfer_public" function of "credits.aleo".
+    // Note: You can estimate the baseFee using estimateExecutionFee() or estimateFeeForAuthorization()
     const provingRequest = await programManager.provingRequest({
         programName: "credits.aleo",
         functionName: "transfer_public",
-        baseFee: 0.2,
+        baseFee: 0.2, // Consider using estimateExecutionFee() to determine the correct fee
         priorityFee: 0,
         privateFee: false,
         inputs: [
@@ -60,7 +77,7 @@ async function delegatedProvingExample() {
     const provingResponse = await programManager.networkClient.submitProvingRequest({
         provingRequest: provingRequest,
         url: endpoint,
-        apiKey: apiKey,
+        apiKey: jwtToken, // Use JWT token as the API key
     });
 
     // Optional logging of the response
