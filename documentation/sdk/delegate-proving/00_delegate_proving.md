@@ -11,21 +11,19 @@ Provable offers a proof delegation service that accelerates the transaction gene
 You will need an API key and JWT token in order to use the delegated proving service. Follow these steps:
 
 ### 1. Register consumer to get a key:
-```bash
-curl -X POST -H "Content-Type: application/json" -d '{"username": "<your_username>"}' https://api.provable.com/consumers
-```
+POST `api.provable.com/consumers` with the body `{ "username": "<your_username>" }`
+
+See the [Auth Register API documentation](https://docs.provable.com/docs/api/services/get-auth-register) for details.
 
 ### 2. Get a JWT:
-```bash
-curl -X POST -H "X-Provable-API-Key: <your_key>" https://api.provable.com/jwts/<your_consumer_id>
-```
-The token will be in the `Authorization` header of the response.
+POST `api.provable.com/jwts/<your_consumer_id>` with your key set as the `X-Provable-API-Key` header. The token will be in the `Authorization` header of the response.
+
+See the [Issue JWT API documentation](https://docs.provable.com/docs/api/services/issue-jwt) for details.
 
 ### 3. Call the prover:
-```bash
-curl -X POST -H "Authorization: <your_jwt_token>" https://api.provable.com/prove/<network>/prove
-```
-Where `<network>` is either `testnet` or `mainnet`. For all requests to the prover, you will need to set your JWT as the `Authorization` header of the request.
+POST `api.provable.com/prove/<network>/prove` where `<network>` is either `testnet` or `mainnet`. For all requests you will need to set your JWT as the `Authorization` header of the request.
+
+See the [Delegated Proving API documentation](https://docs.provable.com/docs/api/services/get-prove) for details.
 
 ## Using the Delegated Proving Service in the Provable SDK
 The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the JWT token, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
