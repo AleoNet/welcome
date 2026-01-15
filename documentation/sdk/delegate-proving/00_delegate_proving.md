@@ -21,8 +21,11 @@ curl -X POST -H "X-Provable-API-Key: <your_key>" https://api.provable.com/jwts/<
 ```
 The token will be in the `Authorization` header of the response.
 
-### 3. Use the JWT for proving requests:
-For all requests to the prover, you will need to set your JWT as the `Authorization` header of the request.
+### 3. Call the prover:
+```bash
+curl -X POST -H "Authorization: <your_jwt_token>" https://api.provable.com/prove/<network>/prove
+```
+Where `<network>` is either `testnet` or `mainnet`. For all requests to the prover, you will need to set your JWT as the `Authorization` header of the request.
 
 ## Using the Delegated Proving Service in the Provable SDK
 The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the JWT token, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
@@ -77,7 +80,7 @@ async function delegatedProvingExample() {
     const provingResponse = await programManager.networkClient.submitProvingRequest({
         provingRequest: provingRequest,
         url: endpoint,
-        apiKey: jwtToken, // Use JWT token as the API key
+        apiKey: jwtToken, // JWT token will be set as the Authorization header
     });
 
     // Optional logging of the response
