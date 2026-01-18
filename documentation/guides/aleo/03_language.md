@@ -197,7 +197,8 @@ function call_external:
 
 A closure is declared as `closure {name}:`.  
 Closures contain instructions that can compute values.
-Closures are helper functions that cannot be executed directly. Closures may be called by other functions.
+Closures are helper functions that cannot be executed directly. 
+Closures may be called by other local or external functions, but cannot return records, nor do calls nor do awaits.
 
 ```aleo showLineNumbers
 closure foo:
