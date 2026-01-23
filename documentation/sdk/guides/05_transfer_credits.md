@@ -54,30 +54,28 @@ When programs execute, they will often need to find records that belong to a use
 
 Once everything's been intialized, we can build and submit the transaction, and await the results:
 ```typescript
+const RECIPIENT_ADDRESS = "aleo1...";
+
 // Send a completely private transfer
-const tx = await programManager.buildTransferTransaction(
-    amount : 1, 
-    recipient: RECIPIENT_ADDRESS, 
-    transferType: "transfer_private", 
-    fee: 0.2
-);
+// Parameters: amount, recipient, transferType, priorityFee, privateFee
+const tx = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_private", 0.2, true);
 // Submit the transaction to the network.
 const tx_id = await programManager.networkClient.submitTransaction(tx);
 
 /// Send public transfer to another user
-const tx_2 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public", 0.2);
-const tx_id_3 = await programManager.networkClient.submitTransaction(tx_2);
+const tx_2 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public", 0.2, false);
+const tx_id_2 = await programManager.networkClient.submitTransaction(tx_2);
 
 // Send a public transfer to another user using a private record as input
-const tx_3 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_private_to_public", 0.2);
+const tx_3 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_private_to_public", 0.2, false);
 const tx_id_3 = await programManager.networkClient.submitTransaction(tx_3);
 
 /// Create a private record from a public balance
-const tx_4 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2);
+const tx_4 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2, false);
 const tx_id_4 = await programManager.networkClient.submitTransaction(tx_4);
 
 /// Send a public transfer from the transaction signer's address / original transaction initiator.
-const tx_5 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2);
+const tx_5 = await programManager.buildTransferTransaction(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2, false);
 const tx_id_5 = await programManager.networkClient.submitTransaction(tx_5);
 
 
@@ -95,16 +93,12 @@ Alternatively, we can just call the `transfer()` method to build and broadcast t
 ```typescript
 const RECIPIENT_ADDRESS = "aleo1...";
 
-const tx_id = await programManager.transfer(
-    amount : 1, 
-    recipient: RECIPIENT_ADDRESS, 
-    transferType: "transfer_private", 
-    fee: 0.2
-);
-const tx_id_2 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public", 0.2);
-const tx_id_3 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_private_to_public", 0.2);
-const tx_id_4 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2);
-const tx_id_5 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2);
+// Parameters: amount, recipient, transferType, priorityFee, privateFee
+const tx_id = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_private", 0.2, true);
+const tx_id_2 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public", 0.2, false);
+const tx_id_3 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_private_to_public", 0.2, false);
+const tx_id_4 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_to_private", 0.2, false);
+const tx_id_5 = await programManager.transfer(1, RECIPIENT_ADDRESS, "transfer_public_as_signer", 0.2, false);
 
 const transaction1 = await programManager.networkClient.getTransaction(tx_id);
 const transaction2 = await programManager.networkClient.getTransaction(tx_id_2);
@@ -115,12 +109,12 @@ const transaction5 = await programManager.networkClient.getTransaction(tx_id_5);
 
 ## Checking Balances 
 ### Public Balances
-A public balance of any address can be checked with `getMappingValue()` function of the `NetworkClient`.
+A public balance of any address can be checked with `getProgramMappingValue()` function of the `AleoNetworkClient`.
 
 ```typescript
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const USER_ADDRESS = "aleo1...";
-const public_balance = networkClient.getMappingValue("credits.aleo", USER_ADDRESS);
+const public_balance = await networkClient.getProgramMappingValue("credits.aleo", "account", USER_ADDRESS);
 ```
 
 

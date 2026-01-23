@@ -287,3 +287,21 @@ toExecutionId() ► Field
 | *return* | <code>Field</code> | The execution ID for the Authorization, call toString() after this result to get the string representation |
 
 ---
+
+<a name="Authorization+functionName"></a>
+
+### functionName
+
+<p>Get the function name</p>
+
+```javascript
+functionName() ► string
+```
+
+
+
+| Param | Type |
+| --- | --- |
+| *return* | <code>string</code> | The function name |
+
+---

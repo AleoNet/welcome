@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
-The core `sdk/` library offers a wide variety of features to help streamline the development process on Aleo, including account management, program deployment, function execution, Aleo Credit transfers, program state management, and network queries.
+The core `sdk/` library offers a wide variety of features to help streamline the development process on Aleo, including account management, program deployment, function execution, Aleo Credit transfers, program state management, network queries, and cryptographic primitives like hash functions.
 
 ## Table of Contents
 
@@ -20,6 +20,10 @@ The core `sdk/` library offers a wide variety of features to help streamline the
     * [Blocks](./07_querying_network.md#blocks)
     * [Transactions and Transitions](./07_querying_network.md#transactions-and-transitions)
     * [Programs](./07_querying_network.md#programs)
+* [Hash Functions](./08_hash_functions.md)
+    * [BHP Hash Functions](./08_hash_functions.md#bhp-hash-functions)
+    * [Pedersen Hash Functions](./08_hash_functions.md#pedersen-hash-functions)
+    * [Poseidon Hash Functions](./08_hash_functions.md#poseidon-hash-functions)
 
 
 ## Further Documentation

@@ -135,6 +135,7 @@ import { deepStrictEqual } from 'assert';
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
 // Get the list of program mappings in credits.aleo.
+// The credits.aleo program contains the following mappings
 const expectedMappings = [
     "committee",
     "delegated",
