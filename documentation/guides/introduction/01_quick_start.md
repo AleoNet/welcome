@@ -156,7 +156,7 @@ Next, enter your Private Key and select the `mint_private` method from the Funct
 ```
 ["ALEO_ADDRESS_HERE", "50u64"]
 ```
-Click Estimate Fee followed by Execute.  As before with the deploy transaction, you can copy and past your transaction ID in a block explorer.  You should see something resembling the following:
+Click Estimate Fee followed by Execute.  As before with the deploy transaction, you can copy and paste your transaction ID in a block explorer.  You should see something resembling the following:
 
 <img src={require('./images/mint_private.png').default} width="1000"/>
 
