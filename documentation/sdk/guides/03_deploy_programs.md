@@ -106,7 +106,7 @@ Using the `AleoNetworkClient` and `AleoKeyProvider` objects, we can initialize t
 
 ```typescript
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers.
-const programManager = new ProgramManager(networkClient, keyProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 
 // Set the account for the program manager.
 programManager.setAccount(account);

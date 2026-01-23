@@ -41,7 +41,7 @@ keyProvider.useCache(true);
 
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
-const programManager = new ProgramManager(networkClient, keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(account);
 ```
 

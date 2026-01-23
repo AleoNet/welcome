@@ -64,7 +64,7 @@ const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
 
-const programManager = new ProgramManager(networkClient, keyProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 programManager.setAccount(account);
 ```
 If you're confused on any of the above code, head back to the previous guide for a more detailed explanation.
@@ -162,7 +162,7 @@ const verifyingKey = VerifyingKey.fromString("...");
 keyProvider.cacheKeys("helloworld.aleo:main", [provingKey, verifyingKey]);
 
 /// Create a program manager with the key provider.
-const programManager = new ProgramManager(networkProvider, KeyProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 
 /// Create a temporary account for the execution of the program
 const account = new Account();
