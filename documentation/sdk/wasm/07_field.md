@@ -321,3 +321,20 @@ equals(other) ► boolean
 | --- | --- | --- |
 | other | <code>Field</code> | Field element to compare |
 | *return* | <code>boolean</code> | Whether the field elements are equal |
+
+---
+
+<a name="Field.newDomainSeparator"></a>
+
+### newDomainSeparator
+
+<p>Initializes a new field as a domain separator</p>
+
+```javascript
+newDomainSeparator(domain) ► Field
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| domain | <code>string</code> | The domain string |
+| *return* | <code>Field</code> | A new field representing the domain separator |

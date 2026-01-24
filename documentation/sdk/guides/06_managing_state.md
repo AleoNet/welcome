@@ -54,15 +54,15 @@ class provides the `getProgramMappingNames()` method to read the public mappings
 read the value of a specific key within a mapping.
 
 ```typescript
-import { AleoNetworkClient } from '@provable/sdk';
+import { AleoNetworkClient } from '@provablehq/sdk';
 
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
-const creditsMappings = networkClient.getProgramMappingNames("credits.aleo");
-assert(creditsMappings === ["committee", "delegated", "metadata", "bonded", "unbonding", "account", "withdraw"]);
+const creditsMappings = await networkClient.getProgramMappingNames("credits.aleo");
+// Expected mappings: ["committee", "delegated", "metadata", "bonded", "unbonding", "account", "withdraw", "pool"]
 
 //<ADDRESS> = A valid Aleo account with zero balance
-const publicCredits = networkClient.getProgramMappingValue("credits.aleo", "<ADDRESS>");
-assert(publicCredits === "0u64");
+const publicCredits = await networkClient.getProgramMappingValue("credits.aleo", "account", "<ADDRESS>");
+// Returns null if the address has no public balance, or the balance as a string like "0u64"
 ```
 
 
@@ -201,7 +201,7 @@ Record decryption and ownership verification can be done in the SDK using the fo
 import { Account, RecordCiphertext, RecordPlaintext } from '@provablehq/sdk';
 
 // Create an account from an existing private key
-const account = Account.from_string({privateKey: "existingPrivateKey"});
+const account = new Account({ privateKey: "existingPrivateKey" });
 
 // Record value received as a string from program output or found on the Aleo network
 const record = "record1qyqsq4r7mcd3ystjvjqda0v2a6dxnyzg9mk2daqjh0wwh359h396k7c9qyxx66trwfhkxun9v35hguerqqpqzqzshsw8dphxlzn5frh8pknsm5zlvhhee79xnhfesu68nkw75dt2qgrye03xqm4zf5xg5n6nscmmzh7ztgptlrzxq95syrzeaqaqu3vpzqf03s6";
@@ -209,7 +209,7 @@ const record = "record1qyqsq4r7mcd3ystjvjqda0v2a6dxnyzg9mk2daqjh0wwh359h396k7c9q
 const recordCiphertext = RecordCiphertext.fromString(record);
 
 // Check ownership of the record. If the account is the owner, decrypt the record
-if (RecordCiphertext.is_owner(account.viewKey())) {
+if (recordCiphertext.isOwner(account.viewKey())) {
    // Decrypt the record with the account's view key
    const recordPlaintext = recordCiphertext.decrypt(account.viewKey());
 

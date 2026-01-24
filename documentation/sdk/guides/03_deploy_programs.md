@@ -102,10 +102,10 @@ Since each function in a program has a proof associated with it, each function i
 The default implementation of the `KeyProvider` interface is the `AleoKeyProvider`. This implementation allows users to specify an optional HTTP url where the keys may be found and an in-memory cache for proving and verifying keys. However, developers can implement their own `KeyProvider` to store keys in places such as CDNs, databases, local file systems, etc.
 
 ### `ProgramManager`
-Using the `AleoNetworkClient` and `AleoKeyProvider` objects, we can initialize the `ProgramManager` object and set the account that transactions will be signed by:
+Using the network host URL and `AleoKeyProvider` objects, we can initialize the `ProgramManager` object and set the account that transactions will be signed by:
 
 ```typescript
-// Initialize a program manager to talk to the Aleo network with the configured key and record providers.
+// Initialize a program manager to talk to the Aleo network with the configured key provider.
 const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 
 // Set the account for the program manager.
@@ -151,11 +151,17 @@ const transaction = await programManager.networkClient.getTransaction(transactio
 Once a program has been deployed, developers can check to see its deployment status and monitor its activity using the [Provable Explorer](https://explorer.provable.com/programs).
 
 ### Deployment Fees
-A fee must be paid to the Aleo network for deployment. This fee can be paid publicly using a public balance or privately using an `credits.aleo` Record. The fee for deploying any program can be calculated with the static `estimateDeploymentFee()` method of the `ProgramManager` class.
+A fee must be paid to the Aleo network for deployment. This fee can be paid publicly using a public balance or privately using an `credits.aleo` Record. The fee for deploying any program can be calculated with the static `estimateDeploymentFee()` method of the `ProgramManagerBase` class (which is the underlying WASM module).
 ```typescript
+import { ProgramManagerBase, AleoNetworkClient } from '@provablehq/sdk';
+
 const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
 
-const fee = await ProgramManager.estimateDeploymentFee(program);
+// Get the program imports (if any)
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const imports = await networkClient.getProgramImports(program);
+
+const fee = ProgramManagerBase.estimateDeploymentFee(program, imports);
 ```
 Deployment fees are calculated based on the following formulas. The cost of deploying a program is proportional to the amount of opcodes used in a program and the complexity of the operations it performs. More computationally expensive opcode usage such as hash functions will cost more than simple opcodes such as arithmetic or boolean opcodes.
 

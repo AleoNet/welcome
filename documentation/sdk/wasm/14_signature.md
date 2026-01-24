@@ -211,3 +211,37 @@ Parameters | Type | Description
 __*return*__ | Plaintext | **
 
 ---
+
+### signValue
+
+
+Sign an instance of a valid Aleo data type or record.
+
+```javascript
+signValue(private_key, message) ► Signature
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__private_key__ | PrivateKey | *The private key used to sign the message*
+__message__ | `string` | *The string representation of the Aleo datatype or record to sign*
+__*return*__ | Signature | *Signature of the message*
+
+---
+
+### verifyValue
+
+
+Verify a signature over an Aleo datatype or record by an address.
+
+```javascript
+verifyValue(address, message) ► boolean
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__address__ | Address | *The address used to verify the signature*
+__message__ | `string` | *The message to verify, which must be the string representation of a valid Aleo datatype or record*
+__*return*__ | `boolean` | *True if the signature is valid, false otherwise*
+
+---

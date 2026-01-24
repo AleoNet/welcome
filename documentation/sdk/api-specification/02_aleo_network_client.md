@@ -11,59 +11,95 @@ Client library that encapsulates REST calls to publicly exposed endpoints of Ale
 **Kind**: global class  
 
 * AleoNetworkClient
-    * [new AleoNetworkClient(host)](#new_AleoNetworkClient_new)
-    * [.setHost(host)](#AleoNetworkClient+setHost)
-    * [.setAccount(account)](#AleoNetworkClient+setAccount)
-    * [.getAccount()](#AleoNetworkClient+getAccount)
-    * [.fetchData(url)](#AleoNetworkClient+fetchData)
-    * [.fetchRaw(url)](#AleoNetworkClient+fetchRaw)
-    * [.findRecords(startHeight, endHeight, unspent, programs, amounts, maxMicrocredits, nonces, privateKey)](#AleoNetworkClient+findRecords)
-    * [.findUnspentRecords(startHeight, endHeight, programs, amounts, maxMicrocredits, nonces, privateKey)](#AleoNetworkClient+findUnspentRecords)
-    * [.getBlock(height)](#AleoNetworkClient+getBlock)
-    * [.getBlockRange(start, end)](#AleoNetworkClient+getBlockRange)
-    * [.getProgram(programId)](#getprogram)
-    * [.getProgramObject(inputProgram)](#getprogramobject)
-    * [.getProgramImports(inputProgram)](#getprogramimports)
-    * [.getProgramImportNames(inputProgram)](#getprogramimportnames)
-    * [.getDeploymentTransactionIDForProgram(program)](#getdeploymenttransactionidforprogram)
-    * [.getDeploymentTransactionForProgram(program)](#getdeploymenttransactionforprogram)
-    * [.getDeploymentTransactionObjectForProgram(program)](#getdeploymenttransactionobjectforprogram)
-    * [.getProgramMappingNames(programId)](#getprogrammappingnames)
-    * [.getProgramMappingValue(programId, mappingName, key)](#getprogrammappingvalue)
-    * [.getProgramMappingPlaintext(programId, mappingName, key)](#getprogrammappingplaintext)
-    * [.getLatestBlock()](#getlatestblock)
-    * [.getLatestHeight()](#getlatestheight)
-    * [.getLatestCommittee()](#getlatestcommittee)
-    * [.getStateRoot()](#getstateroot)
-    * [.getTransaction(id)](#gettransaction)
-    * [.getTransactionObject(transactionId)](#gettransactionobject)
-    * [.getTransactions(height)](#gettransactions)
-    * [.getTransactionsInMempool()](#gettransactionsinmempool)
-    * [.getTransitionId(inputOrOutputID)](#gettransitionid)
-    * [.submitTransaction(transaction)](#submittransaction)
-    * [.submitSolution(solution)](#submitsolution)
+    * _constructor_
+        * [new AleoNetworkClient(host, options)](#new_AleoNetworkClient_new)
+    * _instance_
+        * [.setHost(host)](#AleoNetworkClient+setHost)
+        * [.setAccount(account)](#AleoNetworkClient+setAccount)
+        * [.getAccount()](#AleoNetworkClient+getAccount) ⇒ <code>Account</code> \| <code>undefined</code>
+        * [.setVerboseErrors(verboseErrors)](#AleoNetworkClient+setVerboseErrors)
+        * [.setHeader(headerName, value)](#AleoNetworkClient+setHeader)
+        * [.removeHeader(headerName)](#AleoNetworkClient+removeHeader)
+        * [.fetchData(url)](#AleoNetworkClient+fetchData) ⇒ <code>Promise.&lt;T&gt;</code>
+        * [.fetchRaw(url)](#AleoNetworkClient+fetchRaw) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.findRecords(startHeight, endHeight, unspent, programs, amounts, maxMicrocredits, nonces, privateKey)](#AleoNetworkClient+findRecords) ⇒ <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code>
+        * [.findUnspentRecords(startHeight, endHeight, programs, amounts, maxMicrocredits, nonces, privateKey)](#AleoNetworkClient+findUnspentRecords) ⇒ <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code>
+        * [.getBlock(height)](#AleoNetworkClient+getBlock) ⇒ <code>Promise.&lt;BlockJSON&gt;</code>
+        * [.getBlockByHash(blockHash)](#AleoNetworkClient+getBlockByHash) ⇒ <code>Promise.&lt;BlockJSON&gt;</code>
+        * [.getBlockRange(start, end)](#AleoNetworkClient+getBlockRange) ⇒ <code>Promise.&lt;Array.&lt;BlockJSON&gt;&gt;</code>
+        * [.getProgram(programId, edition)](#getprogram) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.getLatestProgramEdition(programId)](#getlatestprogramedition) ⇒ <code>Promise.&lt;number&gt;</code>
+        * [.getProgramObject(inputProgram, edition)](#getprogramobject) ⇒ <code>Promise.&lt;Program&gt;</code>
+        * [.getProgramImports(inputProgram)](#getprogramimports) ⇒ <code>Promise.&lt;ProgramImports&gt;</code>
+        * [.getProgramImportNames(inputProgram)](#getprogramimportnames) ⇒ <code>Array.&lt;string&gt;</code>
+        * [.getDeploymentTransactionIDForProgram(program)](#getdeploymenttransactionidforprogram) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.getDeploymentTransactionForProgram(program)](#getdeploymenttransactionforprogram) ⇒ <code>Promise.&lt;TransactionJSON&gt;</code>
+        * [.getDeploymentTransactionObjectForProgram(program)](#getdeploymenttransactionobjectforprogram) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.getProgramMappingNames(programId)](#getprogrammappingnames) ⇒ <code>Promise.&lt;Array.&lt;string&gt;&gt;</code>
+        * [.getProgramMappingValue(programId, mappingName, key)](#getprogrammappingvalue) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.getProgramMappingPlaintext(programId, mappingName, key)](#getprogrammappingplaintext) ⇒ <code>Promise.&lt;Plaintext&gt;</code>
+        * [.getPublicBalance(address)](#getpublicbalance) ⇒ <code>Promise.&lt;number&gt;</code>
+        * [.getLatestBlock()](#getlatestblock) ⇒ <code>Promise.&lt;BlockJSON&gt;</code>
+        * [.getLatestHeight()](#getlatestheight) ⇒ <code>Promise.&lt;number&gt;</code>
+        * [.getLatestBlockHash()](#getlatestblockhash) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.getLatestCommittee()](#getlatestcommittee) ⇒ <code>Promise.&lt;object&gt;</code>
+        * [.getCommitteeByBlockHeight(blockHeight)](#getcommitteebyblockheight) ⇒ <code>Promise.&lt;object&gt;</code>
+        * [.getStateRoot()](#getstateroot) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.getTransaction(id)](#gettransaction) ⇒ <code>Promise.&lt;TransactionJSON&gt;</code>
+        * [.getConfirmedTransaction(transactionId)](#getconfirmedtransaction) ⇒ <code>Promise.&lt;ConfirmedTransactionJSON&gt;</code>
+        * [.getTransactionObject(transactionId)](#gettransactionobject) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.getTransactions(height)](#gettransactions) ⇒ <code>Promise.&lt;Array.&lt;ConfirmedTransactionJSON&gt;&gt;</code>
+        * [.getTransactionsByBlockHash(blockHash)](#gettransactionsbyblockhash) ⇒ <code>Promise.&lt;Array.&lt;ConfirmedTransactionJSON&gt;&gt;</code>
+        * [.getTransactionsInMempool()](#gettransactionsinmempool) ⇒ <code>Promise.&lt;Array.&lt;TransactionJSON&gt;&gt;</code>
+        * [.getTransitionId(inputOrOutputID)](#gettransitionid) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.submitTransaction(transaction)](#submittransaction) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.submitSolution(solution)](#submitsolution) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.submitProvingRequest(options)](#submitprovingrequest) ⇒ <code>Promise.&lt;ProvingResponse&gt;</code>
+        * [.waitForTransactionConfirmation(transactionId, checkInterval, timeout)](#waitfortransactionconfirmation) ⇒ <code>Promise.&lt;ConfirmedTransactionJSON&gt;</code>
 
 ## Constructor
 
 <a name="new_AleoNetworkClient_new"></a>
 
-### AleoNetworkClient {#new_AleoNetworkClient_new}
+### AleoNetworkClient
+
+<p>Create a new AleoNetworkClient instance to interact with the Aleo network.</p>
 
 ```javascript
-new AleoNetworkClient(host)
+new AleoNetworkClient(host, options)
 ```
 
-| Param | Type |
-| --- | --- |
-| host | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| host | <code>string</code> | The URL of the Aleo node to connect to |
+| options | <code>AleoNetworkClientOptions</code> | Optional configuration options |
+
+#### Interface
+
+```typescript
+interface AleoNetworkClientOptions {
+    headers?: Record<string, string>;
+}
+```
+
+| Property | Type | Description |
+| --- | --- | --- |
+| headers | <code>Record&lt;string, string&gt;</code> | Optional headers to include in all requests |
 
 **Example**  
 ```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
 // Connection to a local node
-let local_connection = new AleoNetworkClient("http://localhost:3030");
+const localConnection = new AleoNetworkClient("http://localhost:3030");
 
 // Connection to a public beacon node
-let public_connection = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const publicConnection = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+
+// Connection with custom headers
+const customConnection = new AleoNetworkClient("https://api.explorer.provable.com/v1", {
+    headers: { "Authorization": "Bearer token" }
+});
 ```
 
 <a name="AleoNetworkClient+setHost"></a>
@@ -78,9 +114,9 @@ let public_connection = new AleoNetworkClient("https://api.explorer.provable.com
 networkClient.setHost(host)
 ```
 
-| Param | Type |
-| --- | --- |
-| host | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| host | <code>string</code> | The URL of the Aleo node to connect to |
 
 **Example**  
 ```js
@@ -102,9 +138,9 @@ let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable
 networkClient.setAccount(account)
 ```
 
-| Param | Type |
-| --- | --- |
-| account | <code>Account</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| account | <code>Account</code> | The account to use for networkClient calls |
 
 **Example**  
 ```js
@@ -123,17 +159,88 @@ networkClient.setAccount(account);
 <p>Return the Aleo account used in the networkClient</p>
 
 ```javascript
-networkClient.getAccount() ⇒ Account
+networkClient.getAccount() ⇒ Account | undefined
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Account</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Account</code> \| <code>undefined</code> | The account if set, otherwise undefined |
 
 **Example**  
 ```js
 let account = networkClient.getAccount();
 ```
+
+---
+
+<a name="AleoNetworkClient+setVerboseErrors"></a>
+
+### setVerboseErrors {#AleoNetworkClient+setVerboseErrors}
+
+<p>Set verbose errors to true or false for the AleoNetworkClient. When set to true, if submitTransaction fails, the failure responses will report descriptive information as to why the transaction failed.</p>
+
+```javascript
+networkClient.setVerboseErrors(verboseErrors)
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| verboseErrors | <code>boolean</code> | Set verbose error mode to true or false |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+// Create a networkClient
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+
+// Set verbose mode to true
+networkClient.setVerboseErrors(true);
+```
+
+---
+
+<a name="AleoNetworkClient+setHeader"></a>
+
+### setHeader {#AleoNetworkClient+setHeader}
+
+<p>Set a header in the AleoNetworkClient's header map</p>
+
+```javascript
+networkClient.setHeader(headerName, value)
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| headerName | <code>string</code> | The name of the header to set |
+| value | <code>string</code> | The header value |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+// Create a networkClient
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+
+// Set the value of the `Accept-Language` header to `en-US`
+networkClient.setHeader('Accept-Language', 'en-US');
+```
+
+---
+
+<a name="AleoNetworkClient+removeHeader"></a>
+
+### removeHeader {#AleoNetworkClient+removeHeader}
+
+<p>Remove a header from the AleoNetworkClient's header map</p>
+
+```javascript
+networkClient.removeHeader(headerName)
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| headerName | <code>string</code> | The name of the header to remove |
 
 ---
 
@@ -149,10 +256,10 @@ let account = networkClient.getAccount();
 networkClient.fetchData(url) ⇒ Promise.<Type>
 ```
 
-| Param | Type |
-| --- | --- |
-| url | <code>undefined</code> | 
-| *return* | <code>Promise.&lt;Type&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | The URL to fetch data from |
+| *return* | <code>Promise.&lt;Type&gt;</code> | A JSON object parsed from the response |
 
 <a name="AleoNetworkClient+fetchRaw"></a>
 
@@ -166,10 +273,10 @@ networkClient.fetchData(url) ⇒ Promise.<Type>
 networkClient.fetchRaw(url) ⇒ Promise.<string>
 ```
 
-| Param | Type |
-| --- | --- |
-| url | <code>undefined</code> | 
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | The URL to fetch data from |
+| *return* | <code>Promise.&lt;string&gt;</code> | The raw response as an unparsed string |
 
 <a name="AleoNetworkClient+findRecords"></a>
 
@@ -193,7 +300,7 @@ networkClient.findRecords(startHeight, endHeight, unspent, programs, amounts, ma
 | maxMicrocredits | <code>number</code> | The maximum number of microcredits to search for |
 | nonces | <code>Array.&lt;string&gt;</code> | The nonces of already found records to exclude from the search |
 | privateKey | <code>string</code> | An optional private key to use to find unspent records. |
-| *return* | <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code> | 
+| *return* | <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code> | Array of decrypted record plaintexts |
 
 **Example**  
 ```js
@@ -228,7 +335,7 @@ networkClient.findUnspentRecords(startHeight, endHeight, programs, amounts, maxM
 | maxMicrocredits | <code>number</code> | The maximum number of microcredits to search for |
 | nonces | <code>Array.&lt;string&gt;</code> | The nonces of already found records to exclude from the search |
 | privateKey | <code>string</code> | An optional private key to use to find unspent records. |
-| *return* | <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code> | 
+| *return* | <code>Promise.&lt;Array.&lt;RecordPlaintext&gt;&gt;</code> | Array of decrypted unspent record plaintexts |
 
 **Example**  
 ```js
@@ -255,14 +362,39 @@ const records = await networkClient.findUnspentRecords(startHeight, undefined, [
 networkClient.getBlock(height) ⇒ Promise.<BlockJSON>
 ```
 
-| Param | Type |
-| --- | --- |
-| height | <code>number</code> | 
-| *return* | <code>Promise.&lt;BlockJSON&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| height | <code>number</code> | The block height to fetch |
+| *return* | <code>Promise.&lt;BlockJSON&gt;</code> | A JSON representation of the block |
 
 **Example**  
 ```js
 let block = await networkClient.getBlock(1234);
+```
+
+<a name="AleoNetworkClient+getBlockByHash"></a>
+
+---
+
+### getBlockByHash {#AleoNetworkClient+getBlockByHash}
+
+<p>Returns the contents of the block with the specified hash.</p>
+
+```javascript
+networkClient.getBlockByHash(blockHash) ⇒ Promise.<BlockJSON>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blockHash | <code>string</code> | The hash of the block to fetch |
+| *return* | <code>Promise.&lt;BlockJSON&gt;</code> | A javascript object representation of the block matching the hash |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const block = await networkClient.getBlockByHash("ab19dklwl9vp63zu3hwg57wyhvmqf92fx5g8x0t6dr72py8r87pxupqfne5t9");
 ```
 
 <a name="AleoNetworkClient+getBlockRange"></a>
@@ -271,17 +403,17 @@ let block = await networkClient.getBlock(1234);
 
 ### getBlockRange {#AleoNetworkClient+getBlockRange}
 
-<p>Returns a range of blocks between the specified block heights.</p>
+<p>Returns a range of blocks between the specified block heights. A maximum of 50 blocks can be fetched at a time.</p>
 
 ```javascript
 networkClient.getBlockRange(start, end) ⇒ Promise.<Array.<BlockJSON>>
 ```
 
-| Param | Type |
-| --- | --- |
-| start | <code>number</code> | 
-| end | <code>number</code> | 
-| *return* | <code>Promise.&lt;Array.&lt;BlockJSON&gt;&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| start | <code>number</code> | The starting block height |
+| end | <code>number</code> | The ending block height |
+| *return* | <code>Promise.&lt;Array.&lt;BlockJSON&gt;&gt;</code> | Array of blocks in the specified range |
 
 **Example**  
 ```js
@@ -297,19 +429,49 @@ let blockRange = await networkClient.getBlockRange(2050, 2100);
 <p>Returns the source code of a program given a program ID.</p>
 
 ```javascript
-networkClient.getProgram(programId) ⇒ Promise.<string>
+networkClient.getProgram(programId, edition) ⇒ Promise.<string>
 ```
 
 | Param | Type | Description |
 | --- | --- | --- |
 | programId | <code>string</code> | The program ID of a program deployed to the Aleo Network |
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| edition | <code>number</code> \| <code>undefined</code> | Optional edition of the program to fetch. When undefined, fetches the latest version. |
+| *return* | <code>Promise.&lt;string&gt;</code> | Source code of the program |
 
 **Example**  
 ```js
-let program = await networkClient.getProgram("hello_hello.aleo");
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const program = await networkClient.getProgram("hello_hello.aleo");
 const expectedSource = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n"
 assert.equal(program, expectedSource);
+```
+
+<a name="AleoNetworkClient+getLatestProgramEdition"></a>
+
+---
+
+### getLatestProgramEdition
+
+<p>Returns the current program edition deployed on the Aleo network.</p>
+
+```javascript
+networkClient.getLatestProgramEdition(programId) ⇒ Promise.<number>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| programId | <code>string</code> | The program ID of a program deployed to the Aleo Network |
+| *return* | <code>Promise.&lt;number&gt;</code> | The edition of the program |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const programEdition = await networkClient.getLatestProgramEdition("hello_hello.aleo");
+assert.equal(programEdition, 1);
 ```
 
 <a name="AleoNetworkClient+getProgramObject"></a>
@@ -321,17 +483,21 @@ assert.equal(program, expectedSource);
 <p>Returns a program object from a program ID or program source code.</p>
 
 ```javascript
-networkClient.getProgramObject(inputProgram) ⇒ Promise.<Program>
+networkClient.getProgramObject(inputProgram, edition) ⇒ Promise.<Program>
 ```
 
 | Param | Type | Description |
 | --- | --- | --- |
 | inputProgram | <code>string</code> | The program ID or program source code of a program deployed to the Aleo Network |
-| *return* | <code>Promise.&lt;Program&gt;</code> | 
+| edition | <code>number</code> \| <code>undefined</code> | Optional edition of the program to fetch. When undefined, fetches the latest version. |
+| *return* | <code>Promise.&lt;Program&gt;</code> | Source code of the program |
 
 **Example**  
 ```js
-let program = await networkClient.getProgramObject("hello_hello.aleo");
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const programID = "hello_hello.aleo";
 const programSource = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n"
 
 // Get program object from program ID or program source code
@@ -339,7 +505,7 @@ const programObjectFromID = await networkClient.getProgramObject(programID);
 const programObjectFromSource = await networkClient.getProgramObject(programSource);
 
 // Both program objects should be equal
-assert.equal(programObjectFromID.to_string(), programObjectFromSource.to_string());
+assert(programObjectFromID.to_string() === programObjectFromSource.to_string());
 ```
 
 <a name="AleoNetworkClient+getProgramImports"></a>
@@ -396,7 +562,7 @@ networkClient.getProgramImportNames(inputProgram) ⇒ Array.<string>
 | Param | Type | Description |
 | --- | --- | --- |
 | inputProgram | <code>Program</code> | The program id or program source code to get the imports of |
-| *return* | <code>Array.&lt;string&gt;</code> | 
+| *return* | <code>Array.&lt;string&gt;</code> | Array of program names that the input program imports |
 
 **Example**  
 ```js
@@ -417,10 +583,10 @@ assert.deepStrictEqual(programImportsNames, expectedImportsNames);
 networkClient.getDeploymentTransactionIDForProgram(program) ⇒ TransactionJSON
 ```
 
-| Param | Type |
-| --- | --- |
-| program | <code>Program</code> | 
-| *return* | <code>TransactionJSON</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| program | <code>Program</code> | The program ID to look up |
+| *return* | <code>Promise.&lt;string&gt;</code> | The transaction ID of the deployment |
 
 **Example**  
 ```js
@@ -439,10 +605,10 @@ let program = networkClient.getDeploymentTransactionIDForProgram("foo.aleo");
 networkClient.getDeploymentTransactionForProgram(program) ⇒ TransactionJSON
 ```
 
-| Param | Type |
-| --- | --- |
-| program | <code>Program</code> | 
-| *return* | <code>TransactionJSON</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| program | <code>Program</code> | The program ID to look up |
+| *return* | <code>Promise.&lt;TransactionJSON&gt;</code> | The deployment transaction JSON |
 
 **Example**  
 ```js
@@ -461,10 +627,10 @@ let program = networkClient.getDeploymentTransactionForProgram("foo.aleo");
 networkClient.getDeploymentTransactionObjectForProgram(program) ⇒ TransactionJSON
 ```
 
-| Param | Type |
-| --- | --- |
-| program | <code>Program</code> | 
-| *return* | <code>TransactionJSON</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| program | <code>Program</code> | The program ID to look up |
+| *return* | <code>Promise.&lt;Transaction&gt;</code> | The deployment transaction as a WASM object |
 
 <a name="AleoNetworkClient+getProgramMappingNames"></a>
 
@@ -481,7 +647,7 @@ networkClient.getProgramMappingNames(programId) ⇒ Promise.<Array.<string>>
 | Param | Type | Description |
 | --- | --- | --- |
 | programId | <code>string</code> | The program ID to get the mappings of (e.g. "credits.aleo") |
-| *return* | <code>Promise.&lt;Array.&lt;string&gt;&gt;</code> | 
+| *return* | <code>Promise.&lt;Array.&lt;string&gt;&gt;</code> | Array of mapping names in the program |
 
 **Example**  
 ```js
@@ -515,7 +681,7 @@ networkClient.getProgramMappingValue(programId, mappingName, key) ⇒ Promise.<s
 | programId | <code>string</code> | The program ID to get the mapping value of (e.g. "credits.aleo") |
 | mappingName | <code>string</code> | The name of the mapping to get the value of (e.g. "account") |
 | key | <code>string</code> | The key of the mapping to get the value of (e.g. "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px") |
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| *return* | <code>Promise.&lt;string&gt;</code> | The value at the specified key as a string |
 
 **Example**  
 ```js
@@ -542,7 +708,7 @@ networkClient.getProgramMappingPlaintext(programId, mappingName, key) ⇒ Promis
 | programId | <code>string</code> | The program ID to get the mapping value of (e.g. "credits.aleo") |
 | mappingName | <code>string</code> | The name of the mapping to get the value of (e.g. "account") |
 | key | <code>string</code> | The key of the mapping to get the value of (e.g. "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px") |
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| *return* | <code>Promise.&lt;Plaintext&gt;</code> | The value as a Plaintext WASM object |
 
 **Example**  
 ```js
@@ -564,7 +730,38 @@ const expectedState = {
     validator: "aleo1u6940v5m0fzud859xx2c9tj2gjg6m5qrd28n636e6fdd2akvfcgqs34mfd",
     microcredits: BigInt("9007199254740991")
 };
-assert.equal(unbondedState, expectedState);
+assert.deepEqual(unbondedStateObject, expectedState);
+```
+
+<a name="AleoNetworkClient+getPublicBalance"></a>
+
+---
+
+### getPublicBalance
+
+<p>Returns the public balance of an address from the account mapping in credits.aleo</p>
+
+```javascript
+networkClient.getPublicBalance(address) ⇒ Promise.<number>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>Address</code> \| <code>string</code> | A string or wasm object representing an address |
+| *return* | <code>Promise.&lt;number&gt;</code> | The public balance of the address in microcredits |
+
+**Example**  
+```js
+import { AleoNetworkClient, Account } from "@provablehq/sdk/mainnet.js";
+
+// Create a network client.
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+
+// Get the balance of an account from either an address object or address string.
+const account = Account.fromCiphertext(process.env.ciphertext, process.env.password);
+const publicBalance = await networkClient.getPublicBalance(account.address());
+const publicBalanceFromString = await networkClient.getPublicBalance(account.address().to_string());
+assert(publicBalance === publicBalanceFromString);
 ```
 
 <a name="AleoNetworkClient+getLatestBlock"></a>
@@ -579,9 +776,9 @@ assert.equal(unbondedState, expectedState);
 networkClient.getLatestBlock() ⇒ Promise.<BlockJSON>
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Promise.&lt;BlockJSON&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;BlockJSON&gt;</code> | The latest block as JSON |
 
 **Example**  
 ```js
@@ -600,13 +797,40 @@ let latestHeight = await networkClient.getLatestBlock();
 networkClient.getLatestHeight() ⇒ Promise.<number>
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Promise.&lt;number&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;number&gt;</code> | The latest block height |
 
 **Example**  
 ```js
-let latestHeight = await networkClient.getLatestHeight();
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const latestHeight = await networkClient.getLatestHeight();
+```
+
+<a name="AleoNetworkClient+getLatestBlockHash"></a>
+
+---
+
+### getLatestBlockHash
+
+<p>Returns the latest block hash.</p>
+
+```javascript
+networkClient.getLatestBlockHash() ⇒ Promise.<string>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;string&gt;</code> | The latest block hash |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const latestHash = await networkClient.getLatestBlockHash();
 ```
 
 <a name="AleoNetworkClient+getLatestCommittee"></a>
@@ -621,13 +845,41 @@ let latestHeight = await networkClient.getLatestHeight();
 networkClient.getLatestCommittee() ⇒ Promise.<object>
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Promise.&lt;object&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;object&gt;</code> | The current validator committee |
 
 **Example**  
 ```js
-let latestCommittee = await networkClient.getLatestCommittee();
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const latestCommittee = await networkClient.getLatestCommittee();
+```
+
+<a name="AleoNetworkClient+getCommitteeByBlockHeight"></a>
+
+---
+
+### getCommitteeByBlockHeight
+
+<p>Returns the committee at the specified block height.</p>
+
+```javascript
+networkClient.getCommitteeByBlockHeight(blockHeight) ⇒ Promise.<object>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blockHeight | <code>number</code> | The height of the block to fetch the committee for |
+| *return* | <code>Promise.&lt;object&gt;</code> | A javascript object containing the committee |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const committee = await networkClient.getCommitteeByBlockHeight(1234);
 ```
 
 <a name="AleoNetworkClient+getStateRoot"></a>
@@ -642,9 +894,9 @@ let latestCommittee = await networkClient.getLatestCommittee();
 networkClient.getStateRoot() ⇒ Promise.<string>
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;string&gt;</code> | The current state/merkle root |
 
 **Example**  
 ```js
@@ -663,14 +915,43 @@ let stateRoot = await networkClient.getStateRoot();
 networkClient.getTransaction(id) ⇒ Promise.<TransactionJSON>
 ```
 
-| Param | Type |
-| --- | --- |
-| id | <code>string</code> | 
-| *return* | <code>Promise.&lt;TransactionJSON&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | The transaction ID to look up |
+| *return* | <code>Promise.&lt;TransactionJSON&gt;</code> | The transaction as JSON |
 
 **Example**  
 ```js
-let transaction = await networkClient.getTransaction("at1handz9xjrqeynjrr0xay4pcsgtnczdksz3e584vfsgaz0dh0lyxq43a4wj");
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const transaction = await networkClient.getTransaction("at1handz9xjrqeynjrr0xay4pcsgtnczdksz3e584vfsgaz0dh0lyxq43a4wj");
+```
+
+<a name="AleoNetworkClient+getConfirmedTransaction"></a>
+
+---
+
+### getConfirmedTransaction
+
+<p>Returns a confirmed transaction by its unique identifier.</p>
+
+```javascript
+networkClient.getConfirmedTransaction(transactionId) ⇒ Promise.<ConfirmedTransactionJSON>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transactionId | <code>string</code> | The transaction ID to fetch |
+| *return* | <code>Promise.&lt;ConfirmedTransactionJSON&gt;</code> | A json object containing the confirmed transaction |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const transaction = await networkClient.getConfirmedTransaction("at1handz9xjrqeynjrr0xay4pcsgtnczdksz3e584vfsgaz0dh0lyxq43a4wj");
+assert.equal(transaction.status, "accepted");
 ```
 
 <a name="AleoNetworkClient+getTransactionObject"></a>
@@ -685,10 +966,10 @@ let transaction = await networkClient.getTransaction("at1handz9xjrqeynjrr0xay4pc
 networkClient.getTransactionObject(transactionId) ⇒ Promise.<Transaction>
 ```
 
-| Param | Type |
-| --- | --- |
-| transactionId | <code>string</code> | 
-| *return* | <code>Promise.&lt;Transaction&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| transactionId | <code>string</code> | The transaction ID to look up |
+| *return* | <code>Promise.&lt;Transaction&gt;</code> | The transaction as a WASM object |
 
 **Example**  
 ```js
@@ -722,14 +1003,42 @@ const transactionSummary = transactionObject.summary();
 networkClient.getTransactions(height) ⇒ Promise.<Array.<ConfirmedTransactionJSON>>
 ```
 
-| Param | Type |
-| --- | --- |
-| height | <code>number</code> | 
-| *return* | <code>Promise.&lt;Array.&lt;ConfirmedTransactionJSON&gt;&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| height | <code>number</code> | The block height to fetch transactions for |
+| *return* | <code>Promise.&lt;Array.&lt;ConfirmedTransactionJSON&gt;&gt;</code> | Array of confirmed transactions |
 
 **Example**  
 ```js
-let transactions = await networkClient.getTransactions(654);
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const transactions = await networkClient.getTransactions(654);
+```
+
+<a name="AleoNetworkClient+getTransactionsByBlockHash"></a>
+
+---
+
+### getTransactionsByBlockHash
+
+<p>Returns the confirmed transactions present in the block with the specified block hash.</p>
+
+```javascript
+networkClient.getTransactionsByBlockHash(blockHash) ⇒ Promise.<Array.<ConfirmedTransactionJSON>>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| blockHash | <code>string</code> | The block hash to fetch the confirmed transactions at |
+| *return* | <code>Promise.&lt;Array.&lt;ConfirmedTransactionJSON&gt;&gt;</code> | An array of confirmed transactions (in JSON format) for the block hash |
+
+**Example**  
+```js
+import { AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const transactions = await networkClient.getTransactionsByBlockHash("ab19dklwl9vp63zu3hwg57wyhvmqf92fx5g8x0t6dr72py8r87pxupqfne5t9");
 ```
 
 <a name="AleoNetworkClient+getTransactionsInMempool"></a>
@@ -744,9 +1053,9 @@ let transactions = await networkClient.getTransactions(654);
 networkClient.getTransactionsInMempool() ⇒ Promise.<Array.<TransactionJSON>>
 ```
 
-| Param | Type |
-| --- | --- |
-| *return* | <code>Promise.&lt;Array.&lt;TransactionJSON&gt;&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Promise.&lt;Array.&lt;TransactionJSON&gt;&gt;</code> | Array of transactions currently in the mempool |
 
 **Example**  
 ```js
@@ -768,7 +1077,7 @@ networkClient.getTransitionId(inputOrOutputID) ⇒ Promise.<string>
 | Param | Type | Description |
 | --- | --- | --- |
 | inputOrOutputID | <code>string</code> | ID of the input or output. |
-| *return* | <code>Promise.&lt;string&gt;</code> | 
+| *return* | <code>Promise.&lt;string&gt;</code> | The transition ID containing the input or output |
 
 **Example**  
 ```js
@@ -790,7 +1099,7 @@ networkClient.submitTransaction(transaction) ⇒ string
 | Param | Type | Description |
 | --- | --- | --- |
 | transaction | <code>Transaction</code> | The transaction to submit to the network |
-| *return* | <code>string</code> | 
+| *return* | <code>Promise.&lt;string&gt;</code> | The transaction ID of the submitted transaction |
 
 <a name="AleoNetworkClient+submitSolution"></a>
 
@@ -807,4 +1116,71 @@ networkClient.submitSolution(solution) ⇒ Promise.<string>
 | Param | Type | Description |
 | --- | --- | --- |
 | solution | <code>string</code> | The string representation of the solution desired to be submitted to the network. |
-| *return* | <code>Promise.&lt;string&gt;</code> |
+| *return* | <code>Promise.&lt;string&gt;</code> | The solution id of the submitted solution or the resulting error |
+
+<a name="AleoNetworkClient+submitProvingRequest"></a>
+
+---
+
+### submitProvingRequest
+
+<p>Submit a ProvingRequest to a remote proving service for delegated proving. If the broadcast flag of the ProvingRequest is set to true, the remote service will attempt to broadcast the result Transaction on behalf of the requestor.</p>
+
+```javascript
+networkClient.submitProvingRequest(options) ⇒ Promise.<ProvingResponse>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>DelegatedProvingParams</code> | The optional parameters required to submit a proving request |
+| *return* | <code>Promise.&lt;ProvingResponse&gt;</code> | The ProvingResponse containing the transaction result and the result of the broadcast if the broadcast flag was set to true |
+
+#### DelegatedProvingParams Interface
+
+| Property | Type | Description |
+| --- | --- | --- |
+| provingRequest | <code>ProvingRequest</code> \| <code>string</code> | The proving request being submitted to the network |
+| url | <code>string</code> | Optional URL of the delegated proving service |
+| apiKey | <code>string</code> | Optional API key used for generating a JWT |
+| consumerId | <code>string</code> | Optional consumer ID associated with the API key |
+| jwtData | <code>JWTData</code> | Optional JWT token used for authenticating with the proving service |
+
+<a name="AleoNetworkClient+waitForTransactionConfirmation"></a>
+
+---
+
+### waitForTransactionConfirmation
+
+<p>Await a submitted transaction to be confirmed or rejected on the Aleo network.</p>
+
+```javascript
+networkClient.waitForTransactionConfirmation(transactionId, checkInterval, timeout) ⇒ Promise.<ConfirmedTransactionJSON>
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transactionId | <code>string</code> | The transaction ID to wait for confirmation |
+| checkInterval | <code>number</code> | The interval in milliseconds to check for confirmation (default: 2000) |
+| timeout | <code>number</code> | The maximum time in milliseconds to wait for confirmation (default: 45000) |
+| *return* | <code>Promise.&lt;ConfirmedTransactionJSON&gt;</code> | The confirmed transaction object that returns if the transaction is confirmed |
+
+**Example**  
+```js
+import { AleoNetworkClient, Account, ProgramManager } from "@provablehq/sdk/mainnet.js";
+
+// Create a network client and program manager.
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1");
+
+// Set the account for the program manager.
+programManager.setAccount(Account.fromCiphertext(process.env.ciphertext, process.env.password));
+
+// Build a transfer transaction.
+const tx = await programManager.buildTransferPublicTransaction(100, "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", 0);
+
+// Submit the transaction to the network.
+const transactionId = await networkClient.submitTransaction(tx);
+
+// Wait for the transaction to be confirmed.
+const transaction = await networkClient.waitForTransactionConfirmation(transactionId);
+```

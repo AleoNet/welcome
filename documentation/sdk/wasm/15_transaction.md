@@ -130,12 +130,12 @@ __*return*__ | RecordCiphertext | **
 Returns the transaction's base fee.
 
 ```javascript
-baseFeeAmount() ► BigInt
+baseFeeAmount() ► bigint
 ```
 
 Parameters | Type | Description
 --- | --- | ---
-__*return*__ | `BigInt` | **
+__*return*__ | `bigint` | The transaction's base fee |
 
 ---
 
@@ -145,12 +145,12 @@ __*return*__ | `BigInt` | **
 Returns the transaction's total fee.
 
 ```javascript
-feeAmount() ► BigInt
+feeAmount() ► bigint
 ```
 
 Parameters | Type | Description
 --- | --- | ---
-__*return*__ | `BigInt` | **
+__*return*__ | `bigint` | The transaction's total fee |
 
 ---
 
@@ -159,15 +159,13 @@ __*return*__ | `BigInt` | **
 
 Returns the transaction's priority fee.
 
-returns {BigInt} The transaction's priority fee.
-
 ```javascript
-priorityFeeAmount() ► BigInt
+priorityFeeAmount() ► bigint
 ```
 
 Parameters | Type | Description
 --- | --- | ---
-__*return*__ | `BigInt` | **
+__*return*__ | `bigint` | The transaction's priority fee |
 
 ---
 

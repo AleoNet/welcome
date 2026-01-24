@@ -11,68 +11,88 @@ The ProgramManager class is used to execute and deploy programs on the Aleo netw
 **Kind**: global class
 
 * ProgramManager
-  * [new ProgramManager(host, keyProvider, recordProvider)](#programmanager)
-  * [.setAccount(account)](#setaccount)
-  * [.setKeyProvider(keyProvider)](#setkeyprovider)
-  * [.setHost(host)](#sethost)
-  * [.setRecordProvider(recordProvider)](#setrecordprovider)
-  * [.setHeader(headerName, value)](#setheader)
-  * [.setInclusionProver(provingKey)](#setinclusionprover)
-  * [.removeHeader(headerName)](#removeheader)
-  * [.checkFee(address, feeAmount)](#checkfee)
-  * [.verifyProgram(program)](#verifyprogram)
-  * [.createProgramFromSource(program)](#createprogramfromsource)
-  * [.creditsProgram()](#creditsprogram)
-  * [.synthesizeKeys(program, function_id, inputs, privateKey)](#synthesizekeys)
-  * [.verifyExecution(executionResponse, blockHeight, imports, importedVerifyingKeys)](#verifyexecution)
-  * [.run(program, function_name, inputs, proveExecution, imports, keySearchParams, provingKey, verifyingKey, privateKey, offlineQuery)](#run)
-  * [.buildDeploymentTransaction(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#builddeploymenttransaction)
-  * [.buildUpgradeTransaction(options)](#buildupgradetransaction)
-  * [.deploy(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#deploy)
-  * [.buildExecutionTransaction(options)](#buildexecutiontransaction)
-  * [.buildTransactionFromAuthorization(options)](#buildtransactionfromauthorization)
-  * [.execute(options)](#execute)
-  * [.buildAuthorization(options)](#buildauthorization)
-  * [.buildAuthorizationUnchecked(options)](#buildauthorizationunchecked)
-  * [.buildFeeAuthorization(options)](#buildfeeauthorization)
-  * [.provingRequest(options)](#provingrequest)
-  * [.estimateFeeForAuthorization(options)](#estimatefeeforauthorization)
-  * [.estimateExecutionFee(options)](#estimateexecutionfee)
-  * [.join(recordOne, recordTwo, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey, offlineQuery)](#join)
-  * [.split(splitAmount, amountRecord, privateKey, offlineQuery)](#split)
-  * [.buildTransferTransaction(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#buildtransfertransaction)
-  * [.buildTransferPublicTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublictransaction)
-  * [.buildTransferPublicAsSignerTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublicassignertransaction)
-  * [.transfer(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#transfer)
-  * [.buildBondPublicTransaction(validator_address, withdrawal_address, amount, options)](#buildbondpublictransaction)
-  * [.bondPublic(validator_address, withdrawal_address, amount, options)](#bondpublic)
-  * [.buildBondValidatorTransaction(validator_address, withdrawal_address, amount, commission, options)](#buildbondvalidatortransaction)
-  * [.bondValidator(validator_address, withdrawal_address, amount, commission, options)](#bondvalidator)
-  * [.buildUnbondPublicTransaction(staker_address, amount, options)](#buildunbondpublictransaction)
-  * [.unbondPublic(staker_address, amount, options)](#unbondpublic)
-  * [.buildClaimUnbondPublicTransaction(staker_address, options)](#buildclaimunbondpublictransaction)
-  * [.claimUnbondPublic(staker_address, options)](#claimunbondpublic)
-  * [.buildSetValidatorStateTransaction(validator_state, options)](#buildsetvalidatorstatetransaction)
-  * [.setValidatorState(validator_state, options)](#setvalidatorstate)
-  * [.buildDevnodeExecutionTransaction(options)](#builddevnodeexecutiontransaction)
-  * [.buildDevnodeDeploymentTransaction(options)](#builddevnodedeploymenttransaction)
-  * [.buildDevnodeUpgradeTransaction(options)](#builddevnodeupgradetransaction)
+    * _constructor_
+        * [new ProgramManager(host, keyProvider, recordProvider)](#new_ProgramManager_new)
+    * _instance_
+        * [.setAccount(account)](#setaccount)
+        * [.setKeyProvider(keyProvider)](#setkeyprovider)
+        * [.setHost(host)](#sethost)
+        * [.setRecordProvider(recordProvider)](#setrecordprovider)
+        * [.setHeader(headerName, value)](#setheader)
+        * [.setInclusionProver(provingKey)](#setinclusionprover)
+        * [.removeHeader(headerName)](#removeheader)
+        * [.checkFee(address, feeAmount)](#checkfee)
+        * [.verifyProgram(program)](#verifyprogram)
+        * [.createProgramFromSource(program)](#createprogramfromsource) ⇒ <code>Program</code>
+        * [.creditsProgram()](#creditsprogram) ⇒ <code>Program</code>
+        * [.synthesizeKeys(program, function_id, inputs, privateKey)](#synthesizekeys) ⇒ <code>Promise.&lt;FunctionKeyPair&gt;</code>
+        * [.verifyExecution(executionResponse, blockHeight, imports, importedVerifyingKeys)](#verifyexecution) ⇒ <code>boolean</code>
+        * [.run(program, function_name, inputs, proveExecution, imports, keySearchParams, provingKey, verifyingKey, privateKey, offlineQuery)](#run) ⇒ <code>Promise.&lt;ExecutionResponse&gt;</code>
+        * [.buildDeploymentTransaction(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#builddeploymenttransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildUpgradeTransaction(options)](#buildupgradetransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.deploy(program, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey)](#deploy) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildExecutionTransaction(options)](#buildexecutiontransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildTransactionFromAuthorization(options)](#buildtransactionfromauthorization) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.execute(options)](#execute) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildAuthorization(options)](#buildauthorization) ⇒ <code>Promise.&lt;Authorization&gt;</code>
+        * [.buildAuthorizationUnchecked(options)](#buildauthorizationunchecked) ⇒ <code>Promise.&lt;Authorization&gt;</code>
+        * [.buildFeeAuthorization(options)](#buildfeeauthorization) ⇒ <code>Promise.&lt;Authorization&gt;</code>
+        * [.provingRequest(options)](#provingrequest) ⇒ <code>Promise.&lt;ProvingRequest&gt;</code>
+        * [.estimateFeeForAuthorization(options)](#estimatefeeforauthorization) ⇒ <code>Promise.&lt;bigint&gt;</code>
+        * [.estimateExecutionFee(options)](#estimateexecutionfee) ⇒ <code>Promise.&lt;bigint&gt;</code>
+        * [.join(recordOne, recordTwo, priorityFee, privateFee, recordSearchParams, feeRecord, privateKey, offlineQuery)](#join) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.split(splitAmount, amountRecord, privateKey, offlineQuery)](#split) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildTransferTransaction(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#buildtransfertransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildTransferPublicTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublictransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildTransferPublicAsSignerTransaction(amount, recipient, priorityFee, privateKey, offlineQuery)](#buildtransferpublicassignertransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.transfer(amount, recipient, transferType, priorityFee, privateFee, recordSearchParams, amountRecord, feeRecord, privateKey, offlineQuery)](#transfer) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildBondPublicTransaction(validator_address, withdrawal_address, amount, options)](#buildbondpublictransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.bondPublic(validator_address, withdrawal_address, amount, options)](#bondpublic) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildBondValidatorTransaction(validator_address, withdrawal_address, amount, commission, options)](#buildbondvalidatortransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.bondValidator(validator_address, withdrawal_address, amount, commission, options)](#bondvalidator) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildUnbondPublicTransaction(staker_address, amount, options)](#buildunbondpublictransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.unbondPublic(staker_address, amount, options)](#unbondpublic) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildClaimUnbondPublicTransaction(staker_address, options)](#buildclaimunbondpublictransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.claimUnbondPublic(staker_address, options)](#claimunbondpublic) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildSetValidatorStateTransaction(validator_state, options)](#buildsetvalidatorstatetransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.setValidatorState(validator_state, options)](#setvalidatorstate) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.buildDevnodeExecutionTransaction(options)](#builddevnodeexecutiontransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildDevnodeDeploymentTransaction(options)](#builddevnodedeploymenttransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
+        * [.buildDevnodeUpgradeTransaction(options)](#builddevnodeupgradetransaction) ⇒ <code>Promise.&lt;Transaction&gt;</code>
 
 ## Constructor
 
+<a name="new_ProgramManager_new"></a>
+
 ### ProgramManager
 
-Create a new instance of the ProgramManager
+<p>Create a new instance of the ProgramManager for executing and deploying programs on the Aleo network.</p>
 
 ```javascript
-ProgramManager(host, keyProvider, recordProvider)
+new ProgramManager(host, keyProvider, recordProvider)
 ```
 
-Parameters | Type | Description
---- | --- | ---
-host | `string` | *A host uri running the official Aleo API*
-keyProvider | `FunctionKeyProvider` | *A key provider that implements FunctionKeyProvider interface*
-recordProvider | `RecordProvider` | *A record provider that implements RecordProvider interface*
+| Param | Type | Description |
+| --- | --- | --- |
+| host | <code>string</code> | A host URI running the official Aleo API |
+| keyProvider | <code>FunctionKeyProvider</code> | A key provider that implements FunctionKeyProvider interface |
+| recordProvider | <code>RecordProvider</code> | A record provider that implements RecordProvider interface |
+
+**Example**  
+```js
+import { AleoKeyProvider, ProgramManager, NetworkRecordProvider, Account, AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
+
+// Create a new NetworkClient, KeyProvider, and RecordProvider
+const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const account = new Account();
+const keyProvider = new AleoKeyProvider();
+const recordProvider = new NetworkRecordProvider(account, networkClient);
+keyProvider.useCache(true);
+
+// Initialize a program manager with the key provider and record provider
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+programManager.setAccount(account);
+```
 
 ## Options
 
