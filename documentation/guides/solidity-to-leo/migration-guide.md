@@ -205,7 +205,6 @@ contract Example {
 - **Leo**: Mapping values are accessible via REST API endpoints without any program code:
   - Endpoint: `GET /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}`
   - Example: `GET /testnet3/program/credis.aleo/mapping/account/aleo1abc...`
-  - Reference: [Get Mapping Value API](../../apis/v2/get-mapping-value.api.mdx)
 
 ### Deleting state variables
 
