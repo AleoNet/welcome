@@ -250,7 +250,7 @@ const recordProvider = new NetworkRecordProvider(USER1, networkClient);
 const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
 programManager.setAccount(USER1);
 
-/// Send private transfer to user 2.  When the input record is not specified, the NetworkRecordProvider will automatically find a credits.aleo record with enough enough balance
+/// Send private transfer to user 2.  When the input record is not specified, the NetworkRecordProvider will automatically find a credits.aleo record with enough balance
 const USER2_ADDRESS = "aleo1...";
 const tx_id = await programManager.transfer(1, USER2_ADDRESS, "transfer_private", 0.2);
 ```

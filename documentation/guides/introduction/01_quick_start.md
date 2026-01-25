@@ -86,7 +86,7 @@ To begin deploying, select the `Token` program from the Examples dropdown menu o
 
 <img src={require('./images/select_token.png').default} width="800"/>
 
-Next, customize the the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
+Next, customize the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
 `program` field in the `program.json` file to match the new name. 
 
 <img src={require('./images/program_name_.png').default} width="800"/>
