@@ -158,7 +158,7 @@ The tools below allow developers to author private programs for the Aleo Network
 <!-- markdown-link-check-disable -->
 | Name                                         | Description                                                                                |
 |----------------------------------------------|--------------------------------------------------------------------------------------------|
-| [Aleo Instructions](/guides/aleo/aleo)     | Low-level assembly language supported by by the Aleo protocol for authoring Aleo programs. |
+| [Aleo Instructions](/guides/aleo/aleo)     | Low-level assembly language supported by the Aleo protocol for authoring Aleo programs. |
 | [Leo](https://docs.leo-lang.org/leo)         | Developer friendly programming language for writing private programs on Aleo.              |
 | [Leo Playground](https://play.leo-lang.org/) | A web-based IDE for writing and testing Leo programs.                                      |
 <!-- markdown-link-check-enable -->
