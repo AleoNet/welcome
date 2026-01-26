@@ -766,8 +766,6 @@ function foo:
 ```
 
 ```bash
-$ snarkvm execute foo
-
 ⛓  Constraints
 
  •  'test.aleo/foo' - 2,025 constraints (called 1 time)
@@ -814,8 +812,6 @@ function foo:
 
 ```
 ```bash
-$ snarkvm execute foo
-
 ⚠️  Failed to evaluate instruction (call child.aleo/foo into r0 r1;):
 Failed to evaluate instruction (assert.eq self.caller self.signer ;):
 'assert.eq' failed: 
@@ -838,8 +834,6 @@ function foo:
 ```
 
 ```bash
-$ snarkvm execute foo
-
 ⚠️  Failed to evaluate instruction (assert.neq self.caller self.signer ;):
 'assert.neq' failed: 
 'aleo1p2h0p8mr2pwrvd0llf2rz6gvtunya8alc49xldr8ajmk3p2c0sqs4fl5mm'
