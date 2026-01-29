@@ -157,3 +157,7 @@ where `G` is the generator of the base field, which is a vector of elliptic curv
 #### Generate an Address
 
 1. `address` = `view_key` * `G`
+
+:::note
+The point `G` is available to Aleo developers as `aleo::GENERATOR` in Leo and Aleo Instructions.
+:::
