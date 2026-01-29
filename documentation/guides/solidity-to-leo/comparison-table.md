@@ -18,7 +18,7 @@ A side-by-side comparison between **Leo** (Aleo) and **Solidity** (Ethereum/EVM)
 | **Randomness**       | [ChaCha random function](https://docs.leo-lang.org/language/operators#random) | Relies on 3rd party off-chain oracle (e.g. Chainlink VRF) |
 | **Error Handling**   | `assert`, `assert_eq`, `assert_neq` (no custom msg) | `assert`, `require`, `revert` with optional revert strings |
 | **Dispatch Type**    | Static dispatch (with dynamic dispatch in [roadmap](https://aleo.org/roadmap/)) | Dynamic dispatch |
-| **Built-in Functions** | `block.height`, `block.timestamp`, `self.signer`, `self.caller`, `self.address`, `network.id`, `signature::verify`, `group::GEN`, BHP hashes and commits, Keccak hashes, Pedersen hashes and commits, Poseidon hashes, SHA3 hashes etc. | `keccak256`, `sha256`, `ripemd160`, `ecrecover`, address.(member functions), `abi.encode`, `abi.decode`, block.(metadata) etc. |
+| **Built-in Functions** | `block.height`, `block.timestamp`, `self.signer`, `self.caller`, `self.address`, `network.id`, `signature::verify`, `group::GEN`, `aleo::GENERATOR`, `aleo::GENERATOR_POWERS`, BHP hashes and commits, Keccak hashes, Pedersen hashes and commits, Poseidon hashes, SHA3 hashes etc. | `keccak256`, `sha256`, `ripemd160`, `ecrecover`, address.(member functions), `abi.encode`, `abi.decode`, block.(metadata) etc. |
 | **Token Standard**   | [ARC-21](../standards/00_token_registry.md) | ERC20 |
 | **NFT Standard**     | [ARC-721](../standards/01_nft_standards.md) | ERC721 |
 | **Upgradability**    | Native upgradeability coming soon with [ARC-6](https://github.com/ProvableHQ/ARCs/discussions/94) | Via proxy patterns (Transparent, UUPS, Beacon) |
