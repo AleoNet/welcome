@@ -86,3 +86,17 @@ async function delegatedProvingExample() {
 
 await delegatedProvingExample();
 ```
+
+## Security
+
+The AleoVM/snarkVM stack has been extensively reviewed by third-party auditors, see [Security Audits](/concepts/audits).
+
+### Threat model and trust assumptions
+
+Delegated proving moves part of transaction generation to a third party. In particular:
+
+- **Privacy**: the prover learns the **signed plaintext** call data you submit (including private function inputs and outputs).
+- **Integrity**: the prover is **cryptographically bound** to the signed request (program/function + inputs/outputs) and cannot change your intent without invalidating it.
+- **Availability**: the prover can censor by dropping/delaying requests or not broadcasting. This is detectable, and you can retry or switch provers.
+
+Keep **key material local**: never send a private key to a delegated prover (sign client-side).
