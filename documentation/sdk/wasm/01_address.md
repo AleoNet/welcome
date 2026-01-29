@@ -281,14 +281,34 @@ toPlaintext() ► Plaintext
 <p>Verify a signature for a message signed by the address</p>
 
 ```javascript
-verify(Byte) ► boolean
+verify(message, signature) ► boolean
 ```
 
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| Byte | <code>Uint8Array</code> | array representing a message signed by the address |
+| message | <code>Uint8Array</code> | Byte array representing a message signed by the address |
+| signature | <code>Signature</code> | The signature to verify |
 | *return* | <code>boolean</code> | Boolean representing whether or not the signature is valid |
+
+---
+
+<a name="Address.fromProgramId"></a>
+
+### fromProgramId
+
+<p>Get the address of a program based on the program ID</p>
+
+```javascript
+fromProgramId(program_id) ► Address
+```
+
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| program_id | <code>string</code> | The program ID string |
+| *return* | <code>Address</code> | The address corresponding to the program ID |
 
 ---
