@@ -303,3 +303,18 @@ __other__ | Scalar | **
 __*return*__ | `boolean` | **
 
 ---
+
+### toField
+
+
+Cast the scalar element to a field element.
+
+```javascript
+toField() ► Field
+```
+
+Parameters | Type | Description
+--- | --- | ---
+__*return*__ | Field | **
+
+---

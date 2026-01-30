@@ -90,7 +90,7 @@ Image from https://www.youtube.com/watch?v=aW1-XcGzJ8M
 ### Narwhal
 Narwhal is a DAG-based Mempool abstraction protocol. Instead of the proposing validator sending all transactions in a block to the other validators they just send references or certificates of availability for blocks at each round.
 
-A single validator will run multiple workers as seperate processes or instances and a single primary. The workers are responsible for receiving transactions and stream transactions in batches to corresponding workers of other validators. Example worker 1 of validator 1 sends transactions to worker 1 of validator 2, worker 2 of validator 1 sends transactions to worker 2 of validator 2 and so on.
+A single validator will run multiple workers as separate processes or instances and a single primary. The workers are responsible for receiving transactions and stream transactions in batches to corresponding workers of other validators. Example worker 1 of validator 1 sends transactions to worker 1 of validator 2, worker 2 of validator 1 sends transactions to worker 2 of validator 2 and so on.
 
 ![Narwhal](./images/Narwhal1.png)
 Diagram 7: Narwhal Design  
@@ -100,9 +100,9 @@ Every workers within a validator sends batches hash (digest) to its primary. The
 
 Each validator then checks if the digest is from the same round and if it's worker has stored transactions batches that corresponds to the digest. If it is, the validator cast a vote by sending its signature back to the sending primary.  
 
-A certificate is created after the sender collects `n - f` signatures from different validators and send this certificate back to all other validators. This certificate is then used as refernece in the next round.
+A certificate is created after the sender collects `n - f` signatures from different validators and send this certificate back to all other validators. This certificate is then used as reference in the next round.
 
-Whenever a certificate is received, it means the block will be available for download. Therefore, certificate is often referred as a proof of availability and thus ensuring data availabilitiy.
+Whenever a certificate is received, it means the block will be available for download. Therefore, certificate is often referred as a proof of availability and thus ensuring data availability.
 
 ![Narwhal2](./images/Narwhal2.png)
 Diagram 8: A round in Narwhal    

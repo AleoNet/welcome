@@ -15,8 +15,8 @@ This repository serves as a guide for getting started with building on Aleo. Her
 - [🦁 Leo](https://leo-lang.org) - A programming language for creating ≈ privacy preserving decentralized applications on Aleo.
 - [📖 Leo Developer Docs](https://docs.leo-lang.org) - Developer documentation for the Leo programming language.
 - [🛝 Leo Playground](http://play.leo-lang.org) - A browser interface to the Leo compiler for rapid ZK development and testing.
-- [🧰 Provable SDK](https://provable.tools) - A Software Development Kit (SDK) for Zero-Knowledge Transactions.
-- [🔭 Provable Explorer](https://explorer.provable.com/) - View and analyze Aleo transactions on-chain in real time.
+- [🧰 Provable SDK](https://github.com/ProvableHQ/sdk) - A Software Development Kit (SDK) for interacting with privacy preserving decentralized applications on Aleo.
+- [🔭 Provable Explorer](https://explorer.provable.com) - View and analyze Aleo transactions on-chain in real time.
 
 
 

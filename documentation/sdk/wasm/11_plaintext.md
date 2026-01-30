@@ -240,3 +240,83 @@ toObject() ► Object
 | Param | Type | Description |
 | --- | --- | --- |
 | *return* | <code>Object</code> | The JS object representation of the plaintext |
+
+---
+
+<a name="Plaintext+toBytesRawLe"></a>
+
+### toBytesRawLe
+
+<p>Get the raw little endian byte array representation of the plaintext</p>
+
+```javascript
+toBytesRawLe() ► Uint8Array
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Uint8Array</code> | The raw little endian byte array representation of the plaintext |
+
+---
+
+<a name="Plaintext+toBytesRawBe"></a>
+
+### toBytesRawBe
+
+<p>Get the raw big endian byte array representation of the plaintext</p>
+
+```javascript
+toBytesRawBe() ► Uint8Array
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Uint8Array</code> | The raw big endian byte array representation of the plaintext |
+
+---
+
+<a name="Plaintext+toBitsRawLe"></a>
+
+### toBitsRawLe
+
+<p>Get the raw little endian boolean array representation of the bits of the plaintext</p>
+
+```javascript
+toBitsRawLe() ► Array
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Array</code> | The raw little endian boolean array representation of the bits of the plaintext |
+
+---
+
+<a name="Plaintext+toBitsRawBe"></a>
+
+### toBitsRawBe
+
+<p>Get the raw big endian boolean array representation of the bits of the plaintext</p>
+
+```javascript
+toBitsRawBe() ► Array
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Array</code> | The raw big endian boolean array representation of the bits of the plaintext |
+
+---
+
+<a name="Plaintext+toFieldsRaw"></a>
+
+### toFieldsRaw
+
+<p>Get the raw field array representation of the plaintext</p>
+
+```javascript
+toFieldsRaw() ► Array
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| *return* | <code>Array</code> | The raw field array representation of the plaintext |

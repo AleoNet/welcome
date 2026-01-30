@@ -86,7 +86,7 @@ To begin deploying, select the `Token` program from the Examples dropdown menu o
 
 <img src={require('./images/select_token.png').default} width="800"/>
 
-Next, customize the the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
+Next, customize the name of the program in line 1 of `src/main.leo` to use a unique identifier and then update the 
 `program` field in the `program.json` file to match the new name. 
 
 <img src={require('./images/program_name_.png').default} width="800"/>
@@ -156,12 +156,12 @@ Next, enter your Private Key and select the `mint_private` method from the Funct
 ```
 ["ALEO_ADDRESS_HERE", "50u64"]
 ```
-Click Estimate Fee followed by Execute.  As before with the deploy transaction, you can copy and past your transaction ID in a block explorer.  You should see something resembling the following:
+Click Estimate Fee followed by Execute.  As before with the deploy transaction, you can copy and paste your transaction ID in a block explorer.  You should see something resembling the following:
 
 <img src={require('./images/mint_private.png').default} width="1000"/>
 
 :::info
-The output of the transaction is a Record.  In order to decrypt the Record, you need to copy and past the ciphertext, navigate to the Records widget in the Leo Playground, enter the Record ciphertext along with the View Key that corresponds to your Account's Private Key, and click Decrypt.  The decrypted Record should resemble the following:
+The output of the transaction is a Record.  In order to decrypt the Record, you need to copy and paste the ciphertext, navigate to the Records widget in the Leo Playground, enter the Record ciphertext along with the View Key that corresponds to your Account's Private Key, and click Decrypt.  The decrypted Record should resemble the following:
 ```
 {
   owner: aleo1kypwp5m7qtk9mwazgcpg0tq8aal23mnrvwfvug65qgcg9xvsrqgspyjm6n.private,

@@ -135,6 +135,7 @@ import { deepStrictEqual } from 'assert';
 const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
 // Get the list of program mappings in credits.aleo.
+// The credits.aleo program contains the following mappings
 const expectedMappings = [
     "committee",
     "delegated",
@@ -222,7 +223,7 @@ const functions = credits_program.getFunctions();
 const transfer_function_inputs = credits_program.getFunctionInputs("transfer_private");
 
 // Inputs will be an array of objects with the following structure, this an be used to build web forms or other UI 
-// elements. An example of an Aleo function input form can be seen at https://provable.tools/develop.
+// elements.
 const expected_inputs = [
     {
       type:"record",

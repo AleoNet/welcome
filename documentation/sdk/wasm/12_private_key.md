@@ -177,3 +177,20 @@ fromPrivateKeyCiphertext(ciphertext, secret) ► PrivateKey
 | ciphertext | <code>PrivateKeyCiphertext</code> | Ciphertext representation of the private key |
 | secret | <code>string</code> | Secret originally used to encrypt the private key |
 | *return* | <code>PrivateKey</code> | Private key |
+
+---
+
+<a name="PrivateKey+signValue"></a>
+
+### signValue
+
+<p>Sign an instance of a valid Aleo data type or record</p>
+
+```javascript
+signValue(message) ► Signature
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> | The string representation of the Aleo datatype or record to sign |
+| *return* | <code>Signature</code> | Signature of the message |

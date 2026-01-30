@@ -53,18 +53,17 @@ Let's walk through an example:
 Similar to the [Deploying Programs](./03_deploy_programs.md) guide, you'll need to initialize some fundamental objects if you haven't already done so:
 
 ```typescript
-import { Account, AleoNetworkClient, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk';
+import { Account, initThreadPool, ProgramManager, AleoKeyProvider } from '@provablehq/sdk';
 
 // If the threadpool has not been initialized, do so (this step can be skipped if it's been initialized elsewhere). 
 await initThreadPool();
 
 const account = new Account({ privateKey: 'APrivateKey1...'});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
 
-const programManager = new ProgramManager(networkClient, keyProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 programManager.setAccount(account);
 ```
 If you're confused on any of the above code, head back to the previous guide for a more detailed explanation.
@@ -81,9 +80,9 @@ Once everything's been intialized, we can build and submit the transaction, and 
 const tx = await programManager.buildExecutionTransaction({
     programName: "betastaking.aleo",
     functionName: "stake_public",
-    fee: 0.10,
-    privateFee: false, // Assuming a value for privateFee
-    inputs: ["aleo17x23al8k9scqe0qqdppzcehlu8vm0ap0j5mukskdq56lsa25lv8qz5cz3g", "50000000u64"], // Example inputs matching the function definition
+    priorityFee: 0.10,
+    privateFee: false,
+    inputs: ["aleo17x23al8k9scqe0qqdppzcehlu8vm0ap0j5mukskdq56lsa25lv8qz5cz3g", "50000000u64"],
     keySearchParams: keySearchParams,
 });
 
@@ -98,14 +97,14 @@ const transaction = await programManager.networkClient.getTransaction(transactio
 Alternatively, we can just call the `execute()` method to build and broadcast the transaction in one call:
 
 ```typescript
-const transaction_id = await programManager.execute(
+const transaction_id = await programManager.execute({
     programName: "betastaking.aleo",
     functionName: "stake_public",
-    fee: 0.10,
-    privateFee: false, // Assuming a value for privateFee
-    inputs: ["aleo17x23al8k9scqe0qqdppzcehlu8vm0ap0j5mukskdq56lsa25lv8qz5cz3g", "50000000u64"], // Example inputs matching the function definition
+    priorityFee: 0.10,
+    privateFee: false,
+    inputs: ["aleo17x23al8k9scqe0qqdppzcehlu8vm0ap0j5mukskdq56lsa25lv8qz5cz3g", "50000000u64"],
     keySearchParams: keySearchParams,
-);
+});
 
 const transaction = await programManager.networkClient.getTransaction(transaction_id);
 ```
@@ -146,10 +145,9 @@ This approach is will not work for any function that has an async future defined
 :::
 
 ```typescript
-import { Account, AleoKeyProvider, ProgramManager, ProvingKey, VerifyingKey } from '@provablehq/sdk';
+import { Account, AleoKeyProvider, AleoNetworkClient, ProgramManager, ProvingKey, VerifyingKey } from '@provablehq/sdk';
 
 /// Initialize the key provider and network client.
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
 
@@ -159,10 +157,10 @@ const program = "program helloworld.aleo;\n\nfunction hello:\n    input r0 as u3
 /// Create the proving and verifying keys for the program and store them in the key provider.
 const provingKey = ProvingKey.fromString("...");
 const verifyingKey = VerifyingKey.fromString("...");
-keyProvider.cacheKeys("helloworld.aleo:main", [provingKey, verifyingKey]);
+keyProvider.cacheKeys("helloworld.aleo:hello", [provingKey, verifyingKey]);
 
 /// Create a program manager with the key provider.
-const programManager = new ProgramManager(networkProvider, KeyProvider);
+const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
 
 /// Create a temporary account for the execution of the program
 const account = new Account();
@@ -170,16 +168,17 @@ programManager.setAccount(account);
 
 /// Get the response and ensure that the program executed correctly
 const executionResponse = await programManager.run(
-  program: program, 
-  function_name: "hello", 
-  inputs: ["5u32", "5u32"], 
-  proveExecution :true, 
-  keySearchParams: {"cacheKey":"helloworld.aleo:main"},
-  
+  program,
+  "hello",
+  ["5u32", "5u32"],
+  true, // proveExecution
+  undefined, // imports
+  { cacheKey: "helloworld.aleo:hello" }, // keySearchParams
 );
 
-/// Verify the proof of the execution
-const proofIsValid = await programManager.verifyExecution(executionResponse);
+/// Verify the proof of the execution (requires block height parameter)
+const blockHeight = 9000000;
+const proofIsValid = programManager.verifyExecution(executionResponse, blockHeight);
 ```
 
 

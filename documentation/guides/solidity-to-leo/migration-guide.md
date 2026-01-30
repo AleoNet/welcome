@@ -205,7 +205,6 @@ contract Example {
 - **Leo**: Mapping values are accessible via REST API endpoints without any program code:
   - Endpoint: `GET /{network}/program/{programID}/mapping/{mappingName}/{mappingKey}`
   - Example: `GET /testnet3/program/credis.aleo/mapping/account/aleo1abc...`
-  - Reference: [Get Mapping Value API](../../apis/v2/get-mapping-value.api.mdx)
 
 ### Deleting state variables
 
@@ -776,8 +775,9 @@ program global_access.aleo {
     
     async function finalize_get_info() {
         // Available within finalize scope only
-        let current_height: u32 = block.height;  // Equivalent to block.number
-        let network: u32 = network.id;           // Equivalent to block.chainid
+        let current_height: u32 = block.height;      // Equivalent to block.number
+        let current_timestamp: i64 = block.timestamp; // Equivalent to block.timestamp
+        let network: u32 = network.id;               // Equivalent to block.chainid
     }
     
     transition get_caller_info() {
@@ -790,7 +790,7 @@ program global_access.aleo {
 
 **Key Differences:**
 - **Limited Scope**: Leo's block properties only available in async functions (finalize scope)
-- **No Timestamp**: Leo doesn't provide block timestamp at the moment until [ARC-0040](https://github.com/ProvableHQ/ARCs/discussions/69) is implemented
+- **Timestamp Available**: Leo provides `block.timestamp` which returns the unix timestamp as `i64`
 - **No Gas Tracking**: Leo doesn't expose gas/fee information to programs
 - **Program Context**: Leo provides `self.address` for the current program address
 
