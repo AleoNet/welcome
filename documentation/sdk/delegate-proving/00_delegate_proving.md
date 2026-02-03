@@ -10,19 +10,9 @@ Provable offers a proof delegation service that accelerates the transaction gene
 ## Obtain an API Key and JWT Token
 You will need an API key and JWT token in order to use the delegated proving service. Follow these steps:
 
-### 1. Register consumer to get a key:
-```bash
-curl -X POST -H "Content-Type: application/json" -d '{"username": "<your_username>"}' https://api.provable.com/consumers
-```
-
-### 2. Get a JWT:
-```bash
-curl -X POST -H "X-Provable-API-Key: <your_key>" https://api.provable.com/jwts/<your_consumer_id>
-```
-The token will be in the `Authorization` header of the response.
-
-### 3. Use the JWT for proving requests:
-For all requests to the prover, you will need to set your JWT as the `Authorization` header of the request.
+1. **Register a consumer** to get an API key — see the [Auth Register API documentation](https://docs.provable.com/docs/api/services/get-auth-register).
+2. **Obtain a JWT** — see the [Issue JWT API documentation](https://docs.provable.com/docs/api/services/issue-jwt).
+3. **Call the prover** — see the [Delegated Proving API documentation](https://docs.provable.com/docs/api/services/get-prove).
 
 ## Using the Delegated Proving Service in the Provable SDK
 The following template code will generate a proving request and send it to the delegated proving service.  The transaction in the following example will send public Aleo credits to another Aleo account.  In addition to the JWT token, you will need to supply an Aleo account private key for the sender along with a recipient's public Aleo address:
@@ -77,7 +67,7 @@ async function delegatedProvingExample() {
     const provingResponse = await programManager.networkClient.submitProvingRequest({
         provingRequest: provingRequest,
         url: endpoint,
-        apiKey: jwtToken, // Use JWT token as the API key
+        apiKey: jwtToken, // JWT token will be set as the Authorization header
     });
 
     // Optional logging of the response
