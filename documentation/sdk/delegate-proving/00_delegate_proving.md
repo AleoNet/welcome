@@ -30,6 +30,7 @@ import { Account, AleoKeyProvider, AleoNetworkClient, CREDITS_PROGRAM_KEYS, init
 await initThreadPool();
 
 const jwtToken = "YOUR_JWT_TOKEN"; // Obtained from step 2 above
+const expiration = 1234; // Obtained from step 2 above
 const endpoint = "https://api.provable.com/prove/testnet/prove";
 
 
@@ -67,7 +68,7 @@ async function delegatedProvingExample() {
     const provingResponse = await programManager.networkClient.submitProvingRequest({
         provingRequest: provingRequest,
         url: endpoint,
-        apiKey: jwtToken, // JWT token will be set as the Authorization header
+        jwtData: {jwt: jwtToken, expiration: exp}, // JWT token will be set as the Authorization header
     });
 
     // Optional logging of the response
