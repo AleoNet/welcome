@@ -49,11 +49,10 @@ async function delegatedProvingExample() {
 
 
     // Build a proving request for the "transfer_public" function of "credits.aleo".
-    // Note: You can estimate the baseFee using estimateExecutionFee() or estimateFeeForAuthorization()
+    // Note: Fee is estimated automatically
     const provingRequest = await programManager.provingRequest({
         programName: "credits.aleo",
         functionName: "transfer_public",
-        baseFee: 0.2, // Consider using estimateExecutionFee() to determine the correct fee
         priorityFee: 0,
         privateFee: false,
         inputs: [
