@@ -67,7 +67,7 @@ The account address is comprised of:
 aleo1dg722m22fzpz6xjdrvl9tzu5t68zmypj5p74khlqcac0gvednygqxaax0j
 ```
 
-An account address is formatted as a Bech32 string, comprised of 63 characters.
+An account address is formatted as a lowercase Bech32 string, comprised of 63 characters.
 The account address is encoded with an [address prefix](#account-prefixes) that reads `aleo1`.
 
 ## Advanced Topics
