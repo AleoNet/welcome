@@ -62,20 +62,20 @@ custom TS/JS code.
 
 ## Credentials and authentication
 
-The Record Scanning Service (RSS) is hosted behind the Provable API at https://api.provable.com/v2.
+The Record Scanning Service (RSS) is hosted at `https://api.provable.com/scanner/{network}` (e.g. `https://api.provable.com/scanner/mainnet` or `https://api.provable.com/scanner/testnet`).
 
 To authenticate to the service you need:
 
-- **API key** and **consumer ID** — Obtain these by registering a consumer (e.g. `POST {baseUrl}/consumers`). See [Provable API documentation](https://docs.provable.com/docs/api/services/get-auth-register) for details.
-- **JWT** — Used for authenticated endpoints. The Record Scanner SDK refreshes the JWT by calling `POST {scannerBase}/jwts/{consumerId}` (e.g. `https://api.provable.com/v2/scanner/mainnet/jwts/{consumerId}`) with header `X-Provable-API-Key: <apiKey>` when `apiKey` and `consumerId` are set. You can also obtain and cache the JWT yourself and pass it via `setJwtData({ jwt, expiration })`; `expiration` must be in **milliseconds** (Unix timestamp × 1000).
+- **API key** and **consumer ID** — Obtain these by registering a consumer (e.g. `POST https://api.provable.com/consumers` or see your API base). See [Provable API documentation](https://docs.provable.com/docs/api/services/get-auth-register) for details.
+- **JWT** — Used for authenticated endpoints. The Record Scanner SDK refreshes the JWT by calling `POST https://api.provable.com/jwts/{consumerId}` with header `X-Provable-API-Key: <apiKey>` when `apiKey` and `consumerId` are set. You can also obtain and cache the JWT yourself and pass it via `setJwtData({ jwt, expiration })`; `expiration` must be in **milliseconds** (Unix timestamp × 1000).
 
 The **Record scanner** endpoints may accept the API key in a header (e.g. `X-Provable-API-Key`) or an issued JWT.
 
 ### Base URLs
 
-The SDK appends the network (`mainnet` or `testnet`) to the URL you provide. Use the scanner base URL (do not include the network in the URL). For example, use `url: "https://api.provable.com/v2/scanner"` so the SDK uses:
-* Mainnet: `https://api.provable.com/v2/scanner/mainnet`
-* Testnet: `https://api.provable.com/v2/scanner/testnet`
+The SDK appends the network (`mainnet` or `testnet`) to the scanner base URL you provide. Use the scanner base without the network segment. For example, use `url: "https://api.provable.com/scanner"` so the SDK uses:
+* Mainnet: `https://api.provable.com/scanner/mainnet`
+* Testnet: `https://api.provable.com/scanner/testnet`
 
 ## Flow (encrypted registration)
 
@@ -106,7 +106,7 @@ sequenceDiagram
 
 ## Key Routes
 
-All paths are relative to the scanner base URL (e.g. `https://api.provable.com/v2/scanner/mainnet` or your scanner host + network).
+All paths are relative to the scanner base URL (e.g. `https://api.provable.com/scanner/mainnet` or your scanner host + network).
 
 The following key routes are available on the record scanner.
 
@@ -122,7 +122,7 @@ If the scanner returns **422** on `/records/owned`, the UUID may no longer be va
 
 ### Using the Record Scanner via the Provable SDK
 
-1. Create a `RecordScanner` with the scanner base URL (e.g. `"https://api.provable.com/v2/scanner"`). The SDK appends the network (e.g. `/mainnet`).
+1. Create a `RecordScanner` with the scanner base URL (e.g. `"https://api.provable.com/scanner"`). The SDK appends the network (e.g. `/mainnet`).
 2. Optionally set an API key: `recordScanner.setApiKey("your-api-key")` and `recordScanner.setConsumerId("your-consumer-id")` for JWT refresh, or set a JWT directly: `recordScanner.setJwtData({ jwt: "...", expiration: 1810941101000 })` (expiration in **milliseconds**).
 3. Register with the **encrypted** flow: `registerEncrypted(viewKey, startBlock)`. The result contains `uuid`; the scanner stores it for later calls.
 4. Query owned records with `findRecords(filter)` or `owned(filter)`, where `filter` includes `uuid` (and e.g. `unspent: true`, `filter: { program, record }`).
@@ -134,7 +134,7 @@ import { Account, RecordScanner } from "@provablehq/sdk/mainnet.js";
 
 const account = new Account({ privateKey: "APrivateKey1zkp..." });
 const recordScanner = new RecordScanner({
-  url: "https://api.provable.com/v2/scanner",
+  url: "https://api.provable.com/scanner",
 });
 await recordScanner.setApiKey(process.env.RECORD_SCANNER_API_KEY);
 await recordScanner.setConsumerId(process.env.RECORD_SCANNER_CONSUMER_ID);
@@ -163,7 +163,7 @@ If you prefer not to use the SDK for HTTP, you can call the same endpoints with 
 **Step 1: Get ephemeral public key**
 
 ```ts
-const scannerBase = "https://api.provable.com/v2/scanner/mainnet"; // or your scanner URL + network
+const scannerBase = "https://api.provable.com/scanner/mainnet"; // or .../scanner/testnet
 const headers: Record<string, string> = { "Content-Type": "application/json" };
 if (apiKey) headers["X-Provable-API-Key"] = apiKey;
 
@@ -269,13 +269,13 @@ async function getOwnedRecords(
 // Usage
 const account = new Account({ privateKey: "APrivateKey1zkp..." });
 const result = await registerViewKeyEncrypted(
-  "https://api.provable.com/v2/scanner/mainnet",
+  "https://api.provable.com/scanner/mainnet",
   account.viewKey(),
   0,
   process.env.RECORD_SCANNER_API_KEY
 );
 const records = await getOwnedRecords(
-  "https://api.provable.com/v2/scanner/mainnet",
+  "https://api.provable.com/scanner/mainnet",
   result.uuid,
   process.env.RECORD_SCANNER_API_KEY
 );

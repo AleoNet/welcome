@@ -56,8 +56,7 @@ when both `apiKey` and `consumerId` are configured.
 
 ### Base URLs
 
-The SDK appends the network (`mainnet` or `testnet`) to the host you provide. For example, if the host is 
-`https://api.provable.com/v2`, the client uses that host with the network (e.g. `https://api.provable.com/v2/mainnet`) for prover requests; the paths `/pubkey` and `/prove/encrypted` are relative to that base. You can override the prover base with the `url` option when calling `submitProvingRequest`, or set `proverUri` when constructing the `AleoNetworkClient`.
+The **network client** uses the host you provide (e.g. `https://api.provable.com/v2`) for general API access. The **prover** (DPS) base URL is `https://api.provable.com/prove/{network}` (e.g. `https://api.provable.com/prove/mainnet` or `https://api.provable.com/prove/testnet`). The paths `/pubkey` and `/prove/encrypted` are relative to the prover base. You can override the prover base with the `url` option when calling `submitProvingRequest` (e.g. `url: "https://api.provable.com/prove/testnet"`), or set `proverUri` when constructing the `AleoNetworkClient`.
 
 ## Delegated Proving Service (DPS)
 
@@ -90,7 +89,7 @@ sequenceDiagram
 
 ### Routes
 
-All paths are relative to the prover base URL (e.g. `https://api.provable.com/v2/mainnet` when using the same host as the SDK).
+All paths are relative to the prover base URL (e.g. `https://api.provable.com/prove/mainnet` or `https://api.provable.com/prove/testnet`).
 
 | Path | Method | Purpose | Request body | Response |
 |------|--------|----------|--------------|----------|
@@ -208,7 +207,7 @@ You can build the proving request with the SDK (or another tool) and then submit
 Use the same credentials you will use for the proving POST (e.g. JWT). In Node, capture the `set-cookie` header from the response so you can send it with the next request if the prover uses session cookies.
 
 ```ts
-const proverBase = "https://api.provable.com/v2/mainnet";
+const proverBase = "https://api.provable.com/prove/mainnet"; // or .../prove/testnet
 const headers: Record<string, string> = {
   "Content-Type": "application/json",
   "Authorization": jwt,
