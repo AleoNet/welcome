@@ -42,13 +42,14 @@ You can start with a template by running
 npm create leo-app@latest
 ```
 
-## Record Scanning
-
-The [Record Scanning](./record-scanning/00_record_scanning.md) guide explains how to use the Record Scanning Service (RSS) to discover and query records that belong to your Aleo account.
-
 ## Delegated Proving
 
 Provable offers a delegated proving service to accelerate transactions to the Aleo network. Instead of generating proofs locally (which can be resource-intensive), developers can offload the proving work to Provable's infrastructure.
 
 Check out the [Delegated Proving Guide](./delegate-proving/00_delegate_proving.md) to learn how to integrate this service into your application.
 
+## Record Scanning
+
+Provable offers a record scanning service to speed up the process of discovering and querying records that belong to your Aleo account. Instead of scanning the blockchain manually (which can be slow and complex), developers can leverage Provable's infrastructure for fast record discovery.
+
+Check out the [Record Scanning Guide](./record-scanning/00_record_scanning.md) to learn how to integrate this service into your application.
