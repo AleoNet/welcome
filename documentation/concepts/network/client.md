@@ -87,7 +87,7 @@ Smart sync – only copies changes, optionally deletes outdated files. Requires 
 
 ---
 
-### Option 3 – Download the entire ledger from scratch with `wget` (always ends with ""_00-00-01.tar")
+### Option 3 – Download the entire ledger from scratch with `wget` (always ends with "_00-00-01.tar")
 
 - **Mainnet**  
   ```sh
