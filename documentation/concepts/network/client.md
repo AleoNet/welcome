@@ -50,15 +50,15 @@ Blind copy – copies everything, even if already present. Requires Google Cloud
 
 - **Mainnet**  
   ```sh
-  gcloud storage cp -r gs://snarkos-mainnet/uncompressed/ledger-0 {local-ledger-path}
+  gcloud storage cp -r gs://snarkos-mainnet/uncompressed/block_storage_snapshot/ledger-0 {local-ledger-path}
   ```
 - **Testnet**  
   ```sh
-  gcloud storage cp -r gs://snarkos-testnet/uncompressed/ledger-1 {local-ledger-path}
+  gcloud storage cp -r gs://snarkos-testnet/uncompressed/block_storage_snapshot/ledger-1 {local-ledger-path}
   ```
 - **Canary**  
   ```sh
-  gcloud storage cp -r gs://snarkos-canary/uncompressed/ledger-2 {local-ledger-path}
+  gcloud storage cp -r gs://snarkos-canary/uncompressed/block_storage_snapshot/ledger-2 {local-ledger-path}
   ```
 
 ---
@@ -69,15 +69,15 @@ Smart sync – only copies changes, optionally deletes outdated files. Requires 
 
 - **Mainnet**  
   ```sh
-  gcloud storage rsync gs://snarkos-mainnet/uncompressed/ledger-0 {local-ledger-path}
+  gcloud storage rsync gs://snarkos-mainnet/uncompressed/block_storage_snapshot/ledger-0 {local-ledger-path}
   ```
 - **Testnet**  
   ```sh
-  gcloud storage rsync gs://snarkos-testnet/uncompressed/ledger-1 {local-ledger-path}
+  gcloud storage rsync gs://snarkos-testnet/uncompressed/block_storage_snapshot/ledger-1 {local-ledger-path}
   ```
 - **Canary**  
   ```sh
-  gcloud storage rsync gs://snarkos-canary/uncompressed/ledger-2 {local-ledger-path}
+  gcloud storage rsync gs://snarkos-canary/uncompressed/block_storage_snapshot/ledger-2 {local-ledger-path}
   ```
 
 **Useful flags:**
@@ -87,19 +87,19 @@ Smart sync – only copies changes, optionally deletes outdated files. Requires 
 
 ---
 
-### Option 3 – Download the entire ledger from scratch with `wget`
+### Option 3 – Download the entire ledger from scratch with `wget` (always ends with "_00-00-01.tar")
 
 - **Mainnet**  
   ```sh
-  wget -c https://storage.googleapis.com/snarkos-mainnet/latest.tar -O {local-ledger-path}
+  wget -c https://storage.googleapis.com/snapshots-mainnet/archive/$(date +%Y-%m-%d)_00-00-01.tar -O {local-ledger-path}
   ```
 - **Testnet**  
   ```sh
-  wget -c https://storage.googleapis.com/snarkos-testnet/latest.tar -O {local-ledger-path}
+  wget -c https://storage.googleapis.com/snapshots-testnet/archive/$(date +%Y-%m-%d)_00-00-01.tar -O {local-ledger-path}
   ```
 - **Canary**  
   ```sh
-  wget -c https://storage.googleapis.com/snarkos-canary/latest.tar -O {local-ledger-path}
+  wget -c https://storage.googleapis.com/snapshots-canary/archive/$(date +%Y-%m-%d)_00-00-01.tar -O {local-ledger-path}
   ```
 
 ---
