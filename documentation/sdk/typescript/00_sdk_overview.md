@@ -265,7 +265,7 @@ const account = new Account({ privateKey: private_key });
 const privateKeyObject = PrivateKey.from_string(private_key);
 
 // Create a record provider that will be used to find records and transaction data for Aleo programs
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
@@ -349,7 +349,7 @@ const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
 
 // Create a record provider that will be used to find records and transaction data for Aleo programs
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
@@ -452,7 +452,7 @@ async function deployProgram(program) {
   keyProvider.useCache(true);
 
   // Create a record provider that will be used to find records and transaction data for Aleo programs
-  const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+  const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
   // Use existing account with funds
   const account = new Account({
@@ -675,7 +675,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -716,7 +716,7 @@ assert(public_balance === 0);
 As shown above, a public balance of any address can be checked with `getMappingValue` function of the `NetworkClient`.
 
 ```typescript
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const USER_1_ADDRESS = "user1Address";
 const public_balance = networkClient.getMappingValue("credits.aleo", USER_1_ADDRESS);
 ```
@@ -809,7 +809,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -830,7 +830,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user2PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider_User2 = new NetworkRecordProvider(account, networkClient);
 
@@ -999,7 +999,7 @@ read the value of a specific key within a mapping.
 ```typescript
 import {  AleoNetworkClient } from '@provable/sdk';
 
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const creditsMappings = networkClient.getMappings("credits.aleo");
 assert(creditsMappings === ["account"]);
 
@@ -1046,7 +1046,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
 const account = Account.from_string({privateKey: "user1PrivateKey"});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 

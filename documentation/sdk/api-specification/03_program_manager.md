@@ -83,7 +83,7 @@ new ProgramManager(host, keyProvider, recordProvider)
 import { AleoKeyProvider, ProgramManager, NetworkRecordProvider, Account, AleoNetworkClient } from "@provablehq/sdk/mainnet.js";
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const account = new Account();
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);

@@ -57,7 +57,7 @@ new NetworkRecordProvider(account, networkClient)
 import { AleoNetworkClient, Account, NetworkRecordProvider } from "@provablehq/sdk/mainnet.js";
 
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const account = new Account();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 ```
@@ -155,7 +155,7 @@ __*return*__ | `Promise.<OwnedRecord[]>` | *The records if found, otherwise an e
 **Example**
 ```javascript
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -191,7 +191,7 @@ __*return*__ | `Promise.<OwnedRecord>` | *The record if found, otherwise an erro
 **Example**
 ```javascript
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -226,7 +226,7 @@ __*return*__ | `Promise.<OwnedRecord>` | *The record if found, otherwise an erro
 **Example**
 ```javascript
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Find an arbitrary record
@@ -251,7 +251,7 @@ __*return*__ | `Promise.<OwnedRecord[]>` | *Array of records if found, otherwise
 **Example**
 ```javascript
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Find multiple records from a specified program
@@ -288,7 +288,7 @@ new BlockHeightSearch(startHeight, endHeight, unspent)
 const params = new BlockHeightSearch(89995, 99995, true);
 
 // Create a new NetworkRecordProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 

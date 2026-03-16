@@ -34,7 +34,7 @@ import { Account, AleoNetworkClient, initThreadPool, NetworkRecordProvider, Prog
 await initThreadPool();
 
 const account = new Account({ privateKey: 'APrivateKey1...'});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
@@ -112,7 +112,7 @@ const transaction5 = await programManager.networkClient.getTransaction(tx_id_5);
 A public balance of any address can be checked with `getProgramMappingValue()` function of the `AleoNetworkClient`.
 
 ```typescript
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const USER_ADDRESS = "aleo1...";
 const public_balance = await networkClient.getProgramMappingValue("credits.aleo", "account", USER_ADDRESS);
 ```

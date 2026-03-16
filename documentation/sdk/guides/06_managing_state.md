@@ -56,7 +56,7 @@ read the value of a specific key within a mapping.
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
 
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const creditsMappings = await networkClient.getProgramMappingNames("credits.aleo");
 // Expected mappings: ["committee", "delegated", "metadata", "bonded", "unbonding", "account", "withdraw", "pool"]
 
@@ -98,7 +98,7 @@ If `credits.aleo` records are being searched for, users can also optionally spec
 import { Account, AleoNetworkClient } from '@provablehq/sdk';
 
 const account = new Account({ privateKey: 'APrivateKey1...'});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 networkClient.setAccount(account);
 
 // Find all records from an account within a block range.
@@ -133,7 +133,7 @@ import { Account, AleoNetworkClient, AleoKeyProvider, NetworkRecordProvider, Pro
 const account = new Account({ privateKey: 'APrivateKey1...'});
 
 // Create a new NetworkClient, KeyProvider, and RecordProvider using official Aleo implementations
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 networkClient.setAccount(account);
 
 const keyProvider = new AleoKeyProvider();
@@ -244,7 +244,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, RecordProvider, and ProgramManager
 const USER1 = new Account({privateKey: "APrivateKey1..."});
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(USER1, networkClient);
 const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
@@ -268,7 +268,7 @@ import { Account, ProgramManager, AleoKeyProvider, NetworkRecordProvider, AleoNe
 
 // Create a new NetworkClient, KeyProvider, RecordProvider, and ProgramManager for User 2
 const USER2 = new Account({privateKey: "APrivateKey1..."});
-const networkClient2 = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient2 = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider2 = new AleoKeyProvider();
 const recordProvider2 = new NetworkRecordProvider(USER2, networkClient2);
 const programManager2 = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider2, recordProvider2);

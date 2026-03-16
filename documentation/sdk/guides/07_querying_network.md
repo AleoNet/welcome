@@ -14,7 +14,7 @@ The following Typescript snippet shows how to extract most of the important info
 
 ```typescript
 import { AleoNetworkClient } from "@provablehq/sdk"
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 const block = await networkClient.getBlock(1);
 
@@ -78,7 +78,7 @@ After a program function relevant to an app has been executed, it is often usefu
 
 ```typescript
 import { AleoNetworkClient, Transition } from '@provablehq/sdk';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get a transaction by id and get its inputs and outputs from the JSON representation.
 let jsonRecords = [];
@@ -101,7 +101,7 @@ The `AleoNetworkClient` also provides a method for transaction information back 
 
 ```typescript
 import { AleoNetworkClient, Transition } from '@provablehq/sdk';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get a transaction by id and get its inputs and outputs from the Wasm representation.
 const transactionWasm = await networkClient.getTransactionObject(`at1...`);
@@ -132,7 +132,7 @@ The list of mappings within a program can be queried using the getProgramMapping
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
 import { deepStrictEqual } from 'assert';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get the list of program mappings in credits.aleo.
 // The credits.aleo program contains the following mappings
@@ -156,7 +156,7 @@ To get the value from a mapping, one must know the type of the mapping's keys. W
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
 import { strictEqual } from 'assert';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 
 // Get the balance of an account in the `account` mapping in credits.aleo.
@@ -170,7 +170,7 @@ Often the returned value from a mapping will be a struct or array. When returned
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
 import {deepStrictEqual} from 'assert';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get a token value of the `registered_tokens` mapping in token_registry.aleo.
 const tokenStruct = await networkClient.getProgramMappingPlaintext("token_registry.aleo", "registered_tokens", "1381601714105276218895759962490543360839827276760458984912661726715051428034field");
@@ -197,7 +197,7 @@ To get the source code of a program, the `AleoNetworkClient` provides a method t
 
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get the source code of credits.aleo.
 const credits = await networkClient.getProgram("credits.aleo");
@@ -211,7 +211,7 @@ The snarkVM representation of a program can be queried from the Aleo network by 
 ```typescript
 import { AleoNetworkClient } from '@provablehq/sdk';
 import {deepStrictEqual} from 'assert';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get credits.aleo as a program object.
 const credits_program = await networkClient.getProgramObject("credits.aleo");
@@ -268,7 +268,7 @@ The following example shows how to query the mappings within a program and the o
 ```typescript
 import { AleoNetworkClient, Program } from '@provablehq/sdk';
 import {deepStrictEqual} from 'assert';
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Get the program's import names.
 const programImportsNames = await networkClient.getProgramImportNames("token_registry.aleo");

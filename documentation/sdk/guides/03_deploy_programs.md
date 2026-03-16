@@ -85,7 +85,7 @@ const account = new Account({ privateKey: 'APrivateKey1...'});
 Next, you'll need to initialize `AleoNetworkClient:
 ```typescript
 // Create a network client to connect to the Aleo network.
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 ```
 `AleoNetworkClient` is a library that encapsulates REST calls to publicly exposed endpoints of Aleo nodes. The methods provided in this allow users to query public information from the Aleo blockchain and submit transactions to the network. `
 
@@ -158,7 +158,7 @@ import { ProgramManagerBase, AleoNetworkClient } from '@provablehq/sdk';
 const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
 
 // Get the program imports (if any)
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const imports = await networkClient.getProgramImports(program);
 
 const fee = ProgramManagerBase.estimateDeploymentFee(program, imports);

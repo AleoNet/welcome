@@ -411,7 +411,7 @@ const offlineExecuteTx = await programManager.buildExecutionTransaction({
 });
 
 // Broadcast the transaction later on a machine with internet access
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const txId = await networkClient.submitTransaction(offlineExecuteTx);
 ```
 
