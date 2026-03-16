@@ -168,7 +168,7 @@ const records = await recordProvider.findCreditsRecords([5000], { unspent: true,
 
 // When the program manager is initialized with the record provider it will be used to find automatically find
 // fee records and amount records for value transfers so that they do not need to be specified manually
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.transfer(1, "aleo166q6ww6688cug7qxwe7nhctjpymydwzy2h7rscfmatqmfwnjvggqcad0at", "public", 0.5);
 ```
 
@@ -204,7 +204,7 @@ const records = await recordProvider.findCreditsRecords([5000], { unspent: true,
 
 // When the program manager is initialized with the record provider it will be used to find automatically find
 // fee records and amount records for value transfers so that they do not need to be specified manually
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.transfer(1, "aleo166q6ww6688cug7qxwe7nhctjpymydwzy2h7rscfmatqmfwnjvggqcad0at", "public", 0.5);
 ```
 

@@ -307,7 +307,7 @@ Transaction status can be determined from a block response as follows:
 - The confirmed transaction id is present in `echo transaction | jq .transaction.id`
 - The associated unconfirmed transaction id can be acquired by:
   - Calling `GET /<network>/unconfirmed/{confirmed id}` and calling `echo transaction | jq .transaction.id`
-  - You can also hit `https://api.explorer.provable.com/v1/mainnet/transaction/unconfirmed/{ID}`
+  - You can also hit `https://api.provable.com/v2/mainnet/transaction/unconfirmed/{ID}`
 
 #### Aborted Transactions
 - Get the list of aborted ids using `echo response | jq .aborted_transaction_ids`
@@ -317,7 +317,7 @@ Transaction status can be determined from a block response as follows:
 ```javascript
 import { AleoNetworkClient } from '@provablehq/sdk/mainnet.js';
 
-const net  = new AleoNetworkClient('https://api.explorer.provable.com/v1');   
+const net  = new AleoNetworkClient('https://api.provable.com/v2');   
 const txId = 'at14v8nt94d7xmsp3dq2glpzft6xw3x42ne753mlt8uenn8zw76dsqqc65jnf';                                
 
 const status = await net.getConfirmedTransaction(txId);
@@ -347,7 +347,7 @@ Given a confirmed transaction id, you can find the block it was included in usin
 ```javascript
 import { AleoNetworkClient } from '@provablehq/sdk/mainnet.js';
 
-const net  = new AleoNetworkClient('https://api.explorer.provable.com/v1');   
+const net  = new AleoNetworkClient('https://api.provable.com/v2');   
 const txId = 'at14v8nt94d7xmsp3dq2glpzft6xw3x42ne753mlt8uenn8zw76dsqqc65jnf'; 
 // Get block hash using fetchData
 const res = await net.fetchData('/find/blockHash/' + txId);   

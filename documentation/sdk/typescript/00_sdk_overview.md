@@ -270,8 +270,8 @@ const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
 const programName = "hello_hello.aleo";
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
-programManager.setHost("https://api.explorer.provable.com/v1")
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
+programManager.setHost("https://api.provable.com/v2")
 programManager.setAccount(account);
 
 // For example: "cacheKey": "hello_hello:hello"
@@ -353,7 +353,7 @@ const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager to talk to the Aleo network with the configured key and record providers
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 
 // Define an Aleo program to deploy
 const program = "program hello_hello.aleo;\n\nfunction hello:\n    input r0 as u32.public;\n    input r1 as u32.private;\n    add r0 r1 into r2;\n    output r2 as u32.private;\n";
@@ -463,7 +463,7 @@ async function deployProgram(program) {
 
   // Initialize a program manager to talk to the Aleo network with the configured key and record providers
   const programManager = new ProgramManager(
-    "https://api.explorer.provable.com/v1",
+    "https://api.provable.com/v2",
     keyProvider,
     recordProvider,
   );
@@ -551,7 +551,7 @@ function App() {
     try {
       const result = await aleoWorker.deployProgram(helloworld_program);
       console.log("Transaction:")
-      console.log("https://api.explorer.provable.com/v1/transaction?id=" + result)
+      console.log("https://api.provable.com/v2/transaction?id=" + result)
       alert("Transaction ID: " + result);
     } catch (e) {
       console.log(e)
@@ -681,7 +681,7 @@ const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const USER_1_ADDRESS = "user1Address";
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Send a private transfer to yourself
@@ -815,7 +815,7 @@ const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const USER_2_ADDRESS = "user2Address";
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 /// Send private transfer to user 2
@@ -835,7 +835,7 @@ const keyProvider = new AleoKeyProvider();
 const recordProvider_User2 = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Fetch the transaction from the network that user 1 sent
@@ -1052,7 +1052,7 @@ const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const RECIPIENT_ADDRESS = "user1Address";
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Update or initialize a public balance

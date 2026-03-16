@@ -70,12 +70,12 @@ cd lottery
 
 Then use `leo deploy` to estimate the deployment fees for your transaction.
 ```bash
-leo deploy --network testnet --endpoint https://api.explorer.provable.com/v1
+leo deploy --network testnet --endpoint https://api.provable.com/v2
 ```
 
 Or use `leo execute` to estimate the execution fees for your transaction.
 ```bash
-leo execute main 1u32 2u32 --endpoint https://api.explorer.provable.com/v1 --network testnet 
+leo execute main 1u32 2u32 --endpoint https://api.provable.com/v2 --network testnet 
 ```
 
 This method works without needing to fund the private key and will look something like below:  
