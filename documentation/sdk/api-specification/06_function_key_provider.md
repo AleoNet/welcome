@@ -249,7 +249,7 @@ __*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the
 
 ```javascript
 // Create a new object which implements the KeyProvider interface
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -283,7 +283,7 @@ __*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the
 
 ```javascript
 // Create a new AleoKeyProvider object
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
@@ -375,7 +375,7 @@ __*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the
 
 ```javascript
 // Create a new AleoKeyProvider
-const networkClient = new AleoNetworkClient("https://api.explorer.provable.com/v1");
+const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
