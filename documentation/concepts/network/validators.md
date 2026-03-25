@@ -51,3 +51,5 @@ The process by which validator nodes confirm Transactions and Solutions involves
 
 
 ![image-20240422175911657](./images/Illustration_DAG.png)
+
+To bootstrap your validator node faster, see the [Ledger Snapshots](../../guides/node-operators/snapshots.md) guide.
