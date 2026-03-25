@@ -56,7 +56,12 @@ when both `apiKey` and `consumerId` are configured.
 
 ### Base URLs
 
-The **network client** uses the host you provide (e.g. `https://api.provable.com/v2`) for general API access. The **prover** (DPS) base URL is `https://api.provable.com/prove/{network}` (e.g. `https://api.provable.com/prove/mainnet` or `https://api.provable.com/prove/testnet`). The paths `/pubkey` and `/prove/encrypted` are relative to the prover base. You can override the prover base with the `url` option when calling `submitProvingRequest` (e.g. `url: "https://api.provable.com/prove/testnet"`), or set `proverUri` when constructing the `AleoNetworkClient`.
+The **network client** uses the host you provide (e.g. `https://api.provable.com/v2`) for general API access. The **prover** (DPS) base URL takes the form `https://api.provable.com/prove/{network}`, and `/pubkey` and `/prove/encrypted` are relative to it.
+
+Two ways to set the prover base — they differ in how the network segment is handled:
+
+- **`setProverUri(base)`** / `proverUri` constructor option — omit the network segment (e.g. `"https://api.provable.com/prove"`); the SDK appends `/<network>` automatically.
+- **`url` in `submitProvingRequest`** — provide the full network-specific URL (e.g. `"https://api.provable.com/prove/testnet"`); used verbatim, no suffix appended.
 
 ## Delegated Proving Service (DPS)
 
@@ -65,10 +70,10 @@ requests in encrypted form to the delegated proving service.
 
 ### Flow (encrypted proving)
 
-0. Client must obtain an API key or JWT from the provable API.
-1. Client requests an ephemeral X25519 public key from the prover: `GET {proverBase}/pubkey`.
-2. Client builds a *proving request* (authorization, optional fee authorization, broadcast flag), encrypts it via a libsodium cryptobox (e.g. with [encryptProvingRequest](https://github.com/ProvableHQ/sdk/blob/mainnet/sdk/src/security.ts#L26)), and sends it to: `POST {proverBase}/prove/encrypted` with `{ "key_id": string, "ciphertext": string }`.
-3. Prover decrypts in a secure environment, runs the proof, and returns a **transaction** and **broadcast_result** (if the request asked for broadcast). The client may submit the transaction themselves or use the broadcast result.
+1. Client must obtain an API key or JWT from the provable API.
+2. Client requests an ephemeral X25519 public key from the prover: `GET {proverBase}/pubkey`.
+3. Client builds a *proving request* (authorization, optional fee authorization, broadcast flag), encrypts it via a libsodium cryptobox (e.g. with [encryptProvingRequest](https://github.com/ProvableHQ/sdk/blob/mainnet/sdk/src/security.ts#L26)), and sends it to: `POST {proverBase}/prove/encrypted` with `{ "key_id": string, "ciphertext": string }`.
+4. Prover decrypts in a secure environment, runs the proof, and returns a **transaction** and **broadcast_result** (if the request asked for broadcast). The client may submit the transaction themselves or use the broadcast result.
 
 ```mermaid
 sequenceDiagram
@@ -102,36 +107,17 @@ associate the two calls.
 
 ---
 
-### Building a proving request
-
-A **proving request** consists of:
-
-- An **authorization** for the program function (and inputs) the user wants to run.
-- An optional **fee authorization** (e.g. `credits.aleo` fee_public / fee_private) to pay for the execution—or **none** 
-- when using a fee master (`useFeeMaster: true`).
-- A **broadcast** flag indicating whether the prover should submit the resulting transaction to the network.
-
-The SDK builds this in two stages:
-
-1. **Authorize** the main function (program, function name, inputs, private key, optional edition). The base fee is estimated from this authorization.
-2. **Optionally authorize the fee** (execution ID, base fee, priority fee, fee record)—unless the program is a fee-related `credits.aleo` function or `useFeeMaster` is true, in which case no fee authorization is attached.
-
-So when you call `programManager.provingRequest(options)`, the SDK resolves the program (and imports, edition) if needed, 
-resolves the fee record when not using the fee master, then calls the WASM layer to build the authorization and optional 
-fee authorization and wraps them in a `ProvingRequest`. You can then submit that object (or its string form) to the prover.
-
----
-
 ### Using the SDK
 
-1. Build a proving request with `ProgramManager.provingRequest(options)`. Options include `programName`, `functionName`, `inputs`, `privateFee`, `priorityFee`, `broadcast`, `useFeeMaster`, `privateKey`, `programSource`, `programImports`, `edition`, etc. The SDK fetches the program and edition from the network if not provided.
-2. Submit with the **network client**:
-   - **`submitProvingRequest(options)`** — Resolves with the proving response on success; **throws** on HTTP 400, 500, 503 (and retries on 500/503).
-   - **`submitProvingRequestSafe(options)`** — Returns a result object `{ ok, data }` or `{ ok: false, status, error }` so you can handle errors without try/catch.
+`ProgramManager.provingRequest(options)` builds a `ProvingRequest` — a signed authorization for the function call plus an optional fee authorization.
 
-Options for submit include `provingRequest` (the built request or its string), `url` (prover URL), `apiKey`, `consumerId`, `jwtData`, and **`dpsPrivacy: true`** to use the encrypted flow (GET `/pubkey`, encrypt, POST `/prove/encrypted`). When using the Provable API, pass `apiKey` and `consumerId` in the submit options (or pass `jwtData`) so the SDK can refresh the JWT.
+Submit the request with the network client:
+- **`submitProvingRequest(options)`** — resolves with the response; **throws** on HTTP 400/500/503 (retries on 500/503).
+- **`submitProvingRequestSafe(options)`** — returns `{ ok, data }` or `{ ok: false, status, error }` without throwing.
 
-**Example: build and submit with the SDK (encrypted)**
+Pass `dpsPrivacy: true` to use the encrypted flow. Pass `apiKey` + `consumerId` (or `jwtData`) in the `submitProvingRequest` options so the SDK can refresh the JWT. Use `networkClient.setProverUri(...)` or the `url` option to set the prover endpoint.
+
+**Example**
 
 ```ts
 import {
@@ -152,7 +138,6 @@ keyProvider.useCache(true);
 const programManager = new ProgramManager(host, keyProvider, recordProvider);
 programManager.setAccount(account);
 
-// Build the proving request (fee is estimated; optional useFeeMaster)
 const provingRequest = await programManager.provingRequest({
   programName: "credits.aleo",
   functionName: "transfer_public",
@@ -162,39 +147,25 @@ const provingRequest = await programManager.provingRequest({
     "aleo1vwls2ete8dk8uu2kmkmzumd7q38fvshrht8hlc0a5362uq8ftgyqnm3w08",
     "10000000u64",
   ],
-  broadcast: false,
+  broadcast: true,
 });
 
-// Submit with encryption (DPS privacy); pass apiKey and consumerId in options
-const networkClient = programManager.networkClient;
-const response = await networkClient.submitProvingRequest({
+networkClient.setProverUri("https://api.provable.com/prove");
+
+const { transaction, broadcast_result } = await networkClient.submitProvingRequest({
   provingRequest,
   dpsPrivacy: true,
   apiKey: process.env.PROVABLE_API_KEY,
   consumerId: process.env.PROVABLE_CONSUMER_ID,
 });
 
-console.log("Transaction ID:", response.transaction?.id);
-console.log("Broadcast status:", response.broadcast_result?.status);
+console.log("Transaction ID:", transaction?.id);
+console.log("Broadcast status:", broadcast_result?.status);
 ```
 
-**Example: handle errors without throwing**
-
-```ts
-const result = await networkClient.submitProvingRequestSafe({
-  provingRequest,
-  dpsPrivacy: true,
-  apiKey: process.env.PROVABLE_API_KEY,
-  consumerId: process.env.PROVABLE_CONSUMER_ID,
-});
-
-if (result.ok) {
-  const { transaction, broadcast_result } = result.data;
-  // use transaction, broadcast_result
-} else {
-  console.error(result.status, result.error.message);
-}
-```
+:::warning[`submitProvingRequest` does not broadcast]
+Set `broadcast: true` to have the prover submit the transaction, or call `networkClient.submitTransaction(transaction)` with the `transaction` returned from `submitProvingRequest`.
+:::
 
 ---
 
