@@ -281,6 +281,24 @@ function new_array3:
     output r3 as array3.private;
 ```
 
+### External Structs
+
+External Structs allow you to use data structures defined in other Aleo programs that you have imported.
+
+- **Namespace Syntax**: External structs are referenced using the slash operator: `program_name.aleo/struct_name`.
+- **Usage**: Once a program is imported, its structs can be used as variable types, function inputs, and return types.
+- **Casting**: Unlike records, external structs can be instantiated locally using the `cast` instruction because they are data schemas, not state-bearing objects.
+
+```aleo showLineNumbers
+import token_registry.aleo;
+
+transition get_metadata:
+    input r0 as field.public;
+    // You can cast an external struct if you have the required fields
+    cast r0 0u64 18u8 into r1 as token_registry.aleo/TokenInfo;
+    output r1 as token_registry.aleo/TokenInfo.private;
+```
+
 ### Array
 
 An array literal is written as `[{value}, {value}, ..]`, where all the values are the same type. For example,
@@ -357,6 +375,40 @@ function new_token:
     input r2 as u64.private;
     cast r0 r1 r2 into r3 as token.record;
     output r3 as token.record;
+```
+
+### External Records
+
+You can reference records defined in other programs to specify the types of data your program expects to receive or pass along.
+
+- **Namespace Syntax**: External records use the same slash operator: `program_name.aleo/record_name`.
+- **Read-Only Access**: You can access the fields of an external record passed into your function.
+- **The Ownership Rule**: A program cannot create (`cast`) or spend (generate a nullifier for) a record belonging to another program. Only the program that defines the record has the authority to change its state.
+
+| Action | Internal Record | External Record |
+|--------|----------------|----------------|
+| Pass as Input | Allowed | Allowed |
+| Access Fields | Allowed | Allowed |
+| Instantiate via `cast` | Allowed | Prohibited |
+| Spend/Burn | Allowed | Prohibited |
+
+**The Pass-Through Pattern:**
+
+Since you cannot spend an external record, the standard pattern is to accept it as an input and pass it to an external call within the defining program.
+
+```aleo showLineNumbers
+import credits.aleo;
+
+// Your program acts as a middleman
+function transfer_on_behalf:
+    input r0 as credits.aleo/credits.record;
+    input r1 as address.private;
+    input r2 as u64.private;
+    // We cannot 'spend' r0 here.
+    // We must call credits.aleo to handle the logic.
+    call credits.aleo/transfer_private r0 r1 r2 into r3 r4;
+    output r3 as credits.aleo/credits.record;
+    output r4 as credits.aleo/credits.record;
 ```
 
 ### Special Operands
