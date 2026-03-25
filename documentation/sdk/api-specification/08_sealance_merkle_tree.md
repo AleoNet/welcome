@@ -55,8 +55,8 @@ const tree = sealance.buildTree(leaves);
 // Generate exclusion proof for an address not in the blocklist
 const targetAddress = "aleo1kypwp5m7qtk9mwazgcpg0tq8aal23mnrvwfvug65qgcg9xvsrqgspyjm6n";
 const [leftIdx, rightIdx] = sealance.getLeafIndices(tree, targetAddress);
-const proofLeft = sealance.getSiblingPath(tree, leftIdx, 15);
-const proofRight = sealance.getSiblingPath(tree, rightIdx, 15);
+const proofLeft = sealance.getSiblingPath(tree, leftIdx, 16);
+const proofRight = sealance.getSiblingPath(tree, rightIdx, 16);
 const formattedProof = sealance.formatMerkleProof([proofLeft, proofRight]);
 ```
 
@@ -249,8 +249,12 @@ getSiblingPath(tree, leafIndex, depth) ⇒ { siblings: bigint[], leaf_index: num
 | --- | --- | --- |
 | __tree__ | `bigint[]` | *The complete Merkle tree* |
 | __leafIndex__ | `number` | *Index of the leaf for which to generate the proof* |
-| __depth__ | `number` | *Maximum depth of the tree* |
-| __*return*__ | `object` | *Object containing siblings array and leaf_index* |
+| __depth__ | `number` | *Controls the length of the returned `siblings` array — the array will have exactly `depth` elements* |
+| __*return*__ | `object` | *Object containing `siblings` (length equals `depth`) and `leaf_index`* |
+
+:::note
+Pass `depth=16` for `MAX_TREE_DEPTH=15`. The `siblings` array includes the leaf itself at index 0, so its length is `MAX_TREE_DEPTH + 1 = 16`: `siblings[0]` is the leaf, `siblings[1]` is its sibling, and `siblings[2..15]` are the node siblings up to the root — matching the Leo `MerkleProof` struct (`siblings: [field; 16]`).
+:::
 
 **Example**
 ```javascript
@@ -263,7 +267,7 @@ const leaves = sealance.generateLeaves(addresses);
 const tree = sealance.buildTree(leaves);
 const [leftIdx, rightIdx] = sealance.getLeafIndices(tree, "aleo1...");
 
-const proof = sealance.getSiblingPath(tree, leftIdx, 15);
+const proof = sealance.getSiblingPath(tree, leftIdx, 16);
 console.log(proof);
 // { siblings: [0n, 1n, ...], leaf_index: 0 }
 ```
@@ -297,8 +301,8 @@ const tree = sealance.buildTree(leaves);
 
 const targetAddress = "aleo1kypwp5m7qtk9mwazgcpg0tq8aal23mnrvwfvug65qgcg9xvsrqgspyjm6n";
 const [leftIdx, rightIdx] = sealance.getLeafIndices(tree, targetAddress);
-const proofLeft = sealance.getSiblingPath(tree, leftIdx, 15);
-const proofRight = sealance.getSiblingPath(tree, rightIdx, 15);
+const proofLeft = sealance.getSiblingPath(tree, leftIdx, 16);
+const proofRight = sealance.getSiblingPath(tree, rightIdx, 16);
 
 const formattedProof = sealance.formatMerkleProof([proofLeft, proofRight]);
 console.log(formattedProof);
@@ -339,8 +343,8 @@ const userAddress = "aleo1kypwp5m7qtk9mwazgcpg0tq8aal23mnrvwfvug65qgcg9xvsrqgspy
 const [leftIdx, rightIdx] = sealance.getLeafIndices(tree, userAddress);
 
 // Step 5: Generate sibling paths for both adjacent leaves
-const proofLeft = sealance.getSiblingPath(tree, leftIdx, 15);
-const proofRight = sealance.getSiblingPath(tree, rightIdx, 15);
+const proofLeft = sealance.getSiblingPath(tree, leftIdx, 16);
+const proofRight = sealance.getSiblingPath(tree, rightIdx, 16);
 
 // Step 6: Format the proof for use in Aleo transactions
 const exclusionProof = sealance.formatMerkleProof([proofLeft, proofRight]);
