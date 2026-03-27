@@ -97,7 +97,7 @@ const localConnection = new AleoNetworkClient("http://localhost:3030");
 const publicConnection = new AleoNetworkClient("https://api.provable.com/v2");
 
 // Connection with custom headers
-const customConnection = new AleoNetworkClient("https://api.explorer.provable.com/v1", {
+const customConnection = new AleoNetworkClient("https://api.provable.com/v2", {
     headers: { "Authorization": "Bearer token" }
 });
 ```
@@ -121,7 +121,7 @@ networkClient.setHost(host)
 **Example**  
 ```js
 // New connection to a public beacon node
-let public_connection = AleoNetworkClient.setHost("https://api.explorer.provable.com/v1");
+let public_connection = AleoNetworkClient.setHost("https://api.provable.com/v2");
 ```
 
 ---
@@ -1170,7 +1170,7 @@ import { AleoNetworkClient, Account, ProgramManager } from "@provablehq/sdk/main
 
 // Create a network client and program manager.
 const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1");
+const programManager = new ProgramManager("https://api.provable.com/v2");
 
 // Set the account for the program manager.
 programManager.setAccount(Account.fromCiphertext(process.env.ciphertext, process.env.password));

@@ -142,7 +142,7 @@ keyProvider.useCache(true);
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Find a record for the amount to be transferred
@@ -247,7 +247,7 @@ const USER1 = new Account({privateKey: "APrivateKey1..."});
 const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider = new AleoKeyProvider();
 const recordProvider = new NetworkRecordProvider(USER1, networkClient);
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(USER1);
 
 /// Send private transfer to user 2.  When the input record is not specified, the NetworkRecordProvider will automatically find a credits.aleo record with enough balance
@@ -271,7 +271,7 @@ const USER2 = new Account({privateKey: "APrivateKey1..."});
 const networkClient2 = new AleoNetworkClient("https://api.provable.com/v2");
 const keyProvider2 = new AleoKeyProvider();
 const recordProvider2 = new NetworkRecordProvider(USER2, networkClient2);
-const programManager2 = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider2, recordProvider2);
+const programManager2 = new ProgramManager("https://api.provable.com/v2", keyProvider2, recordProvider2);
 programManager2.setAccount(USER2);
 
 // Fetch the transaction from the network that User 1 sent

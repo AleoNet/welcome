@@ -326,7 +326,7 @@ const recordProvider = new NetworkRecordProvider(account, networkClient);
 
 // Initialize a program manager with the key provider to automatically fetch keys for executions
 const myAddress = account.address();
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider, recordProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, recordProvider);
 programManager.setAccount(account);
 
 // Send a private transfer to yourself

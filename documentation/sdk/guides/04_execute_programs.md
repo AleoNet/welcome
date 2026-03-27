@@ -63,7 +63,7 @@ const account = new Account({ privateKey: 'APrivateKey1...'});
 const keyProvider = new AleoKeyProvider();
 keyProvider.useCache(true);
 
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider);
 programManager.setAccount(account);
 ```
 If you're confused on any of the above code, head back to the previous guide for a more detailed explanation.
@@ -160,7 +160,7 @@ const verifyingKey = VerifyingKey.fromString("...");
 keyProvider.cacheKeys("helloworld.aleo:hello", [provingKey, verifyingKey]);
 
 /// Create a program manager with the key provider.
-const programManager = new ProgramManager("https://api.explorer.provable.com/v1", keyProvider);
+const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider);
 
 /// Create a temporary account for the execution of the program
 const account = new Account();

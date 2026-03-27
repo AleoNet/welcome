@@ -158,7 +158,7 @@ mapping withdraw:
 To become a validator or top-up the self-bonded stake, execute the `bond_validator` function using the validator address:
 
 ```bash
-leo execute credits.aleo/bond_validator <withdrawal_address> <amount> <commission_percentage> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
+leo execute credits.aleo/bond_validator <withdrawal_address> <amount> <commission_percentage> --network mainnet --endpoint https://api.provable.com/v2 --broadcast 
 ```
 
 ```aleo
@@ -211,7 +211,7 @@ Must keep minimum bonded balance of ≥ 10 000 ALEO bonded at all times.
 4. Execute `bond_public` function from `credits.aleo` using [Leo CLI](https://docs.leo-lang.org/cli/execute):
 
 ```bash
-leo execute credits.aleo/bond_public <validator_address> <withdrawal_address> <amount> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
+leo execute credits.aleo/bond_public <validator_address> <withdrawal_address> <amount> --network mainnet --endpoint https://api.provable.com/v2 --broadcast 
 ```
 
 ```aleo
@@ -247,7 +247,7 @@ Each address can be bonded to one validator at a time. Staker may bond to a new 
 To withdraw a stake, the staker must first call the `unbond_public` function. This function initiates the unbonding process by specifying the staker's address and the amount of microcredits to unbond. The unbonding process allows the staker to either partially or fully unbond their stake. This can be done by using [Leo CLI](https://docs.leo-lang.org/cli/execute):
 
 ```bash
-leo execute credits.aleo/unbond_public <staker_address> <amount> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast 
+leo execute credits.aleo/unbond_public <staker_address> <amount> --network mainnet --endpoint https://api.provable.com/v2 --broadcast 
 ```
 
 ```aleo
@@ -270,7 +270,7 @@ Called either by the staker's withdrawal address or the validator's withdrawal a
 To claim your unbonded stake, make sure the 360 blocks cooldown has passed, then you can use the [Leo CLI](https://docs.leo-lang.org/cli/execute) as follows:
 
 ```bash
-leo execute credits.aleo/claim_unbond_public <staker_address> --network mainnet --endpoint https://api.explorer.provable.com/v1 --broadcast
+leo execute credits.aleo/claim_unbond_public <staker_address> --network mainnet --endpoint https://api.provable.com/v2 --broadcast
 ```
 
 ```aleo
