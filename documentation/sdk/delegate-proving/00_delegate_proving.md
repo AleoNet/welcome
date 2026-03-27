@@ -147,7 +147,7 @@ const provingRequest = await programManager.provingRequest({
     "aleo1vwls2ete8dk8uu2kmkmzumd7q38fvshrht8hlc0a5362uq8ftgyqnm3w08",
     "10000000u64",
   ],
-  broadcast: true,
+  broadcast: false,
 });
 
 networkClient.setProverUri("https://api.provable.com/prove");
@@ -161,6 +161,14 @@ const { transaction, broadcast_result } = await networkClient.submitProvingReque
 
 console.log("Transaction ID:", transaction?.id);
 console.log("Broadcast status:", broadcast_result?.status);
+
+// If broadcast was set to false, submit the transaction manually.
+if (transaction) {
+  const transactionId = await networkClient.submitTransaction(transaction);
+  console.log("Transaction ID:", transactionId);
+  const confirmed = await networkClient.waitForTransactionConfirmation(transactionId);
+  console.log("Confirmed transaction:", confirmed);
+}
 ```
 
 :::warning[`submitProvingRequest` does not broadcast]
