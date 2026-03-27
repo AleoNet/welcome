@@ -421,3 +421,5 @@ ARC-43 proposes extending the current synthesis-focused puzzle to a full Succinc
 - Built on existing proof system and elliptic curve to minimize technical risk
 - Extends to SNARK (not zkSNARK) to maintain non-malleability and prevent grindability
 - Phased implementation to allow gradual hardware upgrades
+
+To bootstrap your prover node faster, see the [Ledger Snapshots](../../guides/node-operators/snapshots.md) guide.

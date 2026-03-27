@@ -7,7 +7,7 @@ sidebar_label: Transactions
 A **transaction** is a fundamental data structure for publishing a new program or a set of state transitions on the ledger.
 On Aleo, a transaction is issued locally by a user using their Aleo private key, which corresponds to an on-chain Aleo account.
 Using tools like [Leo CLI](https://github.com/ProvableHQ/leo), [Provable SDK](https://developer.aleo.org/sdk/overview/) 
-or ecosystem wallet adapters such as [Puzzle Wallet SDK](https://docs.puzzle.online/).
+or the [Aleo Wallet Adapter](../../sdk/wallet-adapter/00_wallet_adapter.md).
 
 ## Types of Transactions
 
