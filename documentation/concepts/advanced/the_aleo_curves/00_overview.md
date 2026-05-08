@@ -67,3 +67,7 @@ Note: SHA-3 and SHAKE are distinct instances. SHA-3 uses `0x06`; SHAKE uses `0x1
 |:------- |:------------- |:-------------- |
 | Keccak-256 / SHA3-256 | 1088 bits | 512 bits |
 | SHA3-512 | 576 bits | 1024 bits |
+
+## Using ECDSA signatures to authorize transactions
+
+Aleo smart contracts support secp256k1-based ECDSA [signature verification](https://developer.aleo.org/guides/aleo/opcodes#ecdsaverifydigest). It is therefore possible for a custodian to deploy a smart contract representing a virtual wallet, authorized with ECDSA signatures. An ephemeral throwaway Aleo private key must be used to sign such a transaction, but is otherwise not directly used for authentication. Such a virtual smart contract wallet can only hold public funds.
