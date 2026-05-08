@@ -51,6 +51,8 @@ Every operation that crosses the public/private boundary (mint private, burn pri
 
 Admin operations are protected by `usdcx_multisig_core.aleo` (or `usad_multisig_core.aleo`), which requires multiple signers, identified by both Aleo addresses and ECDSA keys to authorize sensitive changes such as role updates and program initialization.
 
+The underlying pattern — an Aleo smart contract wallet authorized by ECDSA signatures — is demonstrated in the [`virtual_wallet` Leo example](https://github.com/ProvableHQ/leo-examples/tree/main/virtual_wallet). This example is particularly useful for **custodians** who need to manage on-chain assets using existing ECDSA key infrastructure (e.g. HSMs or existing Ethereum signing keys) without exposing a native Aleo private key as the authority. It shows how to deploy a program that accepts secp256k1 ECDSA signatures as its authorization mechanism, using an ephemeral Aleo key for transaction signing while ECDSA keys retain actual spending authority.
+
 ## Key Features
 
 - Public and private token balances
@@ -106,7 +108,7 @@ GET https://api.explorer.provable.com/v2/programs/{programID}/compliance/freeze-
 |-----------|------|-------------|
 | `programID` | path (string) | The stablecoin program ID, e.g. `usdcx_stablecoin.aleo` |
 
-**Response:** An array of Merkle tree field elements representing the current freeze list. Use these to compute the two adjacent `MerkleProof` structs required by `get_credentials` and `transfer_private`.
+**Response:** An array of Merkle tree field elements representing the current freeze list. Use these to compute the two adjacent `MerkleProof` structs required by `transfer_private`.
 
 Full API reference: [Provable Explorer API v2 — Compliance Freeze List](https://docs.explorer.provable.com/docs/api/v2/get-program-program-id-compliance-freeze-list)
 
