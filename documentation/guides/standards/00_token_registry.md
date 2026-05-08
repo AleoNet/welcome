@@ -4,6 +4,17 @@ title: Token Registry Program
 sidebar_label: Token Registry
 ---
 
+:::caution Not Recommended for New Projects
+
+The Token Registry Program remains live on mainnet and continues to serve existing integrations. However, it is **not recommended for new projects**. Newer token standards are currently under active community discussion and are expected to supersede the Token Registry:
+
+- [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/125) — proposed standard for fungible tokens on Aleo
+- [ARC-22](https://github.com/ProvableHQ/ARCs/discussions/124) — proposed standard for wrapped/bridged fungible tokens on Aleo
+
+New projects should follow these discussions and consider building against the forthcoming standards once finalized.
+
+:::
+
 ## Overview
 
 The Token Registry Program is a standard program designed for issuing and managing new tokens on the Aleo blockchain. It operates as a singleton program because on Aleo, all imported programs must be known and deployed before the importing program, and dynamic cross-program calls are not currently supported which makes composability difficult to implement. This means that a DeFi program must be compiled with support for all token programs that it will ever interact with. If a new token program is subsequently deployed on-chain, the DeFi program will need to be re-compiled and redeployed on chain in order to interact with that token.
