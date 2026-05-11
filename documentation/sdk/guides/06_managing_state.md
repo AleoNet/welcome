@@ -7,45 +7,15 @@ sidebar_label: Managing State
 Mappings are simple key-value stores defined in a program. They are represented by a key and a value each of a specified
 type. They are stored directly within the Aleo blockchain and can be publicly read by any participant in the Aleo network.
 
-An example of a mapping usage is `account` mapping in the `credits.aleo` program.  This mapping stores all public Aleo Credits balances onchain.
-
-```leo
-mapping account:
-    key owner as address.public;
-    value microcredits as u64.public;
-```
+An example of a mapping usage is the `account` mapping in the `credits.aleo` program, which stores all public Aleo Credits balances on-chain. Its structure is documented in [Aleo Credits](../../concepts/fundamentals/08_credits.md#public-balances-via-the-account-mapping).
 
 
 ### Initializing & Updating Mappings
-Updating mappings is done by executing a program function on the Aleo network which has a finalize block that updates the
-program's mapping. For instance the `transfer_public` function in the `credits.aleo` program updates the `account`
-mapping (and thus a user's balance) when called.
+Mappings are updated by executing a program function that includes an `async` block running on-chain. For instance, `transfer_public` in `credits.aleo` updates the `account` mapping when called. For details on how async on-chain execution works, see the [Async Programming Model](../../concepts/fundamentals/07_async.md).
 
-```leo
-// The public interface called by users
-function transfer_public:
-    input r0 as address.public;
-    input r1 as u64.public;
-    finalize self.signer r0 r1;
+From the perspective of the SDK caller, this is as simple as executing a normal Aleo function. For more information, check out the [Executing Programs](./04_execute_programs.md) guide or the [Transferring Credits](./05_transfer_credits.md) guide.
 
-// The finalize block run by nodes on the Aleo network which update a user's public balance
-finalize transfer_public:
-    input r0 as address.public;
-    input r1 as address.public;
-    input r2 as u64.public;
-    get.or_use account[r0] 0u64 into r3;
-    sub r3 r2 into r4;
-    set r4 into account[r0];
-    get.or_use account[r1] 0u64 into r5;
-    add r5 r2 into r6;
-    set r6 into account[r1];
-```
-
-From the perspective of the caller of the API, this is as simple as executing a normal Aleo function. For more information on how to do this with the SDK, check out the [Executing Programs](./04_execute_programs.md) guide or the [Transferring Credits](./05_transfer_credits.md) guide.
-
-Given the inputs to a function with a finalize scope that updates a mapping are valid, the mapping will either be intialized or updated
-by the Aleo network.  If function inputs are invalid, the network will return an error, but the fee paid for the transaction will still be
-consumed. So it is important to ensure that the inputs to a function are valid before executing it.
+If function inputs are invalid, the network will return an error but the fee paid for the transaction will still be consumed, so it is important to ensure inputs are valid before executing.
 
 
 ### Reading Mappings
@@ -102,7 +72,7 @@ const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 networkClient.setAccount(account);
 
 // Find all records from an account within a block range.
-const allRecords = networkClient.findRecords(
+const allRecords = await networkClient.findRecords(
     4370000, // Start block height
     4371000, // End block height
     false, // Find both spent and unspent records.
@@ -110,7 +80,7 @@ const allRecords = networkClient.findRecords(
 );
 
 // Find only unspent records from an account within a block range that can be used as inputs to new functions.
-const unspentRecords = networkClient.findRecords(
+const unspentRecords = await networkClient.findRecords(
     4370000, // Start block height
     4371000, // End block height
     true, // Find both spent and unspent records.

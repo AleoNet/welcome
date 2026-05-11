@@ -117,7 +117,7 @@ program helloworld.aleo {
 
 **Key Import Difference:**
 - **Solidity**: Imports copy code directly into your contract at compile time, combining everything into one file
-- **Leo**: Imported programs remain separate entities - they are not merged with the current file, and each keeps its own unique program ID on the blockchain
+- **Leo**: Imported programs remain separate entities, they are not merged with the current file, and each keeps its own unique program ID on the blockchain
 
 ## Data & State
 
@@ -133,7 +133,7 @@ contract Storage {
     uint256 public immutable RUNTIME_VALUE;     // Set in constructor
     uint256 public permanentData;               // Auto-generates getter function 
     uint256 internal shared;                    // Accessible in derived contracts
-    uint256 private local = 42;                 // Inaccessible in derived contracts - still visible on-chain
+    uint256 private local = 42;                 // Inaccessible in derived contracts, still visible on-chain
     
     constructor(uint256 _value) {
         RUNTIME_VALUE = _value;  // Can be set at construction
@@ -162,7 +162,7 @@ program storage.aleo {
     }
     
     // Transition parameters and returns are private by default unless marked public
-    async transition process_data(public amount: u64) -> (Token, Future) {
+    fn process_data(public amount: u64) -> (Token, Final) {
         let amount_loc: u64 = amount * 2u64; // Local variable
         
         let token: Token = Token {
@@ -170,22 +170,17 @@ program storage.aleo {
             amount: amount_loc,
         };
         
-        return (token, finalize_process_data(self.caller, amount_loc));
-    }
-    
-    // Async function to handle on-chain state updates
-    // Parameters in async functions are automatically public since network nodes execute the computation
-    // Async function cannot return values
-    async function finalize_process_data(caller: address, amount_loc: u64) {
-        let current_balance: u64 = Mapping::get_or_use(balances, caller, 0u64);
-        Mapping::set(balances, caller, current_balance + amount_loc);
+        return (token, final {
+            let current_balance: u64 = Mapping::get_or_use(balances, self.caller, 0u64);
+            Mapping::set(balances, self.caller, current_balance + amount_loc);
+        });
     }
 }
 ```
 
 **Key Differences:**
 - **Solidity Visibility**: `private`, `internal`, `public` control code access but all data is visible on-chain
-- **Leo Privacy**: `public` vs `private` determines actual cryptographic privacy - whether data is stored on-chain or off-chain in [records](../../concepts/fundamentals/02_records.md)
+- **Leo Privacy**: `public` vs `private` determines actual cryptographic privacy, whether data is stored on-chain or off-chain in [records](../../concepts/fundamentals/02_records.md)
 - **Constants**: Solidity has both `constant` and `immutable`, Leo only has compile-time `const`
 - **Local Variables**: The `let` keyword declares temporary computation variables (similar to Solidity's memory)
 - **No Transient Storage**: Leo does not support Solidity's transient storage concept
@@ -229,17 +224,15 @@ contract DeleteExample {
 program delete_example.aleo {
     mapping balances: address => u64;
     
-    async transition remove_balance(user: address) -> Future {
-        return finalize_remove_balance(user);
-    }
-    
-    async function finalize_remove_balance(user: address) {
-        // Check if mapping contains the key before removing
-        let exists: bool = Mapping::contains(balances, user);
-        if exists {
-            // Remove mapping entry
-            Mapping::remove(balances, user);
-        }
+    fn remove_balance(user: address) -> Final {
+        return final {
+            // Check if mapping contains the key before removing
+            let exists: bool = Mapping::contains(balances, user);
+            if exists {
+                // Remove mapping entry
+                Mapping::remove(balances, user);
+            }
+        };
     }
 }
 ```
@@ -332,7 +325,7 @@ function updateArray() public {
 
 ```leo
 // Leo: only supports static array 
-transition simple_array() -> [u32; 3] {
+fn simple_array() -> [u32; 3] {
     // Create a fixed-size array of 3 elements
     let numbers: [u32; 3] = [1u32, 2u32, 3u32];
     
@@ -368,7 +361,7 @@ let big: u32 = small as u32;  // Explicit casting required
 
 // Leo fails on truncation (checked casting)
 let large: u32 = 300u32;
-let truncated: u8 = large as u8;  // Program fails - no truncation allowed unless able to fit into smaller size
+let truncated: u8 = large as u8;  // Program fails, no truncation allowed unless able to fit into smaller size
 
 // Safe conversions to larger types
 let safe: u64 = small as u64;    // No truncation
@@ -393,7 +386,7 @@ uint16 result = small + medium;  // uint8 automatically promoted to uint16
 let small: u8 = 100u8;
 let medium: u16 = 200u16;
 let result: u16 = (small as u16) + medium;  // Must explicitly cast u8 to u16
-// let invalid: u16 = small + medium;  // This would fail - type mismatch
+// let invalid: u16 = small + medium;  // This would fail, type mismatch
 ```
 
 ### Reference vs Value Types
@@ -418,11 +411,11 @@ contract TypeSystem {
 }
 ```
 
-**Leo** only supports value types - all data is copied when passed around:
+**Leo** only supports value types, all data is copied when passed around:
 
 ```leo
 program value_types.aleo {
-    transition process_data(input_array: [u32; 5]) -> [u32; 5] {
+    fn process_data(input_array: [u32; 5]) -> [u32; 5] {
         // All data is copied by value
         let local_array: [u32; 5] = input_array;  // Creates a copy
         
@@ -476,34 +469,33 @@ contract Child is Example {
 
 **Leo's Approach:**
 ```leo
+// Internal fn: helper (similar to pure functions) — declared OUTSIDE program block
+// Can only compute, no state access, no external calls
+fn internal_helper(input: u32) -> u32 {
+    let doubled: u32 = inline_multiplier(input, 2u32);
+    return doubled;
+}
+
+// Internal fn: inlined at call sites — declared OUTSIDE program block
+fn inline_multiplier(a: u32, b: u32) -> u32 {
+    return a * b;
+}
+
 program example.aleo {
-    // Transition: externally callable, off-chain execution
+    // Entry fn: externally callable, off-chain execution
     // All inputs and outputs are private by default, requiring explicit 'public' keyword for on-chain visibility
-    transition public_function(input: u32, public pub_input2: u32) -> (public u32, u32) {
+    fn public_function(input: u32, public pub_input2: u32) -> (public u32, u32) {
         let result: u32 = internal_helper(input);
         let pub_result: u32 = result + pub_input2;
         return (pub_result, result);
-    }
-    
-    // Function: helper for transitions (similar to pure functions)
-    // Can only compute - no state access, no external calls
-    function internal_helper(input: u32) -> u32 {
-        let doubled: u32 = inline_multiplier(input, 2u32);
-        return doubled;
-    }
-    
-    // Inline: body inserted at call sites (similar to pure functions)
-    // Can only compute - no state access, no external calls
-    inline inline_multiplier(a: u32, b: u32) -> u32 {
-        return a * b;
     }
 }
 ```
 
 **Key Differences:**
-- **Externally Callable Functions**: In Leo, only `transition` and `async transition` functions can be called externally. All other functions (`function` and `inline`) are internal and can only be called from within the program
-- **Leo's Computation-Only Functions**: Both `function` and `inline` in Leo are similar to Solidity's `pure` functions - they can only perform computations and cannot access state variables or make external calls
-- **Visibility in Leo**: Unlike Solidity's visibility modifiers (public, private, internal), Leo's visibility refers to data privacy - whether data is publicly visible on-chain or kept private off-chain
+- **Externally Callable Functions**: In Leo, only entry `fn` functions (those called directly from a transaction) can be called externally. Internal `fn` helpers can only be called from within the program
+- **Leo's Computation-Only Functions**: Internal helper `fn` functions in Leo are similar to Solidity's `pure` functions, they can only perform computations and cannot access state variables or make external calls
+- **Visibility in Leo**: Unlike Solidity's visibility modifiers (public, private, internal), Leo's visibility refers to data privacy, whether data is publicly visible on-chain or kept private off-chain
 - **Function Overloading**: Unlike Solidity which supports function overloading (multiple functions with the same name but different parameter types), Leo does not allow function overloading. Each function name must be unique within a program, requiring developers to use distinct names for functions with different parameter types.
 
 ### Returns
@@ -542,21 +534,21 @@ contract ModifierExample {
 ```
 
 **Leo's Approach:**
-Leo doesn't have modifiers, but similar functionality can be achieved using inline functions:
+Leo doesn't have modifiers, but similar functionality can be achieved using helper functions:
 
 ```leo
+// Helper functions — declared OUTSIDE program block
+fn only_owner(caller: address, owner: address) {
+    assert_eq(caller, owner);
+}
+
+fn valid_amount(amount: u64) {
+    assert(amount > 0u64);
+}
+
 program modifier_example.aleo {
-    // Inline functions provide similar behavior to modifiers
-    inline only_owner(caller: address, owner: address) {
-        assert_eq(caller, owner);
-    }
-    
-    inline valid_amount(amount: u64) {
-        assert(amount > 0u64);
-    }
-    
-    transition withdraw(amount: u64, owner: address) -> u64 {
-        // Inline functions are called explicitly (like modifiers)
+    fn withdraw(amount: u64, owner: address) -> u64 {
+        // Helper functions are called explicitly (like modifiers)
         only_owner(self.caller, owner);
         valid_amount(amount);
         
@@ -568,76 +560,70 @@ program modifier_example.aleo {
 
 ### Async Functions
 
-Leo introduces async functions for on-chain execution:
+Leo uses `final {}` blocks for on-chain execution:
 
 ```leo
 program defi_example.aleo {
     mapping user_balances: address => u64;
     
-    // Async transition: can call async functions
-    async transition deposit_and_update(public amount: u64) -> Future {
+    fn deposit_and_update(public amount: u64) -> Final {
         // Off-chain computation
         let new_record: Token = Token {
             owner: self.caller,
             amount: amount,
         };
         
-        // Return future for on-chain execution
-        return finish_deposit(self.caller, amount);
-    }
-    
-    // Async function: executes on-chain, can access mappings
-    async function finish_deposit(user: address, amount: u64) {
-        let current_balance: u64 = user_balances.get_or_use(user, 0u64);
-        user_balances.set(user, current_balance + amount);
+        // Return inline finalization block for on-chain execution
+        return final {
+            let current_balance: u64 = user_balances.get_or_use(self.caller, 0u64);
+            user_balances.set(self.caller, current_balance + amount);
+        };
     }
 }
 ```
 
 **Key Concepts:**
-- **Async Pattern**: Leo introduces async transitions and async functions for on-chain execution - transitions that call async functions must be declared as `async transition`
-- **Future Objects**: Async functions return `Future` objects that execute on-chain at a later point in time, allowing access to mapping values that regular transitions cannot access
+- **Finalization Pattern**: Leo uses `fn` with inline `final {}` blocks for on-chain execution, the `final {}` block captures variables from the enclosing `fn` scope and executes on-chain
+- **Final Blocks**: `final {}` blocks execute on-chain at transaction finalization, allowing access to mapping values that off-chain computation cannot access
 
 ### Call Restrictions
 
 Leo enforces strict rules about function call hierarchy:
 
-**Call Flow:** `transition` → `function` → `inline` | `transition` → `inline` | `transition` → `external_transition`
+**Call Flow:** entry `fn` → internal `fn` | entry `fn` → external program `fn`
 
 **Call Flow Rules:**
-- A transition can only call a function, inline, or external transition.
-- A function can only call an inline.
-- An inline can only call another inline.
+- An entry `fn` can call internal helper `fn` or external program functions.
+- Internal helper `fn` can only call other internal helpers.
 - Direct/indirect recursive calls are not allowed.
 
 **Recursion:**
 While Solidity allows function recursion (functions calling themselves directly or indirectly), Leo prohibits all forms of recursive calls.
 
 ```leo
+// Internal helper fn — declared OUTSIDE program block
+fn helper_function(input: u32) -> u32 {
+    let processed: u32 = inline_helper(input);      // Valid
+    // let invalid: u32 = another_function(input);  // Invalid
+    return processed;
+}
+
+fn inline_helper(input: u32) -> u32 {
+    let doubled: u32 = inline_doubler(input);       // Valid
+    return doubled;
+}
+
+fn inline_doubler(input: u32) -> u32 {
+    return input * 2u32;
+}
+
 program call_hierarchy.aleo {
-    // Transition can call: function, inline, external transitions
-    transition main_entry(input: u32) -> u32 {
+    // Entry fn can call: internal helpers, external programs
+    fn main_entry(input: u32) -> u32 {
         let result1: u32 = helper_function(input);      // Valid
         let result2: u32 = inline_helper(input);        // Valid
-        let result3: u32 = external_program.aleo/some_transition(input); // Valid
+        let result3: u32 = external_program.aleo::some_transition(input); // Valid
         return result1 + result2 + result3;
-    }
-    
-    // Function can call: inline only
-    function helper_function(input: u32) -> u32 {
-        let processed: u32 = inline_helper(input);      // Valid
-        // let invalid: u32 = another_function(input);  // Invalid
-        return processed;
-    }
-    
-    // Inline can call: other inline only
-    inline inline_helper(input: u32) -> u32 {
-        let doubled: u32 = inline_doubler(input);       // Valid
-        return doubled;
-    }
-    
-    inline inline_doubler(input: u32) -> u32 {
-        return input * 2u32;
     }
 }
 ```
@@ -669,14 +655,14 @@ Leo does not have fallback or receive functions:
 
 ```leo
 program fallback_example.aleo {
-    // No fallback function - all calls must match a valid function signature
-    transition regular_function() {
+    // No fallback function, all calls must match a valid function signature
+    fn regular_function() {
         // Function implementation
     }
     
     // To receive Aleo Credits, use credits.aleo program
-    async transition receive_credits(public amount: u64) -> Future {
-        return credits.aleo/transfer_public(self.caller, self.address, amount);
+    fn receive_credits(public amount: u64) -> Final {
+        return credits.aleo::transfer_public(self.caller, self.address, amount);
     }
 }
 ```
@@ -705,7 +691,7 @@ function hashData(bytes memory data) public pure returns (bytes32) {
 
 **Leo's Extensive Options:**
 ```leo
-transition hash_examples(data: u32) -> (field, field, field) {
+fn hash_examples(data: u32) -> (field, field, field) {
     // Poseidon hashes (ZK-friendly)
     let poseidon_hash: field = Poseidon4::hash_to_field(data);
     
@@ -720,7 +706,7 @@ transition hash_examples(data: u32) -> (field, field, field) {
 }
 
 // Commitment schemes
-transition commit_example(value: u32, randomness: field) -> (field, field) {
+fn commit_example(value: u32, randomness: field) -> (field, field) {
     let pedersen_commit: field = Pedersen64::commit_to_field(value, randomness);
     let bhp_commit: field = BHP256::commit_to_field(value, randomness);
     return (pedersen_commit, bhp_commit);
@@ -733,13 +719,11 @@ Solidity has no built-in randomness and must rely on 3rd party solutions like Ch
 
 **Leo's Built-in Solution:**
 ```leo
-async transition secure_random() -> Future {
-    return finalize_random();
-}
-
-async function finalize_random() {
-    // Supports ChaCha random - only available in async functions
-    let random_value: u32 = ChaCha::rand_u32();
+fn secure_random() -> Final {
+    return final {
+        // Supports ChaCha random, only available in final blocks
+        let random_value: u32 = ChaCha::rand_u32();
+    };
 }
 ```
 
@@ -769,18 +753,16 @@ contract GlobalAccess {
 **Leo's Limited Built-ins:**
 ```leo
 program global_access.aleo {
-    async transition get_block_info() -> Future {
-        return finalize_get_info();
+    fn get_block_info() -> Final {
+        return final {
+            // Available within final blocks only
+            let current_height: u32 = block.height;      // Equivalent to block.number
+            let current_timestamp: i64 = block.timestamp; // Equivalent to block.timestamp
+            let network: u32 = network.id;               // Equivalent to block.chainid
+        };
     }
     
-    async function finalize_get_info() {
-        // Available within finalize scope only
-        let current_height: u32 = block.height;      // Equivalent to block.number
-        let current_timestamp: i64 = block.timestamp; // Equivalent to block.timestamp
-        let network: u32 = network.id;               // Equivalent to block.chainid
-    }
-    
-    transition get_caller_info() {
+    fn get_caller_info() {
         let immediate_caller: address = self.caller;  // Equivalent to msg.sender  
         let origin_caller: address = self.signer;     // Equivalent to tx.origin
         let program_address: address = self.address;  // Equivalent to address(this)
@@ -789,7 +771,7 @@ program global_access.aleo {
 ```
 
 **Key Differences:**
-- **Limited Scope**: Leo's block properties only available in async functions (finalize scope)
+- **Limited Scope**: Leo's block properties only available in `final {}` blocks (finalization scope)
 - **Timestamp Available**: Leo provides `block.timestamp` which returns the unix timestamp as `i64`
 - **No Gas Tracking**: Leo doesn't expose gas/fee information to programs
 - **Program Context**: Leo provides `self.address` for the current program address
@@ -812,7 +794,7 @@ contract EtherUnits {
 **Leo's Credit Units:**
 ```leo
 program credit_units.aleo {
-    transition demonstrate_units() -> (u64, u64, u64) {
+    fn demonstrate_units() -> (u64, u64, u64) {
         let one_microcredit: u64 = 1u64;
         let one_millicredit: u64 = 1000u64;     // 1e3 microcredits
         let one_credit: u64 = 1000000u64;       // 1e6 microcredits
@@ -864,29 +846,27 @@ import credits.aleo;
 
 program address_example.aleo {
     // Access balance through credits.aleo program mappings (public balance)
-    async transition get_public_balance(user: address) -> Future {
-        return finalize_get_balance(user);
-    }
-    
-    async function finalize_get_balance(user: address) {
-        // Query public balance from credits.aleo account mapping
-        let balance: u64 = credits.aleo/account.get_or_use(user, 0u64);
+    fn get_public_balance(user: address) -> Final {
+        return final {
+            // Query public balance from credits.aleo account mapping
+            let balance: u64 = credits.aleo::account.get_or_use(user, 0u64);
+        };
     }
     
     // Transfer credits using credits.aleo program functions
-    async transition transfer_public_credits(
+    fn transfer_public_credits(
         to: address, 
         amount: u64
-    ) -> Future {
-        return credits.aleo/transfer_public(self.caller, to, amount);
+    ) -> Final {
+        return credits.aleo::transfer_public(self.caller, to, amount);
     }
     
-    transition transfer_private_credits(
-        input: credits.aleo/credits,
+    fn transfer_private_credits(
+        input: credits.aleo::credits,
         to: address,
         amount: u64
-    ) -> (credits.aleo/credits, credits.aleo/credits) {
-        return credits.aleo/transfer_private(input, to, amount);
+    ) -> (credits.aleo::credits, credits.aleo::credits) {
+        return credits.aleo::transfer_private(input, to, amount);
     }
 }
 ```
@@ -922,15 +902,15 @@ contract MathOperations {
 **Leo's Approach:**
 ```leo
 program math_operations.aleo {
-    transition checked_math(a: u64, b: u64) -> u64 {
+    fn checked_math(a: u64, b: u64) -> u64 {
         return a + b;  // Reverts on overflow by default
     }
     
-    transition wrapped_math(a: u64, b: u64) -> u64 {
+    fn wrapped_math(a: u64, b: u64) -> u64 {
         return a.add_wrap(b);  // Wraps on overflow using wrapped arithmetic
     }
     
-    transition modular_math(a: u64, b: u64, n: u64) -> (u64, u64) {
+    fn modular_math(a: u64, b: u64, n: u64) -> (u64, u64) {
         let add_result: u64 = (a + b) % n;
         let mul_result: u64 = (a * b) % n;
         return (add_result, mul_result);
@@ -962,12 +942,19 @@ contract TimeOperations {
 }
 ```
 
-**Leo's Limitation:**
-Leo does not support time units and timestamps (at the moment):
+**Leo's Approach:**
 
 - **No Time Units**: No equivalent to `seconds`, `minutes`, `hours`, etc.
-- **No Timestamps**: No access to block timestamps at the moment until [ARC-0040](https://github.com/ProvableHQ/ARCs/discussions/69) is implemented.
-- **No Time-based Logic**: Developers must implement time logic externally or rely on block height
+- **Block Timestamp**: `block.timestamp` is available in `final {}` blocks and returns a Unix timestamp as `i64`. Use it for time-based access control or expiry logic.
+- **Block Height**: `block.height` is also available in `final {}` blocks and can substitute for time-based logic when block-level granularity is sufficient.
+
+```leo
+fn check_expiry(expires_at: i64) -> Final {
+    return final {
+        assert(block.timestamp < expires_at);
+    };
+}
+```
 
 ## Error Handling
 
@@ -998,13 +985,13 @@ contract ErrorHandling {
 **Leo's Error Handling:**
 ```leo
 program error_handling.aleo {
-    transition transfer(amount: u64, balance: u64) -> u64 {
+    fn transfer(amount: u64, balance: u64) -> u64 {
         // Simple assertions (no custom messages due to lack of string support)
         assert(amount > 0u64);
         assert_neq(amount, 0u64);      // Alternative syntax
         assert(balance >= amount);
         
-        // No try/catch - all external calls must succeed
+        // No try/catch, all external calls must succeed
         let result: u64 = external_program.aleo/safe_operation(amount);
         return result;
     }
@@ -1045,7 +1032,7 @@ function controlFlow(uint256[] memory items) public pure returns (uint256) {
 
 **Leo's Control Flow:**
 ```leo
-transition control_flow(items: [u32; 5]) -> u32 {
+fn control_flow(items: [u32; 5]) -> u32 {
     let sum: u32 = 0u32;
     
     // For loops only (no while, do-while)
@@ -1086,39 +1073,55 @@ contract DynamicCalls {
 }
 ```
 
-**Leo's Static Approach:**
+**Leo's Static Calls:**
+
+Static calls (`call`) require the target program to be imported at compile time:
+
 ```leo
 import credits.aleo;
 
 program static_calls.aleo {
-    async transition transfer_credits(
-        input: credits.aleo/credits, 
+    fn transfer_credits(
+        input: credits.aleo::credits, 
         to: address, 
         amount: u64
-    ) -> (credits.aleo/credits, Future) {
-        // Static, compile-time known calls only
-        let tuple: (credits.aleo/credits, Future) = credits.aleo/transfer_private(
+    ) -> (credits.aleo::credits, Final) {
+        let tuple: (credits.aleo::credits, Final) = credits.aleo::transfer_private(
             input,
             to,
             amount
         );
         
-        return (tuple.0, f_transfer(tuple.1));
-    }
-
-    async function f_transfer(f: Future) {
-        f.await();
-    }
-    
-    // Can query public state from other programs within finalize scope
-    async transition get_external_balance(user: address) -> Future {
-        return f_get_external_balance(user);
-    }
-
-    async function f_get_external_balance(user: address) {
-        let balance: u64 = credits.aleo/account.get(user);
+        return (tuple.0, final { tuple.1.run(); });
     }
 }
+```
+
+**Leo's Dynamic Calls ([ARC-0009](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009)):**
+
+Dynamic calls (`call.dynamic`) resolve the target program at runtime, no compile-time import needed. Leo also supports interface-enforced syntax for type-safe dynamic dispatch:
+
+```leo
+program dex.aleo {
+    // Call any ARC-20 conformant token at runtime using the interface syntax
+    fn swap(
+        public token_in: identifier,
+        public token_out: identifier,
+        public amount_in: u128,
+        public amount_out: u128,
+    ) -> Final {
+        let pull: Final = ARC20@(token_in)/transfer_from_public(
+            self.signer, self.address, amount_in
+        );
+        let push: Final = ARC20@(token_out)/transfer_public(
+            self.signer, amount_out
+        );
+        return final { pull.run(); push.run(); };
+    }
+}
+```
+
+The target program and function name are **public** circuit inputs, avoid using sensitive private data to select a dynamic call target. See the [Dynamic Dispatch guide](../aleo/03_language.md#dynamic-dispatch) for full details.
 ```
 
 ## Inheritance
@@ -1170,12 +1173,12 @@ program animal_behaviors.aleo {
         species: u8, // 1 for dog, 2 for cat
     }
     
-    function speak(animal: AnimalData) -> field {
+    fn speak(animal: AnimalData) -> field {
         // Different sounds for different species
         return animal.species == 1u8 ? 100field : 200field; // Dog: "Woof!", Cat: "Meow!"
     }
     
-    function species_behavior(animal: AnimalData) -> bool {
+    fn species_behavior(animal: AnimalData) -> bool {
         // Dogs wag tail, cats purr
         return animal.species == 1u8 ? true : false; // Dog: wag tail, Cat: purr
     }
@@ -1196,7 +1199,7 @@ program my_pets.aleo {
         data: AnimalData,
     }
     
-    transition create_dog(name: field) -> Pet {
+    fn create_dog(name: field) -> Pet {
         return Pet {
             data: AnimalData {
                 name: name,
@@ -1205,7 +1208,7 @@ program my_pets.aleo {
         };
     }
     
-    transition create_cat(name: field) -> Pet {
+    fn create_cat(name: field) -> Pet {
         return Pet {
             data: AnimalData {
                 name: name,
@@ -1214,14 +1217,14 @@ program my_pets.aleo {
         };
     }
     
-    transition make_sound(pet: Pet) -> field {
+    fn make_sound(pet: Pet) -> field {
         // Get sound from animal_behaviors
-        return animal_behaviors.aleo/speak(pet.data);
+        return animal_behaviors.aleo::speak(pet.data);
     }
     
-    transition check_behavior(pet: Pet) -> bool {
+    fn check_behavior(pet: Pet) -> bool {
         // Check species-specific behavior
-        return animal_behaviors.aleo/species_behavior(pet.data);
+        return animal_behaviors.aleo::species_behavior(pet.data);
     }
 }
 ```
@@ -1264,12 +1267,22 @@ contract Token is IERC20 {
 ```
 
 **Leo's Approach:**
-Leo does not support abstract contracts or interfaces since it lacks inheritance:
+Leo does not support abstract contracts in the Solidity sense, but it now supports **interfaces** for dynamic dispatch via [ARC-0009](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009):
 
 - **No Abstract Contracts**: Cannot define partially implemented contracts
-- **No Interfaces**: Cannot define contract interfaces for implementation
-- **Alternative**: Use composition and program imports for modularity
-- **Future Consideration**: Interfaces may be supported once dynamic dispatch is implemented
+- **Interfaces via Dynamic Dispatch**: Leo programs can declare and implement named interfaces (e.g. `ARC20`), and callers can invoke any conforming program at runtime using `Interface@(program_id)/function(args)` syntax, no compile-time import required
+- **Alternative for static calls**: Use composition and program imports for modularity
+
+```leo
+// Any program implementing ARC20 can be called without being imported
+interface ARC20 {
+    fn transfer_public(public recipient: address, public amount: u128) -> Final;
+    // ...
+}
+
+// In a DeFi program:
+ARC20@(token_id)/transfer_public(recipient, amount);
+```
 
 ### Libraries
 
@@ -1292,34 +1305,57 @@ contract UsingLibrary {
 }
 ```
 
-**Leo's Alternative:**
-Leo doesn't have dedicated libraries but developers can create stateless programs that function similarly:
+**Leo's Approach:**
+Leo supports native libraries — reusable packages of types, constants, and `fn` functions that are **fully inlined at compile time**. Libraries have no transitions, no mappings, and no on-chain footprint. Create one with `leo new --lib`; the entry point is `lib.leo`:
 
 ```leo
-// math_library.aleo - Stateless program acting as library
-program math_library.aleo {
-    transition safe_add(a: u64, b: u64) -> u64 {
-        let result: u64 = a + b;
-        assert(result >= a);  // Check for overflow
-        return result;
-    }
+// lib.leo  (package: math)
+const OVERFLOW_GUARD: u64 = 0u64;
+
+fn safe_add(a: u64, b: u64) -> u64 {
+    let result: u64 = a + b;
+    assert(result >= a);  // Check for overflow
+    return result;
 }
 ```
 
-```leo
-import math_library.aleo;
+Declare it in `program.json`:
 
+```json
+{
+  "program": "using_library.aleo",
+  "dependencies": [
+    { "name": "math", "location": "local", "path": "../math" }
+  ]
+}
+```
+
+Then access all library items under the library name as a namespace — no `import` statement needed:
+
+```leo
 program using_library.aleo {
-    transition calculate(a: u64, b: u64) -> u64 {
-        return math_library.aleo/safe_add(a, b);
+    fn calculate(a: u64, b: u64) -> u64 {
+        return math::safe_add(a, b);
     }
 }
 ```
+
+The compiler inlines every call and folds all constants. The resulting bytecode contains no trace of `math`.
 
 **Key Differences:**
-- **No Delegatecall**: Leo doesn't support executing external code in current context
+- **No Delegatecall**: Leo doesn't support executing external code in the current context
 - **No Type Attachment**: Cannot attach functions to types like Solidity's `using` directive
-- **Stateless Programs**: Use separate programs instead of libraries
+- **Compile-Time Inlining**: Leo libraries are resolved entirely at compile time — no cross-program call overhead, no ABI boundaries, no on-chain deployment
+- **Library vs Program**: Libraries (`lib.leo`) hold shared utilities and data structures; programs (`.aleo`) hold transitions, mappings, and on-chain state
+
+| | **Library** | **Program** |
+|---|---|---|
+| Compiled to bytecode | No — fully inlined | Yes |
+| Structs (incl. const generic) | ✓ | ✓ |
+| Constants | ✓ | ✓ |
+| Functions | `fn` only | All variants |
+| Mappings / storage | — | ✓ |
+| Deployed on-chain | No | Yes |
 
 ## Events and Logging
 
@@ -1428,7 +1464,7 @@ contract ScopeExample {
 ```leo
 // Leo
 program scope_example.aleo {
-    transition scope_demo() -> u32 {
+    fn scope_demo() -> u32 {
         let local_var: u32 = 200u32;
         
         {

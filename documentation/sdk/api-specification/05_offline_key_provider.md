@@ -95,243 +95,25 @@ const bondPublicKeyParams = OfflineSearchParams.bondPublicKeyParams();
 
 ### Static Methods
 
-<a name="bondpublickeyparams"></a>
-
-#### bondPublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the bond_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.bondPublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the bond_public function*
-
----
-
-<a name="bondvalidatorkeyparams"></a>
-
-#### bondValidatorKeyParams
-
-Creates pre-configured OfflineSearchParams for the bond_validator function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.bondValidatorKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the bond_validator function*
-
----
-
-<a name="claimunbondpublickeyparams"></a>
-
-#### claimUnbondPublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the claim_unbond_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.claimUnbondPublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the claim_unbond_public function*
-
----
-
-<a name="feeprivatekeyparams"></a>
-
-#### feePrivateKeyParams
-
-Creates pre-configured OfflineSearchParams for the fee_private function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.feePrivateKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the fee_private function*
-
----
-
-<a name="feepublickeyparams"></a>
-
-#### feePublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the fee_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.feePublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the fee_public function*
-
----
-
-<a name="inclusionkeyparams"></a>
-
-#### inclusionKeyParams
-
-Creates pre-configured OfflineSearchParams for the inclusion prover function.
-
-```javascript
-OfflineSearchParams.inclusionKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the inclusion prover function*
-
----
-
-<a name="joinkeyparams"></a>
-
-#### joinKeyParams
-
-Creates pre-configured OfflineSearchParams for the join function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.joinKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the join function*
-
----
-
-<a name="setvalidatorstatekeyparams"></a>
-
-#### setValidatorStateKeyParams
-
-Creates pre-configured OfflineSearchParams for the set_validator_state function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.setValidatorStateKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the set_validator_state function*
-
----
-
-<a name="splitkeyparams"></a>
-
-#### splitKeyParams
-
-Creates pre-configured OfflineSearchParams for the split function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.splitKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the split function*
-
----
-
-<a name="transferprivatekeyparams"></a>
-
-#### transferPrivateKeyParams
-
-Creates pre-configured OfflineSearchParams for the transfer_private function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.transferPrivateKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the transfer_private function*
-
----
-
-<a name="transferprivatetopublickeyparams"></a>
-
-#### transferPrivateToPublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the transfer_private_to_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.transferPrivateToPublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the transfer_private_to_public function*
-
----
-
-<a name="transferpublickeyparams"></a>
-
-#### transferPublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the transfer_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.transferPublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the transfer_public function*
-
----
-
-<a name="transferpublicassignerkeyparams"></a>
-
-#### transferPublicAsSignerKeyParams
-
-Creates pre-configured OfflineSearchParams for the transfer_public_as_signer function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.transferPublicAsSignerKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the transfer_public_as_signer function*
-
----
-
-<a name="transferpublictoprivatekeyparams"></a>
-
-#### transferPublicToPrivateKeyParams
-
-Creates pre-configured OfflineSearchParams for the transfer_public_to_private function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.transferPublicToPrivateKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the transfer_public_to_private function*
-
----
-
-<a name="unbondpublickeyparams"></a>
-
-#### unbondPublicKeyParams
-
-Creates pre-configured OfflineSearchParams for the unbond_public function of the credits.aleo program.
-
-```javascript
-OfflineSearchParams.unbondPublicKeyParams()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `OfflineSearchParams` | *Search params for the unbond_public function*
+Each static factory method creates a pre-configured `OfflineSearchParams` instance for a specific `credits.aleo` function. All methods take no parameters and return an `OfflineSearchParams` object ready to use with the offline key provider cache.
+
+| Method | credits.aleo function |
+| --- | --- |
+| `OfflineSearchParams.bondPublicKeyParams()` | `bond_public` |
+| `OfflineSearchParams.bondValidatorKeyParams()` | `bond_validator` |
+| `OfflineSearchParams.claimUnbondPublicKeyParams()` | `claim_unbond_public` |
+| `OfflineSearchParams.feePrivateKeyParams()` | `fee_private` |
+| `OfflineSearchParams.feePublicKeyParams()` | `fee_public` |
+| `OfflineSearchParams.inclusionKeyParams()` | inclusion prover |
+| `OfflineSearchParams.joinKeyParams()` | `join` |
+| `OfflineSearchParams.setValidatorStateKeyParams()` | `set_validator_state` |
+| `OfflineSearchParams.splitKeyParams()` | `split` |
+| `OfflineSearchParams.transferPrivateKeyParams()` | `transfer_private` |
+| `OfflineSearchParams.transferPrivateToPublicKeyParams()` | `transfer_private_to_public` |
+| `OfflineSearchParams.transferPublicKeyParams()` | `transfer_public` |
+| `OfflineSearchParams.transferPublicAsSignerKeyParams()` | `transfer_public_as_signer` |
+| `OfflineSearchParams.transferPublicToPrivateKeyParams()` | `transfer_public_to_private` |
+| `OfflineSearchParams.unbondPublicKeyParams()` | `unbond_public` |
 
 ---
 
@@ -417,40 +199,6 @@ const txId = await networkClient.submitTransaction(offlineExecuteTx);
 
 ## Methods
 
-<a name="bondpublickeys"></a>
-
-### bondPublicKeys
-
-Get bond_public function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-bondPublicKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the bond_public function*
-
----
-
-<a name="bondvalidatorkeys"></a>
-
-### bondValidatorKeys
-
-Get bond_validator function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-bondValidatorKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the bond_public function*
-
----
-
 <a name="cachekeys"></a>
 
 ### cacheKeys
@@ -469,20 +217,21 @@ __keys__ | `FunctionKeyPair` | *keys to cache*
 
 ---
 
-<a name="claimunbondpublickeys"></a>
+### credits.aleo Getter Methods
 
-### claimUnbondPublicKeys
+The following no-argument methods each retrieve the proving and verifying key pair for a specific `credits.aleo` function from the offline key provider cache. Keys must be inserted into the cache (via the corresponding `insert*` method or `cacheKeys`) before calling these methods. All methods return `Promise.<FunctionKeyPair>`.
 
-Get unbond_public function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-claimUnbondPublicKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the unbond_public function*
+| Method | credits.aleo function |
+| --- | --- |
+| `bondPublicKeys()` | `bond_public` |
+| `bondValidatorKeys()` | `bond_validator` |
+| `claimUnbondPublicKeys()` | `claim_unbond_public` |
+| `feePrivateKeys()` | `fee_private` |
+| `feePublicKeys()` | `fee_public` |
+| `inclusionKeys()` | inclusion prover |
+| `joinKeys()` | `join` |
+| `splitKeys()` | `split` |
+| `unBondPublicKeys()` | `unbond_public` |
 
 ---
 
@@ -524,109 +273,6 @@ const [myFunctionProver, myFunctionVerifier] = await offlineKeyProvider.function
 
 ---
 
-<a name="verifycreditskeys"></a>
-
-### verifyCreditsKeys
-
-Determines if the keys for a given credits function match the expected keys.
-
-```javascript
-verifyCreditsKeys(locator, provingKey, verifyingKey) ⇒ boolean
-```
-
-Parameters | Type | Description
---- | --- | ---
-__locator__ | `string` | *The locator of the credits function (e.g. "credits.aleo/transfer_public")*
-__provingKey__ | `ProvingKey` | *The proving key to verify*
-__verifyingKey__ | `VerifyingKey` | *The verifying key to verify*
-__*return*__ | `boolean` | *Whether the keys match the expected keys*
-
----
-
-<a name="feeprivatekeys"></a>
-
-### feePrivateKeys
-
-Get fee_private function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-feePrivateKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the join function*
-
----
-
-<a name="feepublickeys"></a>
-
-### feePublicKeys
-
-Get fee_public function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-feePublicKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the fee_public function*
-
----
-
-<a name="inclusionkeys"></a>
-
-### inclusionKeys
-
-Get the inclusion prover keys. The keys must be cached prior to calling this method for it to work.
-
-```javascript
-inclusionKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the inclusion prover*
-
----
-
-<a name="joinkeys"></a>
-
-### joinKeys
-
-Get join function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-joinKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the join function*
-
----
-
-<a name="splitkeys"></a>
-
-### splitKeys
-
-Get split function keys from the credits.aleo program. The keys must be cached prior to calling this
-method for it to work.
-
-```javascript
-splitKeys()
-```
-
-Parameters | Type | Description
---- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the join function*
-
----
-
 <a name="transferkeys"></a>
 
 ### transferKeys
@@ -662,250 +308,41 @@ const [transferPublicProvingKey, transferPublicVerifyingKey] = await keyProvider
 
 ---
 
-<a name="unbondpublickeys"></a>
+<a name="verifycreditskeys"></a>
 
-### unBondPublicKeys
+### verifyCreditsKeys
 
-Get unbond_public function keys from the credits.aleo program
+Determines if the keys for a given credits function match the expected keys.
 
 ```javascript
-unBondPublicKeys()
+verifyCreditsKeys(locator, provingKey, verifyingKey) ⇒ boolean
 ```
 
 Parameters | Type | Description
 --- | --- | ---
-__*return*__ | `Promise.<FunctionKeyPair>` | *Proving and verifying keys for the join function*
+__locator__ | `string` | *The locator of the credits function (e.g. "credits.aleo/transfer_public")*
+__provingKey__ | `ProvingKey` | *The proving key to verify*
+__verifyingKey__ | `VerifyingKey` | *The verifying key to verify*
+__*return*__ | `boolean` | *Whether the keys match the expected keys*
 
 ---
 
-<a name="insertbondpublickeys"></a>
-
-### insertBondPublicKeys
-
-Insert the proving and verifying keys for the bond_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for bond_public before inserting them into the cache.
-
-```javascript
-insertBondPublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the bond_public function*
-
----
-
-<a name="insertclaimunbondpublickeys"></a>
-
-### insertClaimUnbondPublicKeys
-
-Insert the proving and verifying keys for the claim_unbond_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for claim_unbond_public before inserting them into the cache.
-
-```javascript
-insertClaimUnbondPublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the claim_unbond_public function*
-
----
-
-<a name="insertfeeprivatekeys"></a>
-
-### insertFeePrivateKeys
-
-Insert the proving and verifying keys for the fee_private function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for fee_private before inserting them into the cache.
-
-```javascript
-insertFeePrivateKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the fee_private function*
-
----
-
-<a name="insertfeepublickeys"></a>
-
-### insertFeePublicKeys
-
-Insert the proving and verifying keys for the fee_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for fee_public before inserting them into the cache.
-
-```javascript
-insertFeePublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the fee_public function*
-
----
-
-<a name="insertinclusionkeys"></a>
-
-### insertInclusionKeys
-
-Insert the proving and verifying keys for the inclusion prover into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for the inclusion prover.
-
-```javascript
-insertInclusionKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the inclusion prover*
-
----
-
-<a name="insertjoinkeys"></a>
-
-### insertJoinKeys
-
-Insert the proving and verifying keys for the join function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for join before inserting them into the cache.
-
-```javascript
-insertJoinKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the join function*
-
----
-
-<a name="insertsetvalidatorstatekeys"></a>
-
-### insertSetValidatorStateKeys
-
-Insert the proving and verifying keys for the set_validator_state function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for set_validator_state before inserting them into the cache.
-
-```javascript
-insertSetValidatorStateKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the set_validator_state function*
-
----
-
-<a name="insertsplitkeys"></a>
-
-### insertSplitKeys
-
-Insert the proving and verifying keys for the split function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for split before inserting them into the cache.
-
-```javascript
-insertSplitKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the split function*
-
----
-
-<a name="inserttransferprivatekeys"></a>
-
-### insertTransferPrivateKeys
-
-Insert the proving and verifying keys for the transfer_private function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for transfer_private before inserting them into the cache.
-
-```javascript
-insertTransferPrivateKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the transfer_private function*
-
----
-
-<a name="inserttransferprivatetopublickeys"></a>
-
-### insertTransferPrivateToPublicKeys
-
-Insert the proving and verifying keys for the transfer_private_to_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for transfer_private_to_public before inserting them into the cache.
-
-```javascript
-insertTransferPrivateToPublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the transfer_private_to_public function*
-
----
-
-<a name="inserttransferpublickeys"></a>
-
-### insertTransferPublicKeys
-
-Insert the proving and verifying keys for the transfer_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for transfer_public before inserting them into the cache.
-
-```javascript
-insertTransferPublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the transfer_public function*
-
----
-
-<a name="inserttransferpublictoprivatekeys"></a>
-
-### insertTransferPublicToPrivateKeys
-
-Insert the proving and verifying keys for the transfer_public_to_private function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for transfer_public_to_private before inserting them into the cache.
-
-```javascript
-insertTransferPublicToPrivateKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the transfer_public_to_private function*
-
----
-
-<a name="insertunbondpublickeys"></a>
-
-### insertUnbondPublicKeys
-
-Insert the proving and verifying keys for the unbond_public function into the cache. Only the proving key needs
-to be inserted, the verifying key is automatically inserted by the SDK. This function will automatically check
-that the keys match the expected checksum for unbond_public before inserting them into the cache.
-
-```javascript
-insertUnbondPublicKeys(provingKey)
-```
-
-Parameters | Type | Description
---- | --- | ---
-__provingKey__ | `ProvingKey` | *The proving key for the unbond_public function*
+### insert\*Keys Methods
+
+Each of the following methods inserts the proving key for a specific `credits.aleo` function into the offline key provider cache. Only the proving key needs to be supplied — the SDK automatically derives and inserts the corresponding verifying key, and verifies the checksum before caching. All methods accept a single `ProvingKey` parameter.
+
+| Method | credits.aleo function |
+| --- | --- |
+| `insertBondPublicKeys(provingKey)` | `bond_public` |
+| `insertClaimUnbondPublicKeys(provingKey)` | `claim_unbond_public` |
+| `insertFeePrivateKeys(provingKey)` | `fee_private` |
+| `insertFeePublicKeys(provingKey)` | `fee_public` |
+| `insertInclusionKeys(provingKey)` | inclusion prover |
+| `insertJoinKeys(provingKey)` | `join` |
+| `insertSetValidatorStateKeys(provingKey)` | `set_validator_state` |
+| `insertSplitKeys(provingKey)` | `split` |
+| `insertTransferPrivateKeys(provingKey)` | `transfer_private` |
+| `insertTransferPrivateToPublicKeys(provingKey)` | `transfer_private_to_public` |
+| `insertTransferPublicKeys(provingKey)` | `transfer_public` |
+| `insertTransferPublicToPrivateKeys(provingKey)` | `transfer_public_to_private` |
+| `insertUnbondPublicKeys(provingKey)` | `unbond_public` |

@@ -1326,7 +1326,7 @@ const programManager = new ProgramManager("https://api.provable.com/v2", keyProv
 programManager.setAccount(new Account("YourPrivateKey"));
 
 // Create the bonding transaction object for later submission
-const tx = await programManager.buildBondPublicTransaction("aleo1jx8s4dvjepculny4wfrzwyhs3tlyv65r58ns3g6q2gm2esh7ps8sqy9s5j", "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 2000000);
+const tx = await programManager.buildBondPublicTransaction("aleo1jx8s4dvjepculny4wfrzwyhs3tlyv65r58ns3g6q2gm2esh7ps8sqy9s5j", "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", 2000000);
 
 // The transaction can be later submitted to the network using the network client.
 await programManager.networkClient.submitTransaction(tx.toString());
@@ -1372,7 +1372,7 @@ keyProvider.useCache(true);
 const programManager = new ProgramManager("https://api.provable.com/v2", keyProvider, undefined);
 
 // Create the bonding transaction
-tx_id = await programManager.bondPublic("aleo1jx8s4dvjepculny4wfrzwyhs3tlyv65r58ns3g6q2gm2esh7ps8sqy9s5j", "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 2000000);
+tx_id = await programManager.bondPublic("aleo1jx8s4dvjepculny4wfrzwyhs3tlyv65r58ns3g6q2gm2esh7ps8sqy9s5j", "aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", 2000000);
 
 // Verify the transaction was successful
 setTimeout(async () => {
@@ -1417,7 +1417,7 @@ const programManager = new ProgramManager("https://api.provable.com/v2", keyProv
 programManager.setAccount(new Account("YourPrivateKey"));
 
 // Create the bond validator transaction object for later use.
-const tx = await programManager.buildBondValidatorTransaction("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 2000000);
+const tx = await programManager.buildBondValidatorTransaction("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 10000000, 5);
 
 // The transaction can later be submitted to the network using the network client.
 const tx_id = await programManager.networkClient.submitTransaction(tx.toString());
@@ -1465,7 +1465,7 @@ const programManager = new ProgramManager("https://api.provable.com/v2", keyProv
 programManager.setAccount(new Account("YourPrivateKey"));
 
 // Create the bonding transaction
-const tx_id = await programManager.bondValidator("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 2000000);
+const tx_id = await programManager.bondValidator("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px", "aleo1feya8sjy9k2zflvl2dx39pdsq5tju28elnp2ektnn588uu9ghv8s84msv9", 10000000, 5);
 
 // Verify the transaction was successful
 setTimeout(async () => {
@@ -1785,7 +1785,7 @@ const program_import = "program add_it_up.aleo;\n\nfunction add_it:\n    input r
 const programManager = new ProgramManager(undefined, undefined, undefined);
 
 /// Create a temporary account for the execution of the program
-const account = Account.fromCipherText(process.env.ciphertext, process.env.password);
+const account = Account.fromCiphertext(process.env.ciphertext, process.env.password);
 programManager.setAccount(account);
 
 /// Get the response and ensure that the program executed correctly

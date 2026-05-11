@@ -4,431 +4,345 @@ title: Token Registry Program
 sidebar_label: Token Registry
 ---
 
+:::caution Not Recommended for New Projects
+
+The Token Registry Program remains live on mainnet and continues to serve existing integrations. However, it is **not recommended for new projects**. Newer token standards are currently under active community discussion and are expected to supersede the Token Registry:
+
+- [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/124) — proposed standard for fungible tokens on Aleo
+- [ARC-22](https://github.com/ProvableHQ/ARCs/discussions/125) — proposed standard for compliant/regulated fungible tokens on Aleo, extending ARC-20
+
+New projects should follow these discussions and consider building against the forthcoming standards once finalized.
+
+:::
+
 ## Overview
 
-The Token Registry Program is a standard program designed for issuing and managing new tokens on the Aleo blockchain. It operates as a singleton program because on Aleo, all imported programs must be known and deployed before the importing program, and dynamic cross-program calls are not currently supported which makes composability difficult to implement. This means that a DeFi program must be compiled with support for all token programs that it will ever interact with. If a new token program is subsequently deployed on-chain, the DeFi program will need to be re-compiled and redeployed on chain in order to interact with that token.
+The Token Registry Program is a singleton program for issuing and managing tokens on Aleo. Rather than deploying a separate program per token, all tokens register with this central registry, which manages their balances. DeFi programs depend only on the registry, so new tokens can be added without redeploying existing DeFi programs. As a secondary benefit, private transfers within the registry conceal which specific token is being transferred, improving the anonymity set.
 
-In the near-term, support for dynamic dispatch will resolve this but currently, the issue is circumvented by means of the [token registry](https://explorer.provable.com/program/token_registry.aleo) which can manage balances for many different ARC-20 tokens. This program would be the standard "hub" that all tokens and DeFi programs interface with. Individual ARC-20 tokens can register with the registry and mint new tokens via this program. Transfers of token value will occur by direct call to the registry rather than the ARC-20 program itself. The benefit of this approach is that DeFi programs do not need to be compiled with any special knowledge of individual ARC-20 tokens: their sole dependency will be the registry. Hence the deployment of new tokens does not require re-deployment of DeFi programs. Similarly, individual ARC-20 tokens can also be compiled with dependence on the registry, but no dependence on the DeFi programs. The registry thus allows interoperability between new tokens and DeFi programs, with no need for program re-deployment. As a secondary benefit, the registry will provide privacy benefits (via an improved anonymity set) because all private transfers within the registry will conceal the identity of the specific token being transferred.
+This design predates [dynamic dispatch (ARC-0009)](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009). With dynamic dispatch now finalized, programs can call other programs at runtime without compile-time imports, enabling the per-program token model described in [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/124). The Token Registry remains live on mainnet and continues to serve existing integrations — see the caution above for guidance on new projects.
 
-This standard is emerged from extensive discussions and the approval of the [ARC-21 proposal](https://vote.aleo.org/p/21) to enable token interoperability across different applications.
+This standard emerged from community discussion and the approval of the [ARC-21 proposal](https://vote.aleo.org/p/21).
 
 <!-- markdown-link-check-disable -->
-This documentation outlines the functions of the Token Registry Program and provides guidance on how to use it. The original source code can be found [here](https://github.com/demox-labs/aleo-standard-programs/blob/main/token_registry/src/main.leo).
+The original source code can be found [here](https://github.com/demox-labs/aleo-standard-programs/blob/main/token_registry/src/main.leo).
 <!-- markdown-link-check-enable -->
 
-## How to use the Token Registry Program
+## How to Use the Token Registry Program
 
-Anyone can create a new token on Aleo using the `token_registry.aleo` program by calling the `register_token` transition with a unique token ID and specifying any name, symbol, decimals, and maximum supply. An optional `external_authorization_required` boolean grants extra control over token available to spend by requiring extra approval from an `external_authorization_party`, the `external_authorization_party` can unlocks certain amount of balances for spending with expiration over a specific owner's token using `prehook_public` or `prehook_private`. The admin can also set `external_authorization_party` to another address with `update_token_management` later if needed.
+Call `register_token` with a unique token ID, name, symbol, decimals, and max supply. Setting `external_authorization_required` to `true` requires approval from an `external_authorization_party` before tokens can be spent, that party uses `prehook_public` or `prehook_private` to unlock balances for a specific owner with an expiration block height. The admin can update the `external_authorization_party` later via `update_token_management`.
 
-Once a token is registered, the tokens can be minted either publicly using `mint_public` or privately to a specific recipient using `mint_private` with roles `MINTER_ROLE` or `SUPPLY_MANAGER_ROLE` if not admin. The tokens can also be burned either publicly with `burn_public` or privately with `burn_private` with roles `BURNER_ROLE` or `SUPPLY_MANAGER_ROLE` if not admin.
+Once registered, tokens can be minted publicly (`mint_public`) or privately (`mint_private`), and burned publicly (`burn_public`) or privately (`burn_private`). Minting and burning require `MINTER_ROLE`/`BURNER_ROLE` or `SUPPLY_MANAGER_ROLE` if the caller is not the admin.
 
-The token owner then can transfer the token either publicly using `transfer_public` or privately to a specific recipient using `transfer_private`. The token can also be converted from public to private using `transfer_public_to_private` or from private to public using `transfer_private_to_public`.
+Owners transfer tokens publicly (`transfer_public`) or privately (`transfer_private`), and can convert between public and private balances with `transfer_public_to_private` and `transfer_private_to_public`.
 
-## Token Registry Program Data Structures
+## Data Structures
 
 ### Token Record
 
 ```leo
-  record Token {
-    owner: address,
-    amount: u128,
-    token_id: field,
-    external_authorization_required: bool,
-    authorized_until: u32
-  }
+record Token {
+  owner: address,
+  amount: u128,
+  token_id: field,
+  external_authorization_required: bool,
+  authorized_until: u32           // block height until authorization expires
+}
 ```
 
-#### Token Record Fields
-
-- `owner`: The address of the token owner.
-- `amount`: The amount of tokens in the account.
-- `token_id`: The unique identifier for the token.
-- `external_authorization_required`: Whether or not the token requires external authorization.
-- `authorized_until`: The block height until which the token is authorized.
-
-### Token Metadata Struct
+### TokenMetadata Struct
 
 ```leo
-  struct TokenMetadata {
-    token_id: field,
-    name: u128, // ASCII text represented in bits, and the u128 value of the bitstring
-    symbol: u128, // ASCII text represented in bits, and the u128 value of the bitstring
-    decimals: u8,
-    supply: u128,
-    max_supply: u128,
-    admin: address,
-    external_authorization_required: bool, // whether or not this token requires authorization from an external program before transferring
-    external_authorization_party: address
-  }
+struct TokenMetadata {
+  token_id: field,
+  name: u128,                          // ASCII text as u128 bitstring
+  symbol: u128,                        // ASCII text as u128 bitstring
+  decimals: u8,
+  supply: u128,
+  max_supply: u128,
+  admin: address,
+  external_authorization_required: bool,
+  external_authorization_party: address
+}
 ```
 
-#### Token Metadata Struct Fields
-
-- `token_id`: The unique identifier for the token.
-- `name`: The name of the token.
-- `symbol`: The symbol of the token.
-- `decimals`: The number of decimals for the token.
-- `supply`: The total supply of the token.
-- `max_supply`: The maximum supply of the token.
-- `admin`: The address of the token admin.
-- `external_authorization_required`: Whether or not the token requires external authorization.
-- `external_authorization_party`: The address of the external authorization party.
-
-### Token Owner Struct
+### TokenOwner Struct
 
 ```leo
-  struct TokenOwner {
-    account: address,
-    token_id: field
-  }
+struct TokenOwner {
+  account: address,
+  token_id: field
+}
 ```
-
-#### Token Owner Struct Fields
-
-- `account`: The address of the token owner.
-- `token_id`: The unique identifier for the token.
 
 ### Balance Struct
 
 ```leo
-  struct Balance {
-    token_id: field,
-    account: address,
-    balance: u128,
-    authorized_until: u32
-  }
-``` 
-
-#### Balance Struct Fields
-
-- `token_id`: The unique identifier for the token.
-- `account`: The address of the token owner.
-- `balance`: The balance of the token.
-- `authorized_until`: The block height until which the token is authorized.
+struct Balance {
+  token_id: field,
+  account: address,
+  balance: u128,
+  authorized_until: u32
+}
+```
 
 ### Allowance Struct
 
 ```leo
-  struct Allowance {
-    account: address,
-    spender: address,
-    token_id: field
-  }
+struct Allowance {
+  account: address,
+  spender: address,
+  token_id: field
+}
 ```
 
-#### Allowance Struct Fields
+## Mappings
 
-- `account`: The address of the token owner.
-- `spender`: The address of the spender.
-- `token_id`: The unique identifier for the token.
+| Mapping | Key | Value |
+|---|---|---|
+| `registered_tokens` | `field` (token ID) | `TokenMetadata` |
+| `balances` | `field` (hash of token ID + account) | `Balance` |
+| `allowances` | `field` (hash of token ID + account + spender) | `Allowance` |
+| `roles` | `field` (hash of token ID + account) | `u8` |
 
-## Token Registry Program Mappings
+## Constants
 
-`mapping registered_tokens: field => TokenMetadata;`  
-Mapping of token IDs to token metadata structs.
+| Constant | Value | Description |
+|---|---|---|
+| `CREDITS_RESERVED_TOKEN_ID` | `3443843282313283355522573239085696902919850365217539366784739393210722344986field` | Reserved token ID for ALEO credits |
+| `MINTER_ROLE` | `1u8` | Role for minting |
+| `BURNER_ROLE` | `2u8` | Role for burning |
+| `SUPPLY_MANAGER_ROLE` | `3u8` | Role for minting and burning |
 
-`mapping balances: field => Balance;`  
-Mapping of the hash of the token ID and the account address to the balance struct.
-
-`mapping allowances: field => Allowance;`  
-Mapping of the hash of the token ID, the account address, and the spender address to the allowance struct.
-
-`mapping roles: field => u8;`  
-Mapping of the hash of the token ID and the account address to the role.
-
-## Token Registry Program Constants
-
-`const CREDITS_RESERVED_TOKEN_ID: field = 3443843282313283355522573239085696902919850365217539366784739393210722344986field;`  
-Token ID reserved for the ALEO credits token.
-
-`const MINTER_ROLE: u8 = 1u8;`  
-Role for the minter.
-
-`const BURNER_ROLE: u8 = 2u8;`  
-Role for the burner.
-
-`const SUPPLY_MANAGER_ROLE: u8 = 3u8;`  
-Role for the supply manager.
-
-## Token Registry Program Functions
-
-The Token Registry Program includes the following functions:
+## Functions
 
 ### `initialize()`
-#### Description
-Initializes the Token Registry Program by registering the ALEO credits token with predefined metadata. The token is initialized with a specific token ID, name "credits", symbol "credits", 6 decimals, and a max supply of 10 quadrillion. The program sets itself (wrapped_credits.aleo) as the admin and disables external authorization requirements to ensure the token metadata cannot be modified after initialization.
 
-#### Parameters
-Parameters are hardcoded in program to safeguard against frontrunning.
+Registers the ALEO credits token with hardcoded metadata (name/symbol "credits", 6 decimals, max supply 10 quadrillion). Parameters are hardcoded to prevent frontrunning. Sets `wrapped_credits.aleo` as admin with external authorization disabled so metadata cannot be modified afterward.
 
-#### Returns
-None.
+---
 
 ### `register_token()`
-#### Description
-Registers a new token with the Token Registry Program.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public name: u128`: The name of the token.
-- `public symbol: u128`: The symbol of the token.
-- `public decimals: u8`: The number of decimals for the token.
-- `public max_supply: u128`: The maximum supply of the token.
-- `public external_authorization_required: bool`: Whether or not the token requires external authorization.
-- `public external_authorization_party: address`: The address of the external authorization party.
+Registers a new token. The caller becomes the admin.
 
-#### Returns
-- `Future`: A Future to finalize the token registration.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Unique token identifier |
+| `name` | `public u128` | Token name |
+| `symbol` | `public u128` | Token symbol |
+| `decimals` | `public u8` | Decimal places |
+| `max_supply` | `public u128` | Maximum supply |
+| `external_authorization_required` | `public bool` | Whether external authorization is required |
+| `external_authorization_party` | `public address` | Address of the authorization party |
+
+Returns: `Future`
+
+---
 
 ### `update_token_management()`
-#### Description
-Updates the token management settings.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public admin: address`: The address of the admin.
-- `public external_authorization_party: address`: The address of the external authorization party.
+Updates the admin and external authorization party for a token. Only callable by the current admin.
 
-#### Returns
-- `Future`: A Future to finalize the token management update.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `admin` | `public address` | New admin address |
+| `external_authorization_party` | `public address` | New authorization party address |
 
-### `set_role()`
-#### Description
-Sets the role for a specific token ID.
+Returns: `Future`
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public account: address`: The address of the account.
-- `public role: u8`: The role to set.
+---
 
-#### Returns
-- `Future`: A Future to finalize the role set.
+### `set_role()` / `remove_role()`
 
-### `remove_role()`
-#### Description
-Removes the role for a specific token ID.
+`set_role` assigns a role (`MINTER_ROLE`, `BURNER_ROLE`, or `SUPPLY_MANAGER_ROLE`) to an account for a given token. `remove_role` clears it. Both require the caller to be the token admin.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public account: address`: The address of the account.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `account` | `public address` | Target account |
+| `role` | `public u8` | Role value (`set_role` only) |
 
-#### Returns
-- `Future`: A Future to finalize the role removal.
+Returns: `Future`
 
-### `mint_public()`
-#### Description
-Mints a new token publicly by the specific token ID's admin.
+---
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public recipient: address`: The address of the recipient.
-- `public amount: u128`: The amount of tokens to mint.
-- `public authorized_until: u32`: The block height until which the token is authorized.
+### `mint_public()` / `mint_private()`
 
-#### Returns
-- `Future`: A Future to finalize the mint.
+Mints tokens to a recipient. Requires admin, `MINTER_ROLE`, or `SUPPLY_MANAGER_ROLE`.
 
-### `mint_private()`
-#### Description
-Mints a new token privately by the specific token ID's admin.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `recipient` | `address` (private for `mint_private`) | Recipient address |
+| `amount` | `public u128` | Amount to mint |
+| `external_authorization_required` | `public bool` | (`mint_private` only) |
+| `authorized_until` | `public u32` | Authorization expiry block height |
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `recipient: address`: The address of the recipient that is not visible to the public.
-- `public amount: u128`: The amount of tokens to mint.
-- `public external_authorization_required: bool`: Whether or not the token requires external authorization.
-- `public authorized_until: u32`: The block height until which the token is authorized.
+Returns: `mint_public` → `Future`; `mint_private` → `Token`, `Future`
 
-#### Returns
-- `Token`: The token record.
-- `Future`: A Future to finalize the mint.
+---
 
-### `burn_public()`
-#### Description
-Burns a token publicly by the specific token ID's admin.
+### `burn_public()` / `burn_private()`
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public owner: address`: The address of the owner.
-- `public amount: u128`: The amount of tokens to burn.
+Burns tokens. Requires admin, `BURNER_ROLE`, or `SUPPLY_MANAGER_ROLE`.
 
-#### Returns
-- `Future`: A Future to finalize the burn.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier (`burn_public` only) |
+| `owner` | `public address` | Token owner (`burn_public` only) |
+| `input_record` | `Token` | Token record (`burn_private` only) |
+| `amount` | `public u128` | Amount to burn |
 
-### `burn_private()`
-#### Description
-Burns a token privately by the specific token ID's admin.
+Returns: `burn_public` → `Future`; `burn_private` → remaining `Token`, `Future`
 
-#### Parameters
-- `input_record: Token`: The token record.
-- `public amount: u128`: The amount of tokens to burn.
+---
 
-#### Returns
-- `Token`: The token record with remaining balance.
-- `Future`: A Future to finalize the burn.
+### `prehook_public()` / `prehook_private()`
 
-### `prehook_public()`
-#### Description
-A function for the authorized party to modify authorized amount and new expiration publicly.
+Called by the `external_authorization_party` to unlock a specified token amount for an owner up to a given block height.
 
-#### Parameters
-- `public owner: address`: The address of the owner.
-- `public amount: u128`: The amount of tokens to prehook.
-- `public authorized_until: u32`: The block height until which the token is authorized.
+| Parameter | Type | Description |
+|---|---|---|
+| `owner` | `public address` | Token owner (`prehook_public` only) |
+| `input_record` | `Token` | Token record (`prehook_private` only) |
+| `amount` | `u128` | Amount to authorize |
+| `authorized_until` | `u32` | Authorization expiry block height |
 
-#### Returns
-- `Future`: A Future to finalize the prehook.
+Returns: `prehook_public` → `Future`; `prehook_private` → unauthorized `Token`, authorized `Token`, `Future`
 
-### `prehook_private()`
-#### Description
-A function for the authorized party to modify authorized amount and new expiration privately.
-
-#### Parameters
-- `input_record: Token`: The token record.
-- `amount: u128`: The amount of tokens to prehook.
-- `authorized_until: u32`: The block height until which the token is authorized.
-
-#### Returns
-- `Token`: The unauthorized token record.
-- `Token`: The authorized token record.
-- `Future`: A Future to finalize the prehook.
+---
 
 ### `transfer_public()`
-#### Description
-Transfers a token publicly by the token owner.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public recipient: address`: The address of the recipient.
-- `public amount: u128`: The amount of tokens to transfer.
+Transfers tokens between public balances. The caller is the sender (`self.caller`).
 
-#### Returns
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `recipient` | `public address` | Recipient address |
+| `amount` | `public u128` | Amount to transfer |
+
+Returns: `Future`
+
+---
 
 ### `transfer_public_as_signer()`
-#### Description
-Transfers a token publicly by the token owner as the transaction signer in any arbitrary program calls.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public recipient: address`: The address of the recipient.
-- `public amount: u128`: The amount of tokens to transfer.
+Same as `transfer_public` but uses `self.signer` as the sender, enabling use within arbitrary program call chains.
 
-#### Returns
-- `Future`: A Future to finalize the transfer.
+Parameters and return value are identical to `transfer_public`.
 
-### `approve_public()`
-#### Description
-Approves a token for a spender to be able to transfer the token on behalf of the owner.
+---
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public spender: address`: The address of the spender.
-- `public amount: u128`: The amount of tokens to approve.
+### `approve_public()` / `unapprove_public()`
 
-#### Returns
-- `Future`: A Future to finalize the approval.
+`approve_public` grants a spender an allowance to transfer tokens on the owner's behalf. `unapprove_public` revokes or reduces that allowance.
 
-### `unapprove_public()`
-#### Description
-Revokes or reduces the approval for a spender to transfer the token on behalf of the owner.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `spender` | `public address` | Spender address |
+| `amount` | `public u128` | Amount to approve or unapprove |
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public spender: address`: The address of the spender.
-- `public amount: u128`: The amount of tokens to unapprove.
+Returns: `Future`
 
-#### Returns
-- `Future`: A Future to finalize the unapproval.
+---
 
 ### `transfer_from_public()`
-#### Description
-Transfers a token from the owner to the recipient after getting approval from the owner.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public owner: address`: The address of the owner.
-- `public recipient: address`: The address of the recipient.
-- `public amount: u128`: The amount of tokens to transfer.
+Transfers tokens from an owner to a recipient using a pre-approved allowance.
 
-#### Returns
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `owner` | `public address` | Token owner |
+| `recipient` | `public address` | Recipient address |
+| `amount` | `public u128` | Amount to transfer |
+
+Returns: `Future`
+
+---
 
 ### `transfer_public_to_private()`
-#### Description
-Convert public token to private token by its owner.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `recipient: address`: The address of the recipient that is not visible to the public.
-- `public amount: u128`: The amount of tokens to transfer.
-- `public external_authorization_required: bool`: Whether or not the token requires external authorization.
+Converts a public balance to a private token record.
 
-#### Returns
-- `Token`: The token record.
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `recipient` | `address` (private) | Recipient address |
+| `amount` | `public u128` | Amount to convert |
+| `external_authorization_required` | `public bool` | Whether authorization is required |
+
+Returns: `Token`, `Future`
+
+---
 
 ### `transfer_from_public_to_private()`
-#### Description
-Convert public token to private token on behalf of the token owner after getting approval from the owner.
 
-#### Parameters
-- `public token_id: field`: The unique identifier for the token.
-- `public owner: address`: The address of the owner.
-- `recipient: address`: The address of the recipient that is not visible to the public.
-- `public amount: u128`: The amount of tokens to transfer.
-- `public external_authorization_required: bool`: Whether or not the token requires external authorization.
+Converts a public balance to a private token record on behalf of the owner using a pre-approved allowance.
 
-#### Returns
-- `Token`: The token record.
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_id` | `public field` | Token identifier |
+| `owner` | `public address` | Token owner |
+| `recipient` | `address` (private) | Recipient address |
+| `amount` | `public u128` | Amount to convert |
+| `external_authorization_required` | `public bool` | Whether authorization is required |
+
+Returns: `Token`, `Future`
+
+---
 
 ### `transfer_private()`
-#### Description
-Transfers a token privately by the token owner.
 
-#### Parameters
-- `recipient: address`: The address of the recipient that is not visible to the public.
-- `amount: u128`: The amount of tokens to transfer.
-- `input_record: Token`: The token record.
+Transfers tokens between private records.
 
-#### Returns
-- `Token`: The remaining token record.
-- `Token`: The receiving token record.
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `recipient` | `address` (private) | Recipient address |
+| `amount` | `u128` | Amount to transfer |
+| `input_record` | `Token` | Sender's token record |
+
+Returns: remaining `Token` (sender), receiving `Token` (recipient), `Future`
+
+---
 
 ### `transfer_private_to_public()`
-#### Description
-Convert private token to public token by the token owner.
 
-#### Parameters
-- `public recipient: address`: The address of the recipient that is visible to the public.
-- `public amount: u128`: The amount of tokens to transfer.
-- `input_record: Token`: The token record.
+Converts a private token record to a public balance.
 
-#### Returns
-- `Token`: The remaining token record.
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|---|---|---|
+| `recipient` | `public address` | Recipient address |
+| `amount` | `public u128` | Amount to convert |
+| `input_record` | `Token` | Token record to consume |
+
+Returns: remaining `Token`, `Future`
+
+---
 
 ### `join()`
-#### Description
-Joins two private token records and become one single record. Does not change the total amount of the tokens.
 
-#### Parameters
-- `private token_1: Token`: The first token record.
-- `private token_2: Token`: The second token record.
+Merges two private token records of the same token into one. Total amount is unchanged.
 
-#### Returns
-- `Token`: The joined token record.
+| Parameter | Type | Description |
+|---|---|---|
+| `token_1` | `private Token` | First token record |
+| `token_2` | `private Token` | Second token record |
+
+Returns: merged `Token`
+
+---
 
 ### `split()`
-#### Description
-Splits a private token record into two new token records. Does not change the total amount of the tokens.
 
-#### Parameters
-- `private token: Token`: The token record.
-- `private amount: u128`: The amount of tokens to split.
+Splits a private token record into two. Total amount is unchanged.
 
-#### Returns
-- `Token`: The splitted token record.
-- `Token`: The remaining token record.
+| Parameter | Type | Description |
+|---|---|---|
+| `token` | `private Token` | Token record to split |
+| `amount` | `private u128` | Amount to split into the first output |
+
+Returns: split `Token`, remaining `Token`

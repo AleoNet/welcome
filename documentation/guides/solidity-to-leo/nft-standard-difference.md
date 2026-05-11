@@ -10,7 +10,7 @@ ERC-721 is the standard for non-fungible tokens on Ethereum, but every piece of 
 
 ARC-721, the Aleo variant implemented in Leo, maintains the same ergonomics while allowing you to choose which parts remain private and which are stored on-chain. The standard originated from the [ARC-721 proposal](https://github.com/ProvableHQ/ARCs/discussions/79) and was officially approved through community voting on [Aleo Governance](https://vote.aleo.org/p/721). The standard leverages Aleo's unique privacy features to provide enhanced functionality compared to ERC-721. For example, every NFT in ARC-721 has two separate privacy controls: one for ownership and one for the NFT data itself, with configurable privacy settings for both. For more detailed information about the NFT standards and implementation details, please refer to the [NFT Standards documentation](../standards/01_nft_standards.md).
 
-To address program composability challenges on Aleo, there is a proposed [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) that would serve as a central hub for NFT collections, similar to how the [Token Registry Program](../standards/00_token_registry.md) works for fungible tokens. This registry would allow multiple implementations with different data structures, identified by the unique pair (registry_program_id, collection_id). Note that ARC-722 is currently in the proposal stage and has not yet been voted on or approved by the Aleo community.
+Program composability on Aleo has historically required a central registry approach (similar to the [Token Registry Program](../standards/00_token_registry.md) for fungible tokens). With [dynamic dispatch (ARC-0009)](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009) now finalized, programs can call other programs at runtime without compile-time imports, opening the door to more flexible NFT composability patterns. A proposed [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) would serve as a central hub for NFT collections identified by the pair (registry_program_id, collection_id), though it remains in the proposal stage and has not yet been voted on or approved.
 
 ## Quick-glance Comparison
 
@@ -100,23 +100,7 @@ mapping nft_approvals:     field => field    // commit → approval hash
 
 ### String Management
 
-Since Leo doesn't have a native string type, strings are managed using arrays of `field` elements:
-
-```leo
-// Example attribute, optional
-struct attribute {
-    trait_type: [field; 4],
-    _value: [field; 4],
-}
-
-struct data {
-    metadata: [field; 4], // URI of offchain metadata JSON
-    // (optional) name: [field; 4],
-    // (optional) image: [field; 16],
-    // (optional) attributes: [attribute; 4],
-    // (optional) ...
-}
-```
+Since Leo doesn't have a native string type, strings are managed using arrays of `field` elements (as shown in the `attribute` and `data` structs in the [ARC-721 data structure above](#state-management)).
 
 Key points about string management in Leo:
 - The array length can be adjusted based on the maximum number of characters needed
@@ -137,7 +121,7 @@ NFT commit is used to identify each unique NFT in ARC-721:
 ```leo
 mapping nft_commits: field => bool; // NFT commit => NFT exists or has existed
 
-inline commit_nft(
+fn commit_nft(
     nft_data: data,
     nft_edition: scalar
 ) -> field {
@@ -170,45 +154,45 @@ ARC-721 provides flexibility in defining custom NFT creation logic as the NFT pr
 ```leo
 // Mints a private NFT
 // Returns the NFT record that representing ownership and contains NFT data.
-async transition mint_private(
-    admin_nft: nft_records.aleo/NFT,
+fn mint_private(
+    admin_nft: nft_records.aleo::NFT,
     private recipient: address,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> (nft_records.aleo/NFT, Future) 
+) -> (nft_records.aleo::NFT, Final)
 
 // Mints a private NFT, verifying admin rights during finalization publicly.
 // Returns the NFT record that representing ownership and contains NFT data.
-async transition mint_private_as_public(
+fn mint_private_as_public(
     private recipient: address,
     private collection_id: field,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> (nft_records.aleo/NFT, Future)
+) -> (nft_records.aleo::NFT, Final)
 
 // Mints a public NFT, with private admin as authorization.
 // Returns NFTView record that contains private NFT data, ownership is stored publicly on-chain.
-async transition mint_public_as_private(
-    admin_nft: nft_records.aleo/NFT,
+fn mint_public_as_private(
+    admin_nft: nft_records.aleo::NFT,
     public recipient: address,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> (nft_records.aleo/NFTView, Future)
+) -> (nft_records.aleo::NFTView, Final)
 
 // Mints a public NFT
 // Returns NFTView record that contains private NFT data, ownership is stored publicly on-chain.
-async transition mint_public(
+fn mint_public(
     public recipient: address,
     public collection_id: field,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> (nft_records.aleo/NFTView, Future)
+) -> (nft_records.aleo::NFTView, Final)
 
 // Make a NFT data public
-async transition publish_nft_content(
+fn publish_nft_content(
     public nft_data: Data,
     public nft_edition: scalar,
-) -> Future
+) -> Final
 ```
 
 ### Transfer Mechanisms
@@ -222,55 +206,55 @@ function safeTransferFrom(address from, address to, uint256 tokenId) public
 **ARC-721**
 ```leo
 // Private transfer
-transition transfer_private(
+fn transfer_private(
     private nft: NFT,
     private to: address,
 ) -> NFT
 
 // Public transfer from function caller (msg.sender)
-async transition transfer_public(
+fn transfer_public(
     private nft_data: data,
     private nft_edition: scalar,
     public to: address,
-) -> (NFTView, Future)
+) -> (NFTView, Final)
 
 // Public transfer from transaction signer (tx.origin)
-async transition transfer_public_as_signer(
+fn transfer_public_as_signer(
     private collection_id: field,
     private nft_data: Data,
     private nft_edition: scalar,
     public recipient: address,
-) -> (NFTView, Future)
+) -> (NFTView, Final)
 
 // Public transfer by an approved spender
-async transition transfer_from_public(
+fn transfer_from_public(
     public from: address,
     public to: address,
     private nft_data: data,
     private nft_edition: scalar,
-) -> (NFTView, Future)
+) -> (NFTView, Final)
 
 // Convert private NFT ownership to public NFT ownership
-async transition transfer_private_to_public(
-    nft: nft_records.aleo/NFT,
+fn transfer_private_to_public(
+    nft: nft_records.aleo::NFT,
     public recipient: address,
-) -> (nft_records.aleo/NFTView, Future)
+) -> (nft_records.aleo::NFTView, Final)
 
 // Convert public NFT ownership to private NFT ownership
-async transition transfer_public_to_private(
+fn transfer_public_to_private(
     private nft_data: data,
     private nft_edition: scalar,
     private to: address,
-) -> (NFT, Future)
+) -> (NFT, Final)
 
 // Convert public NFT ownership to private NFT ownership by an approved sender
-async transition transfer_from_public_to_private(
+fn transfer_from_public_to_private(
     private collection_id: field,
     public from: address,
     public recipient: address,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> (NFT, Future)
+) -> (NFT, Final)
 ```
 
 #### Transfer flows side by side
@@ -294,24 +278,24 @@ function setApprovalForAll(address operator, bool approved) public
 **ARC-721**
 ```leo
 // Collection-wide approval
-async transition set_for_all_approval(
+fn set_for_all_approval(
     private spender: address,
     public new_value: bool,
-) -> Future
+) -> Final
 
 // Individual NFT approval
-async transition approve_public(
+fn approve_public(
     private spender: address,
     private nft_data: data,
     private nft_edition: scalar,
-) -> Future
+) -> Final
 
 // Revoke approval
-async transition unapprove_public(
+fn unapprove_public(
     private collection_id: field,
     private nft_data: Data,
     private nft_edition: scalar,
-) -> Future
+) -> Final
 ```
 
 ## Settings
@@ -349,7 +333,7 @@ Owners may "rotate" privacy by choosing a fresh random scalar and calling `updat
 When an NFT's data should become public, the owner calls:
 
 ```leo
-transition publish_nft_content(nft_data, nft_edition)
+fn publish_nft_content(nft_data, nft_edition)
 ```
 
 which copies the cleartext struct into:

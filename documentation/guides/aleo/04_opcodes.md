@@ -131,6 +131,8 @@ The following lists show the standard and cryptographic opcodes supported by Ale
 | [ecdsa.verify.sha3_512](#ecdsaverifysha3_512)       | Verify an ECDSA signature with SHA3-512 (Aleo variant bits)        |
 | [ecdsa.verify.sha3_512.raw](#ecdsaverifysha3_512raw)       | Verify an ECDSA signature with SHA3-512 (raw bits)        |
 | [ecdsa.verify.sha3_512.eth](#ecdsaverifysha3_512eth)       | Verify an ECDSA signature with SHA3-512 (raw bits + Ethereum 20-byte address)        |
+| [snark.verify](#snarkverify)             | Verify a Varuna proof within the `finalize` scope      |
+| [snark.verify.batch](#snarkverifybatch)  | Batch-verify multiple Varuna proofs within the `finalize` scope |
 
 ## Specification
 
@@ -4191,5 +4193,62 @@ deserialize.bits.raw r5 ([boolean; 256u32]) into r6 ([u8; 32u32]);
 | Input | Destination |
 |-------|-------------|
 | `[bool; N]` | `Address`, `Field`, `Group`, `Scalar`, `I8`, `I16`, `I32`, `I64`, `I128`, `U8`, `U16`, `U32`, `U64`, `U128`, `[U8; M]`, `[U16; M]`, `[U32; M]`, `[U64; M]`, `[U128; M]`, `[I8; M]`, `[I16; M]`, `[I32; M]`, `[I64; M]`, `[I128; M]` |
+
+***
+
+### `snark.verify` {#snarkverify}
+
+[Back to Top](#table-of-cryptographic-opcodes)
+
+#### Description
+
+Verifies a Varuna proof `third` against the verifying key `first` and the public inputs `second`, storing the boolean result in `destination`. This opcode is **finalize-only** and must be called within a `finalize` block. Introduced in Aleo Stack v4.6.0 as part of [ARC-0008](https://vote.aleo.org/p/arc-0008).
+
+#### Example Usage
+
+```aleo
+snark.verify r0 r1 r2 into r3;
+```
+
+#### Supported Types
+
+| First (verifying key) | Second (public inputs) | Third (proof) | Destination |
+|-----------------------|------------------------|---------------|-------------|
+| `[U8; N]`             | `[Field; M]`           | `[U8; P]`     | `Boolean`   |
+
+:::note
+`snark.verify` is only valid inside a `finalize` block.
+:::
+
+***
+
+### `snark.verify.batch` {#snarkverifybatch}
+
+[Back to Top](#table-of-cryptographic-opcodes)
+
+#### Description
+
+Batch-verifies multiple Varuna proofs against an array of verifying keys `first`, a nested array of public inputs `second`, and a single batch proof `third`, storing the boolean result in `destination`. This opcode is **finalize-only** and must be called within a `finalize` block. Introduced in Aleo Stack v4.6.0 as part of [ARC-0008](https://vote.aleo.org/p/arc-0008).
+
+Compile-time limits apply: maximum 32 circuits, maximum 128 total instances across all circuits.
+
+#### Example Usage
+
+```aleo
+snark.verify.batch r0 r1 r2 into r3;
+```
+
+#### Operands
+
+| Operand | Type | Description |
+|---------|------|-------------|
+| `r0` | `[[U8; N]; num_keys]` | Array of verifying keys |
+| `r1` | `[[[Field; M]; num_instances]; num_keys]` | Nested array of public inputs per circuit per key |
+| `r2` | `[U8; P]` | Batch proof |
+| `r3` | `Boolean` | Batch verification result |
+
+:::note
+`snark.verify.batch` is only valid inside a `finalize` block.
+:::
 
 ***

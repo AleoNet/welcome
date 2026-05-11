@@ -58,32 +58,7 @@ An example of such a use case would be in a poker game. The state of the shuffle
 Aleo has a unique feature known as a view key for each account. The view key allows one to decrypt all transactions of it's account. It is different from the private key in that it does not provide the permission to spend the records.
 
 ## Private Inputs and Outputs of Programs
-Apart from stored program states being private, the program function inputs and outputs can also be made private or public. The following shows an example of an Aleo program which adds two input numbers and stores the result into a record known as 'sum'. The developer has the choice to specify if the input of a program transition function should be public or private. The individual record fields can also be made public or private via the 'public' modifier. As Aleo is private by default, the fields are considered as private if the modifier is not specified.
-
-<!-- ```
-function foo:
-    input r0 as field.public;
-    input r1 as field.private;
-    add r0 r1 into r2;
-    output r2 as field.private;
-``` -->
-
-```
-program sum.aleo {
-    record sum {
-        public owner: address,
-        amount: u64,
-    }
-
-    transition main(public a: u64, b: u64) -> sum {
-        let c: u64 = a + b;
-        return sum {
-            owner: self.caller,
-            amount: c,
-        };
-    }
-}
-```
+Apart from stored program states being private, program function inputs and outputs can also be made private or public. Inputs, outputs, and record fields are annotated with `public` or `private` visibility modifiers — Aleo is private by default, so fields without a modifier are treated as private. For syntax details and examples, see the [Leo language documentation](https://docs.leo-lang.org/language/programs).
 
 More information on how private inputs and outputs are encrypted, please refer to [here](./04_transitions.md#non-record-ciphertext).
 
@@ -93,7 +68,7 @@ The choice to store an application state as public or private should depend on t
 
 Aleo's model is more suitable for real-world applications, which often rely on a combination of public and private information.
 
-A practical example for this is voting. As stated by the Aleo founder, Howard Wu, "In elections, people want to vote, but they don’t want to show other people how they voted. The tally of the votes needs to be public to understand the outcome. Having private votes and public tallies ends up being a capable functionality in applications here."
+For example, elections require a system in which votes remain private while vote tallies are made public to ensure the outcome can be verified. This balance between privacy and transparency enables powerful application functionality.
 
 
 ## Conclusion

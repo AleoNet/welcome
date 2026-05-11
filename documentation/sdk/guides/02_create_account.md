@@ -68,4 +68,39 @@ const existingCiphertext = privateKey.toCiphertext(existingPassword);
 const existingAccount = Account.fromCiphertext(existingCiphertext, existingPassword);
 ```
 
+## Address Validation
+
+To check whether a string is a valid Aleo address, use the static `isValidAddress()` method:
+
+```typescript
+import { Account } from '@provablehq/sdk';
+
+const valid = Account.isValidAddress("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px");
+// true
+
+const invalid = Account.isValidAddress("not_an_address");
+// false
+```
+
+## Secure Account Disposal
+
+Account objects hold sensitive cryptographic material in WASM memory. When an account is no longer needed, call `destroy()` to securely zeroize and free all key material:
+
+```typescript
+import { Account } from '@provablehq/sdk';
+
+const account = new Account();
+// ... use account ...
+account.destroy(); // Securely cleans up key material
+```
+
+In ES2024+ environments that support the `using` declaration, cleanup is automatic:
+
+```typescript
+{
+  using account = new Account();
+  // ... use account ...
+} // account is automatically destroyed here
+```
+
 

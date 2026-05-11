@@ -35,8 +35,10 @@ in environments where the safety of the underlying key material can be assured.<
         * [.ownsRecordCiphertext(ciphertext)](#Account+ownsRecordCiphertext) ⇒ <code>boolean</code>
         * [.sign(message)](#Account+sign) ⇒ <code>Signature</code>
         * [.verify(message, signature)](#Account+verify) ⇒ <code>boolean</code>
+        * [.destroy()](#Account+destroy)
     * _static_
         * [.fromCiphertext(ciphertext, password)](#Account.fromCiphertext) ⇒ <code>Account</code> \| <code>Error</code>
+        * [.isValidAddress(address)](#Account.isValidAddress) ⇒ <code>boolean</code>
 
 ## Example
 ```javascript
@@ -80,14 +82,14 @@ new Account(params)
 
 ```typescript
 interface AccountParam {
-  privateKey?: string;
+  privateKey?: string | PrivateKey;
   seed?: Uint8Array;
 }
 ```
 
 | Property | Type | Description |
 | --- | --- | --- |
-| privateKey | <code>string</code> | Optional private key string to create account from |
+| privateKey | <code>string \| PrivateKey</code> | Optional private key string or PrivateKey object to create account from |
 | seed | <code>Uint8Array</code> | Optional seed array to create account from |
 
 **Example**  
@@ -107,151 +109,17 @@ const myExistingAccount = new Account({privateKey: 'APrivateKey1zkp...'});
 
 ## Methods
 
-<a name="Account+privateKey"></a>
+### Key Accessors
 
-### privateKey {#Account+privateKey}
-
-<p>Returns the PrivateKey associated with the account.</p>
-
-```javascript
-account.privateKey() ⇒ PrivateKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
+| Method | Returns | Description |
 | --- | --- | --- |
-| *return* | <code>PrivateKey</code> | The account's private key object |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const privateKey = account.privateKey();
-```
-
----
-
-<a name="Account+viewKey"></a>
-
-### viewKey {#Account+viewKey}
-
-<p>Returns the ViewKey associated with the account.</p>
-
-```javascript
-account.viewKey() ⇒ ViewKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>ViewKey</code> | The account's view key for decrypting records |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const viewKey = account.viewKey();
-```
-
----
-
-<a name="Account+computeKey"></a>
-
-### computeKey {#Account+computeKey}
-
-<p>Returns the ComputeKey associated with the account.</p>
-
-```javascript
-account.computeKey() ⇒ ComputeKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>ComputeKey</code> | The account's compute key for program execution |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const computeKey = account.computeKey();
-```
-
----
-
-<a name="Account+address"></a>
-
-### address {#Account+address}
-
-<p>Returns the Aleo address associated with the account.</p>
-
-```javascript
-account.address() ⇒ Address
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>Address</code> | The account's public address |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const address = account.address();
-```
-
----
-
-<a name="Account+clone"></a>
-
-### clone {#Account+clone}
-
-<p>Deep clones the Account.</p>
-
-```javascript
-account.clone() ⇒ Account
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>Account</code> | A deep copy of the account |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const clonedAccount = account.clone();
-```
-
----
-
-<a name="Account+toString"></a>
-
-### toString {#Account+toString}
-
-<p>Returns the address of the account in a string representation.</p>
-
-```javascript
-account.toString() ⇒ string
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>string</code> | The account's address as a string |
+| `privateKey()` | `PrivateKey` | Returns the PrivateKey associated with the account |
+| `viewKey()` | `ViewKey` | Returns the ViewKey for decrypting records |
+| `computeKey()` | `ComputeKey` | Returns the ComputeKey for program execution |
+| `address()` | `Address` | Returns the account's public address |
+| `clone()` | `Account` | Returns a deep copy of the account |
+| `toString()` | `string` | Returns the account's address as a string |
+| `destroy()` | `void` | Securely zeroizes and frees all sensitive key material from WASM memory |
 
 ---
 
@@ -264,8 +132,6 @@ account.toString() ⇒ string
 ```javascript
 account.encryptAccount(password) ⇒ PrivateKeyCiphertext
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -292,8 +158,6 @@ process.env.ciphertext = ciphertext.toString();
 ```javascript
 account.decryptRecord(ciphertext) ⇒ RecordPlaintext
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -334,8 +198,6 @@ for (const record of records) {
 account.decryptRecords(ciphertexts) ⇒ Array.<RecordPlaintext>
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | ciphertexts | <code>Array.&lt;string&gt;</code> | An array of strings representing the ciphertexts of records |
@@ -371,8 +233,6 @@ This key can be used to decrypt the record without revealing the account's view 
 account.generateRecordViewKey(recordCiphertext) ⇒ Field
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | recordCiphertext | <code>RecordCiphertext</code> \| <code>string</code> | The record ciphertext to generate the view key for |
@@ -405,8 +265,6 @@ revealing the account's view key.</p>
 account.generateTransitionViewKey(tpk) ⇒ Field
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | tpk | <code>string</code> \| <code>Group</code> | The transition public key |
@@ -434,8 +292,6 @@ const transitionViewKey = account.generateTransitionViewKey(tpk);
 ```javascript
 account.ownsRecordCiphertext(ciphertext) ⇒ boolean
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -477,8 +333,6 @@ Returns a Signature.</p>
 account.sign(message) ⇒ Signature
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | message | <code>Uint8Array</code> | Message to be signed |
@@ -509,8 +363,6 @@ assert(account.verify(message, signature));
 ```javascript
 account.verify(message, signature) ⇒ boolean
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -544,8 +396,6 @@ assert(account.verify(message, signature));
 Account.fromCiphertext(ciphertext, password) ⇒ Account | Error
 ```
 
-**Kind**: static method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | ciphertext | <code>PrivateKeyCiphertext</code> \| <code>string</code> | The encrypted private key ciphertext or its string representation |
@@ -558,4 +408,65 @@ import { Account } from "@provablehq/sdk/testnet.js";
 
 // Create an account object from a previously encrypted ciphertext and password.
 const account = Account.fromCiphertext(process.env.ciphertext, process.env.password);
+```
+
+---
+
+<a name="Account.isValidAddress"></a>
+
+### isValidAddress {#Account.isValidAddress}
+
+<p>Validates whether the given input is a valid Aleo address.</p>
+
+```javascript
+Account.isValidAddress(address) ⇒ boolean
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string \| Uint8Array</code> | The address to validate, either as a string or bytes |
+| *return* | <code>boolean</code> | True if the address is valid, false otherwise |
+
+**Example**  
+```js
+import { Account } from "@provablehq/sdk/testnet.js";
+
+const isValid = Account.isValidAddress("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px");
+console.log(isValid); // true
+
+const isInvalid = Account.isValidAddress("invalid_address");
+console.log(isInvalid); // false
+```
+
+---
+
+<a name="Account+destroy"></a>
+
+### destroy {#Account+destroy}
+
+<p>Securely destroys the account by zeroizing and freeing all sensitive key material from WASM memory.
+After calling this method, the account object should not be used. This is the recommended way to clean up
+an account when it is no longer needed in security-sensitive applications.</p>
+
+<p>Alternatively, in ES2024+ environments that support the <code>using</code> declaration, the account implements
+<code>[Symbol.dispose]()</code> so cleanup is automatic when the block exits.</p>
+
+```javascript
+account.destroy()
+```
+
+**Example**  
+```js
+import { Account } from "@provablehq/sdk/testnet.js";
+
+// Explicit cleanup
+const account = new Account();
+// ... use account ...
+account.destroy();
+
+// Automatic cleanup with `using` (ES2024+)
+{
+  using account = new Account();
+  // ... use account ...
+} // account is automatically destroyed here
 ```

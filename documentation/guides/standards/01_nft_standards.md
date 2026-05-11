@@ -8,7 +8,7 @@ sidebar_label: NFT Standards
 
 The NFT Standards document outlines the specifications for implementing Non-Fungible Tokens (NFTs) on the Aleo blockchain. This standard emerged from the [ARC-0721 proposal](https://github.com/ProvableHQ/ARCs/discussions/79) and was officially approved through community voting on [Aleo Governance](https://vote.aleo.org/p/721).
 
-Similar to the Token Registry Program, the NFT standard faces challenges with program composability due to Aleo's current limitations on dynamic cross-program calls. To address this, an [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) has been proposed, which would serve as a central hub for NFT collections and enable better interoperability between NFTs and DeFi applications.
+With [dynamic dispatch (ARC-0009)](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009) now finalized, programs can call other programs at runtime without compile-time imports, resolving the composability challenges that previously required a centralized registry approach. A proposed [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) would serve as a central hub for NFT collections and enable interoperability between NFTs and DeFi applications, though it remains in the proposal stage.
 
 ## Key Features
 
@@ -204,10 +204,10 @@ NFTs can be re-obfuscated through a two-step process:
 2. Update the edition using `update_edition_private()`
 
 ```leo
-async transition update_edition_private(
+fn update_edition_private(
     private nft: NFT,
     private new_edition: scalar,
-) -> (NFT, Future) {
+) -> (NFT, Final) {
     let out_nft: NFT = NFT {
         owner: nft.owner,
         data: nft.data,
@@ -215,17 +215,10 @@ async transition update_edition_private(
     };
     let nft_commit: field = commit_nft(nft.data, new_edition);
 
-    let update_edition_private_future: Future = finalize_update_edition_private(
-        nft_commit
-    );
-    return (out_nft, update_edition_private_future);
-}
-
-async function finalize_update_edition_private(
-    nft_commit: field,
-) {
-    assert(nft_commits.contains(nft_commit).not());
-    nft_commits.set(nft_commit, true);
+    return (out_nft, final {
+        assert(nft_commits.contains(nft_commit).not());
+        nft_commits.set(nft_commit, true);
+    });
 }
 ```
 
@@ -282,4 +275,4 @@ These settings allow for fine-grained control over the NFT collection's properti
 
 2. For collections where data can become public ("publishable collections"), the standard provides mechanisms to publish and manage public content while maintaining the option to re-obfuscate data when needed.
 
-3. The [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) is proposed to address program composability challenges, similar to how the [Token Registry Program](./00_token_registry.md) works for fungible tokens. This registry would allow multiple implementations with different data structures, identified by the unique pair (registry_program_id, collection_id).
+3. The [NFT Registry Program (ARC-722)](https://github.com/ProvableHQ/ARCs/discussions/80) is proposed as a central hub for NFT collections (similar to how the [Token Registry Program](./00_token_registry.md) works for fungible tokens), allowing multiple implementations with different data structures identified by the pair (registry_program_id, collection_id). With [dynamic dispatch (ARC-0009)](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009) now available, DeFi programs can also interact with individual NFT programs directly at runtime without requiring a registry.

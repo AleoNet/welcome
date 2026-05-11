@@ -180,7 +180,7 @@ This function enables the transfer of credits to an ANS domain without revealing
 // @param secret: The secret associated with the transaction, used for claim verification.
 // @param amount: The amount of credits to be transferred.
 // @param pay_record: The record of the payment being made.
-transition transfer_credits(receiver: field, secret: [u128; 2], amount: u64, pay_record: credits.leo/credits)
+fn transfer_credits(receiver: field, secret: [u128; 2], amount: u64, pay_record: credits.aleo::credits)
 ```
 
 #### Transfer public credits to ANS name
@@ -190,7 +190,7 @@ transition transfer_credits(receiver: field, secret: [u128; 2], amount: u64, pay
 // @param receiver: The name_hash of the recipient ANS domain.
 // @param secret: The secret associated with the transaction, used for claim verification.
 // @param amount: The amount of credits to be transferred.
-transition transfer_credits_public(receiver: field, secret: [u128; 2], amount: u64)
+fn transfer_credits_public(receiver: field, secret: [u128; 2], amount: u64)
 ```
 
 ### Claim Credits
@@ -206,7 +206,7 @@ These functions allow domain holders to claim the transferred credits. Depending
 // @param nft: The NFT record representing the private ANS domain.
 // @param secret: The secret used to verify the claim.
 // @param amount: The amount of credits to be claimed.
-transition claim_credits_private(receiver: address, nft: NFT, secret: [u128; 2], amount: u64)
+fn claim_credits_private(receiver: address, nft: NFT, secret: [u128; 2], amount: u64)
 ```
 
 #### Claim Credits Public - the caller is the owner of the ANS name
@@ -218,7 +218,7 @@ transition claim_credits_private(receiver: address, nft: NFT, secret: [u128; 2],
 // @param name_hash: The name_hash of the public ANS domain.
 // @param secret: The secret used to verify the claim.
 // @param amount: The amount of credits to be claimed.
-transition claim_credits_public(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
+fn claim_credits_public(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
 ```
 
 #### Claim Credits as Signer - the signer is the owner of the ANS name
@@ -230,5 +230,5 @@ transition claim_credits_public(receiver: address, name_hash: field, secret: [u1
 // @param name_hash: The name_hash of the public ANS domain.
 // @param secret: The secret used to verify the claim.
 // @param amount: The amount of credits to be claimed.
-transition claim_credits_as_signer(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
+fn claim_credits_as_signer(receiver: address, name_hash: field, secret: [u128; 2], amount: u64)
 ```

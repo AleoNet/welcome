@@ -80,6 +80,28 @@ The deployment transaction publishes an Aleo program to the network.
 - Private fees
 - Priority fees
 
+### Program Upgrade Transaction
+
+Aleo supports upgrading deployed programs without migrating state, using the same deploy transaction format with `edition` incremented by 1 each time.
+
+Upgradability must be designed in from the start. Every upgradable program must include a `constructor`, an immutable block executed by the AVM on every deployment and upgrade (never on normal function calls). Because the `constructor` cannot be changed after deployment, it serves as the permanent on-chain governance rule for who can upgrade and under what conditions.
+
+Three metadata operands are available within `constructor` and `finalize` scope:
+
+| Operand | Type | Description |
+|:--------|:----:|:------------|
+| `edition` | `u16` | Version counter. `0u16` on first deploy; increments by 1 on each upgrade. |
+| `checksum` | `[u8; 32u32]` | SHA3-256 hash of the program bytecode. |
+| `program_owner` | `address` | Address of the account that submitted the deployment. |
+
+| Component | Delete | Modify | Add |
+|:----------|:------:|:------:|:---:|
+| `struct`, `record`, `mapping`, `closure`, `import` | ❌ | ❌ | ✅ |
+| `function` / `finalize` logic | ❌ | ✅ | ✅ |
+| `constructor` | ❌ | ❌ | ❌ |
+
+Programs deployed before upgradability was activated have no `constructor` and are permanently non-upgradable — there is no migration path. For the full specification and governance patterns, see [ARC-0006](https://vote.aleo.org/p/arc-0006).
+
 ### Fee Transaction
 A fee transaction represents the network fee paid for processing. Rejected transactions are included in blocks as confirmed "rejected" transactions. In those cases, a new transaction ID is generated alongside a valid fee transaction to ensure the fee is charged. In normal successful execution case, the fee is recorded as a transition object within the execution or deployment transaction. 
 
