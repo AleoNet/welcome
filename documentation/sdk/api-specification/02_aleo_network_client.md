@@ -79,12 +79,18 @@ new AleoNetworkClient(host, options)
 ```typescript
 interface AleoNetworkClientOptions {
     headers?: Record<string, string>;
+    proverUri?: string;
+    recordScannerUri?: string;
+    transport?: TransportFunction;
 }
 ```
 
 | Property | Type | Description |
 | --- | --- | --- |
 | headers | <code>Record&lt;string, string&gt;</code> | Optional headers to include in all requests |
+| proverUri | <code>string</code> | Optional URI of a delegated proving service |
+| recordScannerUri | <code>string</code> | Optional URI of a record scanning service |
+| transport | <code>TransportFunction</code> | Optional custom HTTP transport function |
 
 **Example**  
 ```js
@@ -659,7 +665,8 @@ const expectedMappings = [
   "bonded",
   "unbonding",
   "account",
-  "withdraw"
+  "withdraw",
+  "pool"
 ];
 assert.deepStrictEqual(mappings, expectedMappings);
 ```

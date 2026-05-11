@@ -383,7 +383,7 @@ function get_nested_array_element:
 ```
 
 :::info
-Aleo instructions currently only support fixed-length static arrays.
+Aleo instructions currently only support fixed-length static arrays. The maximum array size is **2,048 elements** (increased from 512 in Aleo Stack v4.6.0 to support verifying keys and proofs used by [`snark.verify`](./04_opcodes.md#snarkverify)).
 :::
 
 ### Record
@@ -828,6 +828,19 @@ commit.ped128 ...;
 ```
 
 Checkout the [Aleo Instructions opcodes](./04_opcodes.md) for a full list of supported commitment algorithms.
+
+#### snark.verify, snark.verify.batch
+
+The `snark.verify` command verifies a Varuna SNARK proof within the finalize scope, returning a `bool`. The `snark.verify.batch` command batch-verifies multiple proofs using a single batch proof. Both commands are **finalize-only**.
+
+```aleo
+snark.verify r0 r1 r2 into r3;       // r0: vk ([u8]), r1: inputs ([field]), r2: proof ([u8]), r3: bool
+snark.verify.batch r0 r1 r2 into r3; // r0: vks, r1: nested inputs, r2: batch proof, r3: bool
+```
+
+`snark.verify.batch` is subject to compile-time limits: max 32 circuits, max 128 total instances.
+
+Checkout the [Aleo Instructions opcodes](./04_opcodes.md#snarkverify) for the full specification.
 
 #### position, branch.eq, branch.neq
 

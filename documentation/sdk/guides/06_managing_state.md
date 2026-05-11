@@ -72,7 +72,7 @@ const networkClient = new AleoNetworkClient("https://api.provable.com/v2");
 networkClient.setAccount(account);
 
 // Find all records from an account within a block range.
-const allRecords = networkClient.findRecords(
+const allRecords = await networkClient.findRecords(
     4370000, // Start block height
     4371000, // End block height
     false, // Find both spent and unspent records.
@@ -80,7 +80,7 @@ const allRecords = networkClient.findRecords(
 );
 
 // Find only unspent records from an account within a block range that can be used as inputs to new functions.
-const unspentRecords = networkClient.findRecords(
+const unspentRecords = await networkClient.findRecords(
     4370000, // Start block height
     4371000, // End block height
     true, // Find both spent and unspent records.

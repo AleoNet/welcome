@@ -137,7 +137,7 @@ Documentation for both languages can be found at [developer.aleo.org](https://de
 ```
 // A simple program adding two numbers together
 program helloworld.aleo {
-  transition hello(public a: u32, b: u32) -> u32 {
+  fn hello(public a: u32, b: u32) -> u32 {
       let c: u32 = a + b;
       return c;
   }

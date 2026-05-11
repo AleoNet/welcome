@@ -35,8 +35,10 @@ in environments where the safety of the underlying key material can be assured.<
         * [.ownsRecordCiphertext(ciphertext)](#Account+ownsRecordCiphertext) ⇒ <code>boolean</code>
         * [.sign(message)](#Account+sign) ⇒ <code>Signature</code>
         * [.verify(message, signature)](#Account+verify) ⇒ <code>boolean</code>
+        * [.destroy()](#Account+destroy)
     * _static_
         * [.fromCiphertext(ciphertext, password)](#Account.fromCiphertext) ⇒ <code>Account</code> \| <code>Error</code>
+        * [.isValidAddress(address)](#Account.isValidAddress) ⇒ <code>boolean</code>
 
 ## Example
 ```javascript
@@ -80,14 +82,14 @@ new Account(params)
 
 ```typescript
 interface AccountParam {
-  privateKey?: string;
+  privateKey?: string | PrivateKey;
   seed?: Uint8Array;
 }
 ```
 
 | Property | Type | Description |
 | --- | --- | --- |
-| privateKey | <code>string</code> | Optional private key string to create account from |
+| privateKey | <code>string \| PrivateKey</code> | Optional private key string or PrivateKey object to create account from |
 | seed | <code>Uint8Array</code> | Optional seed array to create account from |
 
 **Example**  
@@ -117,6 +119,7 @@ const myExistingAccount = new Account({privateKey: 'APrivateKey1zkp...'});
 | `address()` | `Address` | Returns the account's public address |
 | `clone()` | `Account` | Returns a deep copy of the account |
 | `toString()` | `string` | Returns the account's address as a string |
+| `destroy()` | `void` | Securely zeroizes and frees all sensitive key material from WASM memory |
 
 ---
 
@@ -405,4 +408,65 @@ import { Account } from "@provablehq/sdk/testnet.js";
 
 // Create an account object from a previously encrypted ciphertext and password.
 const account = Account.fromCiphertext(process.env.ciphertext, process.env.password);
+```
+
+---
+
+<a name="Account.isValidAddress"></a>
+
+### isValidAddress {#Account.isValidAddress}
+
+<p>Validates whether the given input is a valid Aleo address.</p>
+
+```javascript
+Account.isValidAddress(address) ⇒ boolean
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| address | <code>string \| Uint8Array</code> | The address to validate, either as a string or bytes |
+| *return* | <code>boolean</code> | True if the address is valid, false otherwise |
+
+**Example**  
+```js
+import { Account } from "@provablehq/sdk/testnet.js";
+
+const isValid = Account.isValidAddress("aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px");
+console.log(isValid); // true
+
+const isInvalid = Account.isValidAddress("invalid_address");
+console.log(isInvalid); // false
+```
+
+---
+
+<a name="Account+destroy"></a>
+
+### destroy {#Account+destroy}
+
+<p>Securely destroys the account by zeroizing and freeing all sensitive key material from WASM memory.
+After calling this method, the account object should not be used. This is the recommended way to clean up
+an account when it is no longer needed in security-sensitive applications.</p>
+
+<p>Alternatively, in ES2024+ environments that support the <code>using</code> declaration, the account implements
+<code>[Symbol.dispose]()</code> so cleanup is automatic when the block exits.</p>
+
+```javascript
+account.destroy()
+```
+
+**Example**  
+```js
+import { Account } from "@provablehq/sdk/testnet.js";
+
+// Explicit cleanup
+const account = new Account();
+// ... use account ...
+account.destroy();
+
+// Automatic cleanup with `using` (ES2024+)
+{
+  using account = new Account();
+  // ... use account ...
+} // account is automatically destroyed here
 ```

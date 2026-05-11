@@ -204,10 +204,10 @@ NFTs can be re-obfuscated through a two-step process:
 2. Update the edition using `update_edition_private()`
 
 ```leo
-async transition update_edition_private(
+fn update_edition_private(
     private nft: NFT,
     private new_edition: scalar,
-) -> (NFT, Future) {
+) -> (NFT, Final) {
     let out_nft: NFT = NFT {
         owner: nft.owner,
         data: nft.data,
@@ -215,17 +215,10 @@ async transition update_edition_private(
     };
     let nft_commit: field = commit_nft(nft.data, new_edition);
 
-    let update_edition_private_future: Future = finalize_update_edition_private(
-        nft_commit
-    );
-    return (out_nft, update_edition_private_future);
-}
-
-async function finalize_update_edition_private(
-    nft_commit: field,
-) {
-    assert(nft_commits.contains(nft_commit).not());
-    nft_commits.set(nft_commit, true);
+    return (out_nft, final {
+        assert(nft_commits.contains(nft_commit).not());
+        nft_commits.set(nft_commit, true);
+    });
 }
 ```
 
