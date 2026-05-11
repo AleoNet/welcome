@@ -123,11 +123,6 @@ record Token {
 }
 ```
 
-#### Token Record Fields
-
-- `owner`: The private address of the token holder.
-- `amount`: The private token balance held in this record.
-
 ### ComplianceRecord Record
 
 ```leo
@@ -139,14 +134,7 @@ record ComplianceRecord {
 }
 ```
 
-#### ComplianceRecord Fields
-
-- `owner`: The compliance officer address that receives this record.
-- `amount`: The amount involved in the operation.
-- `sender`: The address that initiated the operation.
-- `recipient`: The address that received tokens.
-
-A `ComplianceRecord` is emitted on every `mint_private`, `burn_private`, `transfer_public_to_private`, and `transfer_from_public_to_private` call, providing an audit trail for the compliance officer without revealing data publicly on-chain.
+Emitted on every `mint_private`, `burn_private`, `transfer_public_to_private`, and `transfer_from_public_to_private` call, providing an audit trail for the compliance officer without revealing data publicly on-chain.
 
 ### Credentials Record
 
@@ -157,32 +145,19 @@ record Credentials {
 }
 ```
 
-#### Credentials Fields
-
-- `owner`: The address for which non-membership in the freeze list was proven.
-- `freeze_list_root`: The Merkle root of the freeze list at the time of proof.
-
-A `Credentials` record must be obtained via `get_credentials` before calling `transfer_private`. It certifies that the holder is not on the freeze list at a specific root.
+Must be obtained via `get_credentials` before calling `transfer_private`. Certifies that the holder's address is not on the freeze list at the proven Merkle root.
 
 ### TokenInfo Struct
 
 ```leo
 struct TokenInfo {
-    name: u128,
-    symbol: u128,
+    name: u128,        // ASCII text encoded as u128 bitstring
+    symbol: u128,      // ASCII text encoded as u128 bitstring
     decimals: u8,
     supply: u128,
     max_supply: u128,
 }
 ```
-
-#### TokenInfo Fields
-
-- `name`: The name of the token encoded as ASCII bits in a u128.
-- `symbol`: The symbol of the token encoded as ASCII bits in a u128.
-- `decimals`: The number of decimal places for the token.
-- `supply`: The current total supply.
-- `max_supply`: The maximum allowed total supply.
 
 ### TokenAllowance Struct
 
@@ -193,11 +168,6 @@ struct TokenAllowance {
 }
 ```
 
-#### TokenAllowance Fields
-
-- `account`: The token owner granting the allowance.
-- `spender`: The address authorized to spend on behalf of the owner.
-
 ### MerkleProof Struct
 
 ```leo
@@ -207,12 +177,7 @@ struct MerkleProof {
 }
 ```
 
-#### MerkleProof Fields
-
-- `siblings`: The sibling hashes along the path from the leaf to the root (depth-16 tree).
-- `leaf_index`: The index of the leaf in the Merkle tree.
-
-Used in `get_credentials` and `transfer_private` to prove non-membership (or membership) in the freeze list.
+Used in `get_credentials` and `transfer_private` to prove non-membership (or membership) in the freeze list. The tree is depth 16; `siblings` contains one sibling hash per level.
 
 ### ChecksumEdition Struct
 
@@ -222,11 +187,6 @@ struct ChecksumEdition {
     edition: u16,
 }
 ```
-
-#### ChecksumEdition Fields
-
-- `checksum`: A 32-byte hash identifying a specific program deployment.
-- `edition`: The deployment edition number.
 
 ### AdminOp Struct
 
@@ -238,13 +198,6 @@ struct AdminOp {
     ecdsa_signer: [u8; 20],
 }
 ```
-
-#### AdminOp Fields
-
-- `op`: The operation code for the admin action.
-- `threshold`: The multisig threshold required to execute the operation.
-- `aleo_signer`: The Aleo address participating in the multisig.
-- `ecdsa_signer`: The ECDSA public key (20-byte Ethereum-style address) of the signer.
 
 ## Mappings
 
@@ -278,241 +231,163 @@ An address with `ADMIN_ROLE` can assign or revoke roles for other addresses. An 
 ## Functions
 
 ### `initialize()`
-#### Description
+
 Initializes the stablecoin program with its token metadata and sets the initial admin address. Can only be called once and only by the deployer address.
 
-#### Parameters
-- `public name: u128`: The token name encoded as ASCII.
-- `public symbol: u128`: The token symbol encoded as ASCII.
-- `public decimals: u8`: The number of decimal places.
-- `public max_supply: u128`: The maximum allowed supply.
-- `public admin: address`: The initial admin address.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `name` | `public u128` | Token name encoded as ASCII |
+| `symbol` | `public u128` | Token symbol encoded as ASCII |
+| `decimals` | `public u8` | Number of decimal places |
+| `max_supply` | `public u128` | Maximum allowed supply |
+| `admin` | `public address` | Initial admin address |
 
-#### Returns
-- `Future`: A Future to finalize the initialization.
+Returns: `Future`
 
 ---
 
 ### `update_role()`
-#### Description
+
 Assigns a new role bitmask to a target address. The caller must have `ADMIN_ROLE`. An admin cannot remove their own `ADMIN_ROLE`.
 
-#### Parameters
-- `public account: address`: The address to update.
-- `private role: u16`: The new role bitmask to assign.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `account` | `public address` | Address to update |
+| `role` | `private u16` | New role bitmask to assign |
 
-#### Returns
-- `Future`: A Future to finalize the role update.
+Returns: `Future`
 
 ---
 
 ### `get_credentials()`
-#### Description
-Proves that the transaction signer is not on the freeze list by verifying two Merkle proofs against the current freeze list root. If valid, returns a `Credentials` record to the signer. This record is required to call `transfer_private`.
 
-The function verifies that the signer's address falls lexicographically between the two consecutive leaf entries provided, confirming non-membership in the freeze list.
+Proves that the transaction signer is not on the freeze list by verifying two adjacent Merkle proofs against the current freeze list root. The function confirms the signer's address falls lexicographically between the two consecutive leaf entries, establishing non-membership. Returns a `Credentials` record required to call `transfer_private`.
 
-#### Parameters
-- `private proofs: [MerkleProof; 2]`: Two adjacent Merkle proofs bounding the signer's address in the freeze list tree.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `proofs` | `private [MerkleProof; 2]` | Two adjacent proofs bounding the signer's address in the freeze list tree |
 
-#### Returns
-- `Credentials`: A private record certifying the signer is not frozen at the proven Merkle root.
-- `Future`: A Future to validate the root against the freeze list program.
+Returns: `Credentials` (certifying non-membership at the proven root), `Future`
 
 ---
 
 ### `get_signing_op_id_for_deploy()`
-#### Description
-A utility function that computes the signing operation ID for a program deployment, used in multisig admin flows.
 
-#### Parameters
-- `private checksum: [u8; 32]`: The deployment checksum.
-- `private edition: u16`: The deployment edition.
+Utility function that computes the signing operation ID for a program deployment, used in multisig admin flows.
 
-#### Returns
-- `field`: The BHP256 hash of the `ChecksumEdition` struct, used as the signing operation identifier.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `checksum` | `private [u8; 32]` | Deployment checksum |
+| `edition` | `private u16` | Deployment edition |
 
----
-
-### `mint_public()`
-#### Description
-Mints tokens to a public recipient address. The caller must have `MINTER_ROLE` or `ADMIN_ROLE`. The program must not be paused and the new supply must not exceed `max_supply`.
-
-#### Parameters
-- `public recipient: address`: The address to receive the minted tokens.
-- `public amount: u128`: The number of tokens to mint.
-
-#### Returns
-- `Future`: A Future to finalize the mint.
+Returns: `field` — the BHP256 hash of the `ChecksumEdition` struct, used as the signing operation identifier.
 
 ---
 
-### `mint_private()`
-#### Description
-Mints tokens as a private `Token` record. The caller must have `MINTER_ROLE` or `ADMIN_ROLE`. The program must not be paused and the new supply must not exceed `max_supply`. Emits a `ComplianceRecord` to the compliance officer.
+### `mint_public()` / `mint_private()`
 
-#### Parameters
-- `private recipient: address`: The private recipient address (not visible on-chain).
-- `public amount: u128`: The number of tokens to mint.
+Mints tokens to a recipient. Requires `MINTER_ROLE` or `ADMIN_ROLE`. The program must not be paused and the new supply must not exceed `max_supply`. `mint_private` emits a `ComplianceRecord` to the compliance officer.
 
-#### Returns
-- `ComplianceRecord`: A compliance record emitted to the compliance officer.
-- `Token`: The minted token record for the recipient.
-- `Future`: A Future to finalize the mint.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `recipient` | `public address` / `private address` | Recipient address (private for `mint_private`) |
+| `amount` | `public u128` | Number of tokens to mint |
+
+Returns: `mint_public` → `Future`; `mint_private` → `ComplianceRecord`, `Token`, `Future`
 
 ---
 
-### `burn_public()`
-#### Description
-Burns tokens from a public address. The caller must have `BURNER_ROLE` or `ADMIN_ROLE`. The program must not be paused.
+### `burn_public()` / `burn_private()`
 
-#### Parameters
-- `public owner: address`: The address whose tokens will be burned.
-- `public amount: u128`: The number of tokens to burn.
+Burns tokens. Requires `BURNER_ROLE` or `ADMIN_ROLE`. The program must not be paused. `burn_private` emits a `ComplianceRecord` to the compliance officer.
 
-#### Returns
-- `Future`: A Future to finalize the burn.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `owner` | `public address` | Address whose tokens are burned (`burn_public` only) |
+| `input_record` | `Token` | Token record to burn from (`burn_private` only) |
+| `amount` | `public u128` | Number of tokens to burn |
 
----
-
-### `burn_private()`
-#### Description
-Burns tokens from a private `Token` record. The caller must have `BURNER_ROLE` or `ADMIN_ROLE`. The program must not be paused. Emits a `ComplianceRecord` to the compliance officer.
-
-#### Parameters
-- `input_record: Token`: The token record to burn from.
-- `public amount: u128`: The number of tokens to burn.
-
-#### Returns
-- `ComplianceRecord`: A compliance record emitted to the compliance officer.
-- `Token`: The remaining token record with the reduced balance.
-- `Future`: A Future to finalize the burn.
+Returns: `burn_public` → `Future`; `burn_private` → remaining `Token`, `ComplianceRecord`, `Future`
 
 ---
 
-### `transfer_public()`
-#### Description
-Transfers tokens between two public addresses. Both sender and recipient must not be on the freeze list. The program must not be paused.
+### `transfer_public()` / `transfer_public_as_signer()`
 
-#### Parameters
-- `public recipient: address`: The recipient address.
-- `public amount: u128`: The amount to transfer.
+Transfers tokens between public addresses. Both sender and recipient must not be on the freeze list. The program must not be paused. `transfer_public_as_signer` uses `self.signer` as the sender rather than `self.caller`, enabling use within program call chains while attributing the debit to the original transaction signer.
 
-#### Returns
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `recipient` | `public address` | Recipient address |
+| `amount` | `public u128` | Amount to transfer |
 
----
-
-### `transfer_public_as_signer()`
-#### Description
-Transfers tokens publicly using `self.signer` as the sender rather than `self.caller`. This allows the transfer to be initiated from within another program while attributing the debit to the original transaction signer.
-
-#### Parameters
-- `public recipient: address`: The recipient address.
-- `public amount: u128`: The amount to transfer.
-
-#### Returns
-- `Future`: A Future to finalize the transfer.
+Returns: `Future`
 
 ---
 
-### `approve_public()`
-#### Description
-Grants a spender the ability to transfer tokens on behalf of the caller, increasing the allowance by the specified amount.
+### `approve_public()` / `unapprove_public()`
 
-#### Parameters
-- `public spender: address`: The address to authorize.
-- `public amount: u128`: The amount to add to the allowance.
+`approve_public` grants a spender the ability to transfer tokens on behalf of the caller, increasing the allowance by the specified amount. `unapprove_public` reduces or revokes that allowance.
 
-#### Returns
-- `Future`: A Future to finalize the approval.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `spender` | `public address` | Address to authorize or de-authorize |
+| `amount` | `public u128` | Amount to add to or subtract from the allowance |
 
----
-
-### `unapprove_public()`
-#### Description
-Reduces or revokes a spender's allowance.
-
-#### Parameters
-- `public spender: address`: The address whose allowance to reduce.
-- `public amount: u128`: The amount to subtract from the allowance.
-
-#### Returns
-- `Future`: A Future to finalize the unapproval.
+Returns: `Future`
 
 ---
 
 ### `transfer_from_public()`
-#### Description
+
 Transfers tokens from an owner to a recipient using a pre-approved allowance. Both owner and recipient must not be on the freeze list. The program must not be paused.
 
-#### Parameters
-- `public owner: address`: The address to debit.
-- `public recipient: address`: The address to credit.
-- `public amount: u128`: The amount to transfer.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `owner` | `public address` | Address to debit |
+| `recipient` | `public address` | Address to credit |
+| `amount` | `public u128` | Amount to transfer |
 
-#### Returns
-- `Future`: A Future to finalize the transfer.
-
----
-
-### `transfer_public_to_private()`
-#### Description
-Converts a public balance to a private `Token` record. The sender must not be on the freeze list. The program must not be paused. Emits a `ComplianceRecord` to the compliance officer.
-
-#### Parameters
-- `private recipient: address`: The private recipient address (not visible on-chain).
-- `public amount: u128`: The amount to convert.
-
-#### Returns
-- `ComplianceRecord`: A compliance record emitted to the compliance officer.
-- `Token`: The resulting private token record.
-- `Future`: A Future to finalize the transfer.
+Returns: `Future`
 
 ---
 
-### `transfer_from_public_to_private()`
-#### Description
-Converts a public balance to a private `Token` record on behalf of an owner, using a pre-approved allowance. The owner must not be on the freeze list. The program must not be paused. Emits a `ComplianceRecord` to the compliance officer.
+### `transfer_public_to_private()` / `transfer_from_public_to_private()`
 
-#### Parameters
-- `public owner: address`: The address to debit publicly.
-- `private recipient: address`: The private recipient address (not visible on-chain).
-- `public amount: u128`: The amount to convert.
+Converts a public balance to a private `Token` record, emitting a `ComplianceRecord` to the compliance officer. `transfer_from_public_to_private` operates on behalf of an owner using a pre-approved allowance. Both require the sender/owner to not be on the freeze list and the program to not be paused.
 
-#### Returns
-- `ComplianceRecord`: A compliance record emitted to the compliance officer.
-- `Token`: The resulting private token record.
-- `Future`: A Future to finalize the transfer.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `owner` | `public address` | Address to debit publicly (`transfer_from_public_to_private` only) |
+| `recipient` | `private address` | Private recipient address (not visible on-chain) |
+| `amount` | `public u128` | Amount to convert |
+
+Returns: `ComplianceRecord`, `Token`, `Future`
 
 ---
 
 ### `transfer_private()`
-#### Description
-Transfers tokens between two private `Token` records. The sender must provide a valid `Credentials` record obtained from `get_credentials`, proving they are not on the current freeze list. The program must not be paused.
 
-#### Parameters
-- `private recipient: address`: The private recipient address (not visible on-chain).
-- `private amount: u128`: The private amount to transfer (not visible on-chain).
-- `input_record: Token`: The sender's token record.
-- `private proofs: [MerkleProof; 2]`: The Merkle proofs certifying the sender is not on the freeze list.
+Transfers tokens between two private `Token` records. The sender must provide two adjacent `MerkleProof` structs proving their address is not on the current freeze list. The program must not be paused.
 
-#### Returns
-- `Token`: The sender's remaining token record.
-- `Token`: The recipient's new token record.
-- `Future`: A Future to validate the freeze list proofs on-chain.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `recipient` | `private address` | Recipient address (not visible on-chain) |
+| `amount` | `private u128` | Amount to transfer (not visible on-chain) |
+| `input_record` | `Token` | Sender's token record |
+| `proofs` | `private [MerkleProof; 2]` | Merkle proofs certifying sender is not on the freeze list |
+
+Returns: sender's remaining `Token`, recipient's new `Token`, `Future`
 
 ---
 
 ### `transfer_private_to_public()`
-#### Description
+
 Converts a private `Token` record to a public balance. The program must not be paused.
 
-#### Parameters
-- `public recipient: address`: The public recipient address.
-- `public amount: u128`: The amount to convert.
-- `input_record: Token`: The sender's private token record.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `recipient` | `public address` | Public recipient address |
+| `amount` | `public u128` | Amount to convert |
+| `input_record` | `Token` | Sender's private token record |
 
-#### Returns
-- `Token`: The sender's remaining token record.
-- `Future`: A Future to finalize the transfer.
+Returns: sender's remaining `Token`, `Future`

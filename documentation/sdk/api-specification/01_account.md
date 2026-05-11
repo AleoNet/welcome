@@ -107,151 +107,16 @@ const myExistingAccount = new Account({privateKey: 'APrivateKey1zkp...'});
 
 ## Methods
 
-<a name="Account+privateKey"></a>
+### Key Accessors
 
-### privateKey {#Account+privateKey}
-
-<p>Returns the PrivateKey associated with the account.</p>
-
-```javascript
-account.privateKey() ⇒ PrivateKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
+| Method | Returns | Description |
 | --- | --- | --- |
-| *return* | <code>PrivateKey</code> | The account's private key object |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const privateKey = account.privateKey();
-```
-
----
-
-<a name="Account+viewKey"></a>
-
-### viewKey {#Account+viewKey}
-
-<p>Returns the ViewKey associated with the account.</p>
-
-```javascript
-account.viewKey() ⇒ ViewKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>ViewKey</code> | The account's view key for decrypting records |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const viewKey = account.viewKey();
-```
-
----
-
-<a name="Account+computeKey"></a>
-
-### computeKey {#Account+computeKey}
-
-<p>Returns the ComputeKey associated with the account.</p>
-
-```javascript
-account.computeKey() ⇒ ComputeKey
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>ComputeKey</code> | The account's compute key for program execution |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const computeKey = account.computeKey();
-```
-
----
-
-<a name="Account+address"></a>
-
-### address {#Account+address}
-
-<p>Returns the Aleo address associated with the account.</p>
-
-```javascript
-account.address() ⇒ Address
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>Address</code> | The account's public address |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const address = account.address();
-```
-
----
-
-<a name="Account+clone"></a>
-
-### clone {#Account+clone}
-
-<p>Deep clones the Account.</p>
-
-```javascript
-account.clone() ⇒ Account
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>Account</code> | A deep copy of the account |
-
-**Example**  
-```js
-import { Account } from "@provablehq/sdk/testnet.js";
-
-const account = new Account();
-const clonedAccount = account.clone();
-```
-
----
-
-<a name="Account+toString"></a>
-
-### toString {#Account+toString}
-
-<p>Returns the address of the account in a string representation.</p>
-
-```javascript
-account.toString() ⇒ string
-```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| *return* | <code>string</code> | The account's address as a string |
+| `privateKey()` | `PrivateKey` | Returns the PrivateKey associated with the account |
+| `viewKey()` | `ViewKey` | Returns the ViewKey for decrypting records |
+| `computeKey()` | `ComputeKey` | Returns the ComputeKey for program execution |
+| `address()` | `Address` | Returns the account's public address |
+| `clone()` | `Account` | Returns a deep copy of the account |
+| `toString()` | `string` | Returns the account's address as a string |
 
 ---
 
@@ -264,8 +129,6 @@ account.toString() ⇒ string
 ```javascript
 account.encryptAccount(password) ⇒ PrivateKeyCiphertext
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -292,8 +155,6 @@ process.env.ciphertext = ciphertext.toString();
 ```javascript
 account.decryptRecord(ciphertext) ⇒ RecordPlaintext
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -334,8 +195,6 @@ for (const record of records) {
 account.decryptRecords(ciphertexts) ⇒ Array.<RecordPlaintext>
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | ciphertexts | <code>Array.&lt;string&gt;</code> | An array of strings representing the ciphertexts of records |
@@ -371,8 +230,6 @@ This key can be used to decrypt the record without revealing the account's view 
 account.generateRecordViewKey(recordCiphertext) ⇒ Field
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | recordCiphertext | <code>RecordCiphertext</code> \| <code>string</code> | The record ciphertext to generate the view key for |
@@ -405,8 +262,6 @@ revealing the account's view key.</p>
 account.generateTransitionViewKey(tpk) ⇒ Field
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | tpk | <code>string</code> \| <code>Group</code> | The transition public key |
@@ -434,8 +289,6 @@ const transitionViewKey = account.generateTransitionViewKey(tpk);
 ```javascript
 account.ownsRecordCiphertext(ciphertext) ⇒ boolean
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -477,8 +330,6 @@ Returns a Signature.</p>
 account.sign(message) ⇒ Signature
 ```
 
-**Kind**: instance method of [<code>Account</code>](#Account)  
-
 | Param | Type | Description |
 | --- | --- | --- |
 | message | <code>Uint8Array</code> | Message to be signed |
@@ -509,8 +360,6 @@ assert(account.verify(message, signature));
 ```javascript
 account.verify(message, signature) ⇒ boolean
 ```
-
-**Kind**: instance method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -543,8 +392,6 @@ assert(account.verify(message, signature));
 ```javascript
 Account.fromCiphertext(ciphertext, password) ⇒ Account | Error
 ```
-
-**Kind**: static method of [<code>Account</code>](#Account)  
 
 | Param | Type | Description |
 | --- | --- | --- |
