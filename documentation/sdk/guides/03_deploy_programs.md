@@ -20,32 +20,10 @@ values={[
   { label: 'Aleo Instructions', value: 'aleo_instructions' },
 ]}>
 <TabItem value="leo">
-[Leo](https://docs.leo-lang.org) is a high-level, developer-friendly language for developing zero-knowledge programs. The [Leo Playground](https://play.leo-lang.org/) provides a web IDE that allows developers to build, test and deploy new programs for.  Leo programs are compiled into Aleo Instructions
-under the hood.
-
-```leo
-// A simple program adding two numbers together
-program helloworld.aleo {
-  transition hello(public a: u32, b: u32) -> u32 {
-      let c: u32 = a + b;
-      return c;
-  }
-}
-```
+[Leo](https://docs.leo-lang.org) is a high-level, developer-friendly language for developing zero-knowledge programs. The [Leo Playground](https://play.leo-lang.org/) provides a web IDE that allows developers to build, test and deploy new programs. Leo programs are compiled into Aleo Instructions under the hood. For language syntax and examples, see the [Leo documentation](https://docs.leo-lang.org/language/programs).
 </TabItem>
 <TabItem value="aleo_instructions">
-[Aleo Instructions](../../guides/aleo/00_aleo_overview.md) is a lower level language that provides developers with fine-grained control over the execution flow of zero-knowledge programs. It is written to be syntactically similar to the R1CS constraint systems that Aleo programs eventually compile into.
-
-```aleo
-program helloworld.aleo;
-
-// The Leo code compiles to the following Aleo instructions
-function hello:
-    input r0 as u32.public;
-    input r1 as u32.private;
-    add r0 r1 into r2;
-    output r2 as u32.private;
-```
+[Aleo Instructions](../../guides/aleo/00_aleo_overview.md) is a lower-level language that provides developers with fine-grained control over the execution flow of zero-knowledge programs. It is written to be syntactically similar to the R1CS constraint systems that Aleo programs eventually compile into. For syntax and examples, see the [Aleo Instructions guide](../../guides/aleo/02_aleo_program.md).
 </TabItem>
 </Tabs>
 
