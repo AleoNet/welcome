@@ -952,15 +952,7 @@ if (RecordCiphertext.is_owner(account.viewKey())) {
 Mappings are simple key value stores defined in a program. They are represented by a key and a value each of a specified
 type. They are stored directly within the Aleo blockchain and can be publicly read by any participant in the Aleo network.
 
-An example of a mapping usage is `account` mapping in the `credits.aleo` program.
-```
-mapping account:
-    key owner as address.public;
-    value microcredits as u64.public;
-```
-
-The `account` mapping is used to store public credits balances on the Aleo network. It takes a public address as a key
-and a public u64 value representing the number of microcredits owned by the address.
+An example of a mapping usage is the `account` mapping in the `credits.aleo` program, which stores public credits balances keyed by address. Its structure is documented in [Aleo Credits](../../concepts/fundamentals/08_credits.md#public-balances-via-the-account-mapping).
 
 Mappings within programs are identified by the `mapping` identifier. Any program where this keyword appears contains an
 on-chain mapping. An example of a program that uses a mapping is shown below:

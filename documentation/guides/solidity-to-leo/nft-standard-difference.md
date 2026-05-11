@@ -100,23 +100,7 @@ mapping nft_approvals:     field => field    // commit → approval hash
 
 ### String Management
 
-Since Leo doesn't have a native string type, strings are managed using arrays of `field` elements:
-
-```leo
-// Example attribute, optional
-struct attribute {
-    trait_type: [field; 4],
-    _value: [field; 4],
-}
-
-struct data {
-    metadata: [field; 4], // URI of offchain metadata JSON
-    // (optional) name: [field; 4],
-    // (optional) image: [field; 16],
-    // (optional) attributes: [attribute; 4],
-    // (optional) ...
-}
-```
+Since Leo doesn't have a native string type, strings are managed using arrays of `field` elements (as shown in the `attribute` and `data` structs in the [ARC-721 data structure above](#state-management)).
 
 Key points about string management in Leo:
 - The array length can be adjusted based on the maximum number of characters needed

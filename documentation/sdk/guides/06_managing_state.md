@@ -7,13 +7,7 @@ sidebar_label: Managing State
 Mappings are simple key-value stores defined in a program. They are represented by a key and a value each of a specified
 type. They are stored directly within the Aleo blockchain and can be publicly read by any participant in the Aleo network.
 
-An example of a mapping usage is `account` mapping in the `credits.aleo` program.  This mapping stores all public Aleo Credits balances onchain.
-
-```leo
-mapping account:
-    key owner as address.public;
-    value microcredits as u64.public;
-```
+An example of a mapping usage is the `account` mapping in the `credits.aleo` program, which stores all public Aleo Credits balances on-chain. Its structure is documented in [Aleo Credits](../../concepts/fundamentals/08_credits.md#public-balances-via-the-account-mapping).
 
 
 ### Initializing & Updating Mappings
