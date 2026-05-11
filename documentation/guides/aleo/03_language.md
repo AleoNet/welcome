@@ -137,6 +137,41 @@ Signatures can be verified in Aleo instructions using the [`sign.verify`](./04_o
 sign.verify sign069ju4e8s66unu25celqycvsv3k9chdyz4n4sy62tx6wxj0u25vqp58hgu9hwyqc63qzxvjwesf2wz0krcvvw9kd9x0rsk4lwqn2acqhp9v0pdkhx6gvkanuuwratqmxa3du7l43c05253hhed9eg6ppzzfnjt06fpzp6msekdjxd36smjltndmxjndvv9x2uecsgngcwsc2qkns4afd r1 r2 into r3;
 ```
 
+### Dynamic Record
+
+A `record.dynamic` is a fixed-size, general representation of any record, usable across [dynamic call](#dynamic-dispatch) boundaries. Unlike a static record, its size is constant regardless of the number or type of its data fields.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `owner` | `address` | The owner of the record |
+| `_root` | `field` | Merkle root of the record's data entries |
+| `_nonce` | `group` | The record nonce |
+| `_version` | `u8` | Record version |
+
+A `record.dynamic` cannot be instantiated directly. It must be received as input, returned from [`call.dynamic`](#calldynamic), or created by casting a static record:
+
+```aleo
+cast r0 into r1 as record.dynamic;
+```
+
+The `owner` field is accessible directly (`r1.owner`). Other fields require [`get.record.dynamic`](#getrecorddynamic).
+
+:::caution
+Functions accepting `record.dynamic` do **not** verify ownership or nullify the record. Only functions that receive a static record input consume (nullify) the record.
+:::
+
+### Dynamic Future
+
+A `future.dynamic` is produced exclusively by [`call.dynamic`](#calldynamic) when the callee returns a future. Like a static future, it must be consumed by `async` and awaited in finalize:
+
+```aleo
+finalize my_function:
+    input r0 as future.dynamic;
+    await r0;
+```
+
+A `future.dynamic` cannot be output directly by a function — it must be wrapped in a static future via the `async` instruction.
+
 ## Layout of an Aleo Program
 
 An Aleo program contains declarations of a [Program ID](#programid), [Imports](#import), [Functions](#function), [Closures](#closure), [Structs](#struct), [Records](#record),
@@ -930,3 +965,74 @@ is equal to
 'aleo1p2h0p8mr2pwrvd0llf2rz6gvtunya8alc49xldr8ajmk3p2c0sqs4fl5mm'
 (should not be equal)
 ```
+
+## Dynamic Dispatch
+
+Dynamic dispatch enables programs to invoke functions determined at runtime. This unlocks interface patterns, pluggable libraries, and composable protocols while preserving Aleo's security and privacy guarantees. For the full specification including translation circuits and security considerations, see [ARC-0009](https://vote.aleo.org/p/arc-0009).
+
+### call.dynamic {#calldynamic}
+
+The `call.dynamic` instruction invokes a function whose target is resolved at runtime.
+
+**Syntax:**
+```aleo
+call.dynamic <PROG> <NET> <FUN> with <INPUTS> (as <INPUT_TYPES>) into <OUTPUTS> (as <OUTPUT_TYPES>);
+```
+
+Identifiers can be written as quoted literals (`'credits'`, `'aleo'`, `'transfer_public'`) which are treated as field elements. A variable of type `field` is also accepted.
+
+```aleo showLineNumbers
+program token_router.aleo;
+
+// Route a transfer to any compatible token program
+function route_transfer:
+    input r0 as field.public;          // token program name
+    input r1 as address.public;        // recipient
+    input r2 as u64.public;            // amount
+    call.dynamic r0 'aleo' 'transfer' with r1 r2 (as address.public u64.public) into r3 (as future.dynamic);
+    async route_transfer r3 into r4;
+    output r4 as token_router.aleo/route_transfer.future;
+
+finalize route_transfer:
+    input r0 as future.dynamic;
+    await r0;
+```
+
+**Allowed types:**
+
+| Position | Allowed | Disallowed |
+|----------|---------|------------|
+| Inputs | Plaintext types, `record.dynamic` | `record`, external record, `future`, `future.dynamic` |
+| Outputs | Plaintext types, `record.dynamic`, `future.dynamic` | `record`, external record, `future` |
+
+**Restrictions:**
+- `call.dynamic` can only appear in function bodies, not finalize blocks
+- The target program, network, and function are **public** circuit inputs. Do not use private data to select a call target, as the target is observable
+- Dynamic targets cannot be resolved from on-chain mappings at runtime; callers supply targets as inputs (queried off-chain) and finalize logic can verify them against stored values
+
+**Type translation:** When a `record.dynamic` is passed to a callee expecting a static record (or vice versa), the AVM automatically runs a translation circuit proving consistency between the two representations. See [ARC-0009](https://vote.aleo.org/p/arc-0009) for full circuit details.
+
+### get.record.dynamic {#getrecorddynamic}
+
+Retrieves a named field from a `record.dynamic` by verifying a Merkle proof that the entry exists with the specified type.
+
+```aleo
+get.record.dynamic r0.microcredits into r1 as u64;
+get.record.dynamic r0.metadata into r2 as [u8; 32u32];
+```
+
+If the field does not exist or has an incompatible type, the Merkle proof fails and execution reverts. This enforces implicit record interfaces: any record containing the required fields satisfies the check, regardless of which program defined it.
+
+The `owner` field is accessible directly without Merkle verification: `r0.owner`.
+
+### Dynamic Mapping Operations
+
+Three finalize-scope commands provide runtime access to mappings in dynamically-specified programs:
+
+```aleo
+get.dynamic <PROG> <NET> <MAP>[<KEY>] into <DEST> as <TYPE>;
+get.or_use.dynamic <PROG> <NET> <MAP>[<KEY>] <DEFAULT> into <DEST> as <TYPE>;
+contains.dynamic <PROG> <NET> <MAP>[<KEY>] into <DEST>;
+```
+
+These behave identically to their static counterparts except that the program and mapping are resolved from field element operands at runtime.

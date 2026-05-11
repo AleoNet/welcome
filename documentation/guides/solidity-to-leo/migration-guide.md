@@ -962,12 +962,17 @@ contract TimeOperations {
 }
 ```
 
-**Leo's Limitation:**
-Leo does not support time units and timestamps (at the moment):
+**Leo's Approach:**
 
 - **No Time Units**: No equivalent to `seconds`, `minutes`, `hours`, etc.
-- **No Timestamps**: No access to block timestamps at the moment until [ARC-0040](https://github.com/ProvableHQ/ARCs/discussions/69) is implemented.
-- **No Time-based Logic**: Developers must implement time logic externally or rely on block height
+- **Block Timestamp**: `block.timestamp` is available in finalize (async) scope and returns a Unix timestamp as `i64`. Use it for time-based access control or expiry logic.
+- **Block Height**: `block.height` is also available in finalize scope and can substitute for time-based logic when block-level granularity is sufficient.
+
+```leo
+async function finalize_check_expiry(expires_at: i64) {
+    assert(block.timestamp < expires_at);
+}
+```
 
 ## Error Handling
 
@@ -1086,7 +1091,10 @@ contract DynamicCalls {
 }
 ```
 
-**Leo's Static Approach:**
+**Leo's Static Calls:**
+
+Static calls (`call`) require the target program to be imported at compile time:
+
 ```leo
 import credits.aleo;
 
@@ -1096,7 +1104,6 @@ program static_calls.aleo {
         to: address, 
         amount: u64
     ) -> (credits.aleo/credits, Future) {
-        // Static, compile-time known calls only
         let tuple: (credits.aleo/credits, Future) = credits.aleo/transfer_private(
             input,
             to,
@@ -1109,16 +1116,34 @@ program static_calls.aleo {
     async function f_transfer(f: Future) {
         f.await();
     }
-    
-    // Can query public state from other programs within finalize scope
-    async transition get_external_balance(user: address) -> Future {
-        return f_get_external_balance(user);
-    }
+}
+```
 
-    async function f_get_external_balance(user: address) {
-        let balance: u64 = credits.aleo/account.get(user);
+**Leo's Dynamic Calls ([ARC-0009](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009)):**
+
+Dynamic calls (`call.dynamic`) resolve the target program at runtime, no compile-time import needed. Leo also supports interface-enforced syntax for type-safe dynamic dispatch:
+
+```leo
+program dex.aleo {
+    // Call any ARC-20 conformant token at runtime using the interface syntax
+    fn swap(
+        public token_in: identifier,
+        public token_out: identifier,
+        public amount_in: u128,
+        public amount_out: u128,
+    ) -> Final {
+        let pull: Final = ARC20@(token_in)/transfer_from_public(
+            self.signer, self.address, amount_in
+        );
+        let push: Final = ARC20@(token_out)/transfer_public(
+            self.signer, amount_out
+        );
+        return final { pull.run(); push.run(); };
     }
 }
+```
+
+The target program and function name are **public** circuit inputs, avoid using sensitive private data to select a dynamic call target. See the [Dynamic Dispatch guide](../aleo/03_language.md#dynamic-dispatch) for full details.
 ```
 
 ## Inheritance
@@ -1264,12 +1289,22 @@ contract Token is IERC20 {
 ```
 
 **Leo's Approach:**
-Leo does not support abstract contracts or interfaces since it lacks inheritance:
+Leo does not support abstract contracts in the Solidity sense, but it now supports **interfaces** for dynamic dispatch via [ARC-0009](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009):
 
 - **No Abstract Contracts**: Cannot define partially implemented contracts
-- **No Interfaces**: Cannot define contract interfaces for implementation
-- **Alternative**: Use composition and program imports for modularity
-- **Future Consideration**: Interfaces may be supported once dynamic dispatch is implemented
+- **Interfaces via Dynamic Dispatch**: Leo programs can declare and implement named interfaces (e.g. `ARC20`), and callers can invoke any conforming program at runtime using `Interface@(program_id)/function(args)` syntax, no compile-time import required
+- **Alternative for static calls**: Use composition and program imports for modularity
+
+```leo
+// Any program implementing ARC20 can be called without being imported
+interface ARC20 {
+    fn transfer_public(public recipient: address, public amount: u128) -> Final;
+    // ...
+}
+
+// In a DeFi program:
+ARC20@(token_id)/transfer_public(recipient, amount);
+```
 
 ### Libraries
 

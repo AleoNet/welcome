@@ -8,8 +8,8 @@ sidebar_label: Token Registry
 
 The Token Registry Program remains live on mainnet and continues to serve existing integrations. However, it is **not recommended for new projects**. Newer token standards are currently under active community discussion and are expected to supersede the Token Registry:
 
-- [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/125) — proposed standard for fungible tokens on Aleo
-- [ARC-22](https://github.com/ProvableHQ/ARCs/discussions/124) — proposed standard for wrapped/bridged fungible tokens on Aleo
+- [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/124) — proposed standard for fungible tokens on Aleo
+- [ARC-22](https://github.com/ProvableHQ/ARCs/discussions/125) — proposed standard for compliant/regulated fungible tokens on Aleo, extending ARC-20
 
 New projects should follow these discussions and consider building against the forthcoming standards once finalized.
 
@@ -17,9 +17,9 @@ New projects should follow these discussions and consider building against the f
 
 ## Overview
 
-The Token Registry Program is a standard program designed for issuing and managing new tokens on the Aleo blockchain. It operates as a singleton program because on Aleo, all imported programs must be known and deployed before the importing program, and dynamic cross-program calls are not currently supported which makes composability difficult to implement. This means that a DeFi program must be compiled with support for all token programs that it will ever interact with. If a new token program is subsequently deployed on-chain, the DeFi program will need to be re-compiled and redeployed on chain in order to interact with that token.
+The Token Registry Program is a standard program designed for issuing and managing new tokens on the Aleo blockchain. It operates as a singleton program: rather than deploying a separate program per token, all tokens register with this central registry, which manages their balances. DeFi programs depend only on the registry, so new tokens can be added without redeploying existing DeFi programs. As a secondary benefit, private transfers within the registry conceal the identity of the specific token being transferred, improving the anonymity set.
 
-In the near-term, support for dynamic dispatch will resolve this but currently, the issue is circumvented by means of the [token registry](https://explorer.provable.com/program/token_registry.aleo) which can manage balances for many different ARC-20 tokens. This program would be the standard "hub" that all tokens and DeFi programs interface with. Individual ARC-20 tokens can register with the registry and mint new tokens via this program. Transfers of token value will occur by direct call to the registry rather than the ARC-20 program itself. The benefit of this approach is that DeFi programs do not need to be compiled with any special knowledge of individual ARC-20 tokens: their sole dependency will be the registry. Hence the deployment of new tokens does not require re-deployment of DeFi programs. Similarly, individual ARC-20 tokens can also be compiled with dependence on the registry, but no dependence on the DeFi programs. The registry thus allows interoperability between new tokens and DeFi programs, with no need for program re-deployment. As a secondary benefit, the registry will provide privacy benefits (via an improved anonymity set) because all private transfers within the registry will conceal the identity of the specific token being transferred.
+This design predates [dynamic dispatch (ARC-0009)](https://github.com/ProvableHQ/ARCs/tree/master/arc-0009). With dynamic dispatch now finalized, programs can call other programs at runtime without compile-time imports, enabling the per-program token model described in [ARC-20](https://github.com/ProvableHQ/ARCs/discussions/124). The Token Registry remains live on mainnet and continues to serve existing integrations — see the caution above for guidance on new projects.
 
 This standard is emerged from extensive discussions and the approval of the [ARC-21 proposal](https://vote.aleo.org/p/21) to enable token interoperability across different applications.
 
