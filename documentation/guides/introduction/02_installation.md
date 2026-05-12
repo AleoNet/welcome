@@ -3,6 +3,10 @@ id: installation
 title: Installation
 sidebar_label: Installation
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Install the following tools in order to develop and test programs locally:
 
 ## 1. Installing Leo 🦁
@@ -17,28 +21,54 @@ Install the following tools in order to develop and test programs locally:
 
 ### 1.3 Install Leo
 
-Installing Leo by building from the source code as follows:
+<Tabs groupId="leo-install">
+  <TabItem value="cargo" label="Cargo (Recommended)" default>
+
 ```bash
-# Download the source code and initialize the submodules
-git clone --recurse-submodules https://github.com/ProvableHQ/leo
+cargo install leo-lang
+```
+
+This installs the `leo` executable to `~/.cargo/bin/leo`.
+
+  </TabItem>
+  <TabItem value="binary" label="Pre-Built Binary">
+
+Download the latest release from the [Leo GitHub releases page](https://github.com/ProvableHQ/leo/releases), then:
+
+```bash
+# Make the binary executable
+chmod +x leo
+
+# Move it to your system path
+mv leo /usr/local/bin
+```
+
+Pre-built binaries are available for macOS Apple Silicon and other platforms. Browse all options on the [releases page](https://github.com/ProvableHQ/leo/releases).
+
+  </TabItem>
+  <TabItem value="source" label="Build from Source">
+
+```bash
+# Download the source code
+git clone https://github.com/ProvableHQ/leo
 cd leo
 
 # Install 'leo'
 cargo install --path .
 ```
 
+  </TabItem>
+</Tabs>
+
 ### 1.4 Verify Installation
 
-To verify if you have Leo, open your terminal and type `leo`. You should be able to see the following:
+To verify your installation, run:
 
-![Leo](images/leo-cli.png)
-
-### 1.5 Check Version and Update Leo
-
-To check the version of leo, in your terminal, run:
 ```bash
 leo --version
 ```
+
+### 1.5 Update Leo
 
 You can update Leo to the latest version using the following command:
 ```bash
@@ -63,9 +93,14 @@ For detailed instructions on how to set up syntax highlighting for these editors
 
 ### 2.1 Prerequisites
 
-Before beginning, please ensure your machine has Rust v1.79+ installed. Instructions to install Rust can be found [here](https://www.rust-lang.org/tools/install).
+**Supported operating systems (64-bit only):**
+- Ubuntu 22.04 LTS
+- macOS Ventura or later
+- Windows 11 or later
 
-**[For Windows users]** Additional dependencies if usual installation path does not works:
+**Rust:** Install the version specified in the [`rust-toolchain`](https://github.com/ProvableHQ/snarkOS/blob/mainnet/rust-toolchain) file via [rustup](https://www.rust-lang.org/tools/install).
+
+**[For Windows users]** Additional dependencies are required:
 1. Install C++ Clang tools for Windows via the Visual Studio Installer
 2. Set the `LIBCLANG_PATH` environment variable to the location of the installed `libclang.dll` file, typically found at:
    ```
@@ -76,9 +111,10 @@ Before beginning, please ensure your machine has Rust v1.79+ installed. Instruct
 
 ```bash
 git clone --branch mainnet --single-branch https://github.com/ProvableHQ/snarkOS.git
+cd snarkOS
 ```
 
-**[For Ubuntu users]** A helper script to install dependencies is available. From the snarkOS directory, run:
+**[For Ubuntu users]** A helper script to install dependencies is available:
 ```bash
 ./build_ubuntu.sh
 ```
@@ -86,14 +122,21 @@ git clone --branch mainnet --single-branch https://github.com/ProvableHQ/snarkOS
 ### 2.3 Install snarkOS
 
 ```bash
-cd snarkOS
 cargo install --locked --path .
+```
+
+**Optional: GPU support (experimental)**
+
+CUDA support is available but considered unstable:
+```bash
+cargo install --locked --path . --features cuda
 ```
 
 ### 2.4 Verify Installation
 
-To verify if you have snarkOS, open your terminal and type `snarkos`. You should be able to see the following:
-![snarkOS](images/snarkos-cli.png)
+```bash
+snarkos --version
+```
 
 ## 3. Next Steps
 

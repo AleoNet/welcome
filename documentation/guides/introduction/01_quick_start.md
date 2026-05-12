@@ -26,18 +26,14 @@ Click on the Account Widget to generate a new Aleo Account.
 Save your **Address**, **View Key**, and **Private Key** in a safe place, you'll need them later.
 :::
 
-### 1.2 Using an Ecosystem Wallet
+### 1.2 Using a Wallet
 
-An account can be created using one of the wallets below. After installing any of the wallets below, you will be 
+An account can be created using [Aleo Shield](https://aleo.org/shield/). After installing Aleo Shield, you will be
 prompted to create an Aleo account.
-
-* [Puzzle Wallet](https://puzzle.online/wallet)
-* [Fox Wallet](https://foxwallet.com/)
-* [Soter Wallet](https://sotertech.io/)
 
 ## 2. Seed Your Wallet With Testnet Credits
 
-### 2.1 Get Credits from an Ecosystem Faucet
+### 2.1 Get Credits from the Faucet
 
 To seed your wallet, you can request from the official faucet https://faucet.aleo.org/.
 
